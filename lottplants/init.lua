@@ -1,4 +1,3 @@
-dofile(minetest.get_modpath("lottplants").."/mapgen.lua")
 dofile(minetest.get_modpath("lottplants").."/nodes.lua")
 dofile(minetest.get_modpath("lottplants").."/functions.lua")
 
