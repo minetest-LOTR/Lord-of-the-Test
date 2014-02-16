@@ -167,8 +167,8 @@ lottmobs:register_mob("lottmobs:dunlending", {
 	drops = {
 		{name = "default:axe_stone",
 		chance = 100,
-		min = 3,
-		max = 5,},
+		min = 1,
+		max = 1,},
 	},
         light_resistant = true,
 	armor = 100,
