@@ -36,11 +36,11 @@ lottmobs:register_mob("lottmobs:elf", {
 		punch_end = 63,
 	}
 })
-lottmobs:register_spawn("lottmobs:elf", {"lottplants:elanor"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:elf", {"lottplants:niphredil"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:elf", {"lottplants:lissuin"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:elf", {"lottplants:mallorntree"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:elf", {"lottplants:mallornleaf"}, 20, -1, 100, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:elanor"}, 20, -1, 50, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:niphredil"}, 20, -1, 50, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:lissuin"}, 20, -1, 50, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:mallorntree"}, 20, -1, 50, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:mallornleaf"}, 20, -1, 50, 3, 31000)
 
 lottmobs:register_mob("lottmobs:ent", {
 	type = "animal",
@@ -78,15 +78,15 @@ lottmobs:register_mob("lottmobs:ent", {
 		punch_end = 62,
 	},
 })
-lottmobs:register_spawn("lottmobs:ent", {"default:leaves"}, 15, -1, 1000, 1, 31000)
-lottmobs:register_spawn("lottmobs:ent", {"lottplants:birchtree"}, 15, -1, 1000, 1, 31000)
-lottmobs:register_spawn("lottmobs:ent", {"lottplants:birchleaf"}, 15, -1, 1000, 1, 31000)
-lottmobs:register_spawn("lottmobs:ent", {"lottplants:rowanleaf"}, 15, -1, 1000, 1, 31000)
-lottmobs:register_spawn("lottmobs:ent", {"lottplants:elmleaf"}, 15, -1, 1000, 1, 31000)
-lottmobs:register_spawn("lottmobs:ent", {"lottplants:asphodel"}, 15, -1, 1000, 1, 31000)
-lottmobs:register_spawn("lottmobs:ent", {"lottplants:anemones"}, 15, -1, 1000, 1, 31000)
-lottmobs:register_spawn("lottmobs:ent", {"lottplants:eglantive"}, 15, -1, 1000, 1, 31000)
-lottmobs:register_spawn("lottmobs:ent", {"lottplants:iris"}, 15, -1, 1000, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"default:leaves"}, 15, -1, 300, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:birchtree"}, 15, -1, 300, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:birchleaf"}, 15, -1, 300, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:rowanleaf"}, 15, -1, 300, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:elmleaf"}, 15, -1, 300, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:asphodel"}, 15, -1, 300, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:anemones"}, 15, -1, 300, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:eglantive"}, 15, -1, 300, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:iris"}, 15, -1, 300, 1, 31000)
 
 lottmobs:register_mob("lottmobs:rohan_guard", {
 	type = "animal",
@@ -122,11 +122,11 @@ lottmobs:register_mob("lottmobs:rohan_guard", {
 		punch_end = 63,
 	}
 })
-lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:mallos"}, 20, -1, 200, 3, 31000)
-lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:athelas"}, 20, -1, 200, 3, 31000)
-lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:pipeweed_wild"}, 20, -1, 200, 3, 31000)
-lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:lebethrontree"}, 20, -1, 200, 3, 31000)
-lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:aldertree"}, 20, -1, 200, 3, 31000)
+lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:mallos"}, 20, -1, 20, 3, 31000)
+lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:athelas"}, 20, -1, 20, 3, 31000)
+lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:pipeweed_wild"}, 20, -1, 20, 3, 31000)
+lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:lebethrontree"}, 20, -1, 20, 3, 31000)
+lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:aldertree"}, 20, -1, 20, 3, 31000)
 
 lottmobs:register_mob("lottmobs:gondor_guard", {
 	type = "animal",
@@ -162,19 +162,19 @@ lottmobs:register_mob("lottmobs:gondor_guard", {
 		punch_end = 63,
 	}
 })
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:mallos"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:athelas"}, 20, -1, 50, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:pipeweed_wild"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:corn_wild"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:potato_wild"}, 20, -1, 50, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:mushroom_wild"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:berries_wild"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:turnips_wild"}, 20, -1, 50, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:tomatoes_wild"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:cabbage_wild"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:pilinehtar"}, 20, -1, 50, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:lebethrontree"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:aldertree"}, 20, -1, 50, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:mallos"}, 20, -1, 10, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:athelas"}, 20, -1, 5, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:pipeweed_wild"}, 20, -1, 10, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:corn_wild"}, 20, -1, 10, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:potato_wild"}, 20, -1, 5, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:mushroom_wild"}, 20, -1, 10, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:berries_wild"}, 20, -1, 10, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:turnips_wild"}, 20, -1, 5, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:tomatoes_wild"}, 20, -1, 10, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:cabbage_wild"}, 20, -1, 10, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:pilinehtar"}, 20, -1, 5, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:lebethrontree"}, 20, -1, 10, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:aldertree"}, 20, -1, 5, 3, 31000)
 
 lottmobs:register_mob("lottmobs:dunlending", {
 	type = "monster",
@@ -215,19 +215,19 @@ lottmobs:register_mob("lottmobs:dunlending", {
 		punch_end = 63,
 	}
 })
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:mallos"}, 20, -1, 50, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:athelas"}, 20, -1, 50, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:pipeweed_wild"}, 20, -1, 50, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:corn_wild"}, 20, -1, 50, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:potato_wild"}, 20, -1, 50, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:mushroom_wild"}, 20, -1, 50, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:berries_wild"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:turnips_wild"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:tomatoes_wild"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:cabbage_wild"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:pilinehtar"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:lebethrontree"}, 20, -1, 100, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:aldertree"}, 20, -1, 100, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:mallos"}, 20, -1, 5, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:athelas"}, 20, -1, 5, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:pipeweed_wild"}, 20, -1, 5, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:corn_wild"}, 20, -1, 5, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:potato_wild"}, 20, -1, 5, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:mushroom_wild"}, 20, -1, 5, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:berries_wild"}, 20, -1, 10, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:turnips_wild"}, 20, -1, 10, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:tomatoes_wild"}, 20, -1, 10, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:cabbage_wild"}, 20, -1, 10, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:pilinehtar"}, 20, -1, 10, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:lebethrontree"}, 20, -1, 10, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:aldertree"}, 20, -1, 10, 3, 31000)
 
 lottmobs:register_mob("lottmobs:hobbit", {
 	type = "animal",
@@ -309,7 +309,7 @@ lottmobs:register_mob("lottmobs:orc", {
 		punch_end = 63,
 	}
 })
-lottmobs:register_spawn("lottmobs:orc", {"lottmapgen:mordor_stone"}, 20, -1, 1000, 3, 31000)
+lottmobs:register_spawn("lottmobs:orc", {"lottmapgen:mordor_stone"}, 20, -1, 300, 3, 31000)
 
 lottmobs:register_mob("lottmobs:uruk_hai", {
 	type = "monster",
@@ -350,7 +350,7 @@ lottmobs:register_mob("lottmobs:uruk_hai", {
 		punch_end = 63,
 	}
 })
-lottmobs:register_spawn("lottmobs:uruk_hai", {"lottmapgen:mordor_stone"}, 15, -1, 5000, 3, 31000)
+lottmobs:register_spawn("lottmobs:uruk_hai", {"lottmapgen:mordor_stone"}, 15, -1, 1000, 3, 31000)
 
 lottmobs:register_mob("lottmobs:battle_troll", {
 	type = "monster",
@@ -390,7 +390,8 @@ lottmobs:register_mob("lottmobs:battle_troll", {
 		speed_run = 15,
 	},
 })
-lottmobs:register_spawn("lottmobs:battle_troll", {"default:snow"}, 10, -1, 5000, 5, 31000)
+lottmobs:register_spawn("lottmobs:battle_troll", {"default:snow"}, 10, -1, 100, 5, 31000)
+lottmobs:register_spawn("lottmobs:battle_troll", {"default:snowblock"}, 10, -1, 100, 5, 31000)
 
 lottmobs:register_mob("lottmobs:half_troll", {
 	type = "monster",
@@ -410,12 +411,12 @@ lottmobs:register_mob("lottmobs:half_troll", {
 		min = 1,
 		max = 1,},
 	},
-        light_resistant = false,
+        light_resistant = true,
 	armor = 100,
 	drawtype = "front",
 	water_damage = 0,
 	lava_damage = 10,
-	light_damage = 10,
+	light_damage = 0,
 	on_rightclick = nil,
 	attack_type = "dogfight",
 	animation = {
@@ -431,8 +432,8 @@ lottmobs:register_mob("lottmobs:half_troll", {
 		punch_end = 63,
 	}
 })
-lottmobs:register_spawn("lottmobs:half_troll", {"default:snow"}, 15, -1, 500, 3, 31000)
-lottmobs:register_spawn("lottmobs:half_troll", {"default:snowblock"}, 15, -1, 2000, 3, 31000)
+lottmobs:register_spawn("lottmobs:half_troll", {"default:snow"}, 15, -1, 50, 3, 31000)
+lottmobs:register_spawn("lottmobs:half_troll", {"default:snowblock"}, 15, -1, 50, 3, 31000)
 lottmobs:register_spawn("lottmobs:half_troll", {"lottmapgen:mordor_stone"}, 15, -1, 2000, 3, 31000)
 
 lottmobs:register_mob("lottmobs:nazgul", {
@@ -637,8 +638,8 @@ lottmobs:register_mob("lottmobs:troll", {
 	},
 })
 lottmobs:register_spawn("lottmobs:troll", {"default:stone"}, 2, -1, 2000, 5, -10)
-lottmobs:register_spawn("lottmobs:troll", {"default:snow"}, 2, -1, 2000, 5, -10)
-lottmobs:register_spawn("lottmobs:troll", {"default:snowblock"}, 2, -1, 2000, 5, -10)
+lottmobs:register_spawn("lottmobs:troll", {"default:snow"}, 2, -1, 100, 5, -10)
+lottmobs:register_spawn("lottmobs:troll", {"default:snowblock"}, 2, -1, 100, 5, -10)
 
 lottmobs:register_mob("lottmobs:dwarf", {
 	type = "animal",
