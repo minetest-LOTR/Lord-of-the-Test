@@ -36,8 +36,11 @@ lottmobs:register_mob("lottmobs:elf", {
 		punch_end = 63,
 	}
 })
-lottmobs:register_spawn("lottmobs:elf", {"default:leaves"}, 20, -1, 7000, 3, 31000)
-
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:elanor"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:elanor"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:elanor"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:elanor"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:elanor"}, 20, -1, 7000, 3, 31000)
 lottmobs:register_mob("lottmobs:ent", {
 	type = "animal",
 	hp_max = 20,
@@ -273,7 +276,7 @@ lottmobs:register_mob("lottmobs:orc", {
 		punch_end = 63,
 	}
 })
-lottmobs:register_spawn("lottmobs:orc", {"default:desert_sand"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:orc", {"lottmapgen:mordor_stone"}, 20, -1, 7000, 3, 31000)
 
 lottmobs:register_mob("lottmobs:uruk_hai", {
 	type = "monster",
@@ -314,7 +317,7 @@ lottmobs:register_mob("lottmobs:uruk_hai", {
 		punch_end = 63,
 	}
 })
-lottmobs:register_spawn("lottmobs:uruk_hai", {"default:desert_sand"}, 15, -1, 3500, 3, 31000)
+lottmobs:register_spawn("lottmobs:uruk_hai", {"lottmapgen:mordor_stone"}, 15, -1, 3500, 3, 31000)
 
 lottmobs:register_mob("lottmobs:battle_troll", {
 	type = "monster",
@@ -354,7 +357,7 @@ lottmobs:register_mob("lottmobs:battle_troll", {
 		speed_run = 15,
 	},
 })
-lottmobs:register_spawn("lottmobs:battle_troll", {"default:desert_sand"}, 10, -1, 1000, 5, 31000)
+lottmobs:register_spawn("lottmobs:battle_troll", {"default:snow"}, 10, -1, 1000, 5, 31000)
 
 lottmobs:register_mob("lottmobs:half_troll", {
 	type = "monster",
@@ -395,7 +398,9 @@ lottmobs:register_mob("lottmobs:half_troll", {
 		punch_end = 63,
 	}
 })
-lottmobs:register_spawn("lottmobs:half_troll", {"default:desert_sand"}, 15, -1, 3500, 3, 31000)
+lottmobs:register_spawn("lottmobs:half_troll", {"default:snow"}, 15, -1, 3500, 3, 31000)
+lottmobs:register_spawn("lottmobs:half_troll", {"default:snowblock"}, 15, -1, 3500, 3, 31000)
+lottmobs:register_spawn("lottmobs:half_troll", {"lottmapgen:mordor_stone"}, 15, -1, 3500, 3, 31000)
 
 lottmobs:register_mob("lottmobs:nazgul", {
 	type = "monster",
@@ -599,6 +604,8 @@ lottmobs:register_mob("lottmobs:troll", {
 	},
 })
 lottmobs:register_spawn("lottmobs:troll", {"default:stone"}, 2, -1, 7000, 5, -10)
+lottmobs:register_spawn("lottmobs:troll", {"default:snow"}, 2, -1, 7000, 5, -10)
+lottmobs:register_spawn("lottmobs:troll", {"default:snowblock"}, 2, -1, 7000, 5, -10)
 
 lottmobs:register_mob("lottmobs:dwarf", {
 	type = "animal",
