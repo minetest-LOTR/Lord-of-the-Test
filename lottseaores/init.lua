@@ -123,7 +123,7 @@ stairs.register_stair_and_slab("salt", "lottseaores:salt_block",
 minetest.register_ore({
 	ore_type       = "scatter",
 	ore            = "lottseaores:mineral_salt",
-	wherein        = "default:stone",
+	wherein        = "default:sand",
 	clust_scarcity = 12*12*12,
 	clust_num_ores = 2,
 	clust_size     = 2,
@@ -134,7 +134,7 @@ minetest.register_ore({
 minetest.register_ore({
 	ore_type       = "scatter",
 	ore            = "lottseaores:mineral_salt",
-	wherein        = "default:stone",
+	wherein        = "default:sand",
 	clust_scarcity = 9*9*9,
 	clust_num_ores = 2,
 	clust_size     = 5,
