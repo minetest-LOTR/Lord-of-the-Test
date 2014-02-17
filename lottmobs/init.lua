@@ -37,10 +37,11 @@ lottmobs:register_mob("lottmobs:elf", {
 	}
 })
 lottmobs:register_spawn("lottmobs:elf", {"lottplants:elanor"}, 20, -1, 7000, 3, 31000)
-lottmobs:register_spawn("lottmobs:elf", {"lottplants:elanor"}, 20, -1, 7000, 3, 31000)
-lottmobs:register_spawn("lottmobs:elf", {"lottplants:elanor"}, 20, -1, 7000, 3, 31000)
-lottmobs:register_spawn("lottmobs:elf", {"lottplants:elanor"}, 20, -1, 7000, 3, 31000)
-lottmobs:register_spawn("lottmobs:elf", {"lottplants:elanor"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:niphredil"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:lissuin"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:mallorntree"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:mallornleaf"}, 20, -1, 7000, 3, 31000)
+
 lottmobs:register_mob("lottmobs:ent", {
 	type = "animal",
 	hp_max = 20,
@@ -78,6 +79,14 @@ lottmobs:register_mob("lottmobs:ent", {
 	},
 })
 lottmobs:register_spawn("lottmobs:ent", {"default:leaves"}, 15, -1, 7000, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:birchtree"}, 15, -1, 7000, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:birchleaf"}, 15, -1, 7000, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:rowanleaf"}, 15, -1, 7000, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:elmleaf"}, 15, -1, 7000, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:asphodel"}, 15, -1, 7000, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:anemones"}, 15, -1, 7000, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:eglantive"}, 15, -1, 7000, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:iris"}, 15, -1, 7000, 1, 31000)
 
 lottmobs:register_mob("lottmobs:rohan_guard", {
 	type = "animal",
@@ -113,11 +122,11 @@ lottmobs:register_mob("lottmobs:rohan_guard", {
 		punch_end = 63,
 	}
 })
-lottmobs:register_spawn("lottmobs:rohan_guard", {"default:grass_1"}, 20, -1, 7000, 3, 31000)
-lottmobs:register_spawn("lottmobs:rohan_guard", {"default:grass_2"}, 20, -1, 7000, 3, 31000)
-lottmobs:register_spawn("lottmobs:rohan_guard", {"default:grass_3"}, 20, -1, 7000, 3, 31000)
-lottmobs:register_spawn("lottmobs:rohan_guard", {"default:grass_4"}, 20, -1, 7000, 3, 31000)
-lottmobs:register_spawn("lottmobs:rohan_guard", {"default:grass_5"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:mallos"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:athelas"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:pipeweed_wild"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:lebethrontree"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:aldertree"}, 20, -1, 7000, 3, 31000)
 
 lottmobs:register_mob("lottmobs:gondor_guard", {
 	type = "animal",
@@ -153,7 +162,19 @@ lottmobs:register_mob("lottmobs:gondor_guard", {
 		punch_end = 63,
 	}
 })
-lottmobs:register_spawn("lottmobs:gondor_guard", {"default:dirt_with_grass"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:mallos"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:athelas"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:pipeweed_wild"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:corn_wild"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:potato_wild"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:mushroom_wild"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:berries_wild"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:turnips_wild"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:tomatoes_wild"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:cabbage_wild"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:pilinehtar"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:lebethrontree"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:aldertree"}, 20, -1, 7000, 3, 31000)
 
 lottmobs:register_mob("lottmobs:dunlending", {
 	type = "monster",
@@ -194,7 +215,19 @@ lottmobs:register_mob("lottmobs:dunlending", {
 		punch_end = 63,
 	}
 })
-lottmobs:register_spawn("lottmobs:dunlending", {"default:dirt_with_grass"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:mallos"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:athelas"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:pipeweed_wild"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:corn_wild"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:potato_wild"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:mushroom_wild"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:berries_wild"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:turnips_wild"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:tomatoes_wild"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:cabbage_wild"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:pilinehtar"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:lebethrontree"}, 20, -1, 7000, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:aldertree"}, 20, -1, 7000, 3, 31000)
 
 lottmobs:register_mob("lottmobs:hobbit", {
 	type = "animal",
