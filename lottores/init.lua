@@ -600,18 +600,6 @@ minetest.register_tool("lottores:tinpick", {
 		damage_groups = {fleshy=4},
 	},
 })
-minetest.register_tool("lottores:leadpick", {
-	description = "Lead Pickaxe",
-	inventory_image = "lottores_leadpick.png",
-	tool_capabilities = {
-		full_punch_interval = 1.0,
-		max_drop_level=1,
-		groupcaps={
-			cracky = {times={[1]=4.00, [2]=1.60, [3]=0.80}, uses=30, maxlevel=2},
-		},
-		damage_groups = {fleshy=4},
-	},
-})
 minetest.register_tool("lottores:silverpick", {
 	description = "Silver Pickaxe",
 	inventory_image = "lottores_silverpick.png",
@@ -695,18 +683,6 @@ minetest.register_tool("lottores:tinaxe", {
 		max_drop_level=1,
 		groupcaps={
 			choppy={times={[1]=2.50, [2]=1.40, [3]=1.00}, uses=25, maxlevel=2},
-		},
-		damage_groups = {fleshy=4},
-	},
-})
-minetest.register_tool("lottores:leadaxe", {
-	description = "Lead Axe",
-	inventory_image = "lottores_leadaxe.png",
-	tool_capabilities = {
-		full_punch_interval = 1.0,
-		max_drop_level=1,
-		groupcaps={
-			choppy={times={[1]=2.50, [2]=1.40, [3]=1.00}, uses=30, maxlevel=2},
 		},
 		damage_groups = {fleshy=4},
 	},
@@ -798,18 +774,6 @@ minetest.register_tool("lottores:tinsword", {
 		damage_groups = {fleshy=6},
 	}
 })
-minetest.register_tool("lottores:leadsword", {
-	description = "Lead Sword",
-	inventory_image = "lottores_leadsword.png",
-	tool_capabilities = {
-		full_punch_interval = 0.8,
-		max_drop_level=1,
-		groupcaps={
-			snappy={times={[1]=2.5, [2]=1.20, [3]=0.35}, uses=40, maxlevel=2},
-		},
-		damage_groups = {fleshy=6},
-	}
-})
 minetest.register_tool("lottores:silversword", {
 	description = "Silver Sword",
 	inventory_image = "lottores_silversword.png",
@@ -896,19 +860,6 @@ minetest.register_tool("lottores:tinshovel", {
 		max_drop_level=1,
 		groupcaps={
 			crumbly = {times={[1]=1.50, [2]=0.90, [3]=0.40}, uses=35, maxlevel=2},
-		},
-		damage_groups = {fleshy=3},
-	},
-})
-minetest.register_tool("lottores:leadshovel", {
-	description = "Lead Shovel",
-	inventory_image = "lottores_leadshovel.png",
-	wield_image = "lottores_leadshovel.png^[transformR90",
-	tool_capabilities = {
-		full_punch_interval = 1.1,
-		max_drop_level=1,
-		groupcaps={
-			crumbly = {times={[1]=1.50, [2]=0.90, [3]=0.40}, uses=40, maxlevel=2},
 		},
 		damage_groups = {fleshy=3},
 	},
@@ -1165,15 +1116,6 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'lottores:leadpick',
-	recipe = {
-		{'lottores:lead_ingot', 'lottores:lead_ingot', 'lottores:lead_ingot'},
-		{'', 'group:stick', ''},
-		{'', 'group:stick', ''},
-	}
-})
-
-minetest.register_craft({
 	output = 'lottores:silverpick',
 	recipe = {
 		{'lottores:silver_ingot', 'lottores:silver_ingot', 'lottores:silver_ingot'},
@@ -1232,15 +1174,6 @@ minetest.register_craft({
 	recipe = {
 		{'lottores:tin_ingot', 'lottores:tin_ingot'},
 		{'lottores:tin_ingot', 'group:stick'},
-		{'', 'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'lottores:leadaxe',
-	recipe = {
-		{'lottores:lead_ingot', 'lottores:lead_ingot'},
-		{'lottores:lead_ingot', 'group:stick'},
 		{'', 'group:stick'},
 	}
 })
@@ -1331,14 +1264,6 @@ minetest.register_craft({
 		{'group:stick'},
 	}
 })
-minetest.register_craft({
-	output = 'lottores:leadsword',
-	recipe = {
-		{'lottores:lead_ingot'},
-		{'lottores:lead_ingot'},
-		{'group:stick'},
-	}
-})
 
 minetest.register_craft({
 	output = 'lottores:silversword',
@@ -1402,14 +1327,6 @@ minetest.register_craft({
 		{'group:stick'},
 	}
 })
-minetest.register_craft({
-	output = 'lottores:leadshovel',
-	recipe = {
-		{'lottores:lead_ingot'},
-		{'group:stick'},
-		{'group:stick'},
-	}
-})
 
 minetest.register_craft({
 	output = 'lottores:silvershovel',
@@ -1447,5 +1364,120 @@ minetest.register_craft({
 	}
 })
 
+--Blocks
 
+minetest.register_node("lottores:mineral_pearl", {
+	description = "Pearl Ore",
+	tiles = {"default_sand.png^lottores_mineral_pearl.png"},
+	paramtype = "light",
+	is_ground_content = true,
+	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3},
+	drop = {
+		items = {
+			{
+				items = {'lottseaores:pearl'},
+			},
+			{
+				items = {'default:sand'},
+			}
+		}
+	},
+	sounds = default.node_sound_sand_defaults(),
+})
 
+minetest.register_node("lottores:mineral_salt", {
+	description = "Salt Mineral",
+	tiles = {"default_dirt.png^lottores_mineral_salt.png"},
+	paramtype = "light",
+	is_ground_content = true,
+	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3},
+	drop = {
+		items = {
+			{
+				items = {'lottores:salt'},
+			},
+			{
+				items = {'default:dirt'},
+			}
+		}
+	},
+	sounds = default.node_sound_dirt_defaults,
+})
+
+minetest.register_node( "lottores:pearl_block", {
+	description = "Pearl Block",
+    alpha = 200,
+	tile_images = { "default_sand.png^lottores_pearl_block.png" },
+	is_ground_content = true,
+	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3},
+
+        sounds = default.node_sound_glass_defaults(),
+
+	drop = 'node "lottores:pearl" 9',
+})
+
+minetest.register_node( "lottores:salt_block", {
+	description = "Salt Block",
+	tile_images = { "default_clay.png^lottores_salt_block.png" },
+	is_ground_content = true,
+	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3},
+
+	on_use = minetest.item_eat(8),
+	sounds = default.node_sound_stone_defaults(),
+	drop = 'craft "lottores:salt" 9',
+})
+
+minetest.register_node("lottores:salt", {
+	description = "Salt",
+	drawtype = "plantlike",
+	visual_scale = 1.0,
+	tiles = {"lottores_salt.png"},
+	inventory_image = "lottores_salt.png",
+	paramtype = "light",
+	sunlight_propagates = true,
+	walkable = false,
+	groups = {fleshy=3,dig_immediate=3,flammable=1},
+	on_use = minetest.item_eat(8),
+	sounds = default.node_sound_defaults(),
+})
+
+-- Craft items
+
+minetest.register_craftitem("lottores:pearl", {
+	description = "Pearl",
+	inventory_image = "lottores_pearl.png",
+})	
+
+-- Crafting
+
+minetest.register_craft( {
+        output = 'node "lottores:salt_block" 1',
+	recipe = {
+		{ 'craft "lottores:salt"', 'craft "lottores:salt"', 'craft "lottores:salt"' },
+		{ 'craft "lottores:salt"', 'craft "lottores:salt"', 'craft "lottores:salt"' },
+		{ 'craft "lottores:salt"', 'craft "lottores:salt"', 'craft "lottores:salt"' },
+	}
+})
+
+minetest.register_craft( {
+	output = 'node "lottores:pearl_block" 1',
+	recipe = {
+		{ 'craft "lottores:pearl"', 'craft "lottores:pearl"', 'craft "lottores:pearl"' },
+		{ 'craft "lottores:pearl"', 'craft "lottores:pearl"', 'craft "lottores:pearl"' },
+		{ 'craft "lottores:pearl"', 'craft "lottores:pearl"', 'craft "lottores:pearl"' },
+	}
+})
+
+stairs.register_stair_and_slab("pearl", "lottores:pearl_block",
+		{cracky=3,oddly_breakable_by_hand=3},
+		{"lottores_pearl_block.png"},
+		"Pearl Stair",
+		"Pearl Slab",
+		default.node_sound_glass_defaults())
+
+stairs.register_stair_and_slab("salt", "lottores:salt_block",
+		{cracky=3,oddly_breakable_by_hand=3},
+		{"lottores_salt_block.png"},
+		"Salt Stair",
+		"Salt Slab",
+		default.node_sound_stone_defaults())

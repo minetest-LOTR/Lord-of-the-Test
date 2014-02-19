@@ -161,7 +161,11 @@ if ONGEN then
 								if y <= sandy then -- if beach, lakebed or dunes
 									if y == -1 and math.abs(noise6) < 0.1 then
 										minetest.add_node({x=x,y=y,z=z},{name="default:clay"})
-									else
+									elseif y == -5 and math.abs(noise6) < 0.1 then
+										minetest.add_node({x=x,y=y,z=z},{name="lottores:mineral_salt"})
+									elseif y == -10 and math.abs(noise6) < 0.1 then
+										minetest.add_node({x=x,y=y,z=z},{name="lottores:mineral_pearl"})
+                                    else
 										minetest.add_node({x=x,y=y,z=z},{name="default:sand"})
 									end
 									if not sol then
