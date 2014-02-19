@@ -1,6 +1,6 @@
 default
+
 fire
+
 bones
 lottores
-lottplants
-lottmapgen

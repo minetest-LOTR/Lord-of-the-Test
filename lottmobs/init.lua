@@ -27,13 +27,13 @@ lottmobs:register_mob("lottmobs:elf", {
 		speed_normal = 15,
 		speed_run = 15,
 		stand_start = 0,
-		stand_end = 14,
-		walk_start = 15,
-		walk_end = 38,
-		run_start = 40,
-		run_end = 63,
-		punch_start = 40,
-		punch_end = 63,
+		stand_end = 79,
+		walk_start = 168,
+		walk_end = 187,
+		run_start = 168,
+		run_end = 187,
+		punch_start = 189,
+		punch_end = 198,
 	}
 })
 lottmobs:register_spawn("lottmobs:elf", {"lottplants:elanor"}, 20, -1, 50, 3, 31000)
@@ -113,13 +113,13 @@ lottmobs:register_mob("lottmobs:rohan_guard", {
 		speed_normal = 15,
 		speed_run = 15,
 		stand_start = 0,
-		stand_end = 14,
-		walk_start = 15,
-		walk_end = 38,
-		run_start = 40,
-		run_end = 63,
-		punch_start = 40,
-		punch_end = 63,
+		stand_end = 79,
+		walk_start = 168,
+		walk_end = 187,
+		run_start = 168,
+		run_end = 187,
+		punch_start = 189,
+		punch_end = 198,
 	}
 })
 lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:mallos"}, 20, -1, 20, 3, 31000)
@@ -153,13 +153,13 @@ lottmobs:register_mob("lottmobs:gondor_guard", {
 		speed_normal = 15,
 		speed_run = 15,
 		stand_start = 0,
-		stand_end = 14,
-		walk_start = 15,
-		walk_end = 38,
-		run_start = 40,
-		run_end = 63,
-		punch_start = 40,
-		punch_end = 63,
+		stand_end = 79,
+		walk_start = 168,
+		walk_end = 187,
+		run_start = 168,
+		run_end = 187,
+		punch_start = 189,
+		punch_end = 198,
 	}
 })
 lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:mallos"}, 20, -1, 10, 3, 31000)
@@ -206,13 +206,13 @@ lottmobs:register_mob("lottmobs:dunlending", {
 		speed_normal = 15,
 		speed_run = 15,
 		stand_start = 0,
-		stand_end = 14,
-		walk_start = 15,
-		walk_end = 38,
-		run_start = 40,
-		run_end = 63,
-		punch_start = 40,
-		punch_end = 63,
+		stand_end = 79,
+		walk_start = 168,
+		walk_end = 187,
+		run_start = 168,
+		run_end = 187,
+		punch_start = 189,
+		punch_end = 198,
 	}
 })
 lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:mallos"}, 20, -1, 5, 3, 31000)
@@ -254,13 +254,13 @@ lottmobs:register_mob("lottmobs:hobbit", {
 		speed_normal = 15,
 		speed_run = 15,
 		stand_start = 0,
-		stand_end = 14,
-		walk_start = 15,
-		walk_end = 38,
-		run_start = 40,
-		run_end = 63,
-		punch_start = 40,
-		punch_end = 63,
+		stand_end = 79,
+		walk_start = 168,
+		walk_end = 187,
+		run_start = 168,
+		run_end = 187,
+		punch_start = 189,
+		punch_end = 198,
 	}
 })
 lottmobs:register_spawn("lottmobs:hobbit", {"flowers:dandelion_yellow"}, 20, -1, 1000, 3, 31000)
@@ -300,13 +300,13 @@ lottmobs:register_mob("lottmobs:orc", {
 		speed_normal = 15,
 		speed_run = 15,
 		stand_start = 0,
-		stand_end = 14,
-		walk_start = 15,
-		walk_end = 38,
-		run_start = 40,
-		run_end = 63,
-		punch_start = 40,
-		punch_end = 63,
+		stand_end = 79,
+		walk_start = 168,
+		walk_end = 187,
+		run_start = 168,
+		run_end = 187,
+		punch_start = 189,
+		punch_end = 198,
 	}
 })
 lottmobs:register_spawn("lottmobs:orc", {"lottmapgen:mordor_stone"}, 20, -1, 300, 3, 31000)
@@ -341,13 +341,13 @@ lottmobs:register_mob("lottmobs:uruk_hai", {
 		speed_normal = 15,
 		speed_run = 15,
 		stand_start = 0,
-		stand_end = 14,
-		walk_start = 15,
-		walk_end = 38,
-		run_start = 40,
-		run_end = 63,
-		punch_start = 40,
-		punch_end = 63,
+		stand_end = 79,
+		walk_start = 168,
+		walk_end = 187,
+		run_start = 168,
+		run_end = 187,
+		punch_start = 189,
+		punch_end = 198,
 	}
 })
 lottmobs:register_spawn("lottmobs:uruk_hai", {"lottmapgen:mordor_stone"}, 15, -1, 1000, 3, 31000)
@@ -423,13 +423,13 @@ lottmobs:register_mob("lottmobs:half_troll", {
 		speed_normal = 15,
 		speed_run = 15,
 		stand_start = 0,
-		stand_end = 14,
-		walk_start = 15,
-		walk_end = 38,
-		run_start = 40,
-		run_end = 63,
-		punch_start = 40,
-		punch_end = 63,
+		stand_end = 79,
+		walk_start = 168,
+		walk_end = 187,
+		run_start = 168,
+		run_end = 187,
+		punch_start = 189,
+		punch_end = 198,
 	}
 })
 lottmobs:register_spawn("lottmobs:half_troll", {"default:snow"}, 15, -1, 50, 3, 31000)
@@ -467,14 +467,14 @@ lottmobs:register_mob("lottmobs:nazgul", {
 		attack = "lottmobs:darkball",
 	},
 	animation = {
-		stand_start = 0,
-		stand_end = 19,
-		walk_start = 20,
-		walk_end = 35,
-		punch_start = 36,
-		punch_end = 48,
 		speed_normal = 15,
 		speed_run = 15,
+		stand_start = 0,
+		stand_end = 79,
+		walk_start = 168,
+		walk_end = 187,
+		punch_start = 189,
+		punch_end = 198,
 	},
 })
 lottmobs:register_spawn("lottmobs:nazgul", {"default:stone"}, 2, -1, 10000, 3, -50)
@@ -510,14 +510,14 @@ lottmobs:register_mob("lottmobs:witch_king", {
 		attack = "lottmobs:darkball",
 	},
 	animation = {
-		stand_start = 0,
-		stand_end = 19,
-		walk_start = 20,
-		walk_end = 35,
-		punch_start = 36,
-		punch_end = 48,
 		speed_normal = 15,
 		speed_run = 15,
+		stand_start = 0,
+		stand_end = 79,
+		walk_start = 168,
+		walk_end = 187,
+		punch_start = 189,
+		punch_end = 198,
 	},
 })
 lottmobs:register_spawn("lottmobs:witch_king", {"default:stone"}, 2, -1, 30000, 10, -1000)
@@ -589,13 +589,13 @@ lottmobs:register_mob("lottmobs:dead_men", {
 		speed_normal = 15,
 		speed_run = 15,
 		stand_start = 0,
-		stand_end = 14,
-		walk_start = 15,
-		walk_end = 38,
-		run_start = 40,
-		run_end = 63,
-		punch_start = 40,
-		punch_end = 63,
+		stand_end = 79,
+		walk_start = 168,
+		walk_end = 187,
+		run_start = 168,
+		run_end = 187,
+		punch_start = 189,
+		punch_end = 198,
 	}
 })
 lottmobs:register_spawn("lottmobs:dead_men", {"default:stone"}, 2, -1, 9000, 10, -100)
@@ -667,13 +667,13 @@ lottmobs:register_mob("lottmobs:dwarf", {
 		speed_normal = 15,
 		speed_run = 15,
 		stand_start = 0,
-		stand_end = 14,
-		walk_start = 15,
-		walk_end = 38,
-		run_start = 40,
-		run_end = 63,
-		punch_start = 40,
-		punch_end = 63,
+		stand_end = 79,
+		walk_start = 168,
+		walk_end = 187,
+		run_start = 168,
+		run_end = 187,
+		punch_start = 189,
+		punch_end = 198,
 	}
 })
 lottmobs:register_spawn("lottmobs:dwarf", {"default:stone"}, 15, -1, 7000, 3, -10)
@@ -769,5 +769,3 @@ lottmobs:register_arrow("lottmobs:fireslash", {
 		end
 	end
 })
-
-
