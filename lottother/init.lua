@@ -25,19 +25,6 @@ minetest.register_node("lottother:blue_torch", {
 	sounds = default.node_sound_defaults(),
 })
 
-minetest.register_node("lottother:blue_torch_node", {
-	description = "Blue Flame Torch_doe",
-	inventory_image = "lottother_blue_torch_floor.png",
-	wield_image = "lottother_blue_torch_floor.png",
-	paramtype = "light",
-	sunlight_propagates = true,
-	is_ground_content = false,
-	walkable = true,
-	light_source = LIGHT_MAX-1,
-	groups = {choppy=2,dig_immediate=3,flammableblue=1,attached_node=1,hot=2},
-	sounds = default.node_sound_defaults(),
-})
-
 minetest.register_node("lottother:blue_flame", {
 	description = "Blue Flame",
 	drawtype = "plantlike",
