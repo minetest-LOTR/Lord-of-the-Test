@@ -978,6 +978,13 @@ stairs.register_stair_and_slab("tin_block", "lottores:galvorn_block",
 -- Crafting
 
 minetest.register_craft({
+	output = 'lottores:galvorn_ingot',
+	recipe = {
+		{'lottores:lead_ingot', 'lottores:rough_rock_lump'},
+	}
+})
+
+minetest.register_craft({
 	output = 'lottores:tilkal',
 	recipe = {
 		{'lottores:tilkal_ingot', 'lottores:tilkal_ingot', 'lottores:tilkal_ingot'},
