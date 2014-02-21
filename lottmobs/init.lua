@@ -40,7 +40,7 @@ lottmobs:register_spawn("lottmobs:elf", {"lottplants:elanor"}, 20, -1, 50, 3, 31
 lottmobs:register_spawn("lottmobs:elf", {"lottplants:niphredil"}, 20, -1, 50, 3, 31000)
 lottmobs:register_spawn("lottmobs:elf", {"lottplants:lissuin"}, 20, -1, 50, 3, 31000)
 lottmobs:register_spawn("lottmobs:elf", {"lottplants:mallorntree"}, 20, -1, 50, 3, 31000)
-lottmobs:register_spawn("lottmobs:elf", {"lottplants:mallornleaf"}, 20, -1, 50, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:mallornleaf"}, 20, -1, 100, 3, 31000)
 
 lottmobs:register_mob("lottmobs:ent", {
 	type = "animal",
