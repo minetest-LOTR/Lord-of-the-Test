@@ -1035,7 +1035,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = 'lottores:ithildin_lamp_1',
 	recipe = {
-		{'lottores:mithril_ingot', 'default:torch'},
+		{'lottores:mithril_ingot', 'lottother:blue_torch'},
 	}
 })
 
