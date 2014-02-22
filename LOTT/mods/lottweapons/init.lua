@@ -553,7 +553,7 @@ minetest.register_tool("lottweapons:elven_sword", {
 		full_punch_interval = 1,
 		max_drop_level=2,
 		groupcaps={
-			snappy={times={[1]=1.60, [2]=1.30, [3]=0.90}, uses=25, maxlevel=3},
+			snappy={times={[1]=1.60, [2]=1.30, [3]=0.90}, uses=50, maxlevel=3},
 		},
 		damage_groups = {fleshy=7.5},
 	}
