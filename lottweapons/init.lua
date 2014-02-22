@@ -851,7 +851,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'lottweapons:wood_dagger',
+	output = 'lottweapons:stone_dagger',
 	recipe = {
 		{'default:cobble'},
 		{'group:stick'},
