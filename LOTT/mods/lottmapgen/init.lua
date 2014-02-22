@@ -1,41 +1,41 @@
---Lottmapgen originally by paramat, modification by fishyWET
+--Lottmapgen originally paragenv7 by paramat, modification by fishyWET
 
 local ONGEN = true -- (true/false) Enable biome generation.
 local PROG = false -- Print generation progress to terminal.
 
-local SANDY = 0 -- 0 -- Sandline average y of beach top.
-local SANDA = 4 -- 4 -- Sandline amplitude.
-local SANDR = 2 -- 2 -- Sandline randomness added to above.
-local FMAV = 3 -- 3 -- Surface material average depth at sea level.
-local FMAMP = 2 -- 2 -- Surface material depth amplitude.
+local SANDY = 0
+local SANDA = 4
+local SANDR = 2
+local FMAV = 3
+local FMAMP = 2
 
-local HITET = 0.25 -- 0.25 -- Desert / savanna / rainforest temperature noise threshold.
-local LOTET = -0.55 -- -0.55 -- Tundra / snoga temperature noise threshold.
-local HIWET = 0.25 -- 0.25 -- Wet grassland / rainforest wetness noise threshold.
-local LOWET = -0.55 -- -0.55 -- Tundra / dry grassland / desert wetness noise threshold.
+local HITET = 0.25
+local LOTET = -0.55
+local HIWET = 0.25
+local LOWET = -0.55
 
-local TGRAD = 160 -- 160 -- Vertical temperature gradient. -- All 3 fall with altitude from y = 0
-local HGRAD = 160 -- 160 -- Vertical humidity gradient.
-local FMGRAD = 40 -- 40 -- Surface material thinning gradient.
+local TGRAD = 160
+local HGRAD = 160
+local FMGRAD = 40
 
-local TUNGRACHA = 121 -- 121 -- Dry shrub 1/x chance per node in tundra.
-local TAIPINCHA = 64 -- 64 -- Pine 1/x chance per node in taiga.
-local DRYGRACHA = 3 -- 3 -- Dry shrub 1/x chance per node in dry grasslands.
-local DECGRACHA = 9 -- 9 -- Default grasses 1/x chance per node in deciduous forest.
-local DECAPPCHA = 10000 -- 10000 -- Appletree sapling 1/x chance per node in deciduous forest.
+local TUNGRACHA = 121
+local TAIPINCHA = 64
+local DRYGRACHA = 3
+local DECGRACHA = 9
+local DECAPPCHA = 10000
 local ULTRAPLAT = 100000
 local RAREPLANT = 10000
 local NORMPLANT = 300
 local COMNPLANT = 60
-local BIGTRECHA = 200 -- 200
-local WETGRACHA = 3 -- 3 -- Junglegrass 1/x chance per node in wet grasslands.
-local DESCACCHA = 529 -- 529 -- Cactus 1/x chance per node in desert.
-local DESGRACHA = 289 -- 289 -- Dry shrub 1/x chance per node in desert.
-local SAVGRACHA = 3 -- 3 -- Dry shrub 1/x chance per node in savanna.
-local SAVTRECHA = 361 -- 361 -- Savanna tree 1/x chance per node in savanna.
-local RAIJUNCHA = 16 -- 16 -- Jungletree 1/x chance per node in rainforest.
-local DUNGRACHA = 9 -- 9 -- Dry shrub 1/x chance per node in sand dunes.
-local PAPCHA = 3 -- 3 -- Papyrus 1/x chance per node in shallow water in non-beach areas.
+local BIGTRECHA = 200
+local WETGRACHA = 3
+local DESCACCHA = 529
+local DESGRACHA = 289
+local SAVGRACHA = 3
+local SAVTRECHA = 361
+local RAIJUNCHA = 16
+local DUNGRACHA = 9
+local PAPCHA = 3
 
 -- 2D Perlin5 fine material depth and sandline
 local perl5 = {
@@ -80,7 +80,7 @@ local hum
 
 if ONGEN then
 	minetest.register_on_generated(function(minp, maxp, seed)
-		if minp.y >= -32 and minp.y <= 208 then -- 4 chunks y = -112 to y = 207
+		if minp.y >= -32 and minp.y <= 208 then
 			local perlin5 = minetest.get_perlin(perl5.SEED5, perl5.OCTA5, perl5.PERS5, perl5.SCAL5)
 			local perlin6 = minetest.get_perlin(perl6.SEED6, perl6.OCTA6, perl6.PERS6, perl6.SCAL6)
 			local perlin7 = minetest.get_perlin(perl7.SEED7, perl7.OCTA7, perl7.PERS7, perl7.SCAL7)
@@ -90,26 +90,26 @@ if ONGEN then
 			local x0 = minp.x
 			local y0 = minp.y
 			local z0 = minp.z
-			for x = x0, x1 do -- for each plane do
+			for x = x0, x1 do
 				if PROG then
-					print ("[paragenv7] "..(x - x0 + 1).." ("..minp.x.." "..minp.y.." "..minp.z..")")
+					print ("[lottmapgen] "..(x - x0 + 1).." ("..minp.x.." "..minp.y.." "..minp.z..")")
 				end
-				for z = z0, z1 do -- for each column do
-					local surfy = 1024 -- stone top surface y (1024 = not yet found)
-					local sol = true -- solid node above
-					local col = false -- solid nodes in column
-					local notre = false -- when solid nodes in column set tre = false at end of block
-					local tre = true -- trees enabled for next surface
-					local wat = false -- water is detected at y = 1 in column, enables swampwater and papyrus
-					local mor = false -- desert (des)(mor) mordor biome
-					local mot = false -- savanna (sav)(mor2) mordor 2 biome
-					local fot = false -- rainforest (rai)(fot) forest biome
-					local elf = false -- wet grassland (wet)(elf) biome
-					local moc = false -- dry grassland (wet)(moc) mordor 3 biome
-					local gra = false -- deciduous (dec)(gra) grasslands biome
-					local mou = false -- tundra (tun)(mou) mounsnons biome
-					local sno = false -- snoga forest (sno)(sno) snow biome
-					for y = y1, y0, -1 do -- working downwards through column for each node do
+				for z = z0, z1 do
+					local surfy = 1024
+					local sol = true
+					local col = false
+					local notre = false
+					local tre = true
+					local wat = false
+					local mor = false
+					local mot = false
+					local fot = false
+					local elf = false
+					local moc = false
+					local gra = false
+					local mou = false
+					local sno = false
+					for y = y1, y0, -1 do
 						local nodename = minetest.get_node({x=x,y=y,z=z}).name
 						if nodename == "default:stone"
 						or nodename == "default:stone_with_coal"
@@ -120,20 +120,20 @@ if ONGEN then
 							if unodename == "air" then
 								stable = false
 							end
-							if not col then -- when surface or water first found calculate parameters for column
+							if not col then
 								local noise5c = perlin5:get2d({x=x-777,y=z-777})
-								sandy = SANDY + noise5c * SANDA + math.random(0,SANDR) -- beach top
+								sandy = SANDY + noise5c * SANDA + math.random(0,SANDR)
 								local noise5b = perlin5:get2d({x=x,y=z})
-								fimadep2d = FMAV + noise5b * FMAMP -- fine material depth
+								fimadep2d = FMAV + noise5b * FMAMP
 								noise6 = perlin6:get2d({x=x,y=z})
 								noise7 = perlin7:get2d({x=x,y=z})
 								col = true
-								notre = true -- flag to set tree = false at end of block
+								notre = true
 							end
 							local fimadep = fimadep2d - y / FMGRAD
-							if not sol then -- if solid node under non-solid node (surface) then
-								surfy = y -- most recent surface y recorded
-								temp = noise6 - y / TGRAD -- decide / reset biome
+							if not sol then
+								surfy = y
+								temp = noise6 - y / TGRAD
 								hum = noise7 - y / HGRAD
 								if temp > HITET + math.random() / 10 then
 									if hum > HIWET + math.random() / 10 then
@@ -157,8 +157,8 @@ if ONGEN then
 									gra = true
 								end
 							end
-							if surfy - y < fimadep and stable then -- if stable fine material not water
-								if y <= sandy then -- if beach, lakebed or dunes
+							if surfy - y < fimadep and stable then
+								if y <= sandy then
 									if y == -1 and math.abs(noise6) < 0.1 then
 										minetest.add_node({x=x,y=y,z=z},{name="default:clay"})
 									elseif y == -5 and math.abs(noise6) < 0.1 then
@@ -177,14 +177,14 @@ if ONGEN then
 											minetest.add_node({x=x,y=y+1,z=z},{name="default:snow"})
 										end
 									end
-								elseif mor then -- if desert
+								elseif mor then
 									minetest.add_node({x=x,y=y,z=z},{name="lottmapgen:mordor_stone"})
 									if not sol and tre and y > 8 then
 										if math.random(TUNGRACHA) == 2 then
 											minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:brambles_of_mordor"})
 										end
 									end
-								elseif mou then -- if tundra
+								elseif mou then
 									minetest.add_node({x=x,y=y,z=z},{name="lottmapgen:frozen_stone"})
 									if not sol and y > 0 then
 										if tre and math.random(TUNGRACHA) == 2 then
@@ -195,8 +195,8 @@ if ONGEN then
 											minetest.add_node({x=x,y=y+1,z=z},{name="default:snow"})
 										end
 									end
-								elseif moc or mot then -- dry grassland or savanna
-									if not sol then -- if surface node then
+								elseif moc or mot then
+									if not sol then
 										if y >= 1 then
 											minetest.add_node({x=x,y=y,z=z},{name="lottmapgen:mordor_stone"})
 										else
@@ -217,7 +217,7 @@ if ONGEN then
 									else
 										minetest.add_node({x=x,y=y,z=z},{name="lottmapgen:mordor_stone"})
 									end
-								else -- wet grasslands, snoga, deciduous forest, rainforest
+								else
 									if not sol then
 										if y >= 1 then
 											minetest.add_node({x=x,y=y,z=z},{name="default:dirt_with_grass"})
@@ -305,33 +305,33 @@ if ONGEN then
 									end
 								end
 								if y == 0 and wat and y > sandy and (fot)
-								and tre and math.random(PAPCHA) == 2 then -- if shallow water, non-sandy, hot biome
-									local nodename = minetest.get_node({x=x,y=y+2,z=z}).name -- check for air above
+								and tre and math.random(PAPCHA) == 2 then
+									local nodename = minetest.get_node({x=x,y=y+2,z=z}).name
 									if nodename == "air" then
 										minetest.add_node({x=x,y=y+1,z=z},{name="default:water_source"})
-										for j = 2, math.random(2,4) do -- papyrus floating above water
+										for j = 2, math.random(2,4) do
 											minetest.add_node({x=x,y=y+j,z=z},{name="default:papyrus"})
 										end
 									end
 								end
-							elseif not sol and y > 0 then -- else if rocky surface above water
+							elseif not sol and y > 0 then
 								if sno then
 									minetest.add_node({x=x,y=y+1,z=z},{name="default:snowblock"})
 								elseif mou then
 									minetest.add_node({x=x,y=y+1,z=z},{name="default:snow"})
 								end
 							end
-							sol = true -- node was solid
-							if notre then -- if solid nodes found in column then
-								tre = false -- disable trees below
+							sol = true
+							if notre then
+								tre = false
 							end
-						else -- everything other than stone
-							sol = false -- node was not solid
+						else
+							sol = false
 							if y == 1 then
-								local nodename = minetest.get_node({x=x,y=y,z=z}).name -- check for water
+								local nodename = minetest.get_node({x=x,y=y,z=z}).name
 								if nodename == "default:water_source" then
-									wat = true -- node was water
-									local temp = perlin6:get2d({x=x,y=z}) -- calculate temp
+									wat = true
+									local temp = perlin6:get2d({x=x,y=z})
 									if temp < LOTET + math.random() / 10 then
 										minetest.add_node({x=x,y=y,z=z},{name="default:ice"})
 									end

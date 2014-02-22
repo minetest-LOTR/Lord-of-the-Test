@@ -196,3 +196,11 @@ minetest.register_abm({
 		end
 	end,
 })
+
+minetest.register_craft({
+	output = 'lottother:blue_torch',
+	recipe = {
+		{'lottores:rough_rock_lump'},
+		{'group:stick'},
+	}
+})
