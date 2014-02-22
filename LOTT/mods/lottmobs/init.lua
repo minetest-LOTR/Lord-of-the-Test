@@ -675,7 +675,7 @@ lottmobs:register_mob("lottmobs:dwarf", {
 		punch_end = 198,
 	}
 })
-lottmobs:register_spawn("lottmobs:dwarf", {"default:stone"}, 15, -1, 3000, 3, -10)
+lottmobs:register_spawn("lottmobs:dwarf", {"default:stone"}, 15, -1, 1500, 3, -10)
 
 -- Arrows
 
