@@ -2,7 +2,7 @@
 -- See README.txt for licensing and other information.
 
 farming = {}
-
+local weather = minetest.setting_getbool("weather")
 --
 -- Soil
 --
@@ -392,6 +392,7 @@ minetest.register_abm({
 		if minetest.get_item_group(node.name, "wheat") == 8 then
 			return
 		end
+		if weather and minetest.get_heat(pos) < 3 then return end
 		
 		-- check if on wet soil
 		pos.y = pos.y-1
@@ -478,6 +479,7 @@ minetest.register_abm({
 		if minetest.get_item_group(node.name, "cotton") == 8 then
 			return
 		end
+		if weather and minetest.get_heat(pos) < 3 then return end
 		
 		-- check if on wet soil
 		pos.y = pos.y-1

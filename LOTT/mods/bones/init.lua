@@ -28,7 +28,7 @@ minetest.register_node("bones:bones", {
 	
 	can_dig = function(pos, player)
 		local inv = minetest.get_meta(pos):get_inventory()
-		return is_owner(pos, player:get_player_name()) and inv:is_empty("main")
+		return is_owner(pos, player:get_player_name()) or inv:is_empty("main")
 	end,
 	
 	allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
@@ -60,15 +60,14 @@ minetest.register_node("bones:bones", {
 	
 	on_timer = function(pos, elapsed)
 		local meta = minetest.get_meta(pos)
-		local time = meta:get_int("time")+elapsed
 		local publish = 1200
-		if tonumber(minetest.setting_get("share_bones_time")) then
-			publish = tonumber(minetest.setting_get("share_bones_time"))
+		if tonumber(minetest.setting_get("bones_share_time")) then
+			publish = tonumber(minetest.setting_get("bones_share_time"))
 		end
 		if publish == 0 then
 			return
 		end
-		if time >= publish then
+		if minetest.get_gametime() >= meta:get_int("time") + publish then
 			meta:set_string("infotext", meta:get_string("owner").."'s old bones")
 			meta:set_string("owner", "")
 		else
@@ -124,7 +123,7 @@ minetest.register_on_dieplayer(function(player)
 			"list[current_player;main;0,5;8,4;]")
 	meta:set_string("infotext", player:get_player_name().."'s fresh bones")
 	meta:set_string("owner", player:get_player_name())
-	meta:set_int("time", 0)
+	meta:set_int("time", minetest.get_gametime())
 	
 	local timer  = minetest.get_node_timer(pos)
 	timer:start(10)

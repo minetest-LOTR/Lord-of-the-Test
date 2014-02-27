@@ -3,6 +3,7 @@
 
 -- Map Generation
 dofile(minetest.get_modpath("flowers").."/mapgen.lua")
+dofile(minetest.get_modpath("flowers").."/moonflower.lua")
 
 -- Aliases for original flowers mod
 minetest.register_alias("flowers:flower_dandelion_white", "flowers:dandelion_white")
@@ -137,6 +138,10 @@ minetest.register_abm({
 		
 		local light = minetest.get_node_light(pos)
 		if not light or light < 13 then
+			return
+		end
+
+		if minetest.setting_getbool("weather") and minetest.get_heat(pos) < 5 then
 			return
 		end
 		

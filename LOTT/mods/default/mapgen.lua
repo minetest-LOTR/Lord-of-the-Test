@@ -3,15 +3,6 @@
 --
 -- Aliases for map generator outputs
 --
-minetest.register_on_mapgen_init(function(params)
-	minetest.set_mapgen_params({
-		mgname = "v7",
-		seed = params.seed,
-		water_level = 1,
-		flags = "caves, dungeons",
-		flagmask = "trees, caves, flat, v6_biome_blend, v6_jungles, dungeons, nolight",
-	})
-end)
 
 minetest.register_alias("mapgen_stone", "default:stone")
 minetest.register_alias("mapgen_tree", "default:tree")
@@ -28,6 +19,7 @@ minetest.register_alias("mapgen_lava_source", "default:lava_source")
 minetest.register_alias("mapgen_cobble", "default:cobble")
 minetest.register_alias("mapgen_mossycobble", "default:mossycobble")
 minetest.register_alias("mapgen_dirt_with_grass", "default:dirt_with_grass")
+minetest.register_alias("mapgen_dirt_with_snow", "default:dirt_with_snow")
 minetest.register_alias("mapgen_junglegrass", "default:junglegrass")
 minetest.register_alias("mapgen_stone_with_coal", "default:stone_with_coal")
 minetest.register_alias("mapgen_stone_with_iron", "default:stone_with_iron")
@@ -35,6 +27,7 @@ minetest.register_alias("mapgen_mese", "default:mese")
 minetest.register_alias("mapgen_desert_sand", "default:desert_sand")
 minetest.register_alias("mapgen_desert_stone", "default:desert_stone")
 minetest.register_alias("mapgen_stair_cobble", "stairs:stair_cobble")
+minetest.register_alias("mapgen_ice", "default:ice")
 
 --
 -- Ore generation
@@ -216,7 +209,7 @@ minetest.register_ore({
 	flags          = "absheight",
 })
 
-if minetest.setting_get("mg_name") == "indev" then
+--if minetest.setting_get("mg_name") == "indev" then
 	-- Floatlands and high mountains springs
 	minetest.register_ore({
 		ore_type       = "scatter",
@@ -277,7 +270,7 @@ if minetest.setting_get("mg_name") == "indev" then
 		height_min     = -31000,
 		height_max     = -100,
 	})
-end
+--end
 
 minetest.register_ore({
 	ore_type       = "scatter",

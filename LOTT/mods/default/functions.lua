@@ -131,11 +131,14 @@ minetest.register_on_punchnode(on_punchnode)
 -- Grow trees
 --
 
+local weather = minetest.setting_getbool("weather")
+
 minetest.register_abm({
 	nodenames = {"default:sapling"},
 	interval = 10,
 	chance = 50,
 	action = function(pos, node)
+		if weather and minetest.get_heat(pos) < 5 then return end
 		local nu =  minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name
 		local is_soil = minetest.get_item_group(nu, "soil")
 		if is_soil == 0 then
@@ -159,6 +162,7 @@ minetest.register_abm({
 	interval = 10,
 	chance = 50,
 	action = function(pos, node)
+		if weather and minetest.get_heat(pos) < 15 then return end
 		local nu =  minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name
 		local is_soil = minetest.get_item_group(nu, "soil")
 		if is_soil == 0 then

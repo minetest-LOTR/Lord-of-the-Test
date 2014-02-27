@@ -1,10 +1,26 @@
 -- mods/default/nodes.lua
 
+local weather = minetest.setting_getbool("weather")
+local flowing_sand_type = "flowing"
+local flowing_sand_leveled = 1
+local flowing_sand_paramtype2 = "leveled"
+local flowing_sand_liquid_drop = 1
+if tonumber(minetest.setting_get("flowing_sand_disable") or 0) == 1 then
+	flowing_sand_type = "none"
+	flowing_sand_leveled = 0
+	flowing_sand_paramtype2 = "none"
+end
+if tonumber(minetest.setting_get("flowing_sand_disable") or 0) >= 1 then
+	flowing_sand_liquid_drop = 0
+end
+
+
 minetest.register_node("default:stone", {
 	description = "Stone",
 	tiles = {"default_stone.png"},
 	is_ground_content = true,
-	groups = {cracky=3, stone=1},
+	groups = {cracky=3, stone=1, melt=3000},
+	melt = "default:lava_source",
 	drop = 'default:cobble',
 	legacy_mineral = true,
 	sounds = default.node_sound_stone_defaults(),
@@ -14,7 +30,8 @@ minetest.register_node("default:desert_stone", {
 	description = "Desert Stone",
 	tiles = {"default_desert_stone.png"},
 	is_ground_content = true,
-	groups = {cracky=3, stone=1},
+	groups = {cracky=3, stone=1, melt=3000},
+	melt = "default:lava_source",
 	drop = 'default:desert_stone',
 	legacy_mineral = true,
 	sounds = default.node_sound_stone_defaults(),
@@ -77,14 +94,16 @@ minetest.register_node("default:stone_with_diamond", {
 minetest.register_node("default:stonebrick", {
 	description = "Stone Brick",
 	tiles = {"default_stone_brick.png"},
-	groups = {cracky=2, stone=1},
+	groups = {cracky=2, stone=1, melt=3000},
+	melt = "default:lava_source",
 	sounds = default.node_sound_stone_defaults(),
 })
 
 minetest.register_node("default:desert_stonebrick", {
 	description = "Desert Stone Brick",
 	tiles = {"default_desert_stone_brick.png"},
-	groups = {cracky=2, stone=1},
+	groups = {cracky=2, stone=1, melt=3000},
+	melt = "default:lava_source",
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -114,7 +133,7 @@ minetest.register_node("default:dirt_with_snow", {
 	description = "Dirt with Snow",
 	tiles = {"default_snow.png", "default_dirt.png", "default_dirt.png^default_snow_side.png"},
 	is_ground_content = true,
-	groups = {crumbly=3},
+	groups = {crumbly=3, slippery=70},
 	drop = 'default:dirt',
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name="default_snow_footstep", gain=0.25},
@@ -125,26 +144,32 @@ minetest.register_node("default:dirt", {
 	description = "Dirt",
 	tiles = {"default_dirt.png"},
 	is_ground_content = true,
-	groups = {crumbly=3,soil=1},
+	groups = {crumbly=3, soil=1, melt=55, liquid_drop=flowing_sand_liquid_drop, weight=2000},
+	leveled = flowing_sand_leveled,
+	liquidtype = flowing_sand_type,
+	paramtype2 = flowing_sand_paramtype2,
+	melt = "default:sand",
 	sounds = default.node_sound_dirt_defaults(),
 })
 
 minetest.register_abm({
 	nodenames = {"default:dirt"},
 	interval = 2,
-	chance = 200,
+	chance = 100,
 	action = function(pos, node)
 		local above = {x=pos.x, y=pos.y+1, z=pos.z}
 		local name = minetest.get_node(above).name
 		local nodedef = minetest.registered_nodes[name]
-		if nodedef and (nodedef.sunlight_propagates or nodedef.paramtype == "light")
-				and nodedef.liquidtype == "none"
-				and (minetest.get_node_light(above) or 0) >= 13 then
-			if name == "default:snow" or name == "default:snowblock" then
-				minetest.set_node(pos, {name = "default:dirt_with_snow"})
-			else
-				minetest.set_node(pos, {name = "default:dirt_with_grass"})
-			end
+		if (name == "ignore" or not nodedef) then return end
+		if ( not ((nodedef.sunlight_propagates or nodedef.paramtype == "light") and nodedef.liquidtype == "none")) then return end
+		if (weather and minetest.get_heat(pos) < -10) or name == "default:snow" or
+			name == "default:snowblock" or name == "default:ice"
+		then
+			minetest.set_node(pos, {name = "default:dirt_with_snow"}, 2)
+		elseif (not weather or (minetest.get_heat(pos) > 5 and minetest.get_humidity(pos) > 22)) and nodedef and
+			(minetest.get_node_light(above) or 0) >= 13
+		then
+			minetest.set_node(pos, {name = "default:dirt_with_grass"}, 2)
 		end
 	end
 })
@@ -157,10 +182,31 @@ minetest.register_abm({
 		local above = {x=pos.x, y=pos.y+1, z=pos.z}
 		local name = minetest.get_node(above).name
 		local nodedef = minetest.registered_nodes[name]
-		if name ~= "ignore" and nodedef
-				and not ((nodedef.sunlight_propagates or nodedef.paramtype == "light")
-				and nodedef.liquidtype == "none") then
-			minetest.set_node(pos, {name = "default:dirt"})
+		if (name == "ignore" or not nodedef) then return end
+		if ( not ((nodedef.sunlight_propagates or nodedef.paramtype == "light")
+				and nodedef.liquidtype == "none")) or (weather
+				and (minetest.get_heat(pos) < -5 or minetest.get_heat(pos) > 50 or minetest.get_humidity(pos) < 10))
+				or name == "default:snow" or name == "default:snowblock" or name == "default:ice"
+		then
+			minetest.set_node(pos, {name = "default:dirt"}, 2)
+		end
+	end
+})
+
+minetest.register_abm({
+	nodenames = {"default:dirt_with_snow"},
+	interval = 2,
+	chance = 200,
+	action = function(pos, node)
+		local above = {x=pos.x, y=pos.y+1, z=pos.z}
+		local name = minetest.get_node(above).name
+		local nodedef = minetest.registered_nodes[name]
+		if (name == "ignore" or not nodedef) then return end
+		if (not ((nodedef.sunlight_propagates or nodedef.paramtype == "light")
+				and nodedef.liquidtype == "none") or
+			(weather and minetest.get_heat(pos) > 3 and name ~= "default:snow" and name ~= "default:snowblock" and name ~= "default:ice"))
+		then
+			minetest.set_node(pos, {name = "default:dirt"}, 2)
 		end
 	end
 })
@@ -169,15 +215,33 @@ minetest.register_node("default:sand", {
 	description = "Sand",
 	tiles = {"default_sand.png"},
 	is_ground_content = true,
-	groups = {crumbly=3, falling_node=1, sand=1},
+	leveled = flowing_sand_leveled,
+	liquidtype = flowing_sand_type,
+	paramtype2 = flowing_sand_paramtype2,
+	groups = {crumbly=3, falling_node=1, sand=1, liquid_drop=flowing_sand_liquid_drop, weight=2000},
 	sounds = default.node_sound_sand_defaults(),
+})
+
+minetest.register_abm({
+	nodenames = {"default:sand", "default:desert_sand"},
+	neighbors = {"default:water_flowing"},
+	interval = 10,
+	neighbors_range = 3,
+	chance = 10,
+	action = function(pos, node)
+		if (not weather or (minetest.get_heat(pos) > 40 or minetest.get_humidity(pos) < 20)) then return end
+		minetest.set_node(pos, {name = "default:dirt"}, 2)
+	end
 })
 
 minetest.register_node("default:desert_sand", {
 	description = "Desert Sand",
 	tiles = {"default_desert_sand.png"},
 	is_ground_content = true,
-	groups = {crumbly=3, falling_node=1, sand=1},
+	leveled = flowing_sand_leveled,
+	liquidtype = flowing_sand_type,
+	paramtype2 = flowing_sand_paramtype2,
+	groups = {crumbly=3, falling_node=1, sand=1, liquid_drop=flowing_sand_liquid_drop, weight=2000},
 	sounds = default.node_sound_sand_defaults(),
 })
 
@@ -185,7 +249,10 @@ minetest.register_node("default:gravel", {
 	description = "Gravel",
 	tiles = {"default_gravel.png"},
 	is_ground_content = true,
-	groups = {crumbly=2, falling_node=1},
+	groups = {crumbly=2, falling_node=1, liquid_drop=flowing_sand_liquid_drop, weight=2000},
+	leveled = flowing_sand_leveled,
+	liquidtype = flowing_sand_type,
+	paramtype2 = flowing_sand_paramtype2,
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
@@ -196,7 +263,8 @@ minetest.register_node("default:sandstone", {
 	description = "Sandstone",
 	tiles = {"default_sandstone.png"},
 	is_ground_content = true,
-	groups = {crumbly=2,cracky=3},
+	groups = {crumbly=2,cracky=3, melt=3400},
+	melt = "default:lava_source",
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -204,7 +272,8 @@ minetest.register_node("default:sandstonebrick", {
 	description = "Sandstone Brick",
 	tiles = {"default_sandstone_brick.png"},
 	is_ground_content = true,
-	groups = {cracky=2},
+	groups = {cracky=2, melt=3000},
+	melt = "default:lava_source",
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -221,7 +290,8 @@ minetest.register_node("default:brick", {
 	description = "Brick Block",
 	tiles = {"default_brick.png"},
 	is_ground_content = false,
-	groups = {cracky=3},
+	groups = {cracky=3, melt=3500},
+	melt = "default:lava_source",
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -385,7 +455,8 @@ minetest.register_node("default:glass", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	is_ground_content = false,
-	groups = {cracky=3,oddly_breakable_by_hand=3},
+	groups = {cracky=3,oddly_breakable_by_hand=3, melt=1500},
+	melt = "default:obsidian_glass",
 	sounds = default.node_sound_glass_defaults(),
 })
 
@@ -408,7 +479,7 @@ minetest.register_node("default:fence_wood", {
 minetest.register_node("default:rail", {
 	description = "Rail",
 	drawtype = "raillike",
-	tiles = {"default_rail.png", "default_rail_curved.png", "default_rail_t_junction.png", "default_rail_crossing.png"},
+	tiles = {"default_rail.png", "default_rail_curved.png", "default_rail_t_junction.png", "default_rail_crossing.png", "default_rail_diagonal.png", "default_rail_diagonal_end.png"},
 	inventory_image = "default_rail.png",
 	wield_image = "default_rail.png",
 	paramtype = "light",
@@ -488,9 +559,10 @@ minetest.register_node("default:water_flowing", {
 	liquid_alternative_flowing = "default:water_flowing",
 	liquid_alternative_source = "default:water_source",
 	liquid_viscosity = WATER_VISC,
-	freezemelt = "default:snow",
+	freeze = "default:snow",
+	melt = "air",
 	post_effect_color = {a=64, r=100, g=100, b=200},
-	groups = {water=3, liquid=3, puts_out_fire=1, not_in_creative_inventory=1, freezes=1, melt_around=1},
+	groups = {water=3, liquid=3, puts_out_fire=1, not_in_creative_inventory=1, freeze=-5, melt=100, liquid_drop=1, weight=1000},
 })
 
 minetest.register_node("default:water_source", {
@@ -520,9 +592,10 @@ minetest.register_node("default:water_source", {
 	liquid_alternative_flowing = "default:water_flowing",
 	liquid_alternative_source = "default:water_source",
 	liquid_viscosity = WATER_VISC,
-	freezemelt = "default:ice",
+	freeze = "default:ice",
+	melt = "air",
 	post_effect_color = {a=64, r=100, g=100, b=200},
-	groups = {water=3, liquid=3, puts_out_fire=1, freezes=1},
+	groups = {water=3, liquid=3, puts_out_fire=1, freeze=-1, melt=105, liquid_drop=1, weight=1000},
 })
 
 minetest.register_node("default:lava_flowing", {
@@ -543,7 +616,8 @@ minetest.register_node("default:lava_flowing", {
 		},
 	},
 	paramtype = "light",
-	paramtype2 = "flowingliquid",
+	paramtype2 = "leveled",
+	leveled = 4,
 	light_source = LIGHT_MAX - 1,
 	walkable = false,
 	pointable = false,
@@ -558,7 +632,7 @@ minetest.register_node("default:lava_flowing", {
 	liquid_renewable = false,
 	damage_per_second = 4*2,
 	post_effect_color = {a=192, r=255, g=64, b=0},
-	groups = {lava=3, liquid=2, hot=3, igniter=1, not_in_creative_inventory=1},
+	groups = {lava=3, liquid=2, hot=700, igniter=1, not_in_creative_inventory=1,wield_light=2, liquid_drop=1, weight=2000},
 })
 
 minetest.register_node("default:lava_source", {
@@ -589,9 +663,10 @@ minetest.register_node("default:lava_source", {
 	liquid_alternative_source = "default:lava_source",
 	liquid_viscosity = LAVA_VISC,
 	liquid_renewable = false,
+	leveled = 4,
 	damage_per_second = 4*2,
 	post_effect_color = {a=192, r=255, g=64, b=0},
-	groups = {lava=3, liquid=2, hot=3, igniter=1},
+	groups = {lava=3, liquid=2, hot=1200, igniter=1, wield_light=5, liquid_drop=1, weight=2000},
 })
 
 minetest.register_node("default:torch", {
@@ -617,7 +692,7 @@ minetest.register_node("default:torch", {
 		wall_bottom = {-0.1, -0.5, -0.1, 0.1, -0.5+0.6, 0.1},
 		wall_side = {-0.5, -0.3, -0.1, -0.5+0.3, 0.3, 0.1},
 	},
-	groups = {choppy=2,dig_immediate=3,flammable=1,attached_node=1,hot=2},
+	groups = {choppy=2,dig_immediate=3,flammable=1,attached_node=1,hot=30,wield_light=LIGHT_MAX-1},
 	legacy_wallmounted = true,
 	sounds = default.node_sound_defaults(),
 })
@@ -900,7 +975,7 @@ minetest.register_node("default:furnace_active", {
 	paramtype2 = "facedir",
 	light_source = 8,
 	drop = "default:furnace",
-	groups = {cracky=2, not_in_creative_inventory=1,hot=1},
+	groups = {cracky=2, not_in_creative_inventory=1,hot=60},
 	legacy_facedir_simple = true,
 	is_ground_content = false,
 	sounds = default.node_sound_stone_defaults(),
@@ -973,25 +1048,8 @@ local function swap_node(pos,name)
 	minetest.swap_node(pos,node)
 end
 
-minetest.register_abm({
-	nodenames = {"default:furnace","default:furnace_active"},
-	interval = 1.0,
-	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-		local meta = minetest.get_meta(pos)
-		for i, name in ipairs({
-				"fuel_totaltime",
-				"fuel_time",
-				"src_totaltime",
-				"src_time"
-		}) do
-			if meta:get_string(name) == "" then
-				meta:set_float(name, 0.0)
-			end
-		end
-
+function default.furnace_step(pos, node, meta)
 		local inv = meta:get_inventory()
-
 		local srclist = inv:get_list("src")
 		local cooked = nil
 		local aftercooked
@@ -1024,11 +1082,10 @@ minetest.register_abm({
 			local percent = math.floor(meta:get_float("fuel_time") /
 					meta:get_float("fuel_totaltime") * 100)
 			meta:set_string("infotext","Furnace active: "..percent.."%")
-			swap_node(pos,"default:furnace_active")
+		node.name = "default:furnace_active"
 			meta:set_string("formspec",default.get_furnace_active_formspec(pos, percent))
 			return
 		end
-
 		local fuel = nil
 		local afterfuel
 		local cooked = nil
@@ -1044,24 +1101,49 @@ minetest.register_abm({
 
 		if not fuel or fuel.time <= 0 then
 			meta:set_string("infotext","Furnace out of fuel")
-			swap_node(pos,"default:furnace")
+		node.name = "default:furnace"
 			meta:set_string("formspec", default.furnace_inactive_formspec)
 			return
 		end
-
 		if cooked.item:is_empty() then
 			if was_active then
 				meta:set_string("infotext","Furnace is empty")
-				swap_node(pos,"default:furnace")
+			node.name = "default:furnace"
 				meta:set_string("formspec", default.furnace_inactive_formspec)
 			end
 			return
 		end
-
 		meta:set_string("fuel_totaltime", fuel.time)
 		meta:set_string("fuel_time", 0)
 		
 		inv:set_stack("fuel", 1, afterfuel.items[1])
+end
+
+minetest.register_abm({
+	nodenames = {"default:furnace","default:furnace_active"},
+	interval = 1.0,
+	chance = 1,
+	action = function(pos, node, active_object_count, active_object_count_wider)
+		local meta = minetest.get_meta(pos)
+		for i, name in ipairs({
+				"fuel_totaltime",
+				"fuel_time",
+				"src_totaltime",
+				"src_time"
+		}) do
+			if meta:get_string(name) == "" then
+				meta:set_float(name, 0.0)
+			end
+		end
+		local gt = minetest.get_gametime()
+		if meta:get_string("game_time") == "" then
+			meta:set_int("game_time", gt-1)
+		end
+		for i = 1, math.min(1200, gt-meta:get_int("game_time")) do
+			default.furnace_step(pos, node, meta)
+		end
+		swap_node(pos, node.name)
+		meta:set_int("game_time", gt)
 	end,
 })
 
@@ -1069,7 +1151,8 @@ minetest.register_node("default:cobble", {
 	description = "Cobblestone",
 	tiles = {"default_cobble.png"},
 	is_ground_content = true,
-	groups = {cracky=3, stone=2},
+	melt = "default:lava_source",
+	groups = {cracky=3, stone=2, melt=2900},
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -1154,7 +1237,8 @@ minetest.register_node("default:obsidian", {
 	tiles = {"default_obsidian.png"},
 	is_ground_content = true,
 	sounds = default.node_sound_stone_defaults(),
-	groups = {cracky=1,level=2},
+	groups = {cracky=1,level=2, melt=5000},
+	melt = "default:lava_source",
 })
 
 minetest.register_node("default:nyancat", {
@@ -1345,8 +1429,8 @@ minetest.register_node("default:ice", {
 	tiles = {"default_ice.png"},
 	is_ground_content = true,
 	paramtype = "light",
-	freezemelt = "default:water_source",
-	groups = {cracky=3, melts=1},
+	melt = "default:water_source",
+	groups = {cracky=3, melt=3, slippery=90},
 	sounds = default.node_sound_glass_defaults(),
 })
 
@@ -1359,15 +1443,16 @@ minetest.register_node("default:snow", {
 	paramtype = "light",
 	buildable_to = true,
 	leveled = 7,
+	paramtype2 = "leveled",
 	drawtype = "nodebox",
-	freezemelt = "default:water_flowing",
+	melt = "default:water_flowing",
 	node_box = {
 		type = "leveled",
 		fixed = {
 			{-0.5, -0.5, -0.5,  0.5, -0.5+2/16, 0.5},
 		},
 	},
-	groups = {crumbly=3,falling_node=1, melts=1, float=1},
+	groups = {crumbly=3,falling_node=1, melt=1, float=1, slippery=80},
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name="default_snow_footstep", gain=0.25},
 		dug = {name="default_snow_footstep", gain=0.75},
@@ -1375,7 +1460,7 @@ minetest.register_node("default:snow", {
 	on_construct = function(pos)
 		pos.y = pos.y - 1
 		if minetest.get_node(pos).name == "default:dirt_with_grass" then
-			minetest.set_node(pos, {name="default:dirt_with_snow"})
+			minetest.set_node(pos, {name="default:dirt_with_snow"}, 2)
 		end
 	end,
 })
@@ -1385,8 +1470,8 @@ minetest.register_node("default:snowblock", {
 	description = "Snow Block",
 	tiles = {"default_snow.png"},
 	is_ground_content = true,
-	freezemelt = "default:water_source",
-	groups = {crumbly=3, melts=1},
+	groups = {crumbly=3, melt=2, slippery=80},
+	melt = "default:water_source",
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name="default_snow_footstep", gain=0.25},
 		dug = {name="default_snow_footstep", gain=0.75},
