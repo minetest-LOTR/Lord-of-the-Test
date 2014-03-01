@@ -1,1 +1,1 @@
---NIL for lottmapgen to work efficiently 
+-- None

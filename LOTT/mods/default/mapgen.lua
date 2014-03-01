@@ -1,5 +1,16 @@
 -- mods/default/mapgen.lua
 
+-- Mapgen v7
+minetest.register_on_mapgen_init(function(params)
+	minetest.set_mapgen_params({
+		mgname = "v7",
+		seed = params.seed,
+		water_level = 1,
+		flags = "caves, dungeons",
+		flagmask = "trees, caves, flat, v6_biome_blend, v6_jungles, dungeons, nolight",
+	})
+end)
+
 --
 -- Aliases for map generator outputs
 --
