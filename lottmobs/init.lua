@@ -40,7 +40,7 @@ lottmobs:register_spawn("lottmobs:elf", {"lottplants:elanor"}, 20, -1, 50, 3, 31
 lottmobs:register_spawn("lottmobs:elf", {"lottplants:niphredil"}, 20, -1, 50, 3, 31000)
 lottmobs:register_spawn("lottmobs:elf", {"lottplants:lissuin"}, 20, -1, 50, 3, 31000)
 lottmobs:register_spawn("lottmobs:elf", {"lottplants:mallorntree"}, 20, -1, 50, 3, 31000)
-lottmobs:register_spawn("lottmobs:elf", {"lottplants:mallornleaf"}, 20, -1, 50, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:mallornleaf"}, 20, -1, 100, 3, 31000)
 
 lottmobs:register_mob("lottmobs:ent", {
 	type = "animal",
@@ -390,12 +390,11 @@ lottmobs:register_mob("lottmobs:battle_troll", {
 		speed_run = 15,
 	},
 })
-lottmobs:register_spawn("lottmobs:battle_troll", {"default:snow"}, 10, -1, 100, 5, 31000)
-lottmobs:register_spawn("lottmobs:battle_troll", {"default:snowblock"}, 10, -1, 100, 5, 31000)
+lottmobs:register_spawn("lottmobs:battle_troll", {"lottmapgen:mordor_stone"}, 10, -1, 10000, 5, 31000)
 
 lottmobs:register_mob("lottmobs:half_troll", {
 	type = "monster",
-	hp_max = 10,
+	hp_max = 15,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
 	mesh = "human_model.x",
@@ -432,9 +431,9 @@ lottmobs:register_mob("lottmobs:half_troll", {
 		punch_end = 198,
 	}
 })
-lottmobs:register_spawn("lottmobs:half_troll", {"default:snow"}, 15, -1, 50, 3, 31000)
-lottmobs:register_spawn("lottmobs:half_troll", {"default:snowblock"}, 15, -1, 50, 3, 31000)
-lottmobs:register_spawn("lottmobs:half_troll", {"lottmapgen:mordor_stone"}, 15, -1, 2000, 3, 31000)
+lottmobs:register_spawn("lottmobs:half_troll", {"default:snow"}, 15, -1, 8000, 3, 31000)
+lottmobs:register_spawn("lottmobs:half_troll", {"default:snowblock"}, 15, -1, 8000, 3, 31000)
+lottmobs:register_spawn("lottmobs:half_troll", {"lottmapgen:mordor_stone"}, 15, -1, 8000, 3, 31000)
 
 lottmobs:register_mob("lottmobs:nazgul", {
 	type = "monster",
@@ -637,9 +636,9 @@ lottmobs:register_mob("lottmobs:troll", {
 		speed_run = 15,
 	},
 })
-lottmobs:register_spawn("lottmobs:troll", {"default:stone"}, 2, -1, 2000, 5, -10)
-lottmobs:register_spawn("lottmobs:troll", {"default:snow"}, 2, -1, 100, 5, -10)
-lottmobs:register_spawn("lottmobs:troll", {"default:snowblock"}, 2, -1, 100, 5, -10)
+lottmobs:register_spawn("lottmobs:troll", {"default:stone"}, 2, -1, 9000, 5, -10)
+lottmobs:register_spawn("lottmobs:troll", {"default:snow"}, 2, -1, 300, 5, -10)
+lottmobs:register_spawn("lottmobs:troll", {"default:snowblock"}, 2, -1, 300, 5, -10)
 
 lottmobs:register_mob("lottmobs:dwarf", {
 	type = "animal",
@@ -676,7 +675,7 @@ lottmobs:register_mob("lottmobs:dwarf", {
 		punch_end = 198,
 	}
 })
-lottmobs:register_spawn("lottmobs:dwarf", {"default:stone"}, 15, -1, 7000, 3, -10)
+lottmobs:register_spawn("lottmobs:dwarf", {"default:stone"}, 15, -1, 1500, 3, -10)
 
 -- Arrows
 

@@ -1,6 +1,34 @@
 --Weapons!
 
 -- Battle axes:
+minetest.register_tool("lottweapons:wood_battleaxe", {
+	description = "Training Battleaxe",
+	inventory_image = "lott_wood_battleaxe.png",
+	tool_capabilities = {
+		full_punch_interval = 1.70,
+		max_drop_level=1,
+		groupcaps={
+			choppy={times={[1]=3.75, [2]=2.75, [3]=2.05}, uses=5, maxlevel=1},
+			snappy={times={[1]=2.75, [2]=1.75, [3]=0.75}, uses=5, maxlevel=1},
+		},
+		damage_groups = {fleshy=.50},
+	},
+})
+
+minetest.register_tool("lottweapons:stone_battleaxe", {
+	description = "Stone Battleaxe",
+	inventory_image = "lott_stone_battleaxe.png",
+	tool_capabilities = {
+		full_punch_interval = 1.35,
+		max_drop_level=1,
+		groupcaps={
+			choppy={times={[1]=3.35, [2]=2.10, [3]=1.85}, uses=5, maxlevel=1},
+			snappy={times={[1]=2.75, [2]=1.75, [3]=0.75}, uses=5, maxlevel=1},
+		},
+		damage_groups = {fleshy=1.50},
+	},
+})
+
 minetest.register_tool("lottweapons:copper_battleaxe", {
 	description = "Copper Battleaxe",
 	inventory_image = "lott_copper_battleaxe.png",
@@ -43,6 +71,20 @@ minetest.register_tool("lottweapons:steel_battleaxe", {
 	},
 })
 
+minetest.register_tool("lottweapons:bronze_battleaxe", {
+	description = "Bronze Battleaxe",
+	inventory_image = "lott_bronze_battleaxe.png",
+	tool_capabilities = {
+		full_punch_interval = 1.20,
+		max_drop_level=1,
+		groupcaps={
+			choppy={times={[1]=2.80, [2]=1.70, [3]=1.30}, uses=20, maxlevel=2},
+			snappy={times={[1]=2.55, [2]=1.25, [3]=0.50}, uses=30, maxlevel=2},
+		},
+		damage_groups = {fleshy=5},
+	},
+})
+
 minetest.register_tool("lottweapons:silver_battleaxe", {
 	description = "Silver Battleaxe",
 	inventory_image = "lott_silver_battleaxe.png",
@@ -50,10 +92,24 @@ minetest.register_tool("lottweapons:silver_battleaxe", {
 		full_punch_interval = 1.15,
 		max_drop_level=1,
 		groupcaps={
+			choppy={times={[1]=2.80, [2]=1.70, [3]=1.30}, uses=15, maxlevel=2},
+			snappy={times={[1]=2.60, [2]=1.30, [3]=0.50}, uses=25, maxlevel=2},
+		},
+		damage_groups = {fleshy=5.5},
+	},
+})
+
+minetest.register_tool("lottweapons:gold_battleaxe", {
+	description = "Gold Battleaxe",
+	inventory_image = "lott_gold_battleaxe.png",
+	tool_capabilities = {
+		full_punch_interval = 1.15,
+		max_drop_level=1,
+		groupcaps={
 			choppy={times={[1]=2.80, [2]=1.70, [3]=1.30}, uses=20, maxlevel=2},
 			snappy={times={[1]=2.60, [2]=1.30, [3]=0.50}, uses=30, maxlevel=2},
 		},
-		damage_groups = {fleshy=5},
+		damage_groups = {fleshy=5.5},
 	},
 })
 
@@ -86,8 +142,34 @@ minetest.register_tool("lottweapons:mithril_battleaxe", {
 })
 
 --Warhammers:
+minetest.register_tool("lottweapons:wood_warhammer", {
+	description = "Training Warhammer",
+	inventory_image = "lott_wood_warhammer.png",
+	tool_capabilities = {
+		full_punch_interval = 1.95,
+		max_drop_level=1,
+		groupcaps={
+			snappy={times={[1]=3.40, [2]=2.40, [3]=1.30}, uses=5, maxlevel=1},
+		},
+		damage_groups = {fleshy=.75},
+	},
+})
+
+minetest.register_tool("lottweapons:stone_warhammer", {
+	description = "Stone Warhammer",
+	inventory_image = "lott_stone_warhammer.png",
+	tool_capabilities = {
+		full_punch_interval = 1.55,
+		max_drop_level=1,
+		groupcaps={
+			snappy={times={[1]=2.85, [2]=1.85, [3]=1.10}, uses=5, maxlevel=1},
+		},
+		damage_groups = {fleshy=3},
+	},
+})
+
 minetest.register_tool("lottweapons:copper_warhammer", {
-	description = "Copper War Hammer",
+	description = "Copper Warhammer",
 	inventory_image = "lott_copper_warhammer.png",
 	tool_capabilities = {
 		full_punch_interval = 1.45,
@@ -100,7 +182,7 @@ minetest.register_tool("lottweapons:copper_warhammer", {
 })
 
 minetest.register_tool("lottweapons:tin_warhammer", {
-	description = "Tin War Hammer",
+	description = "Tin Warhammer",
 	inventory_image = "lott_tin_warhammer.png",
 	tool_capabilities = {
 		full_punch_interval = 1.45,
@@ -113,7 +195,7 @@ minetest.register_tool("lottweapons:tin_warhammer", {
 })
 
 minetest.register_tool("lottweapons:steel_warhammer", {
-	description = "Steel War Hammer",
+	description = "Steel Warhammer",
 	inventory_image = "lott_steel_warhammer.png",
 	tool_capabilities = {
 		full_punch_interval = 1.50,
@@ -121,25 +203,51 @@ minetest.register_tool("lottweapons:steel_warhammer", {
 		groupcaps={
 			snappy={times={[1]=2.75, [2]=1.45, [3]=0.60}, uses=25, maxlevel=2},
 		},
+		damage_groups = {fleshy=6},
+	},
+})
+
+minetest.register_tool("lottweapons:bronze_warhammer", {
+	description = "Bronze Warhammer",
+	inventory_image = "lott_bronze_warhammer.png",
+	tool_capabilities = {
+		full_punch_interval = 1.50,
+		max_drop_level=1,
+		groupcaps={
+			snappy={times={[1]=2.75, [2]=1.45, [3]=0.60}, uses=30, maxlevel=2},
+		},
 		damage_groups = {fleshy=6.5},
 	},
 })
 
 minetest.register_tool("lottweapons:silver_warhammer", {
-	description = "Silver War Hammer",
+	description = "Silver Warhammer",
 	inventory_image = "lott_silver_warhammer.png",
+	tool_capabilities = {
+		full_punch_interval = 1.40,
+		max_drop_level=1,
+		groupcaps={
+			snappy={times={[1]=2.60, [2]=1.40, [3]=0.50}, uses=20, maxlevel=2},
+		},
+		damage_groups = {fleshy=7.5},
+	},
+})
+
+minetest.register_tool("lottweapons:gold_warhammer", {
+	description = "Gold Warhammer",
+	inventory_image = "lott_gold_warhammer.png",
 	tool_capabilities = {
 		full_punch_interval = 1.40,
 		max_drop_level=1,
 		groupcaps={
 			snappy={times={[1]=2.60, [2]=1.40, [3]=0.50}, uses=30, maxlevel=2},
 		},
-		damage_groups = {fleshy=7},
+		damage_groups = {fleshy=7.5},
 	},
 })
 
 minetest.register_tool("lottweapons:galvorn_warhammer", {
-	description = "Galvorn War Hammer",
+	description = "Galvorn Warhammer",
 	inventory_image = "lott_galvorn_warhammer.png",
 	tool_capabilities = {
 		full_punch_interval = 1.50,
@@ -152,7 +260,7 @@ minetest.register_tool("lottweapons:galvorn_warhammer", {
 })
 
 minetest.register_tool("lottweapons:mithril_warhammer", {
-	description = "Mithril War Hammer",
+	description = "Mithril Warhammer",
 	inventory_image = "lott_mithril_warhammer.png",
 	tool_capabilities = {
 		full_punch_interval = 1.20,
@@ -165,6 +273,34 @@ minetest.register_tool("lottweapons:mithril_warhammer", {
 })
 
 --Spears:
+minetest.register_tool("lottweapons:wood_spear", {
+	description = "Training Spear",
+	inventory_image = "lott_wood_spear.png",
+	wield_image = "lott_wood_spear.png^[transformFX",
+	tool_capabilities = {
+		full_punch_interval = 1.90,
+		max_drop_level=1,
+		groupcaps={
+			snappy={times={[1]=3.70, [2]=2.70, [3]=1.70}, uses=3, maxlevel=1},
+		},
+		damage_groups = {fleshy=.75},
+	}
+})
+
+minetest.register_tool("lottweapons:stone_spear", {
+	description = "Stone Spear",
+	inventory_image = "lott_stone_spear.png",
+	wield_image = "lott_stone_spear.png^[transformFX",
+	tool_capabilities = {
+		full_punch_interval = 1.50,
+		max_drop_level=1,
+		groupcaps={
+			snappy={times={[1]=2.75, [2]=1.75, [3]=0.75}, uses=5, maxlevel=1},
+		},
+		damage_groups = {fleshy=2},
+	}
+})
+
 minetest.register_tool("lottweapons:copper_spear", {
 	description = "Copper Spear",
 	inventory_image = "lott_copper_spear.png",
@@ -203,6 +339,20 @@ minetest.register_tool("lottweapons:steel_spear", {
 		groupcaps={
 			snappy={times={[1]=2.40, [2]=1.40, [3]=0.40}, uses=15, maxlevel=1},
 		},
+		damage_groups = {fleshy=5},
+	}
+})
+
+minetest.register_tool("lottweapons:bronze_spear", {
+	description = "Bronze Spear",
+	inventory_image = "lott_bronze_spear.png",
+	wield_image = "lott_bronze_spear.png^[transformFX",
+	tool_capabilities = {
+		full_punch_interval = 1.50,
+		max_drop_level=1,
+		groupcaps={
+			snappy={times={[1]=2.40, [2]=1.40, [3]=0.40}, uses=20, maxlevel=1},
+		},
 		damage_groups = {fleshy=5.5},
 	}
 })
@@ -211,6 +361,20 @@ minetest.register_tool("lottweapons:silver_spear", {
 	description = "Silver Spear",
 	inventory_image = "lott_silver_spear.png",
 	wield_image = "lott_silver_spear.png^[transformFX",
+	tool_capabilities = {
+		full_punch_interval = 1.50,
+		max_drop_level=1,
+		groupcaps={
+			snappy={times={[1]=2.2, [2]=1.2, [3]=0.20}, uses=15, maxlevel=1},
+		},
+		damage_groups = {fleshy=6},
+	}
+})
+
+minetest.register_tool("lottweapons:gold_spear", {
+	description = "Gold Spear",
+	inventory_image = "lott_gold_spear.png",
+	wield_image = "lott_gold_spear.png^[transformFX",
 	tool_capabilities = {
 		full_punch_interval = 1.50,
 		max_drop_level=1,
@@ -250,6 +414,32 @@ minetest.register_tool("lottweapons:mithril_spear", {
 })
 
 --Daggers:
+minetest.register_tool("lottweapons:wood_dagger", {
+	description = "Training Dagger",
+	inventory_image = "lott_wood_dagger.png",
+	tool_capabilities = {
+		full_punch_interval = 1.20,
+		max_drop_level=0,
+		groupcaps={
+			snappy={times={[2]=2.25, [3]=1.75}, uses=2, maxlevel=1},
+		},
+		damage_groups = {fleshy=.10},
+	}
+})
+
+minetest.register_tool("lottweapons:stone_dagger", {
+	description = "Stone Dagger",
+	inventory_image = "lott_stone_dagger.png",
+	tool_capabilities = {
+		full_punch_interval = 0.80,
+		max_drop_level=0,
+		groupcaps={
+			snappy={times={[2]=1.35, [3]=0.85}, uses=5, maxlevel=1},
+		},
+		damage_groups = {fleshy=.90},
+	}
+})
+
 minetest.register_tool("lottweapons:copper_dagger", {
 	description = "Copper Dagger",
 	inventory_image = "lott_steel_dagger.png",
@@ -289,6 +479,19 @@ minetest.register_tool("lottweapons:steel_dagger", {
 	}
 })
 
+minetest.register_tool("lottweapons:bronze_dagger", {
+	description = "Bronze Dagger",
+	inventory_image = "lott_bronze_dagger.png",
+	tool_capabilities = {
+		full_punch_interval = .75,
+		max_drop_level=0,
+		groupcaps={
+			snappy={times={[2]=1.00, [3]=0.50}, uses=15, maxlevel=1},
+		},
+		damage_groups = {fleshy=4.5},
+	}
+})
+
 minetest.register_tool("lottweapons:silver_dagger", {
 	description = "Silver Dagger",
 	inventory_image = "lott_silver_dagger.png",
@@ -296,9 +499,22 @@ minetest.register_tool("lottweapons:silver_dagger", {
 		full_punch_interval = .6,
 		max_drop_level=0,
 		groupcaps={
+			snappy={times={[2]=.80, [3]=0.40}, uses=10, maxlevel=1},
+		},
+		damage_groups = {fleshy=5},
+	}
+})
+
+minetest.register_tool("lottweapons:gold_dagger", {
+	description = "Gold Dagger",
+	inventory_image = "lott_gold_dagger.png",
+	tool_capabilities = {
+		full_punch_interval = .6,
+		max_drop_level=0,
+		groupcaps={
 			snappy={times={[2]=.80, [3]=0.40}, uses=15, maxlevel=1},
 		},
-		damage_groups = {fleshy=4.5},
+		damage_groups = {fleshy=5},
 	}
 })
 
@@ -337,7 +553,7 @@ minetest.register_tool("lottweapons:elven_sword", {
 		full_punch_interval = 1,
 		max_drop_level=2,
 		groupcaps={
-			snappy={times={[1]=1.60, [2]=1.30, [3]=0.90}, uses=25, maxlevel=3},
+			snappy={times={[1]=1.60, [2]=1.30, [3]=0.90}, uses=50, maxlevel=3},
 		},
 		damage_groups = {fleshy=7.5},
 	}
@@ -356,6 +572,24 @@ minetest.register_tool("lottweapons:orc_sword", {
 	}
 })
 --And the crafts...
+minetest.register_craft({
+	output = 'lottweapons:wood_battleaxe',
+	recipe = {
+		{'group:wood', 'group:stick', 'group:wood'},
+		{'group:wood', 'group:stick', 'group:wood'},
+		{'', 'group:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:stone_battleaxe',
+	recipe = {
+		{'default:cobble', 'group:stick', 'default:cobble'},
+		{'default:cobble', 'group:stick', 'default:cobble'},
+		{'', 'group:stick', ''},
+	}
+})
+
 minetest.register_craft({
 	output = 'lottweapons:copper_battleaxe',
 	recipe = {
@@ -384,10 +618,28 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = 'lottweapons:bronze_battleaxe',
+	recipe = {
+		{'default:bronze_ingot', 'group:stick', 'default:bronze_ingot'},
+		{'default:bronze_ingot', 'group:stick', 'default:bronze_ingot'},
+		{'', 'group:stick', ''},
+	}
+})
+
+minetest.register_craft({
 	output = 'lottweapons:silver_battleaxe',
 	recipe = {
 		{'lottores:silver_ingot', 'group:stick', 'lottores:silver_ingot'},
 		{'lottores:silver_ingot', 'group:stick', 'lottores:silver_ingot'},
+		{'', 'group:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:gold_battleaxe',
+	recipe = {
+		{'default:gold_ingot', 'group:stick', 'default:gold_ingot'},
+		{'default:gold_ingot', 'group:stick', 'default:gold_ingot'},
 		{'', 'group:stick', ''},
 	}
 })
@@ -406,6 +658,24 @@ minetest.register_craft({
 	recipe = {
 		{'lottores:mithril_ingot', 'group:stick', 'lottores:mithril_ingot'},
 		{'lottores:mithril_ingot', 'group:stick', 'lottores:mithril_ingot'},
+		{'', 'group:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:wood_warhammer',
+	recipe = {
+		{'group:wood', 'group:wood', 'group:wood'},
+		{'group:wood', 'group:stick', 'group:wood'},
+		{'', 'group:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:stone_warhammer',
+	recipe = {
+		{'default:cobble', 'default:cobble', 'default:cobble'},
+		{'default:cobble', 'group:stick', 'default:cobble'},
 		{'', 'group:stick', ''},
 	}
 })
@@ -438,10 +708,28 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = 'lottweapons:bronze_warhammer',
+	recipe = {
+		{'default:bronze_ingot', 'default:bronze_ingot', 'default:bronze_ingot'},
+		{'default:bronze_ingot', 'group:stick', 'default:bronze_ingot'},
+		{'', 'group:stick', ''},
+	}
+})
+
+minetest.register_craft({
 	output = 'lottweapons:silver_warhammer',
 	recipe = {
 		{'lottores:silver_ingot', 'lottores:silver_ingot', 'lottores:silver_ingot'},
 		{'lottores:silver_ingot', 'group:stick', 'lottores:silver_ingot'},
+		{'', 'group:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:gold_warhammer',
+	recipe = {
+		{'default:gold_ingot', 'default:gold_ingot', 'default:gold_ingot'},
+		{'default:gold_ingot', 'group:stick', 'default:gold_ingot'},
 		{'', 'group:stick', ''},
 	}
 })
@@ -460,6 +748,24 @@ minetest.register_craft({
 	recipe = {
 		{'lottores:mithril_ingot', 'lottores:mithril_ingot', 'lottores:mithril_ingot'},
 		{'lottores:mithril_ingot', 'group:stick', 'lottores:mithril_ingot'},
+		{'', 'group:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:wood_spear',
+	recipe = {
+		{'', 'group:wood', ''},
+		{'group:wood', 'group:stick', 'group:wood'},
+		{'', 'group:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:stone_spear',
+	recipe = {
+		{'', 'default:cobble', ''},
+		{'default:cobble', 'group:stick', 'default:cobble'},
 		{'', 'group:stick', ''},
 	}
 })
@@ -492,9 +798,126 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = 'lottweapons:bronze_spear',
+	recipe = {
+		{'', 'default:bronze_ingot', ''},
+		{'default:bronze_ingot', 'group:stick', 'default:bronze_ingot'},
+		{'', 'group:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:gold_spear',
+	recipe = {
+		{'', 'default:gold_ingot', ''},
+		{'default:gold_ingot', 'group:stick', 'default:gold_ingot'},
+		{'', 'group:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:silver_spear',
+	recipe = {
+		{'', 'lottores:silver_ingot', ''},
+		{'lottores:silver_ingot', 'group:stick', 'lottores:silver_ingot'},
+		{'', 'group:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:galvorn_spear',
+	recipe = {
+		{'', 'lottores:galvorn_ingot', ''},
+		{'lottores:galvorn_ingot', 'group:stick', 'lottores:galvorn_ingot'},
+		{'', 'group:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:mithril_spear',
+	recipe = {
+		{'', 'lottores:mithril_ingot', ''},
+		{'lottores:mithril_ingot', 'group:stick', 'lottores:mithril_ingot'},
+		{'', 'group:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:wood_dagger',
+	recipe = {
+		{'group:wood'},
+		{'group:stick'},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:stone_dagger',
+	recipe = {
+		{'default:cobble'},
+		{'group:stick'},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:copper_dagger',
+	recipe = {
+		{'default:copper_ingot'},
+		{'group:stick'},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:tin_dagger',
+	recipe = {
+		{'lottores:tin_ingot'},
+		{'group:stick'},
+	}
+})
+
+minetest.register_craft({
 	output = 'lottweapons:steel_dagger',
 	recipe = {
 		{'default:steel_ingot'},
+		{'group:stick'},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:bronze_dagger',
+	recipe = {
+		{'default:bronze_ingot'},
+		{'group:stick'},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:silver_dagger',
+	recipe = {
+		{'lottores:silver_ingot'},
+		{'group:stick'},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:gold_dagger',
+	recipe = {
+		{'default:gold_ingot'},
+		{'group:stick'},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:galvorn_dagger',
+	recipe = {
+		{'lottores:galvorn_ingot'},
+		{'group:stick'},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottweapons:mithril_dagger',
+	recipe = {
+		{'lottores:mithril_ingot'},
 		{'group:stick'},
 	}
 })

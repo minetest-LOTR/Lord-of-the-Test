@@ -46,6 +46,22 @@ local YAVINT = 67
 local YAVCHA = 11
 
 minetest.register_node("lottplants:asphodel", {
+	drawtype = "plantlike",
+	tiles = { "lottplants_asphodel.png" },
+	sunlight_propagates = true,
+	paramtype = "light",
+	walkable = false,
+	buildable_to = true,
+	drop = "lottplants:asphodel_fake",
+	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_white=1,not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+	},
+})
+
+minetest.register_node("lottplants:asphodel_fake", {
 	description = "Asphodel",
 	drawtype = "plantlike",
 	tiles = { "lottplants_asphodel.png" },
@@ -64,6 +80,24 @@ minetest.register_node("lottplants:asphodel", {
 })
 
 minetest.register_node("lottplants:elanor", {
+	drawtype = "plantlike",
+	tiles = { "lottplants_elanor.png" },
+	inventory_image = "lottplants_elanor.png",
+	wield_image = "lottplants_elanor.png",
+	sunlight_propagates = true,
+	paramtype = "light",
+	walkable = false,
+	buildable_to = true,
+	drop = "lottplants:elanor_fake",
+	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_yellow=1,not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+	},
+})
+
+minetest.register_node("lottplants:elanor_fake", {
 	description = "Elanor",
 	drawtype = "plantlike",
 	tiles = { "lottplants_elanor.png" },
@@ -117,6 +151,25 @@ minetest.register_node("lottplants:mallos", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
+	drop = "lottplants:mallos_fake",
+	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_yellow=1,not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+	},
+})
+
+minetest.register_node("lottplants:mallos_fake", {
+	description = "Mallos",
+	drawtype = "plantlike",
+	tiles = { "lottplants_mallos.png" },
+	inventory_image = "lottplants_mallos.png",
+	wield_image = "lottplants_mallos.png",
+	sunlight_propagates = true,
+	paramtype = "light",
+	walkable = false,
+	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_yellow=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -126,6 +179,25 @@ minetest.register_node("lottplants:mallos", {
 })
 
 minetest.register_node("lottplants:anemones", {
+	description = "Anemones",
+	drawtype = "plantlike",
+	tiles = { "lottplants_anemones.png" },
+	inventory_image = "lottplants_anemones.png",
+	wield_image = "lottplants_anemones.png",
+	sunlight_propagates = true,
+	paramtype = "light",
+	walkable = false,
+	buildable_to = true,
+	drop = "lottplants:anemones_fake",
+	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_blue=1,not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+	},
+})
+
+minetest.register_node("lottplants:anemones_fake", {
 	description = "Anemones",
 	drawtype = "plantlike",
 	tiles = { "lottplants_anemones.png" },
@@ -179,6 +251,25 @@ minetest.register_node("lottplants:seregon", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
+	drop = "lottplants:seregon_fake",
+	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_red=1,not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+	},
+})
+
+minetest.register_node("lottplants:seregon_fake", {
+	description = "Seregon",
+	drawtype = "plantlike",
+	tiles = { "lottplants_seregon.png" },
+	inventory_image = "lottplants_seregon.png",
+	wield_image = "lottplants_seregon.png",
+	sunlight_propagates = true,
+	paramtype = "light",
+	walkable = false,
+	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_red=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -197,6 +288,25 @@ minetest.register_node("lottplants:eglantive", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
+	drop = "lottplants:eglantive_fake",
+	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_pink=1,not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+	},
+})
+
+minetest.register_node("lottplants:eglantive_fake", {
+	description = "Eglantive",
+	drawtype = "plantlike",
+	tiles = { "lottplants_eglantive.png" },
+	inventory_image = "lottplants_eglantive.png",
+	wield_image = "lottplants_eglantive.png",
+	sunlight_propagates = true,
+	paramtype = "light",
+	walkable = false,
+	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_pink=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -206,6 +316,25 @@ minetest.register_node("lottplants:eglantive", {
 })
 
 minetest.register_node("lottplants:iris", {
+	description = "Iris",
+	drawtype = "plantlike",
+	tiles = { "lottplants_iris.png" },
+	inventory_image = "lottplants_iris.png",
+	wield_image = "lottplants_iris.png",
+	sunlight_propagates = true,
+	paramtype = "light",
+	walkable = false,
+	buildable_to = true,
+	drop = "lottplants:iris_fake",
+	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_yellow=1,not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+	},
+})
+
+minetest.register_node("lottplants:iris_fake", {
 	description = "Iris",
 	drawtype = "plantlike",
 	tiles = { "lottplants_iris.png" },
@@ -313,6 +442,25 @@ minetest.register_node("lottplants:lissuin", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
+	drop = "lottplants:lissuin_fake",
+	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_pink=1,not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+	},
+})
+
+minetest.register_node("lottplants:lissuin_fake", {
+	description = "Lissuin",
+	drawtype = "plantlike",
+	tiles = { "lottplants_lissuin.png" },
+	inventory_image = "lottplants_lissuin.png",
+	wield_image = "lottplants_lissuin.png",
+	sunlight_propagates = true,
+	paramtype = "light",
+	walkable = false,
+	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_pink=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -322,6 +470,25 @@ minetest.register_node("lottplants:lissuin", {
 })
 
 minetest.register_node("lottplants:niphredil", {
+	description = "Niphredil",
+	drawtype = "plantlike",
+	tiles = { "lottplants_niphredil.png" },
+	inventory_image = "lottplants_niphredil.png",
+	wield_image = "lottplants_niphredil.png",
+	sunlight_propagates = true,
+	paramtype = "light",
+	walkable = false,
+	buildable_to = true,
+	drop = "lottplants:niphredil_fake",
+	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_brown=1,not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+	},
+})
+
+minetest.register_node("lottplants:niphredil_fake", {
 	description = "Niphredil",
 	drawtype = "plantlike",
 	tiles = { "lottplants_niphredil.png" },
@@ -453,6 +620,25 @@ minetest.register_node("lottplants:brambles_of_mordor", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
+	drop = "lottplants:brambles_of_mordor_fake",
+	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_brown=1,not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+	},
+})
+
+minetest.register_node("lottplants:brambles_of_mordor_fake", {
+	description = "Brambles Of Mordor",
+	drawtype = "plantlike",
+	tiles = { "lottplants_brambles_of_mordor.png" },
+	inventory_image = "lottplants_brambles_of_mordor.png",
+	wield_image = "lottplants_brambles_of_mordor.png",
+	sunlight_propagates = true,
+	paramtype = "light",
+	walkable = false,
+	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_brown=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -462,6 +648,25 @@ minetest.register_node("lottplants:brambles_of_mordor", {
 })
 
 minetest.register_node("lottplants:pilinehtar", {
+	description = "Pilinehtar",
+	drawtype = "plantlike",
+	tiles = { "lottplants_pilinehtar.png" },
+	inventory_image = "lottplants_pilinehtar.png",
+	wield_image = "lottplants_pilinehtar.png",
+	sunlight_propagates = true,
+	paramtype = "light",
+	walkable = false,
+	buildable_to = true,
+	drop = "lottplants:pilinehtar_fake",
+	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_green=1,not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+	},
+})
+
+minetest.register_node("lottplants:pilinehtar_fake", {
 	description = "Pilinehtar",
 	drawtype = "plantlike",
 	tiles = { "lottplants_pilinehtar.png" },

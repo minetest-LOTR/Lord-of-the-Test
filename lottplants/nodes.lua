@@ -680,3 +680,48 @@ minetest.register_craft({
 		{'lottplants:mallorntree'},
 	}
 })
+
+--Fireflies
+
+minetest.register_node("lottplants:fireflies", {
+	description = "Fireflies",
+	drawtype = "glasslike",
+	tiles = {
+		{
+			name = "lottplants_fireflies.png",
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 2,
+			},
+		},
+	},
+	alpha = 100,
+	paramtype = "light",
+	light_source = 8,
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	climbable = false,
+	buildable_to = true,
+})
+
+minetest.register_abm({
+	nodenames = {"air"},
+	neighbors = {
+		"lottplants_elanor",
+		"lottplants:niphredil",
+	},
+	interval = 15,
+	chance = 600,
+	action = function(pos, node, active_object_count, active_object_count_wider)
+		if minetest.get_timeofday() > 0.74 or minetest.get_timeofday() < 0.22 then
+			--local water_nodes = minetest.find_nodes_in_area(minp, maxp, "group:water")
+			--if #water_nodes > 0 then
+			if minetest.find_node_near(pos, 3, "lottplants:fireflies") == nil then
+				minetest.set_node(pos, {name = "lottplants:fireflies"})
+			end
+		end
+	end,
+})

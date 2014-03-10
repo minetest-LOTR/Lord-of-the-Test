@@ -564,18 +564,6 @@ minetest.register_abm(
 -- Tools
 -- Pickaxe
 
-minetest.register_tool("lottores:limestonepick", {
-	description = "Limestone Pickaxe",
-	inventory_image = "lottores_limestonepick.png",
-	tool_capabilities = {
-		full_punch_interval = 1.3,
-		max_drop_level=0,
-		groupcaps={
-			cracky = {times={[2]=2.0, [3]=1.20}, uses=20, maxlevel=1},
-		},
-		damage_groups = {fleshy=3},
-	},
-})
 minetest.register_tool("lottores:copperpick", {
 	description = "Copper Pickaxe",
 	inventory_image = "lottores_copperpick.png",
@@ -651,18 +639,6 @@ minetest.register_tool("lottores:mithrilpick", {
 
 -- Axe
 
-minetest.register_tool("lottores:limestoneaxe", {
-	description = "Limestone Axe",
-	inventory_image = "lottores_limestoneaxe.png",
-	tool_capabilities = {
-		full_punch_interval = 1.2,
-		max_drop_level=0,
-		groupcaps={
-			choppy={times={[1]=3.00, [2]=2.00, [3]=1.50}, uses=20, maxlevel=1},
-		},
-		damage_groups = {fleshy=3},
-	},
-})
 minetest.register_tool("lottores:copperaxe", {
 	description = "Copper Axe",
 	inventory_image = "lottores_copperaxe.png",
@@ -738,18 +714,6 @@ minetest.register_tool("lottores:mithrilaxe", {
 
 -- Sword
 
-minetest.register_tool("lottores:limestonesword", {
-	description = "Limestone Sword",
-	inventory_image = "lottores_limestonesword.png",
-	tool_capabilities = {
-		full_punch_interval = 1.2,
-		max_drop_level=0,
-		groupcaps={
-			snappy={times={[2]=1.4, [3]=0.40}, uses=20, maxlevel=1},
-		},
-		damage_groups = {fleshy=4},
-	}
-})
 minetest.register_tool("lottores:coppersword", {
 	description = "Copper Sword",
 	inventory_image = "lottores_coppersword.png",
@@ -825,19 +789,6 @@ minetest.register_tool("lottores:mithrilsword", {
 
 -- Shovel
 
-minetest.register_tool("lottores:limestoneshovel", {
-	description = "Limestone Shovel",
-	inventory_image = "lottores_limestoneshovel.png",
-	wield_image = "lottores_limestoneshovel.png^[transformR90",
-	tool_capabilities = {
-		full_punch_interval = 1.4,
-		max_drop_level=0,
-		groupcaps={
-			crumbly = {times={[1]=1.80, [2]=1.20, [3]=0.50}, uses=20, maxlevel=1},
-		},
-		damage_groups = {fleshy=2},
-	},
-})
 minetest.register_tool("lottores:coppershovel", {
 	description = "Copper Shovel",
 	inventory_image = "lottores_coppershovel.png",
@@ -1084,7 +1035,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = 'lottores:ithildin_lamp_1',
 	recipe = {
-		{'lottores:mithril_ingot', 'default:torch'},
+		{'lottores:mithril_ingot', 'lottother:blue_torch'},
 	}
 })
 
@@ -1092,15 +1043,6 @@ minetest.register_craft({
 	output = 'lottores:ithildin_stonelamp_1',
 	recipe = {
 		{'lottores:ithildin_lamp_1', 'group:stone'},
-	}
-})
-
-minetest.register_craft({
-	output = 'lottores:limestonepick',
-	recipe = {
-		{'lottores:limestone_lump', 'lottores:limestone_lump', 'lottores:limestone_lump'},
-		{'', 'group:stick', ''},
-		{'', 'group:stick', ''},
 	}
 })
 
@@ -1155,15 +1097,6 @@ minetest.register_craft({
 		{'lottores:mithril_ingot', 'lottores:mithril_ingot', 'lottores:mithril_ingot'},
 		{'', 'group:stick', ''},
 		{'', 'group:stick', ''},
-	}
-})
-
-minetest.register_craft({
-	output = 'lottores:limestoneaxe',
-	recipe = {
-		{'lottores:limestone_lump', 'lottores:limestone_lump'},
-		{'lottores:limestone_lump', 'group:stick'},
-		{'', 'group:stick'},
 	}
 })
 
@@ -1246,15 +1179,6 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'lottores:limestonesword',
-	recipe = {
-		{'lottores:limestone_lump'},
-		{'lottores:limestone_lump'},
-		{'group:stick'},
-	}
-})
-
-minetest.register_craft({
 	output = 'lottores:coppersword',
 	recipe = {
 		{'default:copper_ingot'},
@@ -1304,15 +1228,6 @@ minetest.register_craft({
 	recipe = {
 		{'lottores:mithril_ingot'},
 		{'lottores:mithril_ingot'},
-		{'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'lottores:limestoneshovel',
-	recipe = {
-		{'lottores:limestone_lump'},
-		{'group:stick'},
 		{'group:stick'},
 	}
 })
