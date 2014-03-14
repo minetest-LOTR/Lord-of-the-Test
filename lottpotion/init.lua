@@ -122,7 +122,7 @@ function(itemstack, user, pointed_thing)
 	user:set_physics_override(1,nil,nil)
 end)
 
-lottpotion.register_potion("Weak Athelas Brew", "green", 60,
+lottpotion.register_potion("Weak Athelas Brew", "green", 30,
 function(itemstack, user, pointed_thing) 
 	user:set_hp(user:get_hp()+8)
 	user:set_physics_override(3, 1, 1)
