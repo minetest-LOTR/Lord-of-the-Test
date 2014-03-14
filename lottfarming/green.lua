@@ -30,7 +30,7 @@ minetest.register_node("lottfarming:green_mushroom", {
 	groups = {snappy=3, flammable=2},
 	sounds = default.node_sound_leaves_defaults(),
 	inventory_image = "lottfarming_green_mushroom.png",
-	on_use = minetest.item_eat(4),
+	on_use = minetest.item_eat(2),
 })
 minetest.register_node("lottfarming:green_mushroom_1", {
 	paramtype = "light",

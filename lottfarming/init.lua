@@ -102,6 +102,12 @@ dofile(minetest.get_modpath("lottfarming").."/turnips.lua")
 -- ========= PIPEWEED =========
 dofile(minetest.get_modpath("lottfarming").."/pipeweed.lua")
 
+-- ========= MELON =========
+dofile(minetest.get_modpath("lottfarming").."/melon.lua")
+
+-- ========= BARLEY =========
+dofile(minetest.get_modpath("lottfarming").."/barley.lua")
+
 minetest.register_node("lottfarming:decay_tree", {
 	description = "Decaying Wood",
 	tile_images = {'default_tree_top.png^lottfarming_decay_tree.png', 'default_tree.png', 	'default_tree.png'},

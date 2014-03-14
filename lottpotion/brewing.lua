@@ -287,6 +287,9 @@ lottpotion.register_brewing_recipe("lottfarming:berries",6, "lottpotion:wine",1,
 lottpotion.register_brewing_recipe("lottfarming:berries",5, "lottpotion:water_glass",1, "lottpotion:wine",1)
 lottpotion.register_brewing_recipe("farming:wheat",3, "lottpotion:water_glass",1, "lottpotion:beer",1)
 lottpotion.register_brewing_recipe("lottplants:niphredil_fake",3, "lottpotion:water_glass",1, "lottpotion:miruvor",1)
+lottpotion.register_brewing_recipe("lottplants:honey",6, "lottpotion:water_glass",1, "lottpotion:mead",1)
+lottpotion.register_brewing_recipe("default:apple",6, "lottpotion:water_glass",1, "lottpotion:cider",1)
+lottpotion.register_brewing_recipe("lottfarming:barley",6, "lottpotion:water_glass",1, "lottpotion:ale",1)
 
 brewing_recipes = {}
 registered_recipes_count = 1

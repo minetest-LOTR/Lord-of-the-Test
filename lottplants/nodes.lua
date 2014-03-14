@@ -701,10 +701,11 @@ minetest.register_node("lottplants:fireflies", {
 	paramtype = "light",
 	light_source = 8,
 	walkable = false,
-	pointable = false,
-	diggable = false,
+	pointable = true,
+	diggable = true,
 	climbable = false,
 	buildable_to = true,
+	drop = "",
 })
 
 minetest.register_abm({

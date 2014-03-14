@@ -83,7 +83,7 @@ minetest.register_node("lottfarming:pipeweed_4", {
 minetest.register_craftitem("lottfarming:pipeweed", {
 	description = "Pipeweed",
 	inventory_image = "lottfarming_pipeweed.png",
-	on_use = minetest.item_eat(4),
+	on_use = minetest.item_eat(3),
 })
 
 farming:add_plant("lottfarming:pipeweed_4", {"lottfarming:pipeweed_1", "lottfarming:pipeweed_2", "lottfarming:pipeweed_3"}, 50, 20)

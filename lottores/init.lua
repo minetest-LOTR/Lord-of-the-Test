@@ -1297,7 +1297,7 @@ minetest.register_node("lottores:mineral_pearl", {
 	drop = {
 		items = {
 			{
-				items = {'lottseaores:pearl'},
+				items = {'lottores:pearl'},
 			},
 			{
 				items = {'default:sand'},

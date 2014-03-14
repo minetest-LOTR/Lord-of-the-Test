@@ -78,7 +78,7 @@ minetest.register_node("lottfarming:cabbage_3", {
 minetest.register_craftitem("lottfarming:cabbage", {
 	description = "Cabbage",
 	inventory_image = "lottfarming_cabbage_side.png",
-	on_use = minetest.item_eat(4),
+	on_use = minetest.item_eat(2),
 })
 
 farming:add_plant("lottfarming:cabbage_3", {"lottfarming:cabbage_1", "lottfarming:cabbage_2"}, 80, 20)

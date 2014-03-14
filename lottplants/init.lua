@@ -52,7 +52,13 @@ minetest.register_node("lottplants:asphodel", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
-	drop = "lottplants:asphodel_fake",
+    drop = {
+		max_items = 1,
+		items = {
+			{ items = {'lottplants:asphodel_fake'} },
+			{ items = {'lottplants:honey'}, rarity = 20},
+		}
+	},
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_white=1,not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -88,7 +94,13 @@ minetest.register_node("lottplants:elanor", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
-	drop = "lottplants:elanor_fake",
+	drop = {
+		max_items = 1,
+		items = {
+			{ items = {'lottplants:elanor_fake'} },
+			{ items = {'lottplants:honey'}, rarity = 20},
+		}
+	},
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_yellow=1,not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -133,7 +145,57 @@ drop = {
 	},
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_green=1},
+	groups = {snappy=3,flammable=2,flora=1,attached_node=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+	},
+})
+
+minetest.register_node("lottplants:melon_wild", {
+	description = "Melon",
+	paramtype2 = "facedir",
+	tiles = {"lottfarming_melon_top.png", "lottfarming_melon_top.png", "lottfarming_melon_side.png", "lottfarming_melon_side.png", "lottfarming_melon_side.png", "lottfarming_melon_side.png"},
+	sunlight_propagates = true,
+	paramtype = "light",
+drop = {
+		max_items = 3,
+		items = {
+			{ items = {'lottfarming:melon'} },
+			{ items = {'lottfarming:melon_seed'} },
+			{ items = {'lottfarming:melon_seed'}, rarity = 5}
+		}
+	},
+	walkable = false,
+	buildable_to = true,
+	groups = {snappy=3,flammable=2,flora=1,attached_node=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+	},
+})
+
+minetest.register_node("lottplants:barley_wild", {
+	description = "Barley Wild",
+	drawtype = "plantlike",
+	tiles = { "lottfarming_barley_wild.png" },
+	inventory_image = "lottfarming_barley_wild.png",
+	wield_image = "lottfarming_barley_wild.png",
+	sunlight_propagates = true,
+	paramtype = "light",
+drop = {
+		max_items = 3,
+		items = {
+			{ items = {'lottfarming:barley'} },
+			{ items = {'lottfarming:barley_seed'} },
+			{ items = {'lottfarming:barley_seed'}, rarity = 5}
+		}
+	},
+	walkable = false,
+	buildable_to = true,
+	groups = {snappy=3,flammable=2,flora=1,attached_node=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -151,7 +213,13 @@ minetest.register_node("lottplants:mallos", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
-	drop = "lottplants:mallos_fake",
+	drop = {
+		max_items = 1,
+		items = {
+			{ items = {'lottplants:mallos_fake'} },
+			{ items = {'lottplants:honey'}, rarity = 20},
+		}
+	},
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_yellow=1,not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -188,7 +256,13 @@ minetest.register_node("lottplants:anemones", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
-	drop = "lottplants:anemones_fake",
+	drop = {
+		max_items = 1,
+		items = {
+			{ items = {'lottplants:anemones_fake'} },
+			{ items = {'lottplants:honey'}, rarity = 20},
+		}
+	},
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_blue=1,not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -233,7 +307,7 @@ minetest.register_node("lottplants:athelas", {
 	},
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_green=1},
+	groups = {snappy=3,flammable=2,flora=1,attached_node=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -251,7 +325,13 @@ minetest.register_node("lottplants:seregon", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
-	drop = "lottplants:seregon_fake",
+	drop = {
+		max_items = 1,
+		items = {
+			{ items = {'lottplants:seregon_fake'} },
+			{ items = {'lottplants:honey'}, rarity = 20},
+		}
+	},
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_red=1,not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -288,7 +368,13 @@ minetest.register_node("lottplants:eglantive", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
-	drop = "lottplants:eglantive_fake",
+	drop = {
+		max_items = 1,
+		items = {
+			{ items = {'lottplants:eglantive_fake'} },
+			{ items = {'lottplants:honey'}, rarity = 20},
+		}
+	},
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_pink=1,not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -325,7 +411,13 @@ minetest.register_node("lottplants:iris", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
-	drop = "lottplants:iris_fake",
+	drop = {
+		max_items = 1,
+		items = {
+			{ items = {'lottplants:iris_fake'} },
+			{ items = {'lottplants:honey'}, rarity = 20},
+		}
+	},
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_yellow=1,not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -370,7 +462,7 @@ minetest.register_node("lottplants:corn_wild", {
 	},
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_yellow=1},
+	groups = {snappy=3,flammable=2,flora=1,attached_node=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -396,7 +488,7 @@ minetest.register_node("lottplants:potato_wild", {
 	},
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_brown=1},
+	groups = {snappy=3,flammable=2,flora=1,attached_node=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -424,7 +516,7 @@ minetest.register_node("lottplants:mushroom_wild", {
 	},
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_brown=1},
+	groups = {snappy=3,flammable=2,flora=1,attached_node=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -442,7 +534,13 @@ minetest.register_node("lottplants:lissuin", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
-	drop = "lottplants:lissuin_fake",
+	drop = {
+		max_items = 1,
+		items = {
+			{ items = {'lottplants:lissuin_fake'} },
+			{ items = {'lottplants:honey'}, rarity = 20},
+		}
+	},
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_pink=1,not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -479,7 +577,13 @@ minetest.register_node("lottplants:niphredil", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
-	drop = "lottplants:niphredil_fake",
+	drop = {
+		max_items = 1,
+		items = {
+			{ items = {'lottplants:niphredil_fake'} },
+			{ items = {'lottplants:honey'}, rarity = 20},
+		}
+	},
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_brown=1,not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -524,7 +628,7 @@ minetest.register_node("lottplants:berries_wild", {
 	},
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_red=1},
+	groups = {snappy=3,flammable=2,flora=1,attached_node=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -550,7 +654,7 @@ minetest.register_node("lottplants:turnips_wild", {
 	},
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_brown=1},
+	groups = {snappy=3,flammable=2,flora=1,attached_node=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -576,7 +680,7 @@ minetest.register_node("lottplants:tomatoes_wild", {
 	},
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_red=1},
+	groups = {snappy=3,flammable=2,flora=1,attached_node=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -586,10 +690,8 @@ minetest.register_node("lottplants:tomatoes_wild", {
 
 minetest.register_node("lottplants:cabbage_wild", {
 	description = "Wild Cabbage",
-	drawtype = "plantlike",
-	tiles = { "lottplants_cabbage_wild.png" },
-	inventory_image = "lottplants_cabbage_wild.png",
-	wield_image = "lottplants_cabbage_wild.png",
+	paramtype2 = "facedir",
+	tiles = {"lottfarming_cabbage_top.png", "lottfarming_cabbage_top.png", "lottfarming_cabbage_side.png", "lottfarming_cabbage_side.png", "lottfarming_cabbage_side.png", "lottfarming_cabbage_side.png"},
 	sunlight_propagates = true,
 	paramtype = "light",
 	drop = {
@@ -602,7 +704,7 @@ minetest.register_node("lottplants:cabbage_wild", {
 	},
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_green=1},
+	groups = {snappy=3,flammable=2,flora=1,attached_node=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -729,3 +831,10 @@ minetest.register_abm({
 		end
 	end,
 })
+
+minetest.register_craftitem("lottplants:honey", {
+	description = "Honey",
+	inventory_image = "lottplants_honey.png",
+	on_use = minetest.item_eat(1),
+})
+

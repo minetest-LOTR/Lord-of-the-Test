@@ -14,7 +14,7 @@ minetest.register_craftitem("lottfarming:corn_seed", {
 minetest.register_craftitem("lottfarming:corn", {
 	description = "Corn",
 	inventory_image = "lottfarming_corn.png",
-	on_use = minetest.item_eat(6),
+	on_use = minetest.item_eat(4),
 })
 minetest.register_node("lottfarming:corn_1", {
 	paramtype = "light",

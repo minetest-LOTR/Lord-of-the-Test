@@ -122,7 +122,7 @@ function(itemstack, user, pointed_thing)
 	user:set_physics_override(1,nil,nil)
 end)
 
-lottpotion.register_potion("Weak Athelas Brew", "green", 30,
+lottpotion.register_potion("Weak Athelas Brew", "green", 60,
 function(itemstack, user, pointed_thing) 
 	user:set_hp(user:get_hp()+8)
 	user:set_physics_override(3, 1, 1)
@@ -202,6 +202,27 @@ minetest.register_craftitem( "lottpotion:beer", {
 	inventory_image = "lottpotion_beer.png",
 	wield_image = "lottpotion_beer.png",
 	on_use = minetest.item_eat(6),
+})
+
+minetest.register_craftitem( "lottpotion:ale", {
+	description = "Ale",
+	inventory_image = "lottpotion_ale.png",
+	wield_image = "lottpotion_ale.png",
+	on_use = minetest.item_eat(5),
+})
+
+minetest.register_craftitem( "lottpotion:mead", {
+	description = "Mead",
+	inventory_image = "lottpotion_mead.png",
+	wield_image = "lottpotion_mead.png",
+	on_use = minetest.item_eat(5),
+})
+
+minetest.register_craftitem( "lottpotion:cider", {
+	description = "Cider",
+	inventory_image = "lottpotion_cider.png",
+	wield_image = "lottpotion_cider.png",
+	on_use = minetest.item_eat(4),
 })
 
 minetest.register_craft({

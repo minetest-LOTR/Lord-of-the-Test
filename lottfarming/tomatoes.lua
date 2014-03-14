@@ -83,7 +83,7 @@ minetest.register_node("lottfarming:tomatoes_4", {
 minetest.register_craftitem("lottfarming:tomatoes", {
 	description = "Tomato",
 	inventory_image = "lottfarming_tomatoes.png",
-	on_use = minetest.item_eat(4),
+	on_use = minetest.item_eat(2),
 })
 
 farming:add_plant("lottfarming:tomatoes_4", {"lottfarming:tomatoes_1", "lottfarming:tomatoes_2", "lottfarming:tomatoes_3"}, 50, 20)

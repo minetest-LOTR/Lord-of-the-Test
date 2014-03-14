@@ -67,7 +67,6 @@ minetest.register_node("lottfarming:athelas_3", {
 minetest.register_craftitem("lottfarming:athelas", {
 	description = "Athelas",
 	inventory_image = "lottfarming_athelas.png",
-	on_use = minetest.item_eat(100),
 })
 
 farming:add_plant("lottfarming:athelas_3", {"lottfarming:athelas_1", "lottfarming:athelas_2"}, 50, 20)
