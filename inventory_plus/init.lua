@@ -10,25 +10,25 @@ License: GPLv3
 
 
 -- expose api
-lottarmor = {}
+inventory_plus = {}
 
 -- define buttons
-lottarmor.buttons = {}
+inventory_plus.buttons = {}
 
 -- default inventory page
-lottarmor.default = minetest.setting_get("inventory_default") or "main"
+inventory_plus.default = minetest.setting_get("inventory_default") or "main"
 
 -- register_button
-lottarmor.register_button = function(player,name,label)
+inventory_plus.register_button = function(player,name,label)
 	local player_name = player:get_player_name()
-	if lottarmor.buttons[player_name] == nil then
-		lottarmor.buttons[player_name] = {}
+	if inventory_plus.buttons[player_name] == nil then
+		inventory_plus.buttons[player_name] = {}
 	end
-	lottarmor.buttons[player_name][name] = label
+	inventory_plus.buttons[player_name][name] = label
 end
 
 -- set_inventory_formspec
-lottarmor.set_inventory_formspec = function(player,formspec)
+inventory_plus.set_inventory_formspec = function(player,formspec)
 	if minetest.setting_getbool("creative_mode") then
 		-- if creative mode is on then wait a bit
 		minetest.after(0.01,function()
@@ -40,7 +40,7 @@ lottarmor.set_inventory_formspec = function(player,formspec)
 end
 
 -- get_formspec
-lottarmor.get_formspec = function(player,page)
+inventory_plus.get_formspec = function(player,page)
 	local formspec = "size[13,7.5]"..
 			"list[current_player;main;5,3.5;8,4;]"
 
@@ -69,7 +69,7 @@ lottarmor.get_formspec = function(player,page)
 	if page=="main" then
 		-- buttons
 		local x,y=0,0
-		for k,v in pairs(lottarmor.buttons[player:get_player_name()]) do
+		for k,v in pairs(inventory_plus.buttons[player:get_player_name()]) do
 			formspec = formspec .. "button["..x..".5,"..y..";2,0.5;"..k..";"..v.."]"
 			x=x+2
 			if x == 4 then
@@ -92,10 +92,10 @@ minetest.register_on_joinplayer(function(player)
 		player:get_inventory():set_size("craft", 3*3)
 	end
 	if minetest.setting_getbool("creative_mode") then
-		lottarmor.register_button(player,"creative_prev","Creative")
+		inventory_plus.register_button(player,"creative_prev","Creative")
 	end
 	minetest.after(1,function()
-		lottarmor.set_inventory_formspec(player,lottarmor.get_formspec(player, lottarmor.default))
+		inventory_plus.set_inventory_formspec(player,inventory_plus.get_formspec(player, inventory_plus.default))
 	end)
 end)
 
@@ -103,13 +103,13 @@ end)
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	-- main
 	if fields.main then
-		lottarmor.set_inventory_formspec(player, lottarmor.get_formspec(player,"main"))
+		inventory_plus.set_inventory_formspec(player, inventory_plus.get_formspec(player,"main"))
 		return
 	end
 	-- creative
 	if fields.creative_prev or fields.creative_next then
 		minetest.after(0.01,function()
-			lottarmor.set_inventory_formspec(player, lottarmor.get_formspec(player,"creative"))
+			inventory_plus.set_inventory_formspec(player, inventory_plus.get_formspec(player,"creative"))
 		end)
 		return
 	end
