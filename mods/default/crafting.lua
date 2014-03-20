@@ -299,12 +299,6 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	type = "shapeless",
-	output = "default:bronze_ingot",
-	recipe = {"default:steel_ingot", "default:copper_ingot"},
-})
-
-minetest.register_craft({
 	output = 'default:coalblock',
 	recipe = {
 		{'default:coal_lump', 'default:coal_lump', 'default:coal_lump'},
