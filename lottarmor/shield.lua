@@ -1,4 +1,10 @@
 -- Regisiter lottarmor
+minetest.register_tool("lottarmor:shield_wood", {
+	description = "Training Shield",
+	inventory_image = "lottarmor_inv_shield_wood.png",
+	groups = {armor_shield=2.5, armor_heal=0, armor_use=2000},
+	wear = 0,
+})
 
 minetest.register_tool("lottarmor:shield_copper", {
 	description = "Copper Shield",
@@ -57,6 +63,7 @@ minetest.register_tool("lottarmor:shield_mithril", {
 })
 
 local craft_ingreds = {
+	wood = "group:wood"
 	tin = "lottores:tin_ingot",
 	copper = "default:copper_ingot",
 	steel = "default:steel_ingot",
