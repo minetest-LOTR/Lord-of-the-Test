@@ -3,6 +3,12 @@ dofile(minetest.get_modpath(minetest.get_current_modname()).."/shield.lua")
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/weildveiw.lua")
 
 -- Regisiter Head Armor
+minetest.register_tool("lottarmor:helmet_wood", {
+	description = "Training Helmet",
+	inventory_image = "lottarmor_inv_helmet_wood.png",
+	groups = {armor_head=2.5, armor_heal=0, armor_use=2000},
+	wear = 0,
+})
 
 minetest.register_tool("lottarmor:helmet_tin", {
 	description = "Tin Helmet",
@@ -62,6 +68,12 @@ minetest.register_tool("lottarmor:helmet_mithril", {
 
 
 -- Regisiter Torso Armor
+minetest.register_tool("lottarmor:chestplate_wood", {
+	description = "Training Chestplate",
+	inventory_image = "lottarmor_inv_chestplate_wood.png",
+	groups = {armor_torso=5, armor_heal=0, armor_use=2000},
+	wear = 0,
+})
 
 minetest.register_tool("lottarmor:chestplate_tin", {
 	description = "Tin Chestplate",
@@ -121,6 +133,12 @@ minetest.register_tool("lottarmor:chestplate_mithril", {
 
 
 -- Regisiter Leg Armor
+minetest.register_tool("lottarmor:leggings_wood", {
+	description = "Training Leggings",
+	inventory_image = "lottarmor_inv_leggings_wood.png",
+	groups = {armor_legs=2.5, armor_heal=0, armor_use=2000},
+	wear = 0,
+})
 
 minetest.register_tool("lottarmor:leggings_tin", {
 	description = "Tin Leggings",
@@ -180,6 +198,13 @@ minetest.register_tool("lottarmor:leggings_mithril", {
 
 
 -- Regisiter Boots
+minetest.register_tool("lottarmor:boots_wood", {
+	description = "Training Boots",
+	inventory_image = "lottarmor_inv_boots_wood.png",
+	groups = {armor_feet=2.5, armor_heal=0, armor_use=2100},
+	wear = 0,
+})
+
 
 minetest.register_tool("lottarmor:boots_tin", {
 	description = "Tin Boots",
@@ -242,6 +267,7 @@ minetest.register_tool("lottarmor:boots_mithril", {
 -- Register Craft Recipies
 
 local craft_ingreds = {
+	wood = "group:wood",
 	tin = "lottores:tin_ingot",
 	copper = "default:copper_ingot",
 	steel = "default:steel_ingot",
