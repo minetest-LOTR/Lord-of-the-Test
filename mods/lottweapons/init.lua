@@ -2,7 +2,7 @@
 
 -- Battle axes:
 minetest.register_tool("lottweapons:wood_battleaxe", {
-	description = "Training Battleaxe",
+	description = "The Battleaxe of Death",
 	inventory_image = "lott_wood_battleaxe.png",
 	tool_capabilities = {
 		full_punch_interval = 1.70,
@@ -11,7 +11,7 @@ minetest.register_tool("lottweapons:wood_battleaxe", {
 			choppy={times={[1]=3.75, [2]=2.75, [3]=2.05}, uses=5, maxlevel=1},
 			snappy={times={[1]=2.75, [2]=1.75, [3]=0.75}, uses=5, maxlevel=1},
 		},
-		damage_groups = {fleshy=.50},
+		damage_groups = {fleshy=15},
 	},
 })
 
@@ -137,13 +137,13 @@ minetest.register_tool("lottweapons:mithril_battleaxe", {
 			choppy={times={[1]=2, [2]=1, [3]=.50}, uses=35, maxlevel=3},
 			snappy={times={[1]=1, [2]=1.10, [3]=0.50}, uses=40, maxlevel=3},
 		},
-		damage_groups = {fleshy=7},
+		damage_groups = {fleshy=0.01},
 	},
 })
 
 --Warhammers:
 minetest.register_tool("lottweapons:wood_warhammer", {
-	description = "Training Warhammer",
+	description = "The Warhammer of Death",
 	inventory_image = "lott_wood_warhammer.png",
 	tool_capabilities = {
 		full_punch_interval = 1.95,
@@ -151,7 +151,7 @@ minetest.register_tool("lottweapons:wood_warhammer", {
 		groupcaps={
 			snappy={times={[1]=3.40, [2]=2.40, [3]=1.30}, uses=5, maxlevel=1},
 		},
-		damage_groups = {fleshy=.75},
+		damage_groups = {fleshy=17.5},
 	},
 })
 
@@ -268,13 +268,13 @@ minetest.register_tool("lottweapons:mithril_warhammer", {
 		groupcaps={
 			snappy={times={[1]=2.60, [2]=1.40, [3]=0.50}, uses=40, maxlevel=3},
 		},
-		damage_groups = {fleshy=9},
+		damage_groups = {fleshy=0.02},
 	},
 })
 
 --Spears:
 minetest.register_tool("lottweapons:wood_spear", {
-	description = "Training Spear",
+	description = "The Spear of Death",
 	inventory_image = "lott_wood_spear.png",
 	wield_image = "lott_wood_spear.png^[transformFX",
 	tool_capabilities = {
@@ -283,7 +283,7 @@ minetest.register_tool("lottweapons:wood_spear", {
 		groupcaps={
 			snappy={times={[1]=3.70, [2]=2.70, [3]=1.70}, uses=3, maxlevel=1},
 		},
-		damage_groups = {fleshy=.75},
+		damage_groups = {fleshy=17.5},
 	}
 })
 
@@ -400,7 +400,7 @@ minetest.register_tool("lottweapons:galvorn_spear", {
 })
 
 minetest.register_tool("lottweapons:mithril_spear", {
-	description = "Mithril Spear",
+	description = "Uselss Spear",
 	inventory_image = "lott_mithril_spear.png",
 	wield_image = "lott_mithril_spear.png^[transformFX",
 	tool_capabilities = {
@@ -409,13 +409,13 @@ minetest.register_tool("lottweapons:mithril_spear", {
 		groupcaps={
 			snappy={times={[1]=2.00, [2]=1.00, [3]=0.20}, uses=30, maxlevel=2},
 		},
-		damage_groups = {fleshy=8},
+		damage_groups = {fleshy=0.02},
 	}
 })
 
 --Daggers:
 minetest.register_tool("lottweapons:wood_dagger", {
-	description = "Training Dagger",
+	description = "The Dagger of Death",
 	inventory_image = "lott_wood_dagger.png",
 	tool_capabilities = {
 		full_punch_interval = 1.20,
@@ -532,7 +532,7 @@ minetest.register_tool("lottweapons:galvorn_dagger", {
 })
 
 minetest.register_tool("lottweapons:mithril_dagger", {
-	description = "Mithril Dagger",
+	description = "Useless Dagger",
 	inventory_image = "lott_mithril_dagger.png",
 	tool_capabilities = {
 		full_punch_interval = .5,
@@ -540,7 +540,7 @@ minetest.register_tool("lottweapons:mithril_dagger", {
 		groupcaps={
 			snappy={times={[2]=.75, [3]=0.35}, uses=25, maxlevel=2},
 		},
-		damage_groups = {fleshy=6.5},
+		damage_groups = {fleshy=0.01},
 	}
 })
 
