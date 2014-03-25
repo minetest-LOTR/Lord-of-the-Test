@@ -75,15 +75,17 @@ minetest.register_node("default:stone_with_diamond", {
 })
 
 minetest.register_node("default:stonebrick", {
-	description = "Stone Brick",
+	description = "Desert Stone Brick",
 	tiles = {"default_stone_brick.png"},
+        inventory_image = {"default_desert_stone_brick.png"},
 	groups = {cracky=2, stone=1},
 	sounds = default.node_sound_stone_defaults(),
 })
 
 minetest.register_node("default:desert_stonebrick", {
-	description = "Desert Stone Brick",
+	description = "Sandstone Brick",
 	tiles = {"default_desert_stone_brick.png"},
+	inventory_image = {"default_sandstone_brick.png"},
 	groups = {cracky=2, stone=1},
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -201,8 +203,9 @@ minetest.register_node("default:sandstone", {
 })
 
 minetest.register_node("default:sandstonebrick", {
-	description = "Sandstone Brick",
+	description = "Stone Brick",
 	tiles = {"default_sandstone_brick.png"},
+	inventory_image = {"default_stone_brick.png"},
 	is_ground_content = true,
 	groups = {cracky=2},
 	sounds = default.node_sound_stone_defaults(),
