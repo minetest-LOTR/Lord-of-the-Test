@@ -54,10 +54,8 @@ minetest.register_node("lottfarming:athelas_3", {
 		items = {
 			{ items = {'lottfarming:athelas_seed'} },
 			{ items = {'lottfarming:athelas_seed'}, rarity = 2},
-			{ items = {'lottfarming:athelas_seed'}, rarity = 5},
 			{ items = {'lottfarming:athelas'} },
 			{ items = {'lottfarming:athelas'}, rarity = 2 },
-			{ items = {'lottfarming:athelas'}, rarity = 5 }
 		}
 	},
 	groups = {snappy=3, flammable=2, not_in_creative_inventory=1,plant=1},
@@ -67,7 +65,7 @@ minetest.register_node("lottfarming:athelas_3", {
 minetest.register_craftitem("lottfarming:athelas", {
 	description = "Athelas",
 	inventory_image = "lottfarming_athelas.png",
-	on_use = minetest.item_eat(100),
+	on_use = minetest.item_eat(-100),
 })
 
 farming:add_plant("lottfarming:athelas_3", {"lottfarming:athelas_1", "lottfarming:athelas_2"}, 50, 20)
