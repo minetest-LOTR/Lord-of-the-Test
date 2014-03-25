@@ -631,9 +631,9 @@ minetest.register_tool("lottores:mithrilpick", {
 		full_punch_interval = 0.8,
 		max_drop_level=3,
 		groupcaps={
-			cracky = {times={[1]=1.5, [2]=0.8, [3]=0.40}, uses=60, maxlevel=3},
+			cracky = {times={[1]=3.80, [2]=2.60, [3]=1.30}, uses=10, maxlevel=1},
 		},
-		damage_groups = {fleshy=5},
+		damage_groups = {fleshy=1},
 	},
 })
 
@@ -703,12 +703,12 @@ minetest.register_tool("lottores:mithrilaxe", {
 	description = "Mithril Axe",
 	inventory_image = "lottores_mithrilaxe.png",
 	tool_capabilities = {
-		full_punch_interval = 0.8,
+		full_punch_interval = 1.3,
 		max_drop_level=1,
 		groupcaps={
-			choppy={times={[1]=1.80, [2]=0.60, [3]=0.30}, uses=60, maxlevel=2},
+			choppy={times={[1]=3.80, [2]=2.60, [3]=1.30}, uses=10, maxlevel=1},
 		},
-		damage_groups = {fleshy=7},
+		damage_groups = {fleshy=1},
 	},
 })
 
@@ -781,9 +781,9 @@ minetest.register_tool("lottores:mithrilsword", {
 		full_punch_interval = 0.6,
 		max_drop_level=1,
 		groupcaps={
-			snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=80, maxlevel=3},
+			snappy={times={[1]=3.80, [2]=2.60, [3]=1.30}, uses=10, maxlevel=1},
 		},
-		damage_groups = {fleshy=8},
+		damage_groups = {fleshy=2},
 	}
 })
 
@@ -862,9 +862,9 @@ minetest.register_tool("lottores:mithrilshovel", {
 		full_punch_interval = 0.9,
 		max_drop_level=3,
 		groupcaps={
-			crumbly = {times={[1]=0.90, [2]=0.40, [3]=0.20}, uses=60, maxlevel=3},
+			crumbly = {times={[1]=3.80, [2]=2.60, [3]=1.30}, uses=10, maxlevel=1},
 		},
-		damage_groups = {fleshy=4},
+		damage_groups = {fleshy=1},
 	},
 })
 
