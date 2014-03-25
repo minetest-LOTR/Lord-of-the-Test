@@ -53,21 +53,29 @@ minetest.register_node("lottfarming:potato_3", {
 		max_items = 6,
 		items = {
 			{ items = {'lottfarming:potato_seed'} },
-			{ items = {'lottfarming:potato_seed'}, rarity = 2},
-			{ items = {'lottfarming:potato_seed'}, rarity = 5},
-			{ items = {'lottfarming:potato'} },
-			{ items = {'lottfarming:potato'}, rarity = 2 },
-			{ items = {'lottfarming:potato'}, rarity = 5 }
+			{ items = {'lottfarming:potato'}, rarity = 3},
+			{ items = {'lottfarming:potato_of_life'}, rarity = 3},
+			{ items = {'lottfarming:potato_of_death'}, rarity = 3},
 		}
 	},
 	groups = {snappy=3, flammable=2, not_in_creative_inventory=1,plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
-
 minetest.register_craftitem("lottfarming:potato", {
 	description = "Potato",
 	inventory_image = "lottfarming_potato.png",
-	on_use = minetest.item_eat(4),
+	on_use = minetest.item_eat(3),
+})
+
+minetest.register_craftitem("lottfarming:potato_of_life", {
+	description = "Potato Of Life",
+	inventory_image = "lottfarming_potato.png",
+	on_use = minetest.item_eat(-6),
+})
+minetest.register_craftitem("lottfarming:potato_of_death", {
+	description = "Potato Of Death",
+	inventory_image = "lottfarming_potato.png",
+	on_use = minetest.item_eat(8),
 })
 
 farming:add_plant("lottfarming:potato_3", {"lottfarming:potato_1", "lottfarming:potato_2"}, 50, 20)
