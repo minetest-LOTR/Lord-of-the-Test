@@ -42,6 +42,40 @@ lottmobs:register_spawn("lottmobs:elf", {"lottplants:lissuin"}, 20, -1, 50, 3, 3
 lottmobs:register_spawn("lottmobs:elf", {"lottplants:mallorntree"}, 20, -1, 50, 3, 31000)
 lottmobs:register_spawn("lottmobs:elf", {"lottplants:mallornleaf"}, 20, -1, 100, 3, 31000)
 
+lottmobs:register_mob("lottmobs:chicken", {
+	type = "animal",
+	hp_max = 10,
+	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
+	textures = {"lottmobs_chicken.png"},
+	visual = "mesh",
+	mesh = "chicken_model.x",
+	makes_footstep_sound = true,
+	walk_velocity = 1,
+	armor = 10,
+		drops = {
+		{name = "",
+		chance = 1,
+		min = 1,
+		max = 1,},
+	},
+	light_resistant = true,
+    armor = 10,
+	drawtype = "front",
+	water_damage = 1,
+	lava_damage = 10,
+	light_damage = 0,
+	animation = {
+		speed_normal = 10,
+		speed_run = 15,
+		stand_start = 0,
+		stand_end = 0,
+		sit_start = 1,
+		sit_end = 9,
+		walk_start = 10,
+		walk_end = 50,
+	}
+})
+
 lottmobs:register_mob("lottmobs:ent", {
 	type = "animal",
 	hp_max = 20,
