@@ -1,0 +1,3 @@
+default
+inventory_plus
+lottores
