@@ -210,19 +210,19 @@ lottmobs:register_mob("lottmobs:dunlending", {
 		punch_end = 198,
 	}
 })
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:mallos"}, 20, -1, 5, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:athelas"}, 20, -1, 5, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:pipeweed_wild"}, 20, -1, 5, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:mallos"}, 20, -1, 25, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:athelas"}, 20, -1, 15, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:pipeweed_wild"}, 20, -1, 25, 3, 31000)
 lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:corn_wild"}, 20, -1, 5, 3, 31000)
 lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:potato_wild"}, 20, -1, 5, 3, 31000)
 lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:mushroom_wild"}, 20, -1, 5, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:berries_wild"}, 20, -1, 10, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:berries_wild"}, 20, -1, 30, 3, 31000)
 lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:turnips_wild"}, 20, -1, 10, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:tomatoes_wild"}, 20, -1, 10, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:cabbage_wild"}, 20, -1, 10, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:pilinehtar"}, 20, -1, 10, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:lebethrontree"}, 20, -1, 10, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:aldertree"}, 20, -1, 10, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:tomatoes_wild"}, 20, -1, 20, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:cabbage_wild"}, 20, -1, 19, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:pilinehtar"}, 20, -1, 30, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:lebethrontree"}, 20, -1, 40, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:aldertree"}, 20, -1, 40, 3, 31000)
 
 lottmobs:register_mob("lottmobs:hobbit", {
 	type = "animal",
