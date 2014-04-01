@@ -844,12 +844,12 @@ lottmobs:register_arrow("lottmobs:fireslash", {
 
 minetest.register_craftitem("lottmobs:candy", {
 	description = "Trololololol",
-	inventory_image = "zgzu20140331183157130192 (1).png",
+	inventory_image = "zgzu.png",
 })
 
 minetest.register_node("lottmobs:afblock", {
 	description = "Happy April Fool's Day ~Lord of the Test Developers",
-	tiles = {"zgzu20140331183157130192 (1).png"},
+	tiles = {"zgzu.png"},
 	is_ground_content = true,
 	groups = {cracky=3, stone=1},
 	sounds = default.node_sound_stone_defaults(),
