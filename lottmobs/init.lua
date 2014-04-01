@@ -3,14 +3,14 @@ dofile(minetest.get_modpath("lottmobs").."/api.lua")
 
 lottmobs:register_mob("lottmobs:elf", {
 	type = "animal",
-	hp_max = 10,
+	hp_max = 20,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	textures = {"lottmobs_elf.png"},
 	visual = "mesh",
 	mesh = "elf_model.x",
 	makes_footstep_sound = true,
 	walk_velocity = 1,
-	armor = 100,
+	
 		drops = {
 		{name = "",
 		chance = 1,
@@ -18,7 +18,6 @@ lottmobs:register_mob("lottmobs:elf", {
 		max = 1,},
 	},
 	light_resistant = true,
-    armor = 100,
 	drawtype = "front",
 	water_damage = 1,
 	lava_damage = 10,
@@ -36,16 +35,16 @@ lottmobs:register_mob("lottmobs:elf", {
 		punch_end = 198,
 	}
 })
-lottmobs:register_spawn("lottmobs:elf", {"lottplants:elanor"}, 20, -1, 40, 3, 31000)
-lottmobs:register_spawn("lottmobs:elf", {"lottplants:niphredil"}, 20, -1, 30, 3, 31000)
-lottmobs:register_spawn("lottmobs:elf", {"lottplants:lissuin"}, 20, -1, 50, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:elanor"}, 20, 1, 200, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:niphredil"}, 20, 1, 200, 3, 31000)
+lottmobs:register_spawn("lottmobs:elf", {"lottplants:lissuin"}, 20, 1, 200, 3, 31000)
 
 lottmobs:register_mob("lottmobs:ent", {
 	type = "animal",
-	hp_max = 20,
-	collisionbox = {-0.9, -0.01, -0.7, 0.7, 2.6, 0.7},
+	hp_max = 60,
+	collisionbox = {-1.8, -0.02, -1.4, 1.4, 5.2, 1.4},
 	textures = {"lottmobs_ent.png"},
-	visual_size = {x=9,y=9},
+	visual_size = {x=3.5,y=3.5},
 	visual = "mesh",
 	mesh = "ent_model.x",
 	makes_footstep_sound = true,
@@ -58,34 +57,78 @@ lottmobs:register_mob("lottmobs:ent", {
 		max = 10,},
 	},
 	    light_resistant = true,
-    armor = 100,
 	drawtype = "front",
 	water_damage = 0,
-	lava_damage = 20,
+	lava_damage = 60,
 	light_damage = 0,
 	animation = {
 		speed_normal = 15,
 		speed_run = 15,
-		stand_start = 0,
-		stand_end = 24,
-		walk_start = 25,
-		walk_end = 47,
-		run_start = 48,
-		run_end = 62,
-		punch_start = 48,
-		punch_end = 62,
+		stand_start = 17,
+		stand_end = 17,
+		walk_start = 10,
+		walk_end = 80,
+		run_start = 10,
+		run_end = 80,
+		punch_start = 1,
+		punch_end = 1,
 	},
 })
-lottmobs:register_spawn("lottmobs:ent", {"default:leaves"}, 15, -1, 300, 1, 31000)
-lottmobs:register_spawn("lottmobs:ent", {"lottplants:birchtree"}, 15, -1, 300, 1, 31000)
-lottmobs:register_spawn("lottmobs:ent", {"lottplants:asphodel"}, 15, -1, 300, 1, 31000)
-lottmobs:register_spawn("lottmobs:ent", {"lottplants:anemones"}, 15, -1, 300, 1, 31000)
-lottmobs:register_spawn("lottmobs:ent", {"lottplants:eglantive"}, 15, -1, 300, 1, 31000)
-lottmobs:register_spawn("lottmobs:ent", {"lottplants:iris"}, 15, -1, 300, 1, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:birchtree"}, 15, -1, 1000, 3, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:asphodel"}, 15, -1, 1000, 3, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:anemones"}, 15, -1, 1000, 3, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:eglantive"}, 15, -1, 1000, 3, 31000)
+lottmobs:register_spawn("lottmobs:ent", {"lottplants:iris"}, 15, -1, 1000, 3, 31000)
+
+lottmobs:register_mob("lottmobs:spider", {
+	type = "monster",
+	hp_max = 30,
+	collisionbox = {-0.9, -0.01, -0.7, 0.7, 0.6, 0.7},
+	textures = {"lottmobs_spider.png"},
+	visual_size = {x=7,y=7},
+	visual = "mesh",
+	mesh = "spider_model.x",
+	makes_footstep_sound = true,
+	view_range = 15,
+	walk_velocity = 1,
+	run_velocity = 3,
+     armor = 100,
+	damage = 3,
+	drops = {
+		{name = "default:axe_stone",
+		chance = 100,
+		min = 1,
+		max = 1,},
+	},
+        light_resistant = true,
+	drawtype = "front",
+	water_damage = 5,
+	lava_damage = 5,
+	light_damage = 0,
+	on_rightclick = nil,
+	attack_type = "dogfight",
+	animation = {
+		speed_normal = 15,
+		speed_run = 15,
+		stand_start = 1,
+		stand_end = 1,
+		walk_start = 20,
+		walk_end = 40,
+		run_start = 20,
+		run_end = 40,
+		punch_start = 50,
+		punch_end = 90,
+	}
+})
+lottmobs:register_spawn("lottmobs:spider", {"lottplants:birchtree"}, 15, -1, 500, 3, 31000)
+lottmobs:register_spawn("lottmobs:spider", {"lottplants:asphodel"}, 15, -1, 500, 3, 31000)
+lottmobs:register_spawn("lottmobs:spider", {"lottplants:anemones"}, 15, -1, 500, 3, 31000)
+lottmobs:register_spawn("lottmobs:spider", {"lottplants:eglantive"}, 15, -1, 500, 3, 31000)
+lottmobs:register_spawn("lottmobs:spider", {"lottplants:iris"}, 15, -1, 500, 3, 31000)
 
 lottmobs:register_mob("lottmobs:rohan_guard", {
 	type = "animal",
-	hp_max = 10,
+	hp_max = 20,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	textures = {"lottmobs_rohan_guard.png"},
 	visual = "mesh",
@@ -102,7 +145,7 @@ lottmobs:register_mob("lottmobs:rohan_guard", {
 	    light_resistant = true,
 	drawtype = "front",
 	water_damage = 1,
-	lava_damage = 5,
+	lava_damage = 10,
 	light_damage = 0,
 	animation = {
 		speed_normal = 15,
@@ -117,22 +160,22 @@ lottmobs:register_mob("lottmobs:rohan_guard", {
 		punch_end = 198,
 	}
 })
-lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:mallos"}, 20, -1, 20, 3, 31000)
-lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:athelas"}, 20, -1, 20, 3, 31000)
-lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:pipeweed_wild"}, 20, -1, 20, 3, 31000)
-lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:lebethrontree"}, 20, -1, 20, 3, 31000)
-lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:aldertree"}, 20, -1, 20, 3, 31000)
+lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:mallos"}, 20, -1, 200, 3, 31000)
+lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:athelas"}, 20, -1, 200, 3, 31000)
+lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:pipeweed_wild"}, 200, -1, 20, 3, 31000)
+lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:lebethrontree"}, 20, -1, 200, 3, 31000)
+lottmobs:register_spawn("lottmobs:rohan_guard", {"lottplants:aldertree"}, 20, -1, 200, 3, 31000)
 
 lottmobs:register_mob("lottmobs:gondor_guard", {
 	type = "animal",
-	hp_max = 10,
+	hp_max = 20,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	textures = {"lottmobs_gondor_guard.png"},
 	visual = "mesh",
 	mesh = "human_model.x",
 	makes_footstep_sound = true,
 	walk_velocity = 1,
-	armor = 200,
+	armor = 100,
 	drops = {
 		{name = "bones:bones",
 		chance = 1,
@@ -157,23 +200,23 @@ lottmobs:register_mob("lottmobs:gondor_guard", {
 		punch_end = 198,
 	}
 })
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:mallos"}, 20, -1, 20, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:athelas"}, 20, -1, 15, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:pipeweed_wild"}, 20, -1, 10, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:corn_wild"}, 20, -1, 10, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:potato_wild"}, 20, -1, 15, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:mushroom_wild"}, 20, -1, 10, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:berries_wild"}, 20, -1, 10, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:turnips_wild"}, 20, -1, 15, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:tomatoes_wild"}, 20, -1, 10, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:cabbage_wild"}, 20, -1, 10, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:pilinehtar"}, 20, -1, 20, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:lebethrontree"}, 20, -1, 15, 3, 31000)
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:aldertree"}, 20, -1, 15, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:mallos"}, 20, -1, 100, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:athelas"}, 20, -1, 100, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:pipeweed_wild"}, 20, -1, 100, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:corn_wild"}, 20, -1, 100, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:potato_wild"}, 20, -1, 100, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:mushroom_wild"}, 20, -1, 100, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:berries_wild"}, 20, -1, 100, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:turnips_wild"}, 20, -1, 100, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:tomatoes_wild"}, 20, -1, 100, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:cabbage_wild"}, 20, -1, 100, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:pilinehtar"}, 20, -1, 100, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:lebethrontree"}, 20, -1, 100, 3, 31000)
+lottmobs:register_spawn("lottmobs:gondor_guard", {"lottplants:aldertree"}, 20, -1, 15, 100, 31000)
 
 lottmobs:register_mob("lottmobs:dunlending", {
 	type = "monster",
-	hp_max = 5,
+	hp_max = 20,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
 	mesh = "human_model.x",
@@ -181,8 +224,9 @@ lottmobs:register_mob("lottmobs:dunlending", {
 	makes_footstep_sound = true,
 	view_range = 15,
 	walk_velocity = 1,
+     armor = 100,
 	run_velocity = 3,
-	damage = 4,
+	damage = 3,
 	drops = {
 		{name = "default:axe_stone",
 		chance = 100,
@@ -190,7 +234,6 @@ lottmobs:register_mob("lottmobs:dunlending", {
 		max = 1,},
 	},
         light_resistant = true,
-	armor = 100,
 	drawtype = "front",
 	water_damage = 5,
 	lava_damage = 5,
@@ -210,30 +253,29 @@ lottmobs:register_mob("lottmobs:dunlending", {
 		punch_end = 198,
 	}
 })
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:mallos"}, 20, -1, 25, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:athelas"}, 20, -1, 15, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:pipeweed_wild"}, 20, -1, 25, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:corn_wild"}, 20, -1, 5, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:potato_wild"}, 20, -1, 5, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:mushroom_wild"}, 20, -1, 5, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:berries_wild"}, 20, -1, 30, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:turnips_wild"}, 20, -1, 10, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:tomatoes_wild"}, 20, -1, 20, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:cabbage_wild"}, 20, -1, 19, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:pilinehtar"}, 20, -1, 30, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:lebethrontree"}, 20, -1, 40, 3, 31000)
-lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:aldertree"}, 20, -1, 40, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:mallos"}, 20, -1, 300, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:athelas"}, 20, -1, 300, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:pipeweed_wild"}, 20, -1, 300, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:corn_wild"}, 20, -1, 300, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:potato_wild"}, 20, -1, 300, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:mushroom_wild"}, 20, -1, 300, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:berries_wild"}, 20, -1, 300, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:turnips_wild"}, 20, -1, 300, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:tomatoes_wild"}, 20, -1, 300, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:cabbage_wild"}, 20, -1, 300, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:pilinehtar"}, 20, -1, 300, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:lebethrontree"}, 20, -1, 300, 3, 31000)
+lottmobs:register_spawn("lottmobs:dunlending", {"lottplants:aldertree"}, 20, -1, 300, 3, 31000)
 
 lottmobs:register_mob("lottmobs:hobbit", {
 	type = "animal",
-	hp_max = 5,
+	hp_max = 10,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	textures = {"lottmobs_hobbit.png"},
 	visual = "mesh",
 	mesh = "dwarf_model.x",
 	makes_footstep_sound = true,
 	walk_velocity = 1,
-	armor = 100,
 	drops = {
 		{name = "flowers:rose",
 		chance = 1,
@@ -267,7 +309,7 @@ lottmobs:register_spawn("lottmobs:hobbit", {"flowers:viola"}, 20, -1, 1000, 3, 3
 
 lottmobs:register_mob("lottmobs:orc", {
 	type = "monster",
-	hp_max = 7,
+	hp_max = 20,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
 	mesh = "human_model.x",
@@ -275,8 +317,9 @@ lottmobs:register_mob("lottmobs:orc", {
 	makes_footstep_sound = true,
 	view_range = 15,
 	walk_velocity = 1,
+     armor = 100,
 	run_velocity = 3,
-	damage = 2,
+	damage = 1,
 	drops = {
 		{name = "bones:bones",
 		chance = 1,
@@ -284,10 +327,9 @@ lottmobs:register_mob("lottmobs:orc", {
 		max = 1,},
 	},
         light_resistant = true,
-	armor = 100,
 	drawtype = "front",
 	water_damage = 5,
-	lava_damage = 7,
+	lava_damage = 10,
 	light_damage = 0,
 	on_rightclick = nil,
 	attack_type = "dogfight",
@@ -304,11 +346,11 @@ lottmobs:register_mob("lottmobs:orc", {
 		punch_end = 198,
 	}
 })
-lottmobs:register_spawn("lottmobs:orc", {"lottmapgen:mordor_stone"}, 20, -1, 300, 3, 31000)
+lottmobs:register_spawn("lottmobs:orc", {"lottmapgen:mordor_stone"}, 20, -1, 500, 3, 31000)
 
 lottmobs:register_mob("lottmobs:uruk_hai", {
 	type = "monster",
-	hp_max = 10,
+	hp_max = 20,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
 	mesh = "human_model.x",
@@ -316,6 +358,7 @@ lottmobs:register_mob("lottmobs:uruk_hai", {
 	makes_footstep_sound = true,
 	view_range = 15,
 	walk_velocity = 1,
+     armor = 100,
 	run_velocity = 3,
 	damage = 4,
 	drops = {
@@ -327,7 +370,7 @@ lottmobs:register_mob("lottmobs:uruk_hai", {
         light_resistant = true,
 	armor = 200,
 	drawtype = "front",
-	water_damage = 0,
+	water_damage = 1,
 	lava_damage = 5,
 	light_damage = 0,
 	on_rightclick = nil,
@@ -345,11 +388,11 @@ lottmobs:register_mob("lottmobs:uruk_hai", {
 		punch_end = 198,
 	}
 })
-lottmobs:register_spawn("lottmobs:uruk_hai", {"lottmapgen:mordor_stone"}, 15, -1, 1000, 3, 31000)
+lottmobs:register_spawn("lottmobs:uruk_hai", {"lottmapgen:mordor_stone"}, 15, -1, 2000, 3, 31000)
 
 lottmobs:register_mob("lottmobs:battle_troll", {
 	type = "monster",
-	hp_max = 25,
+	hp_max = 60,
 	collisionbox = {-0.7, -0.01, -0.7, 0.7, 2.6, 0.7},
 	visual = "mesh",
 	mesh = "troll_model.x",
@@ -358,7 +401,7 @@ lottmobs:register_mob("lottmobs:battle_troll", {
 	makes_footstep_sound = true,
 	view_range = 15,
 	walk_velocity = 1,
-	run_velocity = 3,
+	run_velocity = 1,
 	damage = 5,
 	drops = {
 		{name = "bones:bones",
@@ -389,7 +432,7 @@ lottmobs:register_spawn("lottmobs:battle_troll", {"lottmapgen:mordor_stone"}, 10
 
 lottmobs:register_mob("lottmobs:half_troll", {
 	type = "monster",
-	hp_max = 15,
+	hp_max = 25,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
 	mesh = "human_model.x",
@@ -398,7 +441,8 @@ lottmobs:register_mob("lottmobs:half_troll", {
 	view_range = 15,
 	walk_velocity = 1,
 	run_velocity = 3,
-	damage = 8,
+	damage = 4,
+     armor = 100,
 	drops = {
 		{name = "default:sword_steel",
 		chance = 100,
@@ -406,7 +450,6 @@ lottmobs:register_mob("lottmobs:half_troll", {
 		max = 1,},
 	},
         light_resistant = true,
-	armor = 100,
 	drawtype = "front",
 	water_damage = 0,
 	lava_damage = 10,
@@ -432,11 +475,12 @@ lottmobs:register_spawn("lottmobs:half_troll", {"lottmapgen:mordor_stone"}, 15, 
 
 lottmobs:register_mob("lottmobs:nazgul", {
 	type = "monster",
-	hp_max = 50,
+	hp_max = 100,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
-	mesh = "human_model.x",
+	mesh = "ringwraith_model.x",
 	textures = {"lottmobs_nazgul.png"},
+	visual_size = {x=2, y=2},
 	makes_footstep_sound = true,
 	view_range = 15,
 	walk_velocity = 1,
@@ -445,11 +489,11 @@ lottmobs:register_mob("lottmobs:nazgul", {
 	drops = {
 		{name = "lottores:mithril_ingot",
 		chance = 1,
-		min = 1,
-		max = 2,},
+		min = 9,
+		max = 20,},
 	},
-	armor = 100,
 	drawtype = "front",
+     armor = 100,
 	water_damage = 10,
 	lava_damage = 0,
 	light_damage = 0,
@@ -463,19 +507,19 @@ lottmobs:register_mob("lottmobs:nazgul", {
 	animation = {
 		speed_normal = 15,
 		speed_run = 15,
-		stand_start = 0,
-		stand_end = 79,
-		walk_start = 168,
-		walk_end = 187,
-		punch_start = 189,
-		punch_end = 198,
+		stand_start = 1,
+		stand_end = 1,
+		walk_start = 20,
+		walk_end = 60,
+		punch_start = 70,
+		punch_end = 110,
 	},
 })
-lottmobs:register_spawn("lottmobs:nazgul", {"default:stone"}, 2, -1, 10000, 3, -50)
+lottmobs:register_spawn("lottmobs:nazgul", {"default:stone"}, 2, -1, 20000, 3, -50)
 
 lottmobs:register_mob("lottmobs:witch_king", {
 	type = "monster",
-	hp_max = 75,
+	hp_max = 300,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
 	mesh = "human_model.x",
@@ -483,17 +527,17 @@ lottmobs:register_mob("lottmobs:witch_king", {
 	makes_footstep_sound = true,
 	view_range = 15,
 	walk_velocity = 1,
+     armor = 100,
 	run_velocity = 3,
 	damage = 10,
 	drops = {
 		{name = "lottores:mithril_ingot",
 		chance = 1,
-		min = 5,
-		max = 9,},
+		min = 40,
+		max = 90,},
 	},
-	armor = 50,
 	drawtype = "front",
-	water_damage = 10,
+	water_damage = 1,
 	lava_damage = 0,
 	light_damage = 0,
 	on_rightclick = nil,
@@ -512,13 +556,13 @@ lottmobs:register_mob("lottmobs:witch_king", {
 		walk_end = 187,
 		punch_start = 189,
 		punch_end = 198,
-	},
+	}
 })
-lottmobs:register_spawn("lottmobs:witch_king", {"default:stone"}, 2, -1, 30000, 10, -1000)
+lottmobs:register_spawn("lottmobs:witch_king", {"default:stone"}, 2, -1, 40000, 10, -1000)
 
 lottmobs:register_mob("lottmobs:balrog", {
 	type = "monster",
-	hp_max = 100,
+	hp_max = 1000,
 	collisionbox = {-0.6,-2.0,-0.6, 0.6,1.6,0.6},
 	visual_size = {x=2, y=2},
 	visual = "mesh",
@@ -526,18 +570,18 @@ lottmobs:register_mob("lottmobs:balrog", {
 	textures = {"lottmobs_balrog.png"},
 	makes_footstep_sound = true,
 	view_range = 15,
+     armor = 100,
 	walk_velocity = 1,
 	run_velocity = 3,
 	damage = 20,
 	drops = {
 		{name = "lottores:mithril_ingot",
 		chance = 1,
-		min = 50,
-		max = 99,},
+		min = 99,
+		max = 999,},
 	},
-	armor = 100,
 	drawtype = "front",
-	water_damage = 10,
+	water_damage = 0,
 	lava_damage = 0,
 	light_damage = 0,
 	on_rightclick = nil,
@@ -558,7 +602,7 @@ lottmobs:register_mob("lottmobs:balrog", {
 		speed_run = 15,
 	},
 })
-lottmobs:register_spawn("lottmobs:balrog", {"default:stone"}, 2, -1, 70000, 10, -10000)
+lottmobs:register_spawn("lottmobs:balrog", {"default:stone"}, 2, -1, 100000, 10, -10000)
 
 lottmobs:register_mob("lottmobs:dead_men", {
 	type = "monster",
@@ -568,11 +612,11 @@ lottmobs:register_mob("lottmobs:dead_men", {
 	mesh = "human_model.x",
 	textures = {"lottmobs_dead_men.png"},
 	makes_footstep_sound = true,
-	view_range = 15,
+	view_range = 10,
 	walk_velocity = 1,
 	run_velocity = 1,
-	damage = 2,
-	armor = 10000000000000000000000000000000,
+	damage = 1,
+	armor = 1000000000,
 	water_damage = 0,
 	lava_damage = 0,
 	light_damage = 1,
@@ -596,7 +640,7 @@ lottmobs:register_spawn("lottmobs:dead_men", {"default:stone"}, 2, -1, 9000, 10,
 
 lottmobs:register_mob("lottmobs:troll", {
 	type = "monster",
-	hp_max = 15,
+	hp_max = 60,
 	collisionbox = {-0.7, -0.01, -0.7, 0.7, 2.6, 0.7},
 	visual = "mesh",
 	mesh = "troll_model.x",
@@ -605,19 +649,19 @@ lottmobs:register_mob("lottmobs:troll", {
 	makes_footstep_sound = true,
 	view_range = 15,
 	walk_velocity = 1,
-	run_velocity = 3,
+	run_velocity = 1,
 	damage = 10,
+     armor = 100,
 	drops = {
 		{name = "default:stone",
 		chance = 1,
 		min = 5,
 		max = 7,},
 	},
-	armor = 100,
 	drawtype = "front",
 	water_damage = 0,
 	lava_damage = 0,
-	light_damage = 15,
+	light_damage = 60,
 	on_rightclick = nil,
 	attack_type = "dogfight",
 	animation = {
@@ -631,13 +675,13 @@ lottmobs:register_mob("lottmobs:troll", {
 		speed_run = 15,
 	},
 })
-lottmobs:register_spawn("lottmobs:troll", {"default:stone"}, 2, -1, 9000, 5, -10)
+lottmobs:register_spawn("lottmobs:troll", {"default:stone"}, 2, -1, 5000, 5, -10)
 lottmobs:register_spawn("lottmobs:troll", {"default:snow"}, 2, -1, 300, 5, -10)
 lottmobs:register_spawn("lottmobs:troll", {"default:snowblock"}, 2, -1, 300, 5, -10)
 
 lottmobs:register_mob("lottmobs:dwarf", {
 	type = "animal",
-	hp_max = 10,
+	hp_max = 20,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	textures = {"lottmobs_dwarf.png"},
 	visual = "mesh",
@@ -670,7 +714,7 @@ lottmobs:register_mob("lottmobs:dwarf", {
 		punch_end = 198,
 	}
 })
-lottmobs:register_spawn("lottmobs:dwarf", {"default:stone"}, 15, -1, 1500, 3, -10)
+lottmobs:register_spawn("lottmobs:dwarf", {"default:stone"}, 15, -1, 2000, 3, -10)
 
 -- Arrows
 
