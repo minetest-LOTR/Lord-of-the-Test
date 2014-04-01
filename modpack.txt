@@ -1,1 +1,0 @@
-This file shows minetest that this folder is a modpack.
