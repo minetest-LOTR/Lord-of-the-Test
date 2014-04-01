@@ -22,7 +22,6 @@ Amaz (Secondary Developer)
 AspireMint (Models Creator)
 ak399g (Additional help in the ithildin mod)
 More Contributors wanted, just send me a PM
-http://i.imgur.com/Cig6Nwg.png
 (People whom i modify their code/ use their textures to make this game possible)
 (Not in Any Order)
 Topywo (Sea Ores)
