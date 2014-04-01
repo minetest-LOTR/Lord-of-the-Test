@@ -63,7 +63,7 @@ minetest.register_tool("lottarmor:shield_mithril", {
 })
 
 local craft_ingreds = {
-	wood = "group:wood"
+	wood = "group:wood",
 	tin = "lottores:tin_ingot",
 	copper = "default:copper_ingot",
 	steel = "default:steel_ingot",
