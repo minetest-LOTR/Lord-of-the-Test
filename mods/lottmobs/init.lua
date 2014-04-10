@@ -355,8 +355,8 @@ lottmobs:register_mob("lottmobs:orc", {
 	run_velocity = 3,
 	damage = 1,
 	drops = {
-		{name = "lottmobs:candy",
-		chance = 1,
+		{name = "default:iron",
+		chance = 50,
 		min = 1,
 		max = 1,},
 	},
@@ -396,7 +396,7 @@ lottmobs:register_mob("lottmobs:uruk_hai", {
 	run_velocity = 3,
 	damage = 1,
 	drops = {
-		{name = "lottmobs:candy",
+		{name = "default:stone",
 		chance = 100,
 		min = 1,
 		max = 1,},
@@ -438,10 +438,10 @@ lottmobs:register_mob("lottmobs:battle_troll", {
 	run_velocity = 1,
 	damage = 1,
 	drops = {
-		{name = "lottmobs:candy",
-		chance = 1,
-		min = 3,
-		max = 3,},
+		{name = "default:bones",
+		chance = 5,
+		min = 1,
+		max = 1,},
 	},
         light_resistant = true,
 	armor = 100,
@@ -840,26 +840,4 @@ lottmobs:register_arrow("lottmobs:fireslash", {
 			end
 		end
 	end
-})
-
-minetest.register_craftitem("lottmobs:candy", {
-	description = "Trololololol",
-	inventory_image = "zgzu.png",
-})
-
-minetest.register_node("lottmobs:afblock", {
-	description = "Happy April Fool's Day ~Lord of the Test Developers",
-	tiles = {"zgzu.png"},
-	is_ground_content = true,
-	groups = {cracky=3, stone=1},
-	sounds = default.node_sound_stone_defaults(),
-})
-
-minetest.register_craft({
-	output = 'lottmobs:afblock',
-	recipe = {
-		{'lottores:mithril_ingot', 'lottores:mithril_ingot', 'lottores:mithril_ingot'},
-		{'lottores:mithril_ingot', 'lottores:mithril_ingot', 'lottores:mithril_ingot'},
-		{'lottores:mithril_ingot', 'lottores:mithril_ingot', 'lottores:mithril_ingot'},
-	}
 })

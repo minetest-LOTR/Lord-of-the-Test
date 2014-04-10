@@ -718,7 +718,7 @@ minetest.register_tool("lottores:coppersword", {
 	description = "Copper Sword",
 	inventory_image = "lottores_coppersword.png",
 	tool_capabilities = {
-		full_punch_interval = 0.8,
+		full_punch_interval = 1.25,
 		max_drop_level=1,
 		groupcaps={
 			snappy={times={[1]=2.5, [2]=1.20, [3]=0.35}, uses=30, maxlevel=2},
@@ -730,7 +730,7 @@ minetest.register_tool("lottores:tinsword", {
 	description = "Tin Sword",
 	inventory_image = "lottores_tinsword.png",
 	tool_capabilities = {
-		full_punch_interval = 0.8,
+		full_punch_interval = 1.25,
 		max_drop_level=1,
 		groupcaps={
 			snappy={times={[1]=2.5, [2]=1.20, [3]=0.35}, uses=35, maxlevel=2},
@@ -742,7 +742,7 @@ minetest.register_tool("lottores:silversword", {
 	description = "Silver Sword",
 	inventory_image = "lottores_silversword.png",
 	tool_capabilities = {
-		full_punch_interval = 0.8,
+		full_punch_interval = 1,
 		max_drop_level=1,
 		groupcaps={
 			snappy={times={[1]=2.3, [2]=1.10, [3]=0.35}, uses=30, maxlevel=2},
@@ -754,7 +754,7 @@ minetest.register_tool("lottores:goldsword", {
 	description = "Gold Sword",
 	inventory_image = "lottores_goldsword.png",
 	tool_capabilities = {
-		full_punch_interval = 0.8,
+		full_punch_interval = 0.75,
 		max_drop_level=1,
 		groupcaps={
 			snappy={times={[1]=2.3, [2]=1.10, [3]=0.35}, uses=40, maxlevel=2},
@@ -766,7 +766,7 @@ minetest.register_tool("lottores:galvornsword", {
 	description = "Galvorn Sword",
 	inventory_image = "lottores_galvornsword.png",
 	tool_capabilities = {
-		full_punch_interval = 0.7,
+		full_punch_interval = 0.5,
 		max_drop_level=1,
 		groupcaps={
 			snappy={times={[1]=2.0, [2]=1.00, [3]=0.35}, uses=40, maxlevel=3},
@@ -778,7 +778,7 @@ minetest.register_tool("lottores:mithrilsword", {
 	description = "Mithril Sword",
 	inventory_image = "lottores_mithrilsword.png",
 	tool_capabilities = {
-		full_punch_interval = 0.6,
+		full_punch_interval = 0.25,
 		max_drop_level=1,
 		groupcaps={
 			snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=80, maxlevel=3},
@@ -1224,7 +1224,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'spawneggs:chicken',
+	output = 'lottores:mithrilswordmit',
 	recipe = {
 		{'lottores:mithril_ingot'},
 		{'lottores:mithril_ingot'},
