@@ -1224,7 +1224,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'lottores:mithrilswordmit',
+	output = 'lottores:mithrilsword',
 	recipe = {
 		{'lottores:mithril_ingot'},
 		{'lottores:mithril_ingot'},
