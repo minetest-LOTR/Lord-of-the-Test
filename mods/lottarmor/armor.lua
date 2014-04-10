@@ -248,6 +248,41 @@ minetest.register_on_joinplayer(function(player)
 	end, player)
 end)
 
+if minetest.get_modpath("bones") then
+	minetest.register_on_dieplayer(function(player)
+		local name = player:get_player_name()
+		local pos = player:getpos()
+		if name and pos then
+			pos = vector.round(pos)
+			local drop = {}
+			local player_inv = player:get_inventory()
+			local armor_inv = minetest.get_inventory({type="detached", name=name.."_armor"})
+			for _,v in ipairs(armor.elements) do
+				local list = "armor_"..v
+				table.insert(drop, player_inv:get_stack(list, 1))
+				armor_inv:set_stack(list, 1, nil)
+				player_inv:set_stack(list, 1, nil)
+			end
+			armor:set_player_armor(player)
+			minetest.after(1, function() --TODO: Make delay configurable
+				local node = minetest.get_node(pos)
+				if node.name == "bones:bones" then
+					local meta = minetest.get_meta(pos)
+					local owner = meta:get_string("owner")
+					local inv = meta:get_inventory()
+					if name == owner then
+						for _,list in ipairs(drop) do
+							if inv:room_for_item("main", list) then
+								inv:add_item("main", list)
+							end
+						end
+					end
+				end
+			end)
+		end
+	end)
+end
+
 minetest.register_globalstep(function(dtime)
 	time = time + dtime
 	if time > update_time then
