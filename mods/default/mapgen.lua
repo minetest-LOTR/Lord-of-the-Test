@@ -9,7 +9,6 @@ minetest.register_on_mapgen_init(function(params)
 		seed = params.seed,
 		water_level = 1,
 		flags = "caves, dungeons",
-		flagmask = "trees, caves, flat, v6_biome_blend, v6_jungles, dungeons, nolight",
 	})
 end)
 
