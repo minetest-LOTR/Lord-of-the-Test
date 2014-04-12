@@ -2,19 +2,17 @@
 -Licence:
 CC BY-SA 3.0
 -----------------------------------------------------------------------------------------------
--(Version 0.1.5) 
+-(Version 0.1.6) (Anniversary Update)
 -Changelog
-Addition of Armor
-Addition of potions
-Spider mob added
-Addition of new crops
-Honey 1 in 20 chance of getting it while harvesting flowers
-Fireflies spawn randomly in lorien
-Mobs Spawn more rarely
-Corrected Drop for Pearl Ore
-Changed screwdriver recipe
-Added noises to most plants to make them look nicer
-Changes in mobs, with increased health but decreased damage and some new models by AspireMint
+Swords have wear added when attacking mobs
+Changes in mobs armor
+Wild melon and wild barley now spawn
+Farming Plants now also spawn in Forest
+Armor Drop into bones if you died
+Anniversary Cake Added (Anniversary Update)
+Special Anniversary Tool Added (Anniversary Update)
+Party Armor Added (Anniversary Update)
+LOTT Anniversary Temple Added (Anniversary Update)
 -----------------------------------------------------------------------------------------------
 Developers/ Helpers:
 fishyWET(Primary Developer)
@@ -33,4 +31,8 @@ Paramat (Trees, mapgen)
 Stu (Dwarf & Elf & Human model, Armor)
 Traxie21 (Potions)
 AMMOnym (Some of the mobs textures)
+rubenwardy (Cake Nodeblock)
+Dan Duncombe (Paxel)
+Chinchow (Spawning Structures)
+BrandonReese(Wearing of Swords when attacking mobs)
 -----------------------------------------------------------------------------------------------
