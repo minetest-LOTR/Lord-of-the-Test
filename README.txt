@@ -31,6 +31,8 @@ Paramat (Trees, mapgen)
 Stu (Dwarf & Elf & Human model, Armor)
 Traxie21 (Potions)
 AMMOnym (Some of the mobs textures)
+0gb.us (https://forum.minetest.net/viewtopic.php?id=3876)Inventory_plus
+Cornernote (https://forum.minetest.net/viewtopic.php?id=3876)Inventory_plus
 rubenwardy (Cake Nodeblock)
 Dan Duncombe (Paxel)
 Chinchow (Spawning Structures)
