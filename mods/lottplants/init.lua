@@ -180,9 +180,9 @@ drop = {
 minetest.register_node("lottplants:barley_wild", {
 	description = "Barley Wild",
 	drawtype = "plantlike",
-	tiles = { "lottfarming_barley_wild.png" },
-	inventory_image = "lottfarming_barley_wild.png",
-	wield_image = "lottfarming_barley_wild.png",
+	tiles = { "lottfarming_barley.png" },
+	inventory_image = "lottfarming_barley.png",
+	wield_image = "lottfarming_barley.png",
 	sunlight_propagates = true,
 	paramtype = "light",
 drop = {

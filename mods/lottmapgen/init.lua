@@ -267,6 +267,10 @@ if ONGEN then
 												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:tomatoes_wild"})
 											elseif math.random(RAREPLANT) == 2 then
 												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:cabbage_wild"})
+                                                       elseif math.random(RAREPLANT) == 2 then
+												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:melon_wild"})
+                                                       elseif math.random(RAREPLANT) == 2 then
+												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:barley_wild"})
 											elseif math.random(NORMPLANT) == 2 then
 												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:pilinehtar"})
 											end
@@ -296,6 +300,26 @@ if ONGEN then
 												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:eglantive"})
 											elseif math.random(NORMPLANT) == 2 then
 												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:iris"})
+                                                       elseif math.random(RAREPLANT) == 2 then
+												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:pipeweed_wild"})
+											elseif math.random(RAREPLANT) == 2 then
+												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:corn_wild"})
+											elseif math.random(RAREPLANT) == 2 then
+												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:potato_wild"})
+											elseif math.random(RAREPLANT) == 2 then
+												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:mushroom_wild"})
+											elseif math.random(RAREPLANT) == 2 then
+												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:berries_wild"})
+											elseif math.random(RAREPLANT) == 2 then
+												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:turnips_wild"})
+											elseif math.random(RAREPLANT) == 2 then
+												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:tomatoes_wild"})
+											elseif math.random(RAREPLANT) == 2 then
+												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:cabbage_wild"})
+                                                       elseif math.random(RAREPLANT) == 2 then
+												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:melon_wild"})
+                                                       elseif math.random(RAREPLANT) == 2 then
+												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:barley_wild"})
 											elseif y == 0 and wat then
 												minetest.add_node({x=x,y=y+1,z=z},{name="default:water_source"})
 											end

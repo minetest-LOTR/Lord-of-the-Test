@@ -10,7 +10,7 @@ lottmobs:register_mob("lottmobs:elf", {
 	mesh = "elf_model.x",
 	makes_footstep_sound = true,
 	walk_velocity = 1,
-	
+	armor = 200
 		drops = {
 		{name = "",
 		chance = 1,
@@ -48,7 +48,7 @@ lottmobs:register_mob("lottmobs:chicken", {
 	mesh = "chicken_model.x",
 	makes_footstep_sound = true,
 	walk_velocity = 1,
-	armor = 10,
+	armor = 300,
 		drops = {
 		{name = "",
 		chance = 1,
@@ -83,7 +83,7 @@ lottmobs:register_mob("lottmobs:ent", {
 	mesh = "ent_model.x",
 	makes_footstep_sound = true,
 	walk_velocity = 1,
-	armor = 500,
+	armor = 100,
 	drops = {
 		{name = "default:tree",
 		chance = 10,
@@ -101,7 +101,7 @@ lottmobs:register_mob("lottmobs:ent", {
 		stand_start = 17,
 		stand_end = 17,
 		walk_start = 10,
-		walk_end = 80,
+		walk_end = 80,or
 		run_start = 10,
 		run_end = 80,
 		punch_start = 1,
@@ -126,7 +126,7 @@ lottmobs:register_mob("lottmobs:spider", {
 	view_range = 15,
 	walk_velocity = 1,
 	run_velocity = 3,
-     armor = 100,
+     armor = 200,
 	damage = 3,
 	drops = {
 		{name = "default:axe_stone",
@@ -169,7 +169,7 @@ lottmobs:register_mob("lottmobs:rohan_guard", {
 	mesh = "human_model.x",
 	makes_footstep_sound = true,
 	walk_velocity = 1,
-	armor = 200,
+	armor = 100,
 	drops = {
 		{name = "default:sword_stone",
 		chance = 100,
@@ -258,7 +258,7 @@ lottmobs:register_mob("lottmobs:dunlending", {
 	makes_footstep_sound = true,
 	view_range = 15,
 	walk_velocity = 1,
-     armor = 100,
+     armor = 300,
 	run_velocity = 3,
 	damage = 3,
 	drops = {
@@ -310,6 +310,7 @@ lottmobs:register_mob("lottmobs:hobbit", {
 	mesh = "dwarf_model.x",
 	makes_footstep_sound = true,
 	walk_velocity = 1,
+     armor = 300
 	drops = {
 		{name = "flowers:rose",
 		chance = 1,
@@ -351,12 +352,12 @@ lottmobs:register_mob("lottmobs:orc", {
 	makes_footstep_sound = true,
 	view_range = 15,
 	walk_velocity = 1,
-     armor = 100,
+     armor = 200,
 	run_velocity = 3,
 	damage = 1,
 	drops = {
-		{name = "default:iron",
-		chance = 50,
+		{name = "bones:bones"",
+		chance = 2,
 		min = 1,
 		max = 1,},
 	},
@@ -396,13 +397,12 @@ lottmobs:register_mob("lottmobs:uruk_hai", {
 	run_velocity = 3,
 	damage = 1,
 	drops = {
-		{name = "default:stone",
+		{name = "default:stone_sword",
 		chance = 100,
 		min = 1,
 		max = 1,},
 	},
         light_resistant = true,
-	armor = 200,
 	drawtype = "front",
 	water_damage = 1,
 	lava_damage = 5,
@@ -650,7 +650,7 @@ lottmobs:register_mob("lottmobs:dead_men", {
 	walk_velocity = 1,
 	run_velocity = 1,
 	damage = 1,
-	armor = 1000000000,
+	armor = 1,
 	water_damage = 0,
 	lava_damage = 0,
 	light_damage = 1,
