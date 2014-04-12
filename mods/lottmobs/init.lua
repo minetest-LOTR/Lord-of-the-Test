@@ -10,7 +10,7 @@ lottmobs:register_mob("lottmobs:elf", {
 	mesh = "elf_model.x",
 	makes_footstep_sound = true,
 	walk_velocity = 1,
-	armor = 200
+	armor = 200,
 		drops = {
 		{name = "",
 		chance = 1,
