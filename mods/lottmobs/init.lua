@@ -101,7 +101,7 @@ lottmobs:register_mob("lottmobs:ent", {
 		stand_start = 17,
 		stand_end = 17,
 		walk_start = 10,
-		walk_end = 80,or
+		walk_end = 80,
 		run_start = 10,
 		run_end = 80,
 		punch_start = 1,
@@ -310,7 +310,7 @@ lottmobs:register_mob("lottmobs:hobbit", {
 	mesh = "dwarf_model.x",
 	makes_footstep_sound = true,
 	walk_velocity = 1,
-     armor = 300
+	armor = 300,
 	drops = {
 		{name = "flowers:rose",
 		chance = 1,
@@ -356,7 +356,7 @@ lottmobs:register_mob("lottmobs:orc", {
 	run_velocity = 3,
 	damage = 1,
 	drops = {
-		{name = "bones:bones"",
+		{name = "bones:bones",
 		chance = 2,
 		min = 1,
 		max = 1,},

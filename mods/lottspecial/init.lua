@@ -1,3 +1,4 @@
+dofile(minetest.get_modpath("lottspecial").."/tools.lua")
 minetest.register_node("lottspecial:cake", {
 	description = "LOTT Anniversary Cake",
 	groups={food=3,crumbly=3},
