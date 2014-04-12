@@ -368,3 +368,12 @@ if ONGEN then
 		end			
 	end)				
 end
+
+minetest.register_decoration({
+	deco_type = "schematic",
+	place_on = "lottmapgen:mordor_stone",
+	sidelen = 16,
+	fill_ratio = 0.0045,
+	schematic = minetest.get_modpath("lottmapgen").."/schematics/LOTT_Anniversary_Temple.mts",
+	flags = "place_center_x, place_center_z",
+})

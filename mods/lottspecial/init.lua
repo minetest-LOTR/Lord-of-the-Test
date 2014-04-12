@@ -1,7 +1,7 @@
 dofile(minetest.get_modpath("lottspecial").."/tools.lua")
 minetest.register_node("lottspecial:cake", {
 	description = "LOTT Anniversary Cake",
-	groups={food=3,crumbly=3},
+	groups={crumbly=3},
 	tiles = {
 		"lottspecial_cake.png",
 		"lottspecial_cake.png",
@@ -66,4 +66,27 @@ minetest.register_tool("lottspecial:cake_knife", {
 		itemstack:set_wear(item_wear)
 		return itemstack
 	end,
+})
+
+minetest.register_node("lottspecial:chest", {
+	description = "LOTT Anniversary Chest",
+	groups={crumbly=3},
+     tiles = {"lottspecial_chest.png",},
+     drop = {
+		max_items = 8,
+		items = {
+			{ items = {'lottspecial:cake'} },
+			{ items = {'lottspecial:cake_knife'} },
+			{ items = {'lottspecial:birthday_paxel'} },
+			{ items = {'lottspecial:helmet_birthday'} },
+               { items = {'lottspecial:chestplate_birthday'} },
+               { items = {'lottspecial:leggings_birthday'} },
+               { items = {'lottspecial:boots_birthday'} },
+               { items = {'lottspecial:shield_birthday'} },
+		}
+	},
+	walkable = false,
+	sunlight_propagates = true,
+	drawtype="nodebox",
+	paramtype = "light",
 })
