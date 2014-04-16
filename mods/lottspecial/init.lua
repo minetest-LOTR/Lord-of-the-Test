@@ -1,6 +1,6 @@
 dofile(minetest.get_modpath("lottspecial").."/anniversary.lua")
 
-minetest.register_node("egg:egg",{
+minetest.register_node("lottspecial:egg",{
 	drawtype="nodebox",
 	tiles = {"egg.png"},
 	paramtype = "light",
@@ -19,7 +19,7 @@ minetest.register_node("egg:egg",{
 		}
 	}
 })
-minetest.register_node("egg:egg1",{
+minetest.register_node("lottspecial:egg1",{
 	drawtype="nodebox",
 	tiles = {"egg.png"},
 	paramtype = "light",
@@ -38,7 +38,7 @@ minetest.register_node("egg:egg1",{
 		}
 	}
 })
-minetest.register_node("egg:egg2",{
+minetest.register_node("lottspecial:egg2",{
 	drawtype="nodebox",
 	tiles = {"egg.png"},
 	paramtype = "light",
@@ -57,7 +57,7 @@ minetest.register_node("egg:egg2",{
 		}
 	}
 })
-minetest.register_node("egg:egg3",{
+minetest.register_node("lottspecial:egg3",{
 	drawtype="nodebox",
 	tiles = {"egg.png"},
 	paramtype = "light",
@@ -76,7 +76,7 @@ minetest.register_node("egg:egg3",{
 		}
 	}
 })
-minetest.register_node("egg:egg4",{
+minetest.register_node("lottspecial:egg4",{
 	drawtype="nodebox",
 	tiles = {"egg.png"},
 	paramtype = "light",
@@ -136,15 +136,15 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							local egg_choice = pr:next(1, 5)
 							local egg
 							if egg_choice == 1 then
-								egg = "egg:egg"
+								egg = "lottspecial:egg"
 							elseif egg_choice == 2 then
-								egg = "egg:egg1"
+								egg = "lottspecial:egg1"
 							elseif egg_choice == 3 then
-								egg = "egg:egg2"
+								egg = "lottspecial:egg2"
 							elseif egg_choice == 4 then
-								egg = "egg:egg3"
+								egg = "lottspecial:egg3"
 							elseif egg_choice == 5 then
-								egg = "egg:egg4"
+								egg = "lottspecial:egg4"
 							end
 							minetest.set_node(p, {name=egg})
 						end
