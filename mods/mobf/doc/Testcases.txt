@@ -1,0 +1,28 @@
+Date 2012 01 28
+
+testcases to check before release:
+
+
+Features:
+
+-mobs moving
+-catching mobs with lasso
+-catching mobs with net
+-killing mobs
+-harvesting mobs
+-mobs doing meele attack
+-mobs transforming on harvest
+-mobs auto transform
+-mobs taking damage in sun
+-mobs self destruct
+-mobs honoring jump limitiations
+-mobs random dropping
+-mobs honoring movement medium
+-mobs doing random jumps
+-mobs level changing
+
+
+General:
+-version number correct?
+-readme correct?
+-debug output disabled?

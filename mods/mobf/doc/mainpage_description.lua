@@ -1,0 +1,47 @@
+-------------------------------------------------------------------------------
+-- Mob Framework Mod by Sapier
+--
+-- You may copy, use, modify or do nearly anything except removing this
+-- copyright notice.
+-- And of course you are NOT allow to pretend you have written it.
+--
+--! @file mainpage_description.lua
+--! @brief just a doc page
+--! @copyright Sapier
+--! @author Sapier
+--! @date 2013-04-28
+
+-- Contact sapier a t gmx net
+-------------------------------------------------------------------------------
+
+--! @mainpage Mob Framework Mod 2.2.x
+--!
+--! This documentation uses doxygen created from lua code. As some of you
+--! probably know doxygen doesn't support lua on it's own so some of the
+--! shown descriptions arent perfectly correct.\n
+--!
+--! On this page some of the caveats are explained:\n
+--! Lua doesn't support classes and structs but tables which ain't supported by
+--! doxygen.\n
+--!
+--! Mapping of classes and structs:
+--! \li \b classes are used to group (sub)components containing primary functions\n
+--! \li \b structs are result of parsing tables and containing configuration or
+--! temporary data
+--!
+--! Datatypes shown in doxygen and it's meaning:
+--! \li \b function this is a return value of function and can be nil too
+--! \li \b var a variable
+--! \li \b struct some table element
+--! \li \b anonymous_value a table element specified without a name
+--! \li \b parameter is a parameter declared in a function definition
+--!
+--!
+--! Keywords used in config parameter description
+--! \li \b MANDATORY some parameter required
+--! \li \b OPTIONAL parameter may be nill without causinh an error
+--! \li \b MOV_GEN_DEPENDENT parameter is required dependent of selected movement gen
+--! \li \b 2D MANDATORY parameter is required in case of 2D mob
+--! \li \b 3D MANDATORY parameter is required in case of 3D mob
+--! \li \b ALGORITHM \b DEPENDENT is required dependent on selected algorithm
+--! \li \b UPPER_VALUE_DEPENDENT if you specify upper value you need to specify this too
