@@ -158,7 +158,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						minetest.registered_nodes[nn].buildable_to then
 						nn = minetest.get_node({x=x,y=ground_y,z=z}).name
 						if nn == "default:dirt_with_grass" then
-							local egg_choice = pr:next(1, 5)
+							local egg_choice = pr:next(1, 6)
 							local egg
 							if egg_choice == 1 then
 								egg = "lottspecial:egg"
@@ -184,20 +184,23 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	end
 end)
 
+lottmobs:register_spawn("mobf_rabbit:brown_rabbit", {"lottspecial:egg"}, 20, 1, 10, 3, 3200)
+lottmobs:register_spawn("mobf_rabbit:brown_rabbit", {"lottspecial:egg1"}, 20, 1, 10, 3, 3200)
+lottmobs:register_spawn("mobf_rabbit:brown_rabbit", {"lottspecial:egg2"}, 20, 1, 10, 3, 3200)
+lottmobs:register_spawn("mobf_rabbit:brown_rabbit", {"lottspecial:egg3"}, 20, 1, 10, 3, 3200)
+lottmobs:register_spawn("mobf_rabbit:brown_rabbit", {"lottspecial:egg4"}, 20, 1, 10, 3, 3200)
+lottmobs:register_spawn("mobf_rabbit:brown_rabbit", {"lottspecial:egg5"}, 20, 1, 10, 3, 3200)
+
+lottmobs:register_spawn("mobf_rabbit:grey_rabbit", {"lottspecial:egg"}, 20, 1, 10, 3, 3200)
+lottmobs:register_spawn("mobf_rabbit:grey_rabbit", {"lottspecial:egg1"}, 20, 1, 10, 3, 3200)
+lottmobs:register_spawn("mobf_rabbit:grey_rabbit", {"lottspecial:egg2"}, 20, 1, 10, 3, 3200)
+lottmobs:register_spawn("mobf_rabbit:grey_rabbit", {"lottspecial:egg3"}, 20, 1, 10, 3, 3200)
+lottmobs:register_spawn("mobf_rabbit:grey_rabbit", {"lottspecial:egg4"}, 20, 1, 10, 3, 31000)
+lottmobs:register_spawn("mobf_rabbit:grey_rabbit", {"lottspecial:egg5"}, 20, 1, 10, 3, 3200)
+
 lottmobs:register_spawn("mobf_rabbit:snow_rabbit", {"lottspecial:egg"}, 20, 1, 20, 3, 3200)
 lottmobs:register_spawn("mobf_rabbit:snow_rabbit", {"lottspecial:egg1"}, 20, 1, 20, 3, 3200)
 lottmobs:register_spawn("mobf_rabbit:snow_rabbit", {"lottspecial:egg2"}, 20, 1, 20, 3, 3200)
 lottmobs:register_spawn("mobf_rabbit:snow_rabbit", {"lottspecial:egg3"}, 20, 1, 20, 3, 3200)
 lottmobs:register_spawn("mobf_rabbit:snow_rabbit", {"lottspecial:egg4"}, 20, 1, 20, 3, 3200)
-
-lottmobs:register_spawn("mobf_rabbit:brown_rabbit", {"lottspecial:egg"}, 20, 1, 20, 3, 3200)
-lottmobs:register_spawn("mobf_rabbit:brown_rabbit", {"lottspecial:egg1"}, 20, 1, 20, 3, 3200)
-lottmobs:register_spawn("mobf_rabbit:brown_rabbit", {"lottspecial:egg2"}, 20, 1, 20, 3, 3200)
-lottmobs:register_spawn("mobf_rabbit:brown_rabbit", {"lottspecial:egg3"}, 20, 1, 20, 3, 3200)
-lottmobs:register_spawn("mobf_rabbit:brown_rabbit", {"lottspecial:egg4"}, 20, 1, 20, 3, 3200)
-
-lottmobs:register_spawn("mobf_rabbit:grey_rabbit", {"lottspecial:egg"}, 20, 1, 20, 3, 3200)
-lottmobs:register_spawn("mobf_rabbit:grey_rabbit", {"lottspecial:egg1"}, 20, 1, 20, 3, 3200)
-lottmobs:register_spawn("mobf_rabbit:grey_rabbit", {"lottspecial:egg2"}, 20, 1, 20, 3, 3200)
-lottmobs:register_spawn("mobf_rabbit:grey_rabbit", {"lottspecial:egg3"}, 20, 1, 20, 3, 3200)
-lottmobs:register_spawn("mobf_rabbit:grey_rabbit", {"lottspecial:egg4"}, 20, 1, 20, 3, 31000)
+lottmobs:register_spawn("mobf_rabbit:snow_rabbit", {"lottspecial:egg5"}, 20, 1, 20, 3, 3200)
