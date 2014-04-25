@@ -215,3 +215,25 @@ if minetest.get_modpath("mobfcooking") ~= nil then
 	overwrite("mobfcooking:cooked_venison", 6)
 	overwrite("mobfcooking:cooked_fish", 6)
 end
+
+if minetest.get_modpath("lottfarming") ~= nil then
+	overwrite("lottfarming:barley", 4)
+	overwrite("lottfarming:berries", 2)
+	overwrite("lottfarming:blue_mushroom", 3)
+	overwrite("lottfarming:brown_mushroom", 4)
+	overwrite("lottfarming:cabbage", 4)
+	overwrite("lottfarming:corn", 6)
+	overwrite("lottfarming:green_mushroom", 3)
+	overwrite("lottfarming:melon", 4)
+	overwrite("lottfarming:pipeweed", 2)
+	overwrite("lottfarming:potato", 8)
+	overwrite("lottfarming:red_mushroom", 3)
+	overwrite("lottfarming:tomatoes", 4)
+	overwrite("lottfarming:turnips", 8)
+end
+
+if minetest.get_modpath("lottplants") ~= nil then
+	overwrite("lottplants:plum", 6)
+	overwrite("lottplants:yavannamirefruit", 6)
+	overwrite("lottplants:honey", 1)
+end
