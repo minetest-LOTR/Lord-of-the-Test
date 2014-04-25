@@ -233,7 +233,7 @@ if minetest.get_modpath("lottfarming") ~= nil then
 end
 
 if minetest.get_modpath("lottplants") ~= nil then
-	overwrite("lottplants:plum", 6)
+	overwrite("lottplants:plum", 1)
 	overwrite("lottplants:yavannamirefruit", 6)
 	overwrite("lottplants:honey", 1)
 end
