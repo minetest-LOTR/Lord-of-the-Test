@@ -2,18 +2,13 @@ minetest.register_craftitem("lottfarming:corn_seed", {
 	description = "Corn Seeds",
 	inventory_image = "lottfarming_corn_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		local above = minetest.env:get_node(pointed_thing.above)
-		if above.name == "air" then
-			above.name = "lottfarming:corn_1"
-			minetest.env:set_node(pointed_thing.above, above)
-			itemstack:take_item(1)
-			return itemstack
-		end
-	end
+		return place_seed(itemstack, placer, pointed_thing, "lottfarming:corn_1")
+	end,
 })
 minetest.register_craftitem("lottfarming:corn", {
 	description = "Corn",
 	inventory_image = "lottfarming_corn.png",
+     groups = {salad=1},
 	on_use = minetest.item_eat(4),
 })
 minetest.register_node("lottfarming:corn_1", {
@@ -28,7 +23,7 @@ minetest.register_node("lottfarming:corn_1", {
 			{-0.5, -0.5, -0.5, 0.5, -0.5+3/16, 0.5}
 		},
 	},
-	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 minetest.register_node("lottfarming:corn_2", {
@@ -43,7 +38,7 @@ minetest.register_node("lottfarming:corn_2", {
 			{-0.5, -0.5, -0.5, 0.5, -0.5+3/16, 0.5}
 		},
 	},
-	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 minetest.register_node("lottfarming:corn_3", {
@@ -52,7 +47,7 @@ minetest.register_node("lottfarming:corn_3", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_corn_3.png"},
-	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 minetest.register_node("lottfarming:corn_4", {
@@ -61,7 +56,7 @@ minetest.register_node("lottfarming:corn_4", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_corn_4.png"},
-	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 minetest.register_node("lottfarming:corn_21", {
@@ -70,7 +65,7 @@ minetest.register_node("lottfarming:corn_21", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_corn_21.png"},
-	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 minetest.register_node("lottfarming:corn_22", {
@@ -79,7 +74,7 @@ minetest.register_node("lottfarming:corn_22", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_corn_22.png"},
-	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 minetest.register_node("lottfarming:corn_23", {
@@ -99,7 +94,7 @@ minetest.register_node("lottfarming:corn_23", {
 			{ items = {'lottfarming:corn_seed'}, rarity = 5 }
 		}
 	},
-	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 minetest.register_node("lottfarming:corn_31", {
@@ -108,7 +103,7 @@ minetest.register_node("lottfarming:corn_31", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_corn_31.png"},
-	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 minetest.register_node("lottfarming:corn_32", {
@@ -128,7 +123,7 @@ minetest.register_node("lottfarming:corn_32", {
 			{ items = {'lottfarming:corn_seed'}, rarity = 5 }
 		}
 	},
-	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 

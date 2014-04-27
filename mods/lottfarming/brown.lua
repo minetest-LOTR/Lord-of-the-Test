@@ -2,31 +2,14 @@ minetest.register_craftitem("lottfarming:brown_mushroom_spore", {
 	description = "Brown Mushroom Spores",
 	inventory_image = "lottfarming_brown_mushroom_spore.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		local above = minetest.env:get_node(pointed_thing.above)
-		if above.name == "air" then
-			above.name = "lottfarming:brown_mushroom_1"
-			minetest.env:set_node(pointed_thing.above, above)
-			itemstack:take_item(1)
-			return itemstack
-		end
-	end
-
+		return place_spore(itemstack, placer, pointed_thing, "lottfarming:brown_mushroom_1")
+	end,
 })
+
 minetest.register_craftitem("lottfarming:brown_mushroom", {
 	description = "Brown Mushroom",
-	paramtype = "light",
-	walkable = false,
-	drawtype = "plantlike",
-	drop = "",
 	tiles = {"lottfarming_brown_mushroom_4.png"},
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.5, 0.5, -0.5+3/16, 0.5}
-		},
-	},
-	groups = {snappy=3, flammable=2},
-	sounds = default.node_sound_leaves_defaults(),
+	groups = {mushroom=1},
 	inventory_image = "lottfarming_brown_mushroom.png",
 	on_use = minetest.item_eat(1),
 })

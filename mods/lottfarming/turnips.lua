@@ -2,14 +2,8 @@ minetest.register_craftitem("lottfarming:turnips_seed", {
 	description = "Turnip Seeds",
 	inventory_image = "lottfarming_turnips_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		local above = minetest.env:get_node(pointed_thing.above)
-		if above.name == "air" then
-			above.name = "lottfarming:turnips_1"
-			minetest.env:set_node(pointed_thing.above, above)
-			itemstack:take_item(1)
-			return itemstack
-		end
-	end
+		return place_seed(itemstack, placer, pointed_thing, "lottfarming:turnips_1")
+	end,
 })
 
 minetest.register_node("lottfarming:turnips_1", {
@@ -83,7 +77,19 @@ minetest.register_node("lottfarming:turnips_4", {
 minetest.register_craftitem("lottfarming:turnips", {
 	description = "Turnips",
 	inventory_image = "lottfarming_turnips.png",
-	on_use = minetest.item_eat(2),
 })
 
 farming:add_plant("lottfarming:turnips_4", {"lottfarming:turnips_1", "lottfarming:turnips_2", "lottfarming:turnips_3"}, 50, 20)
+
+minetest.register_craft({
+	type = "cooking",
+	cooktime = 15,
+	output = "lottfarming:turnips_cooked",
+	recipe = "lottfarming:turnips"
+})
+
+minetest.register_craftitem("lottfarming:turnips_cooked", {
+	description = "Cooked Turnips",
+	inventory_image = "lottfarming_turnips_cooked.png",
+	on_use = minetest.item_eat(2),
+})

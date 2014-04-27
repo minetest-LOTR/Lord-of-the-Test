@@ -129,10 +129,10 @@ lottmobs:register_mob("lottmobs:spider", {
      armor = 200,
 	damage = 3,
 	drops = {
-		{name = "default:axe_stone",
+		{name = "farming:string",
 		chance = 100,
-		min = 1,
-		max = 1,},
+		min = 3,
+		max = 6,},
 	},
         light_resistant = true,
 	drawtype = "front",
@@ -211,7 +211,7 @@ lottmobs:register_mob("lottmobs:gondor_guard", {
 	walk_velocity = 1,
 	armor = 100,
 	drops = {
-		{name = "bones:bones",
+		{name = "bones:bone",
 		chance = 1,
 		min = 1,
 		max = 1,},
@@ -356,7 +356,7 @@ lottmobs:register_mob("lottmobs:orc", {
 	run_velocity = 3,
 	damage = 1,
 	drops = {
-		{name = "bones:bones",
+		{name = "bones:bone",
 		chance = 2,
 		min = 1,
 		max = 1,},
@@ -438,7 +438,7 @@ lottmobs:register_mob("lottmobs:battle_troll", {
 	run_velocity = 1,
 	damage = 1,
 	drops = {
-		{name = "default:bones",
+		{name = "bones:bone",
 		chance = 5,
 		min = 1,
 		max = 1,},

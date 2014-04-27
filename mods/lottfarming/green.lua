@@ -2,16 +2,10 @@ minetest.register_craftitem("lottfarming:green_mushroom_spore", {
 	description = "Green Mushroom Spores",
 	inventory_image = "lottfarming_green_mushroom_spore.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		local above = minetest.env:get_node(pointed_thing.above)
-		if above.name == "air" then
-			above.name = "lottfarming:green_mushroom_1"
-			minetest.env:set_node(pointed_thing.above, above)
-			itemstack:take_item(1)
-			return itemstack
-		end
-	end
-
+		return place_spore(itemstack, placer, pointed_thing, "lottfarming:green_mushroom_1")
+	end,
 })
+
 minetest.register_node("lottfarming:green_mushroom", {
 	description = "Green Mushroom",
 	paramtype = "light",
@@ -27,7 +21,7 @@ minetest.register_node("lottfarming:green_mushroom", {
 			{-0.5, -0.5, -0.5, 0.5, -0.5+3/16, 0.5}
 		},
 	},
-	groups = {snappy=3, flammable=2},
+	groups = {snappy=3, flammable=2, mushroom=1},
 	sounds = default.node_sound_leaves_defaults(),
 	inventory_image = "lottfarming_green_mushroom.png",
 	on_use = minetest.item_eat(2),

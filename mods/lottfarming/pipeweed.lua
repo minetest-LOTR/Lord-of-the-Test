@@ -2,14 +2,8 @@ minetest.register_craftitem("lottfarming:pipeweed_seed", {
 	description = "Pipeweed Seeds",
 	inventory_image = "lottfarming_pipeweed_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		local above = minetest.env:get_node(pointed_thing.above)
-		if above.name == "air" then
-			above.name = "lottfarming:pipeweed_1"
-			minetest.env:set_node(pointed_thing.above, above)
-			itemstack:take_item(1)
-			return itemstack
-		end
-	end
+		return place_seed(itemstack, placer, pointed_thing, "lottfarming:pipeweed_1")
+	end,
 })
 
 minetest.register_node("lottfarming:pipeweed_1", {
@@ -83,7 +77,46 @@ minetest.register_node("lottfarming:pipeweed_4", {
 minetest.register_craftitem("lottfarming:pipeweed", {
 	description = "Pipeweed",
 	inventory_image = "lottfarming_pipeweed.png",
-	on_use = minetest.item_eat(3),
 })
 
 farming:add_plant("lottfarming:pipeweed_4", {"lottfarming:pipeweed_1", "lottfarming:pipeweed_2", "lottfarming:pipeweed_3"}, 50, 20)
+
+minetest.register_craft({
+	type = "cooking",
+	cooktime = 15,
+	output = "lottfarming:pipeweed_cooked",
+	recipe = "lottfarming:pipeweed"
+})
+
+minetest.register_craftitem("lottfarming:pipeweed_cooked", {
+	description = "Cooked Pipeweed",
+	inventory_image = "lottfarming_pipeweed_cooked.png",
+})
+
+minetest.register_craft({
+	output = 'lottfarming:pipe',
+	recipe = {
+		{'', '', 'group:stick'},
+		{'group:wood', 'group:stick', ''},
+		{'group:stick', '', ''},
+	}
+})
+
+arrows = {
+	{"lottfarming:pipeweed_cooked"},
+}
+
+minetest.register_tool("lottfarming:pipe", {
+	description = "Pipe",
+	inventory_image = "lottfarming_pipe.png",
+     on_use = function(itemstack, user, pointed_thing)
+     for _,arrow in ipairs(arrows) do
+          if user:get_inventory():get_stack("main", user:get_wield_index()+1):get_name() == arrow[1] then
+			if not minetest.setting_getbool("creative_mode") then
+				user:get_inventory():remove_item("main", arrow[1])
+                    user:set_hp(user:get_hp()+2)
+			     end
+               end
+          end
+     end
+})

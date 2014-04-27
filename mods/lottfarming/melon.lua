@@ -2,14 +2,8 @@ minetest.register_craftitem("lottfarming:melon_seed", {
 	description = "Melon Seed",
 	inventory_image = "lottfarming_melon_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		local above = minetest.env:get_node(pointed_thing.above)
-		if above.name == "air" then
-			above.name = "lottfarming:melon_1"
-			minetest.env:set_node(pointed_thing.above, above)
-			itemstack:take_item(1)
-			return itemstack
-		end
-	end
+		return place_seed(itemstack, placer, pointed_thing, "lottfarming:melon_1")
+	end,
 })
 
 minetest.register_node("lottfarming:melon_1", {
@@ -64,20 +58,17 @@ minetest.register_node("lottfarming:melon_3", {
 		max_items = 6,
 		items = {
 			{ items = {'lottfarming:melon_seed'} },
-			{ items = {'lottfarming:melon_seed'}, rarity = 2},
-			{ items = {'lottfarming:melon_seed'}, rarity = 5},
-			{ items = {'lottfarming:melon'} },
-			{ items = {'lottfarming:melon'}, rarity = 2 },
-			{ items = {'lottfarming:melon'}, rarity = 5 }
+			{ items = {'lottfarming:melon_seed'}, rarity = 20},
+			{ items = {'lottfarming:melon 8'} },
 		}
 	},
-	groups = {choppy=2, oddly_breakable_by_hand=2, flammable=2, plant=1},
+	groups = {choppy=2, oddly_breakable_by_hand=1, flammable=2, plant=1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
 minetest.register_craftitem("lottfarming:melon", {
 	description = "Melon",
-	inventory_image = "lottfarming_melon_side.png",
+	inventory_image = "lottfarming_melon.png",
 	on_use = minetest.item_eat(2),
 })
 

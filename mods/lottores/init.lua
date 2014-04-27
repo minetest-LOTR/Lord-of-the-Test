@@ -945,6 +945,13 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = 'lottores:tilkal_ingot 9',
+	recipe = {
+		{'lottores:tilkal'},
+	}
+})
+
+minetest.register_craft({
 	output = 'lottores:tilkal_ingot',
 	recipe = {
 		{'default:copper_ingot', 'lottores:silver_ingot', 'lottores:tin_ingot'},
@@ -960,6 +967,14 @@ minetest.register_craft({
 		{'lottores:limestone_lump', 'lottores:limestone_lump', 'lottores:limestone_lump'},
 	}
 })
+
+minetest.register_craft({
+	output = 'lottores:limestone_lump 9',
+	recipe = {
+		{'lottores:limestone'},
+	}
+})
+
 
 minetest.register_craft({
 	type = "cooking",
@@ -983,11 +998,25 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = 'lottores:silver_ingot 9',
+	recipe = {
+		{'lottores:silver_block'},
+	}
+})
+
+minetest.register_craft({
 	output = 'lottores:tin_block',
 	recipe = {
 		{'lottores:tin_ingot', 'lottores:tin_ingot', 'lottores:tin_ingot'},
 		{'lottores:tin_ingot', 'lottores:tin_ingot', 'lottores:tin_ingot'},
 		{'lottores:tin_ingot', 'lottores:tin_ingot', 'lottores:tin_ingot'},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottores:tin_ingot 9',
+	recipe = {
+		{'lottores:tin_block'},
 	}
 })
 
@@ -1001,6 +1030,13 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = 'lottores:lead_ingot 9',
+	recipe = {
+		{'lottores:lead_block'},
+	}
+})
+
+minetest.register_craft({
 	output = 'lottores:mithril_block',
 	recipe = {
 		{'lottores:mithril_ingot', 'lottores:mithril_ingot', 'lottores:mithril_ingot'},
@@ -1010,11 +1046,25 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = 'lottores:mithril_ingot 9',
+	recipe = {
+		{'lottores:mithril_block'},
+	}
+})
+
+minetest.register_craft({
 	output = 'lottores:galvorn_block',
 	recipe = {
 		{'lottores:galvorn_ingot', 'lottores:galvorn_ingot', 'lottores:galvorn_ingot'},
 		{'lottores:galvorn_ingot', 'lottores:galvorn_ingot', 'lottores:galvorn_ingot'},
 		{'lottores:galvorn_ingot', 'lottores:galvorn_ingot', 'lottores:galvorn_ingot'},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottores:galvorn_ingot 9',
+	recipe = {
+		{'lottores:galvorn_block'},
 	}
 })
 
@@ -1328,14 +1378,11 @@ minetest.register_node("lottores:mineral_salt", {
 
 minetest.register_node( "lottores:pearl_block", {
 	description = "Pearl Block",
-    alpha = 200,
+     alpha = 200,
 	tile_images = { "default_sand.png^lottores_pearl_block.png" },
 	is_ground_content = true,
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3},
-
-        sounds = default.node_sound_glass_defaults(),
-
-	drop = 'node "lottores:pearl" 9',
+     sounds = default.node_sound_glass_defaults(),
 })
 
 minetest.register_node( "lottores:salt_block", {
@@ -1343,10 +1390,8 @@ minetest.register_node( "lottores:salt_block", {
 	tile_images = { "default_clay.png^lottores_salt_block.png" },
 	is_ground_content = true,
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3},
-
-	on_use = minetest.item_eat(8),
+	on_use = minetest.item_eat(9),
 	sounds = default.node_sound_stone_defaults(),
-	drop = 'craft "lottores:salt" 9',
 })
 
 minetest.register_node("lottores:salt", {
@@ -1359,7 +1404,7 @@ minetest.register_node("lottores:salt", {
 	sunlight_propagates = true,
 	walkable = false,
 	groups = {fleshy=3,dig_immediate=3,flammable=1},
-	on_use = minetest.item_eat(8),
+	on_use = minetest.item_eat(1),
 	sounds = default.node_sound_defaults(),
 })
 
@@ -1373,20 +1418,43 @@ minetest.register_craftitem("lottores:pearl", {
 -- Crafting
 
 minetest.register_craft( {
-        output = 'node "lottores:salt_block" 1',
+	output = 'lottores:pearl_block',
 	recipe = {
-		{ 'craft "lottores:salt"', 'craft "lottores:salt"', 'craft "lottores:salt"' },
-		{ 'craft "lottores:salt"', 'craft "lottores:salt"', 'craft "lottores:salt"' },
-		{ 'craft "lottores:salt"', 'craft "lottores:salt"', 'craft "lottores:salt"' },
+		{ 'craft "lottores:pearl"', 'craft "lottores:pearl"', 'craft "lottores:pearl"' },
+		{ 'craft "lottores:pearl"', 'craft "lottores:pearl"', 'craft "lottores:pearl"' },
+		{ 'craft "lottores:pearl"', 'craft "lottores:pearl"', 'craft "lottores:pearl"' },
 	}
 })
 
-minetest.register_craft( {
-	output = 'node "lottores:pearl_block" 1',
+minetest.register_craft({
+	output = 'lottores:salt_block',
 	recipe = {
-		{ 'craft "lottores:pearl"', 'craft "lottores:pearl"', 'craft "lottores:pearl"' },
-		{ 'craft "lottores:pearl"', 'craft "lottores:pearl"', 'craft "lottores:pearl"' },
-		{ 'craft "lottores:pearl"', 'craft "lottores:pearl"', 'craft "lottores:pearl"' },
+		{'lottores:salt', 'lottores:salt', 'lottores:salt'},
+		{'lottores:salt', 'lottores:salt', 'lottores:salt'},
+		{'lottores:salt', 'lottores:salt', 'lottores:salt'},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottores:salt 9',
+	recipe = {
+		{'lottores:salt_block'},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottores:pearl_block',
+	recipe = {
+		{'lottores:pearl', 'lottores:pearl', 'lottores:pearl'},
+		{'lottores:pearl', 'lottores:pearl', 'lottores:pearl'},
+		{'lottores:pearl', 'lottores:pearl', 'lottores:pearl'},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottores:pearl 9',
+	recipe = {
+		{'lottores:pearl_block'},
 	}
 })
 

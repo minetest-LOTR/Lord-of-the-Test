@@ -2,14 +2,8 @@ minetest.register_craftitem("lottfarming:barley_seed", {
 	description = "Barley Seeds",
 	inventory_image = "lottfarming_barley_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		local above = minetest.env:get_node(pointed_thing.above)
-		if above.name == "air" then
-			above.name = "lottfarming:barley_1"
-			minetest.env:set_node(pointed_thing.above, above)
-			itemstack:take_item(1)
-			return itemstack
-		end
-	end
+		return place_seed(itemstack, placer, pointed_thing, "lottfarming:barley_1")
+	end,
 })
 
 minetest.register_node("lottfarming:barley_1", {
@@ -67,7 +61,19 @@ minetest.register_node("lottfarming:barley_3", {
 minetest.register_craftitem("lottfarming:barley", {
 	description = "Barley",
 	inventory_image = "lottfarming_barley_3.png",
-	on_use = minetest.item_eat(2),
 })
 
 farming:add_plant("lottfarming:barley_3", {"lottfarming:barley_1", "lottfarming:barley_2"}, 50, 20)
+
+minetest.register_craft({
+	type = "cooking",
+	cooktime = 15,
+	output = "lottfarming:barley_cooked",
+	recipe = "lottfarming:barley"
+})
+
+minetest.register_craftitem("lottfarming:barley_cooked", {
+	description = "Cooked Barley",
+	inventory_image = "lottfarming_barley_cooked.png",
+	on_use = minetest.item_eat(2),
+})

@@ -25,6 +25,17 @@ minetest.register_node("lottother:blue_torch", {
 	sounds = default.node_sound_defaults(),
 })
 
+minetest.register_node("lottother:air", {
+	description = "Air Substitute",
+	drawtype = "glasslike",
+	tiles = {name="default_glass.png"},
+	sunlight_propagates = true,
+	is_ground_content = false,
+	walkable = false,
+	groups = {dig_immediate=3, not_in_creative_inventory=1},
+	sounds = default.node_sound_defaults(),
+})
+
 minetest.register_node("lottother:blue_flame", {
 	description = "Blue Flame",
 	drawtype = "plantlike",

@@ -2,14 +2,8 @@ minetest.register_craftitem("lottfarming:cabbage_seed", {
 	description = "Cabbage Seed",
 	inventory_image = "lottfarming_cabbage_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		local above = minetest.env:get_node(pointed_thing.above)
-		if above.name == "air" then
-			above.name = "lottfarming:cabbage_1"
-			minetest.env:set_node(pointed_thing.above, above)
-			itemstack:take_item(1)
-			return itemstack
-		end
-	end
+		return place_seed(itemstack, placer, pointed_thing, "lottfarming:cabbage_1")
+	end,
 })
 
 minetest.register_node("lottfarming:cabbage_1", {
@@ -75,10 +69,27 @@ minetest.register_node("lottfarming:cabbage_3", {
 	sounds = default.node_sound_wood_defaults(),
 })
 
-minetest.register_craftitem("lottfarming:cabbage", {
+minetest.register_node("lottfarming:cabbage", {
 	description = "Cabbage",
-	inventory_image = "lottfarming_cabbage_side.png",
-	on_use = minetest.item_eat(2),
+	paramtype2 = "facedir",
+	tiles = {"lottfarming_cabbage_top.png", "lottfarming_cabbage_top.png", "lottfarming_cabbage_side.png", "lottfarming_cabbage_side.png", "lottfarming_cabbage_side.png", "lottfarming_cabbage_side.png"},
+	groups = {choppy=2, oddly_breakable_by_hand=2, flammable=2, plant=1, salad=1},
+	sounds = default.node_sound_wood_defaults(),
+     on_use = minetest.item_eat(4)
 })
 
 farming:add_plant("lottfarming:cabbage_3", {"lottfarming:cabbage_1", "lottfarming:cabbage_2"}, 80, 20)
+
+minetest.register_craft({
+	output = 'lottfarming:salad',
+	recipe = {
+		{'group:salad', 'group:salad', 'group:salad'},
+		{'', 'lottfarming:bowl', ''},
+	}
+})
+
+minetest.register_craftitem("lottfarming:salad", {
+	description = "Salad",
+	inventory_image = "lottfarming_salad.png",
+	on_use = minetest.item_eat(10),
+})

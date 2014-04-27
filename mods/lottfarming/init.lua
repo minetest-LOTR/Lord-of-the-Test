@@ -1,5 +1,69 @@
 farming = {}
 
+function place_seed(itemstack, placer, pointed_thing, plantname)
+	local pt = pointed_thing
+	if not pt then
+		return
+	end
+	if pt.type ~= "node" then
+		return
+	end
+	local under = minetest.get_node(pt.under)
+	local above = minetest.get_node(pt.above)
+	if not minetest.registered_nodes[under.name] then
+		return
+	end
+	if not minetest.registered_nodes[above.name] then
+		return
+	end
+	if pt.above.y ~= pt.under.y+1 then
+		return
+	end
+	if not minetest.registered_nodes[above.name].buildable_to then
+		return
+	end
+	if minetest.get_item_group(under.name, "soil") <= 1 then
+		return
+	end
+	minetest.add_node(pt.above, {name=plantname})
+	if not minetest.setting_getbool("creative_mode") then
+		itemstack:take_item()
+	end
+	return itemstack
+end
+
+function place_spore(itemstack, placer, pointed_thing, plantname)
+	local pt = pointed_thing
+	if not pt then
+		return
+	end
+	if pt.type ~= "node" then
+		return
+	end
+	local under = minetest.get_node(pt.under)
+	local above = minetest.get_node(pt.above)
+	if not minetest.registered_nodes[under.name] then
+		return
+	end
+	if not minetest.registered_nodes[above.name] then
+		return
+	end
+	if pt.above.y ~= pt.under.y+1 then
+		return
+	end
+	if not minetest.registered_nodes[above.name].buildable_to then
+		return
+	end
+	if minetest.get_item_group(under.name, "fungi") <= 1 then
+		return
+	end
+	minetest.add_node(pt.above, {name=plantname})
+	if not minetest.setting_getbool("creative_mode") then
+		itemstack:take_item()
+	end
+	return itemstack
+end
+
 function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 	local pt = pointed_thing
 	-- check if pointing at a node
@@ -112,7 +176,7 @@ minetest.register_node("lottfarming:decay_tree", {
 	description = "Decaying Wood",
 	tile_images = {'default_tree_top.png^lottfarming_decay_tree.png', 'default_tree.png', 	'default_tree.png'},
      is_ground_content = true,
-	groups = {crumbly=3},
+	groups = {crumbly=3, fungi=3},
 	sounds = default.node_sound_dirt_defaults(),
 	drop = "default:dirt",
 })
@@ -152,6 +216,20 @@ minetest.register_craft({
 		{"default:glass", "bones:bones", "default:glass"},
 		{"default:glass", "default:glass", "default:glass"},
 	}
+})
+
+minetest.register_craft({
+	output = "lottfarming:bowl",
+	recipe = {
+		{"default:wood", "", "default:wood"},
+		{"", "default:wood", ""},
+		{"", "", ""},
+	}
+})
+
+minetest.register_craftitem("lottfarming:bowl", {
+	description = "Bowl",
+	inventory_image = "lottfarming_bowl.png",
 })
 
 -- ========= BROWN MUSHROOM =========

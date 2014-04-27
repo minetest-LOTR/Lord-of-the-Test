@@ -2,14 +2,8 @@ minetest.register_craftitem("lottfarming:tomatoes_seed", {
 	description = "Tomato Seeds",
 	inventory_image = "lottfarming_tomatoes_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		local above = minetest.env:get_node(pointed_thing.above)
-		if above.name == "air" then
-			above.name = "lottfarming:tomatoes_1"
-			minetest.env:set_node(pointed_thing.above, above)
-			itemstack:take_item(1)
-			return itemstack
-		end
-	end
+		return place_seed(itemstack, placer, pointed_thing, "lottfarming:tomatoes_1")
+	end,
 })
 
 minetest.register_node("lottfarming:tomatoes_1", {
@@ -83,7 +77,34 @@ minetest.register_node("lottfarming:tomatoes_4", {
 minetest.register_craftitem("lottfarming:tomatoes", {
 	description = "Tomato",
 	inventory_image = "lottfarming_tomatoes.png",
-	on_use = minetest.item_eat(2),
+	groups = {salad=1},
 })
 
 farming:add_plant("lottfarming:tomatoes_4", {"lottfarming:tomatoes_1", "lottfarming:tomatoes_2", "lottfarming:tomatoes_3"}, 50, 20)
+
+minetest.register_craft({
+	type = "cooking",
+	cooktime = 15,
+	output = "lottfarming:tomatoes_cooked",
+	recipe = "lottfarming:tomatoes"
+})
+
+minetest.register_craftitem("lottfarming:tomatoes_cooked", {
+	description = "Cooked Tomato",
+	inventory_image = "lottfarming_tomatoes_cooked.png",
+	on_use = minetest.item_eat(2),
+})
+
+minetest.register_craftitem("lottfarming:tomato_soup", {
+	description = "Tomato Soup",
+	inventory_image = "lottfarming_tomato_soup.png",
+	on_use = minetest.item_eat(10),
+})
+
+minetest.register_craft({
+	output = 'lottfarming:tomato_soup',
+	recipe = {
+		{'lottfarming:tomatoes_cooked', 'lottfarming:tomatoes_cooked', 'lottfarming:tomatoes_cooked'},
+		{'', 'lottfarming:bowl', ''},
+	}
+})

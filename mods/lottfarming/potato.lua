@@ -2,14 +2,8 @@ minetest.register_craftitem("lottfarming:potato_seed", {
 	description = "Potato Seeds",
 	inventory_image = "lottfarming_potato_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		local above = minetest.env:get_node(pointed_thing.above)
-		if above.name == "air" then
-			above.name = "lottfarming:potato_1"
-			minetest.env:set_node(pointed_thing.above, above)
-			itemstack:take_item(1)
-			return itemstack
-		end
-	end
+		return place_seed(itemstack, placer, pointed_thing, "lottfarming:potato_1")
+	end,
 })
 
 minetest.register_node("lottfarming:potato_1", {
@@ -67,7 +61,19 @@ minetest.register_node("lottfarming:potato_3", {
 minetest.register_craftitem("lottfarming:potato", {
 	description = "Potato",
 	inventory_image = "lottfarming_potato.png",
-	on_use = minetest.item_eat(2),
 })
 
 farming:add_plant("lottfarming:potato_3", {"lottfarming:potato_1", "lottfarming:potato_2"}, 50, 20)
+
+minetest.register_craft({
+	type = "cooking",
+	cooktime = 15,
+	output = "lottfarming:potato_cooked",
+	recipe = "lottfarming:potato"
+})
+
+minetest.register_craftitem("lottfarming:potato_cooked", {
+	description = "Cooked Potato",
+	inventory_image = "lottfarming_potato_cooked.png",
+	on_use = minetest.item_eat(2),
+})

@@ -2,14 +2,8 @@ minetest.register_craftitem("lottfarming:athelas_seed", {
 	description = "Athelas Seeds",
 	inventory_image = "lottfarming_athelas_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		local above = minetest.env:get_node(pointed_thing.above)
-		if above.name == "air" then
-			above.name = "lottfarming:athelas_1"
-			minetest.env:set_node(pointed_thing.above, above)
-			itemstack:take_item(1)
-			return itemstack
-		end
-	end
+		return place_seed(itemstack, placer, pointed_thing, "lottfarming:athelas_1")
+	end,
 })
 
 minetest.register_node("lottfarming:athelas_1", {

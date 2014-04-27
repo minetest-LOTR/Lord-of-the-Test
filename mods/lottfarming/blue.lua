@@ -2,16 +2,10 @@ minetest.register_craftitem("lottfarming:blue_mushroom_spore", {
 	description = "Blue Mushroom Spores",
 	inventory_image = "lottfarming_blue_mushroom_spore.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		local above = minetest.env:get_node(pointed_thing.above)
-		if above.name == "air" then
-			above.name = "lottfarming:blue_mushroom_1"
-			minetest.env:set_node(pointed_thing.above, above)
-			itemstack:take_item(1)
-			return itemstack
-		end
-	end
-
+		return place_spore(itemstack, placer, pointed_thing, "lottfarming:blue_mushroom_1")
+	end,
 })
+
 minetest.register_node("lottfarming:blue_mushroom", {
 	description = "Blue Mushroom",
 	paramtype = "light",
@@ -27,7 +21,7 @@ minetest.register_node("lottfarming:blue_mushroom", {
 			{-0.5, -0.5, -0.5, 0.5, -0.5+3/16, 0.5}
 		},
 	},
-	groups = {snappy=3, flammable=2},
+	groups = {snappy=3, flammable=2, mushroom=1},
 	sounds = default.node_sound_leaves_defaults(),
 	inventory_image = "lottfarming_blue_mushroom.png",
 	on_use = minetest.item_eat(2),
@@ -228,3 +222,25 @@ num = PseudoRandom(111)
 			
 		end
 }	)
+
+minetest.register_craft({
+	type = "cooking",
+	cooktime = 15,
+	output = "lottfarming:turnips_cooked",
+	recipe = "lottfarming:turnips"
+})
+
+minetest.register_craftitem("lottfarming:mushroom_soup", {
+	description = "Cream of Mushroom Soup",
+	inventory_image = "lottfarming_mushroom_soup.png",
+	on_use = minetest.item_eat(6),
+})
+
+minetest.register_craft({
+	output = 'lottfarming:mushroom_soup',
+	recipe = {
+		{'group:mushroom', 'group:mushroom', 'group:mushroom'},
+		{'', 'lottfarming:bowl', ''},
+	}
+})
+
