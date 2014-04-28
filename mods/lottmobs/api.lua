@@ -464,7 +464,7 @@ function lottmobs:register_mob(name, def)
 		on_punch = function(self, hitter)
 			local weapon = hitter:get_wielded_item()
 				if weapon:get_definition().tool_capabilities ~= nil then
-					local wear = ( weapon:get_definition().tool_capabilities.full_punch_interval / 75 ) * 90000
+					local wear = ( weapon:get_definition().tool_capabilities.full_punch_interval / 75 ) * 900000
 					weapon:add_wear(wear)
 					hitter:set_wielded_item(weapon)
 				end
