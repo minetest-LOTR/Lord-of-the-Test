@@ -18,6 +18,326 @@ stairs.register_stair_and_slab("orc_brick", "lottblocks:orc_brick",
 		"Orc Brick"
 )
 
+minetest.register_node("lottblocks:fence_alder", {
+	description = "Alder Fence",
+	drawtype = "fencelike",
+	tiles = {"lottplants_alderwood.png"},
+	inventory_image = "lottblocks_alder_fence.png",
+	wield_image = "lottblocks_alder_fence.png",
+	paramtype = "light",
+	is_ground_content = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-1/7, -1/2, -1/7, 1/7, 1/2, 1/7},
+	},
+	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2},
+})
+
+minetest.register_node("lottblocks:fence_birch", {
+	description = "Birch Fence",
+	drawtype = "fencelike",
+	tiles = {"lottplants_birchwood.png"},
+	inventory_image = "lottblocks_birch_fence.png",
+	wield_image = "lottblocks_birch_fence.png",
+	paramtype = "light",
+	is_ground_content = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-1/7, -1/2, -1/7, 1/7, 1/2, 1/7},
+	},
+	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2},
+})
+
+minetest.register_node("lottblocks:fence_mallorn", {
+	description = "Mallorn Fence",
+	drawtype = "fencelike",
+	tiles = {"lottplants_mallornwood.png"},
+	inventory_image = "lottblocks_mallorn_fence.png",
+	wield_image = "lottblocks_mallorn_fence.png",
+	paramtype = "light",
+	is_ground_content = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-1/7, -1/2, -1/7, 1/7, 1/2, 1/7},
+	},
+	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2},
+})
+
+minetest.register_node("lottblocks:fence_lebethron", {
+	description = "Lebethron Fence",
+	drawtype = "fencelike",
+	tiles = {"lottplants_lebethronwood.png"},
+	inventory_image = "lottblocks_lebethron_fence.png",
+	wield_image = "lottblocks_lebethron_fence.png",
+	paramtype = "light",
+	is_ground_content = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-1/7, -1/2, -1/7, 1/7, 1/2, 1/7},
+	},
+	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2},
+})
+
+minetest.register_node("lottblocks:bedside_table",
+	{description = 'Bedside Table',
+	tiles = {"default_wood.png"},
+	drawtype = "nodebox",
+	sunlight_propagates = true,
+	paramtype = 'light',
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4,-0.5,-0.4, -0.3,0.1,-0.3},
+			{0.3,-0.5,-0.4, 0.4,0.1,-0.3},
+			{-0.4,-0.5,0.3, -0.3,0.1,0.4},
+			{0.3,-0.5,0.3, 0.4,0.1,0.4},
+			{-0.5,0.2,-0.5, 0.5,0.1,0.5},
+			{-0.4,-0.2,-0.3, -0.3,-0.3,0.3},
+			{0.3,-0.2,-0.4, 0.4,-0.4,0.3},
+			{-0.3,-0.2,-0.4, 0.4,-0.4,-0.3},
+			{-0.3,-0.2,0.3, 0.3,-0.4,0.4},
+		},
+	},
+	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+}) 
+
+
+minetest.register_node("lottblocks:wood_table",
+	{description = 'Wooden Table',
+	tiles = {"default_wood.png"},
+	drawtype = "nodebox",
+	sunlight_propagates = true,
+	paramtype = 'light',
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4,-0.5,-0.4, -0.3,0.4,-0.3},
+			{0.3,-0.5,-0.4, 0.4,0.4,-0.3},
+			{-0.4,-0.5,0.3, -0.3,0.4,0.4},
+			{0.3,-0.5,0.3, 0.4,0.4,0.4},
+			{-0.5,0.4,-0.5, 0.5,0.5,0.5},
+			{-0.4,-0.2,-0.3, -0.3,-0.1,0.3},
+			{0.3,-0.2,-0.4, 0.4,-0.1,0.3},
+			{-0.3,-0.2,-0.4, 0.4,-0.1,-0.3},
+			{-0.3,-0.2,0.3, 0.3,-0.1,0.4},
+		},
+	},
+	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+}) 
+minetest.register_node("lottblocks:wood_chair",
+	{ description = 'Wooden Chair',
+	tiles = {"default_wood.png"},
+	drawtype = "nodebox",
+	sunlight_propagates = true,
+	paramtype = 'light',
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.3,-0.5,0.2, -0.2,0.5,0.3},
+			{0.2,-0.5,0.2, 0.3,0.5,0.3},
+			{-0.3,-0.5,-0.3, -0.2,-0.1,-0.2},
+			{0.2,-0.5,-0.3, 0.3,-0.1,-0.2},
+			{-0.3,-0.1,-0.3, 0.3,0,0.2},
+			{-0.2,0.1,0.25, 0.2,0.4,0.26}
+		},
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},
+	},
+groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+})
+minetest.register_node("lottblocks:alder_table",
+	{description = 'Alder Table',
+	tiles = {"lottplants_alderwood.png"},
+	drawtype = "nodebox",
+	sunlight_propagates = true,
+	paramtype = 'light',
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4,-0.5,-0.4, -0.3,0.4,-0.3},
+			{0.3,-0.5,-0.4, 0.4,0.4,-0.3},
+			{-0.4,-0.5,0.3, -0.3,0.4,0.4},
+			{0.3,-0.5,0.3, 0.4,0.4,0.4},
+			{-0.5,0.4,-0.5, 0.5,0.5,0.5},
+			{-0.4,-0.2,-0.3, -0.3,-0.1,0.3},
+			{0.3,-0.2,-0.4, 0.4,-0.1,0.3},
+			{-0.3,-0.2,-0.4, 0.4,-0.1,-0.3},
+			{-0.3,-0.2,0.3, 0.3,-0.1,0.4},
+		},
+	},
+	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+}) 
+minetest.register_node("lottblocks:alder_chair",
+	{ description = 'Alder Chair',
+	tiles = {"lottplants_alderwood.png"},
+	drawtype = "nodebox",
+	sunlight_propagates = true,
+	paramtype = 'light',
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.3,-0.5,0.2, -0.2,0.5,0.3},
+			{0.2,-0.5,0.2, 0.3,0.5,0.3},
+			{-0.3,-0.5,-0.3, -0.2,-0.1,-0.2},
+			{0.2,-0.5,-0.3, 0.3,-0.1,-0.2},
+			{-0.3,-0.1,-0.3, 0.3,0,0.2},
+			{-0.2,0.1,0.25, 0.2,0.4,0.26}
+		},
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},
+	},
+groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+})
+minetest.register_node("lottblocks:birch_table",
+	{description = 'Birch Table',
+	tiles = {"lottplants_birchwood.png"},
+	drawtype = "nodebox",
+	sunlight_propagates = true,
+	paramtype = 'light',
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4,-0.5,-0.4, -0.3,0.4,-0.3},
+			{0.3,-0.5,-0.4, 0.4,0.4,-0.3},
+			{-0.4,-0.5,0.3, -0.3,0.4,0.4},
+			{0.3,-0.5,0.3, 0.4,0.4,0.4},
+			{-0.5,0.4,-0.5, 0.5,0.5,0.5},
+			{-0.4,-0.2,-0.3, -0.3,-0.1,0.3},
+			{0.3,-0.2,-0.4, 0.4,-0.1,0.3},
+			{-0.3,-0.2,-0.4, 0.4,-0.1,-0.3},
+			{-0.3,-0.2,0.3, 0.3,-0.1,0.4},
+		},
+	},
+	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+}) 
+minetest.register_node("lottblocks:birch_chair",
+	{ description = 'Birch Chair',
+	tiles = {"lottplants_birchwood.png"},
+	drawtype = "nodebox",
+	sunlight_propagates = true,
+	paramtype = 'light',
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.3,-0.5,0.2, -0.2,0.5,0.3},
+			{0.2,-0.5,0.2, 0.3,0.5,0.3},
+			{-0.3,-0.5,-0.3, -0.2,-0.1,-0.2},
+			{0.2,-0.5,-0.3, 0.3,-0.1,-0.2},
+			{-0.3,-0.1,-0.3, 0.3,0,0.2},
+			{-0.2,0.1,0.25, 0.2,0.4,0.26}
+		},
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},
+	},
+groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+})
+minetest.register_node("lottblocks:lebethron_table",
+	{description = 'Lebethron Table',
+	tiles = {"lottplants_lebethronwood.png"},
+	drawtype = "nodebox",
+	sunlight_propagates = true,
+	paramtype = 'light',
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4,-0.5,-0.4, -0.3,0.4,-0.3},
+			{0.3,-0.5,-0.4, 0.4,0.4,-0.3},
+			{-0.4,-0.5,0.3, -0.3,0.4,0.4},
+			{0.3,-0.5,0.3, 0.4,0.4,0.4},
+			{-0.5,0.4,-0.5, 0.5,0.5,0.5},
+			{-0.4,-0.2,-0.3, -0.3,-0.1,0.3},
+			{0.3,-0.2,-0.4, 0.4,-0.1,0.3},
+			{-0.3,-0.2,-0.4, 0.4,-0.1,-0.3},
+			{-0.3,-0.2,0.3, 0.3,-0.1,0.4},
+		},
+	},
+	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+}) 
+minetest.register_node("lottblocks:lebethron_chair",
+	{ description = 'Lebethron Chair',
+	tiles = {"lottplants_lebethronwood.png"},
+	drawtype = "nodebox",
+	sunlight_propagates = true,
+	paramtype = 'light',
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.3,-0.5,0.2, -0.2,0.5,0.3},
+			{0.2,-0.5,0.2, 0.3,0.5,0.3},
+			{-0.3,-0.5,-0.3, -0.2,-0.1,-0.2},
+			{0.2,-0.5,-0.3, 0.3,-0.1,-0.2},
+			{-0.3,-0.1,-0.3, 0.3,0,0.2},
+			{-0.2,0.1,0.25, 0.2,0.4,0.26}
+		},
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},
+	},
+groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+})
+minetest.register_node("lottblocks:mallorn_table",
+	{description = 'Mallorn Table',
+	tiles = {"lottplants_mallornwood.png"},
+	drawtype = "nodebox",
+	sunlight_propagates = true,
+	paramtype = 'light',
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4,-0.5,-0.4, -0.3,0.4,-0.3},
+			{0.3,-0.5,-0.4, 0.4,0.4,-0.3},
+			{-0.4,-0.5,0.3, -0.3,0.4,0.4},
+			{0.3,-0.5,0.3, 0.4,0.4,0.4},
+			{-0.5,0.4,-0.5, 0.5,0.5,0.5},
+			{-0.4,-0.2,-0.3, -0.3,-0.1,0.3},
+			{0.3,-0.2,-0.4, 0.4,-0.1,0.3},
+			{-0.3,-0.2,-0.4, 0.4,-0.1,-0.3},
+			{-0.3,-0.2,0.3, 0.3,-0.1,0.4},
+		},
+	},
+	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+}) 
+minetest.register_node("lottblocks:mallorn_chair",
+	{ description = 'Mallorn Chair',
+	tiles = {"lottplants_mallornwood.png"},
+	drawtype = "nodebox",
+	sunlight_propagates = true,
+	paramtype = 'light',
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.3,-0.5,0.2, -0.2,0.5,0.3},
+			{0.2,-0.5,0.2, 0.3,0.5,0.3},
+			{-0.3,-0.5,-0.3, -0.2,-0.1,-0.2},
+			{0.2,-0.5,-0.3, 0.3,-0.1,-0.2},
+			{-0.3,-0.1,-0.3, 0.3,0,0.2},
+			{-0.2,0.1,0.25, 0.2,0.4,0.26}
+		},
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},
+	},
+groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+})
 
 local lottblocks_list = {
 	{ "Red Bed", "red"},	
