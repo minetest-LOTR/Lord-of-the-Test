@@ -48,7 +48,7 @@ minetest.register_tool("lottarmor:helmet_silver", {
 minetest.register_tool("lottarmor:helmet_gold", {
 	description = "Gold Helmet",
 	inventory_image = "lottarmor_inv_helmet_gold.png",
-	groups = {armor_head=12, armor_heal=6, armor_use=250},
+	groups = {armor_head=10, armor_heal=6, armor_use=250},
 	wear = 0,
 })
 
@@ -63,6 +63,27 @@ minetest.register_tool("lottarmor:helmet_mithril", {
 	description = "Mithril Helmet",
 	inventory_image = "lottarmor_inv_helmet_mithril.png",
 	groups = {armor_head=15, armor_heal=12, armor_use=50},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:helmet_dwarf", {
+	description = "Dwarvish Helmet",
+	inventory_image = "lottarmor_inv_helmet_dwarf.png",
+	groups = {armor_head=16, armor_heal=7, armor_use=700},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:helmet_rohan", {
+	description = "Rohirrim Helmet",
+	inventory_image = "lottarmor_inv_helmet_rohan.png",
+	groups = {armor_head=11, armor_heal=8, armor_use=125},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:helmet_gondor", {
+	description = "Gondorian Helmet",
+	inventory_image = "lottarmor_inv_helmet_gondor.png",
+	groups = {armor_head=12.5, armor_heal=10, armor_use=250},
 	wear = 0,
 })
 
@@ -131,6 +152,33 @@ minetest.register_tool("lottarmor:chestplate_mithril", {
 	wear = 0,
 })
 
+minetest.register_tool("lottarmor:chestplate_rohan", {
+	description = "Rohirrim Chestplate",
+	inventory_image = "lottarmor_inv_chestplate_rohan.png",
+	groups = {armor_torso=16, armor_heal=8, armor_use=125},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:chestplate_gondor", {
+	description = "Gondorian Chestplate",
+	inventory_image = "lottarmor_inv_chestplate_rohan.png",
+	groups = {armor_torso=17.5, armor_heal=10, armor_use=250},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:chestplate_elf", {
+	description = "Elvish Chestplate",
+	inventory_image = "lottarmor_inv_chestplate_rohan.png",
+	groups = {armor_torso=15, armor_heal=15, armor_use=25},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:chestplate_dwarf", {
+	description = "Dwarvish Chestplate",
+	inventory_image = "lottarmor_inv_chestplate_rohan.png",
+	groups = {armor_torso=21, armor_heal=7, armor_use=700},
+	wear = 0,
+})
 
 -- Regisiter Leg Armor
 minetest.register_tool("lottarmor:leggings_wood", {
@@ -193,6 +241,34 @@ minetest.register_tool("lottarmor:leggings_mithril", {
 	description = "Mithril Leggings",
 	inventory_image = "lottarmor_inv_leggings_mithril.png",
 	groups = {armor_legs=20, armor_heal=12, armor_use=50},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:leggings_elf", {
+	description = "Elvish Leggings",
+	inventory_image = "lottarmor_inv_leggings_elf.png",
+	groups = {armor_legs=15, armor_heal=15, armor_use=25},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:leggings_dwarf", {
+	description = "Dwarvish Leggings",
+	inventory_image = "lottarmor_inv_leggings_dwarf.png",
+	groups = {armor_legs=21, armor_heal=7, armor_use=700},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:leggings_rohan", {
+	description = "Rohirrim Leggings",
+	inventory_image = "lottarmor_inv_leggings_rohan.png",
+	groups = {armor_legs=16, armor_heal=8, armor_use=125},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:leggings_gondor", {
+	description = "Godnorian Leggings",
+	inventory_image = "lottarmor_inv_leggings_gondor.png",
+	groups = {armor_legs=17.5, armor_heal=10, armor_use=250},
 	wear = 0,
 })
 
@@ -263,6 +339,34 @@ minetest.register_tool("lottarmor:boots_mithril", {
 	wear = 0,
 })
 
+minetest.register_tool("lottarmor:boots_elf", {
+	description = "Elvish Boots",
+	inventory_image = "lottarmor_inv_boots_elf.png",
+	groups = {armor_feet=10, armor_heal=15, armor_use=25},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:boots_dwarf", {
+	description = "Dwarvish Boots",
+	inventory_image = "lottarmor_inv_boots_dwarf.png",
+	groups = {armor_feet=16, armor_heal=7, armor_use=700},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:boots_rohan", {
+	description = "Rohirrim Boots",
+	inventory_image = "lottarmor_inv_boots_rohan.png",
+	groups = {armor_feet=11, armor_heal=8, armor_use=125},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:boots_gondor", {
+	description = "Gondorian Boots",
+	inventory_image = "lottarmor_inv_boots_gondor.png",
+	groups = {armor_feet=12.5, armor_heal=10, armor_use=250},
+	wear = 0,
+})
+
 
 -- Register Craft Recipies
 
@@ -276,6 +380,10 @@ local craft_ingreds = {
 	gold = "default:gold_ingot",
 	galvorn = "lottores:galvorn_ingot",
 	mithril = "lottores:mithril_ingot",
+	elf = "lottfarming:athelas",
+	dwarf = "lottores:rough_rock_lump",
+	rohan = "lottores:pearl",
+	gondor = "lottores:limestone",
 }
 
 
