@@ -54,7 +54,7 @@ minetest.register_node("lottother:Orc_torch", {
 minetest.register_node("lottother:air", {
 	description = "Air Substitute",
 	drawtype = "airlike",
-	tiles = {name="lottother_air.png"},
+	tiles = {name="default_glass.png"},
 	sunlight_propagates = true,
 	is_ground_content = false,
 	walkable = false,
