@@ -107,7 +107,7 @@ minetest.register_craft({
 	output = 'lottblocks:fence_lebethron 6',
 	recipe = {
 		{'lottplants:lebethronwood', 'lottplants:lebethronwood', 'lottplants:lebethronwood'},
-		{'lottplants:lebethronwood', 'lottplants:lebethronwood', 'lottplants:lebethronnwood'},
+		{'lottplants:lebethronwood', 'lottplants:lebethronwood', 'lottplants:lebethronwood'},
 	}
 })
 
@@ -248,7 +248,7 @@ minetest.register_node("lottblocks:alder_chair",
 groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
 })
 minetest.register_craft({
-	output = 'lottblocks:wood_table',
+	output = 'lottblocks:alder_table',
 	recipe = {
 		{'group:stick', ''},
 		{'lottplants:alderwood', 'lottplants:alderwood'},
@@ -311,7 +311,7 @@ minetest.register_node("lottblocks:birch_chair",
 groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
 })
 minetest.register_craft({
-	output = 'lottblocks:wood_table',
+	output = 'lottblocks:birch_table',
 	recipe = {
 		{'group:stick', ''},
 		{'lottplants:birchwood', 'lottplants:birchwood'},
@@ -374,7 +374,7 @@ minetest.register_node("lottblocks:lebethron_chair",
 groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
 })
 minetest.register_craft({
-	output = 'lottblocks:wood_table',
+	output = 'lottblocks:lebethron_chair',
 	recipe = {
 		{'group:stick', ''},
 		{'lottplants:lebethronwood', 'lottplants:lebethronwood'},
@@ -437,7 +437,7 @@ minetest.register_node("lottblocks:mallorn_chair",
 groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
 })
 minetest.register_craft({
-	output = 'lottblocks:wood_table',
+	output = 'lottblocks:mallorn_chair',
 	recipe = {
 		{'group:stick', ''},
 		{'lottplants:mallornwood', 'lottplants:mallornwood'},
