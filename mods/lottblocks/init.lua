@@ -255,7 +255,6 @@ minetest.register_craft({
 		{'group:stick', 'group:stick'},
 	}
 })
-minetest
 minetest.register_node("lottblocks:birch_table",
 	{description = 'Birch Table',
 	tiles = {"lottplants_birchwood.png"},
@@ -282,7 +281,7 @@ minetest.register_node("lottblocks:birch_table",
 minetest.register_craft({
 	output = 'lottblocks:birch_table',
 	recipe = {
-		{'lottplants:birchwood', 'lottplants:birchwood', 'lottplants:birchwood'
+		{'lottplants:birchwood', 'lottplants:birchwood', 'lottplants:birchwood'},
 		{'group:stick', 'group:stick', 'group:stick'},
 		{'group:stick', '', 'group:stick'},
 	}
@@ -345,7 +344,7 @@ minetest.register_node("lottblocks:lebethron_table",
 minetest.register_craft({
 	output = 'lottblocks:lebethron_table',
 	recipe = {
-		{'lottplants:lebethronwood', 'lottplants:lebethronwood', 'lottplants:lebethronwood'
+		{'lottplants:lebethronwood', 'lottplants:lebethronwood', 'lottplants:lebethronwood'},
 		{'group:stick', 'group:stick', 'group:stick'},
 		{'group:stick', '', 'group:stick'},
 	}
@@ -408,7 +407,7 @@ minetest.register_node("lottblocks:mallorn_table",
 minetest.register_craft({
 	output = 'lottblocks:mallorn_table',
 	recipe = {
-		{'lottplants:mallornwood', 'lottplants:mallornwood', 'lottplants:mallornwood'
+		{'lottplants:mallornwood', 'lottplants:mallornwood', 'lottplants:mallornwood'},
 		{'group:stick', 'group:stick', 'group:stick'},
 		{'group:stick', '', 'group:stick'},
 	}
@@ -635,5 +634,4 @@ end
 minetest.register_alias("lottblocks:bed_bottom", "lottblocks:bed_bottom_blue")
 minetest.register_alias("lottblocks:bed_top", "lottblocks:bed_top_blue")
 minetest.register_alias("lottblocks:bed", "lottblocks:bed_bottom_blue")
-
 
