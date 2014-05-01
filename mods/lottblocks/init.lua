@@ -192,7 +192,6 @@ minetest.register_node("lottblocks:wood_chair",
 	},
 groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
 })
-"wool:white",
 minetest.register_node("lottblocks:alder_table",
 	{description = 'Alder Table',
 	tiles = {"lottplants_alderwood.png"},
