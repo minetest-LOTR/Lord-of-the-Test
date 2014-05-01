@@ -161,21 +161,21 @@ minetest.register_tool("lottarmor:chestplate_rohan", {
 
 minetest.register_tool("lottarmor:chestplate_gondor", {
 	description = "Gondorian Chestplate",
-	inventory_image = "lottarmor_inv_chestplate_rohan.png",
+	inventory_image = "lottarmor_inv_chestplate_gondor.png",
 	groups = {armor_torso=17.5, armor_heal=10, armor_use=250},
 	wear = 0,
 })
 
 minetest.register_tool("lottarmor:chestplate_elf", {
 	description = "Elvish Chestplate",
-	inventory_image = "lottarmor_inv_chestplate_rohan.png",
+	inventory_image = "lottarmor_inv_chestplate_elf.png",
 	groups = {armor_torso=15, armor_heal=15, armor_use=25},
 	wear = 0,
 })
 
 minetest.register_tool("lottarmor:chestplate_dwarf", {
 	description = "Dwarvish Chestplate",
-	inventory_image = "lottarmor_inv_chestplate_rohan.png",
+	inventory_image = "lottarmor_inv_chestplate_dwarf.png",
 	groups = {armor_torso=21, armor_heal=7, armor_use=700},
 	wear = 0,
 })
