@@ -24,7 +24,7 @@ minetest.register_node("lottother:blue_torch", {
 	legacy_wallmounted = true,
 	sounds = default.node_sound_defaults(),
 })
-minetest.register_node("lottother:Orc_torch", {
+minetest.register_node("lottother:orc_torch", {
 	description = "Orc Torch",
 	drawtype = "torchlike",
 	tiles = {
