@@ -218,7 +218,7 @@ minetest.register_node("lottblocks:alder_table",
 minetest.register_craft({
 	output = 'lottblocks:alder_table',
 	recipe = {
-		{'lottplants:alderwood', 'lottplants:alderwood', 'lottplants:alderwood'
+		{'lottplants:alderwood', 'lottplants:alderwood', 'lottplants:alderwood'},
 		{'group:stick', 'group:stick', 'group:stick'},
 		{'group:stick', '', 'group:stick'},
 	}
