@@ -37,6 +37,12 @@ for _, row in ipairs(wool.dyes) do
 		groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1},
 		sounds = default.node_sound_defaults(),
 	})
+	stairs.register_stair_and_slab("wool"..name, "wool:"..name,
+		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+		{"wool_"..name..".png"},
+		desc.." Wool Stair",
+		desc.." Wool Slab",
+		default.node_sound_wood_defaults())
 	if craft_color_group then
 		-- Crafting from dye and white wool
 		minetest.register_craft({
