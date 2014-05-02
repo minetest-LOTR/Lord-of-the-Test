@@ -163,9 +163,9 @@ minetest.register_node("lottblocks:wood_table",
 minetest.register_craft({
 	output = 'lottblocks:wood_table',
 	recipe = {
-		{'group:stick', ''},
-		{'default:wood', 'default:wood'},
-		{'group:stick', 'group:stick'},
+		{'default:wood', 'default:wood', 'default:wood'},
+		{'group:stick', 'group:stick', 'group:stick'},
+		{'group:stick', '', 'group:stick'},
 	}
 })
 minetest.register_node("lottblocks:wood_chair",
@@ -191,6 +191,14 @@ minetest.register_node("lottblocks:wood_chair",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},
 	},
 groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+})
+minetest.register_craft({
+	output = 'lottblocks:wood_chair',
+	recipe = {
+		{'group:stick', ''},
+		{'default:wood', 'default:wood'},
+		{'group:stick', 'group:stick'},
+	}
 })
 minetest.register_node("lottblocks:alder_table",
 	{description = 'Alder Table',
