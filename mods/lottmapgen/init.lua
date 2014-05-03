@@ -1,370 +1,489 @@
---Lottmapgen originally paragenv7 by paramat, modification by fishyWET
+-- paragenv7 0.3.1 by paramat
+-- For latest stable Minetest and back to 0.4.8
+-- Depends default
+-- Licenses: code WTFPL, textures CC BY-SA
 
-local ONGEN = true -- (true/false) Enable biome generation.
-local PROG = false -- Print generation progress to terminal.
+-- new in 0.3.1:
+-- ice varies thickness with temp
+-- dirt as papyrus bed, check for water below papyrus
+-- clay at mid-temp
+-- 'is ground content' false for leaves only
 
-local SANDY = 0
-local SANDA = 4
-local SANDR = 2
-local FMAV = 3
-local FMAMP = 2
+-- TODO
+-- fog
 
-local HITET = 0.25
-local LOTET = -0.55
-local HIWET = 0.25
-local LOWET = -0.55
+-- Parameters
 
-local TGRAD = 160
-local HGRAD = 160
-local FMGRAD = 40
+local HITET = 0.4 -- High temperature threshold
+local LOTET = -0.4 -- Low ..
+local ICETET = -0.8 -- Ice ..
+local HIHUT = 0.4 -- High humidity threshold
+local LOHUT = -0.4 -- Low ..
+local HIRAN = 0.4
+local LORAN = -0.4
 
-local TUNGRACHA = 121
-local TAIPINCHA = 64
-local DRYGRACHA = 3
-local DECGRACHA = 9
-local DECAPPCHA = 10000
-local ULTRAPLAT = 100000
-local RAREPLANT = 10000
-local NORMPLANT = 300
-local COMNPLANT = 60
-local BIGTRECHA = 200
-local WETGRACHA = 3
-local DESCACCHA = 529
-local DESGRACHA = 289
-local SAVGRACHA = 3
-local SAVTRECHA = 361
-local RAIJUNCHA = 16
-local DUNGRACHA = 9
-local PAPCHA = 3
+local PAPCHA = 3 -- Papyrus
+local DUGCHA = 5 -- Dune grass
 
--- 2D Perlin5 fine material depth and sandline
-local perl5 = {
-	SEED5 = 7028411255342,
-	OCTA5 = 3, -- 
-	PERS5 = 0.6, -- 
-	SCAL5 = 128, -- 
+--Rarity for Trees
+
+local TREE1 = 30
+local TREE2 = 50
+local TREE3 = 100
+local TREE4 = 200
+local TREE5 = 300
+local TREE6 = 500
+local TREE7 = 750
+local TREE8 = 1000
+local TREE9 = 2000
+local TREE10 = 5000
+
+--Rarity for Plants
+
+local PLANT1 = 3
+local PLANT2 = 5
+local PLANT3 = 10
+local PLANT4 = 20
+local PLANT5 = 50
+local PLANT6 = 100
+local PLANT7 = 200
+local PLANT8 = 500
+local PLANT9 = 750
+local PLANT10 = 1000
+local PLANT11 = 2000
+local PLANT12 = 5000
+local PLANT13 = 10000
+
+-- 2D noise for temperature
+
+local np_temp = {
+	offset = 0,
+	scale = 1,
+	spread = {x=512, y=512, z=512},
+	seed = 9130,
+	octaves = 3,
+	persist = 0.5
 }
 
--- 2D Perlin6 for temperature
-local perl6 = {
-	SEED6 = 72,
-	OCTA6 = 3, -- 
-	PERS6 = 0.5, -- 
-	SCAL6 = 512, -- 
+-- 2D noise for humidity
+
+local np_humid = {
+	offset = 0,
+	scale = 1,
+	spread = {x=512, y=512, z=512},
+	seed = -5500,
+	octaves = 3,
+	persist = 0.5
 }
 
--- 2D Perlin7 for humidity
-local perl7 = {
-	SEED7 = 900011676,
-	OCTA7 = 3, -- 
-	PERS7 = 0.5, -- 
-	SCAL7 = 512, -- 
+local np_random = {
+	offset = 0,
+	scale = 1,
+	spread = {x=512, y=512, z=512},
+	seed = 4510,
+	octaves = 3,
+	persist = 0.5
 }
 
 -- Stuff
 
 lottmapgen = {}
-  
-dofile(minetest.get_modpath("lottmapgen").."/trees.lua")
-dofile(minetest.get_modpath("lottmapgen").."/nodes.lua")
 
-local sandy
-local fimadep2d
-local noise
-local noise6
-local noise7
-local temp
-local hum
+dofile(minetest.get_modpath("lottmapgen").."/nodes.lua")
+dofile(minetest.get_modpath("lottmapgen").."/functions.lua")
 
 -- On generated function
 
-if ONGEN then
-	minetest.register_on_generated(function(minp, maxp, seed)
-		if minp.y >= -32 and minp.y <= 208 then
-			local perlin5 = minetest.get_perlin(perl5.SEED5, perl5.OCTA5, perl5.PERS5, perl5.SCAL5)
-			local perlin6 = minetest.get_perlin(perl6.SEED6, perl6.OCTA6, perl6.PERS6, perl6.SCAL6)
-			local perlin7 = minetest.get_perlin(perl7.SEED7, perl7.OCTA7, perl7.PERS7, perl7.SCAL7)
-			local x1 = maxp.x
-			local y1 = maxp.y
-			local z1 = maxp.z
-			local x0 = minp.x
-			local y0 = minp.y
-			local z0 = minp.z
-			for x = x0, x1 do
-				if PROG then
-					print ("[lottmapgen] "..(x - x0 + 1).." ("..minp.x.." "..minp.y.." "..minp.z..")")
+minetest.register_on_generated(function(minp, maxp, seed)
+	if minp.y < -32 or minp.y > 208 then
+		return
+	end
+	
+	local t1 = os.clock()
+	local x1 = maxp.x
+	local y1 = maxp.y
+	local z1 = maxp.z
+	local x0 = minp.x
+	local y0 = minp.y
+	local z0 = minp.z
+	
+	--print ("[lottmapgen_checking] chunk minp ("..x0.." "..y0.." "..z0..")")
+	
+	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
+	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
+	local data = vm:get_data()
+	
+	local c_air = minetest.get_content_id("air")
+	local c_sand = minetest.get_content_id("default:sand")
+	local c_desertsand = minetest.get_content_id("default:desert_sand")
+	local c_snowblock = minetest.get_content_id("default:snowblock")
+     local c_snow = minetest.get_content_id("default:snow")
+	local c_ice = minetest.get_content_id("default:ice")
+	local c_dirtsnow = minetest.get_content_id("default:dirt_with_snow")
+     local c_dirtgrass = minetest.get_content_id("default:dirt_with_grass")
+     local c_dirt = minetest.get_content_id("default:dirt")
+	local c_jungrass = minetest.get_content_id("default:junglegrass")
+	local c_dryshrub = minetest.get_content_id("default:dry_shrub")
+	local c_clay = minetest.get_content_id("default:clay")
+	local c_stone = minetest.get_content_id("default:stone")
+	local c_desertstone = minetest.get_content_id("default:desert_stone")
+	local c_stonecopper = minetest.get_content_id("default:stone_with_copper")
+	local c_stoneiron = minetest.get_content_id("default:stone_with_iron")
+	local c_stonecoal = minetest.get_content_id("default:stone_with_coal")
+	local c_water = minetest.get_content_id("default:water_source")
+	
+     local c_morstone = minetest.get_content_id("lottmapgen:mordor_stone")
+     local c_frozenstone = minetest.get_content_id("lottmapgen:frozen_stone")
+     local c_dungrass = minetest.get_content_id("lottmapgen:dunland_grass")
+     local c_gondorgrass = minetest.get_content_id("lottmapgen:gondor_grass")
+     local c_loriengrass = minetest.get_content_id("lottmapgen:lorien_grass")
+     local c_fangorngrass = minetest.get_content_id("lottmapgen:fangorn_grass")
+     local c_mirkwoodgrass = minetest.get_content_id("lottmapgen:mirkwood_grass")
+     local c_rohangrass = minetest.get_content_id("lottmapgen:rohan_grass")
+     local c_shiregrass = minetest.get_content_id("lottmapgen:shire_grass")
+     local c_ironhillgrass = minetest.get_content_id("lottmapgen:ironhill_grass")
+     local c_salt = minetest.get_content_id("lottores:mineral_salt")
+     local c_pearl = minetest.get_content_id("lottores:mineral_pearl")
+     local c_mallorngen = minetest.get_content_id("lottmapgen:mallorngen")
+     local c_beechgen = minetest.get_content_id("lottmapgen:beechgen")
+     local c_mirktreegen = minetest.get_content_id("lottmapgen:mirktreegen")
+     local c_angsnowblock = minetest.get_content_id("lottmapgen:angsnowblock")
+     local c_mallos = minetest.get_content_id("lottplants:mallos")
+     local c_seregon = minetest.get_content_id("lottplants:seregon")
+     local c_bomordor = minetest.get_content_id("lottplants:brambles_of_mordor")
+     local c_pilinehtar = minetest.get_content_id("lottplants:pilinehtar")
+	
+	local sidelen = x1 - x0 + 1
+	local chulens = {x=sidelen, y=sidelen, z=sidelen}
+	local minposxz = {x=x0, y=z0}
+	
+	local nvals_temp = minetest.get_perlin_map(np_temp, chulens):get2dMap_flat(minposxz)
+	local nvals_humid = minetest.get_perlin_map(np_humid, chulens):get2dMap_flat(minposxz)
+	local nvals_random = minetest.get_perlin_map(np_random, chulens):get2dMap_flat(minposxz)
+	
+	local nixz = 1
+	for z = z0, z1 do
+	for x = x0, x1 do -- for each column do
+		local n_temp = nvals_temp[nixz] -- select biome
+		local n_humid = nvals_humid[nixz]
+          local n_ran = nvals_random[nixz]
+		local biome = false
+		if n_temp < LOTET then
+			if n_humid < LOHUT then
+				biome = 1 -- (Angmar)
+			elseif n_humid > HIHUT then
+				biome = 3 -- (Trollshaws)
+			else
+				biome = 2 -- (Snowplains)
+			end
+		elseif n_temp > HITET then
+			if n_humid < LOHUT then
+				biome = 7 -- (Lorien)
+			elseif n_humid > HIHUT then
+				biome = 9 -- (Fangorn)
+               elseif n_ran < LORAN then
+                    biome = 10 -- (Mirkwood)
+               elseif n_ran > HIRAN then
+				biome = 11 -- (Iron Hills)
+               else
+                    biome = 4 -- (Dunlands)
+			end
+          else
+			if n_humid < LOHUT then
+				biome = 8 -- (Mordor)
+			elseif n_humid > HIHUT then
+				biome = 6 -- (Ithilien)
+			elseif n_ran < LORAN then
+				biome = 13 -- (Shire)
+               elseif n_ran > HIRAN then
+                    biome = 12 -- (Rohan)
+               else
+                    biome = 5 -- (Gondor)
+			end
+		end
+		
+		local sandy = 5 + math.random(-1, 1) -- sandline
+		local open = true -- open to sky?
+		local solid = true -- solid node above?
+		local water = false -- water node above?
+		local surfy = y1 + 80 -- y of last surface detected
+		for y = y1, y0, -1 do -- working down each column for each node do
+			local fimadep = math.floor(6 - y / 16) + math.random(0, 1)
+			local vi = area:index(x, y, z)
+			local nodid = data[vi]
+			local viuu = area:index(x, y - 2, z)
+			local nodiduu = data[viuu]
+			if nodid == c_stone -- if stone
+			or nodid == c_stonecopper
+			or nodid == c_stoneiron
+			or nodid == c_stonecoal then
+				if biome == 4 or biome == 12 then
+					data[vi] = c_desertstone
+                    elseif biome == 8 then
+                         data[vi] = c_morstone
+                    elseif biome == 11 then
+					data[vi] = c_stoneiron
 				end
-				for z = z0, z1 do
-					local surfy = 1024
-					local sol = true
-					local col = false
-					local notre = false
-					local tre = true
-					local wat = false
-					local mor = false
-					local mot = false
-					local fot = false
-					local elf = false
-					local moc = false
-					local gra = false
-					local mou = false
-					local sno = false
-					for y = y1, y0, -1 do
-						local nodename = minetest.get_node({x=x,y=y,z=z}).name
-						if nodename == "default:stone"
-						or nodename == "default:stone_with_coal"
-						or nodename == "default:stone_with_iron"
-						or nodename == "default:stone_with_copper" then
-							local unodename = minetest.get_node({x=x,y=y-1,z=z}).name
-							local stable = true
-							if unodename == "air" then
-								stable = false
+				if not solid then -- if surface
+					surfy = y
+					if nodiduu ~= c_air and nodiduu ~= c_water and fimadep >= 1 then -- if supported by 2 stone nodes
+						if y <= sandy then -- sand
+							if open and water and y == 0 and biome >= 4
+							and math.random(PAPCHA) == 2 then -- papyrus
+								lottmapgen_papyrus(x, 2, z, area, data)
+								data[vi] = c_dirt
+							elseif math.abs(n_temp) < 0.05 and y == -1 then -- clay
+								data[vi] = c_clay
+							elseif math.abs(n_temp) < 0.05 and y == -5 then -- salt
+                                        data[vi] = c_salt
+                                   elseif math.abs(n_temp) < 0.05 and y == -20 then -- pearl
+                                        data[vi] = c_pearl
+                                   else
+								data[vi] = c_sand
 							end
-							if not col then
-								local noise5c = perlin5:get2d({x=x-777,y=z-777})
-								sandy = SANDY + noise5c * SANDA + math.random(0,SANDR)
-								local noise5b = perlin5:get2d({x=x,y=z})
-								fimadep2d = FMAV + noise5b * FMAMP
-								noise6 = perlin6:get2d({x=x,y=z})
-								noise7 = perlin7:get2d({x=x,y=z})
-								col = true
-								notre = true
+							if open and y >= 4 + math.random(0, 1) and math.random(DUGCHA) == 2 then -- dune grass
+								local vi = area:index(x, y + 1, z)
+								data[vi] = c_dryshrub
 							end
-							local fimadep = fimadep2d - y / FMGRAD
-							if not sol then
-								surfy = y
-								temp = noise6 - y / TGRAD
-								hum = noise7 - y / HGRAD
-								if temp > HITET + math.random() / 10 then
-									if hum > HIWET + math.random() / 10 then
-										fot = true
-									elseif hum < LOWET + math.random() / 10 then
-										mor = true
-									else
-										mot = true
-									end
-								elseif temp < LOTET + math.random() / 10 then
-									if hum < LOWET + math.random() / 10 then
-										mou = true
-									else
-										sno = true
-									end
-								elseif hum > HIWET + math.random() / 10 then
-									elf = true
-								elseif hum < LOWET + math.random() / 10 then
-									moc = true
+						else -- above sandline
+							if biome == 1 then
+								if math.random(121) == 2 then
+									data[vi] = c_ice
+								elseif math.random(25) == 2 then
+									data[vi] = c_frozenstone
 								else
-									gra = true
+									data[vi] = c_angsnowblock
 								end
+							elseif biome == 2 then
+								data[vi] = c_dirtsnow
+                                   elseif biome == 3 then
+								data[vi] = c_dirtsnow
+							elseif biome == 4 then
+								data[vi] = c_dungrass
+                                   elseif biome == 5 then
+                                        data[vi] = c_gondorgrass
+                                   elseif biome == 6 then
+                                        data[vi] = c_dirtgrass
+							elseif biome == 7 then
+                                        data[vi] = c_loriengrass
+							elseif biome == 8 then
+                                        data[vi] = c_morstone
+                                   elseif biome == 9 then
+                                        data[vi] = c_fangorngrass
+                                   elseif biome == 10 then
+                                        data[vi] = c_mirkwoodgrass
+                                   elseif biome == 11 then
+                                        data[vi] = c_ironhillgrass
+                                   elseif biome == 12 then
+                                        data[vi] = c_rohangrass
+                                   elseif biome == 13 then
+                                        data[vi] = c_shiregrass
 							end
-							if surfy - y < fimadep and stable then
-								if y <= sandy then
-									if y == -1 and math.abs(noise6) < 0.1 then
-										minetest.add_node({x=x,y=y,z=z},{name="default:clay"})
-									elseif y == -5 and math.abs(noise6) < 0.1 then
-										minetest.add_node({x=x,y=y,z=z},{name="lottores:mineral_salt"})
-									elseif y == -10 and math.abs(noise6) < 0.1 then
-										minetest.add_node({x=x,y=y,z=z},{name="lottores:mineral_pearl"})
-                                    else
-										minetest.add_node({x=x,y=y,z=z},{name="default:sand"})
+							if open then -- if open to sky then flora
+								local y = surfy + 1
+								local vi = area:index(x, y, z)
+								if biome == 1 then
+									if math.random(PLANT3) == 2 then
+										data[vi] = c_dryshrub
+								     elseif math.random(TREE10) == 2 then
+                                                  data[vi] = c_beechgen
+                                             elseif math.random(TREE7) == 3 then
+                                                  lottmapgen_pinetree(x, y, z, area, data)
+                                             elseif math.random(TREE8) == 4 then
+                                                  lottmapgen_firtree(x, y, z, area, data)
+                                             elseif math.random(PLANT4) == 2 then
+                                                  data[vi] = c_seregon
+                                             end
+								elseif biome == 2 then
+                                             if math.random(PLANT4) == 2 then
+                                                  data[vi] = c_seregon
+                                             else
+									     data[vi] = c_snowblock
+                                             end
+								elseif biome == 3 then
+									if math.random(PLANT3) == 2 then
+										data[vi] = c_dryshrub
+								     elseif math.random(TREE10) == 2 then
+                                                  data[vi] = c_beechgen
+                                             elseif math.random(TREE4) == 3 then
+                                                  lottmapgen_pinetree(x, y, z, area, data)
+                                             elseif math.random(TREE3) == 4 then
+                                                  lottmapgen_firtree(x, y, z, area, data)
+                                             end
+								elseif biome == 4 then
+									if math.random(TREE5) == 2 then
+										lottmapgen_defaulttree(x, y, z, area, data)
+							          elseif math.random(TREE7) == 3 then
+                                                  lottmapgen_appletree(x, y, z, area, data)
+                                             elseif math.random (PLANT3) == 4 then
+                                                  lottmapgen_grass(data, vi)
 									end
-									if not sol then
-										if y > 3 and tre and math.random(DUNGRACHA) == 2 then
-											minetest.add_node({x=x,y=y+1,z=z},{name="default:dry_shrub"})
-										elseif sno and y > 0 then
-											minetest.add_node({x=x,y=y+1,z=z},{name="default:snowblock"})
-										elseif mou and y > 0 then
-											minetest.add_node({x=x,y=y+1,z=z},{name="default:snow"})
-										end
+								elseif biome == 5 then
+									if math.random(TREE7) == 2 then
+										lottmapgen_defaulttree(x, y, z, area, data)
+                                             elseif math.random(TREE8) == 6 then
+										lottmapgen_aldertree(x, y, z, area, data)
+							          elseif math.random(TREE9) == 3 then
+                                                  lottmapgen_appletree(x, y, z, area, data)
+                                             elseif math.random(TREE8) == 4 then
+                                                  lottmapgen_plumtree(x, y, z, area, data)
+                                             elseif math.random(TREE10) == 9 then
+                                                  lottmapgen_elmtree(x, y, z, area, data)
+                                             elseif math.random(PLANT3) == 5 then
+                                                  lottmapgen_grass(data, vi)
+                                             elseif math.random(PLANT8) == 7 then
+                                                  lottmapgen_farmingplants(data, vi)
+                                             elseif math.random(PLANT13) == 8 then
+                                                  lottmapgen_farmingrareplants(data, vi)
+                                             elseif math.random(PLANT4) == 2 then
+                                                  data[vi] = c_mallos
 									end
-								elseif mor then
-									minetest.add_node({x=x,y=y,z=z},{name="lottmapgen:mordor_stone"})
-									if not sol and tre and y > 8 then
-										if math.random(TUNGRACHA) == 2 then
-											minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:brambles_of_mordor"})
-										end
+								elseif biome == 6 then
+									if math.random(TREE3) == 2 then
+										lottmapgen_defaulttree(x, y, z, area, data)
+                                             elseif math.random(TREE6) == 6 then
+										lottmapgen_lebethrontree(x, y, z, area, data)
+							          elseif math.random(TREE3) == 3 then
+                                                  lottmapgen_appletree(x, y, z, area, data)
+                                             elseif math.random(TREE5) == 10 then
+                                                  lottmapgen_culumaldatree(x, y, z, area, data)
+                                             elseif math.random(TREE5) == 4 then
+                                                  lottmapgen_plumtree(x, y, z, area, data)
+                                             elseif math.random(TREE9) == 9 then
+                                                  lottmapgen_elmtree(x, y, z, area, data)
+                                             elseif math.random(PLANT8) == 7 then
+                                                  lottmapgen_farmingplants(data, vi)
+                                             elseif math.random(PLANT13) == 8 then
+                                                  lottmapgen_farmingrareplants(data, vi)
+                                             elseif math.random(PLANT4) == 11 then
+                                                  lottmapgen_ithildinplants(data, vi)
 									end
-								elseif mou then
-									minetest.add_node({x=x,y=y,z=z},{name="lottmapgen:frozen_stone"})
-									if not sol and y > 0 then
-										if tre and math.random(TUNGRACHA) == 2 then
-											minetest.add_node({x=x,y=y+1,z=z},{name="default:dry_shrub"})
-										elseif tre and math.random(NORMPLANT) == 2 then
-											minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:seregon"})
-										else
-											minetest.add_node({x=x,y=y+1,z=z},{name="default:snow"})
-										end
+								elseif biome == 7 then
+									if math.random(TREE3) == 2 then
+										lottmapgen_mallornsmalltree(x, y, z, area, data)
+                                             elseif math.random(PLANT3) == 2 then
+										data[vi] = c_jungrass
+                                             elseif math.random(TREE5) == 3 then
+                                                  data[vi] = c_mallorngen
+                                             elseif math.random(PLANT4) == 11 then
+                                                  lottmapgen_lorienplants(data, vi)
 									end
-								elseif moc or mot then
-									if not sol then
-										if y >= 1 then
-											minetest.add_node({x=x,y=y,z=z},{name="lottmapgen:mordor_stone"})
-										else
-											minetest.add_node({x=x,y=y,z=z},{name="lottmapgen:mordor_stone"})
-										if math.random(TUNGRACHA) == 2 then
-										    minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:brambles_of_mordor"})
-										end
-										end
-										if moc and tre and y > 2 and math.random(TUNGRACHA) == 2 then
-											minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:brambles_of_mordor"})
-										elseif sav then 
-											if y >= 3 and tre and math.random(TUNGRACHA) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:brambles_of_mordor"})
-											elseif y == 0 and wat then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottmapgen:blacksource"})
-											end
-										end
-									else
-										minetest.add_node({x=x,y=y,z=z},{name="lottmapgen:mordor_stone"})
+								elseif biome == 8 then
+									if math.random(TREE10) == 2 then
+										lottmapgen_burnedtree(x, y, z, area, data)
+                                             elseif math.random(PLANT4) == 2 then
+                                                  data[vi] = c_bomordor
 									end
-								else
-									if not sol then
-										if y >= 1 then
-											minetest.add_node({x=x,y=y,z=z},{name="default:dirt_with_grass"})
-										else
-											minetest.add_node({x=x,y=y,z=z},{name="default:dirt"})
-										end
-										if elf and tre and y > 0 and math.random(WETGRACHA) == 2 then
-											if math.random(BIGTRECHA) == 2 then
-												lottplants_mallorntree({x=x,y=y+1,z=z})
-											elseif math.random(RAIJUNCHA) == 2 then
-												lottplants_mallornsmalltree({x=x,y=y+1,z=z})
-											elseif math.random(RAIJUNCHA) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:elanor"})
-											elseif math.random(RAIJUNCHA) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:niphredil"})
-											elseif math.random(NORMPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:lissuin"})
-											end
-										elseif gra and tre and y >= 3 then
-										    if math.random(DECGRACHA) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="default:grass_"..math.random(1,5)})
-											elseif math.random(DECAPPCHA) == 2 then
-												lottplants_aldertree({x=x,y=y+1,z=z})
-											elseif math.random(DECAPPCHA) == 2 then
-												lottplants_plumtree({x=x,y=y+1,z=z})
-											elseif math.random(DECAPPCHA) == 2 then
-												lottplants_appletree({x=x,y=y+1,z=z})
-											elseif math.random(DECAPPCHA) == 2 then
-												lottplants_lebethrontree({x=x,y=y+1,z=z})
-											elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:mallos"})
-											elseif math.random(ULTRAPLAT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:athelas"})
-											elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:pipeweed_wild"})
-											elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:corn_wild"})
-											elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:potato_wild"})
-											elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:mushroom_wild"})
-											elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:berries_wild"})
-											elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:turnips_wild"})
-											elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:tomatoes_wild"})
-											elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:cabbage_wild"})
-                                                       elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:melon_wild"})
-                                                       elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:barley_wild"})
-											elseif math.random(NORMPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:pilinehtar"})
-											end
-										elseif sno and y >= 1 then
-										    minetest.add_node({x=x,y=y+1,z=z},{name="default:snowblock"})
-											if tre and math.random(DECAPPCHA) == 2 then
-												lottplants_beechtree({x=x,y=y+1,z=z})
-											elseif tre and math.random(SAVTRECHA) == 2 then
-												lottplants_firtree({x=x,y=y+1,z=z})
-											elseif tre and math.random(BIGTRECHA) == 2 then
-												lottplants_pinetree({x=x,y=y+1,z=z})
-											end
-										elseif fot then
-											if y >= -1 and tre and math.random(BIGTRECHA) == 2 then
-												lottplants_birchtree({x=x,y=y+1,z=z})
-											elseif y >= -1 and tre and math.random(TAIPINCHA) == 2 then
-												lottplants_rowantree({x=x,y=y+1,z=z})
-											elseif y >= -1 and tre and math.random(SAVTRECHA) == 2 then
-												lottplants_elmtree({x=x,y=y+1,z=z})
-											elseif y >= -1 and tre and math.random(TAIPINCHA) == 2 then
-												lottplants_hugedefaulttree({x=x,y=y+1,z=z})
-											elseif math.random(NORMPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:asphodel"})
-											elseif math.random(NORMPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:anemones"})
-											elseif math.random(NORMPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:eglantive"})
-											elseif math.random(NORMPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:iris"})
-                                                       elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:pipeweed_wild"})
-											elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:corn_wild"})
-											elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:potato_wild"})
-											elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:mushroom_wild"})
-											elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:berries_wild"})
-											elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:turnips_wild"})
-											elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:tomatoes_wild"})
-											elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:cabbage_wild"})
-                                                       elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:melon_wild"})
-                                                       elseif math.random(RAREPLANT) == 2 then
-												minetest.add_node({x=x,y=y+1,z=z},{name="lottplants:barley_wild"})
-											elseif y == 0 and wat then
-												minetest.add_node({x=x,y=y+1,z=z},{name="default:water_source"})
-											end
-										end
-									else
-										minetest.add_node({x=x,y=y,z=z},{name="default:dirt"})
+								elseif biome == 9 then
+									if math.random(TREE3) == 2 then
+										lottmapgen_defaulttree(x, y, z, area, data)
+                                             elseif math.random(TREE4) == 6 then
+										lottmapgen_rowantree(x, y, z, area, data)
+							          elseif math.random(TREE4) == 3 then
+                                                  lottmapgen_appletree(x, y, z, area, data)
+                                             elseif math.random(TREE5) == 10 then
+                                                  lottmapgen_birchtree(x, y, z, area, data)
+                                             elseif math.random(TREE5) == 4 then
+                                                  lottmapgen_plumtree(x, y, z, area, data)
+                                             elseif math.random(TREE7) == 9 then
+                                                  lottmapgen_elmtree(x, y, z, area, data)
+                                             elseif math.random(TREE6) == 11 then
+                                                  lottmapgen_oaktree(x, y, z, area, data)
+                                             elseif math.random(PLANT4) == 7 then
+                                                  lottmapgen_farmingplants(data, vi)
+                                             elseif math.random(PLANT9) == 8 then
+                                                  lottmapgen_farmingrareplants(data, vi)
 									end
-								end
-								if y == 0 and wat and y > sandy and (fot)
-								and tre and math.random(PAPCHA) == 2 then
-									local nodename = minetest.get_node({x=x,y=y+2,z=z}).name
-									if nodename == "air" then
-										minetest.add_node({x=x,y=y+1,z=z},{name="default:water_source"})
-										for j = 2, math.random(2,4) do
-											minetest.add_node({x=x,y=y+j,z=z},{name="default:papyrus"})
-										end
+                                        elseif biome == 10 then
+									if math.random(TREE2) == 2 then
+										data[vi] = c_mirktreegen
+                                             elseif math.random(TREE4) == 3 then
+                                                  lottmapgen_jungletree2(x, y, z, area, data)
 									end
-								end
-							elseif not sol and y > 0 then
-								if sno then
-									minetest.add_node({x=x,y=y+1,z=z},{name="default:snowblock"})
-								elseif mou then
-									minetest.add_node({x=x,y=y+1,z=z},{name="default:snow"})
-								end
-							end
-							sol = true
-							if notre then
-								tre = false
-							end
-						else
-							sol = false
-							if y == 1 then
-								local nodename = minetest.get_node({x=x,y=y,z=z}).name
-								if nodename == "default:water_source" then
-									wat = true
-									local temp = perlin6:get2d({x=x,y=z})
-									if temp < LOTET + math.random() / 10 then
-										minetest.add_node({x=x,y=y,z=z},{name="default:ice"})
+                                        elseif biome == 11 then
+								     if math.random(TREE10) == 2 then
+                                                  data[vi] = c_beechgen
+                                             elseif math.random(TREE4) == 3 then
+                                                  lottmapgen_pinetree(x, y, z, area, data)
+                                             elseif math.random(TREE6) == 4 then
+                                                  lottmapgen_firtree(x, y, z, area, data)
+                                             end
+                                        elseif biome == 12 then
+                                             if math.random(TREE7) == 2 then
+										lottmapgen_defaulttree(x, y, z, area, data)
+							          elseif math.random(TREE7) == 3 then
+                                                  lottmapgen_appletree(x, y, z, area, data)
+                                             elseif math.random(TREE8) == 4 then
+                                                  lottmapgen_plumtree(x, y, z, area, data)
+                                             elseif math.random(TREE10) == 9 then
+                                                  lottmapgen_elmtree(x, y, z, area, data)
+                                             elseif math.random(PLANT2) == 5 then
+                                                  lottmapgen_grass(data, vi)
+                                             elseif math.random(PLANT8) == 6 then
+                                                  lottmapgen_farmingplants(data, vi)
+                                             elseif math.random(PLANT13) == 7 then
+                                                  lottmapgen_farmingrareplants(data, vi)
+                                             elseif math.random(PLANT4) == 2 then
+                                                  data[vi] = c_pilinehtar
+									end
+                                        elseif biome == 13 then
+                                             if math.random(TREE3) == 2 then
+										lottmapgen_defaulttree(x, y, z, area, data)
+							          elseif math.random(TREE3) == 3 then
+                                                  lottmapgen_appletree(x, y, z, area, data)
+                                             elseif math.random(TREE5) == 4 then
+                                                  lottmapgen_plumtree(x, y, z, area, data)
+                                             elseif math.random(TREE7) == 9 then
+                                                  lottmapgen_oaktree(x, y, z, area, data)
+                                             elseif math.random(PLANT4) == 7 then
+                                                  lottmapgen_farmingplants(data, vi)
+                                             elseif math.random(PLANT9) == 8 then
+                                                  lottmapgen_farmingrareplants(data, vi)
 									end
 								end
 							end
 						end
 					end
-				end	
-			end		
-		end			
-	end)				
-end
+				else -- underground
+					if nodiduu ~= c_air and nodiduu ~= c_water and surfy - y + 1 <= fimadep then
+						if y <= sandy then
+							data[vi] = c_sand
+						elseif biome == 1 or biome == 2 then
+							if math.random(121) == 2 then
+								data[vi] = c_ice
+							else
+								data[vi] = c_frozenstone
+							end
+                              elseif biome == 8 then
+                                   data[vi] = c_morstone
+						else
+							data[vi] = c_dirt
+						end
+					end
+				end
+				open = false
+				solid = true
+			elseif nodid == c_air or nodid == c_water then
+				solid = false
+				if nodid == c_water then
+					water = true
+					if n_temp < ICETET and y <= 1 -- ice
+					and y >= 1 - math.floor((ICETET - n_temp) * 10) then
+						data[vi] = c_ice
+					end
+				end
+			end
+		end
+		nixz = nixz + 1
+	end	
+	end
+	
+	vm:set_data(data)
+	vm:set_lighting({day=0, night=0})
+	vm:calc_lighting()
+	vm:write_to_map(data)
+	local chugent = math.ceil((os.clock() - t1) * 1000)
+	--print ("[lottmapgen_checking] "..chugent.." ms")			
+end)
+
+dofile(minetest.get_modpath("lottmapgen").."/schematics.lua")

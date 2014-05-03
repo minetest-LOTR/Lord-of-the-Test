@@ -342,7 +342,8 @@ minetest.register_node("bones:skeleton", {
 	},
 	paramtype2 = "facedir",
      paramtype = "light",
-	groups = {},
+	groups = {dig_immediate=2},
+     drop = "bones:bonedust",
      node_box = {
 		type = "fixed",
 		fixed = {

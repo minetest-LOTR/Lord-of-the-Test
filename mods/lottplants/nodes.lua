@@ -268,11 +268,28 @@ minetest.register_node("lottplants:rowanleaf", {
 	paramtype = "light",
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
     drop = {
-	    	max_items = 6,
+	    	max_items = 1,
 		    items = {
 		        { items = {'lottplants:rowanleaf'} },
 		    	{ items = {'lottplants:rowansapling'}, rarity = 20 },
-		    	{ items = {'lottfarming:berries'}, rarity = 2 },
+		    	{ items = {'lottfarming:berries'}, rarity = 200 },
+		    }
+	    },
+	sounds = default.node_sound_leaves_defaults(),
+})
+
+minetest.register_node("lottplants:rowanberry", {
+	description = "Rowan Leaf with Berries",
+	drawtype = "allfaces_optional",
+	visual_scale = 1.3,
+	tiles = {"lottplants_rowanleaf.png^lottplants_rowanberry.png"},
+	paramtype = "light",
+	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
+    drop = {
+	    	max_items = 2,
+		    items = {
+		          { items = {'lottplants:rowanleaf'} },
+		    	     { items = {'lottfarming:berries'} },
 		    }
 	    },
 	sounds = default.node_sound_leaves_defaults(),
