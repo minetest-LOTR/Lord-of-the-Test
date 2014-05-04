@@ -314,7 +314,7 @@ function lottmapgen_birchtree(x, y, z, area, data)
 	local c_birchtree = minetest.get_content_id("lottplants:birchtree")
 	local c_birchleaf = minetest.get_content_id("lottplants:birchleaf")
 	for j = -5, 12 do
-		if j == 8 or j == 10 then
+		if j == 8 or j == 11 then
 			for i = -2, 2 do
 			for k = -2, 2 do
 				local vil = area:index(x + i, y + j + math.random(0, 1), z + k)
@@ -333,7 +333,7 @@ function lottmapgen_elmtree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_elmleaf = minetest.get_content_id("lottplants:elmleaf")
 	for j = -5, 25 do
-		if j == 11 or j == 18 or j == 23 then
+		if j == 11 or j == 18 or j == 24 then
 			for i = -2, 2 do
 			for k = -2, 2 do
 				local vil = area:index(x + i, y + j + math.random(0, 1), z + k)

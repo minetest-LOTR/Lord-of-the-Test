@@ -354,7 +354,7 @@ minetest.register_node("lottplants:birchtree", {
 	description = "Birch Tree",
 	tiles = {"lottplants_birchtree_top.png", "lottplants_birchtree_top.png", "lottplants_birchtree.png"},
 	paramtype2 = "facedir",
-	groups = {tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2},
+	groups = {tree=1,choppy=2,flammable=2},
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node
 })
@@ -363,7 +363,7 @@ minetest.register_node("lottplants:lebethrontree", {
 	description = "Lebethron Tree",
 	tiles = {"lottplants_lebethrontree_top.png", "lottplants_lebethrontree_top.png", "default_tree.png"},
 	paramtype2 = "facedir",
-	groups = {tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2},
+	groups = {tree=1,choppy=1,flammable=2},
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node
 })
@@ -372,7 +372,7 @@ minetest.register_node("lottplants:mallorntree", {
 	description = "Mallorn Tree",
 	tiles = {"lottplants_mallorntree_top.png", "lottplants_mallorntree_top.png", "lottplants_mallorntree.png"},
 	paramtype2 = "facedir",
-	groups = {tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2},
+	groups = {tree=1,choppy=1,flammable=2},
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node
 })

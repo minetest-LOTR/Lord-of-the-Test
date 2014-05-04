@@ -291,15 +291,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
                                                   lottmapgen_pinetree(x, y, z, area, data)
                                              elseif math.random(TREE8) == 4 then
                                                   lottmapgen_firtree(x, y, z, area, data)
-                                             elseif math.random(PLANT4) == 2 then
+                                             elseif math.random(PLANT6) == 2 then
                                                   data[vi] = c_seregon
                                              end
 								elseif biome == 2 then
-                                             if math.random(PLANT4) == 2 then
-                                                  data[vi] = c_seregon
-                                             else
-									     data[vi] = c_snowblock
-                                             end
+									data[vi] = c_snowblock
 								elseif biome == 3 then
 									if math.random(PLANT3) == 2 then
 										data[vi] = c_dryshrub
@@ -329,13 +325,15 @@ minetest.register_on_generated(function(minp, maxp, seed)
                                                   lottmapgen_plumtree(x, y, z, area, data)
                                              elseif math.random(TREE10) == 9 then
                                                   lottmapgen_elmtree(x, y, z, area, data)
+                                             elseif math.random(PLANT13) == 10 then
+                                                  lottmapgen_whitetree(x, y, z, area, data)
                                              elseif math.random(PLANT3) == 5 then
                                                   lottmapgen_grass(data, vi)
                                              elseif math.random(PLANT8) == 7 then
                                                   lottmapgen_farmingplants(data, vi)
                                              elseif math.random(PLANT13) == 8 then
                                                   lottmapgen_farmingrareplants(data, vi)
-                                             elseif math.random(PLANT4) == 2 then
+                                             elseif math.random(PLANT6) == 2 then
                                                   data[vi] = c_mallos
 									end
 								elseif biome == 6 then
@@ -355,7 +353,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
                                                   lottmapgen_farmingplants(data, vi)
                                              elseif math.random(PLANT13) == 8 then
                                                   lottmapgen_farmingrareplants(data, vi)
-                                             elseif math.random(PLANT4) == 11 then
+                                             elseif math.random(PLANT5) == 11 then
                                                   lottmapgen_ithildinplants(data, vi)
 									end
 								elseif biome == 7 then
@@ -423,7 +421,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
                                                   lottmapgen_farmingplants(data, vi)
                                              elseif math.random(PLANT13) == 7 then
                                                   lottmapgen_farmingrareplants(data, vi)
-                                             elseif math.random(PLANT4) == 2 then
+                                             elseif math.random(PLANT6) == 2 then
                                                   data[vi] = c_pilinehtar
 									end
                                         elseif biome == 13 then

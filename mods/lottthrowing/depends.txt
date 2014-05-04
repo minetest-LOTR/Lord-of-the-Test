@@ -1,0 +1,5 @@
+default
+fire
+farming
+lottores
+lottother
