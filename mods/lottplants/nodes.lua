@@ -614,28 +614,28 @@ minetest.register_node("lottplants:yavannamirefruit", {
 minetest.register_node("lottplants:alderwood", {
 	description = "Alder Planks",
 	tiles = {"lottplants_alderwood.png"},
-	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=3,wood=1},
+	groups = {choppy=2,flammable=3,wood=1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
 minetest.register_node("lottplants:birchwood", {
 	description = "Birch Planks",
 	tiles = {"lottplants_birchwood.png"},
-	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=3,wood=1},
+	groups = {choppy=2,flammable=3,wood=1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
 minetest.register_node("lottplants:lebethronwood", {
 	description = "Lebethron Planks",
 	tiles = {"lottplants_lebethronwood.png"},
-	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=3,wood=1},
+	groups = {choppy=1,flammable=3,wood=1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
 minetest.register_node("lottplants:mallornwood", {
 	description = "Mallorn Planks",
 	tiles = {"lottplants_mallornwood.png"},
-	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=3,wood=1},
+	groups = {choppy=1,flammable=3,wood=1},
 	sounds = default.node_sound_wood_defaults(),
 })
 

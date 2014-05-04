@@ -16,7 +16,7 @@ for i in ipairs(lottblocks_list) do
 		paramtype = "light",
 		paramtype2 = "facedir",
 		stack_max = 1,
-		groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+		groups = {snappy=1,choppy=2,flammable=3},
 		node_box = {
 			type = "fixed",
 			fixed = {
@@ -89,7 +89,7 @@ for i in ipairs(lottblocks_list) do
 		paramtype = "light",
 		paramtype2 = "facedir",
 		stack_max = 1,
-		groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+		groups = {snappy=1,choppy=2,flammable=3},
 		node_box = {
 			type = "fixed",
 			fixed = {
@@ -155,7 +155,7 @@ for i in ipairs(lottblocks_list) do
 		tiles = {"lottblocks_bed_top_top_"..colour..".png", "default_wood.png",  "lottblocks_bed_side_top_r_"..colour..".png",  "lottblocks_bed_side_top_l_"..colour..".png",  "lottblocks_bed_top_front.png",  "lottblocks_bed_side_"..colour..".png"},
 		paramtype = "light",
 		paramtype2 = "facedir",
-		groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+		groups = {snappy=1,choppy=2,flammable=3},
 		node_box = {
 			type = "fixed",
 			fixed = {

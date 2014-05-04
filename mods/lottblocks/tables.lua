@@ -108,7 +108,7 @@ minetest.register_node("lottblocks:alder_table",
 			{-0.3,-0.2,0.3, 0.3,-0.1,0.4},
 		},
 	},
-	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+	groups = {snappy=2,choppy=2,flammable=2}
 }) 
 minetest.register_craft({
 	output = 'lottblocks:alder_table',
@@ -140,7 +140,7 @@ minetest.register_node("lottblocks:alder_chair",
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},
 	},
-groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+groups = {snappy=2,choppy=2,flammable=2}
 })
 minetest.register_craft({
 	output = 'lottblocks:alder_table',
@@ -171,7 +171,7 @@ minetest.register_node("lottblocks:birch_table",
 			{-0.3,-0.2,0.3, 0.3,-0.1,0.4},
 		},
 	},
-	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+	groups = {snappy=2,choppy=2,flammable=2}
 }) 
 minetest.register_craft({
 	output = 'lottblocks:birch_table',
@@ -203,7 +203,7 @@ minetest.register_node("lottblocks:birch_chair",
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},
 	},
-groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+groups = {snappy=2,choppy=2,flammable=2}
 })
 minetest.register_craft({
 	output = 'lottblocks:birch_table',
@@ -234,7 +234,7 @@ minetest.register_node("lottblocks:lebethron_table",
 			{-0.3,-0.2,0.3, 0.3,-0.1,0.4},
 		},
 	},
-	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+	groups = {snappy=2,choppy=1,flammable=2}
 }) 
 minetest.register_craft({
 	output = 'lottblocks:lebethron_table',
@@ -266,7 +266,7 @@ minetest.register_node("lottblocks:lebethron_chair",
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},
 	},
-groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+groups = {snappy=2,choppy=1,flammable=2}
 })
 minetest.register_craft({
 	output = 'lottblocks:lebethron_chair',
@@ -297,7 +297,7 @@ minetest.register_node("lottblocks:mallorn_table",
 			{-0.3,-0.2,0.3, 0.3,-0.1,0.4},
 		},
 	},
-	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+	groups = {snappy=2,choppy=1,flammable=2}
 }) 
 minetest.register_craft({
 	output = 'lottblocks:mallorn_table',
@@ -329,7 +329,7 @@ minetest.register_node("lottblocks:mallorn_chair",
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},
 	},
-groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+groups = {snappy=2,choppy=1,flammable=2}
 })
 minetest.register_craft({
 	output = 'lottblocks:mallorn_chair',
