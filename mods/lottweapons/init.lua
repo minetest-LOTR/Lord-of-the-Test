@@ -145,6 +145,7 @@ minetest.register_tool("lottweapons:mithril_battleaxe", {
 minetest.register_tool("lottweapons:wood_warhammer", {
 	description = "Training Warhammer",
 	inventory_image = "lott_wood_warhammer.png",
+	range = 2,
 	tool_capabilities = {
 		full_punch_interval = 2,
 		max_drop_level=1,
@@ -158,6 +159,7 @@ minetest.register_tool("lottweapons:wood_warhammer", {
 minetest.register_tool("lottweapons:stone_warhammer", {
 	description = "Stone Warhammer",
 	inventory_image = "lott_stone_warhammer.png",
+	range = 2,
 	tool_capabilities = {
 		full_punch_interval = 1.5,
 		max_drop_level=1,
@@ -171,6 +173,7 @@ minetest.register_tool("lottweapons:stone_warhammer", {
 minetest.register_tool("lottweapons:copper_warhammer", {
 	description = "Copper Warhammer",
 	inventory_image = "lott_copper_warhammer.png",
+	range = 2,
 	tool_capabilities = {
 		full_punch_interval = 1.3,
 		max_drop_level=1,
@@ -184,6 +187,7 @@ minetest.register_tool("lottweapons:copper_warhammer", {
 minetest.register_tool("lottweapons:tin_warhammer", {
 	description = "Tin Warhammer",
 	inventory_image = "lott_tin_warhammer.png",
+	range = 2,
 	tool_capabilities = {
 		full_punch_interval = 1.3,
 		max_drop_level=1,
@@ -197,6 +201,7 @@ minetest.register_tool("lottweapons:tin_warhammer", {
 minetest.register_tool("lottweapons:steel_warhammer", {
 	description = "Steel Warhammer",
 	inventory_image = "lott_steel_warhammer.png",
+	range = 2,
 	tool_capabilities = {
 		full_punch_interval = 1.2,
 		max_drop_level=1,
@@ -210,6 +215,7 @@ minetest.register_tool("lottweapons:steel_warhammer", {
 minetest.register_tool("lottweapons:bronze_warhammer", {
 	description = "Bronze Warhammer",
 	inventory_image = "lott_bronze_warhammer.png",
+	range = 2,
 	tool_capabilities = {
 		full_punch_interval = 1.1,
 		max_drop_level=1,
@@ -223,6 +229,7 @@ minetest.register_tool("lottweapons:bronze_warhammer", {
 minetest.register_tool("lottweapons:silver_warhammer", {
 	description = "Silver Warhammer",
 	inventory_image = "lott_silver_warhammer.png",
+	range = 2,
 	tool_capabilities = {
 		full_punch_interval = 1,
 		max_drop_level=1,
@@ -249,6 +256,7 @@ minetest.register_tool("lottweapons:gold_warhammer", {
 minetest.register_tool("lottweapons:galvorn_warhammer", {
 	description = "Galvorn Warhammer",
 	inventory_image = "lott_galvorn_warhammer.png",
+	range = 2,
 	tool_capabilities = {
 		full_punch_interval = 0.50,
 		max_drop_level=1,
@@ -262,6 +270,7 @@ minetest.register_tool("lottweapons:galvorn_warhammer", {
 minetest.register_tool("lottweapons:mithril_warhammer", {
 	description = "Mithril Warhammer",
 	inventory_image = "lott_mithril_warhammer.png",
+	range = 2,
 	tool_capabilities = {
 		full_punch_interval = 0.25,
 		max_drop_level=1,
@@ -426,6 +435,7 @@ minetest.register_tool("lottweapons:mithril_spear", {
 minetest.register_tool("lottweapons:wood_dagger", {
 	description = "Training Dagger",
 	inventory_image = "lott_wood_dagger.png",
+	range = 3,
 	tool_capabilities = {
 		full_punch_interval = 2,
 		max_drop_level=0,
@@ -439,6 +449,7 @@ minetest.register_tool("lottweapons:wood_dagger", {
 minetest.register_tool("lottweapons:stone_dagger", {
 	description = "Stone Dagger",
 	inventory_image = "lott_stone_dagger.png",
+	range = 3,
 	tool_capabilities = {
 		full_punch_interval = 1.5,
 		max_drop_level=0,
@@ -452,6 +463,7 @@ minetest.register_tool("lottweapons:stone_dagger", {
 minetest.register_tool("lottweapons:copper_dagger", {
 	description = "Copper Dagger",
 	inventory_image = "lott_copper_dagger.png",
+	range = 3,
 	tool_capabilities = {
 		full_punch_interval = 1.2,
 		max_drop_level=0,
@@ -465,6 +477,7 @@ minetest.register_tool("lottweapons:copper_dagger", {
 minetest.register_tool("lottweapons:tin_dagger", {
 	description = "Tin Dagger",
 	inventory_image = "lott_tin_dagger.png",
+	range = 3,
 	tool_capabilities = {
 		full_punch_interval = 1.2,
 		max_drop_level=0,
@@ -478,6 +491,7 @@ minetest.register_tool("lottweapons:tin_dagger", {
 minetest.register_tool("lottweapons:steel_dagger", {
 	description = "Steel Dagger",
 	inventory_image = "lott_steel_dagger.png",
+	range = 3,
 	tool_capabilities = {
 		full_punch_interval = 1.1,
 		max_drop_level=0,
@@ -491,6 +505,7 @@ minetest.register_tool("lottweapons:steel_dagger", {
 minetest.register_tool("lottweapons:bronze_dagger", {
 	description = "Bronze Dagger",
 	inventory_image = "lott_bronze_dagger.png",
+	range = 3,
 	tool_capabilities = {
 		full_punch_interval = 1.5,
 		max_drop_level=0,
@@ -504,6 +519,7 @@ minetest.register_tool("lottweapons:bronze_dagger", {
 minetest.register_tool("lottweapons:silver_dagger", {
 	description = "Silver Dagger",
 	inventory_image = "lott_silver_dagger.png",
+	range = 3,
 	tool_capabilities = {
 		full_punch_interval = 1,
 		max_drop_level=0,
@@ -517,6 +533,7 @@ minetest.register_tool("lottweapons:silver_dagger", {
 minetest.register_tool("lottweapons:gold_dagger", {
 	description = "Gold Dagger",
 	inventory_image = "lott_gold_dagger.png",
+	range = 3,
 	tool_capabilities = {
 		full_punch_interval = .6,
 		max_drop_level=0,
@@ -530,6 +547,7 @@ minetest.register_tool("lottweapons:gold_dagger", {
 minetest.register_tool("lottweapons:galvorn_dagger", {
 	description = "Galvorn Dagger",
 	inventory_image = "lott_galvorn_dagger.png",
+	range = 3,
 	tool_capabilities = {
 		full_punch_interval = .5,
 		max_drop_level=0,
@@ -543,6 +561,7 @@ minetest.register_tool("lottweapons:galvorn_dagger", {
 minetest.register_tool("lottweapons:mithril_dagger", {
 	description = "Mithril Dagger",
 	inventory_image = "lott_mithril_dagger.png",
+	v
 	tool_capabilities = {
 		full_punch_interval = .25,
 		max_drop_level=0,
