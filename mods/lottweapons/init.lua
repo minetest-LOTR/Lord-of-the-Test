@@ -561,7 +561,7 @@ minetest.register_tool("lottweapons:galvorn_dagger", {
 minetest.register_tool("lottweapons:mithril_dagger", {
 	description = "Mithril Dagger",
 	inventory_image = "lott_mithril_dagger.png",
-	v
+	range = 3,
 	tool_capabilities = {
 		full_punch_interval = .25,
 		max_drop_level=0,
