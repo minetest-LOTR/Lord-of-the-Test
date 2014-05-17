@@ -277,6 +277,7 @@ minetest.register_tool("lottweapons:wood_spear", {
 	description = "Training Spear",
 	inventory_image = "lott_wood_spear.png",
 	wield_image = "lott_wood_spear.png^[transformFX",
+	range = 7,
 	tool_capabilities = {
 		full_punch_interval = 2,
 		max_drop_level=1,
@@ -291,6 +292,7 @@ minetest.register_tool("lottweapons:stone_spear", {
 	description = "Stone Spear",
 	inventory_image = "lott_stone_spear.png",
 	wield_image = "lott_stone_spear.png^[transformFX",
+	range = 7,
 	tool_capabilities = {
 		full_punch_interval = 1.50,
 		max_drop_level=1,
@@ -319,6 +321,7 @@ minetest.register_tool("lottweapons:tin_spear", {
 	description = "Tin Spear",
 	inventory_image = "lott_tin_spear.png",
 	wield_image = "lott_tin_spear.png^[transformFX",
+	range = 7,
 	tool_capabilities = {
 		full_punch_interval = 1.30,
 		max_drop_level=1,
@@ -333,6 +336,7 @@ minetest.register_tool("lottweapons:steel_spear", {
 	description = "Steel Spear",
 	inventory_image = "lott_steel_spear.png",
 	wield_image = "lott_steel_spear.png^[transformFX",
+	range = 7,
 	tool_capabilities = {
 		full_punch_interval = 1.20,
 		max_drop_level=1,
@@ -347,6 +351,7 @@ minetest.register_tool("lottweapons:bronze_spear", {
 	description = "Bronze Spear",
 	inventory_image = "lott_bronze_spear.png",
 	wield_image = "lott_bronze_spear.png^[transformFX",
+	range = 7,
 	tool_capabilities = {
 		full_punch_interval = 1.10,
 		max_drop_level=1,
@@ -361,6 +366,7 @@ minetest.register_tool("lottweapons:silver_spear", {
 	description = "Silver Spear",
 	inventory_image = "lott_silver_spear.png",
 	wield_image = "lott_silver_spear.png^[transformFX",
+	range = 7,
 	tool_capabilities = {
 		full_punch_interval = 1,
 		max_drop_level=1,
@@ -375,6 +381,7 @@ minetest.register_tool("lottweapons:gold_spear", {
 	description = "Gold Spear",
 	inventory_image = "lott_gold_spear.png",
 	wield_image = "lott_gold_spear.png^[transformFX",
+	range = 7,
 	tool_capabilities = {
 		full_punch_interval = 0.75,
 		max_drop_level=1,
@@ -389,6 +396,7 @@ minetest.register_tool("lottweapons:galvorn_spear", {
 	description = "Galvorn Spear",
 	inventory_image = "lott_galvorn_spear.png",
 	wield_image = "lott_galvorn_spear.png^[transformFX",
+	range = 7,
 	tool_capabilities = {
 		full_punch_interval = 0.50,
 		max_drop_level=1,
@@ -403,6 +411,7 @@ minetest.register_tool("lottweapons:mithril_spear", {
 	description = "Mithril Spear",
 	inventory_image = "lott_mithril_spear.png",
 	wield_image = "lott_mithril_spear.png^[transformFX",
+	range = 7,
 	tool_capabilities = {
 		full_punch_interval = 0.25,
 		max_drop_level=1,
