@@ -102,7 +102,7 @@ minetest.register_craft({
 	}
 })
 
-arrows = {
+pipeweed = {
 	{"lottfarming:pipeweed_cooked"},
 }
 
@@ -110,7 +110,7 @@ minetest.register_tool("lottfarming:pipe", {
 	description = "Pipe",
 	inventory_image = "lottfarming_pipe.png",
      on_use = function(itemstack, user, pointed_thing)
-     for _,arrow in ipairs(arrows) do
+     for _,arrow in ipairs(pipeweed) do
           if user:get_inventory():get_stack("main", user:get_wield_index()+1):get_name() == arrow[1] then
 			if not minetest.setting_getbool("creative_mode") then
 				user:get_inventory():remove_item("main", arrow[1])
