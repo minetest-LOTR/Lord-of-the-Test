@@ -20,7 +20,7 @@ minetest.register_node("bones:bones", {
 		"bones_front.png"
 	},
 	paramtype2 = "facedir",
-	groups = {dig_immediate=2},
+	groups = {dig_immediate=3},
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
@@ -73,6 +73,27 @@ minetest.register_node("bones:bones", {
 			meta:set_string("owner", "")
 		else
 			return true
+		end
+	end,
+	
+	on_punch = function(pos, node, player)
+		if(not is_owner(pos, player:get_player_name())) then
+			return
+		end
+		
+		local inv = minetest.get_meta(pos):get_inventory()
+		local player_inv = player:get_inventory()
+		local has_space = true
+		
+		for i=1,inv:get_size("main") do
+			local stk = inv:get_stack("main", i)
+			if player_inv:room_for_item("main", stk) then
+				inv:set_stack("main", i, nil)
+				player_inv:add_item("main", stk)
+			else
+				has_space = false
+				break
+			end
 		end
 	end,
 })
