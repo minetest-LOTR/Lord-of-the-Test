@@ -1,3 +1,4 @@
+dofile(minetest.get_modpath("lottother").."/rings.lua")
 minetest.register_node("lottother:blue_torch", {
 	description = "Blue Torch",
 	drawtype = "torchlike",

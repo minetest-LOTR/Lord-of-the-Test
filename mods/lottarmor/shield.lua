@@ -90,12 +90,5 @@ end
 
 minetest.after(0, function()
 	table.insert(armor.elements, "shield")
-	armor.formspec = "size[8,8.5]button[0,0;2,0.5;main;Back]"
-		.."list[current_player;main;0,4.5;8,4;]"
-		.."list[detached:player_name_armor;armor_head;3,0;1,1;]"
-		.."list[detached:player_name_armor;armor_torso;3,1;1,1;]"
-		.."list[detached:player_name_armor;armor_legs;3,2;1,1;]"
-		.."list[detached:player_name_armor;armor_feet;3,3;1,1;]"
-		.."list[detached:player_name_armor;armor_shield;4,1;1,1;]"
 end)
 

@@ -54,6 +54,63 @@ minetest.register_node("lottores:mithril_ore", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+minetest.register_node("lottores:blue_gem_ore", {
+	description = "Blue Gem Ore",
+	tiles = {"default_stone.png^lottores_bluegem_ore.png"},
+	is_ground_content = true,
+	groups = {cracky=1},
+	drop = {
+		items = {
+			{
+				items = {'lottores:blue_gem'},
+				rarity = 5,
+			},
+			{
+				items = {''},
+			}
+		}
+	},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_node("lottores:white_gem_ore", {
+	description = "White Gem Ore",
+	tiles = {"default_stone.png^lottores_whitegem_ore.png"},
+	is_ground_content = true,
+	groups = {cracky=1},
+	drop = {
+		items = {
+			{
+				items = {'lottores:white_gem'},
+				rarity = 5,
+			},
+			{
+				items = {''},
+			}
+		}
+	},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_node("lottores:red_gem_ore", {
+	description = "Red Gem Ore",
+	tiles = {"default_stone.png^lottores_redgem_ore.png"},
+	is_ground_content = true,
+	groups = {cracky=1},
+	drop = {
+		items = {
+			{
+				items = {'lottores:red_gem'},
+				rarity = 5,
+			},
+			{
+				items = {''},
+			}
+		}
+	},
+	sounds = default.node_sound_stone_defaults(),
+})
+
 -- Ores Spawning
 
 minetest.register_ore({
@@ -145,20 +202,8 @@ minetest.register_ore({
 	clust_scarcity = 17*17*17,
 	clust_num_ores = 3,
 	clust_size     = 2,
-	height_min     = -300,
-	height_max     = -150,
-	flags          = "absheight",
-})
-
-minetest.register_ore({
-	ore_type       = "scatter",
-	ore            = "lottores:mithril_ore",
-	wherein        = "default:stone",
-	clust_scarcity = 15*15*15,
-	clust_num_ores = 3,
-	clust_size     = 2,
 	height_min     = -31000,
-	height_max     = -301,
+	height_max     = -310,
 	flags          = "absheight",
 })
 
@@ -206,6 +251,40 @@ minetest.register_ore({
 	clust_size     = 2,
 	height_min     = -31000,
 	height_max     = -301,
+	flags          = "absheight",
+})
+
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "lottores:blue_gem_ore",
+	wherein        = "default:stone",
+	clust_scarcity = 14*14*14,
+	clust_num_ores = 4,
+	clust_size     = 2,
+	height_min     = -31000,
+	height_max     = -256,
+	flags          = "absheight",
+})
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "lottores:red_gem_ore",
+	wherein        = "default:stone",
+	clust_scarcity = 14*14*14,
+	clust_num_ores = 4,
+	clust_size     = 2,
+	height_min     = -31000,
+	height_max     = -256,
+	flags          = "absheight",
+})
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "lottores:white_gem_ore",
+	wherein        = "default:stone",
+	clust_scarcity = 14*14*14,
+	clust_num_ores = 4,
+	clust_size     = 2,
+	height_min     = -31000,
+	height_max     = -256,
 	flags          = "absheight",
 })
 
@@ -269,6 +348,21 @@ minetest.register_craftitem("lottores:galvorn_ingot", {
 minetest.register_craftitem("lottores:tilkal_ingot", {
 	description = "Tilkal Ingot",
 	inventory_image = "lottores_tilkal_ingot.png",
+})
+
+minetest.register_craftitem("lottores:blue_gem", {
+	description = "Blue Gem",
+	inventory_image = "lottores_bluegem.png",
+})
+
+minetest.register_craftitem("lottores:red_gem", {
+	description = "Red Gem",
+	inventory_image = "lottores_redgem.png",
+})
+
+minetest.register_craftitem("lottores:white_gem", {
+	description = "White Gem",
+	inventory_image = "lottores_whitegem.png",
 })
 
 -- Nodes

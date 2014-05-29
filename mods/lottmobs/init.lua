@@ -15,11 +15,35 @@ lottmobs:register_mob("lottmobs:elf", {
 	run_velocity = 4,
 	damage = 4,
 	armor = 200,
-		drops = {
-		{name = "",
-		chance = 1,
+	drops = {
+		{name = "lottplants:mallornsapling",
+		chance = 5,
 		min = 1,
 		max = 1,},
+		{name = "lottplants:mallornwood",
+		chance = 5,
+		min = 1,
+		max = 6,},
+		{name = "lottplants:mallorntree",
+		chance = 5,
+		min = 1,
+		max = 4,},
+		{name = "lottweapons:silver_spear",
+		chance = 75,
+		min = 1,
+		max = 1,},
+		{name = "lottores:blue_gem",
+		chance = 200,
+		min = 1,
+		max = 1,},
+		{name = "lottplants:yavannamiresapling",
+		chance = 250,
+		min = 1,
+		max = 1,},
+		{name = "lottores:mithril_lump",
+		chance = 500,
+		min = 1,
+		max = 3,},
 	},
 	light_resistant = true,
 	drawtype = "front",
@@ -42,7 +66,7 @@ lottmobs:register_mob("lottmobs:elf", {
 	sounds = {
 		war_cry = "mobs_die_yell",
 		death = "default_death",
-		attack = "default_punch2",
+		attack = "mobs_slash_attack",
 	},
 	attacks_monsters = true,
 	peaceful = true,
@@ -93,11 +117,13 @@ lottmobs:register_mob("lottmobs:chicken", {
 	jump = true,
 	step=1,
 	passive = true,
+	sounds = {
+	},
 })
 lottmobs:register_spawn("lottmobs:chicken", {"lottmapgen:gondor_grass"}, 20, -1, 6000, 3, 31000)
 lottmobs:register_spawn("lottmobs:chicken", {"lottmapgen:dunland_grass"}, 20, -1, 6000, 3, 31000)
 lottmobs:register_spawn("lottmobs:chicken", {"lottmapgen:rohan_grass"}, 20, -1, 6000, 3, 31000)
-lottmobs:register_spawn("lottmobs:chicken", {"lottmapgen:shire_grass"}, 20, -1, 6000, 3, 31000)
+lottmobs:register_spawn("lottmobs:chicken", {"lottmapgen:shire_grass"}, 20, -1, 5000, 3, 31000)
 
 lottmobs:register_mob("lottmobs:ent", {
 	type = "npc",
@@ -111,6 +137,7 @@ lottmobs:register_mob("lottmobs:ent", {
 	view_range = 20,
 	makes_footstep_sound = true,
 	walk_velocity = 1,
+	run_velocity = 1.5,
 	armor = 100,
 	damage = 5,
 	drops = {
@@ -118,6 +145,46 @@ lottmobs:register_mob("lottmobs:ent", {
 		chance = 10,
 		min = 5,
 		max = 10,},
+		{name = "lottplants:aldersapling",
+		chance = 25,
+		min = 1,
+		max = 2,},
+		{name = "lottplants:applesapling",
+		chance = 25,
+		min = 1,
+		max = 2,},
+		{name = "lottplants:birchsapling",
+		chance = 25,
+		min = 1,
+		max = 2,},
+		{name = "lottplants:beechsapling",
+		chance = 25,
+		min = 1,
+		max = 2,},
+		{name = "lottplants:culumaldasapling",
+		chance = 25,
+		min = 1,
+		max = 2,},
+		{name = "lottplants:elmsapling",
+		chance = 25,
+		min = 1,
+		max = 2,},
+		{name = "lottplants:lebethronsapling",
+		chance = 25,
+		min = 1,
+		max = 2,},
+		{name = "lottplants:plumsapling",
+		chance = 25,
+		min = 1,
+		max = 2,},
+		{name = "lottplants:rowansapling",
+		chance = 25,
+		min = 1,
+		max = 2,},
+		{name = "lottplants:yavannamiresapling",
+		chance = 250,
+		min = 1,
+		max = 1,},
 	},
 	light_resistant = true,
 	drawtype = "front",
@@ -140,7 +207,7 @@ lottmobs:register_mob("lottmobs:ent", {
 	jump = true,
 	sounds = {
 		war_cry = "mobs_die_yell",
-		death = "default_death",
+		death = "mobs_yeti_death",
 		attack = "default_punch2",
 	},
 	attacks_monsters = true,
@@ -168,7 +235,7 @@ lottmobs:register_mob("lottmobs:spider", {
 	damage = 3,
 	drops = {
 		{name = "farming:string",
-		chance = 100,
+		chance = 10,
 		min = 3,
 		max = 6,},
 	},
@@ -193,9 +260,9 @@ lottmobs:register_mob("lottmobs:spider", {
 	},
 	jump = true,
 	sounds = {
-		war_cry = "mobs_barbarian_yell2",
-		death = "mobs_barbarian_death",
-		attack = "default_punch2",
+		war_cry = "mobs_eerie",
+		death = "mobs_howl",
+		attack = "mobs_oerkki_attack",
 	},
 	step = 1,
 })
@@ -217,7 +284,43 @@ lottmobs:register_mob("lottmobs:rohan_guard", {
 	damage = 5,
 	drops = {
 		{name = "default:sword_stone",
-		chance = 100,
+		chance = 10,
+		min = 1,
+		max = 1,},
+		{name = "default:bronze_ingot",
+		chance = 10,
+		min = 1,
+		max = 1,},
+		{name = "lottweapons:stone_spear",
+		chance = 25,
+		min = 1,
+		max = 1,},
+		{name = "default:steel_sword",
+		chance = 50,
+		min = 1,
+		max = 1,},
+		{name = "lottores:galvornsword",
+		chance = 150,
+		min = 1,
+		max = 1,},
+		{name = "lottweapons:steel_spear",
+		chance = 50,
+		min = 1,
+		max = 1,},
+		{name = "lottarmor:helmet_rohan",
+		chance = 50,
+		min = 1,
+		max = 1,},
+		{name = "lottarmor:chestplate_rohan",
+		chance = 50,
+		min = 1,
+		max = 1,},
+		{name = "lottarmor:leggings_rohan",
+		chance = 50,
+		min = 1,
+		max = 1,},
+		{name = "lottarmor:boots_rohan",
+		chance = 50,
 		min = 1,
 		max = 1,},
 	},
@@ -267,8 +370,48 @@ lottmobs:register_mob("lottmobs:gondor_guard", {
 	armor = 100,
 	damage = 5,
 	drops = {
-		{name = "bones:bone",
-		chance = 1,
+		{name = "lottweapons:galvorn_warhammer",
+		chance = 150,
+		min = 1,
+		max = 1,},
+		{name = "default:steel_ingot",
+		chance = 10,
+		min = 2,
+		max = 5,},
+		{name = "lottweapons:galvorn_battleaxe",
+		chance = 150,
+		min = 1,
+		max = 1,},
+		{name = "default:steel_sword",
+		chance = 25,
+		min = 1,
+		max = 1,},
+		{name = "lottplants:whitesapling",
+		chance = 250,
+		min = 1,
+		max = 1,},
+		{name = "lottweapons:steel_battleaxe",
+		chance = 50,
+		min = 1,
+		max = 1,},
+		{name = "lottweapons:steel_warhammer",
+		chance = 50,
+		min = 1,
+		max = 1,},
+		{name = "lottarmor:helmet_gondor",
+		chance = 50,
+		min = 1,
+		max = 1,},
+		{name = "lottarmor:chestplate_gondor",
+		chance = 50,
+		min = 1,
+		max = 1,},
+		{name = "lottarmor:leggings_gondor",
+		chance = 50,
+		min = 1,
+		max = 1,},
+		{name = "lottarmor:boots_gondor",
+		chance = 50,
 		min = 1,
 		max = 1,},
 	},
@@ -305,8 +448,8 @@ lottmobs:register_spawn("lottmobs:gondor_guard", {"lottmapgen:gondor_grass"}, 20
 
 lottmobs:register_mob("lottmobs:dunlending", {
 	type = "monster",
-	hp_min = 15,
-	hp_max = 25,
+	hp_min = 17,
+	hp_max = 27,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
 	mesh = "human_model.x",
@@ -314,11 +457,31 @@ lottmobs:register_mob("lottmobs:dunlending", {
 	makes_footstep_sound = true,
 	view_range = 15,
 	walk_velocity = 1,
-    armor = 300,
+    armor = 200,
 	run_velocity = 3,
 	damage = 3,
 	drops = {
 		{name = "default:axe_stone",
+		chance = 10,
+		min = 1,
+		max = 1,},
+		{name = "default:axe_steel",
+		chance = 50,
+		min = 1,
+		max = 1,},
+		{name = "lottores:galvornaxe",
+		chance = 100,
+		min = 1,
+		max = 1,},
+		{name = "lottweapons:steel_battleaxe",
+		chance = 25,
+		min = 1,
+		max = 1,},
+		{name = "lottweapons:galvorn_battleaxe",
+		chance = 75,
+		min = 1,
+		max = 1,},
+		{name = "lottweapons:steel_warhammer",
 		chance = 100,
 		min = 1,
 		max = 1,},
@@ -389,6 +552,8 @@ lottmobs:register_mob("lottmobs:hobbit", {
 	jump = true,
 	step=1,
 	passive = true,
+	sounds = {
+	},
 })
 lottmobs:register_spawn("lottmobs:hobbit", {"lottmapgen:shire_grass"}, 20, -1, 6000, 3, 31000)
 
@@ -433,8 +598,8 @@ lottmobs:register_mob("lottmobs:orc", {
 	},
 	jump = true,
 	sounds = {
-		war_cry = "mobs_die_yell",
-		death = "default_death",
+		war_cry = "mobs_barbarian_yell1",
+		death = "mobs_death1",
 		attack = "default_punch2",
 	},
 	attacks_monsters = true,
@@ -486,9 +651,9 @@ lottmobs:register_mob("lottmobs:uruk_hai", {
 	},
 	jump = true,
 	sounds = {
-		war_cry = "mobs_die_yell",
-		death = "default_death",
-		attack = "default_punch2",
+		war_cry = "mobs_barbarian_yell2",
+		death = "mobs_death2",
+		attack = "mobs_slash_attack",
 	},
 	attacks_monsters = true,
 	peaceful = true,
@@ -538,9 +703,9 @@ lottmobs:register_mob("lottmobs:battle_troll", {
 	},
 	jump = true,
 	sounds = {
-		war_cry = "mobs_die_yell",
-		death = "default_death",
-		attack = "default_punch2",
+		war_cry = "mobs_howl",
+		death = "mobs_howl",
+		attack = "mobs_stone_death",
 	},
 	attacks_monsters = true,
 	peaceful = true,
@@ -1008,3 +1173,605 @@ lottmobs:register_arrow("lottmobs:fireslash", {
 		end
 	end
 })
+--[[
+--Horses!
+local horse = {
+    
+	
+	physical = true,
+	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
+	visual = "mesh",
+	stepheight = 1.1,
+	visual_size = {x=1,y=1},
+	mesh = "mobs_horseh1.x",
+	textures = {"mobs_horseh1.png"},
+		
+	driver = nil,
+	v = 0,
+}
+
+
+local function is_ground(pos)
+	local nn = minetest.get_node(pos).name
+	return minetest.get_item_group(nn, "crumbly") ~= 0
+end
+
+local function get_sign(i)
+	if i == 0 then
+		return 0
+	else
+		return i/math.abs(i)
+	end
+end
+
+local function get_velocity(v, yaw, y)
+	local x = math.cos(yaw)*v
+	local z = math.sin(yaw)*v
+	return {x=x, y=y, z=z}
+end
+
+local function get_v(v)
+	return math.sqrt(v.x^2+v.z^2)
+end
+
+function horse:on_rightclick(clicker)
+	if not clicker or not clicker:is_player() then
+		return
+	end
+	if self.driver and clicker == self.driver then
+		self.driver = nil
+		clicker:set_detach()
+	elseif not self.driver then
+		self.driver = clicker
+		clicker:set_attach(self.object, "", {x=0,y=5,z=0}, {x=0,y=0,z=0})
+		self.object:setyaw(clicker:get_look_yaw())
+	end
+end
+
+
+function horse:on_activate(staticdata, dtime_s)
+	self.object:set_armor_groups({immortal=1})
+	if staticdata then
+		self.v = tonumber(staticdata)
+	end
+end
+
+function horse:get_staticdata()
+	return tostring(v)
+end
+
+function horse:on_punch(puncher, time_from_last_punch, tool_capabilities, direction)
+	self.object:remove()
+	if puncher and puncher:is_player() then
+		puncher:get_inventory():add_item("main", "lottmobs:horseh1")
+	end
+end
+
+
+function horse:on_step(dtime)
+
+	self.v = get_v(self.object:getvelocity())*get_sign(self.v)
+	if self.driver then
+		local ctrl = self.driver:get_player_control()
+		if ctrl.up then
+			self.v = self.v+2
+		end
+		if ctrl.down then
+			self.v = self.v-0.1
+		end
+		if ctrl.left then
+			self.object:setyaw(self.object:getyaw()+math.pi/120+dtime*math.pi/120)
+		end
+		if ctrl.right then
+			self.object:setyaw(self.object:getyaw()-math.pi/120-dtime*math.pi/120)
+		end
+		if ctrl.jump then
+		local p = self.object:getpos()
+		p.y = p.y-0.5
+		if is_ground(p) then
+		local pos = self.object:getpos()
+				pos.y = math.floor(pos.y)+4
+				self.object:setpos(pos)
+				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
+		end
+		end
+	end
+	local s = get_sign(self.v)
+	self.v = self.v - 0.02*s
+	if s ~= get_sign(self.v) then
+		self.object:setvelocity({x=0, y=0, z=0})
+		self.v = 0
+		return
+	end
+	if math.abs(self.v) > 4.5 then
+		self.v = 4.5*get_sign(self.v)
+	end
+	
+	local p = self.object:getpos()
+	p.y = p.y-0.5
+	if not is_ground(p) then
+		if minetest.registered_nodes[minetest.get_node(p).name].walkable then
+			self.v = 0
+		end
+		self.object:setacceleration({x=0, y=-10, z=0})
+		self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
+	else
+		p.y = p.y+1
+		if is_ground(p) then
+			self.object:setacceleration({x=0, y=3, z=0})
+			local y = self.object:getvelocity().y
+			if y > 2 then
+				y = 2
+			end
+			if y < 0 then
+				self.object:setacceleration({x=0, y=10, z=0})
+			end
+			self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), y))
+		else
+			self.object:setacceleration({x=0, y=0, z=0})
+			if math.abs(self.object:getvelocity().y) < 1 then
+				local pos = self.object:getpos()
+				pos.y = math.floor(pos.y)+0.5
+				self.object:setpos(pos)
+				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
+			else
+				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
+			end
+		end
+	end
+end
+
+--horse white
+
+local horsepeg = {
+    
+	
+	physical = true,
+	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
+	visual = "mesh",
+	stepheight = 1.1,
+	visual_size = {x=1,y=1},
+	mesh = "mobs_horseh1.x",
+	textures = {"mobs_horsepegh1.png"},
+		
+	driver = nil,
+	v = 0,
+}
+
+
+local function is_ground(pos)
+	local nn = minetest.get_node(pos).name
+	return minetest.get_item_group(nn, "crumbly") ~= 0
+end
+
+local function get_sign(i)
+	if i == 0 then
+		return 0
+	else
+		return i/math.abs(i)
+	end
+end
+
+local function get_velocity(v, yaw, y)
+	local x = math.cos(yaw)*v
+	local z = math.sin(yaw)*v
+	return {x=x, y=y, z=z}
+end
+
+local function get_v(v)
+	return math.sqrt(v.x^2+v.z^2)
+end
+
+function horsepeg:on_rightclick(clicker)
+	if not clicker or not clicker:is_player() then
+		return
+	end
+	if self.driver and clicker == self.driver then
+		self.driver = nil
+		clicker:set_detach()
+	elseif not self.driver then
+		self.driver = clicker
+		clicker:set_attach(self.object, "", {x=0,y=5,z=0}, {x=0,y=0,z=0})
+		self.object:setyaw(clicker:get_look_yaw())
+	end
+end
+
+
+function horsepeg:on_activate(staticdata, dtime_s)
+	self.object:set_armor_groups({immortal=1})
+	if staticdata then
+		self.v = tonumber(staticdata)
+	end
+end
+
+function horsepeg:get_staticdata()
+	return tostring(v)
+end
+
+function horsepeg:on_punch(puncher, time_from_last_punch, tool_capabilities, direction)
+	self.object:remove()
+	if puncher and puncher:is_player() then
+		puncher:get_inventory():add_item("main", "lottmobs:horsepegh1")
+	end
+end
+
+
+function horsepeg:on_step(dtime)
+
+	self.v = get_v(self.object:getvelocity())*get_sign(self.v)
+	if self.driver then
+		local ctrl = self.driver:get_player_control()
+		if ctrl.up then
+			self.v = self.v+2
+		end
+		if ctrl.down then
+			self.v = self.v-0.1
+		end
+		if ctrl.left then
+			self.object:setyaw(self.object:getyaw()+math.pi/120+dtime*math.pi/120)
+		end
+		if ctrl.right then
+			self.object:setyaw(self.object:getyaw()-math.pi/120-dtime*math.pi/120)
+		end
+		if ctrl.jump then
+		local p = self.object:getpos()
+		p.y = p.y-0.5
+		if is_ground(p) then
+		local pos = self.object:getpos()
+				pos.y = math.floor(pos.y)+4
+				self.object:setpos(pos)
+				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
+		end
+		end
+	end
+	local s = get_sign(self.v)
+	self.v = self.v - 0.02*s
+	if s ~= get_sign(self.v) then
+		self.object:setvelocity({x=0, y=0, z=0})
+		self.v = 0
+		return
+	end
+	if math.abs(self.v) > 4.5 then
+		self.v = 4.5*get_sign(self.v)
+	end
+	
+	local p = self.object:getpos()
+	p.y = p.y-0.5
+	if not is_ground(p) then
+		if minetest.registered_nodes[minetest.get_node(p).name].walkable then
+			self.v = 0
+		end
+		self.object:setacceleration({x=0, y=-10, z=0})
+		self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
+	else
+		p.y = p.y+1
+		if is_ground(p) then
+			self.object:setacceleration({x=0, y=3, z=0})
+			local y = self.object:getvelocity().y
+			if y > 2 then
+				y = 2
+			end
+			if y < 0 then
+				self.object:setacceleration({x=0, y=10, z=0})
+			end
+			self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), y))
+		else
+			self.object:setacceleration({x=0, y=0, z=0})
+			if math.abs(self.object:getvelocity().y) < 1 then
+				local pos = self.object:getpos()
+				pos.y = math.floor(pos.y)+0.5
+				self.object:setpos(pos)
+				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
+			else
+				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
+			end
+		end
+	end
+end
+
+--[[horse arabik
+local horseara = {
+    
+	
+	physical = true,
+	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
+	visual = "mesh",
+	stepheight = 1.1,
+	visual_size = {x=1,y=1},
+	mesh = "mobs_horseh1.x",
+	textures = {"mobs_horsearah1.png"},
+		
+	driver = nil,
+	v = 0,
+}
+
+
+local function is_ground(pos)
+	local nn = minetest.get_node(pos).name
+	return minetest.get_item_group(nn, "crumbly", "stone", "cracky") ~= 0
+end
+
+local function get_sign(i)
+	if i == 0 then
+		return 0
+	else
+		return i/math.abs(i)
+	end
+end
+
+local function get_velocity(v, yaw, y)
+	local x = math.cos(yaw)*v
+	local z = math.sin(yaw)*v
+	return {x=x, y=y, z=z}
+end
+
+local function get_v(v)
+	return math.sqrt(v.x^2+v.z^2)
+end
+
+function horseara:on_rightclick(clicker)
+	if not clicker or not clicker:is_player() then
+		return
+	end
+	if self.driver and clicker == self.driver then
+		self.driver = nil
+		clicker:set_detach()
+	elseif not self.driver then
+		self.driver = clicker
+		clicker:set_attach(self.object, "", {x=0,y=5,z=0}, {x=0,y=0,z=0})
+		self.object:setyaw(clicker:get_look_yaw())
+	end
+end
+
+
+function horseara:on_activate(staticdata, dtime_s)
+	self.object:set_armor_groups({immortal=1})
+	if staticdata then
+		self.v = tonumber(staticdata)
+	end
+end
+
+function horseara:get_staticdata()
+	return tostring(v)
+end
+
+function horseara:on_punch(puncher, time_from_last_punch, tool_capabilities, direction)
+	self.object:remove()
+	if puncher and puncher:is_player() then
+		puncher:get_inventory():add_item("main", "lottmobs:horsearah1")
+	end
+end
+
+
+function horseara:on_step(dtime)
+
+	self.v = get_v(self.object:getvelocity())*get_sign(self.v)
+	if self.driver then
+		local ctrl = self.driver:get_player_control()
+		if ctrl.up then
+			self.v = self.v+3
+		end
+		if ctrl.down then
+			self.v = self.v-0.1
+		end
+		if ctrl.left then
+			self.object:setyaw(self.object:getyaw()+math.pi/120+dtime*math.pi/120)
+		end
+		if ctrl.right then
+			self.object:setyaw(self.object:getyaw()-math.pi/120-dtime*math.pi/120)
+		end
+		if ctrl.jump then
+		local p = self.object:getpos()
+		p.y = p.y-0.5
+		if is_ground(p) then
+		local pos = self.object:getpos()
+				pos.y = math.floor(pos.y)+4
+				self.object:setpos(pos)
+				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
+		end
+		end
+		
+	end
+	local s = get_sign(self.v)
+	self.v = self.v - 0.02*s
+	if s ~= get_sign(self.v) then
+		self.object:setvelocity({x=0, y=0, z=0})
+		self.v = 0
+		return
+	end
+	if math.abs(self.v) > 4.5 then
+		self.v = 4.5*get_sign(self.v)
+	end
+	
+	local p = self.object:getpos()
+	p.y = p.y-0.5
+	if not is_ground(p) then
+		if minetest.registered_nodes[minetest.get_node(p).name].walkable then
+			self.v = 0
+		end
+		self.object:setacceleration({x=0, y=-10, z=0})
+		self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
+	else
+		p.y = p.y+1
+		if is_ground(p) then
+			self.object:setacceleration({x=0, y=3, z=0})
+			local y = self.object:getvelocity().y
+			if y > 2 then
+				y = 2
+			end
+			if y < 0 then
+				self.object:setacceleration({x=0, y=10, z=0})
+			end
+			self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), y))
+		else
+			self.object:setacceleration({x=0, y=0, z=0})
+			if math.abs(self.object:getvelocity().y) < 1 then
+				local pos = self.object:getpos()
+				pos.y = math.floor(pos.y)+0.5
+				self.object:setpos(pos)
+				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
+			else
+				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
+			end
+		end
+	end
+end
+
+minetest.register_craftitem("lottmobs:horseh1", {
+	description = "Horse",
+	inventory_image = "mobs_horse_inventar.png",
+	
+	on_place = function(itemstack, placer, pointed_thing)
+		if pointed_thing.above then
+			minetest.env:add_entity(pointed_thing.above, "lottmobs:horseh1")
+			itemstack:take_item()
+		end
+		return itemstack
+	end,
+})
+minetest.register_entity("lottmobs:horseh1", horse)
+minetest.register_craftitem("lottmobs:horsepegh1", {
+	description = "HorseWhite",
+	inventory_image = "mobs_horse_inventar.png",
+	
+	on_place = function(itemstack, placer, pointed_thing)
+		if pointed_thing.above then
+			minetest.env:add_entity(pointed_thing.above, "lottmobs:horsepegh1")
+			itemstack:take_item()
+		end
+		return itemstack
+	end,
+})
+minetest.register_entity("lottmobs:horsepegh1", horsepeg)
+
+minetest.register_craftitem("lottmobs:horsearah1", {
+	description = "HorseBlack",
+	inventory_image = "mobs_horse_inventar.png",
+	
+	on_place = function(itemstack, placer, pointed_thing)
+		if pointed_thing.above then
+			minetest.env:add_entity(pointed_thing.above, "lottmobs:horsearah1")
+			itemstack:take_item()
+		end
+		return itemstack
+	end,
+})
+minetest.register_entity("lottmobs:horsearah1", horseara)
+
+lottmobs:register_mob("lottmobs:horse", {
+	type = "animal",
+	hp_min = 10,
+	hp_max = 20,
+	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
+	textures = {"mobs_horse.png"},
+	visual = "mesh",
+	mesh = "mobs_horse.x",
+	makes_footstep_sound = true,
+	walk_velocity = 1.5,
+	run_velocity = 3,
+	armor = 200,
+	drops = {
+		{name = "lottmobs:meat_raw",
+		chance = 1,
+		min = 2,
+		max = 3,},
+	},
+	drawtype = "front",
+	water_damage = 1,
+	lava_damage = 5,
+	light_damage = 0,
+	animation = {
+		speed_normal = 15,
+		stand_start = 25,
+		stand_end = 75,
+		walk_start = 75,
+		walk_end = 100,
+	},
+	follow = "farming:wheat",
+	view_range = 5,
+	
+	on_rightclick = function(self, clicker)
+		if clicker:is_player() and clicker:get_inventory() then
+			clicker:get_inventory():add_item("main", "lottmobs:horseh1")
+			self.object:remove()
+		end
+	end,
+})
+--[[
+lottmobs:register_mob("lottmobs:horse3", {
+	type = "animal",
+	hp_max = 5,
+	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
+	textures = {"mobs_horseara.png"},
+	visual = "mesh",
+	mesh = "mobs_horse.x",
+	makes_footstep_sound = true,
+	walk_velocity = 1,
+	armor = 200,
+	drops = {
+		{name = "lottmobs:meat_raw",
+		chance = 1,
+		min = 2,
+		max = 3,},
+	},
+	drawtype = "front",
+	water_damage = 1,
+	lava_damage = 5,
+	light_damage = 0,
+	animation = {
+		speed_normal = 15,
+		stand_start = 25,
+		stand_end = 75,
+		walk_start = 75,
+		walk_end = 100,
+	},
+	follow = "farming:wheat",
+	view_range = 5,
+	
+	on_rightclick = function(self, clicker)
+		if clicker:is_player() and clicker:get_inventory() then
+			clicker:get_inventory():add_item("main", "lottmobs:horsearah1")
+			self.object:remove()
+		end
+	end,
+})
+lottmobs:register_spawn("lottmobs:horse3", {"default:desert_sand"}, 20, 8, 9000, 1, 31000)
+
+lottmobs:register_mob("lottmobs:horse2", {
+	type = "animal",
+	hp_max = 5,
+	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
+	textures = {"mobs_horsepeg.png"},
+	visual = "mesh",
+	mesh = "mobs_horse.x",
+	makes_footstep_sound = true,
+	walk_velocity = 1,
+	armor = 200,
+	drops = {
+		{name = "lottmobs:meat_raw",
+		chance = 1,
+		min = 2,
+		max = 3,},
+	},
+	drawtype = "front",
+	water_damage = 1,
+	lava_damage = 5,
+	light_damage = 0,
+	animation = {
+		speed_normal = 15,
+		stand_start = 25,
+		stand_end = 75,
+		walk_start = 75,
+		walk_end = 100,
+	},
+	follow = "farming:wheat",
+	view_range = 5,
+	
+	on_rightclick = function(self, clicker)
+		if clicker:is_player() and clicker:get_inventory() then
+			clicker:get_inventory():add_item("main", "lottmobs:horsepegh1")
+			self.object:remove()
+		end
+	end,
+})
+lottmobs:register_spawn("lottmobs:horse2", {"default:dirt_with_grass"}, 20, 8, 10000, 1, 31000)]]--
