@@ -1,0 +1,23 @@
+-- NPC Framework config example.
+
+-- Deafult Settings:
+
+-- Show NPC spawners in creative menu.
+NPCF_SHOW_IN_CREATIVE = true
+
+-- Show NPC Nametags.
+NPCF_SHOW_NAMETAGS = true 
+
+-- Make Builder NPC require all building materials.
+NPCF_BUILDER_REQ_MATERIALS = false
+
+-- Allow Deco NPC to roam freely away from players.
+NPCF_DECO_FREE_ROAMING = true
+
+-- Allow Guard NPC to attack players.
+NPCF_GUARD_ATTACK_PLAYERS = true
+
+-- Number of seconds between Duplicate NPC removals. Set 0 to Disable.
+-- Experimental work-around for entity duplication bug in minetest engine.
+-- Hopefully someday we'll be able to remove this.
+NPCF_DUPLICATE_REMOVAL_TIME = 10
