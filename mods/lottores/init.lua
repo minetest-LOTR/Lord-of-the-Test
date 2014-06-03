@@ -403,23 +403,129 @@ minetest.register_node("lottores:marble", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("lottores:geodes_crystal", {
+minetest.register_node("lottores:geodes_crystal_1", {
 	description = "Geodes Crystal",
-	drawtype = "plantlike",
-	visual_scale = 1.3,
+	drawtype = "nodebox",
 	tiles = {"lottores_geodes_crystal.png"},
-	inventory_image = "lottores_geodes_crystal.png",
-	wield_image = "lottores_geodes_crystal.png",
-	paramtype = "light",
-	walkable = true,
-	buildable_to = true,
-	is_ground_content = true,
+     paramtype = "light",
+	sunlight_propagates = true,
+     light_source = 8,
+     alpha = 200,
+	is_ground_content = false,
 	groups = {cracky=3,oddly_breakable_by_hand=3},
 	sounds = default.node_sound_glass_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
+     node_box = {
+        type = "fixed",
+        fixed = {
+            {-0.1875,-0.5,-0.125,0.1875,0.3125,0.1875},
+            {0.0625,-0.5,-0.25,0.3125,0,0},
+            {0.0625,-0.5,0.1875,0.25,0.1875,0.375},
+            {-0.3125,-0.5,-0.3125,-0.0625,0.0625,0},
+            {-0.375,-0.5,0.0625,-0.125,-0.0625,0.3125},
+        }
+    },
+     on_place = function(itemstack, placer, pointed_thing)
+		local stack = ItemStack("lottores:geodes_crystal_"..math.random(1,5))
+		local ret = minetest.item_place(stack, placer, pointed_thing)
+		return ItemStack("lottores:geodes_crystal_1 "..itemstack:get_count()-(1-ret:get_count()))
+	end,
+})
+
+minetest.register_node("lottores:geodes_crystal_2", {
+	drawtype = "nodebox",
+	tiles = {"lottores_geodes_crystal.png"},
+     paramtype = "light",
+	sunlight_propagates = true,
+     light_source = 8,
+     alpha = 200,
+	is_ground_content = false,
+	groups = {cracky=3,oddly_breakable_by_hand=3,not_in_creative_inventory=1},
+	sounds = default.node_sound_glass_defaults(),
+     drop = "lottores:geodes_crystal_1",
+     node_box = {
+        type = "fixed",
+        fixed = {
+            {-0.1875,-0.5,-0.125,0.1875,0.5,0.1875},
+            {0.1875,-0.5,-0.25,0.5,0.1875,0},
+            {0.0625,-0.5,0.1875,0.375,0.375,0.375},
+            {-0.375,-0.5,-0.3125,-0.0625,0.25,0},
+            {-0.5,-0.5,-0.0625,-0.125,0,0.3125},
+            {0,-0.5,-0.5,0.3125,-0.0625,-0.1875},
+        }
+    }
+})
+
+minetest.register_node("lottores:geodes_crystal_3", {
+	drawtype = "nodebox",
+	tiles = {"lottores_geodes_crystal.png"},
+     paramtype = "light",
+	sunlight_propagates = true,
+     light_source = 8,
+     alpha = 200,
+	is_ground_content = false,
+	groups = {cracky=3,oddly_breakable_by_hand=3,not_in_creative_inventory=1},
+	sounds = default.node_sound_glass_defaults(),
+     drop = "lottores:geodes_crystal_1",
+     node_box = {
+        type = "fixed",
+        fixed = {
+            {-0.125,-0.5,-0.25,0.25,0.5,0.1875},
+            {-0.125,-0.5,-0.4375,0.125,0.25,-0.1875},
+            {0,-0.5,-0.125,0.461539,0,0.3125},
+            {-0.5,-0.5,0,-0.0625,0.25,0.413465},
+            {-0.375,-0.5,-0.25,-0.0625,-0.0625,0.0625},
+            {0.1875,-0.5,-0.5,0.5,-0.25,-0.1875},
+            {-0.4375,-0.5,-0.5,-0.0625,-0.25,-0.125},
+        }
+    }
+})
+
+minetest.register_node("lottores:geodes_crystal_4", {
+	drawtype = "nodebox",
+	tiles = {"lottores_geodes_crystal.png"},
+     paramtype = "light",
+	sunlight_propagates = true,
+     light_source = 8,
+     alpha = 200,
+	is_ground_content = false,
+	groups = {cracky=3,oddly_breakable_by_hand=3,not_in_creative_inventory=1},
+	sounds = default.node_sound_glass_defaults(),
+     drop = "lottores:geodes_crystal_1",
+     node_box = {
+        type = "fixed",
+        fixed = {
+            {0.125,-0.5,-0.25,0.5,-0.125,0.125},
+            {-0.125,-0.5,-0.0625,0.1875,0.375,0.3125},
+            {0.0625,-0.5,-0.5,0.375,-0.0625,-0.125},
+            {-0.3125,-0.5,-0.3125,0,-0.1875,0.0625},
+            {-0.0625,-0.5,-0.1875,0.375,0.25,0.125},
+            {-0.375,-0.5,0.125,0,0.25,0.5},
+        }
+    }
+})
+
+minetest.register_node("lottores:geodes_crystal_5", {
+	drawtype = "nodebox",
+	tiles = {"lottores_geodes_crystal.png"},
+     paramtype = "light",
+	sunlight_propagates = true,
+     light_source = 8,
+     alpha = 200,
+	is_ground_content = false,
+	groups = {cracky=3,oddly_breakable_by_hand=3,not_in_creative_inventory=1},
+	sounds = default.node_sound_glass_defaults(),
+     drop = "lottores:geodes_crystal_1",
+     node_box = {
+        type = "fixed",
+        fixed = {
+            {-0.3125,-0.5,-0.1875,0,0.5,0.125},
+            {-0.1875,-0.5,-0.3125,0.1875,0.125,0},
+            {-0.25,-0.5,-0.5,0.0625,0.3125,-0.1875},
+            {0.0625,-0.5,-0.125,0.375,-0.125,0.1875},
+            {0.0625,-0.5,-0.375,0.3125,-0.25,-0.1875},
+            {-0.1875,-0.5,0,0.125,0.0625,0.5},
+        }
+    }
 })
 
 minetest.register_node("lottores:silver_block", {
