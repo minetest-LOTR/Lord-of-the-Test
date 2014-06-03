@@ -197,18 +197,6 @@ minetest.register_ore({
 
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "lottores:mithril_ore",
-	wherein        = "default:stone",
-	clust_scarcity = 17*17*17,
-	clust_num_ores = 3,
-	clust_size     = 2,
-	height_min     = -31000,
-	height_max     = -310,
-	flags          = "absheight",
-})
-
-minetest.register_ore({
-	ore_type       = "scatter",
 	ore            = "lottores:lead_ore",
 	wherein        = "default:stone",
 	clust_scarcity = 12*12*12,
@@ -283,6 +271,31 @@ minetest.register_ore({
 	clust_scarcity = 14*14*14,
 	clust_num_ores = 4,
 	clust_size     = 2,
+	height_min     = -31000,
+	height_max     = -256,
+	flags          = "absheight",
+})
+
+
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "lottores:mithril_ore",
+	wherein        = "default:stone",
+	clust_scarcity = 18*18*18,
+	clust_num_ores = 4,
+	clust_size     = 3,
+	height_min     = -255,
+	height_max     = -128,
+	flags          = "absheight",
+})
+
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "lottores:mithril_ore",
+	wherein        = "default:stone",
+	clust_scarcity = 16*16*16,
+	clust_num_ores = 4,
+	clust_size     = 3,
 	height_min     = -31000,
 	height_max     = -256,
 	flags          = "absheight",
@@ -1025,7 +1038,7 @@ stairs.register_stair_and_slab("tin_block", "lottores:galvorn_block",
 minetest.register_craft({
 	output = 'lottores:galvorn_ingot',
 	recipe = {
-		{'lottores:lead_ingot', 'lottores:rough_rock_lump'},
+		{'lottores:lead_ingot', 'default:mese_crystal'},
 	}
 })
 

@@ -83,24 +83,6 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:pick_mese',
-	recipe = {
-		{'default:mese_crystal', 'default:mese_crystal', 'default:mese_crystal'},
-		{'', 'group:stick', ''},
-		{'', 'group:stick', ''},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:pick_diamond',
-	recipe = {
-		{'default:diamond', 'default:diamond', 'default:diamond'},
-		{'', 'group:stick', ''},
-		{'', 'group:stick', ''},
-	}
-})
-
-minetest.register_craft({
 	output = 'default:shovel_wood',
 	recipe = {
 		{'group:wood'},
@@ -131,24 +113,6 @@ minetest.register_craft({
 	output = 'default:shovel_bronze',
 	recipe = {
 		{'default:bronze_ingot'},
-		{'group:stick'},
-		{'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:shovel_mese',
-	recipe = {
-		{'default:mese_crystal'},
-		{'group:stick'},
-		{'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:shovel_diamond',
-	recipe = {
-		{'default:diamond'},
 		{'group:stick'},
 		{'group:stick'},
 	}
@@ -191,24 +155,6 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:axe_mese',
-	recipe = {
-		{'default:mese_crystal', 'default:mese_crystal'},
-		{'default:mese_crystal', 'group:stick'},
-		{'', 'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:axe_diamond',
-	recipe = {
-		{'default:diamond', 'default:diamond'},
-		{'default:diamond', 'group:stick'},
-		{'', 'group:stick'},
-	}
-})
-
-minetest.register_craft({
 	output = 'default:sword_wood',
 	recipe = {
 		{'group:wood'},
@@ -240,24 +186,6 @@ minetest.register_craft({
 	recipe = {
 		{'default:bronze_ingot'},
 		{'default:bronze_ingot'},
-		{'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:sword_mese',
-	recipe = {
-		{'default:mese_crystal'},
-		{'default:mese_crystal'},
-		{'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:sword_diamond',
-	recipe = {
-		{'default:diamond'},
-		{'default:diamond'},
 		{'group:stick'},
 	}
 })
