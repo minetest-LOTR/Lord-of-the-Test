@@ -77,11 +77,21 @@ lottmobs:register_mob("lottmobs:elf", {
 lottmobs:register_spawn("lottmobs:elf", {"lottmapgen:lorien_grass"}, 20, 0, 6000, 3, 31000)
 
 minetest.register_craftitem("lottmobs:meat", {
-	description = "Chicken Meat",
-	inventory_image = "lottfarming_melon.png",
-	on_use = minetest.item_eat(2),
+	description = "Cooked Meat",
+	inventory_image = "lottmobs_meat.png",
+	on_use = minetest.item_eat(4),
 })
 
+minetest.register_craftitem("lottmobs:meat_raw", {
+	description = "Raw Meat",
+	inventory_image = "lottmobs_meat_raw.png",
+})
+
+minetest.register_craft({
+	type = "cooking",
+	output = "lottmobs:meat",
+	recipe = "lottmobs:meat_raw",
+})
 
 lottmobs:register_mob("lottmobs:chicken", {
 	type = "animal",
@@ -95,7 +105,7 @@ lottmobs:register_mob("lottmobs:chicken", {
 	walk_velocity = 1,
 	armor = 300,
 		drops = {
-		{name = "lottmobs:meat",
+		{name = "lottmobs:meat_raw",
 		chance = 1,
 		min = 1,
 		max = 1,},
