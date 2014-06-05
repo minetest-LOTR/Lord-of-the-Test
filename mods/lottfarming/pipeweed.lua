@@ -112,9 +112,9 @@ minetest.register_tool("lottfarming:pipe", {
      on_use = function(itemstack, user, pointed_thing)
      for _,arrow in ipairs(pipeweed) do
           if user:get_inventory():get_stack("main", user:get_wield_index()+1):get_name() == arrow[1] then
+               user:set_hp(user:get_hp()+2)
 			if not minetest.setting_getbool("creative_mode") then
 				user:get_inventory():remove_item("main", arrow[1])
-                    user:set_hp(user:get_hp()+2)
 			     end
                end
           end

@@ -152,6 +152,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
      local c_seregon = minetest.get_content_id("lottplants:seregon")
      local c_bomordor = minetest.get_content_id("lottplants:brambles_of_mordor")
      local c_pilinehtar = minetest.get_content_id("lottplants:pilinehtar")
+     local c_ithilgrass = minetest.get_content_id("lottmapgen:ithilien_grass")
+     local c_melon = minetest.get_content_id("lottplants:melon_wild")
 	
 	local sidelen = x1 - x0 + 1
 	local chulens = {x=sidelen, y=sidelen, z=sidelen}
@@ -263,7 +265,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
                                    elseif biome == 5 then
                                         data[vi] = c_gondorgrass
                                    elseif biome == 6 then
-                                        data[vi] = c_dirtgrass
+                                        data[vi] = c_ithilgrass
 							elseif biome == 7 then
                                         data[vi] = c_loriengrass
 							elseif biome == 8 then
@@ -352,7 +354,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
                                              elseif math.random(PLANT8) == 7 then
                                                   lottmapgen_farmingplants(data, vi)
                                              elseif math.random(PLANT13) == 8 then
-                                                  lottmapgen_farmingrareplants(data, vi)
+                                                  data[vi] = c_melon
                                              elseif math.random(PLANT5) == 11 then
                                                   lottmapgen_ithildinplants(data, vi)
 									end
@@ -390,7 +392,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
                                              elseif math.random(PLANT4) == 7 then
                                                   lottmapgen_farmingplants(data, vi)
                                              elseif math.random(PLANT9) == 8 then
-                                                  lottmapgen_farmingrareplants(data, vi)
+                                                  data[vi] = c_melon
 									end
                                         elseif biome == 10 then
 									if math.random(TREE2) == 2 then
@@ -420,23 +422,23 @@ minetest.register_on_generated(function(minp, maxp, seed)
                                              elseif math.random(PLANT8) == 6 then
                                                   lottmapgen_farmingplants(data, vi)
                                              elseif math.random(PLANT13) == 7 then
-                                                  lottmapgen_farmingrareplants(data, vi)
+                                                  data[vi] = c_melon
                                              elseif math.random(PLANT6) == 2 then
                                                   data[vi] = c_pilinehtar
 									end
                                         elseif biome == 13 then
-                                             if math.random(TREE3) == 2 then
+                                             if math.random(TREE7) == 2 then
 										lottmapgen_defaulttree(x, y, z, area, data)
-							          elseif math.random(TREE3) == 3 then
+							          elseif math.random(TREE7) == 3 then
                                                   lottmapgen_appletree(x, y, z, area, data)
-                                             elseif math.random(TREE5) == 4 then
+                                             elseif math.random(TREE7) == 4 then
                                                   lottmapgen_plumtree(x, y, z, area, data)
                                              elseif math.random(TREE7) == 9 then
                                                   lottmapgen_oaktree(x, y, z, area, data)
-                                             elseif math.random(PLANT4) == 7 then
+                                             elseif math.random(PLANT7) == 7 then
                                                   lottmapgen_farmingplants(data, vi)
                                              elseif math.random(PLANT9) == 8 then
-                                                  lottmapgen_farmingrareplants(data, vi)
+                                                  data[vi] = c_melon
 									end
 								end
 							end
