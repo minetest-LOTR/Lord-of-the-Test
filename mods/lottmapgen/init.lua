@@ -154,6 +154,13 @@ minetest.register_on_generated(function(minp, maxp, seed)
      local c_pilinehtar = minetest.get_content_id("lottplants:pilinehtar")
      local c_ithilgrass = minetest.get_content_id("lottmapgen:ithilien_grass")
      local c_melon = minetest.get_content_id("lottplants:melon_wild")
+     local c_angfort = minetest.get_content_id("lottmapgen:angmarfort")
+     local c_gonfort = minetest.get_content_id("lottmapgen:gondorfort")
+     local c_hobhole = minetest.get_content_id("lottmapgen:hobbithole")
+     local c_orcfort = minetest.get_content_id("lottmapgen:orcfort")
+     local c_malltre = minetest.get_content_id("lottmapgen:mallornhouse")
+     local c_mirktree = minetest.get_content_id("lottmapgen:mirkhouse")
+     local c_rohfort = minetest.get_content_id("lottmapgen:rohanfort")
 	
 	local sidelen = x1 - x0 + 1
 	local chulens = {x=sidelen, y=sidelen, z=sidelen}
@@ -295,6 +302,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
                                                   lottmapgen_firtree(x, y, z, area, data)
                                              elseif math.random(PLANT6) == 2 then
                                                   data[vi] = c_seregon
+                                             elseif math.random(PLANT13) == 13 then
+                                                  data[vi] = c_angfort
                                              end
 								elseif biome == 2 then
 									data[vi] = c_snowblock
@@ -337,6 +346,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
                                                   lottmapgen_farmingrareplants(data, vi)
                                              elseif math.random(PLANT6) == 2 then
                                                   data[vi] = c_mallos
+                                             elseif math.random(PLANT13) == 13 then
+                                                  data[vi] = c_gonfort
 									end
 								elseif biome == 6 then
 									if math.random(TREE3) == 2 then
@@ -367,12 +378,16 @@ minetest.register_on_generated(function(minp, maxp, seed)
                                                   data[vi] = c_mallorngen
                                              elseif math.random(PLANT4) == 11 then
                                                   lottmapgen_lorienplants(data, vi)
+                                             elseif math.random(PLANT13) == 13 then
+                                                  data[vi] = c_malltre
 									end
 								elseif biome == 8 then
 									if math.random(TREE10) == 2 then
 										lottmapgen_burnedtree(x, y, z, area, data)
                                              elseif math.random(PLANT4) == 2 then
                                                   data[vi] = c_bomordor
+                                             elseif math.random(PLANT13) == 13 then
+                                                  data[vi] = c_orcfort
 									end
 								elseif biome == 9 then
 									if math.random(TREE3) == 2 then
@@ -399,6 +414,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										data[vi] = c_mirktreegen
                                              elseif math.random(TREE4) == 3 then
                                                   lottmapgen_jungletree2(x, y, z, area, data)
+                                             elseif math.random(PLANT13) == 13 then
+                                                  data[vi] = c_mirktre
 									end
                                         elseif biome == 11 then
 								     if math.random(TREE10) == 2 then
@@ -425,6 +442,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
                                                   data[vi] = c_melon
                                              elseif math.random(PLANT6) == 2 then
                                                   data[vi] = c_pilinehtar
+                                             elseif math.random(PLANT13) == 13 then
+                                                  data[vi] = c_rohfort
 									end
                                         elseif biome == 13 then
                                              if math.random(TREE7) == 2 then
@@ -439,6 +458,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
                                                   lottmapgen_farmingplants(data, vi)
                                              elseif math.random(PLANT9) == 8 then
                                                   data[vi] = c_melon
+                                             elseif math.random(PLANT13) == 13 then
+                                                  data[vi] = c_hobhole
 									end
 								end
 							end
@@ -487,3 +508,4 @@ minetest.register_on_generated(function(minp, maxp, seed)
 end)
 
 dofile(minetest.get_modpath("lottmapgen").."/schematics.lua")
+dofile(minetest.get_modpath("lottmapgen").."/deco.lua")

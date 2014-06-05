@@ -2,3 +2,4 @@ default
 lottplants
 lottfarming
 lottores
+worldedit

@@ -20,3 +20,29 @@ stairs.register_stair_and_slab("orc_brick", "lottblocks:orc_brick",
 		"Orc Brick",
 		"Orc Brick"
 )
+minetest.register_node("lottblocks:marble_brick", {
+	description = "Marble Brick",
+	tiles = {"lottblocks_marble_brick.png"},
+	is_ground_content = false,
+	groups = {cracky=2},
+})
+stairs.register_stair_and_slab("marble_brick", "lottblocks:marble_brick",
+		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+		{"lottblocks_marble_brick.png"},
+		"Marble Brick",
+		"Marble Brick"
+)
+minetest.register_craft({
+	output = 'lottblocks:marble_brick 4',
+	recipe = {
+		{'lottores:marble', 'lottores:marble'},
+		{'lottores:marble', 'lottores:marble'},
+	}
+})
+minetest.register_craft({
+	output = 'lottblocks:orc_brick 4',
+	recipe = {
+		{'lottmapgen:mordor_stone', 'lottmapgen:mordor_stone'},
+		{'lottmapgen:mordor_stone', 'lottmapgen:mordor_stone'},
+	}
+})
