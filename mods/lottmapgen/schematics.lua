@@ -54,7 +54,7 @@ minetest.register_abm({
 
 minetest.register_abm({
     nodenames = {"lottmapgen:angmarfort"},
-    	interval = 1,
+    	interval = 5,
 	chance = 1,
      action = function(pos)
           if pos then
@@ -122,7 +122,7 @@ minetest.register_abm({
 
 minetest.register_abm({
     nodenames = {"lottmapgen:mirkhouse"},
-    	interval = 1,
+    	interval = 5,
 	chance = 1,
      action = function(pos)
           if pos then
@@ -155,7 +155,16 @@ minetest.register_abm({
 })
 
 minetest.register_abm({
-	nodenames = {"lottmapgen:angmarfort","lottmapgen:gondorfort","lottmapgen:hobbithole","lottmapgen:orcfort","lottmapgen:mirkhouse","lottmapgen:rohanfort"},
+	nodenames = {"lottmapgen:gondorfort","lottmapgen:hobbithole","lottmapgen:orcfort","lottmapgen:rohanfort","lottmapgen:mallornhouse"},
+	interval = 4,
+	chance = 1,
+	action = function(pos, node, active_object_count, active_object_count_wider)
+		minetest.env:remove_node(pos)
+	end,
+})
+
+minetest.register_abm({
+	nodenames = {"lottmapgen:angmarfort","lottmapgen:mirkhouse"},
 	interval = 8,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
