@@ -10,6 +10,11 @@ minetest.register_craftitem("lottother:ring", {
 	description = "Plain Ring",
 	inventory_image = "lottother_ring.png",
 })
+minetest.register_craftitem("lottother:purple_gem", {
+	description = "Purple Gem",
+	inventory_image = "lottother_purplegem.png",
+})
+
 
 --ELF RINGS
 --FUNCTION = Sets your health to max every 30 seconds.
@@ -88,6 +93,11 @@ minetest.register_craft({
 	{"lottother:ringsilver_ingot", "lottother:ringsilver_ingot", "lottother:ringsilver_ingot"},
 	},
 })
+minetest.register_craft({
+	type = "shapeless",
+	output = "lottother:purple_gem",
+	recipe = {"lottores:blue_gem", "lottores:red_gem"},
+})
 
 minetest.register_craft({
 	output = "lottother:blue_gem_ring",
@@ -155,19 +165,111 @@ minetest.register_craft({
 	cooktime = 1000,
 })
 
---[[OTHER RINGS
+--OTHER RINGS
 --Mithril ring (base for Dwarf ring)
-minetest.register_craftitem("lottother:mithril_ring", {
-	description = "Mithril Ring",
-	inventory_image = "lottother_mithril_ring.png",
+minetest.register_craftitem("lottother:purple_gem_ring", {
+	description = "Purple Gem Ring",
+	inventory_image = "lottother_purplegem_ring.png",
 })
-minetest.register_craftitem("lottother:mithril_am_ring", {
+minetest.register_craftitem("lottother:purple_gem_mithril_ring", {
+	description = "Purple Gem Mithril Ring",
+	inventory_image = "lottother_purplegem_mithril_ring.png",
+})
+minetest.register_craftitem("lottother:purple_am_ring", {
 	description = "Mithril Almost Magic Ring",
-	inventory_image = "lottother_mithril_am_ring.png",
+	inventory_image = "lottother_purplegem_am_ring.png",
 })
 minetest.register_craftitem("lottother:dwarf_ring", {
 	description = "Dwarf Ring",
-	inventory_image = "lottother_mithril_am_ring.png",
+	inventory_image = "lottother_dwarf_ring.png",
 })
-]]--
+
+minetest.register_craft({
+	output = "lottother:purple_gem_ring",
+	recipe = {
+	{"lottother:purple_gem"},
+	{"lottother:ring"},
+	},
+})
+minetest.register_craft({
+	output = "lottother:purple_gem_mithril_ring",
+	recipe = {
+	{"lottores:mithril_ingot", "lottores:mithril_ingot", "lottores:mithril_ingot"},
+	{"lottores:mithril_ingot", "lottother:purple_gem_ring", "lottores:mithril_ingot"},
+	{"lottores:mithril_ingot", "lottores:mithril_ingot", "lottores:mithril_ingot"},
+	},
+})
+minetest.register_craft({
+	output = "lottother:purple_am_ring",
+	recipe = {
+	{"lottores:rough_rock_lump", "lottores:rough_rock_lump", "lottores:rough_rock_lump"},
+	{"lottores:rough_rock_lump", "lottother:purple_gem_mithril_ring", "lottores:rough_rock_lump"},
+	{"lottores:rough_rock_lump", "lottores:rough_rock_lump", "lottores:rough_rock_lump"},
+	},
+})
+minetest.register_craft({
+	type = "cooking",
+	output = "lottother:dwarf_ring",
+	recipe = "lottother:purple_am_ring",
+	cooktime = 1000,
+})
+
+
+
+
+
+
+
+
+
+
+--Dwarf ring crafts...
+minetest.register_craft({
+	type = "shapeless",
+	output = "lottores:limestone_lump 2",
+	recipe = {"lottores:limestone_lump", "lottother:dwarf_ring"},
+	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
+})
+minetest.register_craft({
+	type = "shapeless",
+	output = "lottores:silver_lump 2",
+	recipe = {"lottores:silver_lump", "lottother:dwarf_ring"},
+	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
+})
+minetest.register_craft({
+	type = "shapeless",
+	output = "lottores:tin_lump 2",
+	recipe = {"lottores:tin_lump", "lottother:dwarf_ring"},
+	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
+})
+minetest.register_craft({
+	type = "shapeless",
+	output = "lottores:lead_lump 2",
+	recipe = {"lottores:lead_lump", "lottother:dwarf_ring"},
+	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
+})
+minetest.register_craft({
+	type = "shapeless",
+	output = "default:coal_lump 2",
+	recipe = {"lottores:lead_lump", "lottother:dwarf_ring"},
+	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
+})
+minetest.register_craft({
+	type = "shapeless",
+	output = "default:iron_lump 2",
+	recipe = {"lottores:lead_lump", "lottother:dwarf_ring"},
+	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
+})
+minetest.register_craft({
+	type = "shapeless",
+	output = "default:copper_lump 2",
+	recipe = {"lottores:lead_lump", "lottother:dwarf_ring"},
+	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
+})
+minetest.register_craft({
+	type = "shapeless",
+	output = "default:gold_lump 3",
+	recipe = {"default:gold_lump", "lottother:dwarf_ring"},
+	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
+})
 
