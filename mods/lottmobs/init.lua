@@ -52,6 +52,7 @@ lottmobs:register_mob("lottmobs:elf", {
 	lava_damage = 10,
 	light_damage = 0,
 	attack_type = "dogfight",
+	follow = "lottother:narya",
 	animation = {
 		speed_normal = 15,
 		speed_run = 15,
@@ -341,6 +342,7 @@ lottmobs:register_mob("lottmobs:rohan_guard", {
 	lava_damage = 10,
 	light_damage = 0,
 	attack_type = "dogfight",
+	follow = "lottother:narya",
 	animation = {
 		speed_normal = 15,
 		speed_run = 15,
@@ -432,6 +434,7 @@ lottmobs:register_mob("lottmobs:gondor_guard", {
 	lava_damage = 5,
 	light_damage = 0,
 	attack_type = "dogfight",
+	follow = "lottother:narya",
 	animation = {
 		speed_normal = 15,
 		speed_run = 15,
@@ -1067,6 +1070,7 @@ lottmobs:register_mob("lottmobs:dwarf", {
 	lava_damage = 10,
 	light_damage = 0,
 	attack_type = "dogfight",
+	follow = "lottother:narya",
 	animation = {
 		speed_normal = 15,
 		speed_run = 15,
