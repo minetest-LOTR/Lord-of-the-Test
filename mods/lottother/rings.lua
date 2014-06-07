@@ -251,25 +251,30 @@ minetest.register_craft({
 minetest.register_craft({
 	type = "shapeless",
 	output = "default:coal_lump 2",
-	recipe = {"lottores:lead_lump", "lottother:dwarf_ring"},
+	recipe = {"default:coal_lump", "lottother:dwarf_ring"},
 	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
 })
 minetest.register_craft({
 	type = "shapeless",
 	output = "default:iron_lump 2",
-	recipe = {"lottores:lead_lump", "lottother:dwarf_ring"},
+	recipe = {"default:iron_lump", "lottother:dwarf_ring"},
 	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
 })
 minetest.register_craft({
 	type = "shapeless",
 	output = "default:copper_lump 2",
-	recipe = {"lottores:lead_lump", "lottother:dwarf_ring"},
+	recipe = {"default:copper_lump", "lottother:dwarf_ring"},
 	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
 })
 minetest.register_craft({
 	type = "shapeless",
-	output = "default:gold_lump 3",
+	output = "default:gold_lump 2",
 	recipe = {"default:gold_lump", "lottother:dwarf_ring"},
 	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
 })
-
+minetest.register_craft({
+	type = "shapeless",
+	output = "lottores:rough_rock_lump 2",
+	recipe = {"lottores:rough_rock_lump", "lottother:dwarf_ring"},
+	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
+})
