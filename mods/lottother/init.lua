@@ -374,7 +374,7 @@ minetest.register_abm({
 minetest.register_abm({
 	nodenames = {"lottother:dirt"},
 	neighbors = {"default:dirt"},
-	interval = 15,
+	interval = 150,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		local x = pos.x
@@ -388,7 +388,7 @@ minetest.register_abm({
 minetest.register_abm({
 	nodenames = {"lottother:snow"},
 	neighbors = {"default:snowblock"},
-	interval = 15,
+	interval = 150,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		local x = pos.x
@@ -402,7 +402,7 @@ minetest.register_abm({
 minetest.register_abm({
 	nodenames = {"lottother:mordor_stone"},
 	neighbors = {"lottmapgen:mordor_stone"},
-	interval = 15,
+	interval = 150,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		local x = pos.x
