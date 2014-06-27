@@ -25,7 +25,7 @@ minetest.register_craft({
 	output = 'default:fence_wood 6',
 	recipe = {
 		{'default:wood', 'default:wood', 'default:wood'},
-		{'group:stick', 'default:wood', 'default:wood'},
+		{'default:wood', 'default:wood', 'default:wood'},
 	}
 })
 

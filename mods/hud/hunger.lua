@@ -225,15 +225,20 @@ if minetest.get_modpath("lottfarming") ~= nil then
 	overwrite("lottfarming:corn", 6)
 	overwrite("lottfarming:green_mushroom", 3)
 	overwrite("lottfarming:melon", 4)
-	overwrite("lottfarming:pipeweed", 2)
-	overwrite("lottfarming:potato", 8)
-	overwrite("lottfarming:red_mushroom", 3)
-	overwrite("lottfarming:tomatoes", 4)
-	overwrite("lottfarming:turnips", 8)
+	overwrite("lottfarming:potato", 1)
+	overwrite("lottfarming:potato_cooked", 8)
+	overwrite("lottfarming:red_mushroom", 4)
+	overwrite("lottfarming:tomatoes", 2)
+	overwrite("lottfarming:tomatoes_cooked", 4)
+	overwrite("lottfarming:tomato_soup", 8)
+	overwrite("lottfarming:turnips", 1)
+	overwrite("lottfarming:turnips_cooked", 8)
+	overwrite("lottfarming:salad", 6)
+	overwrite("lottfarming:mushroom_soup", 8)
 end
 
 if minetest.get_modpath("lottplants") ~= nil then
-	overwrite("lottplants:plum", 1)
-	overwrite("lottplants:yavannamirefruit", 6)
-	overwrite("lottplants:honey", 1)
+	overwrite("lottplants:plum", 2)
+	overwrite("lottplants:yavannamirefruit", 10)
+	overwrite("lottplants:honey", 2)
 end

@@ -35,7 +35,7 @@ if HUD_ENABLE_HUNGER == nil then
 end
 
 HUD_SHOW_ARMOR = false
-if minetest.get_modpath("3d_armor") ~= nil then
+if minetest.get_modpath("lottarmor") ~= nil then
 	HUD_SHOW_ARMOR = true
 end
 
