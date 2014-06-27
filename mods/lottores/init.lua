@@ -1197,7 +1197,7 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "cooking",
-	output = "lottores:geodes_crystal",
+	output = "lottores:geodes_crystal_1",
 	recipe = "lottores:rough_rock_lump",
 })
 
@@ -1284,7 +1284,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = 'lottores:ithildin_1',
 	recipe = {
-		{'lottores:mithril_ingot', 'lottores:geodes_crystal'},
+		{'lottores:mithril_ingot', 'lottores:geodes_crystal_1'},
 	}
 })
 

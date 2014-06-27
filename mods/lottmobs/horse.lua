@@ -817,6 +817,9 @@ lottmobs:register_mob("lottmobs:horse", {
 	water_damage = 1,
 	lava_damage = 5,
 	light_damage = 0,
+     sounds = {
+		random = "",
+     },
 	animation = {
 		speed_normal = 15,
 		stand_start = 25,
@@ -864,6 +867,9 @@ lottmobs:register_mob("lottmobs:horsepeg", {
 	water_damage = 1,
 	lava_damage = 5,
 	light_damage = 0,
+     sounds = {
+		random = "",
+     },
 	animation = {
 		speed_normal = 15,
 		stand_start = 25,
@@ -912,6 +918,9 @@ lottmobs:register_mob("lottmobs:horseara", {
 	water_damage = 1,
 	lava_damage = 5,
 	light_damage = 0,
+     sounds = {
+		random = "",
+     },
 	animation = {
 		speed_normal = 15,
 		stand_start = 25,
@@ -960,6 +969,9 @@ lottmobs:register_mob("lottmobs:shirepony", {
 	water_damage = 1,
 	lava_damage = 5,
 	light_damage = 0,
+     sounds = {
+		random = "",
+     },
 	animation = {
 		speed_normal = 15,
 		stand_start = 0,
@@ -1008,6 +1020,9 @@ lottmobs:register_mob("lottmobs:shireponyblack", {
 	water_damage = 1,
 	lava_damage = 5,
 	light_damage = 0,
+     sounds = {
+		random = "",
+     },
 	animation = {
 		speed_normal = 15,
 		stand_start = 0,
