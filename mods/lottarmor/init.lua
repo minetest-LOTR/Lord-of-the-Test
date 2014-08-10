@@ -66,6 +66,13 @@ minetest.register_tool("lottarmor:helmet_mithril", {
 	wear = 0,
 })
 
+minetest.register_tool("lottarmor:helmet_elf", {
+	description = "Elvish Helmet",
+	inventory_image = "lottarmor_inv_helmet_elf.png",
+	groups = {armor_head=10, armor_heal=15, armor_use=100},
+	wear = 0,
+})
+
 minetest.register_tool("lottarmor:helmet_dwarf", {
 	description = "Dwarvish Helmet",
 	inventory_image = "lottarmor_inv_helmet_dwarf.png",
