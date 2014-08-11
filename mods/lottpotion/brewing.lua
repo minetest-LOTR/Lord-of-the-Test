@@ -166,10 +166,10 @@ minetest.register_abm({
 		-- Get what to cook if anything
 		local srcstack = inv:get_stack("src", 1)
 		if srcstack then src_item1=srcstack:to_table() end
-		
+
 		local src2stack = inv:get_stack("src2", 1)
 		if src2stack then src_item2=src2stack:to_table() end
-		
+
 		if src_item1 and src_item2 then
 		   recipe = lottpotion.get_brewing_recipe(src_item1,src_item2)
 		end
@@ -197,7 +197,7 @@ minetest.register_abm({
 		      meta:set_string("src_time", 0)
 		   end
 		end
-		
+
 		if meta:get_float("fuel_time") < meta:get_float("fuel_totaltime") then
 		   local percent = math.floor(meta:get_float("fuel_time") /
 					   meta:get_float("fuel_totaltime") * 100)
@@ -283,13 +283,11 @@ lottpotion.get_brewing_recipe = function(brew1, brew2)
 			      end
 			   end
 
-lottpotion.register_brewing_recipe("lottfarming:berries",6, "lottpotion:wine",1, "lottpotion:strongwine",1)
-lottpotion.register_brewing_recipe("lottfarming:berries",5, "lottpotion:water_glass",1, "lottpotion:wine",1)
-lottpotion.register_brewing_recipe("farming:wheat",3, "lottpotion:water_glass",1, "lottpotion:beer",1)
-lottpotion.register_brewing_recipe("lottplants:niphredil_fake",3, "lottpotion:water_glass",1, "lottpotion:miruvor",1)
-lottpotion.register_brewing_recipe("lottplants:honey",6, "lottpotion:water_glass",1, "lottpotion:mead",1)
-lottpotion.register_brewing_recipe("default:apple",6, "lottpotion:water_glass",1, "lottpotion:cider",1)
-lottpotion.register_brewing_recipe("lottfarming:barley",6, "lottpotion:water_glass",1, "lottpotion:ale",1)
+lottpotion.register_brewing_recipe("lottfarming:berries",5, "lottpotion:drinking_glass_water",1, "lottpotion:wine",1)
+lottpotion.register_brewing_recipe("farming:wheat",3, "lottpotion:drinking_glass_water",1, "lottpotion:beer",1)
+lottpotion.register_brewing_recipe("lottplants:honey",6, "lottpotion:drinking_glass_water",1, "lottpotion:mead",1)
+lottpotion.register_brewing_recipe("default:apple",6, "lottpotion:drinking_glass_water",1, "lottpotion:cider",1)
+lottpotion.register_brewing_recipe("lottfarming:barley",6, "lottpotion:drinking_glass_water",1, "lottpotion:ale",1)
 
 brewing_recipes = {}
 registered_recipes_count = 1
@@ -321,10 +319,11 @@ function register_brewing_recipe (string1,count1, string2,count2, string3,count3
    end
 end
 
-register_brewing_recipe ("lottfarming:berries",6, "lottpotion:wine",1, "lottpotion:strongwine",1)
-register_brewing_recipe ("lottfarming:berries",5, "lottpotion:water_glass",1, "lottpotion:wine",1)
-register_brewing_recipe ("farming:wheat",3, "lottpotion:water_glass",1, "lottpotion:beer",1)
-register_brewing_recipe ("lottplants:niphredil_fake",3, "lottpotion:water_glass",1, "lottpotion:miruvor",1)
+register_brewing_recipe ("lottfarming:berries",5, "lottpotion:drinking_glass_water",1, "lottpotion:wine",1)
+register_brewing_recipe ("farming:wheat",3, "lottpotion:drinking_glass_water",1, "lottpotion:beer",1)
+register_brewing_recipe ("lottplants:honey",6, "lottpotion:drinking_glass_water",1, "lottpotion:mead",1)
+register_brewing_recipe ("default:apple",6, "lottpotion:drinking_glass_water",1, "lottpotion:cider",1)
+register_brewing_recipe ("lottfarming:barley",6, "lottpotion:drinking_glass_water",1, "lottpotion:ale",1)
 
 minetest.register_craft({
 	output = 'lottpotion:brewer',
@@ -334,4 +333,3 @@ minetest.register_craft({
 		{'group:wood', 'default:steel_ingot', 'group:wood'},
 	}
 })
-

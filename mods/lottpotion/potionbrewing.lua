@@ -7,6 +7,60 @@ local function swap_node(pos,name)
 	minetest.swap_node(pos,node)
 end
 
+-- Base Ingredients
+minetest.register_node("lottpotion:glass_bottle_mese", {
+	description = "Glass Bottle (Mese Water)",
+	drawtype = "plantlike",
+	tiles = {"vessels_glass_bottle.png^lottpotion_water_mese.png"},
+	inventory_image = "vessels_glass_bottle_inv.png^lottpotion_water_mese.png",
+	wield_image = "vessels_glass_bottle_inv.png^lottpotion_water_mese.png",
+	paramtype = "light",
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.25, -0.5, -0.25, 0.25, 0.4, 0.25}
+	},
+	groups = {vessel=1,dig_immediate=3,attached_node=1},
+	sounds = default.node_sound_glass_defaults(),
+})
+
+minetest.register_node("lottpotion:glass_bottle_geodes", {
+	description = "Glass Bottle (Geodes Crystal Water)",
+	drawtype = "plantlike",
+	tiles = {"vessels_glass_bottle.png^lottpotion_water_geodes.png"},
+	inventory_image = "vessels_glass_bottle_inv.png^lottpotion_water_geodes.png",
+	wield_image = "vessels_glass_bottle_inv.png^lottpotion_water_geodes.png",
+	paramtype = "light",
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.25, -0.5, -0.25, 0.25, 0.4, 0.25}
+	},
+	groups = {vessel=1,dig_immediate=3,attached_node=1},
+	sounds = default.node_sound_glass_defaults(),
+})
+
+minetest.register_node("lottpotion:glass_bottle_seregon", {
+	description = "Glass Bottle (Seregon Water)",
+	drawtype = "plantlike",
+	tiles = {"vessels_glass_bottle.png^lottpotion_water_seregon.png"},
+	inventory_image = "vessels_glass_bottle_inv.png^lottpotion_water_seregon.png",
+	wield_image = "vessels_glass_bottle_inv.png^lottpotion_water_seregon.png",
+	paramtype = "light",
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.25, -0.5, -0.25, 0.25, 0.4, 0.25}
+	},
+	groups = {vessel=1,dig_immediate=3,attached_node=1},
+	sounds = default.node_sound_glass_defaults(),
+})
+
+
+
+
+-- Potion Brewer
+
 potionbrewer_formspec =
 	"size[8,9]"..
 	"label[0,0;Potion Brewer Inactive]"..
@@ -120,7 +174,7 @@ minetest.register_abm({
 		   was_active = true
 		   meta:set_float("fuel_time", meta:get_float("fuel_time") + 1)
 		   meta:set_float("src_time", meta:get_float("src_time") + 1)
-		   if recipe and meta:get_float("src_time") == 6 then
+		   if recipe and meta:get_float("src_time") == 100 then
 		      -- check if there's room for output in "dst" list
 		      local dst_stack = { name=recipe.dst_name, count=recipe.dst_count}
 		      if inv:room_for_item("dst",dst_stack) then
@@ -223,12 +277,36 @@ lottpotion.get_potion_brewing_recipe = function(brew1, brew2)
 			      end
 			   end
 
-lottpotion.register_potion_brewing_recipe("lottfarming:athelas",3, "lottpotion:water_bottle",1, "lottpotion:weakathelasbrew",1)
-lottpotion.register_potion_brewing_recipe("lottfarming:athelas",3, "lottpotion:weakathelasbrew",1, "lottpotion:strongathelasbrew",1)
-lottpotion.register_potion_brewing_recipe("bones:bones",5, "lottpotion:water_bottle",1, "lottpotion:weakorcdraught",1)
-lottpotion.register_potion_brewing_recipe("bones:bones",6, "lottpotion:weakorcdraught",1, "lottpotion:strongorcdraught",1)
-lottpotion.register_potion_brewing_recipe("default:tree",99, "lottpotion:water_bottle",1, "lottpotion:entdraught",1)
-lottpotion.register_potion_brewing_recipe("lottplants:elanor_fake",3, "lottpotion:water_bottle",1, "lottpotion:limpe",1)
+--Base Potion
+lottpotion.register_potion_brewing_recipe("lottplants:seregon_fake",1, "lottpotion:glass_bottle_water",1, "lottpotion:glass_bottle_seregon",1)
+lottpotion.register_potion_brewing_recipe("default:mese_crystal_fragment",1, "lottpotion:glass_bottle_water",1, "lottpotion:glass_bottle_mese",1)
+lottpotion.register_potion_brewing_recipe("lottores:geodes_crystal_1",1, "lottpotion:glass_bottle_water",1, "lottpotion:glass_bottle_geodes",1)
+--Potion
+----Orc Draught
+lottpotion.register_potion_brewing_recipe("lottmobs:meat_raw",5, "lottpotion:glass_bottle_seregon",1, "lottpotion:orcdraught_power1",1)
+lottpotion.register_potion_brewing_recipe("lottpotion:orcdraught_power2",1, "lottmobs:meat_raw",5, "lottpotion:orcdraught_power3",1)
+lottpotion.register_potion_brewing_recipe("lottmobs:meat_raw",5, "lottpotion:orcdraught_power1",1, "lottpotion:orcdraught_power2",1)
+----Spider Poison
+lottpotion.register_potion_brewing_recipe("lottmobs:spiderpoison",2, "lottpotion:glass_bottle_seregon",1, "lottpotion:spiderpoison_power1",1)
+lottpotion.register_potion_brewing_recipe("lottpotion:spiderpoison_power2",1, "lottmobs:spiderpoison",2, "lottpotion:spiderpoison_power3",1)
+lottpotion.register_potion_brewing_recipe("lottmobs:spiderpoison",2, "lottpotion:spiderpoison_power1",1, "lottpotion:spiderpoison_power2",1)
+----Limpe
+lottpotion.register_potion_brewing_recipe("lottplants:yavannamireleaf",10, "lottpotion:glass_bottle_mese",1, "lottpotion:limpe_power1",1)
+lottpotion.register_potion_brewing_recipe("lottpotion:limpe_power2",1, "lottplants:yavannamireleaf",10, "lottpotion:limpe_power3",1)
+lottpotion.register_potion_brewing_recipe("lottplants:yavannamireleaf",10, "lottpotion:limpe_power1",1, "lottpotion:limpe_power2",1)
+----Miruvor
+lottpotion.register_potion_brewing_recipe("lottplants:yavannamirefruit",2, "lottpotion:glass_bottle_mese",1, "lottpotion:miruvor_power1",1)
+lottpotion.register_potion_brewing_recipe("lottpotion:miruvor_power2",1, "lottplants:yavannamirefruit",2, "lottpotion:miruvor_power3",1)
+lottpotion.register_potion_brewing_recipe("lottplants:yavannamirefruit",2, "lottpotion:miruvor_power1",1, "lottpotion:miruvor_power2",1)
+--Athelas Brew
+lottpotion.register_potion_brewing_recipe("lottfarming:athelas",3, "lottpotion:glass_bottle_geodes",1, "lottpotion:athelasbrew_power1",1)
+lottpotion.register_potion_brewing_recipe("lottpotion:athelasbrew_power2",1, "lottfarming:athelas",3, "lottpotion:athelasbrew_power3",1)
+lottpotion.register_potion_brewing_recipe("lottfarming:athelas",3, "lottpotion:athelasbrew_power1",1, "lottpotion:athelasbrew_power2",1)
+--Ent Draught
+lottpotion.register_potion_brewing_recipe("default:leaves",10, "lottpotion:glass_bottle_geodes",1, "lottpotion:entdraught_power1",1)
+lottpotion.register_potion_brewing_recipe("lottpotion:entdraught_power2",1, "default:leaves",10, "lottpotion:entdraught_power3",1)
+lottpotion.register_potion_brewing_recipe("default:leaves",10, "lottpotion:entdraught_power1",1, "lottpotion:entdraught_power2",1)
+
 
 potion_brewing_recipes = {}
 registered_recipes_count = 1
@@ -260,12 +338,36 @@ function register_potion_brewing_recipe (string1,count1, string2,count2, string3
    end
 end
 
-register_potion_brewing_recipe ("lottfarming:athelas",3, "lottpotion:water_bottle",1, "lottpotion:weakathelasbrew",1)
-register_potion_brewing_recipe ("lottfarming:athelas",3, "lottpotion:weakathelasbrew",1, "lottpotion:strongathelasbrew",1)
-register_potion_brewing_recipe ("bones:bones",5, "lottpotion:water_bottle",1, "lottpotion:weakorcdraught",1)
-register_potion_brewing_recipe ("bones:bones",6, "lottpotion:weakorcdraught",1, "lottpotion:strongorcdraught",1)
-register_potion_brewing_recipe ("default:tree",99, "lottpotion:water_bottle",1, "lottpotion:entdraught",1)
-register_potion_brewing_recipe ("lottplants:elanor_fake",3, "lottpotion:water_bottle",1, "lottpotion:limpe",1)
+--Base Potion
+register_potion_brewing_recipe ("lottplants:seregon_fake",1, "lottpotion:glass_bottle_water",1, "lottpotion:glass_bottle_seregon",1)
+register_potion_brewing_recipe ("default:mese_crystal_fragment",1, "lottpotion:glass_bottle_water",1, "lottpotion:glass_bottle_mese",1)
+register_potion_brewing_recipe ("lottores:geodes_crystal_1",1, "lottpotion:glass_bottle_water",1, "lottpotion:glass_bottle_geodes",1)
+--Potion
+----Orc Draught
+register_potion_brewing_recipe ("lottmobs:meat_raw",5, "lottpotion:glass_bottle_seregon",1, "lottpotion:orcdraught_power1",1)
+register_potion_brewing_recipe ("lottpotion:orcdraught_power2",1, "lottmobs:meat_raw",5, "lottpotion:orcdraught_power3",1)
+register_potion_brewing_recipe ("lottmobs:meat_raw",5, "lottpotion:orcdraught_power1",1, "lottpotion:orcdraught_power2",1)
+----Spider Poison
+register_potion_brewing_recipe ("lottmobs:spiderpoison",2, "lottpotion:glass_bottle_seregon",1, "lottpotion:spiderpoison_power1",1)
+register_potion_brewing_recipe ("lottpotion:spiderpoison_power2",1, "lottmobs:spiderpoison",2, "lottpotion:spiderpoison_power3",1)
+register_potion_brewing_recipe ("lottmobs:spiderpoison",2, "lottpotion:spiderpoison_power1",1, "lottpotion:spiderpoison_power2",1)
+----Limpe
+register_potion_brewing_recipe ("lottplants:yavannamireleaf",10, "lottpotion:glass_bottle_mese",1, "lottpotion:limpe_power1",1)
+register_potion_brewing_recipe ("lottpotion:limpe_power2",1, "lottplants:yavannamireleaf",10, "lottpotion:limpe_power3",1)
+register_potion_brewing_recipe ("lottplants:yavannamireleaf",10, "lottpotion:limpe_power1",1, "lottpotion:limpe_power2",1)
+----Miruvor
+register_potion_brewing_recipe ("lottplants:yavannamirefruit",2, "lottpotion:glass_bottle_mese",1, "lottpotion:miruvor_power1",1)
+register_potion_brewing_recipe ("lottpotion:miruvor_power2",1, "lottplants:yavannamirefruit",2, "lottpotion:miruvor_power3",1)
+register_potion_brewing_recipe ("lottplants:yavannamirefruit",2, "lottpotion:miruvor_power1",1, "lottpotion:miruvor_power2",1)
+--Athelas Brew
+register_potion_brewing_recipe ("lottfarming:athelas",3, "lottpotion:glass_bottle_geodes",1, "lottpotion:athelasbrew_power1",1)
+register_potion_brewing_recipe ("lottpotion:athelasbrew_power2",1, "lottfarming:athelas",3, "lottpotion:athelasbrew_power3",1)
+register_potion_brewing_recipe ("lottfarming:athelas",3, "lottpotion:athelasbrew_power1",1, "lottpotion:athelasbrew_power2",1)
+--Ent Draught
+register_potion_brewing_recipe ("default:leaves",10, "lottpotion:glass_bottle_geodes",1, "lottpotion:entdraught_power1",1)
+register_potion_brewing_recipe ("lottpotion:entdraught_power2",1, "default:leaves",10, "lottpotion:entdraught_power3",1)
+register_potion_brewing_recipe ("default:leaves",10, "lottpotion:entdraught_power1",1, "lottpotion:entdraught_power2",1)
+
 
 minetest.register_craft({
 	output = 'lottpotion:potion_brewer',
@@ -275,4 +377,3 @@ minetest.register_craft({
 		{'group:stone', 'group:stone', 'group:stone'},
 	}
 })
-

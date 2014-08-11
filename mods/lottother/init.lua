@@ -1,5 +1,7 @@
 dofile(minetest.get_modpath("lottother").."/rings.lua")
 dofile(minetest.get_modpath("lottother").."/ms.lua")
+dofile(minetest.get_modpath("lottother").."/misc.lua")
+dofile(minetest.get_modpath("lottother").."/flags.lua")
 
 minetest.register_node("lottother:blue_torch", {
 	description = "Blue Torch",

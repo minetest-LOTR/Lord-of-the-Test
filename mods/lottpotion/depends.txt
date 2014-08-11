@@ -4,3 +4,5 @@ bucket
 lottfarming
 lottplants
 bones
+lottthrowing
+hud

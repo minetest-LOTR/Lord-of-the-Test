@@ -1,194 +1,364 @@
 lottpotion = {}
 
-dofile(minetest.get_modpath("lottpotion").."/brewing.lua")
-dofile(minetest.get_modpath("lottpotion").."/potionbrewing.lua")
 dofile(minetest.get_modpath("lottpotion").."/cauldron.lua")
-local Vec3 = dofile(minetest.get_modpath("lottpotion").."/lib/Vec3_1-0.lua")
 
-function lottpotion.register_potion(iname, color, exptime, action, expaction)
-	local rname = string.gsub(iname, "[-%[%]()1023456789 ]", "")
-	minetest.register_craftitem(minetest.get_current_modname()..":"..rname:lower(), {
-		description = iname.."",
-		inventory_image = "lottpotion_bottle.png^lottpotion_"..color..".png",
-
-		on_place = function(itemstack, user, pointed_thing)
-			local cnt = 0
-			if user:hud_get(0) and user:hud_get(1) and user:hud_get(2) and user:hud_get(3) then
-				user:hud_remove(0)
-				user:hud_remove(1)
-				user:hud_remove(2)
-				user:hud_remove(3)
-				samepotion = false
-			end
-			local length1 = exptime+iname:len()
-			local lottpotion_hud_1 = user:hud_add( {
-				hud_elem_type = "statbar",
-				position = {x=0.206, y=0.009},
-				name = "Lottpotions HUD BG",
-				scale = {x=1, y=1},
-				number = length1*2+1,
-				text = "lottpotion_hud_bg.png",
-			})
-			local length2 = iname:len()/100
-			local lottpotion_hud_2 = user:hud_add( {
-				hud_elem_type = "statbar",
-				position = {x=0.206+length2, y=0.015},
-				name = "Lottpotions HUD COUNTER",
-				scale = {x=1, y=1},
-				number = exptime,
-				text = "lottpotion_hud_stat.png",
-			})
-			
-						
-			local lottpotion_hud_3 = user:hud_add( {
-				hud_elem_type = "text",
-				position = {x=0.21, y=0.01},
-				number = 0xFFFFFF,
-				name = "POTIONS HUD TEXT",
-				text = iname..":",
-				scale = {x=100, y=100},
-			})
-			
-			local lottpotion_hud_4 = user:hud_add( {
-				hud_elem_type = "image",
-				position = {x=0.18, y=0.008},
-				name = "POTIONS HUD BOTTLE",
-				text = "lottpotion_bottle.png^lottpotion_"..color..".png",
-				scale = {x=1, y=1},
-			})
-				local player = user
-
-				local function timer(cnt, player)
-					if cnt <= exptime and samepotion == true then
-						player:hud_change(1, number, exptime-cnt)
-						minetest.after(1, timer, cnt+1, player)
-					else
-						user:hud_remove(0)
-						user:hud_remove(1)
-						user:hud_remove(2)
-						user:hud_remove(3)
-						cnt = 0					
-					end
-				end
-			samepotion = true
-			timer(cnt, player)
-
-			action(itemstack, user, pointed_thing)
-  			 minetest.after(exptime, expaction, itemstack, user, pointed_thing)
-  			 minetest.after(exptime, function(user)
-					if user:hud_get(0) and user:hud_get(1) and user:hud_get(2) and user:hud_get(3) then
-						user:hud_remove(0)
-						user:hud_remove(1)
-						user:hud_remove(2)
-						user:hud_remove(3)
-						cnt = 0
-					end
-				end, player)
-				
-  			 itemstack:take_item()
-			minetest.add_particlespawner(30, 0.2,
-				pointed_thing.above, pointed_thing.above,
-				{x=1, y= 2, z=1}, {x=-1, y= 2, z=-1},
-				{x=0.2, y=0.2, z=0.2}, {x=-0.2, y=0.5, z=-0.2},
-				5, 10,
-				1, 3,
-				false, "lottpotion_"..color..".png")
-  			 
-  			 minetest.add_particlespawner(40, 0.1,
-				pointed_thing.above, pointed_thing.above,
-				{x=2, y=0.2, z=2}, {x=-2, y=0.5, z=-2},
-				{x=0, y=-6, z=0}, {x=0, y=-10, z=0},
-				0.5, 2,
-				0.2, 5,
-				true, "lottpotion_shatter.png")
-				
-				local dir = Vec3(user:get_look_dir()) *20
-				minetest.add_particle(
-				{x=user:getpos().x, y=user:getpos().y+1.5, z=user:getpos().z}, {x=dir.x, y=dir.y, z=dir.z}, {x=0, y=-10, z=0}, 0.2,
-					6, false, "lottpotion_bottle.png^lottpotion_"..color..".png")
-			return itemstack
-			
+lottpotion = {
+	players = {},
+	effects = {
+		phys_override = function(sname, name, fname, time, sdata, flags)
+			local def = {
+				on_use = function(itemstack, user, pointed_thing)
+					lottpotion.grant(time, user:get_player_name(), fname.."_"..flags.type..sdata.type, name, flags)
+					itemstack:take_item()
+					return itemstack
+				end,
+				lottpotion = {
+					speed = 0,
+					jump = 0,
+					gravity = 0,
+					air = 0,
+				},
+			}
+			return def
 		end,
-	})
-end
+		fixhp = function(sname, name, fname, time, sdata, flags)
+			local def = {
+				on_use = function(itemstack, user, pointed_thing)
+					for i=0, (sdata.time or 0) do
+						minetest.after(i, function()
+							local hp = user:get_hp()
+							if flags.inv==true then
+								hp = hp - (sdata.hp or 3)
+							else
+								hp = hp + (sdata.hp or 3)
+							end
+							hp = math.min(20, hp)
+							hp = math.max(0, hp)
+							user:set_hp(hp)
+						end)
+					end
+					itemstack:take_item()
+					return itemstack
+				end,
+			}
+			def.mobs = {
+				on_near = def.on_use,
+			}
+			return def
+		end,
+		air = function(sname, name, fname, time, sdata, flags)
+			local def = {
+				on_use = function(itemstack, user, pointed_thing)
+					local lottpotion_e = lottpotion.players[user:get_player_name()]
+					lottpotion_e.air = lottpotion_e.air + (sdata.time or 0)
+					for i=0, (sdata.time or 0) do
+						minetest.after(i, function()
+							local br = user:get_breath()
+							if flags.inv==true then
+								br = br - (sdata.br or 3)
+							else
+								br = br + (sdata.br or 3)
+							end
+							br = math.min(11, br)
+							br = math.max(0, br)
+							user:set_breath(br)
+							
+							if i==(sdata.time or 0) then
+								lottpotion_e.air = lottpotion_e.air - (sdata.time or 0)
+							end
+						end)
+					end
+					itemstack:take_item()
+					return itemstack
+				end,
+			}
+			return def
+		end,
+	},
+	grant = function(time, playername, potion_name, type, flags)
+		local rootdef = minetest.registered_items[potion_name]
+		if rootdef == nil then
+			return
+		end
+		if rootdef.lottpotion == nil then
+			return
+		end
+		local def = {}
+		for name, val in pairs(rootdef.lottpotion) do
+			def[name] = val
+		end
+		if flags.inv==true then
+			def.gravity = 0 - def.gravity
+			def.speed = 0 - def.speed
+			def.jump = 0 - def.jump
+		end
+		lottpotion.addPrefs(playername, def.speed, def.jump, def.gravity)
+		lottpotion.refresh(playername)
+		minetest.chat_send_player(playername, "You are under the effects of the "..type.." potion.")
+		minetest.after(time, function()
+			lottpotion.addPrefs(playername, 0-def.speed, 0-def.jump, 0-def.gravity)
+			lottpotion.refresh(playername)
+			minetest.chat_send_player(playername, "The effects of the "..type.." potion have worn off.")
+		end)
+	end,
+	addPrefs = function(playername, speed, jump, gravity)
+		local prefs = lottpotion.players[playername]
+		prefs.speed = prefs.speed + speed
+		prefs.jump = prefs.jump + jump
+		prefs.gravity = prefs.gravity + gravity
+	end,
+	refresh = function(playername)
+		if minetest.get_player_by_name(playername)~=nil then
+			local prefs = lottpotion.players[playername]
+			minetest.get_player_by_name(playername):set_physics_override(prefs.speed, prefs.jump, prefs.gravity)
+		end
+	end,
+	register_potion = function(sname, name, fname, time, def)
+		local tps = {"power", "corruption"}
+		for t=1, #tps do
+			for i=1, #def.types do
+				local sdata = def.types[i]
+				local item_def = {
+					description = name.." (Strength: "..tps[t]..sdata.type..")",
+					inventory_image = "lottpotion_bottle.png^lottpotion_"..(def.texture or sname)..".png^lottpotion_"..tps[t]..sdata.type..".png",
+					drawtype = "plantlike",
+					paramtype = "light",
+					walkable = false,
+					groups = {dig_immediate=3,attached_node=1,vessel=1},
+                         sounds = default.node_sound_glass_defaults(),
+				}
+				item_def.tiles = {item_def.inventory_image}
+				local flags = {
+					inv = false,
+					type = tps[t],
+				}
+				if t == 2 then
+					flags.inv = true
+				end
+				for name, val in pairs(lottpotion.effects[def.effect](sname, name, fname, time, sdata, flags)) do
+					item_def[name] = val
+				end
+				for name, val in pairs(sdata.set) do
+					item_def[name] = val
+				end
+				for name, val in pairs(sdata.effects) do
+					item_def.lottpotion[name] = val
+				end
+                    minetest.register_node(fname.."_"..tps[t]..sdata.type, item_def)
+				--potions.register_liquid(i..tps[t]..sname, name.." ("..tps[t].." "..i..")", item_def.on_use)
+				if minetest.get_modpath("lottthrowing")~=nil then
+					lottpotion.register_arrow(fname.."_"..tps[t]..sdata.type, i..tps[t]..sname, name.." ("..tps[t].." "..i..")", item_def.on_use,
+							item_def.description, item_def.inventory_image)
+				end
+			end
+		end
+	end,
+}
+dofile(minetest.get_modpath("lottpotion").."/arrows.lua")
+     
+lottpotion.register_potion("athelasbrew", "Athelas Brew", "lottpotion:athelasbrew", 100, {
+	effect = "fixhp",
+	types = {
+		{
+			type = 1,
+               hp = 1,
+               time = 20, 
+			set = {},
+			effects = {
+			},
+		},
+		{
+			type = 2,
+               hp = 1,
+               time = 50, 
+			set = {},
+			effects = {
+			},
+		},
+		{
+			type = 3,
+               hp = 1,
+               time = 100, 
+			set = {},
+			effects = {
+			},
+		},
+	}
+})
+   
+lottpotion.register_potion("limpe", "Limpe", "lottpotion:limpe", 240, {
+	effect = "air",
+	types = {
+		{
+			type = 1,
+			br = 2,
+               hp = 10,
+               time = 60,
+			set = {},
+			effects = {
+			},
+		},
+		{
+			type = 2,
+			br = 5,
+               time = 120,
+			set = {},
+			effects = {
+			},
+		},
+		{
+			type = 3,
+			br = 10,
+               time = 240,
+			set = {},
+			effects = {
+			},
+		},
+	}
+})
 
-lottpotion.register_potion("Strong Athelas Brew", "darkgreen", 60,
-function(itemstack, user, pointed_thing) 
-	user:set_hp(user:get_hp()+16)
-	user:set_physics_override(3, 1, 1)
-end,
+lottpotion.register_potion("miruvor", "Miruvor", "lottpotion:miruvor", 240, {
+	effect = "phys_override",
+	types = {
+		{
+			type = 1,
+			set = {},
+               time = 60,
+			effects = {
+				speed = 1,
+			},
+		},
+		{
+			type = 2,
+			set = {},
+               time = 120,
+			effects = {
+				speed = 2,
+			},
+		},
+		{
+			type = 3,
+			set = {},
+               time = 240,
+			effects = {
+				speed = 3,
+			},
+		},
+	}
+})
 
-function(itemstack, user, pointed_thing)
-	user:set_physics_override(1,nil,nil)
+lottpotion.register_potion("spiderpoison", "Spider Poison", "lottpotion:spiderpoison", 20, {
+	effect = "phys_override",
+	types = {
+		{
+			type = 1,
+			set = {},
+			effects = {
+                    speed = -0.2,
+                    jump = -0.2,
+			},
+		},
+		{
+			type = 2,
+			set = {},
+			effects = {
+                    speed = -0.5,
+                    jump = -0.5,
+			},
+		},
+		{
+			type = 3,
+			set = {},
+			effects = {
+                    speed = -1,
+                    jump = -1,
+			},
+		},
+	}
+})
+
+lottpotion.register_potion("orcdraught", "Orc Draught", "lottpotion:orcdraught", 100, {
+	effect = "fixhp",
+	types = {
+		{
+			type = 1,
+               hp = -1,
+               time = 20, 
+			set = {},
+			effects = {
+			},
+		},
+		{
+			type = 2,
+               hp = -1,
+               time = 50, 
+			set = {},
+			effects = {
+			},
+		},
+		{
+			type = 3,
+               hp = -1,
+               time = 100, 
+			set = {},
+			effects = {
+			},
+		},
+	}
+})
+
+lottpotion.register_potion("entdraught", "Ent Draught", "lottpotion:entdraught", 240, {
+	effect = "phys_override",
+	types = {
+		{
+			type = 1,
+			set = {},
+			effects = {
+                    speed = 1,
+                    jump = -0.2,
+			},
+		},
+		{
+			type = 2,
+			set = {},
+			effects = {
+                    speed = 2,
+                    jump = -0.5,
+			},
+		},
+		{
+			type = 3,
+			set = {},
+			effects = {
+                    speed = 3,
+                    jump = -1,
+			},
+		},
+	}
+})
+
+minetest.register_on_joinplayer(function(player)
+	lottpotion.players[player:get_player_name()] = {
+		speed = 1,
+		jump = 1,
+		gravity = 1,
+		air = 0,
+	}
 end)
 
-lottpotion.register_potion("Weak Athelas Brew", "green", 30,
-function(itemstack, user, pointed_thing) 
-	user:set_hp(user:get_hp()+8)
-	user:set_physics_override(3, 1, 1)
-end,
-
-function(itemstack, user, pointed_thing)
-	user:set_physics_override(1,nil,nil)
-end)
-
-lottpotion.register_potion("Strong Orc Draught", "darkgrey", 1,
-function(itemstack, user, pointed_thing) 
-	user:set_hp(user:get_hp()-16)
-end,
-
-function(itemstack, user, pointed_thing)
-	return true;
-end)
-
-lottpotion.register_potion("Weak Orc Draught", "grey", 1,
-function(itemstack, user, pointed_thing) 
-	user:set_hp(user:get_hp()-8)
-end,
-
-function(itemstack, user, pointed_thing)
-	return true;
-end)
-
-lottpotion.register_potion("Ent Draught", "cyan", 60,
-function(itemstack, user, pointed_thing) 
-	user:set_physics_override(0.3, 1, 1)
-	user:set_hp(user:get_hp()+20)
-end,
-
-function(itemstack, user, pointed_thing)
-	user:set_physics_override(1,nil,nil)
-end)
-
-lottpotion.register_potion("Limpe", "yellow", 60,
-function(itemstack, user, pointed_thing) 
-	user:set_physics_override(1, 1, 1)
-	user:set_hp(user:get_hp()+1)
-end,
-
-function(itemstack, user, pointed_thing)
-	user:set_physics_override(1,nil,nil)
-end)
-
-lottpotion.register_potion("Miruvor", "miruvor", 60,
-function(itemstack, user, pointed_thing) 
-	user:set_hp(user:get_hp()+1)
-	user:set_physics_override(3, 1, 1)
-end,
-
-function(itemstack, user, pointed_thing)
-	user:set_physics_override(1,nil,nil)
-end)
-
-lottpotion.register_potion("Strong Wine", "strongwine", 60,
-function(itemstack, user, pointed_thing)
-	user:set_hp(user:get_hp()+16)
-	user:set_physics_override(-0.1,1,1)
-end,
-
-function(itemstack, user, pointed_thing)
-	user:set_physics_override(1,nil,nil)
-end)
+minetest.register_chatcommand("effect", {
+	params = "none",
+	description = "get effect info",
+	func = function(name, param)
+		minetest.chat_send_player(name, "effects:")
+		local lottpotion_e = lottpotion.players[name]
+		if lottpotion_e~=nil then
+			for potion_name, val in pairs(lottpotion_e) do
+				minetest.chat_send_player(name, potion_name .. "=" .. val)
+			end
+		end
+	end,
+})
 
 minetest.register_craftitem( "lottpotion:wine", {
 	description = "Wine",
@@ -225,16 +395,5 @@ minetest.register_craftitem( "lottpotion:cider", {
 	on_use = minetest.item_eat(4),
 })
 
-minetest.register_craft({
-	output = 'lottpotion:potion_bottle 1',
-	recipe = {
-		{'vessels:glass_bottle'},
-	}
-})
-
-minetest.register_craft({
-	output = 'lottpotion:glass 1',
-	recipe = {
-		{'vessels:drinking_glass'},
-	}
-})
+dofile(minetest.get_modpath("lottpotion").."/potionbrewing.lua")
+dofile(minetest.get_modpath("lottpotion").."/brewing.lua")

@@ -15,7 +15,7 @@ minetest.register_node("lottblocks:orc_brick", {
 	groups = {cracky=2},
 })
 stairs.register_stair_and_slab("orc_brick", "lottblocks:orc_brick",
-		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+		{cracky=2},
 		{"lottblocks_orc_brick.png"},
 		"Orc Brick",
 		"Orc Brick"
@@ -27,7 +27,7 @@ minetest.register_node("lottblocks:marble_brick", {
 	groups = {cracky=2},
 })
 stairs.register_stair_and_slab("marble_brick", "lottblocks:marble_brick",
-		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+		{cracky=2},
 		{"lottblocks_marble_brick.png"},
 		"Marble Brick",
 		"Marble Brick"
