@@ -52,5 +52,5 @@ lottpotion.register_arrow = function(potion_name, name, hname, potion_use_funct,
 		}
 	})
 	
-	lottarrows[#lottarrows+1] = {potion_name.."_arrow", potion_name.."_arrow_entity"}
+	arrows[#arrows+1] = {potion_name.."_arrow", potion_name.."_arrow_entity"}
 end
