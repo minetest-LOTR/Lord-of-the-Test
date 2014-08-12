@@ -230,7 +230,7 @@ minetest.register_node("lottother:lamp_wood_alder",{
 })
 minetest.register_node("lottother:lamp_middle_wood_alder",{
 	drop = "",
-	groups = {cracky = 1, not_in_creative_inventory = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 	tiles = {"lottplants_alderwood.png"},
 	paramtype = "light",
 	drawtype = "nodebox",
@@ -245,7 +245,7 @@ minetest.register_node("lottother:lamp_middle_wood_alder",{
 
 minetest.register_node("lottother:lamp_top_wood_alder",{
 	drop = "lottother:lamp_wood_alder",
-	groups = {cracky = 1, not_in_creative_inventory = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 		tiles = {
 		"lottplants_alderwood.png",
 		"lottplants_alderwood.png",
