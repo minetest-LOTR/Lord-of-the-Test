@@ -67,7 +67,7 @@ minetest.register_tool("lottarmor:helmet_mithril", {
 })
 
 minetest.register_tool("lottarmor:helmet_elf", {
-	description = "Elvish Helmet",
+	description = "Elven Helmet",
 	inventory_image = "lottarmor_inv_helmet_elf.png",
 	groups = {armor_head=10, armor_heal=15, armor_use=100},
 	wear = 0,
@@ -174,7 +174,7 @@ minetest.register_tool("lottarmor:chestplate_gondor", {
 })
 
 minetest.register_tool("lottarmor:chestplate_elf", {
-	description = "Elvish Chestplate",
+	description = "Elven Chestplate",
 	inventory_image = "lottarmor_inv_chestplate_elf.png",
 	groups = {armor_torso=15, armor_heal=15, armor_use=25},
 	wear = 0,
@@ -252,7 +252,7 @@ minetest.register_tool("lottarmor:leggings_mithril", {
 })
 
 minetest.register_tool("lottarmor:leggings_elf", {
-	description = "Elvish Leggings",
+	description = "Elven Leggings",
 	inventory_image = "lottarmor_inv_leggings_elf.png",
 	groups = {armor_legs=15, armor_heal=15, armor_use=25},
 	wear = 0,
@@ -347,7 +347,7 @@ minetest.register_tool("lottarmor:boots_mithril", {
 })
 
 minetest.register_tool("lottarmor:boots_elf", {
-	description = "Elvish Boots",
+	description = "Elven Boots",
 	inventory_image = "lottarmor_inv_boots_elf.png",
 	groups = {armor_feet=10, armor_heal=15, armor_use=25},
 	wear = 0,
