@@ -74,7 +74,7 @@ minetest.register_tool("lottarmor:helmet_elf", {
 })
 
 minetest.register_tool("lottarmor:helmet_dwarf", {
-	description = "Dwarvish Helmet",
+	description = "Dwarven Helmet",
 	inventory_image = "lottarmor_inv_helmet_dwarf.png",
 	groups = {armor_head=16, armor_heal=7, armor_use=700},
 	wear = 0,
@@ -181,7 +181,7 @@ minetest.register_tool("lottarmor:chestplate_elf", {
 })
 
 minetest.register_tool("lottarmor:chestplate_dwarf", {
-	description = "Dwarvish Chestplate",
+	description = "Dwarven Chestplate",
 	inventory_image = "lottarmor_inv_chestplate_dwarf.png",
 	groups = {armor_torso=21, armor_heal=7, armor_use=700},
 	wear = 0,
@@ -259,7 +259,7 @@ minetest.register_tool("lottarmor:leggings_elf", {
 })
 
 minetest.register_tool("lottarmor:leggings_dwarf", {
-	description = "Dwarvish Leggings",
+	description = "Dwarven Leggings",
 	inventory_image = "lottarmor_inv_leggings_dwarf.png",
 	groups = {armor_legs=21, armor_heal=7, armor_use=700},
 	wear = 0,
@@ -354,7 +354,7 @@ minetest.register_tool("lottarmor:boots_elf", {
 })
 
 minetest.register_tool("lottarmor:boots_dwarf", {
-	description = "Dwarvish Boots",
+	description = "Dwarven Boots",
 	inventory_image = "lottarmor_inv_boots_dwarf.png",
 	groups = {armor_feet=16, armor_heal=7, armor_use=700},
 	wear = 0,
