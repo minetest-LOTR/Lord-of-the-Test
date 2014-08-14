@@ -48,7 +48,6 @@ for _, row in ipairs(tapestry.colours) do
 		sounds = default.node_sound_defaults(),
 	     paramtype = "light",
 	     paramtype2 = "facedir",
-          drop = '',
           node_box = {
 		    type = "fixed",
 		    fixed = {
@@ -86,7 +85,10 @@ for _, row in ipairs(tapestry.colours) do
           end
           minetest.env:add_node(above, {name = "lottother:tapestry_"..name, param2 = fdir})
           minetest.env:add_node({x = above.x, y = above.y + 1, z = above.z}, {name = "lottother:tapestry_top_"..name,param2 = fdir})
-          return ItemStack("")
+          if not minetest.setting_getbool("creative_mode") then
+          	itemstack:take_item()
+          end
+          return itemstack
           end,
           on_destruct = function(pos)
                local p = {x=pos.x, y=pos.y+1, z=pos.z}
