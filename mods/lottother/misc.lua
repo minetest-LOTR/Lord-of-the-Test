@@ -3,7 +3,7 @@ minetest.register_node("lottother:lamp_wood",{
 	description = "Wooden Lamp Post",
 	tiles = {"default_cobble.png"},
 	inventory_image = "lottother_lamps_inv.png",
-	groups = {cracky = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 	paramtype = "light",
 	drawtype = "nodebox",
 	node_box = {
@@ -33,7 +33,7 @@ minetest.register_node("lottother:lamp_wood",{
 })
 minetest.register_node("lottother:lamp_middle_wood",{
 	drop = "",
-	groups = {cracky = 1, not_in_creative_inventory = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 	tiles = {"default_wood.png"},
 	paramtype = "light",
 	drawtype = "nodebox",
@@ -48,7 +48,7 @@ minetest.register_node("lottother:lamp_middle_wood",{
 
 minetest.register_node("lottother:lamp_top_wood",{
 	drop = "lottother:lamp_wood",
-	groups = {cracky = 1, not_in_creative_inventory = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 		tiles = {
 		"default_wood.png",
 		"default_wood.png",
@@ -113,7 +113,7 @@ minetest.register_node("lottother:lamp_top_wood",{
 
 minetest.register_node("lottother:tiny_lamp_wood",{
      description = "Wooden Tiny Lamp",
-	groups = {cracky = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 		tiles = {
 		"default_wood.png",
 		"default_wood.png",
@@ -200,7 +200,7 @@ minetest.register_node("lottother:lamp_wood_alder",{
 	description = "Alder Wood Lamp Post",
 	tiles = {"default_cobble.png"},
 	inventory_image = "lottother_lamps_inv_alder.png",
-	groups = {cracky = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 	paramtype = "light",
 	drawtype = "nodebox",
 	node_box = {
@@ -230,7 +230,7 @@ minetest.register_node("lottother:lamp_wood_alder",{
 })
 minetest.register_node("lottother:lamp_middle_wood_alder",{
 	drop = "",
-	groups = {cracky = 1, not_in_creative_inventory = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 	tiles = {"lottplants_alderwood.png"},
 	paramtype = "light",
 	drawtype = "nodebox",
@@ -245,7 +245,7 @@ minetest.register_node("lottother:lamp_middle_wood_alder",{
 
 minetest.register_node("lottother:lamp_top_wood_alder",{
 	drop = "lottother:lamp_wood_alder",
-	groups = {cracky = 1, not_in_creative_inventory = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 		tiles = {
 		"lottplants_alderwood.png",
 		"lottplants_alderwood.png",
@@ -310,7 +310,7 @@ minetest.register_node("lottother:lamp_top_wood_alder",{
 
 minetest.register_node("lottother:tiny_lamp_wood_alder",{
      description = "Alder Wood Tiny Lamp",
-	groups = {cracky = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2,oddly_breakable_by_hand=1},
 		tiles = {
 		"lottplants_alderwood.png",
 		"lottplants_alderwood.png",
@@ -397,7 +397,7 @@ minetest.register_node("lottother:lamp_wood_birch",{
 	description = "Birch Wood Lamp Post",
 	tiles = {"default_cobble.png"},
 	inventory_image = "lottother_lamps_inv_birch.png",
-	groups = {cracky = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 	paramtype = "light",
 	drawtype = "nodebox",
 	node_box = {
@@ -427,7 +427,7 @@ minetest.register_node("lottother:lamp_wood_birch",{
 })
 minetest.register_node("lottother:lamp_middle_wood_birch",{
 	drop = "",
-	groups = {cracky = 1, not_in_creative_inventory = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 	tiles = {"lottplants_birchwood.png"},
 	paramtype = "light",
 	drawtype = "nodebox",
@@ -442,7 +442,7 @@ minetest.register_node("lottother:lamp_middle_wood_birch",{
 
 minetest.register_node("lottother:lamp_top_wood_birch",{
 	drop = "lottother:lamp_wood_birch",
-	groups = {cracky = 1, not_in_creative_inventory = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 		tiles = {
 		"lottplants_birchwood.png",
 		"lottplants_birchwood.png",
@@ -507,7 +507,7 @@ minetest.register_node("lottother:lamp_top_wood_birch",{
 
 minetest.register_node("lottother:tiny_lamp_wood_birch",{
      description = "Birch Wood Tiny Lamp",
-	groups = {cracky = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 		tiles = {
 		"lottplants_birchwood.png",
 		"lottplants_birchwood.png",
@@ -593,7 +593,7 @@ minetest.register_node("lottother:lamp_wood_lebethron",{
 	description = "Lebethron Wood Lamp Post",
 	tiles = {"default_cobble.png"},
 	inventory_image = "lottother_lamps_inv_lebethron.png",
-	groups = {cracky = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 	paramtype = "light",
 	drawtype = "nodebox",
 	node_box = {
@@ -623,7 +623,7 @@ minetest.register_node("lottother:lamp_wood_lebethron",{
 })
 minetest.register_node("lottother:lamp_middle_wood_lebethron",{
 	drop = "",
-	groups = {cracky = 1, not_in_creative_inventory = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 	tiles = {"lottplants_lebethronwood.png"},
 	paramtype = "light",
 	drawtype = "nodebox",
@@ -638,7 +638,7 @@ minetest.register_node("lottother:lamp_middle_wood_lebethron",{
 
 minetest.register_node("lottother:lamp_top_wood_lebethron",{
 	drop = "lottother:lamp_wood_lebethron",
-	groups = {cracky = 1, not_in_creative_inventory = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 		tiles = {
 		"default_wood.png",
 		"default_wood.png",
@@ -703,7 +703,7 @@ minetest.register_node("lottother:lamp_top_wood_lebethron",{
 
 minetest.register_node("lottother:tiny_lamp_wood_lebethron",{
      description = "Lebethron Wood Tiny Lamp",
-	groups = {cracky = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 		tiles = {
 		"default_wood.png",
 		"default_wood.png",
@@ -790,7 +790,7 @@ minetest.register_node("lottother:lamp_wood_mallorn",{
 	description = "Mallorn Wood Lamp Post",
 	tiles = {"default_cobble.png"},
 	inventory_image = "lottother_lamps_inv_mallorn.png",
-	groups = {cracky = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 	paramtype = "light",
 	drawtype = "nodebox",
 	node_box = {
@@ -820,7 +820,7 @@ minetest.register_node("lottother:lamp_wood_mallorn",{
 })
 minetest.register_node("lottother:lamp_middle_wood_mallorn",{
 	drop = "",
-	groups = {cracky = 1, not_in_creative_inventory = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 	tiles = {"lottplants_mallornwood.png"},
 	paramtype = "light",
 	drawtype = "nodebox",
@@ -835,7 +835,7 @@ minetest.register_node("lottother:lamp_middle_wood_mallorn",{
 
 minetest.register_node("lottother:lamp_top_wood_mallorn",{
 	drop = "lottother:lamp_wood_mallorn",
-	groups = {cracky = 1, not_in_creative_inventory = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 		tiles = {
 		"lottplants_mallornwood.png",
 		"lottplants_mallornwood.png",
@@ -900,7 +900,7 @@ minetest.register_node("lottother:lamp_top_wood_mallorn",{
 
 minetest.register_node("lottother:tiny_lamp_wood_mallorn",{
      description = "Mallorn Wooden Tiny Lamp",
-	groups = {cracky = 1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 		tiles = {
 		"lottplants_mallornwood.png",
 		"lottplants_mallornwood.png",

@@ -67,14 +67,14 @@ minetest.register_tool("lottarmor:helmet_mithril", {
 })
 
 minetest.register_tool("lottarmor:helmet_elf", {
-	description = "Elvish Helmet",
+	description = "Elven Helmet",
 	inventory_image = "lottarmor_inv_helmet_elf.png",
 	groups = {armor_head=10, armor_heal=15, armor_use=100},
 	wear = 0,
 })
 
 minetest.register_tool("lottarmor:helmet_dwarf", {
-	description = "Dwarvish Helmet",
+	description = "Dwarven Helmet",
 	inventory_image = "lottarmor_inv_helmet_dwarf.png",
 	groups = {armor_head=16, armor_heal=7, armor_use=700},
 	wear = 0,
@@ -174,14 +174,14 @@ minetest.register_tool("lottarmor:chestplate_gondor", {
 })
 
 minetest.register_tool("lottarmor:chestplate_elf", {
-	description = "Elvish Chestplate",
+	description = "Elven Chestplate",
 	inventory_image = "lottarmor_inv_chestplate_elf.png",
 	groups = {armor_torso=15, armor_heal=15, armor_use=25},
 	wear = 0,
 })
 
 minetest.register_tool("lottarmor:chestplate_dwarf", {
-	description = "Dwarvish Chestplate",
+	description = "Dwarven Chestplate",
 	inventory_image = "lottarmor_inv_chestplate_dwarf.png",
 	groups = {armor_torso=21, armor_heal=7, armor_use=700},
 	wear = 0,
@@ -252,14 +252,14 @@ minetest.register_tool("lottarmor:leggings_mithril", {
 })
 
 minetest.register_tool("lottarmor:leggings_elf", {
-	description = "Elvish Leggings",
+	description = "Elven Leggings",
 	inventory_image = "lottarmor_inv_leggings_elf.png",
 	groups = {armor_legs=15, armor_heal=15, armor_use=25},
 	wear = 0,
 })
 
 minetest.register_tool("lottarmor:leggings_dwarf", {
-	description = "Dwarvish Leggings",
+	description = "Dwarven Leggings",
 	inventory_image = "lottarmor_inv_leggings_dwarf.png",
 	groups = {armor_legs=21, armor_heal=7, armor_use=700},
 	wear = 0,
@@ -347,14 +347,14 @@ minetest.register_tool("lottarmor:boots_mithril", {
 })
 
 minetest.register_tool("lottarmor:boots_elf", {
-	description = "Elvish Boots",
+	description = "Elven Boots",
 	inventory_image = "lottarmor_inv_boots_elf.png",
 	groups = {armor_feet=10, armor_heal=15, armor_use=25},
 	wear = 0,
 })
 
 minetest.register_tool("lottarmor:boots_dwarf", {
-	description = "Dwarvish Boots",
+	description = "Dwarven Boots",
 	inventory_image = "lottarmor_inv_boots_dwarf.png",
 	groups = {armor_feet=16, armor_heal=7, armor_use=700},
 	wear = 0,
