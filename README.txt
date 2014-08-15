@@ -50,4 +50,5 @@ brunob.santos (Desert Cobble)
 Dan Duncombe (Generating Structures)
 krupnovpavel (Mob Riding)
 Calinou (Inventory GUI)
+catninja (Hatches mod & textures)
 -----------------------------------------------------------------------------------------------
