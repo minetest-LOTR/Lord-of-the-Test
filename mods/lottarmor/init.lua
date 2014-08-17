@@ -273,7 +273,7 @@ minetest.register_tool("lottarmor:leggings_rohan", {
 })
 
 minetest.register_tool("lottarmor:leggings_gondor", {
-	description = "Godnorian Leggings",
+	description = "Gondorian Leggings",
 	inventory_image = "lottarmor_inv_leggings_gondor.png",
 	groups = {armor_legs=17.5, armor_heal=10, armor_use=250},
 	wear = 0,
