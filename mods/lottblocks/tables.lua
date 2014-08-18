@@ -143,7 +143,7 @@ minetest.register_node("lottblocks:alder_chair",
 groups = {snappy=2,choppy=2,flammable=2}
 })
 minetest.register_craft({
-	output = 'lottblocks:alder_table',
+	output = 'lottblocks:alder_chair',
 	recipe = {
 		{'group:stick', ''},
 		{'lottplants:alderwood', 'lottplants:alderwood'},
@@ -206,7 +206,7 @@ minetest.register_node("lottblocks:birch_chair",
 groups = {snappy=2,choppy=2,flammable=2}
 })
 minetest.register_craft({
-	output = 'lottblocks:birch_table',
+	output = 'lottblocks:birch_chair',
 	recipe = {
 		{'group:stick', ''},
 		{'lottplants:birchwood', 'lottplants:birchwood'},
