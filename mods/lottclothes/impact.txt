@@ -1,0 +1,4 @@
+effects & changes on other mods
+
+- lottplants: changed the color group of lottplants:brambles_of_mordor to color_grey
+- lottfarming: added flower+color to the colored paddos
