@@ -15,8 +15,8 @@ local fabric_colors = {
 	grey   = "dye:grey",
 	pink   = "dye:pink",
 	red    = "dye:red",
-	yellow = "dye:yellow",
 	white  = "dye:white",
+	yellow = "dye:yellow"	
 }
 
 -- flaxthreads made of dry_shrub. 2:1

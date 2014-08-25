@@ -21,5 +21,6 @@ dofile(minetest.get_modpath(minetest.get_current_modname()).."/fabrics.lua")
 -- clothing types
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/midgewater.lua")
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/chetwood.lua")
+dofile(minetest.get_modpath(minetest.get_current_modname()).."/hobbit.lua")
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/brandybuck.lua")
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/ettenmoor.lua")

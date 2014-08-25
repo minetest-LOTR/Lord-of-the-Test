@@ -1,5 +1,5 @@
 -- basic outfit from the chetwood forest.
--- made from green felt & tin ingot.
+-- made from green and brown felt & tin ingot.
 
 local level=2
 
@@ -65,7 +65,7 @@ minetest.register_tool("lottclothes:boots_chetwood", {
 minetest.register_craft({
 	output = "lottclothes:boots_chetwood",
 	recipe = {
-		{"lottclothes:flax_brown", "", "lottclothes:flax_brown"},
+		{"lottclothes:felt_brown", "", "lottclothes:felt_brown"},
 		{"lottores:tin_ingot", "", "lottores:tin_ingot"}
 	}
 })
