@@ -663,20 +663,17 @@ minetest.register_node("default:sign_wall", {
 	end,
 })
 
-default.chest_formspec = 
-	"size[8,9]"..
-	"list[current_name;main;0,0;8,4;]"..
-	"list[current_player;main;0,5;8,4;]"
-
-function default.get_locked_chest_formspec(pos)
+function default.get_chest_formspec(pos,image)
 	local spos = pos.x .. "," .. pos.y .. "," ..pos.z
+	local lid_state = "neither"
 	local formspec =
 		"size[8,9]"..
 		"list[nodemeta:".. spos .. ";main;0,0;8,4;]"..
-		"list[current_player;main;0,5;8,4;]"
+		"list[current_player;main;0,5;8,4;]"..
+    	"background[-0.5,-0.65;9,10.35;"..image.."]"..
+    	"listcolors[#606060AA;#606060;#141318;#30434C;#FFF]"
 	return formspec
 end
-
 
 minetest.register_node("default:chest", {
 	description = "Chest",
@@ -689,7 +686,6 @@ minetest.register_node("default:chest", {
 	sounds = default.node_sound_wood_defaults(),
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec",default.chest_formspec)
 		meta:set_string("infotext", "Chest")
 		local inv = meta:get_inventory()
 		inv:set_size("main", 8*4)
@@ -710,6 +706,16 @@ minetest.register_node("default:chest", {
     on_metadata_inventory_take = function(pos, listname, index, stack, player)
 		minetest.log("action", player:get_player_name()..
 				" takes stuff from chest at "..minetest.pos_to_string(pos))
+	end,
+	
+	on_rightclick = function(pos, node, clicker)
+		local meta = minetest.get_meta(pos)
+		--minetest.chat_send_player(clicker:get_player_name(), "You opened a chest")
+		minetest.show_formspec(
+			clicker:get_player_name(),
+			"default:chest",
+			default.get_chest_formspec(pos,"gui_chestbg.png")
+		)
 	end,
 })
 
@@ -792,13 +798,15 @@ minetest.register_node("default:chest_locked", {
 		minetest.log("action", player:get_player_name()..
 				" takes stuff from locked chest at "..minetest.pos_to_string(pos))
 	end,
+
 	on_rightclick = function(pos, node, clicker)
 		local meta = minetest.get_meta(pos)
 		if has_locked_chest_privilege(meta, clicker) then
+		    -- minetest.chat_send_player(clicker:get_player_name(), "You opened a locked chest")
 			minetest.show_formspec(
 				clicker:get_player_name(),
 				"default:chest_locked",
-				default.get_locked_chest_formspec(pos)
+				default.get_chest_formspec(pos,"gui_chestbg.png")
 			)
 		end
 	end,

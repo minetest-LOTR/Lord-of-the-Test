@@ -1,11 +1,7 @@
-default.chest_formspec = 
-	"size[8,9]"..
-	"list[current_name;main;0,0;8,4;]"..
-	"list[current_player;main;0,5;8,4;]"
 minetest.register_node("lottmapgen:hobbit_chest", {
         description = "Chest",
-        tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
-                "default_chest_side.png", "default_chest_side.png", "default_chest_front.png"},
+        tiles = {"hobbit_chest_top.png", "hobbit_chest_top.png", "hobbit_chest_side.png",
+                "hobbit_chest_side.png", "hobbit_chest_side.png", "hobbit_chest_front.png"},
         paramtype2 = "facedir",
         groups = {choppy=2,oddly_breakable_by_hand=2,not_in_creative_inventory=1},
         drop = "default:chest",
@@ -27,18 +23,28 @@ minetest.register_node("lottmapgen:hobbit_chest", {
                         inv:add_item("main",items_available[item_idx])
                 end
         end,
-        after_dig_node = function(pos, oldnode, oldmetadata, digger)
-                local meta = minetest:get_meta(pos)
-                meta:from_table(oldmetadata)
-                local inv = meta:get_inventory()
-                default.dump_inv(pos,"main",inv)
-        end, 
-})    
+        
+    	can_dig = function(pos,player)
+    		local meta = minetest.get_meta(pos);
+    		local inv = meta:get_inventory()
+    		return inv:is_empty("main")
+    	end,
+
+        on_rightclick = function(pos, node, clicker)
+    		local meta = minetest.get_meta(pos)
+    		--minetest.chat_send_player(clicker:get_player_name(), "You opened a hobbit chest!")
+    		minetest.show_formspec(
+    			clicker:get_player_name(),
+    			"default:chest",
+    			default.get_chest_formspec(pos,"gui_hobbitbg.png")
+    		)
+        end,
+})
   
 minetest.register_node("lottmapgen:gondor_chest", {
-        description = "Chest",
-        tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
-                "default_chest_side.png", "default_chest_side.png", "default_chest_front.png"},
+        --description = "Gondorian Chest",
+        tiles = {"gondor_chest_top.png", "gondor_chest_bottom.png", "gondor_chest_side.png",
+                "gondor_chest_side.png", "gondor_chest_side.png", "gondor_chest_front.png"},
         paramtype2 = "facedir",
         groups = {choppy=2,oddly_breakable_by_hand=2,not_in_creative_inventory=1},
         drop = "default:chest",
@@ -60,18 +66,28 @@ minetest.register_node("lottmapgen:gondor_chest", {
                         inv:add_item("main",items_available[item_idx])
                 end
         end,
-        after_dig_node = function(pos, oldnode, oldmetadata, digger)
-                local meta = minetest:get_meta(pos)
-                meta:from_table(oldmetadata)
-                local inv = meta:get_inventory()
-                default.dump_inv(pos,"main",inv)
-        end, 
+
+    	can_dig = function(pos,player)
+    		local meta = minetest.get_meta(pos);
+    		local inv = meta:get_inventory()
+    		return inv:is_empty("main")
+    	end,
+
+        on_rightclick = function(pos, node, clicker)
+    		local meta = minetest.get_meta(pos)
+    		--minetest.chat_send_player(clicker:get_player_name(), "You opened a gondorian chest!")
+    		minetest.show_formspec(
+    			clicker:get_player_name(),
+    			"default:chest",
+    			default.get_chest_formspec(pos,"gui_gondorbg.png")
+    		)
+        end,
 })    
 
 minetest.register_node("lottmapgen:rohan_chest", {
         description = "Chest",
-        tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
-                "default_chest_side.png", "default_chest_side.png", "default_chest_front.png"},
+        tiles = {"rohan_chest_top.png", "rohan_chest_bottom.png", "rohan_chest_side.png",
+                "rohan_chest_side.png", "rohan_chest_side.png", "rohan_chest_front.png"},
         paramtype2 = "facedir",
         groups = {choppy=2,oddly_breakable_by_hand=2,not_in_creative_inventory=1},
         drop = "default:chest",
@@ -93,18 +109,28 @@ minetest.register_node("lottmapgen:rohan_chest", {
                         inv:add_item("main",items_available[item_idx])
                 end
         end,
-        after_dig_node = function(pos, oldnode, oldmetadata, digger)
-                local meta = minetest:get_meta(pos)
-                meta:from_table(oldmetadata)
-                local inv = meta:get_inventory()
-                default.dump_inv(pos,"main",inv)
-        end, 
+
+    	can_dig = function(pos,player)
+    		local meta = minetest.get_meta(pos);
+    		local inv = meta:get_inventory()
+    		return inv:is_empty("main")
+    	end,
+
+        on_rightclick = function(pos, node, clicker)
+    		local meta = minetest.get_meta(pos)
+    		--minetest.chat_send_player(clicker:get_player_name(), "You opened a rohirrim chest!")
+    		minetest.show_formspec(
+    			clicker:get_player_name(),
+    			"default:chest",
+    			default.get_chest_formspec(pos,"gui_rohanbg.png")
+    		)
+        end,
 })  
 
 minetest.register_node("lottmapgen:elfloth_chest", {
         description = "Chest",
-        tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
-                "default_chest_side.png", "default_chest_side.png", "default_chest_front.png"},
+        tiles = {"elf_chest_top.png", "elf_chest_bottom.png", "elf_chest_side.png",
+                "elf_chest_side.png", "elf_chest_side.png", "elf_chest_front.png"},
         paramtype2 = "facedir",
         groups = {choppy=2,oddly_breakable_by_hand=2,not_in_creative_inventory=1},
         drop = "default:chest",
@@ -126,18 +152,28 @@ minetest.register_node("lottmapgen:elfloth_chest", {
                         inv:add_item("main",items_available[item_idx])
                 end
         end,
-        after_dig_node = function(pos, oldnode, oldmetadata, digger)
-                local meta = minetest:get_meta(pos)
-                meta:from_table(oldmetadata)
-                local inv = meta:get_inventory()
-                default.dump_inv(pos,"main",inv)
-        end, 
+
+    	can_dig = function(pos,player)
+    		local meta = minetest.get_meta(pos);
+    		local inv = meta:get_inventory()
+    		return inv:is_empty("main")
+    	end,
+
+        on_rightclick = function(pos, node, clicker)
+    		local meta = minetest.get_meta(pos)
+    		--minetest.chat_send_player(clicker:get_player_name(), "You opened an elven chest!")
+    		minetest.show_formspec(
+    			clicker:get_player_name(),
+    			"default:chest",
+    			default.get_chest_formspec(pos,"gui_elfbg.png")
+    		)
+        end,
 })  
  
 minetest.register_node("lottmapgen:elfmirk_chest", {
         description = "Chest",
-        tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
-                "default_chest_side.png", "default_chest_side.png", "default_chest_front.png"},
+        tiles = {"elf_chest_top.png", "elf_chest_bottom.png", "elf_chest_side.png",
+                "elf_chest_side.png", "elf_chest_side.png", "elf_chest_front.png"},
         paramtype2 = "facedir",
         groups = {choppy=2,oddly_breakable_by_hand=2,not_in_creative_inventory=1},
         drop = "default:chest",
@@ -159,18 +195,28 @@ minetest.register_node("lottmapgen:elfmirk_chest", {
                         inv:add_item("main",items_available[item_idx])
                 end
         end,
-        after_dig_node = function(pos, oldnode, oldmetadata, digger)
-                local meta = minetest:get_meta(pos)
-                meta:from_table(oldmetadata)
-                local inv = meta:get_inventory()
-                default.dump_inv(pos,"main",inv)
-        end, 
+
+    	can_dig = function(pos,player)
+    		local meta = minetest.get_meta(pos);
+    		local inv = meta:get_inventory()
+    		return inv:is_empty("main")
+    	end,
+
+        on_rightclick = function(pos, node, clicker)
+    		local meta = minetest.get_meta(pos)
+    		--minetest.chat_send_player(clicker:get_player_name(), "You opened an elven chest!")
+    		minetest.show_formspec(
+    			clicker:get_player_name(),
+    			"default:chest",
+    			default.get_chest_formspec(pos,"gui_elfbg.png")
+    		)
+        end,
 })  
 
 minetest.register_node("lottmapgen:mordor_chest", {
         description = "Chest",
-        tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
-                "default_chest_side.png", "default_chest_side.png", "default_chest_front.png"},
+        tiles = {"mordor_chest_top.png", "mordor_chest_top.png", "mordor_chest_side.png",
+                "mordor_chest_side.png", "mordor_chest_side.png", "mordor_chest_front.png"},
         paramtype2 = "facedir",
         groups = {choppy=2,oddly_breakable_by_hand=2,not_in_creative_inventory=1},
         drop = "default:chest",
@@ -192,18 +238,28 @@ minetest.register_node("lottmapgen:mordor_chest", {
                         inv:add_item("main",items_available[item_idx])
                 end
         end,
-        after_dig_node = function(pos, oldnode, oldmetadata, digger)
-                local meta = minetest:get_meta(pos)
-                meta:from_table(oldmetadata)
-                local inv = meta:get_inventory()
-                default.dump_inv(pos,"main",inv)
-        end, 
+
+    	can_dig = function(pos,player)
+    		local meta = minetest.get_meta(pos);
+    		local inv = meta:get_inventory()
+    		return inv:is_empty("main")
+    	end,
+
+        on_rightclick = function(pos, node, clicker)
+    		local meta = minetest.get_meta(pos)
+    		--minetest.chat_send_player(clicker:get_player_name(), "You opened a mordor chest!")
+    		minetest.show_formspec(
+    			clicker:get_player_name(),
+    			"default:chest",
+    			default.get_chest_formspec(pos,"gui_mordorbg.png")
+    		)
+        end,
 })  
 
 minetest.register_node("lottmapgen:angmar_chest", {
         description = "Chest",
-        tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
-                "default_chest_side.png", "default_chest_side.png", "default_chest_front.png"},
+        tiles = {"angmar_chest_top.png", "angmar_chest_top.png", "angmar_chest_side.png",
+                "angmar_chest_side.png", "angmar_chest_side.png", "angmar_chest_front.png"},
         paramtype2 = "facedir",
         groups = {choppy=2,oddly_breakable_by_hand=2,not_in_creative_inventory=1},
         drop = "default:chest",
@@ -225,12 +281,22 @@ minetest.register_node("lottmapgen:angmar_chest", {
                         inv:add_item("main",items_available[item_idx])
                 end
         end,
-        after_dig_node = function(pos, oldnode, oldmetadata, digger)
-                local meta = minetest:get_meta(pos)
-                meta:from_table(oldmetadata)
-                local inv = meta:get_inventory()
-                default.dump_inv(pos,"main",inv)
-        end, 
+
+    	can_dig = function(pos,player)
+    		local meta = minetest.get_meta(pos);
+    		local inv = meta:get_inventory()
+    		return inv:is_empty("main")
+    	end,
+
+        on_rightclick = function(pos, node, clicker)
+    		local meta = minetest.get_meta(pos)
+    		--minetest.chat_send_player(clicker:get_player_name(), "You opened an angmar chest!")
+    		minetest.show_formspec(
+    			clicker:get_player_name(),
+    			"default:chest",
+    			default.get_chest_formspec(pos,"gui_angmarbg.png")
+    		)
+        end,
 })  
 minetest.register_node("lottmapgen:hobbit_chest_spawner", {
 	description = "HCS",

@@ -53,7 +53,6 @@ minetest.register_node("bones:bones", {
 		local meta = minetest.get_meta(pos)
 		if meta:get_string("owner") ~= "" and meta:get_inventory():is_empty("main") then
 			meta:set_string("infotext", meta:get_string("owner").."'s old bones")
-			meta:set_string("formspec", "")
 			meta:set_string("owner", "")
 		end
 	end,
@@ -96,6 +95,16 @@ minetest.register_node("bones:bones", {
 			end
 		end
 	end,
+	
+	on_rightclick = function(pos, node, clicker)
+		local meta = minetest.get_meta(pos)
+		minetest.show_formspec(
+			clicker:get_player_name(),
+			"bones:bones",
+			default.get_chest_formspec(pos,"gui_bonesbg.png")
+		)
+	end,
+
 })
 
 minetest.register_on_dieplayer(function(player)
@@ -140,9 +149,6 @@ minetest.register_on_dieplayer(function(player)
 		player_inv:set_stack("craft", i, nil)
 	end
 	
-	meta:set_string("formspec", "size[8,9;]"..
-			"list[current_name;main;0,0;8,4;]"..
-			"list[current_player;main;0,5;8,4;]")
 	meta:set_string("infotext", player:get_player_name().."'s fresh bones")
 	meta:set_string("owner", player:get_player_name())
 	meta:set_int("time", 0)
