@@ -16,7 +16,7 @@ minetest.register_craft({
 	recipe = {
 		{"lottclothes:felt_green", "lottclothes:felt_green", "lottclothes:felt_green"},
 		{"lottclothes:felt_green", "", "lottclothes:felt_green"},
-		{"", "lottclothes:felt_green",""}
+		{"", "",""}
 	}
 })
 

@@ -95,9 +95,9 @@ for color, dye in pairs(fabric_colors) do
 		minetest.register_craft({
 			output = "lottclothes:felt_"..color.." 3",
 			recipe = {
-				{"lottclothes:feltthread","lottclothes:feltthread","lottclothes:feltthread"},
 				{"lottclothes:feltthread",dye,"lottclothes:feltthread"},
-				{"lottclothes:feltthread","lottclothes:feltthread","lottclothes:feltthread"},
+				{dye,"lottclothes:feltthread",dye},
+				{"lottclothes:feltthread",dye,"lottclothes:feltthread"},
 			}
 		})
 	end
