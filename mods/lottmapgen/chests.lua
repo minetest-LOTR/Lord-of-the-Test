@@ -1,3 +1,13 @@
+local function chest_formspec(image)
+	local formspec =
+		"size[8,9]"..
+		"list[current_name;main;0,0;8,4;]"..
+		"list[current_player;main;0,5;8,4;]"..
+    	"background[-0.5,-0.65;9,10.35;"..image.."]"..
+    	"listcolors[#606060AA;#606060;#141318;#30434C;#FFF]"
+	return formspec
+end
+
 minetest.register_node("lottmapgen:hobbit_chest", {
         description = "Chest",
         tiles = {"hobbit_chest_top.png", "hobbit_chest_top.png", "hobbit_chest_side.png",
@@ -10,8 +20,8 @@ minetest.register_node("lottmapgen:hobbit_chest", {
         sounds = default.node_sound_wood_defaults(),
         on_construct = function(pos, node, active_object_count, active_object_count_wider)
                 local meta = minetest.get_meta(pos)
-                meta:set_string("formspec",default.chest_formspec)
-                meta:set_string("infotext", "Chest")
+                meta:set_string("infotext", "Hobbit Chest")   
+           		meta:set_string("formspec",chest_formspec("gui_hobbitbg.png"))
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
                 local item_count = math.random(2,13)
@@ -28,17 +38,7 @@ minetest.register_node("lottmapgen:hobbit_chest", {
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
-    	end,
-
-        on_rightclick = function(pos, node, clicker)
-    		local meta = minetest.get_meta(pos)
-    		--minetest.chat_send_player(clicker:get_player_name(), "You opened a hobbit chest!")
-    		minetest.show_formspec(
-    			clicker:get_player_name(),
-    			"default:chest",
-    			default.get_chest_formspec(pos,"gui_hobbitbg.png")
-    		)
-        end,
+    	end
 })
   
 minetest.register_node("lottmapgen:gondor_chest", {
@@ -53,8 +53,8 @@ minetest.register_node("lottmapgen:gondor_chest", {
         sounds = default.node_sound_wood_defaults(),
         on_construct = function(pos, node, active_object_count, active_object_count_wider)
                 local meta = minetest.get_meta(pos)
-                meta:set_string("formspec",default.chest_formspec)
-                meta:set_string("infotext", "Chest")
+                meta:set_string("infotext", "Gondorian Chest")
+           		meta:set_string("formspec",chest_formspec("gui_gondorbg.png"))
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
                 local item_count = math.random(2,13)
@@ -71,17 +71,7 @@ minetest.register_node("lottmapgen:gondor_chest", {
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
-    	end,
-
-        on_rightclick = function(pos, node, clicker)
-    		local meta = minetest.get_meta(pos)
-    		--minetest.chat_send_player(clicker:get_player_name(), "You opened a gondorian chest!")
-    		minetest.show_formspec(
-    			clicker:get_player_name(),
-    			"default:chest",
-    			default.get_chest_formspec(pos,"gui_gondorbg.png")
-    		)
-        end,
+    	end
 })    
 
 minetest.register_node("lottmapgen:rohan_chest", {
@@ -96,8 +86,8 @@ minetest.register_node("lottmapgen:rohan_chest", {
         sounds = default.node_sound_wood_defaults(),
         on_construct = function(pos, node, active_object_count, active_object_count_wider)
                 local meta = minetest.get_meta(pos)
-                meta:set_string("formspec",default.chest_formspec)
-                meta:set_string("infotext", "Chest")
+                meta:set_string("infotext", "Rohirrim Chest")
+           		meta:set_string("formspec",chest_formspec("gui_rohanbg.png"))
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
                 local item_count = math.random(2,13)
@@ -114,18 +104,8 @@ minetest.register_node("lottmapgen:rohan_chest", {
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
-    	end,
-
-        on_rightclick = function(pos, node, clicker)
-    		local meta = minetest.get_meta(pos)
-    		--minetest.chat_send_player(clicker:get_player_name(), "You opened a rohirrim chest!")
-    		minetest.show_formspec(
-    			clicker:get_player_name(),
-    			"default:chest",
-    			default.get_chest_formspec(pos,"gui_rohanbg.png")
-    		)
-        end,
-})  
+    	end
+})
 
 minetest.register_node("lottmapgen:elfloth_chest", {
         description = "Chest",
@@ -139,8 +119,8 @@ minetest.register_node("lottmapgen:elfloth_chest", {
         sounds = default.node_sound_wood_defaults(),
         on_construct = function(pos, node, active_object_count, active_object_count_wider)
                 local meta = minetest.get_meta(pos)
-                meta:set_string("formspec",default.chest_formspec)
-                meta:set_string("infotext", "Chest")
+                meta:set_string("infotext", "Elven Chest")
+           		meta:set_string("formspec",chest_formspec("gui_elfbg.png"))
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
                 local item_count = math.random(2,13)
@@ -157,17 +137,7 @@ minetest.register_node("lottmapgen:elfloth_chest", {
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
-    	end,
-
-        on_rightclick = function(pos, node, clicker)
-    		local meta = minetest.get_meta(pos)
-    		--minetest.chat_send_player(clicker:get_player_name(), "You opened an elven chest!")
-    		minetest.show_formspec(
-    			clicker:get_player_name(),
-    			"default:chest",
-    			default.get_chest_formspec(pos,"gui_elfbg.png")
-    		)
-        end,
+    	end
 })  
  
 minetest.register_node("lottmapgen:elfmirk_chest", {
@@ -182,8 +152,8 @@ minetest.register_node("lottmapgen:elfmirk_chest", {
         sounds = default.node_sound_wood_defaults(),
         on_construct = function(pos, node, active_object_count, active_object_count_wider)
                 local meta = minetest.get_meta(pos)
-                meta:set_string("formspec",default.chest_formspec)
-                meta:set_string("infotext", "Chest")
+                meta:set_string("infotext", "Elven Chest")
+           		meta:set_string("formspec",chest_formspec("gui_elfbg.png"))
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
                 local item_count = math.random(2,13)
@@ -200,17 +170,7 @@ minetest.register_node("lottmapgen:elfmirk_chest", {
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
-    	end,
-
-        on_rightclick = function(pos, node, clicker)
-    		local meta = minetest.get_meta(pos)
-    		--minetest.chat_send_player(clicker:get_player_name(), "You opened an elven chest!")
-    		minetest.show_formspec(
-    			clicker:get_player_name(),
-    			"default:chest",
-    			default.get_chest_formspec(pos,"gui_elfbg.png")
-    		)
-        end,
+    	end
 })  
 
 minetest.register_node("lottmapgen:mordor_chest", {
@@ -225,8 +185,8 @@ minetest.register_node("lottmapgen:mordor_chest", {
         sounds = default.node_sound_wood_defaults(),
         on_construct = function(pos, node, active_object_count, active_object_count_wider)
                 local meta = minetest.get_meta(pos)
-                meta:set_string("formspec",default.chest_formspec)
-                meta:set_string("infotext", "Chest")
+                meta:set_string("infotext", "Mordor Chest")
+           		meta:set_string("formspec",chest_formspec("gui_mordorbg.png"))
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
                 local item_count = math.random(2,13)
@@ -243,17 +203,7 @@ minetest.register_node("lottmapgen:mordor_chest", {
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
-    	end,
-
-        on_rightclick = function(pos, node, clicker)
-    		local meta = minetest.get_meta(pos)
-    		--minetest.chat_send_player(clicker:get_player_name(), "You opened a mordor chest!")
-    		minetest.show_formspec(
-    			clicker:get_player_name(),
-    			"default:chest",
-    			default.get_chest_formspec(pos,"gui_mordorbg.png")
-    		)
-        end,
+    	end
 })  
 
 minetest.register_node("lottmapgen:angmar_chest", {
@@ -268,8 +218,8 @@ minetest.register_node("lottmapgen:angmar_chest", {
         sounds = default.node_sound_wood_defaults(),
         on_construct = function(pos, node, active_object_count, active_object_count_wider)
                 local meta = minetest.get_meta(pos)
-                meta:set_string("formspec",default.chest_formspec)
-                meta:set_string("infotext", "Chest")
+                meta:set_string("infotext", "Angmar Chest")
+           		meta:set_string("formspec",chest_formspec("gui_angmarbg.png"))
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
                 local item_count = math.random(2,13)
@@ -286,54 +236,45 @@ minetest.register_node("lottmapgen:angmar_chest", {
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
-    	end,
+    	end
+})                      
 
-        on_rightclick = function(pos, node, clicker)
-    		local meta = minetest.get_meta(pos)
-    		--minetest.chat_send_player(clicker:get_player_name(), "You opened an angmar chest!")
-    		minetest.show_formspec(
-    			clicker:get_player_name(),
-    			"default:chest",
-    			default.get_chest_formspec(pos,"gui_angmarbg.png")
-    		)
-        end,
-})  
 minetest.register_node("lottmapgen:hobbit_chest_spawner", {
 	description = "HCS",
 	tiles = {"lottblocks_door_birch_b.png"},
 	is_ground_content = false,
 	groups = {oddly_breakable_by_hand = 1, not_in_creative_inventory=1},
-})
+})                  
 minetest.register_node("lottmapgen:gondor_chest_spawner", {
 	description = "GCS",
 	tiles = {"lottblocks_door_birch_b.png"},
 	is_ground_content = false,
 	groups = {oddly_breakable_by_hand = 1, not_in_creative_inventory=1},
-})
+})          
 minetest.register_node("lottmapgen:rohan_chest_spawner", {
 	description = "RCS",
 	tiles = {"lottblocks_door_birch_b.png"},
 	is_ground_content = false,
 	groups = {oddly_breakable_by_hand = 1, not_in_creative_inventory=1},
-})
+})      
 minetest.register_node("lottmapgen:elfloth_chest_spawner", {
 	description = "ELCS",
 	tiles = {"lottblocks_door_birch_b.png"},
 	is_ground_content = false,
 	groups = {oddly_breakable_by_hand = 1, not_in_creative_inventory=1},
-})
+})         
 minetest.register_node("lottmapgen:elfmirk_chest_spawner", {
 	description = "EMCS",
 	tiles = {"lottblocks_door_birch_b.png"},
 	is_ground_content = false,
 	groups = {oddly_breakable_by_hand = 1, not_in_creative_inventory=1},
-})
+})      
 minetest.register_node("lottmapgen:mordor_chest_spawner", {
 	description = "MCS",
 	tiles = {"lottblocks_door_birch_b.png"},
 	is_ground_content = false,
 	groups = {oddly_breakable_by_hand = 1, not_in_creative_inventory=1},
-})
+})   
 minetest.register_node("lottmapgen:angmar_chest_spawner", {
 	description = "ACS",
 	tiles = {"lottblocks_door_birch_b.png"},

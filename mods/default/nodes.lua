@@ -663,6 +663,13 @@ minetest.register_node("default:sign_wall", {
 	end,
 })
 
+default.chest_formspec = 
+	"size[8,9]"..
+	"list[current_name;main;0,0;8,4;]"..
+	"list[current_player;main;0,5;8,4;]"..
+  	"background[-0.5,-0.65;9,10.35;gui_chestbg.png]"..
+  	"listcolors[#606060AA;#606060;#141318;#30434C;#FFF]"
+
 function default.get_chest_formspec(pos,image)
 	local spos = pos.x .. "," .. pos.y .. "," ..pos.z
 	local lid_state = "neither"
@@ -687,6 +694,7 @@ minetest.register_node("default:chest", {
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("infotext", "Chest")
+		meta:set_string("formspec", default.chest_formspec)
 		local inv = meta:get_inventory()
 		inv:set_size("main", 8*4)
 	end,
@@ -706,17 +714,7 @@ minetest.register_node("default:chest", {
     on_metadata_inventory_take = function(pos, listname, index, stack, player)
 		minetest.log("action", player:get_player_name()..
 				" takes stuff from chest at "..minetest.pos_to_string(pos))
-	end,
-	
-	on_rightclick = function(pos, node, clicker)
-		local meta = minetest.get_meta(pos)
-		--minetest.chat_send_player(clicker:get_player_name(), "You opened a chest")
-		minetest.show_formspec(
-			clicker:get_player_name(),
-			"default:chest",
-			default.get_chest_formspec(pos,"gui_chestbg.png")
-		)
-	end,
+	end
 })
 
 local function has_locked_chest_privilege(meta, player)
@@ -738,8 +736,7 @@ minetest.register_node("default:chest_locked", {
 	after_place_node = function(pos, placer)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("owner", placer:get_player_name() or "")
-		meta:set_string("infotext", "Locked Chest (owned by "..
-				meta:get_string("owner")..")")
+		meta:set_string("infotext", "Locked Chest (owned by "..meta:get_string("owner")..")")
 	end,
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
@@ -799,12 +796,12 @@ minetest.register_node("default:chest_locked", {
 				" takes stuff from locked chest at "..minetest.pos_to_string(pos))
 	end,
 
-	on_rightclick = function(pos, node, clicker)
+	on_rightclick = function(pos, node, player)
 		local meta = minetest.get_meta(pos)
-		if has_locked_chest_privilege(meta, clicker) then
-		    -- minetest.chat_send_player(clicker:get_player_name(), "You opened a locked chest")
+		if has_locked_chest_privilege(meta, player) then
+		    -- minetest.chat_send_player(player:get_player_name(), "You opened a locked chest")
 			minetest.show_formspec(
-				clicker:get_player_name(),
+				player:get_player_name(),
 				"default:chest_locked",
 				default.get_chest_formspec(pos,"gui_chestbg.png")
 			)

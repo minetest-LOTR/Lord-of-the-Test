@@ -1,6 +1,13 @@
 -- Minetest 0.4 mod: bones
 -- See README.txt for licensing and other information. 
 
+bones_formspec =
+	"size[8,9]"..
+	"list[current_name;main;0,0;8,4;]"..
+	"list[current_player;main;0,5;8,4;]"..
+  	"background[-0.5,-0.65;9,10.35;gui_bonesbg.png]"..
+  	"listcolors[#606060AA;#606060;#141318;#30434C;#FFF]"
+
 local function is_owner(pos, name)
 	local owner = minetest.get_meta(pos):get_string("owner")
 	if owner == "" or owner == name then
@@ -56,7 +63,15 @@ minetest.register_node("bones:bones", {
 			meta:set_string("owner", "")
 		end
 	end,
-	
+
+	on_construct = function(pos)
+		local meta = minetest.get_meta(pos)
+		local inv = meta:get_inventory()
+		inv:set_size("main", 8*4)
+		meta:set_string("infotext", "Pile of Bones")
+  		meta:set_string("formspec",bones_formspec)
+	end,
+
 	on_timer = function(pos, elapsed)
 		local meta = minetest.get_meta(pos)
 		local time = meta:get_int("time")+elapsed
@@ -94,17 +109,7 @@ minetest.register_node("bones:bones", {
 				break
 			end
 		end
-	end,
-	
-	on_rightclick = function(pos, node, clicker)
-		local meta = minetest.get_meta(pos)
-		minetest.show_formspec(
-			clicker:get_player_name(),
-			"bones:bones",
-			default.get_chest_formspec(pos,"gui_bonesbg.png")
-		)
-	end,
-
+	end
 })
 
 minetest.register_on_dieplayer(function(player)
@@ -151,6 +156,7 @@ minetest.register_on_dieplayer(function(player)
 	
 	meta:set_string("infotext", player:get_player_name().."'s fresh bones")
 	meta:set_string("owner", player:get_player_name())
+	meta:set_string("formspec",bones_formspec)
 	meta:set_int("time", 0)
 	
 	local timer  = minetest.get_node_timer(pos)
