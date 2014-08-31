@@ -9,7 +9,7 @@ minetest.register_craftitem("lottfarming:brown_mushroom_spore", {
 minetest.register_craftitem("lottfarming:brown_mushroom", {
 	description = "Brown Mushroom",
 	tiles = {"lottfarming_brown_mushroom_4.png"},
-	groups = {mushroom=1},
+	groups = {mushroom=1, flower=1, color_brown=1},
 	inventory_image = "lottfarming_brown_mushroom.png",
 	on_use = minetest.item_eat(1),
 })

@@ -723,7 +723,7 @@ minetest.register_node("lottplants:brambles_of_mordor", {
 	walkable = false,
 	buildable_to = true,
 	drop = "lottplants:brambles_of_mordor_fake",
-	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_brown=1,not_in_creative_inventory=1},
+	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_grey=1,not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -741,7 +741,7 @@ minetest.register_node("lottplants:brambles_of_mordor_fake", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_brown=1},
+	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_grey=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
