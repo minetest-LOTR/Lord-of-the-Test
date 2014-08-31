@@ -4,12 +4,12 @@ local function chest_formspec(image)
 		"list[current_name;main;0,0;8,4;]"..
 		"list[current_player;main;0,5;8,4;]"..
     	"background[-0.5,-0.65;9,10.35;"..image.."]"..
-    	"listcolors[#606060AA;#606060;#141318;#30434C;#FFF]"
+    	"listcolors[#606060AA;#888;#141318;#30434C;#FFF]"
 	return formspec
 end
 
 minetest.register_node("lottmapgen:hobbit_chest", {
-        description = "Chest",
+        description = "Hobbit Chest",
         tiles = {"hobbit_chest_top.png", "hobbit_chest_top.png", "hobbit_chest_side.png",
                 "hobbit_chest_side.png", "hobbit_chest_side.png", "hobbit_chest_front.png"},
         paramtype2 = "facedir",
@@ -35,14 +35,21 @@ minetest.register_node("lottmapgen:hobbit_chest", {
         end,
         
     	can_dig = function(pos,player)
-    		local meta = minetest.get_meta(pos);
+    		local meta = minetest.get_meta(pos)
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
-    	end
+    	end,
+    	
+    	--backwards compatibility: punch to set formspec
+    	on_punch = function(pos,player)
+    	    local meta = minetest.get_meta(pos)
+            meta:set_string("infotext", "Hobbit Chest")
+           	meta:set_string("formspec",chest_formspec("gui_hobbitbg.png"))
+        end
 })
   
 minetest.register_node("lottmapgen:gondor_chest", {
-        --description = "Gondorian Chest",
+        description = "Gondorian Chest",
         tiles = {"gondor_chest_top.png", "gondor_chest_bottom.png", "gondor_chest_side.png",
                 "gondor_chest_side.png", "gondor_chest_side.png", "gondor_chest_front.png"},
         paramtype2 = "facedir",
@@ -71,11 +78,18 @@ minetest.register_node("lottmapgen:gondor_chest", {
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
-    	end
+    	end,
+    	
+    	--backwards compatibility: punch to set formspec
+    	on_punch = function(pos,player)
+    	    local meta = minetest.get_meta(pos)
+            meta:set_string("infotext", "Gondorian Chest")
+           	meta:set_string("formspec",chest_formspec("gui_gondorbg.png"))
+        end
 })    
 
 minetest.register_node("lottmapgen:rohan_chest", {
-        description = "Chest",
+        description = "Rohirrim Chest",
         tiles = {"rohan_chest_top.png", "rohan_chest_bottom.png", "rohan_chest_side.png",
                 "rohan_chest_side.png", "rohan_chest_side.png", "rohan_chest_front.png"},
         paramtype2 = "facedir",
@@ -104,11 +118,18 @@ minetest.register_node("lottmapgen:rohan_chest", {
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
-    	end
+    	end,
+    	
+    	--backwards compatibility: punch to set formspec
+    	on_punch = function(pos,player)
+    	    local meta = minetest.get_meta(pos)
+            meta:set_string("infotext", "Rohirrim Chest")
+           	meta:set_string("formspec",chest_formspec("gui_rohanbg.png"))
+        end
 })
 
 minetest.register_node("lottmapgen:elfloth_chest", {
-        description = "Chest",
+        description = "Elven Chest",
         tiles = {"elf_chest_top.png", "elf_chest_bottom.png", "elf_chest_side.png",
                 "elf_chest_side.png", "elf_chest_side.png", "elf_chest_front.png"},
         paramtype2 = "facedir",
@@ -137,11 +158,18 @@ minetest.register_node("lottmapgen:elfloth_chest", {
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
-    	end
+    	end,
+    	
+    	--backwards compatibility: punch to set formspec
+    	on_punch = function(pos,player)
+    	    local meta = minetest.get_meta(pos)
+            meta:set_string("infotext", "Elven Chest")
+           	meta:set_string("formspec",chest_formspec("gui_elfbg.png"))
+        end
 })  
  
 minetest.register_node("lottmapgen:elfmirk_chest", {
-        description = "Chest",
+        description = "Elven Chest",
         tiles = {"elf_chest_top.png", "elf_chest_bottom.png", "elf_chest_side.png",
                 "elf_chest_side.png", "elf_chest_side.png", "elf_chest_front.png"},
         paramtype2 = "facedir",
@@ -170,11 +198,18 @@ minetest.register_node("lottmapgen:elfmirk_chest", {
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
-    	end
+    	end,
+    	
+    	--backwards compatibility: punch to set formspec
+    	on_punch = function(pos,player)
+    	    local meta = minetest.get_meta(pos)
+            meta:set_string("infotext", "Elven Chest")
+           	meta:set_string("formspec",chest_formspec("gui_elfbg.png"))
+        end
 })  
 
 minetest.register_node("lottmapgen:mordor_chest", {
-        description = "Chest",
+        description = "Mordor Chest",
         tiles = {"mordor_chest_top.png", "mordor_chest_top.png", "mordor_chest_side.png",
                 "mordor_chest_side.png", "mordor_chest_side.png", "mordor_chest_front.png"},
         paramtype2 = "facedir",
@@ -203,11 +238,18 @@ minetest.register_node("lottmapgen:mordor_chest", {
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
-    	end
+    	end,
+    	
+    	--backwards compatibility: punch to set formspec
+    	on_punch = function(pos,player)
+    	    local meta = minetest.get_meta(pos)
+            meta:set_string("infotext", "Mordor Chest")
+           	meta:set_string("formspec",chest_formspec("gui_mordorbg.png"))
+        end
 })  
 
 minetest.register_node("lottmapgen:angmar_chest", {
-        description = "Chest",
+        description = "Angmar Chest",
         tiles = {"angmar_chest_top.png", "angmar_chest_top.png", "angmar_chest_side.png",
                 "angmar_chest_side.png", "angmar_chest_side.png", "angmar_chest_front.png"},
         paramtype2 = "facedir",
@@ -236,7 +278,14 @@ minetest.register_node("lottmapgen:angmar_chest", {
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
-    	end
+    	end,
+    	
+    	--backwards compatibility: punch to set formspec
+    	on_punch = function(pos,player)
+    	    local meta = minetest.get_meta(pos)
+            meta:set_string("infotext", "Angmar Chest")
+           	meta:set_string("formspec",chest_formspec("gui_angmarbg.png"))
+        end
 })                      
 
 minetest.register_node("lottmapgen:hobbit_chest_spawner", {

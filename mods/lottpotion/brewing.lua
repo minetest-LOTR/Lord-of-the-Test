@@ -55,15 +55,17 @@ lottpotion.make_pipe = function( pipes, horizontal )
    return result;
 end
 
-brewer_formspec =
+local brewer_formspec =
 	"size[8,9]"..
 	"label[0,0;Brewer Inactive]"..
-	"image[2,2;1,1;default_furnace_fire_bg.png]"..
+	"image[2,2;1,1;default_brewer_inv.png]"..
 	"list[current_name;fuel;2,3;1,1;]"..
 	"list[current_name;src;2,1;1,1;]"..
 	"list[current_name;src2;3,1;1,1;]"..
 	"list[current_name;dst;5,1;2,2;]"..
-	"list[current_player;main;0,5;8,4;]"
+	"list[current_player;main;0,5;8,4;]"..
+  	"background[-0.5,-0.65;9,10.35;gui_brewerbg.png]"..
+  	"listcolors[#606060AA;#888;#141318;#30434C;#FFF]"
 
 minetest.register_node("lottpotion:brewer", {
 	description = "Brewer",
@@ -105,6 +107,13 @@ minetest.register_node("lottpotion:brewer", {
 		    return true
 		end
 	end,
+    	
+  	--backwards compatibility: punch to set formspec
+  	on_punch = function(pos,player)
+  	    local meta = minetest.get_meta(pos)
+        meta:set_string("infotext", "Brewer Inactive")
+        meta:set_string("formspec",brewer_formspec)
+    end
 })
 
 minetest.register_node("lottpotion:brewer_active", {
@@ -206,13 +215,14 @@ minetest.register_abm({
 		   meta:set_string("formspec",
 				   "size[8,9]"..
 				      "label[0,0; Brewer Active]"..
-				      "image[2,2;1,1;default_furnace_fire_bg.png^[lowpart:"..
-				      (100-percent)..":default_furnace_fire_fg.png]"..
+				      "image[2,2;1,1;default_brewer_inv.png^[lowpart:"..(100-percent)..":default_furnace_fire_fg.png]"..
 				   "list[current_name;fuel;2,3;1,1;]"..
 				   "list[current_name;src;2,1;1,1;]"..
 				   "list[current_name;src2;3,1;1,1;]"..
 				   "list[current_name;dst;5,1;2,2;]"..
-				   "list[current_player;main;0,5;8,4;]")
+				   "list[current_player;main;0,5;8,4;]"..
+  				   "background[-0.5,-0.65;9,10.35;gui_brewerbg.png]"..
+  				   "listcolors[#606060AA;#888;#141318;#30434C;#FFF]")
 		   return
 		end
 		srcstack = inv:get_stack("src", 1)
