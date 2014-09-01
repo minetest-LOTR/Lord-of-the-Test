@@ -668,7 +668,7 @@ default.chest_formspec =
 	"list[current_name;main;0,0;8,4;]"..
 	"list[current_player;main;0,5;8,4;]"..
   	"background[-0.5,-0.65;9,10.35;gui_chestbg.png]"..
-  	"listcolors[#606060AA;#606060;#141318;#30434C;#FFF]"
+  	"listcolors[#606060AA;#888;#141318;#30434C;#FFF]"
 
 function default.get_chest_formspec(pos,image)
 	local spos = pos.x .. "," .. pos.y .. "," ..pos.z
@@ -678,7 +678,7 @@ function default.get_chest_formspec(pos,image)
 		"list[nodemeta:".. spos .. ";main;0,0;8,4;]"..
 		"list[current_player;main;0,5;8,4;]"..
     	"background[-0.5,-0.65;9,10.35;"..image.."]"..
-    	"listcolors[#606060AA;#606060;#141318;#30434C;#FFF]"
+    	"listcolors[#606060AA;#888;#141318;#30434C;#FFF]"
 	return formspec
 end
 
@@ -714,7 +714,14 @@ minetest.register_node("default:chest", {
     on_metadata_inventory_take = function(pos, listname, index, stack, player)
 		minetest.log("action", player:get_player_name()..
 				" takes stuff from chest at "..minetest.pos_to_string(pos))
-	end
+	end,
+    	
+  	--backwards compatibility: punch to set formspec
+  	on_punch = function(pos,player)
+  	    local meta = minetest.get_meta(pos)
+        meta:set_string("infotext", "Chest")
+        meta:set_string("formspec",default.chest_formspec)
+    end
 })
 
 local function has_locked_chest_privilege(meta, player)
@@ -812,22 +819,26 @@ minetest.register_node("default:chest_locked", {
 function default.get_furnace_active_formspec(pos, percent)
 	local formspec =
 		"size[8,9]"..
-		"image[2,2;1,1;default_furnace_fire_bg.png^[lowpart:"..
+		"image[2,2;1,1;default_furnace_inv.png^[lowpart:"..
 		(100-percent)..":default_furnace_fire_fg.png]"..
 		"list[current_name;fuel;2,3;1,1;]"..
 		"list[current_name;src;2,1;1,1;]"..
 		"list[current_name;dst;5,1;2,2;]"..
-		"list[current_player;main;0,5;8,4;]"
+		"list[current_player;main;0,5;8,4;]"..
+		"background[-0.5,-0.65;9,10.35;gui_furnacebg.png]"..
+		"listcolors[#606060AA;#888;#141318;#30434C;#FFF]"
 	return formspec
 end
 
 default.furnace_inactive_formspec =
 	"size[8,9]"..
-	"image[2,2;1,1;default_furnace_fire_bg.png]"..
+	"image[2,2;1,1;default_furnace_inv.png]"..
 	"list[current_name;fuel;2,3;1,1;]"..
 	"list[current_name;src;2,1;1,1;]"..
 	"list[current_name;dst;5,1;2,2;]"..
-	"list[current_player;main;0,5;8,4;]"
+	"list[current_player;main;0,5;8,4;]"..
+  	"background[-0.5,-0.65;9,10.35;gui_furnacebg.png]"..
+  	"listcolors[#606060AA;#888;#141318;#30434C;#FFF]"
 
 minetest.register_node("default:furnace", {
 	description = "Furnace",
@@ -896,6 +907,13 @@ minetest.register_node("default:furnace", {
 			return 0
 		end
 	end,
+    	
+  	--backwards compatibility: punch to set formspec
+  	on_punch = function(pos,player)
+  	    local meta = minetest.get_meta(pos)
+        meta:set_string("infotext", "Furnace")
+        meta:set_string("formspec",default.furnace_inactive_formspec)
+    end
 })
 
 minetest.register_node("default:furnace_active", {
