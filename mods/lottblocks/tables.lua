@@ -339,3 +339,71 @@ minetest.register_craft({
 		{'group:stick', 'group:stick'},
 	}
 })
+
+minetest.register_node("lottblocks:strategy_table", {
+	description = "Strategy Table",
+	tiles = {
+		"lottblocks_strategy_table_top.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, 0.4375, -0.5, 0.5, 0.5, 0.5}, -- NodeBox1
+			{-0.4375, 0.375, -0.4375, 0.4375, 0.4375, 0.4375}, -- NodeBox2
+			{-0.375, 0.3125, -0.375, 0.375, 0.375, 0.375}, -- NodeBox3
+			{-0.1875, -0.5, -0.1875, 0.1875, 0.4375, 0.1875}, -- NodeBox4
+			{-0.0625, -0.0625, -0.5, 0.0625, 0.4375, -0.125}, -- NodeBox7
+			{-0.5, -0.0625, -0.0625, -0.1875, 0.4375, 0.0625}, -- NodeBox8
+		}
+	},
+	groups = {choppy = 2}
+})
+minetest.register_craft({
+	output = "lottblocks:strategy_table",
+	recipe = {
+		{"default:paper", "group:wood", "default:paper"},
+		{"", "group:wood", ""},
+		{"group:wood", "group:wood", "group:wood"},
+	}
+})
+
+minetest.register_node("lottblocks:hobbit_table", {
+	description = "Hobbit Table",
+	tiles = {"lottplants_aldertree.png"},
+	groups = {choppy = 2},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.3125, 0.3125, -0.3125, 0.3125, 0.375, 0.3125}, -- NodeBox1
+			{-0.25, 0.3125, -0.375, 0.25, 0.375, 0.375}, -- NodeBox2
+			{-0.375, 0.3125, -0.25, 0.375, 0.375, 0.25}, -- NodeBox3
+			{-0.125, -0.5, -0.125, 0.125, 0.3125, 0.125}, -- NodeBox4
+			{-0.4375, -0.5, -0.125, 0.4375, -0.4375, 0.125}, -- NodeBox5
+			{-0.125, -0.5, -0.4375, 0.125, -0.4375, 0.4375}, -- NodeBox6
+			{-0.125, -0.4375, -0.3125, 0.125, -0.3125, 0.3125}, -- NodeBox7
+			{-0.125, -0.5, -0.375, 0.125, -0.375, 0.375}, -- NodeBox8
+			{-0.375, -0.5, -0.125, 0.375, -0.375, 0.125}, -- NodeBox9
+			{-0.3125, -0.5, -0.125, 0.3125, -0.3125, 0.125}, -- NodeBox10
+			{-0.4375, 0.3125, -0.1875, 0.4375, 0.375, 0.1875}, -- NodeBox12
+			{-0.1875, 0.3125, -0.4375, 0.1875, 0.375, 0.4375}, -- NodeBox13
+		}
+	}
+})
+minetest.register_craft({
+	output = "lottblocks:hobbit_table",
+	recipe = {
+		{"lottplants:aldertree", "lottplants:aldertree", "lottplants:aldertree"},
+		{"", "default:stick", ""},
+		{"lottplants:aldertree", "lottplants:aldertree", "lottplants:aldertree"},
+	}
+})
