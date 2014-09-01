@@ -166,16 +166,18 @@ local machine_name = "Brewer"
 local formspec =
 	"size[8,9]"..
 	"label[0,0;"..machine_name.."]"..
-	"image[4,2;1,1;lottpotion_bubble_off.png]"..
-     "image[3,2;1,1;lottpotion_arrow.png]"..
-     "image[5,2;1,1;lottpotion_arrow.png]"..
-     "label[3.2,3.2;Fuel:]"..
+	"image[4,2;1,1;default_brewer_inv.png]"..
+    "image[3,2;1,1;lottpotion_arrow.png]"..
+    "image[5,2;1,1;lottpotion_arrow.png]"..
+    "label[3.2,3.2;Fuel:]"..
 	"list[current_name;fuel;4,3;1,1;]"..
      "label[1,1.5;Ingredients:]"..
 	"list[current_name;src;1,2;2,1;]"..
      "label[6,1.5;Result:]"..
 	"list[current_name;dst;6,2;1,1;]"..
-	"list[current_player;main;0,5;8,4;]"
+	"list[current_player;main;0,5;8,4;]"..
+	"background[-0.5,-0.65;9,10.35;gui_brewerbg.png]"..
+	"listcolors[#606060AA;#888;#141318;#30434C;#FFF]"
 
 minetest.register_node("lottpotion:brewer", {
 	description = machine_name,
@@ -205,6 +207,12 @@ minetest.register_node("lottpotion:brewer", {
 		inv:set_size("dst", 1)
 	end,
 	can_dig = lottpotion.can_dig,
+	--backwards compatibility: punch to set formspec
+  	on_punch = function(pos,player)
+  	    local meta = minetest.get_meta(pos)
+        meta:set_string("infotext", machine_name)
+        meta:set_string("formspec", formspec)
+    end
 })
 
 minetest.register_node("lottpotion:brewer_active", {
@@ -287,7 +295,7 @@ minetest.register_abm({
 			meta:set_string("formspec",
 					"size[8,9]"..
 					"label[0,0;"..machine_name.."]"..
-					"image[4,2;1,1;lottpotion_bubble_off.png^[lowpart:"..
+					"image[4,2;1,1;default_brewer_inv.png^[lowpart:"..
 					(percent)..":lottpotion_bubble.png]"..
      				"image[3,2;1,1;lottpotion_arrow.png]"..
      				"image[5,2;1,1;lottpotion_arrow.png]"..
@@ -295,9 +303,11 @@ minetest.register_abm({
 					"list[current_name;fuel;4,3;1,1;]"..
      				"label[1,1.5;Ingredients:]"..
 					"list[current_name;src;1,2;2,1;]"..
-    				     "label[6,1.5;Result:]"..
+    				"label[6,1.5;Result:]"..
 					"list[current_name;dst;6,2;1,1;]"..
-					"list[current_player;main;0,5;8,4;]")
+					"list[current_player;main;0,5;8,4;]"..
+					"background[-0.5,-0.65;9,10.35;gui_brewerbg.png]"..
+					"listcolors[#606060AA;#888;#141318;#30434C;#FFF]")
 			return
 		end
 
