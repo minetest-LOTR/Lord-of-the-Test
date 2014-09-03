@@ -394,14 +394,13 @@ minetest.register_node("bones:skeleton", {
 
 minetest.register_node("bones:skeleton_body", {
 	description = "Skeleton",
-     drawtype = "nodebox",
-     stack_max = 1,
+	drawtype = "nodebox",
 	tiles = {"bones_skeleton_top.png"},
-     inventory_image = "bones_skeleton.png",
-    wield_image     = "bones_skeleton.png",
-     paramtype = "light",
+	inventory_image = "bones_skeleton.png",
+	wield_image = "bones_skeleton.png",
+	paramtype = "light",
 	groups = {dig_immediate=2},
-     node_box = {
+	node_box = {
 		type = "fixed",
 		fixed = {
 			{-0.0625,-0.0625,-0.0625,0.125,0.5,0.0625},
@@ -411,16 +410,16 @@ minetest.register_node("bones:skeleton_body", {
 			{-0.3125,0,-0.375,0.375,0.125,0.375},
 			{-0.3125,0.375,-0.375,0.375,0.5,0.375},
 			{-0.3125,0.1875,-0.375,0.375,0.3125,0.375},
-               {0.375,-0.0625,-0.0625,0.5,0.5,0.1875},
-               {-0.3125,-0.0625,-0.0625,-0.4375,0.5,0.1875},
+               		{0.375,-0.0625,-0.0625,0.5,0.5,0.1875},
+               		{-0.3125,-0.0625,-0.0625,-0.4375,0.5,0.1875},
 		},
 	},
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
 	}),
-     on_place = function(itemstack, placer, pointed_thing)
-        local above = pointed_thing.above
+	on_place = function(itemstack, placer, pointed_thing)
+        	local above = pointed_thing.above
         if minetest.env:get_node({x = above.x, y = above.y + 1, z = above.z}).name ~= "air" then
             return itemstack
         end
