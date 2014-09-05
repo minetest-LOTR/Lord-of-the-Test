@@ -176,7 +176,7 @@ minetest.register_craft({
 minetest.register_tool("lottthrowing:crossbow_wood", {
 	description = "Wooden Crossbow",
 	inventory_image = "lottthrowing_crossbow_wood.png",
-    stack_max = 1,
+     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_bolt(itemstack, user, pointed_thing) then
 			if not minetest.setting_getbool("creative_mode") then
@@ -190,7 +190,7 @@ minetest.register_tool("lottthrowing:crossbow_wood", {
 minetest.register_tool("lottthrowing:crossbow_steel", {
 	description = "Steel Crossbow",
 	inventory_image = "lottthrowing_crossbow_steel.png",
-    stack_max = 1,
+     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_bolt(item, user, pointed_thing) then
 			if not minetest.setting_getbool("creative_mode") then
@@ -204,7 +204,7 @@ minetest.register_tool("lottthrowing:crossbow_steel", {
 minetest.register_tool("lottthrowing:crossbow_tin", {
 	description = "Tin Crossbow",
 	inventory_image = "lottthrowing_crossbow_tin.png",
-    stack_max = 1,
+     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_bolt(item, user, pointed_thing) then
 			if not minetest.setting_getbool("creative_mode") then
@@ -218,7 +218,7 @@ minetest.register_tool("lottthrowing:crossbow_tin", {
 minetest.register_tool("lottthrowing:crossbow_silver", {
 	description = "Silver Crossbow",
 	inventory_image = "lottthrowing_crossbow_silver.png",
-    stack_max = 1,
+     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_bolt(item, user, pointed_thing) then
 			if not minetest.setting_getbool("creative_mode") then
@@ -232,7 +232,7 @@ minetest.register_tool("lottthrowing:crossbow_silver", {
 minetest.register_tool("lottthrowing:crossbow_gold", {
 	description = "Gold Crossbow",
 	inventory_image = "lottthrowing_crossbow_gold.png",
-    stack_max = 1,
+     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_bolt(item, user, pointed_thing) then
 			if not minetest.setting_getbool("creative_mode") then
@@ -246,7 +246,8 @@ minetest.register_tool("lottthrowing:crossbow_gold", {
 minetest.register_tool("lottthrowing:crossbow_galvorn", {
 	description = "Galvorn Crossbow",
 	inventory_image = "lottthrowing_crossbow_galvorn.png",
-    stack_max = 1,
+     groups = {forbidden=1},
+     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_bolt(item, user, pointed_thing) then
 			if not minetest.setting_getbool("creative_mode") then
@@ -260,7 +261,7 @@ minetest.register_tool("lottthrowing:crossbow_galvorn", {
 minetest.register_tool("lottthrowing:crossbow_mithril", {
 	description = "Mithril Crossbow",
 	inventory_image = "lottthrowing_crossbow_mithril.png",
-    stack_max = 1,
+     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_bolt(item, user, pointed_thing) then
 			if not minetest.setting_getbool("creative_mode") then

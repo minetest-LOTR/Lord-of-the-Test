@@ -310,7 +310,7 @@ minetest.register_node("lottother:lamp_top_wood_alder",{
 
 minetest.register_node("lottother:tiny_lamp_wood_alder",{
      description = "Alder Wood Tiny Lamp",
-	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2,oddly_breakable_by_hand=1},
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 		tiles = {
 		"lottplants_alderwood.png",
 		"lottplants_alderwood.png",

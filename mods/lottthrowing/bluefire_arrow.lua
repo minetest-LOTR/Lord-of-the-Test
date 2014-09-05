@@ -1,6 +1,7 @@
 minetest.register_craftitem("lottthrowing:arrow_fire_blue", {
 	description = "Fire Arrow",
 	inventory_image = "lottthrowing_arrow_fire_blue.png",
+     groups = {forbidden=1},
 })
 
 minetest.register_node("lottthrowing:arrow_fire_blue_box", {

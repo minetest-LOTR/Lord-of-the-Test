@@ -2,7 +2,7 @@ ARMOR_INIT_DELAY = 1
 ARMOR_INIT_TIMES = 1
 ARMOR_BONES_DELAY = 1
 ARMOR_UPDATE_TIME = 1
-ARMOR_DROP = true
+ARMOR_DROP = false
 ARMOR_DESTROY = false
 ARMOR_LEVEL_MULTIPLIER = 1
 ARMOR_HEAL_MULTIPLIER = 1
@@ -15,17 +15,91 @@ gui_slots = "listcolors[#606060AA;#606060;#141318;#30434C;#FFF]"
 armor = {
 	player_hp = {},
 	elements = {"head", "torso", "legs", "feet"},
-	physics = {"jump","speed","gravity"},
-	formspec = "size[8,8.5]" .. gui_bg_img .. gui_slots .. "list[detached:player_name_armor;armor;0,1;2,3;]"
-		.."image[2,0.75;2,4;armor_preview]"
+     physics = {"jump","speed","gravity","sneak","sneak_glitch"},
+	formspec = "size[8,8.5]" .. gui_bg_img .. gui_slots .."image[0,0;1,1;lottarmor_helmet.png]"
+          .."image[3,0;1,1;lottarmor_helmet.png]"
+          .."image[0,1;1,1;lottarmor_chestplate.png]"
+          .."image[0,2;1,1;lottarmor_leggings.png]"
+          .."image[0,3;1,1;lottarmor_boots.png]"
+          .."image[3,1;1,1;lottarmor_shirt.png]"
+          .."image[3,2;1,1;lottarmor_pants.png]"
+          .."image[3,3;1,1;lottarmor_shoes.png]"
+          .."list[detached:player_name_armor;armor;0,0;1,4;]"
+          .."list[detached:player_name_armor;armor;2,2;1,1;4]"
+          .."list[detached:player_name_armor;armor;3,0;1,4;5]"
+          .."image[1.16,0.25;2,4;armor_preview]"
+          .."image[2,2;1,1;lottarmor_shield.png]"
 		.."list[current_player;main;0,4.25;8,1;]"
 		.."list[current_player;main;0,5.5;8,3;8]"
-    	.."list[current_player;craft;4,1;3,3;]"
-    	.."list[current_player;craftpreview;7,2;1,1;]",
+          .."image[4.05,0;4.5,1;lottarmor_crafting.png]"
+    	     .."list[current_player;craft;4,1;3,3;]"
+    	     .."list[current_player;craftpreview;7,2;1,1;]"
+          .."image[7,3;1,1;lottarmor_trash.png]"
+          .."list[detached:armor_trash;main;7,3;1,1;]"
+          .."image_button[7,1;1,1;bags.png;bags;]",
 	textures = {},
 	default_skin = "character",
 }
 
+local get_formspec = function(player,page)
+	if page=="bags" then
+		return "size[8,7.5]"
+			.."list[current_player;main;0,3.5;8,4;]"
+			.."button[0,0;2,0.5;main;Back]"
+			.."button[0,2;2,0.5;bag1;Bag 1]"
+			.."button[2,2;2,0.5;bag2;Bag 2]"
+			.."button[4,2;2,0.5;bag3;Bag 3]"
+			.."button[6,2;2,0.5;bag4;Bag 4]"
+			.."list[detached:"..player:get_player_name().."_bags;bag1;0.5,1;1,1;]"
+			.."list[detached:"..player:get_player_name().."_bags;bag2;2.5,1;1,1;]"
+			.."list[detached:"..player:get_player_name().."_bags;bag3;4.5,1;1,1;]"
+			.."list[detached:"..player:get_player_name().."_bags;bag4;6.5,1;1,1;]"
+               .."background[5,5;1,1;gui_formbg.png;true]"
+	end
+	for i=1,4 do
+		if page=="bag"..i then
+			local image = player:get_inventory():get_stack("bag"..i, 1):get_definition().inventory_image
+			return "size[8,8.5]"
+				.."list[current_player;main;0,4.5;8,4;]"
+				.."button[0,0;2,0.5;main;Main]"
+				.."button[2,0;2,0.5;bags;Bags]"
+				.."image[7,0;1,1;"..image.."]"
+				.."list[current_player;bag"..i.."contents;0,1;8,3;]"
+                    .."background[5,5;1,1;gui_formbg.png;true]"
+		end
+	end
+end
+
+--- Bags
+minetest.register_on_player_receive_fields(function(player, formname, fields)
+	if fields.bags then
+		inventory_plus.set_inventory_formspec(player, get_formspec(player,"bags"))
+		return
+	end
+	for i=1,4 do
+		local page = "bag"..i
+		if fields[page] then
+			if player:get_inventory():get_stack(page, 1):get_definition().groups.bagslots==nil then
+				page = "bags"
+			end
+			inventory_plus.set_inventory_formspec(player, get_formspec(player,page))
+			return
+		end
+	end
+end)
+
+--Trash
+local trash = minetest.create_detached_inventory("armor_trash", {
+	allow_put = function(inv, listname, index, stack, player)
+		return stack:get_count()
+	end,
+	on_put = function(inv, listname, index, stack, player)
+		inv:set_stack(listname, index, "")
+	end,
+})
+trash:set_size("main", 1)
+
+--Armor Stuff
 armor.def = {
 	state = 0,
 	count = 0,
@@ -57,17 +131,18 @@ armor.set_player_armor = function(self, player)
 	local armor_texture = "lottarmor_trans.png"
 	local armor_level = 0
 	local armor_heal = 0
+     local armor_healing = 0
 	local state = 0
 	local items = 0
 	local elements = {}
 	local textures = {}
-	local physics_o = {speed=1,gravity=1,jump=1}
+	local physics_o = {speed=1,gravity=1,jump=1,sneak=1,sneak_glitch=0}
 	local material = {type=nil, count=1}
 	local preview = armor:get_player_skin(name).."_preview.png"
 	for _,v in ipairs(self.elements) do
 		elements[v] = false
 	end
-	for i=1, 6 do
+	for i=1, 9 do
 		local stack = player_inv:get_stack("armor", i)
 		local item = stack:get_name()
 		if stack:get_count() == 1 then
@@ -84,6 +159,8 @@ armor.set_player_armor = function(self, player)
 						items = items + 1
 						local heal = def.groups["armor_heal"] or 0
 						armor_heal = armor_heal + heal
+                              local heal_plus = def.groups["armor_healing"] or 0
+						armor_healing = armor_healing + heal_plus
 						for kk,vv in ipairs(self.physics) do							
 							local o_value = def.groups["physics_"..vv]
 							if o_value then
@@ -112,6 +189,7 @@ armor.set_player_armor = function(self, player)
 	end
 	armor_level = armor_level * ARMOR_LEVEL_MULTIPLIER
 	armor_heal = armor_heal * ARMOR_HEAL_MULTIPLIER
+     armor_healing = armor_healing
 	if #textures > 0 then
 		armor_texture = table.concat(textures, "^")
 	end
@@ -121,6 +199,8 @@ armor.set_player_armor = function(self, player)
 		armor_groups.fleshy = 100 - armor_level
 	end
 	player:set_armor_groups(armor_groups)
+     physics_o.sneak = physics_o.sneak > 0
+	physics_o.sneak_glitch = physics_o.sneak_glitch > 0
 	player:set_physics_override(physics_o)
 	self.textures[name].armor = armor_texture
 	self.textures[name].preview = preview
@@ -128,6 +208,7 @@ armor.set_player_armor = function(self, player)
 	self.def[name].count = items
 	self.def[name].level = armor_level
 	self.def[name].heal = armor_heal
+     self.def[name].heal_plus = armor_healing
 	self:update_player_visuals(player)
 end
 
@@ -147,13 +228,15 @@ armor.update_armor = function(self, player)
 			return
 		end
 		local heal_max = 0
+          local heal_max2 = 0
 		local state = 0
 		local items = 0
-		for i=1, 6 do
+		for i=1, 9 do
 			local stack = player_inv:get_stack("armor", i)
 			if stack:get_count() > 0 then
 				local use = stack:get_definition().groups["armor_use"] or 0
 				local heal = stack:get_definition().groups["armor_heal"] or 0
+                    local heal_plus = stack:get_definition().groups["armor_healing"] or 0
 				local item = stack:get_name()
 				stack:add_wear(use)
 				armor_inv:set_stack("armor", i, stack)
@@ -169,14 +252,21 @@ armor.update_armor = function(self, player)
 					armor:update_inventory(player)
 				end
 				heal_max = heal_max + heal
+                    heal_max2 = heal_max2 + heal_plus
 			end
 		end
 		self.def[name].state = state
 		self.def[name].count = items
 		heal_max = heal_max * ARMOR_HEAL_MULTIPLIER
+          if heal_max2 < 0 then
+			player:set_hp(player:get_hp() + heal_max2)
+               player:set_hp(player:get_hp() + 1)
+		end
+          if heal_max2 > 0 then
+			player:set_hp(player:get_hp() + heal_max2)
+		end
 		if heal_max > math.random(100) then
 			player:set_hp(self.player_hp[name])
-			return
 		end
 	end
 	self.player_hp[name] = hp
@@ -196,26 +286,13 @@ armor.get_armor_formspec = function(self, name)
 	local formspec = armor.formspec:gsub("player_name", name)
 	formspec = formspec:gsub("armor_preview", armor.textures[name].preview)
 	formspec = formspec:gsub("armor_level", armor.def[name].level)
+     formspec = formspec:gsub("armor_healing", armor.def[name].heal)
 	return formspec:gsub("armor_heal", armor.def[name].heal)
 end
-
 armor.update_inventory = function(self, player)
 	local name = player:get_player_name()
-	if unified_inventory then
-		if unified_inventory.current_page[name] == "armor" then
-			unified_inventory.set_inventory_formspec(player, "armor")
-		end
-	else
-		local formspec = armor:get_armor_formspec(name)
-		if inventory_plus then
-			local page = player:get_inventory_formspec()
-			if page:find("detached:"..name.."_armor") then
-				inventory_plus.set_inventory_formspec(player, formspec)
-			end
-		else
-			player:set_inventory_formspec(formspec)
-		end
-	end
+	local formspec = armor:get_armor_formspec(name)
+	player:set_inventory_formspec(formspec)
 end
 
 -- Register Player Model
@@ -241,11 +318,6 @@ default.player_register_model("lottarmor_character.x", {
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	local name = player:get_player_name()
-	if inventory_plus and fields.armor then
-		local formspec = armor:get_armor_formspec(name)
-		inventory_plus.set_inventory_formspec(player, formspec)
-		return
-	end
 	for field, _ in pairs(fields) do
 		if string.find(field, "skins_set_") then
 			minetest.after(0, function(player)
@@ -290,15 +362,47 @@ minetest.register_on_joinplayer(function(player)
 			return count
 		end,
 	})
-	if inventory_plus then
-		inventory_plus.register_button(player,"armor", "Armor")
-	end
-	armor_inv:set_size("armor", 6)
-	player_inv:set_size("armor", 6)
-	for i=1, 6 do
+	armor_inv:set_size("armor", 9)
+	player_inv:set_size("armor", 9)
+	for i=1, 9 do
 		local stack = player_inv:get_stack("armor", i)
 		armor_inv:set_stack("armor", i, stack)
-	end	
+	end
+     
+     
+     --Bags
+     local bags_inv = minetest.create_detached_inventory(player:get_player_name().."_bags",{
+		on_put = function(inv, listname, index, stack, player)
+			player:get_inventory():set_stack(listname, index, stack)
+			player:get_inventory():set_size(listname.."contents", stack:get_definition().groups.bagslots)
+		end,
+		on_take = function(inv, listname, index, stack, player)
+			player:get_inventory():set_stack(listname, index, nil)
+		end,
+		allow_put = function(inv, listname, index, stack, player)
+			if stack:get_definition().groups.bagslots then
+				return 1
+			else
+				return 0
+			end
+		end,
+		allow_take = function(inv, listname, index, stack, player)
+			if player:get_inventory():is_empty(listname.."contents")==true then
+				return stack:get_count()
+			else
+				return 0
+			end
+		end,
+		allow_move = function(inv, from_list, from_index, to_list, to_index, count, player)
+			return 0
+		end,
+	})
+	for i=1,4 do
+		local bag = "bag"..i
+		player_inv:set_size(bag, 1)
+		bags_inv:set_size(bag, 1)
+		bags_inv:set_stack(bag,1,player_inv:get_stack(bag,1))
+	end
 
 	-- Legacy support, import player"s armor from old inventory format
 	--[[
@@ -315,6 +419,7 @@ minetest.register_on_joinplayer(function(player)
 		count = 0,
 		level = 0,
 		heal = 0,
+          heal_plus = 0,
 	}
 	armor.textures[name] = {
 		skin = armor.default_skin..".png",
@@ -344,9 +449,7 @@ minetest.register_on_joinplayer(function(player)
 	for i=1, ARMOR_INIT_TIMES do
 		minetest.after(ARMOR_INIT_DELAY * i, function(player)
 			armor:set_player_armor(player)
-			if inventory_plus == nil and unified_inventory == nil then
-				armor:update_inventory(player)
-			end
+			armor:update_inventory(player)
 		end, player)
 	end
 end)
@@ -368,51 +471,44 @@ if ARMOR_DROP == true or ARMOR_DESTROY == true then
 				end
 			end
 			armor:set_player_armor(player)
-			if unified_inventory then
-				unified_inventory.set_inventory_formspec(player, "craft")
-			elseif inventory_plus then
-				local formspec = inventory_plus.get_formspec(player,"main")
-				inventory_plus.set_inventory_formspec(player, formspec)
-			else
-				armor:update_inventory(player)
-			end
+			armor:update_inventory(player)
 			if ARMOR_DESTROY == false then
 				if minetest.get_modpath("bones") then
 					minetest.after(ARMOR_BONES_DELAY, function()
 						pos = vector.round(pos)
 						local node = minetest.get_node(pos)
 						if node.name == "bones:bones" then
-							local meta = minetest.get_meta(pos)
-							local owner = meta:get_string("owner")
-							local inv = meta:get_inventory()
-							if name == owner then
-								for _,stack in ipairs(drop) do
-									if inv:room_for_item("main", stack) then
-										inv:add_item("main", stack)
-									end
+						local meta = minetest.get_meta(pos)
+						local owner = meta:get_string("owner")
+						local inv = meta:get_inventory()
+						if name == owner then
+							for _,stack in ipairs(drop) do
+								if inv:room_for_item("main", stack) then
+									inv:add_item("main", stack)
 								end
 							end
 						end
-					end)
-				else
-					for _,stack in ipairs(drop) do
-						local obj = minetest.add_item(pos, stack)
-						if obj then
-							local x = math.random(1, 5)
-							if math.random(1,2) == 1 then
-								x = -x
-							end
-							local z = math.random(1, 5)
-							if math.random(1,2) == 1 then
-								z = -z
-							end
-							obj:setvelocity({x=1/x, y=obj:getvelocity().y, z=1/z})
+					end
+				end)
+			else
+				for _,stack in ipairs(drop) do
+					local obj = minetest.add_item(pos, stack)
+					if obj then
+						local x = math.random(1, 5)
+						if math.random(1,2) == 1 then
+							x = -x
 						end
+						local z = math.random(1, 5)
+						if math.random(1,2) == 1 then
+							z = -z
+						end
+						obj:setvelocity({x=1/x, y=obj:getvelocity().y, z=1/z})
 					end
 				end
 			end
 		end
-	end)
+	end
+end)
 end
 
 minetest.register_globalstep(function(dtime)
@@ -425,3 +521,17 @@ minetest.register_globalstep(function(dtime)
 	end
 end)
 
+--Inventory Plus
+inventory_plus = {}
+
+inventory_plus.set_inventory_formspec = function(player, formspec)
+	minetest.show_formspec(player:get_player_name(), "custom", formspec)
+end
+
+minetest.register_on_player_receive_fields(function(player,formname,fields)
+	if fields.main then
+		local name = player:get_player_name()
+	     local formspec_armor = armor:get_armor_formspec(name)
+	     minetest.show_formspec(player:get_player_name(), "armor", formspec_armor)
+	end
+end)

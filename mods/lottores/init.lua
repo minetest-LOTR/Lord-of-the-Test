@@ -356,11 +356,13 @@ minetest.register_craftitem("lottores:mithril_ingot", {
 minetest.register_craftitem("lottores:galvorn_ingot", {
 	description = "Galvorn Ingot",
 	inventory_image = "lottores_galvorn_ingot.png",
+     groups = {forbidden=1},
 })
 
 minetest.register_craftitem("lottores:tilkal_ingot", {
 	description = "Tilkal Ingot",
 	inventory_image = "lottores_tilkal_ingot.png",
+     groups = {forbidden=1},
 })
 
 minetest.register_craftitem("lottores:blue_gem", {
@@ -384,7 +386,7 @@ minetest.register_node("lottores:tilkal", {
 	description = "Tilkal",
 	tiles = {"lottores_tilkal.png"},
 	sounds = default.node_sound_defaults(),
-	groups = {},
+	groups = {forbidden=1},
 })
 
 minetest.register_node("lottores:limestone", {
@@ -564,7 +566,7 @@ minetest.register_node("lottores:galvorn_block", {
 	description = "Galvorn Block",
 	tiles = {"lottores_galvorn_block.png"},
 	is_ground_content = true,
-	groups = {cracky=1,level=2},
+	groups = {cracky=1,level=2,forbidden=1},
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -595,7 +597,7 @@ minetest.register_node("lottores:ithildin_1", {
 	sunlight_propagates = true,
 	light_source = 8,
 	drop = "lottores:ithildin_1",
-	groups = {snappy=2,cracky=3},
+	groups = {snappy=2,cracky=3,forbidden=1},
 	sounds = default.node_sound_glass_defaults(),
 })
 
@@ -620,7 +622,7 @@ minetest.register_node("lottores:ithildin_stone_1", {
 	sunlight_propagates = false,
 	light_source = 8,
 	drop = "lottores:ithildin_stone_1",
-	groups = {snappy=2,cracky=3},
+	groups = {snappy=2,cracky=3,forbidden=1},
 	sounds = default.node_sound_glass_defaults(),
 })
 
@@ -645,7 +647,7 @@ minetest.register_node("lottores:ithildin_stonelamp_1", {
 	sunlight_propagates = false,
 	light_source = 8,
 	drop = "lottores:ithildin_stonelamp_1",
-	groups = {snappy=2,cracky=3},
+	groups = {snappy=2,cracky=3,forbidden=1},
 	sounds = default.node_sound_glass_defaults(),
 })
 
@@ -672,7 +674,7 @@ minetest.register_node("lottores:ithildin_lamp_1", {
 	sunlight_propagates = true,
 	light_source = 8,
 	drop = "lottores:ithildin_lamp_1",
-	groups = {snappy=2,cracky=3},
+	groups = {snappy=2,cracky=3,forbidden=1},
 	sounds = default.node_sound_glass_defaults(),
 })
 
@@ -828,6 +830,7 @@ minetest.register_tool("lottores:goldpick", {
 minetest.register_tool("lottores:galvornpick", {
 	description = "Galvorn Pickaxe",
 	inventory_image = "lottores_galvornpick.png",
+     groups = {forbidden=1},
 	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level=3,
@@ -903,6 +906,7 @@ minetest.register_tool("lottores:goldaxe", {
 minetest.register_tool("lottores:galvornaxe", {
 	description = "Galvorn Axe",
 	inventory_image = "lottores_galvornaxe.png",
+     groups = {forbidden=1},
 	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level=1,
@@ -978,6 +982,7 @@ minetest.register_tool("lottores:goldsword", {
 minetest.register_tool("lottores:galvornsword", {
 	description = "Galvorn Sword",
 	inventory_image = "lottores_galvornsword.png",
+     groups = {forbidden=1},
 	tool_capabilities = {
 		full_punch_interval = 0.5,
 		max_drop_level=1,
@@ -1058,6 +1063,7 @@ minetest.register_tool("lottores:galvornshovel", {
 	description = "Galvorn Shovel",
 	inventory_image = "lottores_galvornshovel.png",
 	wield_image = "lottores_galvornshovel.png^[transformR90",
+     groups = {forbidden=1},
 	tool_capabilities = {
 		full_punch_interval = 1.0,
 		max_drop_level=3,
@@ -1084,7 +1090,7 @@ minetest.register_tool("lottores:mithrilshovel", {
 -- Stairs & Slabs
 
 stairs.register_stair_and_slab("tilkal", "lottores:tilkal",
-        {},
+        {forbidden=1},
 		{"lottores_tilkal.png"},
 		"Tilkal Stair",
 		"Tilkal Slab",
@@ -1133,7 +1139,7 @@ stairs.register_stair_and_slab("mithril_block", "lottores:mithril_block",
 		default.node_sound_stone_defaults())
 	
 stairs.register_stair_and_slab("tin_block", "lottores:galvorn_block",
-        {cracky=1,level=2},
+        {cracky=1,level=2,forbidden=1},
 		{"lottores_galvorn_block.png"},
 		"Galvorn Stair",
 		"Galvorn Slab",

@@ -1,6 +1,7 @@
 minetest.register_craftitem("lottthrowing:arrow_magical", {
 	description = "Magical Arrow",
 	inventory_image = "lottthrowing_arrow_magical.png",
+     groups = {forbidden=1},
 })
 
 minetest.register_node("lottthrowing:arrow_magical_box", {

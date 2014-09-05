@@ -48,6 +48,7 @@ for _, row in ipairs(tapestry.colours) do
 		sounds = default.node_sound_defaults(),
 	     paramtype = "light",
 	     paramtype2 = "facedir",
+          drop = '',
           node_box = {
 		    type = "fixed",
 		    fixed = {

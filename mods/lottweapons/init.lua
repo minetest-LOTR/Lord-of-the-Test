@@ -116,6 +116,7 @@ minetest.register_tool("lottweapons:gold_battleaxe", {
 minetest.register_tool("lottweapons:galvorn_battleaxe", {
 	description = "Galvorn Battleaxe",
 	inventory_image = "lott_galvorn_battleaxe.png",
+     groups = {forbidden=1},
 	tool_capabilities = {
 		full_punch_interval = 0.5,
 		max_drop_level=1,
@@ -257,6 +258,7 @@ minetest.register_tool("lottweapons:galvorn_warhammer", {
 	description = "Galvorn Warhammer",
 	inventory_image = "lott_galvorn_warhammer.png",
 	range = 2,
+     groups = {forbidden=1},
 	tool_capabilities = {
 		full_punch_interval = 0.50,
 		max_drop_level=1,
@@ -406,6 +408,7 @@ minetest.register_tool("lottweapons:galvorn_spear", {
 	inventory_image = "lott_galvorn_spear.png",
 	wield_image = "lott_galvorn_spear.png^[transformFX",
 	range = 7,
+     groups = {forbidden=1},
 	tool_capabilities = {
 		full_punch_interval = 0.50,
 		max_drop_level=1,
@@ -548,6 +551,7 @@ minetest.register_tool("lottweapons:galvorn_dagger", {
 	description = "Galvorn Dagger",
 	inventory_image = "lott_galvorn_dagger.png",
 	range = 3,
+     groups = {forbidden=1},
 	tool_capabilities = {
 		full_punch_interval = .5,
 		max_drop_level=0,

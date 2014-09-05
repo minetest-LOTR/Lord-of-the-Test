@@ -1,18 +1,22 @@
 minetest.register_craftitem("lottother:ringsilver_lump", {
 	description = "Unrefined Ring Silver",
 	inventory_image = "lottother_ringsilver_lump.png",
+     groups = {forbidden=1},
 })
 minetest.register_craftitem("lottother:ringsilver_ingot", {
 	description = "Refined Ring Silver",
 	inventory_image = "lottother_ringsilver_ingot.png",
+     groups = {forbidden=1},
 })
 minetest.register_craftitem("lottother:ring", {
 	description = "Plain Ring",
 	inventory_image = "lottother_ring.png",
+     groups = {forbidden=1},
 })
 minetest.register_craftitem("lottother:purple_gem", {
 	description = "Purple Gem",
 	inventory_image = "lottother_purplegem.png",
+     groups = {forbidden=1},
 })
 
 
@@ -21,14 +25,17 @@ minetest.register_craftitem("lottother:purple_gem", {
 minetest.register_craftitem("lottother:blue_gem_ring", {
 	description = "Blue Gem Ring.",
 	inventory_image = "lottother_bluegem_ring.png",
+     groups = {forbidden=1},
 })
 minetest.register_craftitem("lottother:blue_am_ring", {
 	description = "Blue Almost Magic Ring",
 	inventory_image = "lottother_bluegem_am_ring.png",
+     groups = {forbidden=1},
 })
 minetest.register_craftitem("lottother:vilya", {
 	description = "Vilya",
 	inventory_image = "lottother_vilya.png",
+     groups = {forbidden=1},
 })
 minetest.register_globalstep(function(dtime)
 	for _, player in ipairs(minetest.get_connected_players()) do
@@ -47,14 +54,17 @@ end)
 minetest.register_craftitem("lottother:red_gem_ring", {
 	description = "Red Gem Ring",
 	inventory_image = "lottother_redgem_ring.png",
+     groups = {forbidden=1},
 })
 minetest.register_craftitem("lottother:red_am_ring", {
 	description = "Red Almost Magic Ring",
 	inventory_image = "lottother_redgem_am_ring.png",
+     groups = {forbidden=1},
 })
 minetest.register_craftitem("lottother:narya", {
 	description = "Narya",
 	inventory_image = "lottother_narya.png",
+     groups = {forbidden=1},
 })
 --follow = "lottother:narya",
 
@@ -62,15 +72,17 @@ minetest.register_craftitem("lottother:narya", {
 minetest.register_craftitem("lottother:white_gem_ring", {
 	description = "White Gem Ring",
 	inventory_image = "lottother_whitegem_ring.png",
+     groups = {forbidden=1},
 })
 minetest.register_craftitem("lottother:white_am_ring", {
 	description = "White Almost Magic Ring",
 	inventory_image = "lottother_whitegem_am_ring.png",
+     groups = {forbidden=1},
 })
 minetest.register_tool("lottother:nenya", {
 	description = "Nenya",
 	inventory_image = "lottother_nenya_inv.png",
-	groups = {armor_head=15, armor_torso=20, armor_legs=20, armor_feet=15, armor_shield=25},
+	groups = {armor_head=15, armor_torso=20, armor_legs=20, armor_feet=15, armor_shield=25,forbidden=1},
 	wear = 0,
 })
 
@@ -170,18 +182,22 @@ minetest.register_craft({
 minetest.register_craftitem("lottother:purple_gem_ring", {
 	description = "Purple Gem Ring",
 	inventory_image = "lottother_purplegem_ring.png",
+     groups = {forbidden=1},
 })
 minetest.register_craftitem("lottother:purple_gem_mithril_ring", {
 	description = "Purple Gem Mithril Ring",
 	inventory_image = "lottother_purplegem_mithril_ring.png",
+     groups = {forbidden=1},
 })
 minetest.register_craftitem("lottother:purple_am_ring", {
 	description = "Mithril Almost Magic Ring",
 	inventory_image = "lottother_purplegem_am_ring.png",
+     groups = {forbidden=1},
 })
 minetest.register_craftitem("lottother:dwarf_ring", {
 	description = "Dwarf Ring",
 	inventory_image = "lottother_dwarf_ring.png",
+     groups = {forbidden=1},
 })
 
 minetest.register_craft({
@@ -213,13 +229,6 @@ minetest.register_craft({
 	recipe = "lottother:purple_am_ring",
 	cooktime = 1000,
 })
-
-
-
-
-
-
-
 
 
 

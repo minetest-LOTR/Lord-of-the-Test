@@ -13,7 +13,7 @@ minetest.register_node("lottother:mordorms_off", {
 	is_ground_content = false,
      walkable = false,
      buildable_to = true,
-     pointable = true,
+     pointable = false,
 	groups = {not_in_creative_inventory=1,dig_immediate=3},
 })
 
@@ -42,7 +42,7 @@ minetest.register_node("lottother:rohanms_off", {
 	is_ground_content = false,
      walkable = false,
      buildable_to = true,
-     pointable = true,
+     pointable = false,
 	groups = {not_in_creative_inventory=1,dig_immediate=3},
 })
 
@@ -84,7 +84,7 @@ minetest.register_node("lottother:elfms_off", {
 	is_ground_content = false,
      walkable = false,
      buildable_to = true,
-     pointable = true,
+     pointable = false,
 	groups = {not_in_creative_inventory=1,dig_immediate=3},
 })
 
@@ -113,7 +113,7 @@ minetest.register_node("lottother:hobbitms_off", {
 	is_ground_content = false,
      walkable = false,
      buildable_to = true,
-     pointable = true,
+     pointable = false,
 	groups = {not_in_creative_inventory=1,dig_immediate=3},
 })
 
@@ -142,7 +142,7 @@ minetest.register_node("lottother:gondorms_off", {
 	is_ground_content = false,
      walkable = false,
      buildable_to = true,
-     pointable = true,
+     pointable = false,
 	groups = {not_in_creative_inventory=1,dig_immediate=3},
 })
 
@@ -171,7 +171,7 @@ minetest.register_node("lottother:angmarms_off", {
 	is_ground_content = false,
      walkable = false,
      buildable_to = true,
-     pointable = true,
+     pointable = false,
 	groups = {not_in_creative_inventory=1,dig_immediate=3},
 })
 
