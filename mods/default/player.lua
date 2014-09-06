@@ -84,6 +84,7 @@ local player_model = {}
 local player_textures = {}
 local player_anim = {}
 local player_sneak = {}
+default.player_attached = {}
 
 function default.player_get_animation(player)
 	local name = player:get_player_name()
@@ -140,7 +141,16 @@ end
 
 -- Update appearance when the player joins
 minetest.register_on_joinplayer(function(player)
+	default.player_attached[player:get_player_name()] = false
 	default.player_set_model(player, "character.x")
+	player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
+	
+	-- set GUI
+	if not minetest.setting_getbool("creative_mode") then
+		player:set_inventory_formspec(default.gui_suvival_form)
+	end
+	player:hud_set_hotbar_image("gui_hotbar.png")
+	player:hud_set_hotbar_selected_image("gui_hotbar_selected.png")
 end)
 
 minetest.register_on_leaveplayer(function(player)
@@ -152,6 +162,7 @@ end)
 
 -- Localize for better performance.
 local player_set_animation = default.player_set_animation
+local player_attached = default.player_attached
 
 -- Check each player and apply animations
 minetest.register_globalstep(function(dtime)
@@ -159,7 +170,7 @@ minetest.register_globalstep(function(dtime)
 		local name = player:get_player_name()
 		local model_name = player_model[name]
 		local model = model_name and models[model_name]
-		if model then
+		if model and not player_attached[name] then
 			local controls = player:get_player_control()
 			local walking = false
 			local animation_speed_mod = model.animation_speed or 30
