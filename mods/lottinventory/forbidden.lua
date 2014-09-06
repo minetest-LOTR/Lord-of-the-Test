@@ -205,10 +205,10 @@ minetest.register_on_player_receive_fields(function(player,formname,fields)
 	end
 end)
 
-minetest.register_tool("lottarmor:forbidden_crafts_book",{
+minetest.register_tool("lottinventory:forbidden_crafts_book",{
     description = "Book of Forbidden Crafts",
     groups = {}, 
-    inventory_image = "default_book.png",
+    inventory_image = "lottinventory_forbidden_book.png",
     wield_image = "",
     wield_scale = {x=1,y=1,z=1},
     stack_max = 1, 
@@ -221,6 +221,7 @@ minetest.register_tool("lottarmor:forbidden_crafts_book",{
             choppy={times={[3]=0.90}, maxwear=0.05, maxlevel=0}
         }
     },
+    groups = {armor_crafts=1},
     on_place = function(itemstack, player, pointed_thing)
 	     inventory_plus.set_inventory_formspec(player, zfc.formspec(pn))
     end,

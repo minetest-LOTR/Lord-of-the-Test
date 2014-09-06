@@ -225,13 +225,14 @@ minetest.register_on_player_receive_fields(function(player,formname,fields)
 	end
 end)
 
-minetest.register_tool("lottarmor:potions_book",{
+minetest.register_tool("lottinventory:potions_book",{
     description = "Book of Potions",
     groups = {}, 
-    inventory_image = "default_book.png",
+    inventory_image = "lottinventory_potion_book.png",
     wield_image = "",
     wield_scale = {x=1,y=1,z=1},
     stack_max = 1, 
+    groups = {cook_crafts=1},
     tool_capabilities = {
         full_punch_interval = 1.0,
         max_drop_level=0,

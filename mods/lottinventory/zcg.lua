@@ -38,6 +38,12 @@ zcg.add_craft = function(input, output, groups)
      if minetest.get_item_group(output, "armor_use") > 0 then
 		return
 	end
+     if minetest.get_item_group(output, "armor_crafts") > 0 then
+		return
+	end
+     if minetest.get_item_group(output, "cook_crafts") > 0 then
+		return
+	end
 	if not groups then groups = {} end
 	local c = {}
 	c.width = input.width
@@ -215,10 +221,10 @@ minetest.register_on_player_receive_fields(function(player,formname,fields)
 	end
 end)
 
-minetest.register_tool("lottarmor:crafts_book",{
+minetest.register_tool("lottinventory:crafts_book",{
     description = "Book of Crafts",
     groups = {}, 
-    inventory_image = "default_book.png",
+    inventory_image = "lottinventory_crafts_book.png",
     wield_image = "",
     wield_scale = {x=1,y=1,z=1},
     stack_max = 1, 

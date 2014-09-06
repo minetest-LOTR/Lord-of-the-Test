@@ -1,10 +1,4 @@
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/armor.lua")
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/zcg.lua")
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/cooking.lua")
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/forbidden.lua")
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/protection.lua")
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/potions.lua")
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/brewing.lua")
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/shield.lua")
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/wieldview.lua")
 --Special Armors
@@ -319,20 +313,3 @@ for k, v in pairs(craft_ingreds) do
 		},
 	})
 end
-
---Bags
-minetest.register_tool("lottarmor:small", {
-	description = "Small Bag",
-	inventory_image = "bags_small.png",
-	groups = {bagslots=8},
-})
-minetest.register_tool("lottarmor:medium", {
-	description = "Medium Bag",
-	inventory_image = "bags_medium.png",
-	groups = {bagslots=16},
-})
-minetest.register_tool("lottarmor:large", {
-	description = "Large Bag",
-	inventory_image = "bags_large.png",
-	groups = {bagslots=24},
-})
