@@ -972,12 +972,3 @@ minetest.register_craft({
 		{'', 'group:stick', ''},
 	}
 })
-
-minetest.register_craft({
-    output = 'screwdriver:screwdriver',
-	recipe = {
-		{'', '', 'default:steel_ingot'},
-		{'', 'default:steel_ingot', ''},
-		{'group:stick', '', ''},
-	}
-})

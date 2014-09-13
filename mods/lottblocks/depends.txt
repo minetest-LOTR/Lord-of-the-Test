@@ -1,2 +1,4 @@
 stairs
 doors
+lottplants
+default

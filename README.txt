@@ -50,5 +50,6 @@ brunob.santos (Desert Cobble)
 Dan Duncombe (Generating Structures)
 krupnovpavel (Mob Riding)
 Calinou (Inventory GUI)
-catninja (Hatches mod & textures)
+TenPlus1 (Screwdriver redo)
+catninja (Hatches textures, lottblocks/decoration.lua and all textures associated with it)
 -----------------------------------------------------------------------------------------------
