@@ -1,7 +1,8 @@
 dofile(minetest.get_modpath("lottblocks").."/doors.lua") --This has doors and fences.
 dofile(minetest.get_modpath("lottblocks").."/tables.lua") --This has tables and chairs.
 dofile(minetest.get_modpath("lottblocks").."/beds.lua") --This has beds.
-dofile(minetest.get_modpath("lottblocks").."/hatches.lua") --This has hatches/trapdoors.
+dofile(minetest.get_modpath("lottblocks").."/hatches.lua") --This has hatches/trapdoors, by catninja.
+dofile(minetest.get_modpath("lottblocks").."/decoration.lua") --This has various decoration nodes, by catninja.
 
 minetest.register_node("lottblocks:snowycobble", {
 	description = "Snowy Cobblestone",
