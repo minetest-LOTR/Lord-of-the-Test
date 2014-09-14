@@ -77,6 +77,7 @@ minetest.register_node("lottfarming:tomatoes_4", {
 minetest.register_craftitem("lottfarming:tomatoes", {
 	description = "Tomato",
 	inventory_image = "lottfarming_tomatoes.png",
+	on_use = minetest.item_eat(2),
 	groups = {salad=1},
 })
 

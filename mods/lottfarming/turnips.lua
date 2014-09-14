@@ -77,6 +77,7 @@ minetest.register_node("lottfarming:turnips_4", {
 minetest.register_craftitem("lottfarming:turnips", {
 	description = "Turnips",
 	inventory_image = "lottfarming_turnips.png",
+	on_use = minetest.item_eat(2),
 })
 
 farming:add_plant("lottfarming:turnips_4", {"lottfarming:turnips_1", "lottfarming:turnips_2", "lottfarming:turnips_3"}, 50, 20)
