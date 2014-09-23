@@ -270,9 +270,9 @@ minetest.register_node("lottplants:rowanleaf", {
     drop = {
 	    	max_items = 1,
 		    items = {
-		        { items = {'lottplants:rowanleaf'} },
 		    	{ items = {'lottplants:rowansapling'}, rarity = 20 },
 		    	{ items = {'lottfarming:berries'}, rarity = 200 },
+		    	{ items = {'lottplants:rowanleaf'} },
 		    }
 	    },
 	sounds = default.node_sound_leaves_defaults(),
@@ -289,7 +289,7 @@ minetest.register_node("lottplants:rowanberry", {
 	    	max_items = 2,
 		    items = {
 		          { items = {'lottplants:rowanleaf'} },
-		    	     { items = {'lottfarming:berries'} },
+		    	  { items = {'lottfarming:berries'} },
 		    }
 	    },
 	sounds = default.node_sound_leaves_defaults(),
@@ -345,7 +345,7 @@ minetest.register_node("lottplants:aldertree", {
 	description = "Alder Tree",
 	tiles = {"lottplants_aldertree_top.png", "lottplants_aldertree_top.png", "lottplants_aldertree.png"},
 	paramtype2 = "facedir",
-	groups = {tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2},
+	groups = {tree=1,choppy=2,flammable=2},
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node
 })
@@ -354,7 +354,7 @@ minetest.register_node("lottplants:birchtree", {
 	description = "Birch Tree",
 	tiles = {"lottplants_birchtree_top.png", "lottplants_birchtree_top.png", "lottplants_birchtree.png"},
 	paramtype2 = "facedir",
-	groups = {tree=1,choppy=2,flammable=2},
+	groups = {tree=1,choppy=3,flammable=2},
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node
 })
@@ -621,7 +621,7 @@ minetest.register_node("lottplants:alderwood", {
 minetest.register_node("lottplants:birchwood", {
 	description = "Birch Planks",
 	tiles = {"lottplants_birchwood.png"},
-	groups = {choppy=2,flammable=3,wood=1},
+	groups = {choppy=3,flammable=3,wood=1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
@@ -642,28 +642,28 @@ minetest.register_node("lottplants:mallornwood", {
 --Stairs & Slabs
 
 stairs.register_stair_and_slab("alderwood", "lottplants:alderwood",
-		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+		{snappy=2,choppy=2,flammable=3},
 		{"lottplants_alderwood.png"},
 		"Alder Wood Stair",
 		"Alder Wood Slab",
 		default.node_sound_wood_defaults())
 	
 stairs.register_stair_and_slab("birchwood", "lottplants:birchwood",
-		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+		{snappy=2,choppy=3,flammable=3},
 		{"lottplants_birchwood.png"},
 		"Birch Wood Stair",
 		"Birch Wood Slab",
 		default.node_sound_wood_defaults())
 	
 stairs.register_stair_and_slab("lebethronwood", "lottplants:lebethronwood",
-		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+		{snappy=2,choppy=1,flammable=3},
 		{"lottplants_lebethronwood.png"},
 		"Lebethron Wood Stair",
 		"Lebethron Wood Slab",
 		default.node_sound_wood_defaults())
 	
 stairs.register_stair_and_slab("mallornwood", "lottplants:mallornwood",
-		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+		{snappy=2,choppy=1,flammable=3},
 		{"lottplants_mallornwood.png"},
 		"Mallorn Wood Stair",
 		"Mallorn Wood Slab",

@@ -45,7 +45,7 @@ minetest.register_node("lottblocks:wood_table",
 			{-0.3,-0.2,0.3, 0.3,-0.1,0.4},
 		},
 	},
-	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+	groups = {snappy=2,choppy=3,oddly_breakable_by_hand=2,flammable=2}
 }) 
 minetest.register_craft({
 	output = 'lottblocks:wood_table',
@@ -77,7 +77,7 @@ minetest.register_node("lottblocks:wood_chair",
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},
 	},
-groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
+groups = {snappy=2,choppy=3,oddly_breakable_by_hand=2,flammable=2}
 })
 minetest.register_craft({
 	output = 'lottblocks:wood_chair',
@@ -171,7 +171,7 @@ minetest.register_node("lottblocks:birch_table",
 			{-0.3,-0.2,0.3, 0.3,-0.1,0.4},
 		},
 	},
-	groups = {snappy=2,choppy=2,flammable=2}
+	groups = {snappy=2,choppy=3,flammable=2}
 }) 
 minetest.register_craft({
 	output = 'lottblocks:birch_table',
@@ -203,7 +203,7 @@ minetest.register_node("lottblocks:birch_chair",
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},
 	},
-groups = {snappy=2,choppy=2,flammable=2}
+groups = {snappy=2,choppy=3,flammable=2}
 })
 minetest.register_craft({
 	output = 'lottblocks:birch_chair',
@@ -364,7 +364,7 @@ minetest.register_node("lottblocks:strategy_table", {
 			{-0.5, -0.0625, -0.0625, -0.1875, 0.4375, 0.0625}, -- NodeBox8
 		}
 	},
-	groups = {choppy = 2}
+	groups = {choppy = 2, flamable = 2}
 })
 minetest.register_craft({
 	output = "lottblocks:strategy_table",
@@ -378,7 +378,7 @@ minetest.register_craft({
 minetest.register_node("lottblocks:hobbit_table", {
 	description = "Hobbit Table",
 	tiles = {"lottplants_aldertree.png"},
-	groups = {choppy = 2},
+	groups = {choppy = 2, flamable = 2},
 	drawtype = "nodebox",
 	paramtype = "light",
 	node_box = {

@@ -1,7 +1,7 @@
 doors:register_door("lottblocks:door_mallorn", {
 	description = "Mallorn Door",
 	inventory_image = "lottblocks_door_mallorn.png",
-	groups = {snappy=1,choppy=1,flammable=2,door=1},
+	groups = {choppy=1,flammable=2,door=1},
 	tiles_bottom = {"lottblocks_door_mallorn_b.png", "lottblocks_edge_mallorn.png"},
 	tiles_top = {"lottblocks_door_mallorn_a.png", "lottblocks_edge_mallorn.png"},
 })
@@ -16,7 +16,7 @@ minetest.register_craft({
 doors:register_door("lottblocks:door_alder", {
 	description = "Alder Door",
 	inventory_image = "lottblocks_door_alder.png",
-	groups = {snappy=1,choppy=2,flammable=2,door=1},
+	groups = {choppy=2,flammable=2,door=1},
 	tiles_bottom = {"lottblocks_door_alder_b.png", "lottblocks_edge_alder.png"},
 	tiles_top = {"lottblocks_door_alder_a.png", "lottblocks_edge_alder.png"},
 })
@@ -31,7 +31,7 @@ minetest.register_craft({
 doors:register_door("lottblocks:door_lebethron", {
 	description = "Lebethron Door",
 	inventory_image = "lottblocks_door_lebethron.png",
-	groups = {snappy=1,choppy=1,flammable=2,door=1},
+	groups = {choppy=1,flammable=2,door=1},
 	tiles_bottom = {"lottblocks_door_lebethron_b.png", "lottblocks_edge_lebethron.png"},
 	tiles_top = {"lottblocks_door_lebethron_a.png", "lottblocks_edge_lebethron.png"},
 })
@@ -46,7 +46,7 @@ minetest.register_craft({
 doors:register_door("lottblocks:door_birch", {
 	description = "Birch Door",
 	inventory_image = "lottblocks_door_birch.png",
-	groups = {snappy=1,choppy=2,flammable=2,door=1},
+	groups = {choppy=3,flammable=2,door=1},
 	tiles_bottom = {"lottblocks_door_birch_b.png", "lottblocks_edge_birch.png"},
 	tiles_top = {"lottblocks_door_birch_a.png", "lottblocks_edge_birch.png"},
 })
@@ -95,7 +95,7 @@ minetest.register_node("lottblocks:fence_birch", {
 		type = "fixed",
 		fixed = {-1/7, -1/2, -1/7, 1/7, 1/2, 1/7},
 	},
-	groups = {choppy=2,flammable=2},
+	groups = {choppy=3,flammable=2},
 })
 
 minetest.register_craft({
