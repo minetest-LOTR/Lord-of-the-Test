@@ -178,18 +178,18 @@ minetest.register_node("lottother:tiny_lamp_wood",{
 minetest.register_craft({
 	output = "lottother:lamp_wood",
 	recipe = {
-		{"","default:torch",""},
-		{"","default:steel_ingot",""},
-		{"","default:steel_ingot",""}
+		{"","lottother:tiny_lamp_wood",""},
+		{"","default:wood",""},
+		{"","default:cobble",""}
 	}
 })
 
 minetest.register_craft({
 	output = "lottother:tiny_lamp_wood",
 	recipe = {
-		{"","default:torch",""},
-		{"","default:steel_ingot",""},
-		{"","default:steel_ingot",""}
+		{"","lottother:blue_torch",""},
+		{"","default:wood",""},
+		{"","",""}
 	}
 })
 
@@ -375,18 +375,18 @@ minetest.register_node("lottother:tiny_lamp_wood_alder",{
 minetest.register_craft({
 	output = "lottother:lamp_wood_alder",
 	recipe = {
-		{"","default:torch",""},
-		{"","default:steel_ingot",""},
-		{"","default:steel_ingot",""}
+		{"","lottother:tiny_lamp_wood_alder",""},
+		{"","lottplants:alderwood",""},
+		{"","default:cobble",""}
 	}
 })
 
 minetest.register_craft({
 	output = "lottother:tiny_lamp_wood_alder",
 	recipe = {
-		{"","default:torch",""},
-		{"","default:steel_ingot",""},
-		{"","default:steel_ingot",""}
+		{"","lottother:blue_torch",""},
+		{"","lottplants:alderwood",""},
+		{"","",""}
 	}
 })
 
@@ -572,18 +572,18 @@ minetest.register_node("lottother:tiny_lamp_wood_birch",{
 minetest.register_craft({
 	output = "lottother:lamp_wood_birch",
 	recipe = {
-		{"","default:torch",""},
-		{"","default:steel_ingot",""},
-		{"","default:steel_ingot",""}
+		{"","lottother:tiny_lamp_wood_birch",""},
+		{"","lottplants:birchwood",""},
+		{"","default:cobble",""}
 	}
 })
 
 minetest.register_craft({
 	output = "lottother:tiny_lamp_wood_birch",
 	recipe = {
-		{"","default:torch",""},
-		{"","default:steel_ingot",""},
-		{"","default:steel_ingot",""}
+		{"","lottother:blue_torch",""},
+		{"","lottplants:birchwood",""},
+		{"","",""}
 	}
 })
 -------------------------------------------------------
@@ -768,18 +768,18 @@ minetest.register_node("lottother:tiny_lamp_wood_lebethron",{
 minetest.register_craft({
 	output = "lottother:lamp_wood_lebethron",
 	recipe = {
-		{"","default:torch",""},
-		{"","default:steel_ingot",""},
-		{"","default:steel_ingot",""}
+		{"","lottother:tiny_lamp_wood_lebethron",""},
+		{"","lottplants:lebethronwood",""},
+		{"","default:cobble",""}
 	}
 })
 
 minetest.register_craft({
 	output = "lottother:tiny_lamp_wood_lebethron",
 	recipe = {
-		{"","default:torch",""},
-		{"","default:steel_ingot",""},
-		{"","default:steel_ingot",""}
+		{"","lottother:blue_torch",""},
+		{"","lottplants:lebethronwood",""},
+		{"","",""}
 	}
 })
 
@@ -965,18 +965,18 @@ minetest.register_node("lottother:tiny_lamp_wood_mallorn",{
 minetest.register_craft({
 	output = "lottother:lamp_wood_mallorn",
 	recipe = {
-		{"","default:torch",""},
-		{"","default:steel_ingot",""},
-		{"","default:steel_ingot",""}
+		{"","lottother:tiny_lamp_wood_mallorn",""},
+		{"","lottplants:mallornwood",""},
+		{"","default:cobble",""}
 	}
 })
 
 minetest.register_craft({
 	output = "lottother:tiny_lamp_wood_mallorn",
 	recipe = {
-		{"","default:torch",""},
-		{"","default:steel_ingot",""},
-		{"","default:steel_ingot",""}
+		{"","lottother:blue_torch",""},
+		{"","lottplants:mallornwood",""},
+		{"","",""}
 	}
 })
 
