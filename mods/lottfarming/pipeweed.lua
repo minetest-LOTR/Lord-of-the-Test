@@ -109,14 +109,25 @@ pipeweed = {
 minetest.register_tool("lottfarming:pipe", {
 	description = "Pipe",
 	inventory_image = "lottfarming_pipe.png",
-     on_use = function(itemstack, user, pointed_thing)
+     on_use = function(itemstack, player)
      for _,arrow in ipairs(pipeweed) do
-          if user:get_inventory():get_stack("main", user:get_wield_index()+1):get_name() == arrow[1] then
-               user:set_hp(user:get_hp()+2)
+          if player:get_inventory():get_stack("main", player:get_wield_index()+1):get_name() == arrow[1] then
+               player:set_hp(player:get_hp()+2)
 			if not minetest.setting_getbool("creative_mode") then
-				user:get_inventory():remove_item("main", arrow[1])
-			     end
-               end
-          end
-     end
-})
+				player:get_inventory():remove_item("main", arrow[1])
+			end
+			local pos = player:getpos()
+			local dir = player:get_look_dir()
+			minetest.add_particle({
+   				pos = {x=pos.x,y=pos.y+1.5,z=pos.z},
+    			vel = {x=dir.x*.3, y=.2, z=dir.z*.3},
+  	 			acc = {x=dir.x*.01, y=.1, z=dir.z*.01},
+  		  		expirationtime = 5,
+    			size = .75,
+    			collisiondetection = false,
+    			vertical = false,
+    			texture = "lottfarming_smoke_ring.png",
+			})
+		end
+	end
+end})
