@@ -223,25 +223,22 @@ lottpotion.register_potion("miruvor", "Miruvor", "lottpotion:miruvor", 240, {
 		{
 			type = 1,
 			set = {},
-               time = 60,
 			effects = {
-				speed = 1,
+				jump = 0.3,
 			},
 		},
 		{
 			type = 2,
 			set = {},
-               time = 120,
 			effects = {
-				speed = 2,
+				jump = 0.6,
 			},
 		},
 		{
 			type = 3,
 			set = {},
-               time = 240,
 			effects = {
-				speed = 3,
+				jump = 1.0,
 			},
 		},
 	}
