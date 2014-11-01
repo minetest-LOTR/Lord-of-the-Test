@@ -13,6 +13,7 @@ minetest.register_craftitem("default:paper", {
 
 minetest.register_craftitem("default:book", {
 	description = "Book",
+     groups = {book=1},
 	inventory_image = "default_book.png",
 })
 

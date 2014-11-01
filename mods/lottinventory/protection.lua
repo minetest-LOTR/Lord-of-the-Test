@@ -210,7 +210,7 @@ end)
 
 minetest.register_tool("lottinventory:protection_book",{
     description = "Book of Protection",
-    groups = {}, 
+    groups = {book=1}, 
     inventory_image = "lottinventory_protection_book.png",
     wield_image = "",
     wield_scale = {x=1,y=1,z=1},

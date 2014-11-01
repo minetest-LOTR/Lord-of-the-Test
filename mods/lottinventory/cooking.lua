@@ -215,7 +215,7 @@ end)
 
 minetest.register_tool("lottinventory:cooking_book",{
     description = "Book of Cooking",
-    groups = {}, 
+    groups = {book=1}, 
     inventory_image = "lottinventory_cooks_book.png",
     wield_image = "",
     wield_scale = {x=1,y=1,z=1},

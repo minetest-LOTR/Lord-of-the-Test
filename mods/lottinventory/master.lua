@@ -206,7 +206,6 @@ end)
 
 minetest.register_tool("lottinventory:master_book",{
     description = "Master Book of Crafts",
-    groups = {}, 
     inventory_image = "lottinventory_master_book.png",
     wield_image = "",
     wield_scale = {x=1,y=1,z=1},
@@ -220,7 +219,7 @@ minetest.register_tool("lottinventory:master_book",{
             choppy={times={[3]=0.90}, maxwear=0.05, maxlevel=0}
         }
     },
-    groups = {forbidden=1},
+    groups = {forbidden=1, book=1},
     on_place = function(itemstack, player, pointed_thing)
 	     inventory_plus.set_inventory_formspec(player, zmc.formspec(pn))
     end,
