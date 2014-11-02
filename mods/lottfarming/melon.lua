@@ -64,6 +64,13 @@ minetest.register_node("lottfarming:melon_3", {
 	},
 	groups = {choppy=2, oddly_breakable_by_hand=1, flammable=2, plant=1},
 	sounds = default.node_sound_wood_defaults(),
+     on_punch = function(pos, node, puncher)
+		local tool = puncher:get_wielded_item():get_name()
+		if tool and string.match(tool, "sword") then
+			node.name = "lottspecial:jackomelon"
+			minetest.set_node(pos, node)
+		end
+	end
 })
 
 minetest.register_craftitem("lottfarming:melon", {
