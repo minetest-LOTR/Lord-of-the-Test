@@ -124,7 +124,7 @@ local get_formspec = function(player,page)
                .."button_exit[6,0;2,0.5;quit;Exit]"
                .."image_button[7,1;1,1;zcg_next.png;potions6;;false;false;zcg_next_press.png]"
                .."image_button[6,1;1,1;zcg_previous.png;potions4;;false;false;zcg_previous_press.png]"
-               .."label[0,0.5;Miruvor (Speed Boost Potion)]"
+               .."label[0,0.5;Miruvor (Jump Boost Potion)]"
                --First potion
                .."label[1,2.2; Power Level: 1]"
                .."item_image_button[4,2;1,1;lottpotion:glass_bottle_mese;zcg:glass_bottle_mese;]"
