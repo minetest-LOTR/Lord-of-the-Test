@@ -188,10 +188,18 @@ function lottmobs:register_mob(name, def)
 				end
 				local x = math.sin(yaw) * -2
 				local z = math.cos(yaw) * 2
-				self.object:setacceleration({x=x, y=-10, z=z})
-			else
-				self.object:setacceleration({x=0, y=-10, z=0})
-			end
+				 if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+                    self.object:setacceleration({x = x, y = 1.5, z = z})
+                else
+                    self.object:setacceleration({x = x, y = -14.5, z = z})
+                end
+            else
+                if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+                    self.object:setacceleration({x = 0, y = 1.5, z = 0})
+                else
+                    self.object:setacceleration({x = 0, y = -14.5, z = 0})
+                end
+            end
 			
 			if self.disable_fall_damage and self.object:getvelocity().y == 0 then
 				if not self.old_y then
