@@ -4,7 +4,7 @@ Mods starting with "lott...": "CC BY-SA 3.0"
 Other mods: refer to the README in that mod
 AspireMint Models: "CC BY-SA 3.0"
 -----------------------------------------------------------------------------------------------
--(Version Beta 0211.00)
+-(Version Beta 1411.00)
 Naming convention taken from Voxelands
 -Changelog (Oldest Commit to Newest)
 -Add meat to hunger
