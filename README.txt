@@ -4,22 +4,18 @@ Mods starting with "lott...": "CC BY-SA 3.0"
 Other mods: refer to the README in that mod
 AspireMint Models: "CC BY-SA 3.0"
 -----------------------------------------------------------------------------------------------
--(Version Beta 1409.00)
+-(Version Beta 0211.00)
 Naming convention taken from Voxelands
--Changelog (Newest Commit to Oldest)
--Decoration Blocks Added (catninja)
--Added screwdriver redo mod (Made by TenPlus)
--Craft Guides Added (fishyWET)
--Inventory GUI Changes [lottinventory] (fishyWET)
--Lottpotions Revamp (fishyWET)
--Decoration Blocks & Bugfixes to Skeleton (Amaz)
--Inventory/ Chests Background Images (Flipsels)
--Lottclothes added (Flipsels)
--Hatches added (catninja)
--Pearl texture changed (Flipsels)
--Texture changes of Tin (Flipsels)
--Banners Added [Uncraftable] (fishyWET)
--Fancy Hud Added & Hunger (Amaz)
+-Changelog (Oldest Commit to Newest)
+-Add meat to hunger
+-Make desert cobble cook into stone
+-Fix the wood chopping system
+-Added some boats (From the two ds...boat mods)
+-Make the armor model compatible with capes!
+-Fix the armor bar
+-Add smoke rings
+-Add a jumping effect to miruvor
+-Add an inventory to bookshelves
 -----------------------------------------------------------------------------------------------
 Developers/ Helpers:
 fishyWET(Primary Developer)
@@ -32,7 +28,7 @@ Credits:
 (People whom i modify their code/ use their textures to make this game possible)
 (Not in Any Order)
 Topywo (Sea Ores)
-Pilzadam (Troll Model, farming, mobs, Bed code & texture, throwing)
+Pilzadam (Troll Model, farming, mobs, Bed code & texture, throwing, halloween melon)
 Doc (farming)
 Ironzorg, VanessaE (flowers/ plants)
 Sapier (Balrog Model, Re-texture of his balrog texture)
@@ -57,4 +53,5 @@ Dan Duncombe (Generating Structures, banners)
 krupnovpavel (Mob Riding)
 Calinou (Inventory GUI)
 TenPlus1 (Screwdriver redo)
+deasanta (Boats)
 -----------------------------------------------------------------------------------------------
