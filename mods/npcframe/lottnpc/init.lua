@@ -1,6 +1,0 @@
-dofile(minetest.get_modpath("lottnpc").."/gondor_guard.lua")
-dofile(minetest.get_modpath("lottnpc").."/rohan_guard.lua")
-dofile(minetest.get_modpath("lottnpc").."/dwarven_guard.lua")
-dofile(minetest.get_modpath("lottnpc").."/elven_guard.lua")
-dofile(minetest.get_modpath("lottnpc").."/orc_guard.lua")
-dofile(minetest.get_modpath("lottnpc").."/uruk_hai_guard.lua")

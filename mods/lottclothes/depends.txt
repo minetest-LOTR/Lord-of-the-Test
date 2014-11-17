@@ -1,3 +1,0 @@
-lottarmor
-default
-dye

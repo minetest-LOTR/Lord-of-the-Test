@@ -1,0 +1,4 @@
+olvar
+default
+worldedit
+curwe

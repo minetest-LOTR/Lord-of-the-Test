@@ -1,6 +1,0 @@
-default
-
-fire
-
-bones
-lottores
