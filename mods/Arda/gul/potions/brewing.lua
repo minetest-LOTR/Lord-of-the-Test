@@ -1,3 +1,12 @@
+
+local recipes = {
+	{"olvar:berries 5",        "gul:drinking_glass_water",         "gul:wine"},
+     {"farming:wheat 3",        "gul:drinking_glass_water",         "gul:beer"},
+     {"olvar:honey 6",        "gul:drinking_glass_water",         "gul:mead"},
+     {"default:apple 5",        "gul:drinking_glass_water",         "gul:cider"},
+     {"olvar:barley 6",        "gul:drinking_glass_water",         "gul:ale"},
+}
+
 gul.make_pipe = function( pipes, horizontal )
    local result = {};
    for i, v in pairs( pipes ) do
@@ -45,18 +54,6 @@ gul.make_pipe = function( pipes, horizontal )
    end
    return result;
 end
-
-
-
-
-minetest.register_craft({
-	output = 'gul:brewer',
-	recipe = {
-		{'group:wood', 'group:wood', 'group:wood'},
-		{'group:wood', '', 'group:wood'},
-		{'group:wood', 'default:steel_ingot', 'group:wood'},
-	}
-})
 
 gul.brew_recipes = { cooking = { input_size = 1, output_size = 1 } }
 function gul.register_recipe_type(typename, origdata)
@@ -147,15 +144,6 @@ function gul.register_brew_recipe(data)
 	data.time = data.time or 60
 	gul.register_recipe("brew", data)
 end
-
-local recipes = {
---Base Potion
-	{"olvar:berries 5",        "gul:drinking_glass_water",         "gul:wine"},
-     {"farming:wheat 3",        "gul:drinking_glass_water",         "gul:beer"},
-     {"olvar:honey 6",        "gul:drinking_glass_water",         "gul:mead"},
-     {"default:apple 5",        "gul:drinking_glass_water",         "gul:cider"},
-     {"olvar:barley 6",        "gul:drinking_glass_water",         "gul:ale"},
-}
 
 for _, data in pairs(recipes) do
 	gul.register_brew_recipe({input = {data[1], data[2]}, output = data[3], time = data[4]})

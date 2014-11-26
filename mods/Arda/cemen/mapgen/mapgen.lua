@@ -99,6 +99,7 @@ local np_random = {
 cemen = {}
 
 dofile(minetest.get_modpath("cemen").."/mapgen/nodes.lua")
+dofile(minetest.get_modpath("cemen").."/mapgen/misc.lua")
 dofile(minetest.get_modpath("cemen").."/mapgen/functions.lua")
 
 -- On generated function

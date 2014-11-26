@@ -1,5 +1,5 @@
-dofile(minetest.get_modpath("kelvar").."/Mobs/api.lua")
-dofile(minetest.get_modpath("kelvar").."/Mobs/horse.lua")
+dofile(minetest.get_modpath("kelvar").."/mobs/api.lua")
+dofile(minetest.get_modpath("kelvar").."/mobs/horse.lua")
 -- Mobs
 
 kelvar:register_mob("kelvar:elf", {
@@ -52,7 +52,7 @@ kelvar:register_mob("kelvar:elf", {
 	lava_damage = 10,
 	light_damage = 0,
 	attack_type = "dogfight",
-	follow = "lottother:narya",
+	follow = "gul:narya",
 	animation = {
 		speed_normal = 15,
 		speed_run = 15,
@@ -312,7 +312,7 @@ kelvar:register_mob("kelvar:rohan_guard", {
 		chance = 50,
 		min = 1,
 		max = 1,},
-		{name = "cemen:galvornsword",
+		{name = "curwe:galvornsword",
 		chance = 150,
 		min = 1,
 		max = 1,},
@@ -343,7 +343,7 @@ kelvar:register_mob("kelvar:rohan_guard", {
 	lava_damage = 10,
 	light_damage = 0,
 	attack_type = "dogfight",
-	follow = "lottother:narya",
+	follow = "gul:narya",
 	animation = {
 		speed_normal = 15,
 		speed_run = 15,
@@ -435,7 +435,7 @@ kelvar:register_mob("kelvar:gondor_guard", {
 	lava_damage = 5,
 	light_damage = 0,
 	attack_type = "dogfight",
-	follow = "lottother:narya",
+	follow = "gul:narya",
 	animation = {
 		speed_normal = 15,
 		speed_run = 15,
@@ -484,7 +484,7 @@ kelvar:register_mob("kelvar:dunlending", {
 		chance = 50,
 		min = 1,
 		max = 1,},
-		{name = "cemen:galvornaxe",
+		{name = "curwe:galvornaxe",
 		chance = 100,
 		min = 1,
 		max = 1,},
@@ -1071,7 +1071,7 @@ kelvar:register_mob("kelvar:dwarf", {
 	lava_damage = 10,
 	light_damage = 0,
 	attack_type = "dogfight",
-	follow = "lottother:narya",
+	follow = "gul:narya",
 	animation = {
 		speed_normal = 15,
 		speed_run = 15,

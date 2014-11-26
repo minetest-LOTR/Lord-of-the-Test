@@ -1,4 +1,0 @@
-default
-fire
-cemen
-olvar

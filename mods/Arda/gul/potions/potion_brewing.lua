@@ -1,60 +1,35 @@
--- Base Ingredients
-minetest.register_node("gul:glass_bottle_mese", {
-	description = "Glass Bottle (Mese Water)",
-	drawtype = "plantlike",
-	tiles = {"vessels_glass_bottle.png^gul_water_mese.png"},
-	inventory_image = "vessels_glass_bottle_inv.png^gul_water_mese.png",
-	wield_image = "vessels_glass_bottle_inv.png^gul_water_mese.png",
-	paramtype = "light",
-	walkable = false,
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.25, -0.5, -0.25, 0.25, 0.4, 0.25}
-	},
-	groups = {vessel=1,dig_immediate=3,attached_node=1},
-	sounds = default.node_sound_glass_defaults(),
-})
 
-minetest.register_node("gul:glass_bottle_geodes", {
-	description = "Glass Bottle (Geodes Crystal Water)",
-	drawtype = "plantlike",
-	tiles = {"vessels_glass_bottle.png^gul_water_geodes.png"},
-	inventory_image = "vessels_glass_bottle_inv.png^gul_water_geodes.png",
-	wield_image = "vessels_glass_bottle_inv.png^gul_water_geodes.png",
-	paramtype = "light",
-	walkable = false,
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.25, -0.5, -0.25, 0.25, 0.4, 0.25}
-	},
-	groups = {vessel=1,dig_immediate=3,attached_node=1},
-	sounds = default.node_sound_glass_defaults(),
-})
-
-minetest.register_node("gul:glass_bottle_seregon", {
-	description = "Glass Bottle (Seregon Water)",
-	drawtype = "plantlike",
-	tiles = {"vessels_glass_bottle.png^gul_water_seregon.png"},
-	inventory_image = "vessels_glass_bottle_inv.png^gul_water_seregon.png",
-	wield_image = "vessels_glass_bottle_inv.png^gul_water_seregon.png",
-	paramtype = "light",
-	walkable = false,
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.25, -0.5, -0.25, 0.25, 0.4, 0.25}
-	},
-	groups = {vessel=1,dig_immediate=3,attached_node=1},
-	sounds = default.node_sound_glass_defaults(),
-})
-
-minetest.register_craft({
-	output = 'gul:potion_brewer',
-	recipe = {
-		{'default:steel_ingot', 'default:steel_ingot', 'default:steel_ingot'},
-		{'', 'default:steel_ingot', ''},
-		{'group:stone', 'group:stone', 'group:stone'},
-	}
-})
+local recipes = {
+--Base Potions
+	{"olvar:seregon_fake",        "gul:glass_bottle_water",         "gul:glass_bottle_seregon"},
+     {"default:mese_crystal_fragment 1",        "gul:glass_bottle_water",         "gul:glass_bottle_mese"},
+     {"cemen:geodes_crystal_1",        "gul:glass_bottle_water",         "gul:glass_bottle_geodes"},
+--Potions
+     --Orc Draught
+     {"kelvar:meat_raw 5",        "gul:glass_bottle_seregon",         "gul:orcdraught_power1"},
+     {"kelvar:meat_raw 5",        "gul:orcdraught_power1",         "gul:orcdraught_power2", 180},
+     {"kelvar:meat_raw 5",        "gul:orcdraught_power2",         "gul:orcdraught_power3", 240},
+     --Spider Poison
+     {"kelvar:spiderpoison 2",        "gul:glass_bottle_seregon",         "gul:spiderpoison_power1"},
+     {"kelvar:spiderpoison 2",        "gul:spiderpoison_power1",         "gul:spiderpoison_power2", 180},
+     {"kelvar:spiderpoison 2",        "gul:spiderpoison_power2",         "gul:spiderpoison_power3", 240},
+     --Limpe
+     {"olvar:yavannamireleaf 10",        "gul:glass_bottle_mese",         "gul:limpe_power1"},
+     {"olvar:yavannamireleaf 10",        "gul:limpe_power1",         "gul:limpe_power2", 180},
+     {"olvar:yavannamireleaf 10",        "gul:limpe_power2",         "gul:limpe_power3", 240},
+     --Miruvor
+     {"olvar:yavannamirefruit 2",        "gul:glass_bottle_mese",         "gul:miruvor_power1"},
+     {"olvar:yavannamirefruit 2",        "gul:miruvor_power1",         "gul:miruvor_power2", 180},
+     {"olvar:yavannamirefruit 2",        "gul:miruvor_power2",         "gul:miruvor_power3", 240},
+     --Athelas Brew
+     {"olvar:athelas 3",        "gul:glass_bottle_geodes",         "gul:athelasbrew_power1"},
+     {"olvar:athelas 3",        "gul:athelasbrew_power1",         "gul:athelasbrew_power2", 180},
+     {"olvar:athelas 3",        "gul:athelasbrew_power2",         "gul:athelasbrew_power3", 240},
+     --Ent Draught
+     {"default:leaves 10",        "gul:glass_bottle_geodes",         "gul:entdraught_power1"},
+     {"default:leaves 10",        "gul:entdraught_power1",         "gul:entdraught_power2", 120},
+     {"default:leaves 10",        "gul:entdraught_power2",         "gul:entdraught_power3", 240},
+}
 
 gul.potion_recipes = { cooking = { input_size = 1, output_size = 1 } }
 function gul.register_recipe_type(typename, origdata)
@@ -145,38 +120,6 @@ function gul.register_potionbrew_recipe(data)
 	data.time = data.time or 120
 	gul.register_recipe("potionbrew", data)
 end
-
-local recipes = {
---Base Potion
-	{"olvar:seregon_fake",        "gul:glass_bottle_water",         "gul:glass_bottle_seregon"},
-     {"default:mese_crystal_fragment 1",        "gul:glass_bottle_water",         "gul:glass_bottle_mese"},
-     {"cemen:geodes_crystal_1",        "gul:glass_bottle_water",         "gul:glass_bottle_geodes"},
---Potions
-     --Orc Draught
-     {"kelvar:meat_raw 5",        "gul:glass_bottle_seregon",         "gul:orcdraught_power1"},
-     {"kelvar:meat_raw 5",        "gul:orcdraught_power1",         "gul:orcdraught_power2", 180},
-     {"kelvar:meat_raw 5",        "gul:orcdraught_power2",         "gul:orcdraught_power3", 240},
-     --Spider Poison
-     {"kelvar:spiderpoison 2",        "gul:glass_bottle_seregon",         "gul:spiderpoison_power1"},
-     {"kelvar:spiderpoison 2",        "gul:spiderpoison_power1",         "gul:spiderpoison_power2", 180},
-     {"kelvar:spiderpoison 2",        "gul:spiderpoison_power2",         "gul:spiderpoison_power3", 240},
-     --Limpe
-     {"olvar:yavannamireleaf 10",        "gul:glass_bottle_mese",         "gul:limpe_power1"},
-     {"olvar:yavannamireleaf 10",        "gul:limpe_power1",         "gul:limpe_power2", 180},
-     {"olvar:yavannamireleaf 10",        "gul:limpe_power2",         "gul:limpe_power3", 240},
-     --Miruvor
-     {"olvar:yavannamirefruit 2",        "gul:glass_bottle_mese",         "gul:miruvor_power1"},
-     {"olvar:yavannamirefruit 2",        "gul:miruvor_power1",         "gul:miruvor_power2", 180},
-     {"olvar:yavannamirefruit 2",        "gul:miruvor_power2",         "gul:miruvor_power3", 240},
-     --Athelas Brew
-     {"olvar:athelas 3",        "gul:glass_bottle_geodes",         "gul:athelasbrew_power1"},
-     {"olvar:athelas 3",        "gul:athelasbrew_power1",         "gul:athelasbrew_power2", 180},
-     {"olvar:athelas 3",        "gul:athelasbrew_power2",         "gul:athelasbrew_power3", 240},
-     --Ent Draught
-     {"default:leaves 10",        "gul:glass_bottle_geodes",         "gul:entdraught_power1"},
-     {"default:leaves 10",        "gul:entdraught_power1",         "gul:entdraught_power2", 120},
-     {"default:leaves 10",        "gul:entdraught_power2",         "gul:entdraught_power3", 240},
-}
 
 for _, data in pairs(recipes) do
 	gul.register_potionbrew_recipe({input = {data[1], data[2]}, output = data[3], time = data[4]})

@@ -3,6 +3,9 @@ dofile(minetest.get_modpath("curwe").."/nodes/tables.lua") --This has tables and
 dofile(minetest.get_modpath("curwe").."/nodes/beds.lua") --This has beds.
 dofile(minetest.get_modpath("curwe").."/nodes/hatches.lua") --This has hatches/trapdoors, by catninja.
 dofile(minetest.get_modpath("curwe").."/nodes/decoration.lua") --This has various decoration nodes, by catninja.
+dofile(minetest.get_modpath("curwe").."/nodes/torches.lua")
+dofile(minetest.get_modpath("curwe").."/nodes/lamps.lua")
+dofile(minetest.get_modpath("curwe").."/nodes/flags.lua")
 
 minetest.register_node("curwe:snowycobble", {
 	description = "Snowy Cobblestone",

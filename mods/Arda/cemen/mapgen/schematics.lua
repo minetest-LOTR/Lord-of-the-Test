@@ -16,7 +16,7 @@ for i in ipairs(cemen_list) do
 
 minetest.register_node("cemen:"..build, {
         description = builddesc,
-        tiles = {"lottother_air.png"},
+        tiles = {"cemen_air.png"},
 	   is_ground_content = true,
 	   groups = {not_in_creative_inventory =1},
         on_place = function(itemstack, placer, pointed_thing)

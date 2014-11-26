@@ -1,3 +1,5 @@
+-- Cauldron Nodes
+
 minetest.register_node("gul:cauldron_full",{
     drawtype="nodebox",
 	description= "Filled Cauldron",
@@ -96,6 +98,8 @@ minetest.register_node("gul:cauldron_empty",{
     end
 })
 
+-- Re-register vessels from vessels mod to allow them to take water from the cauldron
+
 minetest.register_node(":vessels:glass_bottle", {
 	description = "Glass Bottle (empty)",
 	drawtype = "plantlike",
@@ -135,22 +139,6 @@ minetest.register_node(":vessels:glass_bottle", {
                return itemstack
 		end
     end
-})
-
-minetest.register_node("gul:glass_bottle_water", {
-	description = "Glass Bottle (Water)",
-	drawtype = "plantlike",
-	tiles = {"vessels_glass_bottle.png^gul_water.png"},
-	inventory_image = "vessels_glass_bottle_inv.png^gul_water.png",
-	wield_image = "vessels_glass_bottle_inv.png^gul_water.png",
-	paramtype = "light",
-	walkable = false,
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.25, -0.5, -0.25, 0.25, 0.4, 0.25}
-	},
-	groups = {vessel=1,dig_immediate=3,attached_node=1},
-	sounds = default.node_sound_glass_defaults(),
 })
 
 minetest.register_node(":vessels:drinking_glass", {
@@ -194,6 +182,24 @@ minetest.register_node(":vessels:drinking_glass", {
     end
 })
 
+-- Plain Water Potions
+
+minetest.register_node("gul:glass_bottle_water", {
+	description = "Glass Bottle (Water)",
+	drawtype = "plantlike",
+	tiles = {"vessels_glass_bottle.png^gul_water.png"},
+	inventory_image = "vessels_glass_bottle_inv.png^gul_water.png",
+	wield_image = "vessels_glass_bottle_inv.png^gul_water.png",
+	paramtype = "light",
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.25, -0.5, -0.25, 0.25, 0.4, 0.25}
+	},
+	groups = {vessel=1,dig_immediate=3,attached_node=1},
+	sounds = default.node_sound_glass_defaults(),
+})
+
 minetest.register_node("gul:drinking_glass_water", {
 	description = "Drinking Glass (Water)",
 	drawtype = "plantlike",
@@ -208,22 +214,4 @@ minetest.register_node("gul:drinking_glass_water", {
 	},
 	groups = {vessel=1,dig_immediate=3,attached_node=1},
 	sounds = default.node_sound_glass_defaults(),
-})
-
-minetest.register_craft( {
-	type = "shapeless",
-	output = "vessels:glass_fragments",
-	recipe = {
-		"group:vessel",
-		"group:vessel",
-	},
-})
-
-minetest.register_craft({
-	output = 'gul:cauldron_empty',
-	recipe = {
-		{'default:steel_ingot', '', 'default:steel_ingot'},
-		{'default:steel_ingot', '', 'default:steel_ingot'},
-		{'default:steel_ingot', 'default:steel_ingot', 'default:steel_ingot'},
-	}
 })

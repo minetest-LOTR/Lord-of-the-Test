@@ -1,8 +1,8 @@
-minetest.register_node("lottother:lamp_wood",{
+minetest.register_node("curwe:lamp_wood",{
 	drop = "",
 	description = "Wooden Lamp Post",
 	tiles = {"default_cobble.png"},
-	inventory_image = "lottother_lamps_inv.png",
+	inventory_image = "curwe_lamps_inv.png",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 	paramtype = "light",
 	drawtype = "nodebox",
@@ -12,7 +12,7 @@ minetest.register_node("lottother:lamp_wood",{
 			{-0.15,-0.5,-0.15,0.15,0.4,0.15},
 			{-0.1,0.4,-0.1,0.1,0.5,0.1}
 		}
-	},
+	},s
 	pointable = false,
      on_place = function(itemstack, placer, pointed_thing)
        local pos = pointed_thing.above;
@@ -27,11 +27,11 @@ minetest.register_node("lottother:lamp_wood",{
        return minetest.item_place(itemstack, placer, pointed_thing);
     end,
 	after_place_node = function(pos,placer,itemstack)
-		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "lottother:lamp_middle_wood"})
-		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z},{name = "lottother:lamp_top_wood"})
+		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "curwe:lamp_middle_wood"})
+		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z},{name = "curwe:lamp_top_wood"})
 	end
 })
-minetest.register_node("lottother:lamp_middle_wood",{
+minetest.register_node("curwe:lamp_middle_wood",{
 	drop = "",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 	tiles = {"default_wood.png"},
@@ -46,14 +46,14 @@ minetest.register_node("lottother:lamp_middle_wood",{
 	}
 })
 
-minetest.register_node("lottother:lamp_top_wood",{
-	drop = "lottother:lamp_wood",
+minetest.register_node("curwe:lamp_top_wood",{
+	drop = "curwe:lamp_wood",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 		tiles = {
 		"default_wood.png",
 		"default_wood.png",
 		{
-			image = "lottother_lamps_active.png",
+			image = "curwe_lamps_active.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -62,7 +62,7 @@ minetest.register_node("lottother:lamp_top_wood",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active.png",
+			image = "curwe_lamps_active.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -71,7 +71,7 @@ minetest.register_node("lottother:lamp_top_wood",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active.png",
+			image = "curwe_lamps_active.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -80,7 +80,7 @@ minetest.register_node("lottother:lamp_top_wood",{
 				length = 1.5
 			},
 		{
-			image = "lottother_lamps_active.png",
+			image = "curwe_lamps_active.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -111,14 +111,14 @@ minetest.register_node("lottother:lamp_top_wood",{
 	end
 })
 
-minetest.register_node("lottother:tiny_lamp_wood",{
+minetest.register_node("curwe:tiny_lamp_wood",{
      description = "Wooden Tiny Lamp",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 		tiles = {
 		"default_wood.png",
 		"default_wood.png",
 		{
-			image = "lottother_lamps_active.png",
+			image = "curwe_lamps_active.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -127,7 +127,7 @@ minetest.register_node("lottother:tiny_lamp_wood",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active.png",
+			image = "curwe_lamps_active.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -136,7 +136,7 @@ minetest.register_node("lottother:tiny_lamp_wood",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active.png",
+			image = "curwe_lamps_active.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -145,7 +145,7 @@ minetest.register_node("lottother:tiny_lamp_wood",{
 				length = 1.5
 			},
 		{
-			image = "lottother_lamps_active.png",
+			image = "curwe_lamps_active.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -176,18 +176,18 @@ minetest.register_node("lottother:tiny_lamp_wood",{
 })
 
 minetest.register_craft({
-	output = "lottother:lamp_wood",
+	output = "curwe:lamp_wood",
 	recipe = {
-		{"","lottother:tiny_lamp_wood",""},
+		{"","curwe:tiny_lamp_wood",""},
 		{"","default:wood",""},
 		{"","default:cobble",""}
 	}
 })
 
 minetest.register_craft({
-	output = "lottother:tiny_lamp_wood",
+	output = "curwe:tiny_lamp_wood",
 	recipe = {
-		{"","lottother:blue_torch",""},
+		{"","curwe:blue_torch",""},
 		{"","default:wood",""},
 		{"","",""}
 	}
@@ -195,11 +195,11 @@ minetest.register_craft({
 
 ---------------------------------------------
 
-minetest.register_node("lottother:lamp_wood_alder",{
+minetest.register_node("curwe:lamp_wood_alder",{
 	drop = "",
 	description = "Alder Wood Lamp Post",
 	tiles = {"default_cobble.png"},
-	inventory_image = "lottother_lamps_inv_alder.png",
+	inventory_image = "curwe_lamps_inv_alder.png",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 	paramtype = "light",
 	drawtype = "nodebox",
@@ -224,11 +224,11 @@ minetest.register_node("lottother:lamp_wood_alder",{
        return minetest.item_place(itemstack, placer, pointed_thing);
     end,
 	after_place_node = function(pos,placer,itemstack)
-		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "lottother:lamp_middle_wood_alder"})
-		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z},{name = "lottother:lamp_top_wood_alder"})
+		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "curwe:lamp_middle_wood_alder"})
+		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z},{name = "curwe:lamp_top_wood_alder"})
 	end
 })
-minetest.register_node("lottother:lamp_middle_wood_alder",{
+minetest.register_node("curwe:lamp_middle_wood_alder",{
 	drop = "",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 	tiles = {"olvar_alderwood.png"},
@@ -243,14 +243,14 @@ minetest.register_node("lottother:lamp_middle_wood_alder",{
 	}
 })
 
-minetest.register_node("lottother:lamp_top_wood_alder",{
-	drop = "lottother:lamp_wood_alder",
+minetest.register_node("curwe:lamp_top_wood_alder",{
+	drop = "curwe:lamp_wood_alder",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 		tiles = {
 		"olvar_alderwood.png",
 		"olvar_alderwood.png",
 		{
-			image = "lottother_lamps_active_alder.png",
+			image = "curwe_lamps_active_alder.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -259,7 +259,7 @@ minetest.register_node("lottother:lamp_top_wood_alder",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active_alder.png",
+			image = "curwe_lamps_active_alder.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -268,7 +268,7 @@ minetest.register_node("lottother:lamp_top_wood_alder",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active_alder.png",
+			image = "curwe_lamps_active_alder.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -277,7 +277,7 @@ minetest.register_node("lottother:lamp_top_wood_alder",{
 				length = 1.5
 			},
 		{
-			image = "lottother_lamps_active_alder.png",
+			image = "curwe_lamps_active_alder.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -308,14 +308,14 @@ minetest.register_node("lottother:lamp_top_wood_alder",{
 	end
 })
 
-minetest.register_node("lottother:tiny_lamp_wood_alder",{
+minetest.register_node("curwe:tiny_lamp_wood_alder",{
      description = "Alder Wood Tiny Lamp",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 		tiles = {
 		"olvar_alderwood.png",
 		"olvar_alderwood.png",
 		{
-			image = "lottother_lamps_active_alder.png",
+			image = "curwe_lamps_active_alder.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -324,7 +324,7 @@ minetest.register_node("lottother:tiny_lamp_wood_alder",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active_alder.png",
+			image = "curwe_lamps_active_alder.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -333,7 +333,7 @@ minetest.register_node("lottother:tiny_lamp_wood_alder",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active_alder.png",
+			image = "curwe_lamps_active_alder.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -342,7 +342,7 @@ minetest.register_node("lottother:tiny_lamp_wood_alder",{
 				length = 1.5
 			},
 		{
-			image = "lottother_lamps_active_alder.png",
+			image = "curwe_lamps_active_alder.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -373,18 +373,18 @@ minetest.register_node("lottother:tiny_lamp_wood_alder",{
 })
 
 minetest.register_craft({
-	output = "lottother:lamp_wood_alder",
+	output = "curwe:lamp_wood_alder",
 	recipe = {
-		{"","lottother:tiny_lamp_wood_alder",""},
+		{"","curwe:tiny_lamp_wood_alder",""},
 		{"","olvar:alderwood",""},
 		{"","default:cobble",""}
 	}
 })
 
 minetest.register_craft({
-	output = "lottother:tiny_lamp_wood_alder",
+	output = "curwe:tiny_lamp_wood_alder",
 	recipe = {
-		{"","lottother:blue_torch",""},
+		{"","curwe:blue_torch",""},
 		{"","olvar:alderwood",""},
 		{"","",""}
 	}
@@ -392,11 +392,11 @@ minetest.register_craft({
 
 -----------------------------------------------------
 
-minetest.register_node("lottother:lamp_wood_birch",{
+minetest.register_node("curwe:lamp_wood_birch",{
 	drop = "",
 	description = "Birch Wood Lamp Post",
 	tiles = {"default_cobble.png"},
-	inventory_image = "lottother_lamps_inv_birch.png",
+	inventory_image = "curwe_lamps_inv_birch.png",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 	paramtype = "light",
 	drawtype = "nodebox",
@@ -421,11 +421,11 @@ minetest.register_node("lottother:lamp_wood_birch",{
        return minetest.item_place(itemstack, placer, pointed_thing);
     end,
 	after_place_node = function(pos,placer,itemstack)
-		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "lottother:lamp_middle_wood_birch"})
-		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z},{name = "lottother:lamp_top_wood_birch"})
+		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "curwe:lamp_middle_wood_birch"})
+		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z},{name = "curwe:lamp_top_wood_birch"})
 	end
 })
-minetest.register_node("lottother:lamp_middle_wood_birch",{
+minetest.register_node("curwe:lamp_middle_wood_birch",{
 	drop = "",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 	tiles = {"olvar_birchwood.png"},
@@ -440,14 +440,14 @@ minetest.register_node("lottother:lamp_middle_wood_birch",{
 	}
 })
 
-minetest.register_node("lottother:lamp_top_wood_birch",{
-	drop = "lottother:lamp_wood_birch",
+minetest.register_node("curwe:lamp_top_wood_birch",{
+	drop = "curwe:lamp_wood_birch",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 		tiles = {
 		"olvar_birchwood.png",
 		"olvar_birchwood.png",
 		{
-			image = "lottother_lamps_active_birch.png",
+			image = "curwe_lamps_active_birch.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -456,7 +456,7 @@ minetest.register_node("lottother:lamp_top_wood_birch",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active_birch.png",
+			image = "curwe_lamps_active_birch.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -465,7 +465,7 @@ minetest.register_node("lottother:lamp_top_wood_birch",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active_birch.png",
+			image = "curwe_lamps_active_birch.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -474,7 +474,7 @@ minetest.register_node("lottother:lamp_top_wood_birch",{
 				length = 1.5
 			},
 		{
-			image = "lottother_lamps_active_birch.png",
+			image = "curwe_lamps_active_birch.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -505,14 +505,14 @@ minetest.register_node("lottother:lamp_top_wood_birch",{
 	end
 })
 
-minetest.register_node("lottother:tiny_lamp_wood_birch",{
+minetest.register_node("curwe:tiny_lamp_wood_birch",{
      description = "Birch Wood Tiny Lamp",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 		tiles = {
 		"olvar_birchwood.png",
 		"olvar_birchwood.png",
 		{
-			image = "lottother_lamps_active_birch.png",
+			image = "curwe_lamps_active_birch.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -521,7 +521,7 @@ minetest.register_node("lottother:tiny_lamp_wood_birch",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active_birch.png",
+			image = "curwe_lamps_active_birch.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -530,7 +530,7 @@ minetest.register_node("lottother:tiny_lamp_wood_birch",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active_birch.png",
+			image = "curwe_lamps_active_birch.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -539,7 +539,7 @@ minetest.register_node("lottother:tiny_lamp_wood_birch",{
 				length = 1.5
 			},
 		{
-			image = "lottother_lamps_active_birch.png",
+			image = "curwe_lamps_active_birch.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -570,29 +570,29 @@ minetest.register_node("lottother:tiny_lamp_wood_birch",{
 })
 
 minetest.register_craft({
-	output = "lottother:lamp_wood_birch",
+	output = "curwe:lamp_wood_birch",
 	recipe = {
-		{"","lottother:tiny_lamp_wood_birch",""},
+		{"","curwe:tiny_lamp_wood_birch",""},
 		{"","olvar:birchwood",""},
 		{"","default:cobble",""}
 	}
 })
 
 minetest.register_craft({
-	output = "lottother:tiny_lamp_wood_birch",
+	output = "curwe:tiny_lamp_wood_birch",
 	recipe = {
-		{"","lottother:blue_torch",""},
+		{"","curwe:blue_torch",""},
 		{"","olvar:birchwood",""},
 		{"","",""}
 	}
 })
 -------------------------------------------------------
 
-minetest.register_node("lottother:lamp_wood_lebethron",{
+minetest.register_node("curwe:lamp_wood_lebethron",{
 	drop = "",
 	description = "Lebethron Wood Lamp Post",
 	tiles = {"default_cobble.png"},
-	inventory_image = "lottother_lamps_inv_lebethron.png",
+	inventory_image = "curwe_lamps_inv_lebethron.png",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 	paramtype = "light",
 	drawtype = "nodebox",
@@ -617,11 +617,11 @@ minetest.register_node("lottother:lamp_wood_lebethron",{
        return minetest.item_place(itemstack, placer, pointed_thing);
     end,
 	after_place_node = function(pos,placer,itemstack)
-		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "lottother:lamp_middle_wood_lebethron"})
-		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z},{name = "lottother:lamp_top_wood_lebethron"})
+		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "curwe:lamp_middle_wood_lebethron"})
+		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z},{name = "curwe:lamp_top_wood_lebethron"})
 	end
 })
-minetest.register_node("lottother:lamp_middle_wood_lebethron",{
+minetest.register_node("curwe:lamp_middle_wood_lebethron",{
 	drop = "",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 	tiles = {"olvar_lebethronwood.png"},
@@ -636,14 +636,14 @@ minetest.register_node("lottother:lamp_middle_wood_lebethron",{
 	}
 })
 
-minetest.register_node("lottother:lamp_top_wood_lebethron",{
-	drop = "lottother:lamp_wood_lebethron",
+minetest.register_node("curwe:lamp_top_wood_lebethron",{
+	drop = "curwe:lamp_wood_lebethron",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 		tiles = {
 		"default_wood.png",
 		"default_wood.png",
 		{
-			image = "lottother_lamps_active_lebethron.png",
+			image = "curwe_lamps_active_lebethron.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -652,7 +652,7 @@ minetest.register_node("lottother:lamp_top_wood_lebethron",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active_lebethron.png",
+			image = "curwe_lamps_active_lebethron.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -661,7 +661,7 @@ minetest.register_node("lottother:lamp_top_wood_lebethron",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active_lebethron.png",
+			image = "curwe_lamps_active_lebethron.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -670,7 +670,7 @@ minetest.register_node("lottother:lamp_top_wood_lebethron",{
 				length = 1.5
 			},
 		{
-			image = "lottother_lamps_active_lebethron.png",
+			image = "curwe_lamps_active_lebethron.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -701,14 +701,14 @@ minetest.register_node("lottother:lamp_top_wood_lebethron",{
 	end
 })
 
-minetest.register_node("lottother:tiny_lamp_wood_lebethron",{
+minetest.register_node("curwe:tiny_lamp_wood_lebethron",{
      description = "Lebethron Wood Tiny Lamp",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 		tiles = {
 		"default_wood.png",
 		"default_wood.png",
 		{
-			image = "lottother_lamps_active_lebethron.png",
+			image = "curwe_lamps_active_lebethron.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -717,7 +717,7 @@ minetest.register_node("lottother:tiny_lamp_wood_lebethron",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active_lebethron.png",
+			image = "curwe_lamps_active_lebethron.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -726,7 +726,7 @@ minetest.register_node("lottother:tiny_lamp_wood_lebethron",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active_lebethron.png",
+			image = "curwe_lamps_active_lebethron.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -735,7 +735,7 @@ minetest.register_node("lottother:tiny_lamp_wood_lebethron",{
 				length = 1.5
 			},
 		{
-			image = "lottother_lamps_active_lebethron.png",
+			image = "curwe_lamps_active_lebethron.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -766,18 +766,18 @@ minetest.register_node("lottother:tiny_lamp_wood_lebethron",{
 })
 
 minetest.register_craft({
-	output = "lottother:lamp_wood_lebethron",
+	output = "curwe:lamp_wood_lebethron",
 	recipe = {
-		{"","lottother:tiny_lamp_wood_lebethron",""},
+		{"","curwe:tiny_lamp_wood_lebethron",""},
 		{"","olvar:lebethronwood",""},
 		{"","default:cobble",""}
 	}
 })
 
 minetest.register_craft({
-	output = "lottother:tiny_lamp_wood_lebethron",
+	output = "curwe:tiny_lamp_wood_lebethron",
 	recipe = {
-		{"","lottother:blue_torch",""},
+		{"","curwe:blue_torch",""},
 		{"","olvar:lebethronwood",""},
 		{"","",""}
 	}
@@ -785,11 +785,11 @@ minetest.register_craft({
 
 ---------------------------------------------
 
-minetest.register_node("lottother:lamp_wood_mallorn",{
+minetest.register_node("curwe:lamp_wood_mallorn",{
 	drop = "",
 	description = "Mallorn Wood Lamp Post",
 	tiles = {"default_cobble.png"},
-	inventory_image = "lottother_lamps_inv_mallorn.png",
+	inventory_image = "curwe_lamps_inv_mallorn.png",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 	paramtype = "light",
 	drawtype = "nodebox",
@@ -814,11 +814,11 @@ minetest.register_node("lottother:lamp_wood_mallorn",{
        return minetest.item_place(itemstack, placer, pointed_thing);
     end,
 	after_place_node = function(pos,placer,itemstack)
-		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "lottother:lamp_middle_wood_mallorn"})
-		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z},{name = "lottother:lamp_top_wood_mallorn"})
+		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "curwe:lamp_middle_wood_mallorn"})
+		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z},{name = "curwe:lamp_top_wood_mallorn"})
 	end
 })
-minetest.register_node("lottother:lamp_middle_wood_mallorn",{
+minetest.register_node("curwe:lamp_middle_wood_mallorn",{
 	drop = "",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 	tiles = {"olvar_mallornwood.png"},
@@ -833,14 +833,14 @@ minetest.register_node("lottother:lamp_middle_wood_mallorn",{
 	}
 })
 
-minetest.register_node("lottother:lamp_top_wood_mallorn",{
-	drop = "lottother:lamp_wood_mallorn",
+minetest.register_node("curwe:lamp_top_wood_mallorn",{
+	drop = "curwe:lamp_wood_mallorn",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2, not_in_creative_inventory = 1},
 		tiles = {
 		"olvar_mallornwood.png",
 		"olvar_mallornwood.png",
 		{
-			image = "lottother_lamps_active_mallorn.png",
+			image = "curwe_lamps_active_mallorn.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -849,7 +849,7 @@ minetest.register_node("lottother:lamp_top_wood_mallorn",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active_mallorn.png",
+			image = "curwe_lamps_active_mallorn.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -858,7 +858,7 @@ minetest.register_node("lottother:lamp_top_wood_mallorn",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active_mallorn.png",
+			image = "curwe_lamps_active_mallorn.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -867,7 +867,7 @@ minetest.register_node("lottother:lamp_top_wood_mallorn",{
 				length = 1.5
 			},
 		{
-			image = "lottother_lamps_active_mallorn.png",
+			image = "curwe_lamps_active_mallorn.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -898,14 +898,14 @@ minetest.register_node("lottother:lamp_top_wood_mallorn",{
 	end
 })
 
-minetest.register_node("lottother:tiny_lamp_wood_mallorn",{
+minetest.register_node("curwe:tiny_lamp_wood_mallorn",{
      description = "Mallorn Wooden Tiny Lamp",
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
 		tiles = {
 		"olvar_mallornwood.png",
 		"olvar_mallornwood.png",
 		{
-			image = "lottother_lamps_active_mallorn.png",
+			image = "curwe_lamps_active_mallorn.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -914,7 +914,7 @@ minetest.register_node("lottother:tiny_lamp_wood_mallorn",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active_mallorn.png",
+			image = "curwe_lamps_active_mallorn.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -923,7 +923,7 @@ minetest.register_node("lottother:tiny_lamp_wood_mallorn",{
 				length = 1.5
 			},
           {
-			image = "lottother_lamps_active_mallorn.png",
+			image = "curwe_lamps_active_mallorn.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -932,7 +932,7 @@ minetest.register_node("lottother:tiny_lamp_wood_mallorn",{
 				length = 1.5
 			},
 		{
-			image = "lottother_lamps_active_mallorn.png",
+			image = "curwe_lamps_active_mallorn.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -963,18 +963,18 @@ minetest.register_node("lottother:tiny_lamp_wood_mallorn",{
 })
 
 minetest.register_craft({
-	output = "lottother:lamp_wood_mallorn",
+	output = "curwe:lamp_wood_mallorn",
 	recipe = {
-		{"","lottother:tiny_lamp_wood_mallorn",""},
+		{"","curwe:tiny_lamp_wood_mallorn",""},
 		{"","olvar:mallornwood",""},
 		{"","default:cobble",""}
 	}
 })
 
 minetest.register_craft({
-	output = "lottother:tiny_lamp_wood_mallorn",
+	output = "curwe:tiny_lamp_wood_mallorn",
 	recipe = {
-		{"","lottother:blue_torch",""},
+		{"","curwe:blue_torch",""},
 		{"","olvar:mallornwood",""},
 		{"","",""}
 	}

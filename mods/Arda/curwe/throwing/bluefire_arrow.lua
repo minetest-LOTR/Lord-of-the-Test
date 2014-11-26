@@ -70,7 +70,7 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 
 	if self.lastpos.x~=nil then
 		if node.name ~= "air" and node.name ~= "curwe:light" then
-			minetest.env:set_node(self.lastpos, {name="lottother:blue_flame"})
+			minetest.env:set_node(self.lastpos, {name="gul:blue_flame"})
 			self.object:remove()
 		end
 		if math.floor(self.lastpos.x+0.5) ~= math.floor(pos.x+0.5) or math.floor(self.lastpos.y+0.5) ~= math.floor(pos.y+0.5) or math.floor(self.lastpos.z+0.5) ~= math.floor(pos.z+0.5) then
@@ -90,7 +90,7 @@ minetest.register_entity("curwe:arrow_fire_blue_entity", THROWING_ARROW_ENTITY)
 minetest.register_craft({
 	output = 'curwe:arrow_fire_blue 1',
 	recipe = {
-		{'default:stick', 'default:stick', 'lottother:blue_torch'},
+		{'default:stick', 'default:stick', 'curwe:blue_torch'},
 	},
 })
 

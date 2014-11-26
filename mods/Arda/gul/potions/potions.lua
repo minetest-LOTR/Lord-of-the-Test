@@ -1,160 +1,58 @@
 gul = {}
 
-dofile(minetest.get_modpath("gul").."/potions/cauldron.lua")
+dofile(minetest.get_modpath("gul").."/potions/potion_api.lua")
 
-gul = {
-	players = {},
-	effects = {
-		phys_override = function(sname, name, fname, time, sdata, flags)
-			local def = {
-				on_use = function(itemstack, user, pointed_thing)
-					gul.grant(time, user:get_player_name(), fname.."_"..flags.type..sdata.type, name, flags)
-					itemstack:take_item()
-					return itemstack
-				end,
-				gul = {
-					speed = 0,
-					jump = 0,
-					gravity = 0,
-					air = 0,
-				},
-			}
-			return def
-		end,
-		fixhp = function(sname, name, fname, time, sdata, flags)
-			local def = {
-				on_use = function(itemstack, user, pointed_thing)
-					for i=0, (sdata.time or 0) do
-						minetest.after(i, function()
-							local hp = user:get_hp()
-							if flags.inv==true then
-								hp = hp - (sdata.hp or 3)
-							else
-								hp = hp + (sdata.hp or 3)
-							end
-							hp = math.min(20, hp)
-							hp = math.max(0, hp)
-							user:set_hp(hp)
-						end)
-					end
-					itemstack:take_item()
-					return itemstack
-				end,
-			}
-			def.mobs = {
-				on_near = def.on_use,
-			}
-			return def
-		end,
-		air = function(sname, name, fname, time, sdata, flags)
-			local def = {
-				on_use = function(itemstack, user, pointed_thing)
-					local gul_e = gul.players[user:get_player_name()]
-					gul_e.air = gul_e.air + (sdata.time or 0)
-					for i=0, (sdata.time or 0) do
-						minetest.after(i, function()
-							local br = user:get_breath()
-							if flags.inv==true then
-								br = br - (sdata.br or 3)
-							else
-								br = br + (sdata.br or 3)
-							end
-							br = math.min(11, br)
-							br = math.max(0, br)
-							user:set_breath(br)
-							
-							if i==(sdata.time or 0) then
-								gul_e.air = gul_e.air - (sdata.time or 0)
-							end
-						end)
-					end
-					itemstack:take_item()
-					return itemstack
-				end,
-			}
-			return def
-		end,
+-- Base Potions
+
+minetest.register_node("gul:glass_bottle_mese", {
+	description = "Glass Bottle (Mese Water)",
+	drawtype = "plantlike",
+	tiles = {"vessels_glass_bottle.png^gul_water_mese.png"},
+	inventory_image = "vessels_glass_bottle_inv.png^gul_water_mese.png",
+	wield_image = "vessels_glass_bottle_inv.png^gul_water_mese.png",
+	paramtype = "light",
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.25, -0.5, -0.25, 0.25, 0.4, 0.25}
 	},
-	grant = function(time, playername, potion_name, type, flags)
-		local rootdef = minetest.registered_items[potion_name]
-		if rootdef == nil then
-			return
-		end
-		if rootdef.gul == nil then
-			return
-		end
-		local def = {}
-		for name, val in pairs(rootdef.gul) do
-			def[name] = val
-		end
-		if flags.inv==true then
-			def.gravity = 0 - def.gravity
-			def.speed = 0 - def.speed
-			def.jump = 0 - def.jump
-		end
-		gul.addPrefs(playername, def.speed, def.jump, def.gravity)
-		gul.refresh(playername)
-		minetest.chat_send_player(playername, "You are under the effects of the "..type.." potion.")
-		minetest.after(time, function()
-			gul.addPrefs(playername, 0-def.speed, 0-def.jump, 0-def.gravity)
-			gul.refresh(playername)
-			minetest.chat_send_player(playername, "The effects of the "..type.." potion have worn off.")
-		end)
-	end,
-	addPrefs = function(playername, speed, jump, gravity)
-		local prefs = gul.players[playername]
-		prefs.speed = prefs.speed + speed
-		prefs.jump = prefs.jump + jump
-		prefs.gravity = prefs.gravity + gravity
-	end,
-	refresh = function(playername)
-		if minetest.get_player_by_name(playername)~=nil then
-			local prefs = gul.players[playername]
-			minetest.get_player_by_name(playername):set_physics_override(prefs.speed, prefs.jump, prefs.gravity)
-		end
-	end,
-	register_potion = function(sname, name, fname, time, def)
-		local tps = {"power", "corruption"}
-		for t=1, #tps do
-			for i=1, #def.types do
-				local sdata = def.types[i]
-				local item_def = {
-					description = name.." (Strength: "..tps[t]..sdata.type..")",
-					inventory_image = "gul_bottle.png^gul_"..(def.texture or sname)..".png^gul_"..tps[t]..sdata.type..".png",
-					drawtype = "plantlike",
-					paramtype = "light",
-					walkable = false,
-					groups = {dig_immediate=3,attached_node=1,vessel=1},
-                         sounds = default.node_sound_glass_defaults(),
-				}
-				item_def.tiles = {item_def.inventory_image}
-				local flags = {
-					inv = false,
-					type = tps[t],
-				}
-				if t == 2 then
-					flags.inv = true
-				end
-				for name, val in pairs(gul.effects[def.effect](sname, name, fname, time, sdata, flags)) do
-					item_def[name] = val
-				end
-				for name, val in pairs(sdata.set) do
-					item_def[name] = val
-				end
-				for name, val in pairs(sdata.effects) do
-					item_def.gul[name] = val
-				end
-                    minetest.register_node(fname.."_"..tps[t]..sdata.type, item_def)
-				--potions.register_liquid(i..tps[t]..sname, name.." ("..tps[t].." "..i..")", item_def.on_use)
-				if minetest.get_modpath("curwe")~=nil then
-					gul.register_arrow(fname.."_"..tps[t]..sdata.type, i..tps[t]..sname, name.." ("..tps[t].." "..i..")", item_def.on_use,
-							item_def.description, item_def.inventory_image)
-				end
-			end
-		end
-	end,
-}
-dofile(minetest.get_modpath("gul").."/arrows.lua")
+	groups = {vessel=1,dig_immediate=3,attached_node=1},
+	sounds = default.node_sound_glass_defaults(),
+})
+
+minetest.register_node("gul:glass_bottle_geodes", {
+	description = "Glass Bottle (Geodes Crystal Water)",
+	drawtype = "plantlike",
+	tiles = {"vessels_glass_bottle.png^gul_water_geodes.png"},
+	inventory_image = "vessels_glass_bottle_inv.png^gul_water_geodes.png",
+	wield_image = "vessels_glass_bottle_inv.png^gul_water_geodes.png",
+	paramtype = "light",
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.25, -0.5, -0.25, 0.25, 0.4, 0.25}
+	},
+	groups = {vessel=1,dig_immediate=3,attached_node=1},
+	sounds = default.node_sound_glass_defaults(),
+})
+
+minetest.register_node("gul:glass_bottle_seregon", {
+	description = "Glass Bottle (Seregon Water)",
+	drawtype = "plantlike",
+	tiles = {"vessels_glass_bottle.png^gul_water_seregon.png"},
+	inventory_image = "vessels_glass_bottle_inv.png^gul_water_seregon.png",
+	wield_image = "vessels_glass_bottle_inv.png^gul_water_seregon.png",
+	paramtype = "light",
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.25, -0.5, -0.25, 0.25, 0.4, 0.25}
+	},
+	groups = {vessel=1,dig_immediate=3,attached_node=1},
+	sounds = default.node_sound_glass_defaults(),
+})
+
+-- Advanced Potions
      
 gul.register_potion("athelasbrew", "Athelas Brew", "gul:athelasbrew", 100, {
 	effect = "fixhp",
@@ -337,28 +235,7 @@ gul.register_potion("entdraught", "Ent Draught", "gul:entdraught", 240, {
 	}
 })
 
-minetest.register_on_joinplayer(function(player)
-	gul.players[player:get_player_name()] = {
-		speed = 1,
-		jump = 1,
-		gravity = 1,
-		air = 0,
-	}
-end)
-
-minetest.register_chatcommand("effect", {
-	params = "none",
-	description = "get effect info",
-	func = function(name, param)
-		minetest.chat_send_player(name, "effects:")
-		local gul_e = gul.players[name]
-		if gul_e~=nil then
-			for potion_name, val in pairs(gul_e) do
-				minetest.chat_send_player(name, potion_name .. "=" .. val)
-			end
-		end
-	end,
-})
+-- Brews
 
 minetest.register_craftitem( "gul:wine", {
 	description = "Wine",
@@ -395,27 +272,7 @@ minetest.register_craftitem( "gul:cider", {
 	on_use = minetest.item_eat(4),
 })
 
-function gul.can_dig(pos, player)
-	local meta = minetest.get_meta(pos)
-	local inv = meta:get_inventory()
-	if not inv:is_empty("src") or not inv:is_empty("dst") or not inv:is_empty("fuel") or
-	   not inv:is_empty("upgrade1") or not inv:is_empty("upgrade2") then
-		minetest.chat_send_player(player:get_player_name(),
-			"Brewer cannot be removed because it is not empty")
-		return false
-	else
-		return true
-	end
-end
-
-function gul.swap_node(pos, name)
-	local node = minetest.get_node(pos)
-	if node.name ~= name then
-		node.name = name
-		minetest.swap_node(pos, node)
-	end
-	return node.name
-end
-
-dofile(minetest.get_modpath("gul").."/potions/potionbrewing.lua")
+dofile(minetest.get_modpath("gul").."/potions/potion_ingredients.lua")
+dofile(minetest.get_modpath("gul").."/potions/potion_brewing.lua")
 dofile(minetest.get_modpath("gul").."/potions/brewing.lua")
+dofile(minetest.get_modpath("gul").."/potions/crafting.lua")
