@@ -176,3 +176,33 @@ minetest.register_craft({
 	recipe = {"cemen:rough_rock_lump", "gul:dwarf_ring"},
 	replacements = {{ "gul:dwarf_ring", "gul:dwarf_ring"}},
 })
+
+--Ithildin
+
+minetest.register_craft({
+	output = 'gul:ithildin_1',
+	recipe = {
+		{'cemen:mithril_ingot', 'cemen:geodes_crystal_1'},
+	}
+})
+
+minetest.register_craft({
+	output = 'gul:ithildin_stone_1',
+	recipe = {
+		{'gul:ithildin_1', 'group:stone'},
+	}
+})
+
+minetest.register_craft({
+	output = 'gul:ithildin_lamp_1',
+	recipe = {
+		{'cemen:mithril_ingot', 'curwe:blue_torch'},
+	}
+})
+
+minetest.register_craft({
+	output = 'gul:ithildin_stonelamp_1',
+	recipe = {
+		{'gul:ithildin_lamp_1', 'group:stone'},
+	}
+})
