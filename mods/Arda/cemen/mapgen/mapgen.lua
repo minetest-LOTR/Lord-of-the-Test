@@ -92,7 +92,7 @@ local np_random = {
 	interval = 1,
 	chance = 1,
 	action = function(pos)
-		minetest.env:add_node(pos,{name="cemen:fog"})
+		minetest.env:add_node(pos,{name="air"})
 	end
 })
 
