@@ -87,15 +87,6 @@ local np_random = {
 
 -- Stuff
 
- minetest.register_abm({
-	nodenames = {"ignore", "content_ignore"},
-	interval = 1,
-	chance = 1,
-	action = function(pos)
-		minetest.env:add_node(pos,{name="air"})
-	end
-})
-
 cemen = {}
 
 dofile(minetest.get_modpath("cemen").."/mapgen/nodes.lua")
