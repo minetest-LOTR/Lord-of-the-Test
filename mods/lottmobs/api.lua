@@ -9,7 +9,6 @@ function lottmobs:register_mob(name, def)
 		visual = def.visual,
 		visual_size = def.visual_size,
 		mesh = def.mesh,
-		textures = def.textures,
 		makes_footstep_sound = def.makes_footstep_sound,
 		view_range = def.view_range,
 		walk_velocity = def.walk_velocity,
@@ -608,8 +607,9 @@ function lottmobs:register_mob(name, def)
 			local tmp = {
 				lifetimer = self.lifetimer,
 				tamed = self.tamed,
-				textures = { textures = self.textures },
+				textures = def.available_textures["texture_"..math.random(1,def.available_textures["total"])],
 			}
+			self.object:set_properties(tmp)
 			return minetest.serialize(tmp)
 		end,
 		

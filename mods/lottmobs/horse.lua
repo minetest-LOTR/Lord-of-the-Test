@@ -5,8 +5,10 @@ local horse = {
 	stepheight = 1.1,
 	visual_size = {x=1,y=1},
 	mesh = "horseh1_model.x",
-	textures = {"lottmobs_horse.png"},
-		
+	available_textures = {
+		total = 1,
+		texture_1 = {"lottmobs_horse.png"},
+	},
 	driver = nil,
 	v = 0,
 }
@@ -801,7 +803,10 @@ lottmobs:register_mob("lottmobs:horse", {
 	hp_min = 5,
      hp_max = 7,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	textures = {"lottmobs_horse.png"},
+	available_textures = {
+		total = 1,
+		texture_1 = {"lottmobs_horse.png"},
+	},
 	visual = "mesh",
 	mesh = "horse_model.x",
 	makes_footstep_sound = true,
@@ -851,7 +856,10 @@ lottmobs:register_mob("lottmobs:horsepeg", {
 	hp_min = 5,
      hp_max = 7,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	textures = {"lottmobs_horsepeg.png"},
+	available_textures = {
+		total = 1,
+		texture_1 = {"lottmobs_horsepeg.png"},
+	},
 	visual = "mesh",
 	mesh = "horse_model.x",
 	makes_footstep_sound = true,
@@ -902,7 +910,10 @@ lottmobs:register_mob("lottmobs:horseara", {
 	hp_min = 5,
      hp_max = 7,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	textures = {"lottmobs_horseara.png"},
+	available_textures = {
+		total = 1,
+		texture_1 = {"lottmobs_horseara.png"},
+	},
 	visual = "mesh",
 	mesh = "horse_model.x",
 	makes_footstep_sound = true,
@@ -952,7 +963,10 @@ lottmobs:register_mob("lottmobs:shirepony", {
 	hp_min = 5,
      hp_max = 7,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	textures = {"lottmobs_shirepony.png"},
+	available_textures = {
+		total = 1,
+		texture_1 = {"lottmobs_shirepony.png"},
+	},
 	visual = "mesh",
 	mesh = "shirepony_model.x",
 	makes_footstep_sound = true,
@@ -1003,7 +1017,10 @@ lottmobs:register_mob("lottmobs:shireponyblack", {
 	hp_min = 5,
      hp_max = 7,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	textures = {"lottmobs_shireponyblack.png"},
+	available_textures = {
+		total = 1,
+		texture_1 = {"lottmobs_shireponyblack.png"},
+	},
 	visual = "mesh",
 	mesh = "shirepony_model.x",
 	makes_footstep_sound = true,
