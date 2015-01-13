@@ -1,0 +1,6 @@
+default
+lottplants
+lottfarming
+lottores
+worldedit
+lottother

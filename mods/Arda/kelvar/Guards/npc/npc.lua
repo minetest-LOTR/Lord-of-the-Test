@@ -1,6 +1,0 @@
-dofile(minetest.get_modpath("kelvar").."/guards/npc/gondor_guard.lua")
-dofile(minetest.get_modpath("kelvar").."/guards/npc/rohan_guard.lua")
-dofile(minetest.get_modpath("kelvar").."/guards/npc/dwarven_guard.lua")
-dofile(minetest.get_modpath("kelvar").."/guards/npc/elven_guard.lua")
-dofile(minetest.get_modpath("kelvar").."/guards/npc/orc_guard.lua")
-dofile(minetest.get_modpath("kelvar").."/guards/npc/uruk_hai_guard.lua")

@@ -1,0 +1,5 @@
+stairs
+doors
+lottplants
+default
+dye

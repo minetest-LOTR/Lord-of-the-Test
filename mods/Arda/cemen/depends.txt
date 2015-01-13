@@ -1,4 +1,0 @@
-olvar
-default
-worldedit
-curwe
