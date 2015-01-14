@@ -141,6 +141,26 @@ function horse:on_step(dtime)
 			end
 		end
 	end
+
+	if self.object:getvelocity().y > 0.1 then
+		local yaw = self.object:getyaw()
+		if self.drawtype == "side" then
+			yaw = yaw+(math.pi/2)
+		end
+		local x = math.sin(yaw) * -2
+		local z = math.cos(yaw) * 2
+		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+			self.object:setacceleration({x = x, y = 2, z = z})
+		else
+			self.object:setacceleration({x = x, y = -5, z = z})
+        end
+	else
+		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+			self.object:setacceleration({x = 0, y = 2, z = 0})
+		else
+			self.object:setacceleration({x = 0, y = -5, z = 0})
+		end
+	end
 end
 
 --horse white
@@ -286,6 +306,26 @@ function horsepeg:on_step(dtime)
 			else
 				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
 			end
+		end
+	end
+
+	if self.object:getvelocity().y > 0.1 then
+		local yaw = self.object:getyaw()
+		if self.drawtype == "side" then
+			yaw = yaw+(math.pi/2)
+		end
+		local x = math.sin(yaw) * -2
+		local z = math.cos(yaw) * 2
+		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+			self.object:setacceleration({x = x, y = 2, z = z})
+		else
+			self.object:setacceleration({x = x, y = -5, z = z})
+        end
+	else
+		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+			self.object:setacceleration({x = 0, y = 2, z = 0})
+		else
+			self.object:setacceleration({x = 0, y = -5, z = 0})
 		end
 	end
 end
@@ -438,6 +478,26 @@ function horseara:on_step(dtime)
 			end
 		end
 	end
+
+	if self.object:getvelocity().y > 0.1 then
+		local yaw = self.object:getyaw()
+		if self.drawtype == "side" then
+			yaw = yaw+(math.pi/2)
+		end
+		local x = math.sin(yaw) * -2
+		local z = math.cos(yaw) * 2
+		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+			self.object:setacceleration({x = x, y = 2, z = z})
+		else
+			self.object:setacceleration({x = x, y = -5, z = z})
+        end
+	else
+		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+			self.object:setacceleration({x = 0, y = 2, z = 0})
+		else
+			self.object:setacceleration({x = 0, y = -5, z = 0})
+		end
+	end
 end
 
 local shireponyblack = {
@@ -582,6 +642,26 @@ function shireponyblack:on_step(dtime)
 			else
 				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
 			end
+		end
+	end
+
+	if self.object:getvelocity().y > 0.1 then
+		local yaw = self.object:getyaw()
+		if self.drawtype == "side" then
+			yaw = yaw+(math.pi/2)
+		end
+		local x = math.sin(yaw) * -2
+		local z = math.cos(yaw) * 2
+		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+			self.object:setacceleration({x = x, y = 2, z = z})
+		else
+			self.object:setacceleration({x = x, y = -5, z = z})
+        end
+	else
+		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+			self.object:setacceleration({x = 0, y = 2, z = 0})
+		else
+			self.object:setacceleration({x = 0, y = -5, z = 0})
 		end
 	end
 end
@@ -730,6 +810,26 @@ function shirepony:on_step(dtime)
 			end
 		end
 	end
+
+	if self.object:getvelocity().y > 0.1 then
+		local yaw = self.object:getyaw()
+		if self.drawtype == "side" then
+			yaw = yaw+(math.pi/2)
+		end
+		local x = math.sin(yaw) * -2
+		local z = math.cos(yaw) * 2
+		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+			self.object:setacceleration({x = x, y = 2, z = z})
+		else
+			self.object:setacceleration({x = x, y = -5, z = z})
+        end
+	else
+		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+			self.object:setacceleration({x = 0, y = 2, z = 0})
+		else
+			self.object:setacceleration({x = 0, y = -5, z = 0})
+		end
+	end
 end
 
 minetest.register_craftitem("lottmobs:horseh1", {
@@ -739,7 +839,9 @@ minetest.register_craftitem("lottmobs:horseh1", {
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.above then
 			minetest.env:add_entity(pointed_thing.above, "lottmobs:horseh1")
-			itemstack:take_item()
+			if not minetest.setting_getbool("creative_mode") then
+				itemstack:take_item()
+			end
 		end
 		return itemstack
 	end,
@@ -753,7 +855,9 @@ minetest.register_craftitem("lottmobs:horsepegh1", {
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.above then
 			minetest.env:add_entity(pointed_thing.above, "lottmobs:horsepegh1")
-			itemstack:take_item()
+			if not minetest.setting_getbool("creative_mode") then
+				itemstack:take_item()
+			end
 		end
 		return itemstack
 	end,
@@ -767,7 +871,9 @@ minetest.register_craftitem("lottmobs:horsearah1", {
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.above then
 			minetest.env:add_entity(pointed_thing.above, "lottmobs:horsearah1")
-			itemstack:take_item()
+			if not minetest.setting_getbool("creative_mode") then
+				itemstack:take_item()
+			end
 		end
 		return itemstack
 	end,
@@ -781,7 +887,9 @@ minetest.register_craftitem("lottmobs:shireponyh1", {
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.above then
 			minetest.env:add_entity(pointed_thing.above, "lottmobs:shireponyh1")
-			itemstack:take_item()
+			if not minetest.setting_getbool("creative_mode") then
+				itemstack:take_item()
+			end
 		end
 		return itemstack
 	end,
@@ -795,7 +903,9 @@ minetest.register_craftitem("lottmobs:shireponyblackh1", {
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.above then
 			minetest.env:add_entity(pointed_thing.above, "lottmobs:shireponyblackh1")
-			itemstack:take_item()
+			if not minetest.setting_getbool("creative_mode") then
+				itemstack:take_item()
+			end
 		end
 		return itemstack
 	end,
