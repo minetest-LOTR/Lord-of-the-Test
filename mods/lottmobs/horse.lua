@@ -5,18 +5,17 @@ local horse = {
 	stepheight = 1.1,
 	visual_size = {x=1,y=1},
 	mesh = "horseh1_model.x",
-	available_textures = {
-		total = 1,
-		texture_1 = {"lottmobs_horse.png"},
-	},
+	textures = {"lottmobs_horse.png"},
 	driver = nil,
 	v = 0,
 }
 
-
 local function is_ground(pos)
 	local nn = minetest.get_node(pos).name
-	return minetest.get_item_group(nn, "crumbly") ~= 0
+	return minetest.get_item_group(nn, "crumbly") ~= 0 or
+	minetest.get_item_group(nn, "cracky") ~= 0 or
+	minetest.get_item_group(nn, "choppy") ~= 0 or
+	minetest.get_item_group(nn, "snappy") ~= 0
 end
 
 local function get_sign(i)
@@ -77,26 +76,25 @@ function horse:on_step(dtime)
 	if self.driver then
 		local ctrl = self.driver:get_player_control()
 		if ctrl.up then
-			self.v = self.v+2
+			self.v = self.v+2.33
 		end
 		if ctrl.down then
-			self.v = self.v-0.1
+			self.v = self.v-0.3
 		end
 		if ctrl.left then
-			self.object:setyaw(self.object:getyaw()+math.pi/120+dtime*math.pi/120)
+			self.object:setyaw(self.object:getyaw()+math.pi/60+dtime*math.pi/60)
 		end
 		if ctrl.right then
-			self.object:setyaw(self.object:getyaw()-math.pi/120-dtime*math.pi/120)
+			self.object:setyaw(self.object:getyaw()-math.pi/60-dtime*math.pi/60)
 		end
 		if ctrl.jump then
 		local p = self.object:getpos()
 		p.y = p.y-0.5
-		if is_ground(p) then
-		local pos = self.object:getpos()
-				pos.y = math.floor(pos.y)+4
-				self.object:setpos(pos)
-				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
-		end
+			if is_ground(p) then
+			local v = self.object:getvelocity()
+				v.y = 6
+				self.object:setvelocity(v)
+			end
 		end
 	end
 	local s = get_sign(self.v)
@@ -106,10 +104,11 @@ function horse:on_step(dtime)
 		self.v = 0
 		return
 	end
-	if math.abs(self.v) > 4.5 then
-		self.v = 4.5*get_sign(self.v)
-	end
 	
+	if math.abs(self.v) > 7 then
+		self.v = 7*get_sign(self.v)
+	end
+
 	local p = self.object:getpos()
 	p.y = p.y-0.5
 	if not is_ground(p) then
@@ -147,8 +146,6 @@ end
 --horse white
 
 local horsepeg = {
-    
-	
 	physical = true,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
 	visual = "mesh",
@@ -156,7 +153,6 @@ local horsepeg = {
 	visual_size = {x=1,y=1},
 	mesh = "horseh1_model.x",
 	textures = {"lottmobs_horsepeg.png"},
-		
 	driver = nil,
 	v = 0,
 }
@@ -164,7 +160,10 @@ local horsepeg = {
 
 local function is_ground(pos)
 	local nn = minetest.get_node(pos).name
-	return minetest.get_item_group(nn, "crumbly") ~= 0
+	return minetest.get_item_group(nn, "crumbly") ~= 0 or
+	minetest.get_item_group(nn, "cracky") ~= 0 or
+	minetest.get_item_group(nn, "choppy") ~= 0 or
+	minetest.get_item_group(nn, "snappy") ~= 0
 end
 
 local function get_sign(i)
@@ -225,26 +224,25 @@ function horsepeg:on_step(dtime)
 	if self.driver then
 		local ctrl = self.driver:get_player_control()
 		if ctrl.up then
-			self.v = self.v+2
+			self.v = self.v+2.33
 		end
 		if ctrl.down then
-			self.v = self.v-0.1
+			self.v = self.v-0.3
 		end
 		if ctrl.left then
-			self.object:setyaw(self.object:getyaw()+math.pi/120+dtime*math.pi/120)
+			self.object:setyaw(self.object:getyaw()+math.pi/60+dtime*math.pi/60)
 		end
 		if ctrl.right then
-			self.object:setyaw(self.object:getyaw()-math.pi/120-dtime*math.pi/120)
+			self.object:setyaw(self.object:getyaw()-math.pi/60-dtime*math.pi/60)
 		end
 		if ctrl.jump then
 		local p = self.object:getpos()
 		p.y = p.y-0.5
-		if is_ground(p) then
-		local pos = self.object:getpos()
-				pos.y = math.floor(pos.y)+4
-				self.object:setpos(pos)
-				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
-		end
+			if is_ground(p) then
+			local v = self.object:getvelocity()
+				v.y = 6
+				self.object:setvelocity(v)
+			end
 		end
 	end
 	local s = get_sign(self.v)
@@ -254,8 +252,8 @@ function horsepeg:on_step(dtime)
 		self.v = 0
 		return
 	end
-	if math.abs(self.v) > 4.5 then
-		self.v = 4.5*get_sign(self.v)
+	if math.abs(self.v) > 7 then
+		self.v = 7*get_sign(self.v)
 	end
 	
 	local p = self.object:getpos()
@@ -311,7 +309,10 @@ end
 
 local function is_ground(pos)
 	local nn = minetest.get_node(pos).name
-	return minetest.get_item_group(nn, "crumbly") ~= 0
+	return minetest.get_item_group(nn, "crumbly") ~= 0 or
+	minetest.get_item_group(nn, "cracky") ~= 0 or
+	minetest.get_item_group(nn, "choppy") ~= 0 or
+	minetest.get_item_group(nn, "snappy") ~= 0
 end
 
 local function get_sign(i)
@@ -372,26 +373,25 @@ function horseara:on_step(dtime)
 	if self.driver then
 		local ctrl = self.driver:get_player_control()
 		if ctrl.up then
-			self.v = self.v+3
+			self.v = self.v+2.33
 		end
 		if ctrl.down then
-			self.v = self.v-0.1
+			self.v = self.v-0.3
 		end
 		if ctrl.left then
-			self.object:setyaw(self.object:getyaw()+math.pi/120+dtime*math.pi/120)
+			self.object:setyaw(self.object:getyaw()+math.pi/60+dtime*math.pi/60)
 		end
 		if ctrl.right then
-			self.object:setyaw(self.object:getyaw()-math.pi/120-dtime*math.pi/120)
+			self.object:setyaw(self.object:getyaw()-math.pi/60-dtime*math.pi/60)
 		end
 		if ctrl.jump then
 		local p = self.object:getpos()
 		p.y = p.y-0.5
-		if is_ground(p) then
-		local pos = self.object:getpos()
-				pos.y = math.floor(pos.y)+4
-				self.object:setpos(pos)
-				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
-		end
+			if is_ground(p) then
+			local v = self.object:getvelocity()
+				v.y = 6
+				self.object:setvelocity(v)
+			end
 		end
 		
 	end
@@ -402,8 +402,8 @@ function horseara:on_step(dtime)
 		self.v = 0
 		return
 	end
-	if math.abs(self.v) > 4.5 then
-		self.v = 4.5*get_sign(self.v)
+	if math.abs(self.v) > 7 then
+		self.v = 7*get_sign(self.v)
 	end
 	
 	local p = self.object:getpos()
@@ -455,7 +455,10 @@ local shireponyblack = {
 
 local function is_ground(pos)
 	local nn = minetest.get_node(pos).name
-	return minetest.get_item_group(nn, "crumbly") ~= 0
+	return minetest.get_item_group(nn, "crumbly") ~= 0 or
+	minetest.get_item_group(nn, "cracky") ~= 0 or
+	minetest.get_item_group(nn, "choppy") ~= 0 or
+	minetest.get_item_group(nn, "snappy") ~= 0
 end
 
 local function get_sign(i)
@@ -516,26 +519,25 @@ function shireponyblack:on_step(dtime)
 	if self.driver then
 		local ctrl = self.driver:get_player_control()
 		if ctrl.up then
-			self.v = self.v+3
+			self.v = self.v+1.67
 		end
 		if ctrl.down then
-			self.v = self.v-0.1
+			self.v = self.v-0.2
 		end
 		if ctrl.left then
-			self.object:setyaw(self.object:getyaw()+math.pi/120+dtime*math.pi/120)
+			self.object:setyaw(self.object:getyaw()+math.pi/90+dtime*math.pi/90)
 		end
 		if ctrl.right then
-			self.object:setyaw(self.object:getyaw()-math.pi/120-dtime*math.pi/120)
+			self.object:setyaw(self.object:getyaw()-math.pi/90-dtime*math.pi/90)
 		end
 		if ctrl.jump then
 		local p = self.object:getpos()
 		p.y = p.y-0.5
-		if is_ground(p) then
-		local pos = self.object:getpos()
-				pos.y = math.floor(pos.y)+4
-				self.object:setpos(pos)
-				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
-		end
+			if is_ground(p) then
+			local v = self.object:getvelocity()
+				v.y = 4
+				self.object:setvelocity(v)
+			end
 		end
 		
 	end
@@ -546,8 +548,8 @@ function shireponyblack:on_step(dtime)
 		self.v = 0
 		return
 	end
-	if math.abs(self.v) > 4.5 then
-		self.v = 4.5*get_sign(self.v)
+	if math.abs(self.v) > 5 then
+		self.v = 5*get_sign(self.v)
 	end
 	
 	local p = self.object:getpos()
@@ -599,7 +601,10 @@ end
 
 local function is_ground(pos)
 	local nn = minetest.get_node(pos).name
-	return minetest.get_item_group(nn, "crumbly") ~= 0
+	return minetest.get_item_group(nn, "crumbly") ~= 0 or
+	minetest.get_item_group(nn, "cracky") ~= 0 or
+	minetest.get_item_group(nn, "choppy") ~= 0 or
+	minetest.get_item_group(nn, "snappy") ~= 0
 end
 
 local function get_sign(i)
@@ -660,26 +665,25 @@ function shirepony:on_step(dtime)
 	if self.driver then
 		local ctrl = self.driver:get_player_control()
 		if ctrl.up then
-			self.v = self.v+3
+			self.v = self.v+1.67
 		end
 		if ctrl.down then
-			self.v = self.v-0.1
+			self.v = self.v-0.2
 		end
 		if ctrl.left then
-			self.object:setyaw(self.object:getyaw()+math.pi/120+dtime*math.pi/120)
+			self.object:setyaw(self.object:getyaw()+math.pi/90+dtime*math.pi/90)
 		end
 		if ctrl.right then
-			self.object:setyaw(self.object:getyaw()-math.pi/120-dtime*math.pi/120)
+			self.object:setyaw(self.object:getyaw()-math.pi/90-dtime*math.pi/90)
 		end
 		if ctrl.jump then
 		local p = self.object:getpos()
 		p.y = p.y-0.5
-		if is_ground(p) then
-		local pos = self.object:getpos()
-				pos.y = math.floor(pos.y)+4
-				self.object:setpos(pos)
-				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
-		end
+			if is_ground(p) then
+			local v = self.object:getvelocity()
+				v.y = 4
+				self.object:setvelocity(v)
+			end
 		end
 		
 	end
@@ -690,8 +694,8 @@ function shirepony:on_step(dtime)
 		self.v = 0
 		return
 	end
-	if math.abs(self.v) > 4.5 then
-		self.v = 4.5*get_sign(self.v)
+	if math.abs(self.v) > 5 then
+		self.v = 5*get_sign(self.v)
 	end
 	
 	local p = self.object:getpos()
@@ -729,7 +733,7 @@ function shirepony:on_step(dtime)
 end
 
 minetest.register_craftitem("lottmobs:horseh1", {
-	description = "Horse",
+	description = "Brown Horse",
 	inventory_image = "lottmobs_horse_inventory.png",
 	
 	on_place = function(itemstack, placer, pointed_thing)
