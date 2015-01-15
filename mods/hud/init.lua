@@ -59,10 +59,15 @@ local function custom_hud(player)
  local name = player:get_player_name()
 
 -- fancy hotbar (only when no crafting mod present)
- if minetest.get_modpath("crafting") == nil then
-	player:hud_set_hotbar_image("hud_hotbar.png")
+HUD_HOTBAR_TRANSPARENCY = true
+if minetest.get_modpath("crafting") == nil then
+	if HUD_HOTBAR_TRANSPARENCY == false then
+		player:hud_set_hotbar_image("hud_hotbar.png")
+	else
+		player:hud_set_hotbar_image("hud_hotbar_transparent.png")
+	end
 	player:hud_set_hotbar_selected_image("hud_hotbar_selected.png")
- end
+end
 
  if minetest.setting_getbool("enable_damage") then
  --hunger

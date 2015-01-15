@@ -31,3 +31,9 @@ HUD_HUNGER_OFFSET = {x=-175,y=30}	--offset in pixel
 HUD_AIR_POS = {x=0.5,y=1}		--min 0, max 1
 HUD_AIR_OFFSET = {x=15,y=-75}	--offset in pixel
 
+--
+-- hud transparency
+--
+
+HUD_HOTBAR_TRANSPARENCY = true    --Enables/disables hud transparency.
+
