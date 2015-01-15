@@ -26,6 +26,8 @@ HUD_AIR_OFFSET = {x=15,y=-15}
 HUD_ARMOR_POS = {x=0.5,y=0.9}
 HUD_ARMOR_OFFSET = {x=-175, y=-15}
 
+HUD_HOTBAR_TRANSPARENCY = true
+
 HUD_TICK = 0.2
 HUD_HUNGER_TICK = 300
 
@@ -59,7 +61,6 @@ local function custom_hud(player)
  local name = player:get_player_name()
 
 -- fancy hotbar (only when no crafting mod present)
-HUD_HOTBAR_TRANSPARENCY = true
 if minetest.get_modpath("crafting") == nil then
 	if HUD_HOTBAR_TRANSPARENCY == false then
 		player:hud_set_hotbar_image("hud_hotbar.png")

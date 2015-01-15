@@ -24,7 +24,7 @@ zcc.items_in_group = function(group)
 end
 
 local table_copy = function(table)
-	out = {}
+	local out = {}
 	for k,v in pairs(table) do
 		out[k] = v
 	end
@@ -107,9 +107,9 @@ end
 
 zcc.formspec = function(pn)
 	if zcc.need_load_all then zcc.load_all() end
-	page = zcc.users[pn].page
-	alt = zcc.users[pn].alt
-	current_item = zcc.users[pn].current_item
+	local page = zcc.users[pn].page
+	local alt = zcc.users[pn].alt
+	local current_item = zcc.users[pn].current_item
 	local formspec = "size[8,7.5]"
 	.. "button_exit[6,7;2,0.5;;Exit]"
 	if zcc.users[pn].history.index > 1 then
@@ -176,7 +176,7 @@ zcc.formspec = function(pn)
 end
 
 minetest.register_on_player_receive_fields(function(player,formname,fields)
-	pn = player:get_player_name();
+	local pn = player:get_player_name();
 	if zcc.users[pn] == nil then zcc.users[pn] = {current_item = "", alt = 1, page = 0, history={index=0,list={}}} end
 	if fields.zcc then
 		inventory_plus.set_inventory_formspec(player, zcc.formspec(pn))
@@ -230,9 +230,11 @@ minetest.register_tool("lottinventory:cooking_book",{
         }
     },
     on_place = function(itemstack, player, pointed_thing)
-	     inventory_plus.set_inventory_formspec(player, zcc.formspec(pn))
+		local pn = player:get_player_name();
+		inventory_plus.set_inventory_formspec(player, zcc.formspec(pn))
     end,
     on_use = function(itemstack, player, pointed_thing)
-	     inventory_plus.set_inventory_formspec(player, zcc.formspec(pn))
+		local pn = player:get_player_name();
+		inventory_plus.set_inventory_formspec(player, zcc.formspec(pn))
     end,
 })

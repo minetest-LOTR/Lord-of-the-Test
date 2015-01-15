@@ -274,11 +274,6 @@ end
 
 armor.get_player_skin = function(self, name)
 	local skin = nil
-	if skins then
-		skin = skins.skins[name]
-	elseif u_skins then
-		skin = u_skins.u_skins[name]
-	end
 	return skin or armor.default_skin
 end
 

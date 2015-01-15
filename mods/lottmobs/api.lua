@@ -1,4 +1,5 @@
 lottmobs = {}
+yaw = {}
 function lottmobs:register_mob(name, def)
 	minetest.register_entity(name, {
 		name = name,
@@ -92,7 +93,7 @@ function lottmobs:register_mob(name, def)
 			
 			local an = ( d.x * p.x ) + ( d.z * p.z )
 			
-			a = math.deg( math.acos( an ) )
+			local a = math.deg( math.acos( an ) )
 			
 			if a > ( self.fov / 2 ) then
 				return false

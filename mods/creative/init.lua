@@ -67,7 +67,7 @@ minetest.after(0, function()
  	for _,itemstring in ipairs(creative_list) do
  		local stack = ItemStack(itemstring)
  		-- Make a stack of the right number of items
- 		stack2 = ItemStack(stack:get_name().." "..(1))
+ 		local stack2 = ItemStack(stack:get_name().." "..(1))
  		inv:add_item("main", stack2)
  
  	end

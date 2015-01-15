@@ -1,4 +1,4 @@
-WorldEdit v1.0 for MineTest 0.4.8+
+WorldEdit v1.0 for Minetest 0.4.8+
 ==================================
 The ultimate in-game world editing tool for [Minetest](http://minetest.net/)! Tons of functionality to help with building, fixing, and more.
 
@@ -109,26 +109,45 @@ WorldEdit supports two different types of schematics.
 
 The first is the WorldEdit Schematic format, with the file extension ".we", and in some older versions, ".wem". There have been several previous versions of the WorldEdit Schematic format, but WorldEdit is capable of loading any past versions, and will always support them - there is no need to worry about schematics becoming obselete.
 
-The current version of the WorldEdit Schematic format, internally known as version 4, is essentially an array of node data tables in Lua 5.2 table syntax. Specifically:
+As of version 5, WorldEdit schematics include a header.  The header is seperated from the content by a colon (`:`).  It contains fields seperated by commas (`,`).  Currently only one field is used, which contains the version in ASCII decimal.
 
-    return {
-        {
-            ["y"]      = <y-axis coordinate>,
-            ["x"]      = <x-axis coordinate>,
-            ["name"]   = <node name>,
-            ["z"]      = <z-axis coordinate>,
-            ["meta"]   = <metadata table>,
-            ["param2"] = <param2 value>,
-            ["param1"] = <y-axis coordinate>,
-        },
-        <...>
-    }
+The current version of the WorldEdit Schematic format is essentially an array of node data tables in Lua 5.1 table syntax preceded by a header.
+Specifically it looks like this:
+
+	5:return {
+		{
+			y      = <y-axis coordinate>,
+			x      = <x-axis coordinate>,
+			z      = <z-axis coordinate>,
+			name   = <node name>,
+			param1 = <param1 value>,
+			param2 = <param2 value>,
+			meta   = <metadata table>,
+		},
+		<...>
+	}
+
 
 The ordering of the values and minor aspects of the syntax, such as trailing commas or newlines, are not guaranteed to stay the same in future versions.
 
 The WorldEdit Schematic format is accessed via the WorldEdit API, or WorldEdit serialization chat commands such as `//serialize` and `//deserialize`.
 
 The second is the Minetest Schematic format (MTS). The details of this format may be found in the Minetest documentation and are out of the scope of this document. Access to this format is done via specialized MTS commands such as `//mtschemcreate` and `//mtschemplace`.
+
+Authors
+-------
+WorldEdit would not be possible without the contributions of many developers and designers. Below, they are listed alphabetically:
+
+    cheapie
+    cornernote
+    cyisfor
+    electricface
+    kaeza
+    khonkhortisan
+    sfan5
+    ShadowNinja
+    spillz
+    Uberi/Temperest
 
 License
 -------

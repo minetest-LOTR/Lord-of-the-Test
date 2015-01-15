@@ -1,49 +1,50 @@
 dofile(minetest.get_modpath("lottplants").."/nodes.lua")
-dofile(minetest.get_modpath("lottplants").."/functions.lua")
 
 -- ===== GROWING TIME =====
 
-local ALDINT = 67
-local ALDCHA = 11
+ALDINT = 67
+ALDCHA = 11
 
-local APPINT = 67
-local APPCHA = 11
+APPINT = 67
+APPCHA = 11
 
-local BIRINT = 67
-local BIRCHA = 11
+BIRINT = 67
+BIRCHA = 11
 
-local BEEINT = 67
-local BEECHA = 11
+BEEINT = 67
+BEECHA = 11
 
-local CULINT = 67
-local CULCHA = 11
+CULINT = 67
+CULCHA = 11
 
-local ELMINT = 67
-local ELMCHA = 11
+ELMINT = 67
+ELMCHA = 11
 
-local FIRINT = 67
-local FIRCHA = 11
+FIRINT = 67
+FIRCHA = 11
 
-local LEBINT = 67
-local LEBCHA = 11
+LEBINT = 67
+LEBCHA = 11
 
-local MALINT = 67
-local MALCHA = 11
+MALINT = 67
+MALCHA = 11
 
-local PININT = 67
-local PINCHA = 11
+PININT = 67
+PINCHA = 11
 
-local PLUINT = 67
-local PLUCHA = 11
+PLUINT = 67
+PLUCHA = 11
 
-local ROWINT = 67
-local ROWCHA = 11
+ROWINT = 67
+ROWCHA = 11
 
-local WHIINT = 67
-local WHICHA = 11
+WHIINT = 67
+WHICHA = 11
 
-local YAVINT = 67
-local YAVCHA = 11
+YAVINT = 67
+YAVCHA = 11
+
+dofile(minetest.get_modpath("lottplants").."/functions.lua")
 
 minetest.register_node("lottplants:asphodel", {
 	drawtype = "plantlike",

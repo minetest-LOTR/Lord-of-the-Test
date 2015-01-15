@@ -104,8 +104,17 @@ Set the current WorldEdit region to `<node>`.
 
     //set air
     //set cactus
-    //set Bronze Block
-    //set mesecons:wire_00000000_off
+    //set Blue Lightstone
+    //set dirt with grass
+
+### `//mix <node1> ...`
+
+Fill the current WorldEdit region with a random mix of `<node1>`, `...`.
+
+    //mix air
+    //mix cactus stone glass sandstone
+    //mix Bronze
+    //mix default:cobble air
 
 ### `//replace <search node> <replace node>`
 
@@ -218,6 +227,13 @@ Stack the current WorldEdit region along the x/y/z/? axis `<count>` times.
     //stack y -1
     //stack z +5
     //stack ? 12
+
+### `//stack2 <count> <x> <y> <z>`
+
+Stack the current WorldEdit region `<count>` times by offset `<x>`, `<y>`, `<z>`.
+
+    //stack2 5 3 8 2
+    //stack2 1 -1 -1 -1
 
 ### `//scale <factor>`
 

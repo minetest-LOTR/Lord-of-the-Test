@@ -591,14 +591,14 @@ function lottmapgen_mallorntree(pos)
 					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1}, {name="lottplants:mallorntree"})
 				end
 				if (math.sin(i/height*i) < 0.2 and i > 3 and math.random(0,2) < 1.5) then
-					branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
+					local branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
 					add_tree_branch_mallorn(branch_pos)
 				end
 			end
 		else
 			for i = height, -5, -1 do
 				if (math.sin(i/height*i) < 0.2 and i > 3 and math.random(0,2) < 1.5) then
-					branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
+					local branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
 					add_tree_branch_mallorn(branch_pos)
 				end
 				if i < math.random(0,1) then
@@ -742,14 +742,14 @@ function lottmapgen_mirktree(pos)
 					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1}, {name="default:tree"})
 				end
 				if (math.sin(i/height*i) < 0.2 and i > 3 and math.random(0,2) < 1.5) then
-					branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
+					local branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
 					add_tree_branch_mirktree(branch_pos)
 				end
 			end
 		else
 			for i = height, -5, -1 do
 				if (math.sin(i/height*i) < 0.2 and i > 3 and math.random(0,2) < 1.5) then
-					branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
+					local branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
 					add_tree_branch_mirktree(branch_pos)
 				end
 				if i < math.random(0,1) then
@@ -873,14 +873,14 @@ function lottmapgen_mirktreetest(pos)
 					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1}, {name="default:tree"})
 				end
 				if (math.sin(i/height*i) < 0.2 and i > 3 and math.random(0,2) < 1.5) then
-					branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
+					local branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
 					add_tree_branch_mirktreetest(branch_pos)
 				end
 			end
 		else
 			for i = height, -5, -1 do
 				if (math.sin(i/height*i) < 0.2 and i > 3 and math.random(0,2) < 1.5) then
-					branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
+					local branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
 					add_tree_branch_mirktreetest(branch_pos)
 				end
 				if i < math.random(0,1) then

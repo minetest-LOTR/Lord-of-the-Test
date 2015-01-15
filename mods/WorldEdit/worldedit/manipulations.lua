@@ -1,7 +1,9 @@
 worldedit = worldedit or {}
 local minetest = minetest --local copy of global
 
---modifies positions `pos1` and `pos2` so that each component of `pos1` is less than or equal to its corresponding conent of `pos2`, returning two new positions
+-- Copies and modifies positions `pos1` and `pos2` so that each component of
+-- `pos1` is less than or equal to the corresponding component of `pos2`.
+-- Returns the new positions.
 worldedit.sort_pos = function(pos1, pos2)
 	pos1 = {x=pos1.x, y=pos1.y, z=pos1.z}
 	pos2 = {x=pos2.x, y=pos2.y, z=pos2.z}
@@ -24,7 +26,11 @@ worldedit.volume = function(pos1, pos2)
 end
 
 --sets a region defined by positions `pos1` and `pos2` to `nodename`, returning the number of nodes filled
-worldedit.set = function(pos1, pos2, nodename)
+worldedit.set = function(pos1, pos2, nodenames)
+	if type(nodenames) == "string" then
+		nodenames = {nodenames}
+	end
+
 	local pos1, pos2 = worldedit.sort_pos(pos1, pos2)
 
 	--set up voxel manipulator
@@ -40,9 +46,16 @@ worldedit.set = function(pos1, pos2, nodename)
 	end
 
 	--fill selected area with node
-	local node_id = minetest.get_content_id(nodename)
-	for i in area:iterp(pos1, pos2) do
-		nodes[i] = node_id
+	local node_ids = {}
+	for i,v in ipairs(nodenames) do
+		node_ids[i] = minetest.get_content_id(nodenames[i])
+	end
+	if #node_ids == 1 then --only one type of node
+		local id = node_ids[1]
+		for i in area:iterp(pos1, pos2) do nodes[i] = id end --fill area with node
+	else --several types of nodes specified
+		local id_count, rand = #node_ids, math.random
+		for i in area:iterp(pos1, pos2) do nodes[i] = node_ids[rand(id_count)] end --fill randomly with all types of specified nodes
 	end
 
 	--update map nodes
@@ -109,6 +122,7 @@ worldedit.replaceinverse = function(pos1, pos2, searchnode, replacenode)
 	return count
 end
 
+--copies the region defined by positions `pos1` and `pos2` along the `axis` axis ("x" or "y" or "z") by `amount` nodes, returning the number of nodes copied
 worldedit.copy = function(pos1, pos2, axis, amount) --wip: replace the old version below
 	local pos1, pos2 = worldedit.sort_pos(pos1, pos2)
 
@@ -163,6 +177,130 @@ worldedit.copy = function(pos1, pos2, axis, amount) --wip: replace the old versi
 		currentpos[axis] = currentpos[axis] + 1
 	end
 	return worldedit.volume(pos1, pos2)
+end
+
+worldedit.copy2 = function(pos1, pos2, direction, volume)
+	-- the overlap shouldn't matter as long as we
+	-- 1) start at the furthest separated corner
+	-- 2) complete an edge before moving inward, either edge works
+	-- 3) complete a face before moving inward, similarly
+	--
+	-- to do this I
+	-- 1) find the furthest destination in the direction, of each axis
+	-- 2) call those the furthest separated corner
+	-- 3) make sure to iterate inward from there
+	-- 4) nested loop to make sure complete edge, complete face, then complete cube.
+
+	local get_node, get_meta, add_node = minetest.get_node, minetest.get_meta, minetest.add_node
+	local somemeta = get_meta(pos1) -- hax lol
+	local to_table = somemeta.to_table
+	local from_table = somemeta.from_table
+	somemeta = nil
+
+	local pos1, pos2 = worldedit.sort_pos(pos1, pos2)
+	local manip = minetest.get_voxel_manip()
+	manip:read_from_map(pos1, pos2)
+
+	local sx, sy, sz -- direction sign
+	local ix, iy, iz -- initial destination
+	local ex, ey, ez -- final destination
+	local originalx, originaly, originalz -- source
+	-- vim -> :'<,'>s/\<\([ioes]\?\)x\>/\1y/g
+	if direction.x > 0 then
+		originalx = pos2.x
+		ix = originalx + direction.x
+		ex = pos1.x + direction.x
+		sx = -1
+	elseif direction.x < 0 then
+		originalx = pos1.x
+		ix = originalx + direction.x
+		ex = pos2.x + direction.x
+		sx = 1
+	else
+		originalx = pos1.x
+		ix = originalx -- whatever
+		ex = pos2.x
+		sx = 1
+	end
+
+	if direction.y > 0 then
+		originaly = pos2.y
+		iy = originaly + direction.y
+		ey = pos1.y + direction.y
+		sy = -1
+	elseif direction.y < 0 then
+		originaly = pos1.y
+		iy = originaly + direction.y
+		ey = pos2.y + direction.y
+		sy = 1
+	else
+		originaly = pos1.y
+		iy = originaly -- whatever
+		ey = pos2.y
+		sy = 1
+	end
+
+	if direction.z > 0 then
+		originalz = pos2.z
+		iz = originalz + direction.z
+		ez = pos1.z + direction.z
+		sz = -1
+	elseif direction.z < 0 then
+		originalz = pos1.z
+		iz = originalz + direction.z
+		ez = pos2.z + direction.z
+		sz = 1
+	else
+		originalz = pos1.z
+		iz = originalz -- whatever
+		ez = pos2.z
+		sz = 1
+	end
+	-- print('copy',originalx,ix,ex,sx,originaly,iy,ey,sy,originalz,iz,ez,sz)
+
+	local ox,oy,oz
+
+	ox = originalx
+	for x = ix, ex, sx do
+		oy = originaly
+		for y = iy, ey, sy do
+			oz = originalz
+			for z = iz, ez, sz do
+				-- reusing pos1/pos2 as source/dest here
+				pos1.x, pos1.y, pos1.z = ox, oy, oz
+				pos2.x, pos2.y, pos2.z = x, y, z
+				local node = get_node(pos1)
+				local meta = to_table(get_meta(pos1)) --get meta of current node
+				add_node(pos2,node)
+				from_table(get_meta(pos2),meta)
+				oz = oz + sz
+			end
+			oy = oy + sy
+		end
+		ox = ox + sx
+	end
+end
+
+--duplicates the region defined by positions `pos1` and `pos2` `amount` times with offset vector `direction`, returning the number of nodes stacked
+worldedit.stack2 = function(pos1, pos2, direction, amount, finished)
+	local i = 0
+	local translated = {x=0,y=0,z=0}
+	local function nextone()
+		if i < amount then
+			i = i + 1
+			translated.x = translated.x + direction.x
+			translated.y = translated.y + direction.y
+			translated.z = translated.z + direction.z
+			worldedit.copy2(pos1, pos2, translated, volume)
+			minetest.after(0, nextone)
+		else
+			if finished then
+				finished()
+			end
+		end
+	end
+	nextone()
+	return worldedit.volume(pos1, pos2) * amount
 end
 
 --copies the region defined by positions `pos1` and `pos2` along the `axis` axis ("x" or "y" or "z") by `amount` nodes, returning the number of nodes copied
@@ -284,10 +422,16 @@ worldedit.stack = function(pos1, pos2, axis, count)
 	end
 	local amount = 0
 	local copy = worldedit.copy
-	for i = 1, count do
-		amount = amount + length
-		copy(pos1, pos2, axis, amount)
+	local i = 1
+	function nextone()
+		if i <= count then
+			i = i + 1
+			amount = amount + length
+			copy(pos1, pos2, axis, amount)
+			minetest.after(0, nextone)
+		end
 	end
+	nextone()
 	return worldedit.volume(pos1, pos2) * count
 end
 
