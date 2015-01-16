@@ -92,7 +92,7 @@ function horse:on_step(dtime)
 		p.y = p.y-0.5
 			if is_ground(p) then
 			local v = self.object:getvelocity()
-				v.y = 6
+				v.y = 4
 				self.object:setvelocity(v)
 			end
 		end
@@ -260,7 +260,7 @@ function horsepeg:on_step(dtime)
 		p.y = p.y-0.5
 			if is_ground(p) then
 			local v = self.object:getvelocity()
-				v.y = 6
+				v.y = 4
 				self.object:setvelocity(v)
 			end
 		end
@@ -429,7 +429,7 @@ function horseara:on_step(dtime)
 		p.y = p.y-0.5
 			if is_ground(p) then
 			local v = self.object:getvelocity()
-				v.y = 6
+				v.y = 4
 				self.object:setvelocity(v)
 			end
 		end
@@ -595,7 +595,7 @@ function shireponyblack:on_step(dtime)
 		p.y = p.y-0.5
 			if is_ground(p) then
 			local v = self.object:getvelocity()
-				v.y = 4
+				v.y = 3
 				self.object:setvelocity(v)
 			end
 		end
@@ -761,7 +761,7 @@ function shirepony:on_step(dtime)
 		p.y = p.y-0.5
 			if is_ground(p) then
 			local v = self.object:getvelocity()
-				v.y = 4
+				v.y = 3
 				self.object:setvelocity(v)
 			end
 		end
@@ -951,7 +951,7 @@ lottmobs:register_mob("lottmobs:horse", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "farming:wheat" then
-               clicker:get_inventory():add_item("main", "lottmobs:horseh1")
+               minetest.add_entity(self.object:getpos(), "lottmobs:horseh1")
                if not minetest.setting_getbool("creative_mode") then
 			     item:take_item()
                     clicker:set_wielded_item(item)
@@ -1004,7 +1004,7 @@ lottmobs:register_mob("lottmobs:horsepeg", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "farming:wheat" then
-               clicker:get_inventory():add_item("main", "lottmobs:horsepegh1")
+               minetest.add_entity(self.object:getpos(), "lottmobs:horsepegh1")
                if not minetest.setting_getbool("creative_mode") then
 			     item:take_item()
                     clicker:set_wielded_item(item)
@@ -1058,7 +1058,7 @@ lottmobs:register_mob("lottmobs:horseara", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "farming:wheat" then
-               clicker:get_inventory():add_item("main", "lottmobs:horsearah1")
+               minetest.add_entity(self.object:getpos(), "lottmobs:horsearah1")
                if not minetest.setting_getbool("creative_mode") then
 			     item:take_item()
                     clicker:set_wielded_item(item)
@@ -1112,7 +1112,7 @@ lottmobs:register_mob("lottmobs:shirepony", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "farming:wheat" then
-               clicker:get_inventory():add_item("main", "lottmobs:shireponyh1")
+               minetest.add_entity(self.object:getpos(), "lottmobs:shireponyh1")
                if not minetest.setting_getbool("creative_mode") then
 			     item:take_item()
                     clicker:set_wielded_item(item)
@@ -1166,7 +1166,7 @@ lottmobs:register_mob("lottmobs:shireponyblack", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "farming:wheat" then
-               clicker:get_inventory():add_item("main", "lottmobs:shireponyblackh1")
+               minetest.add_entity(self.object:getpos(), "lottmobs:shireponyblackh1")
                if not minetest.setting_getbool("creative_mode") then
 			     item:take_item()
                     clicker:set_wielded_item(item)
