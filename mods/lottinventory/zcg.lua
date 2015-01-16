@@ -239,10 +239,12 @@ minetest.register_tool("lottinventory:crafts_book",{
     },
     on_place = function(itemstack, player, pointed_thing)
 		local pn = player:get_player_name();
+		if zcg.users[pn] == nil then zcg.users[pn] = {current_item = "", alt = 1, page = 0, history={index=0,list={}}} end
 		inventory_plus.set_inventory_formspec(player, zcg.formspec(pn))
     end,
     on_use = function(itemstack, player, pointed_thing)
 		local pn = player:get_player_name();
+		if zcg.users[pn] == nil then zcg.users[pn] = {current_item = "", alt = 1, page = 0, history={index=0,list={}}} end
 		inventory_plus.set_inventory_formspec(player, zcg.formspec(pn))
     end,
 })

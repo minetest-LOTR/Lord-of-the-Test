@@ -223,10 +223,12 @@ minetest.register_tool("lottinventory:forbidden_crafts_book",{
     groups = {armor_crafts=1, book=1},
     on_place = function(itemstack, player, pointed_thing)
 		local pn = player:get_player_name();
+		if zfc.users[pn] == nil then zfc.users[pn] = {current_item = "", alt = 1, page = 0, history={index=0,list={}}} end
 		inventory_plus.set_inventory_formspec(player, zfc.formspec(pn))
     end,
     on_use = function(itemstack, player, pointed_thing)
 		local pn = player:get_player_name();
+		if zfc.users[pn] == nil then zfc.users[pn] = {current_item = "", alt = 1, page = 0, history={index=0,list={}}} end
 		inventory_plus.set_inventory_formspec(player, zfc.formspec(pn))
     end,
 })
