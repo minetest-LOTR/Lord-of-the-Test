@@ -122,7 +122,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_dirtsnow = minetest.get_content_id("default:dirt_with_snow")
      local c_dirtgrass = minetest.get_content_id("default:dirt_with_grass")
      local c_dirt = minetest.get_content_id("default:dirt")
-	local c_jungrass = minetest.get_content_id("default:junglegrass")
 	local c_dryshrub = minetest.get_content_id("default:dry_shrub")
 	local c_clay = minetest.get_content_id("default:clay")
 	local c_stone = minetest.get_content_id("default:stone")
@@ -372,14 +371,14 @@ minetest.register_on_generated(function(minp, maxp, seed)
 								elseif biome == 7 then
 									if math.random(TREE3) == 2 then
 										lottmapgen_mallornsmalltree(x, y, z, area, data)
-                                             elseif math.random(PLANT3) == 2 then
-										data[vi] = c_jungrass
-                                             elseif math.random(TREE5) == 3 then
-                                                  data[vi] = c_mallorngen
-                                             elseif math.random(PLANT4) == 11 then
-                                                  lottmapgen_lorienplants(data, vi)
-                                             elseif math.random(PLANT13) == 13 then
-                                                  data[vi] = c_malltre
+                                            elseif math.random(PLANT1) == 2 then
+												lottmapgen_lorien_grass(data, vi)
+                                            elseif math.random(TREE5) == 3 then
+                                            	data[vi] = c_mallorngen
+                                            elseif math.random(PLANT4) == 11 then
+                                            	lottmapgen_lorienplants(data, vi)
+                                            elseif math.random(PLANT13) == 13 then
+                                            	data[vi] = c_malltre
 									end
 								elseif biome == 8 then
 									if math.random(TREE10) == 2 then

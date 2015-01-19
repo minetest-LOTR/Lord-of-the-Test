@@ -20,6 +20,23 @@ function lottmapgen_grass(data, vi)
 	end
 end
 
+function lottmapgen_lorien_grass(data, vi)
+	local c_lorgrass1 = minetest.get_content_id("lottplants:lorien_grass_1")
+	local c_lorgrass2 = minetest.get_content_id("lottplants:lorien_grass_2")
+	local c_lorgrass3 = minetest.get_content_id("lottplants:lorien_grass_3")
+	local c_lorgrass4 = minetest.get_content_id("lottplants:lorien_grass_4")
+	local rand = math.random(4)
+	if rand == 1 then
+		data[vi] = c_lorgrass1
+	elseif rand == 2 then
+		data[vi] = c_lorgrass2
+	elseif rand == 3 then
+		data[vi] = c_lorgrass3
+	else
+		data[vi] = c_lorgrass4
+	end
+end
+
 function lottmapgen_farmingplants(data, vi)
 	local c_plant1 = minetest.get_content_id("lottplants:pipeweed_wild")
 	local c_plant2 = minetest.get_content_id("lottplants:barley_wild")
