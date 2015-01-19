@@ -242,14 +242,14 @@ function lottplants_mallorntree(pos)
 					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1}, {name="lottplants:mallorntree"})
 				end
 				if (math.sin(i/height*i) < 0.2 and i > 3 and math.random(0,2) < 1.5) then
-					branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
+					local branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
 					add_tree_branch_mallorn(branch_pos)
 				end
 			end
 		else
 			for i = height, -5, -1 do
 				if (math.sin(i/height*i) < 0.2 and i > 3 and math.random(0,2) < 1.5) then
-					branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
+					local branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
 					add_tree_branch_mallorn(branch_pos)
 				end
 				if i < math.random(0,1) then
@@ -279,6 +279,25 @@ function lottplants_mallorntree(pos)
 				end
 			end
 		end
+end
+
+function lottplants_smallmallorntree(pos)
+	for j = -3, 15 do
+		if j == 11 or j == 15 then
+			for i = -2, 2 do
+			for k = -2, 2 do
+				local absi = math.abs(i)
+				local absk = math.abs(k)
+				if math.random() > (absi + absk) / 24 then
+					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:mallornleaf"})
+				end
+			end
+			end
+		end
+	end
+	for j = -5, 15 do
+		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:mallorntree"})
+	end
 end
 
 -- Oaks
@@ -539,8 +558,12 @@ minetest.register_abm({
     nodenames = {"lottplants:mallornsapling"},
     interval = MALINT,
     chance = MALCHA,
-    action = function(pos, node, active_object_count, active_object_count_wider)
-		lottplants_mallorntree(pos)
+    action = function(pos, node, active_object_count, active_object_count_wider, x, y, z, area, data)
+		if math.random(2) == 1 then
+			lottplants_mallorntree(pos)
+		else
+			lottplants_smallmallorntree(pos)
+		end
 		print ("[lottplants] Mallorn Grows")
     end,
 })
