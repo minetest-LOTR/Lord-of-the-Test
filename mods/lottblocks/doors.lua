@@ -13,6 +13,7 @@ minetest.register_craft({
 		{"lottplants:mallornwood", "lottplants:mallornwood"}
 	}
 })
+
 doors:register_door("lottblocks:door_alder", {
 	description = "Alder Door",
 	inventory_image = "lottblocks_door_alder.png",
@@ -28,6 +29,7 @@ minetest.register_craft({
 		{"lottplants:alderwood", "lottplants:alderwood"}
 	}
 })
+
 doors:register_door("lottblocks:door_lebethron", {
 	description = "Lebethron Door",
 	inventory_image = "lottblocks_door_lebethron.png",
@@ -35,6 +37,7 @@ doors:register_door("lottblocks:door_lebethron", {
 	tiles_bottom = {"lottblocks_door_lebethron_b.png", "lottblocks_edge_lebethron.png"},
 	tiles_top = {"lottblocks_door_lebethron_a.png", "lottblocks_edge_lebethron.png"},
 })
+
 minetest.register_craft({
 	output = "lottblocks:door_lebethron",
 	recipe = {
@@ -43,6 +46,7 @@ minetest.register_craft({
 		{"lottplants:lebethronwood", "lottplants:lebethronwood"}
 	}
 })
+
 doors:register_door("lottblocks:door_birch", {
 	description = "Birch Door",
 	inventory_image = "lottblocks_door_birch.png",
@@ -56,6 +60,22 @@ minetest.register_craft({
 		{"lottplants:birchwood", "lottplants:birchwood"},
 		{"lottplants:birchwood", "lottplants:birchwood"},
 		{"lottplants:birchwood", "lottplants:birchwood"}
+	}
+})
+
+doors:register_door("lottblocks:door_pine", {
+	description = "Pine Door",
+	inventory_image = "lottblocks_door_pine.png",
+	groups = {choppy=3,flammable=2,door=1},
+	tiles_bottom = {"lottblocks_door_pine_b.png", "lottblocks_edge_pine.png"},
+	tiles_top = {"lottblocks_door_pine_a.png", "lottblocks_edge_pine.png"},
+})
+minetest.register_craft({
+	output = "lottblocks:door_pine",
+	recipe = {
+		{"lottplants:pinewood", "lottplants:pinewood"},
+		{"lottplants:pinewood", "lottplants:pinewood"},
+		{"lottplants:pinewood", "lottplants:pinewood"}
 	}
 })
 
@@ -82,6 +102,28 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_node("lottblocks:fence_pine", {
+	description = "Pine Fence",
+	drawtype = "fencelike",
+	tiles = {"lottplants_pinewood.png"},
+	inventory_image = "lottblocks_pine_fence.png",
+	wield_image = "lottblocks_pine_fence.png",
+	paramtype = "light",
+	is_ground_content = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-1/7, -1/2, -1/7, 1/7, 1/2, 1/7},
+	},
+	groups = {choppy=3,flammable=2},
+})
+
+minetest.register_craft({
+	output = 'lottblocks:fence_pine_6',
+	recipe = {
+		{'lottplants:pinewood', 'lottplants:pinewood', 'lottplants:pinewood'},
+		{'lottplants:pinewood', 'lottplants:pinewood', 'lottplants:pinewood'},
+	}
+})
 
 minetest.register_node("lottblocks:fence_birch", {
 	description = "Birch Fence",

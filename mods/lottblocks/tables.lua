@@ -20,9 +20,7 @@ minetest.register_node("lottblocks:bedside_table",
 		},
 	},
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
-}) 
-
-
+})
 
 minetest.register_node("lottblocks:wood_table",
 	{description = 'Wooden Table',
@@ -46,7 +44,7 @@ minetest.register_node("lottblocks:wood_table",
 		},
 	},
 	groups = {snappy=2,choppy=3,oddly_breakable_by_hand=2,flammable=2}
-}) 
+})
 minetest.register_craft({
 	output = 'lottblocks:wood_table',
 	recipe = {
@@ -55,6 +53,7 @@ minetest.register_craft({
 		{'group:stick', '', 'group:stick'},
 	}
 })
+
 minetest.register_node("lottblocks:wood_chair",
 	{ description = 'Wooden Chair',
 	tiles = {"default_wood.png"},
@@ -87,6 +86,7 @@ minetest.register_craft({
 		{'group:stick', 'group:stick'},
 	}
 })
+
 minetest.register_node("lottblocks:alder_table",
 	{description = 'Alder Table',
 	tiles = {"lottplants_alderwood.png"},
@@ -109,7 +109,7 @@ minetest.register_node("lottblocks:alder_table",
 		},
 	},
 	groups = {snappy=2,choppy=2,flammable=2}
-}) 
+})
 minetest.register_craft({
 	output = 'lottblocks:alder_table',
 	recipe = {
@@ -118,6 +118,7 @@ minetest.register_craft({
 		{'group:stick', '', 'group:stick'},
 	}
 })
+
 minetest.register_node("lottblocks:alder_chair",
 	{ description = 'Alder Chair',
 	tiles = {"lottplants_alderwood.png"},
@@ -150,6 +151,7 @@ minetest.register_craft({
 		{'group:stick', 'group:stick'},
 	}
 })
+
 minetest.register_node("lottblocks:birch_table",
 	{description = 'Birch Table',
 	tiles = {"lottplants_birchwood.png"},
@@ -172,7 +174,7 @@ minetest.register_node("lottblocks:birch_table",
 		},
 	},
 	groups = {snappy=2,choppy=3,flammable=2}
-}) 
+})
 minetest.register_craft({
 	output = 'lottblocks:birch_table',
 	recipe = {
@@ -181,6 +183,7 @@ minetest.register_craft({
 		{'group:stick', '', 'group:stick'},
 	}
 })
+
 minetest.register_node("lottblocks:birch_chair",
 	{ description = 'Birch Chair',
 	tiles = {"lottplants_birchwood.png"},
@@ -213,6 +216,72 @@ minetest.register_craft({
 		{'group:stick', 'group:stick'},
 	}
 })
+
+minetest.register_node("lottblocks:pine_table",
+	{description = 'Pine Table',
+	tiles = {"lottplants_pinewood.png"},
+	drawtype = "nodebox",
+	sunlight_propagates = true,
+	paramtype = 'light',
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4,-0.5,-0.4, -0.3,0.4,-0.3},
+			{0.3,-0.5,-0.4, 0.4,0.4,-0.3},
+			{-0.4,-0.5,0.3, -0.3,0.4,0.4},
+			{0.3,-0.5,0.3, 0.4,0.4,0.4},
+			{-0.5,0.4,-0.5, 0.5,0.5,0.5},
+			{-0.4,-0.2,-0.3, -0.3,-0.1,0.3},
+			{0.3,-0.2,-0.4, 0.4,-0.1,0.3},
+			{-0.3,-0.2,-0.4, 0.4,-0.1,-0.3},
+			{-0.3,-0.2,0.3, 0.3,-0.1,0.4},
+		},
+	},
+	groups = {snappy=2,choppy=3,flammable=2}
+})
+minetest.register_craft({
+	output = 'lottblocks:pine_table',
+	recipe = {
+		{'lottplants:pinewood', 'lottplants:pinewood', 'lottplants:pinewood'},
+		{'group:stick', 'group:stick', 'group:stick'},
+		{'group:stick', '', 'group:stick'},
+	}
+})
+
+minetest.register_node("lottblocks:pine_chair",
+	{ description = 'Pine Chair',
+	tiles = {"lottplants_pinewood.png"},
+	drawtype = "nodebox",
+	sunlight_propagates = true,
+	paramtype = 'light',
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.3,-0.5,0.2, -0.2,0.5,0.3},
+			{0.2,-0.5,0.2, 0.3,0.5,0.3},
+			{-0.3,-0.5,-0.3, -0.2,-0.1,-0.2},
+			{0.2,-0.5,-0.3, 0.3,-0.1,-0.2},
+			{-0.3,-0.1,-0.3, 0.3,0,0.2},
+			{-0.2,0.1,0.25, 0.2,0.4,0.26}
+		},
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},
+	},
+groups = {snappy=2,choppy=3,flammable=2}
+})
+minetest.register_craft({
+	output = 'lottblocks:pine_chair',
+	recipe = {
+		{'group:stick', ''},
+		{'lottplants:pinewood', 'lottplants:pinewood'},
+		{'group:stick', 'group:stick'},
+	}
+})
+
 minetest.register_node("lottblocks:lebethron_table",
 	{description = 'Lebethron Table',
 	tiles = {"lottplants_lebethronwood.png"},
@@ -235,7 +304,7 @@ minetest.register_node("lottblocks:lebethron_table",
 		},
 	},
 	groups = {snappy=2,choppy=1,flammable=2}
-}) 
+})
 minetest.register_craft({
 	output = 'lottblocks:lebethron_table',
 	recipe = {
@@ -244,6 +313,7 @@ minetest.register_craft({
 		{'group:stick', '', 'group:stick'},
 	}
 })
+
 minetest.register_node("lottblocks:lebethron_chair",
 	{ description = 'Lebethron Chair',
 	tiles = {"lottplants_lebethronwood.png"},
@@ -276,6 +346,7 @@ minetest.register_craft({
 		{'group:stick', 'group:stick'},
 	}
 })
+
 minetest.register_node("lottblocks:mallorn_table",
 	{description = 'Mallorn Table',
 	tiles = {"lottplants_mallornwood.png"},
@@ -298,7 +369,7 @@ minetest.register_node("lottblocks:mallorn_table",
 		},
 	},
 	groups = {snappy=2,choppy=1,flammable=2}
-}) 
+})
 minetest.register_craft({
 	output = 'lottblocks:mallorn_table',
 	recipe = {
@@ -307,6 +378,7 @@ minetest.register_craft({
 		{'group:stick', '', 'group:stick'},
 	}
 })
+
 minetest.register_node("lottblocks:mallorn_chair",
 	{ description = 'Mallorn Chair',
 	tiles = {"lottplants_mallornwood.png"},
