@@ -37,7 +37,7 @@ Pilzadam (Troll Model, farming, mobs, Bed code & texture, throwing, halloween me
 Doc (farming)
 Ironzorg, VanessaE (flowers/ plants)
 Sapier (Balrog Model, Re-texture of his balrog texture)
-Paramat (Trees, mapgen)
+Paramat (Trees, mapgen, pinetree textures.)
 Stu (Dwarf & Elf & Human model, Armor, npc framework)
 Traxie21 (Potions)
 AMMOnym (Some of the mobs textures)

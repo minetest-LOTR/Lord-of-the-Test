@@ -341,11 +341,11 @@ minetest.register_node("lottplants:yavannamireleaf", {
 
 -- TREE
 
-minetest.register_node("lottplants:aldertree", {
-	description = "Alder Tree",
-	tiles = {"lottplants_aldertree_top.png", "lottplants_aldertree_top.png", "lottplants_aldertree.png"},
+minetest.register_node("lottplants:pinetree", {
+	description = "Pine Tree",
+	tiles = {"lottplants_pinetree_top.png", "lottplants_pinetree_top.png", "lottplants_pinetree.png"},
 	paramtype2 = "facedir",
-	groups = {tree=1,choppy=2,flammable=2},
+	groups = {tree=1,choppy=3,flammable=2},
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node
 })
@@ -355,6 +355,15 @@ minetest.register_node("lottplants:birchtree", {
 	tiles = {"lottplants_birchtree_top.png", "lottplants_birchtree_top.png", "lottplants_birchtree.png"},
 	paramtype2 = "facedir",
 	groups = {tree=1,choppy=3,flammable=2},
+	sounds = default.node_sound_wood_defaults(),
+	on_place = minetest.rotate_node
+})
+
+minetest.register_node("lottplants:aldertree", {
+	description = "Alder Tree",
+	tiles = {"lottplants_aldertree_top.png", "lottplants_aldertree_top.png", "lottplants_aldertree.png"},
+	paramtype2 = "facedir",
+	groups = {tree=1,choppy=2,flammable=2},
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node
 })
@@ -611,10 +620,10 @@ minetest.register_node("lottplants:yavannamirefruit", {
 
 --Wood
 
-minetest.register_node("lottplants:alderwood", {
-	description = "Alder Planks",
-	tiles = {"lottplants_alderwood.png"},
-	groups = {choppy=2,flammable=3,wood=1},
+minetest.register_node("lottplants:pinewood", {
+	description = "Pine Planks",
+	tiles = {"lottplants_pinewood.png"},
+	groups = {choppy=3,flammable=3,wood=1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
@@ -622,6 +631,13 @@ minetest.register_node("lottplants:birchwood", {
 	description = "Birch Planks",
 	tiles = {"lottplants_birchwood.png"},
 	groups = {choppy=3,flammable=3,wood=1},
+	sounds = default.node_sound_wood_defaults(),
+})
+
+minetest.register_node("lottplants:alderwood", {
+	description = "Alder Planks",
+	tiles = {"lottplants_alderwood.png"},
+	groups = {choppy=2,flammable=3,wood=1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
@@ -724,27 +740,34 @@ minetest.register_node("lottplants:lorien_grass_4", {
 
 --Stairs & Slabs
 
-stairs.register_stair_and_slab("alderwood", "lottplants:alderwood",
-		{snappy=2,choppy=2,flammable=3},
-		{"lottplants_alderwood.png"},
-		"Alder Wood Stair",
-		"Alder Wood Slab",
-		default.node_sound_wood_defaults())
-	
 stairs.register_stair_and_slab("birchwood", "lottplants:birchwood",
 		{snappy=2,choppy=3,flammable=3},
 		{"lottplants_birchwood.png"},
 		"Birch Wood Stair",
 		"Birch Wood Slab",
 		default.node_sound_wood_defaults())
-	
+
+stairs.register_stair_and_slab("pinewood", "lottplants:pinewood",
+		{snappy=2,choppy=3,flammable=3},
+		{"lottplants_pinewood.png"},
+		"Pine Wood Stair",
+		"Pine Wood Slab",
+		default.node_sound_wood_defaults())
+
+stairs.register_stair_and_slab("alderwood", "lottplants:alderwood",
+		{snappy=2,choppy=2,flammable=3},
+		{"lottplants_alderwood.png"},
+		"Alder Wood Stair",
+		"Alder Wood Slab",
+		default.node_sound_wood_defaults())
+
 stairs.register_stair_and_slab("lebethronwood", "lottplants:lebethronwood",
 		{snappy=2,choppy=1,flammable=3},
 		{"lottplants_lebethronwood.png"},
 		"Lebethron Wood Stair",
 		"Lebethron Wood Slab",
 		default.node_sound_wood_defaults())
-	
+
 stairs.register_stair_and_slab("mallornwood", "lottplants:mallornwood",
 		{snappy=2,choppy=1,flammable=3},
 		{"lottplants_mallornwood.png"},
@@ -757,6 +780,13 @@ minetest.register_craft({
 	output = 'lottplants:birchwood 4',
 	recipe = {
 		{'lottplants:birchtree'},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottplants:pinewood 4',
+	recipe = {
+		{'lottplants:pinetree'},
 	}
 })
 

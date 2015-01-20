@@ -442,7 +442,7 @@ function lottmapgen_jungletree2(x, y, z, area, data)
 end
 
 function lottmapgen_pinetree(x, y, z, area, data)
-	local c_tree = minetest.get_content_id("default:tree")
+	local c_pinetree = minetest.get_content_id("lottplants:pinetree")
 	local c_pineleaf = minetest.get_content_id("lottplants:pineleaf")
 	local c_snow = minetest.get_content_id("default:snow")
 	for j = -4, 13 do
@@ -474,7 +474,7 @@ function lottmapgen_pinetree(x, y, z, area, data)
 			end
 		end
 		local vit = area:index(x, y + j, z)
-		data[vit] = c_tree
+		data[vit] = c_pinetree
 	end
 	local vil = area:index(x, y + 14, z)
 	local vila = area:index(x, y + 15, z)
@@ -485,7 +485,7 @@ function lottmapgen_pinetree(x, y, z, area, data)
 end
 
 function lottmapgen_firtree(x, y, z, area, data)
-	local c_tree = minetest.get_content_id("default:tree")
+	local c_pinetree = minetest.get_content_id("lottplants:pinetree")
 	local c_firleaf = minetest.get_content_id("lottplants:firleaf")
 	local c_snow = minetest.get_content_id("default:snow")
 	for j = -4, 13 do
@@ -517,7 +517,7 @@ function lottmapgen_firtree(x, y, z, area, data)
 			end
 		end
 		local vit = area:index(x, y + j, z)
-		data[vit] = c_tree
+		data[vit] = c_pinetree
 	end
 	local vil = area:index(x, y + 14, z)
 	local vila = area:index(x, y + 15, z)
@@ -815,7 +815,7 @@ minetest.register_node("lottmapgen:beechgen", {
 })
 
 minetest.register_node("lottmapgen:mirktreegen", {
-	tiles = {"lottmapgen_mirkwood_grass.png", "default_dirt.png", "default_dirt.png^lottmapgen_mirkwood_grass_side.png"}, 
+	tiles = {"lottmapgen_mirkwood_grass.png", "default_dirt.png", "default_dirt.png^lottmapgen_mirkwood_grass_side.png"},
 	is_ground_content = true,
 	groups = {cracky=3, stone=1, not_in_creative_inventory=1},
 	drop = '',
