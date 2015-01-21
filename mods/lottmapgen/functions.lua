@@ -404,34 +404,31 @@ function lottmapgen_jungletree(x, y, z, area, data)
 end
 
 function lottmapgen_jungletree2(x, y, z, area, data)
-	local c_tree = minetest.get_content_id("default:tree")
-	local c_leaves = minetest.get_content_id("default:leaves")
+	local c_tree = minetest.get_content_id("default:jungletree")
+	local c_leaves = minetest.get_content_id("lottplants:mirkleaf")
 	for j = -3, 7 do
-		if j == 5 then
+		if j == 6 then
 			for i = -4, 4 do
 			for k = -4, 4 do
-				if not (i == 0 or k == 0) then
-					if math.random(5) ~= 2 then
-						local vil = area:index(x + i, y + j, z + k)
-						data[vil] = c_leaves
-					end
+				if math.random(20) ~= 10 then
+					local vil = area:index(x + i, y + j + math.random(1, 2), z + k)
+					data[vil] = c_leaves
 				end
 			end
 			end
-		elseif j == 6 then
+      for i = -1, 1 do
+			for k = -1, 1 do
+          if math.abs(i) + math.abs(k) == 2 then
+            local vit = area:index(x + i, y + j, z + k)
+            data[vit] = c_tree
+          end
+      end
+      end
+		elseif j == 7 then
 			for i = -2, 2, 4 do
 			for k = -2, 2, 4 do
 				local vit = area:index(x + i, y + j, z + k)
 				data[vit] = c_tree
-			end
-			end
-		elseif j == 5 then
-			for i = -1, 1 do
-			for k = -1, 1 do
-				if math.abs(i) + math.abs(k) == 2 then
-					local vit = area:index(x + i, y + j, z + k)
-					data[vit] = c_tree
-				end
 			end
 			end
 		else
@@ -647,46 +644,21 @@ function lottmapgen_mallorntree(pos)
 		end
 end
 
-minetest.register_node("lottmapgen:mirkleaves", {
-	description = "Leaves",
-	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
-	tiles = {"default_leaves.png"},
-	paramtype = "light",
-     sunlight_propagates = false,
-	waving = 1,
-	is_ground_content = false,
-	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1, not_in_creative_inventory =1},
-	drop = {
-		max_items = 1,
-		items = {
-			{
-				items = {'default:sapling'},
-				rarity = 20,
-			},
-			{
-				items = {'default:leaves'},
-			}
-		}
-	},
-	sounds = default.node_sound_leaves_defaults(),
-})
-
 function add_tree_branch_mirktree(pos)
-	minetest.env:add_node(pos, {name="default:tree"})
+	minetest.env:add_node(pos, {name="default:jungletree"})
 	for i = math.floor(math.random(2)), -math.floor(math.random(2)), -1 do
 		for k = math.floor(math.random(2)), -math.floor(math.random(2)), -1 do
 			local p = {x=pos.x+i, y=pos.y, z=pos.z+k}
 			local n = minetest.env:get_node(p)
 			if (n.name=="air") then
-				minetest.env:add_node(p, {name="lottmapgen:mirkleaves"})
+				minetest.env:add_node(p, {name="lottplants:mirkleaf"})
 			end
 			local chance = math.abs(i+k)
 			if (chance < 1) then
 				p = {x=pos.x+i, y=pos.y+1, z=pos.z+k}
 				n = minetest.env:get_node(p)
 				if (n.name=="air") then
-					minetest.env:add_node(p, {name="lottmapgen:mirkleaves"})
+					minetest.env:add_node(p, {name="lottplants:mirkleaf"})
 				end
 			end
 		end
@@ -744,7 +716,7 @@ function lottmapgen_mirktree(pos)
 		if height < 1 then
 			for i = height, -2, -1 do
 				local p = {x=pos.x, y=pos.y+i, z=pos.z}
-				minetest.env:add_node(p, {name="default:tree"})
+				minetest.env:add_node(p, {name="default:jungletree"})
 				if i == height then
 					add_tree_branch_mirktree({x=pos.x, y=pos.y+height+math.random(0, 1), z=pos.z})
 					add_tree_branch_mirktree({x=pos.x+1, y=pos.y+i-math.random(2), z=pos.z})
@@ -753,10 +725,10 @@ function lottmapgen_mirktree(pos)
 					add_tree_branch_mirktree({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1})
 				end
 				if i < 0 then
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i-math.random(2), z=pos.z}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z+1}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x-1, y=pos.y+i-math.random(2), z=pos.z}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1}, {name="default:tree"})
+					minetest.env:add_node({x=pos.x+1, y=pos.y+i-math.random(2), z=pos.z}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z+1}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x-1, y=pos.y+i-math.random(2), z=pos.z}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1}, {name="default:jungletree"})
 				end
 				if (math.sin(i/height*i) < 0.2 and i > 3 and math.random(0,2) < 1.5) then
 					local branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
@@ -770,10 +742,10 @@ function lottmapgen_mirktree(pos)
 					add_tree_branch_mirktree(branch_pos)
 				end
 				if i < math.random(0,1) then
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z+1}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x+2, y=pos.y+i, z=pos.z-1}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z-2}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x-1, y=pos.y+i, z=pos.z}, {name="default:tree"})
+					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z+1}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x+2, y=pos.y+i, z=pos.z-1}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z-2}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x-1, y=pos.y+i, z=pos.z}, {name="default:jungletree"})
 				end
 				if i == height then
 					add_tree_branch_mirktree({x=pos.x+1, y=pos.y+i, z=pos.z+1})
@@ -789,10 +761,10 @@ function lottmapgen_mirktree(pos)
 					add_tree_branch_mirktree({x=pos.x, y=pos.y+i, z=pos.z-1})
 					add_tree_branch_mirktree({x=pos.x, y=pos.y+i, z=pos.z})
 				else
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z-1}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z-1}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z}, {name="default:tree"})
+					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z-1}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z-1}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z}, {name="default:jungletree"})
 				end
 			end
 		end
@@ -856,14 +828,14 @@ function add_tree_branch_mirktreetest(pos)
 			local p = {x=pos.x+i, y=pos.y, z=pos.z+k}
 			local n = minetest.env:get_node(p)
 			if (n.name=="air") then
-				minetest.env:add_node(p, {name="lottmapgen:mirkleaves"})
+				minetest.env:add_node(p, {name="lottplants:mirkleaf"})
 			end
 			local chance = math.abs(i+k)
 			if (chance < 1) then
 				p = {x=pos.x+i, y=pos.y+1, z=pos.z+k}
 				n = minetest.env:get_node(p)
 				if (n.name=="air") then
-					minetest.env:add_node(p, {name="lottmapgen:mirkleaves"})
+					minetest.env:add_node(p, {name="lottplants:mirkleaf"})
 				end
 			end
 		end
@@ -884,10 +856,10 @@ function lottmapgen_mirktreetest(pos)
 					add_tree_branch_mirktreetest({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1})
 				end
 				if i < 0 then
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i-math.random(2), z=pos.z}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z+1}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x-1, y=pos.y+i-math.random(2), z=pos.z}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1}, {name="default:tree"})
+					minetest.env:add_node({x=pos.x+1, y=pos.y+i-math.random(2), z=pos.z}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z+1}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x-1, y=pos.y+i-math.random(2), z=pos.z}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1}, {name="default:jungletree"})
 				end
 				if (math.sin(i/height*i) < 0.2 and i > 3 and math.random(0,2) < 1.5) then
 					local branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
@@ -901,10 +873,10 @@ function lottmapgen_mirktreetest(pos)
 					add_tree_branch_mirktreetest(branch_pos)
 				end
 				if i < math.random(0,1) then
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z+1}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x+2, y=pos.y+i, z=pos.z-1}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z-2}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x-1, y=pos.y+i, z=pos.z}, {name="default:tree"})
+					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z+1}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x+2, y=pos.y+i, z=pos.z-1}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z-2}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x-1, y=pos.y+i, z=pos.z}, {name="default:jungletree"})
 				end
 				if i == height then
 					add_tree_branch_mirktreetest({x=pos.x+1, y=pos.y+i, z=pos.z+1})
@@ -920,10 +892,10 @@ function lottmapgen_mirktreetest(pos)
 					add_tree_branch_mirktreetest({x=pos.x, y=pos.y+i, z=pos.z-1})
 					add_tree_branch_mirktreetest({x=pos.x, y=pos.y+i, z=pos.z})
 				else
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z-1}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z-1}, {name="default:tree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z}, {name="default:tree"})
+					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z-1}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z-1}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z}, {name="default:jungletree"})
 				end
 			end
 		end

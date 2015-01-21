@@ -339,6 +339,32 @@ minetest.register_node("lottplants:yavannamireleaf", {
 	sounds = default.node_sound_leaves_defaults(),
 })
 
+minetest.register_alias("lottmapgen:mirkleaves", "lottplants:mirkleaf")
+minetest.register_node("lottplants:mirkleaf", {
+	description = "Mirkwood Leaves",
+	drawtype = "allfaces_optional",
+	visual_scale = 1.3,
+	tiles = {"lottplants_mirkleaf.png"},
+	--paramtype = "light",
+  sunlight_propagates = false,
+	waving = 1,
+	is_ground_content = false,
+	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1, not_in_creative_inventory =1},
+	drop = {
+		max_items = 1,
+		items = {
+			{
+				items = {'lottplants:mirksapling'},
+				rarity = 20,
+			},
+			{
+				items = {'lottplants:mirkleaf'},
+			}
+		}
+	},
+	sounds = default.node_sound_leaves_defaults(),
+})
+
 -- TREE
 
 minetest.register_node("lottplants:pinetree", {
@@ -564,6 +590,19 @@ minetest.register_node("lottplants:yavannamiresapling", {
 	tiles = {"lottplants_yavannamiresapling.png"},
 	inventory_image = "lottplants_yavannamiresapling.png",
 	wield_image = "lottplants_yavannamiresapling.png",
+	paramtype = "light",
+	walkable = false,
+	groups = {snappy=2,dig_immediate=3,flammable=2},
+	sounds = default.node_sound_defaults(),
+})
+
+minetest.register_node("lottplants:mirksapling", {
+	description = "Mirkwood Sapling",
+	drawtype = "plantlike",
+	visual_scale = 1.0,
+	tiles = {"lottplants_mirksapling.png"},
+	inventory_image = "lottplants_mirksapling.png",
+	wield_image = "lottplants_mirksapling.png",
 	paramtype = "light",
 	walkable = false,
 	groups = {snappy=2,dig_immediate=3,flammable=2},
