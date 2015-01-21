@@ -412,6 +412,71 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_node("lottblocks:junglewood_table",
+	{description = 'Junglewood Table',
+	tiles = {"default_junglewood.png"},
+	drawtype = "nodebox",
+	sunlight_propagates = true,
+	paramtype = 'light',
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4,-0.5,-0.4, -0.3,0.4,-0.3},
+			{0.3,-0.5,-0.4, 0.4,0.4,-0.3},
+			{-0.4,-0.5,0.3, -0.3,0.4,0.4},
+			{0.3,-0.5,0.3, 0.4,0.4,0.4},
+			{-0.5,0.4,-0.5, 0.5,0.5,0.5},
+			{-0.4,-0.2,-0.3, -0.3,-0.1,0.3},
+			{0.3,-0.2,-0.4, 0.4,-0.1,0.3},
+			{-0.3,-0.2,-0.4, 0.4,-0.1,-0.3},
+			{-0.3,-0.2,0.3, 0.3,-0.1,0.4},
+		},
+	},
+	groups = {snappy=2,choppy=3,oddly_breakable_by_hand=2,flammable=2}
+})
+minetest.register_craft({
+	output = 'lottblocks:junglewood_table',
+	recipe = {
+		{'default:junglewood', 'default:junglewood', 'default:junglewood'},
+		{'group:stick', 'group:stick', 'group:stick'},
+		{'group:stick', '', 'group:stick'},
+	}
+})
+
+minetest.register_node("lottblocks:junglewood_chair",
+	{ description = 'Junglewood Chair',
+	tiles = {"default_junglewood.png"},
+	drawtype = "nodebox",
+	sunlight_propagates = true,
+	paramtype = 'light',
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.3,-0.5,0.2, -0.2,0.5,0.3},
+			{0.2,-0.5,0.2, 0.3,0.5,0.3},
+			{-0.3,-0.5,-0.3, -0.2,-0.1,-0.2},
+			{0.2,-0.5,-0.3, 0.3,-0.1,-0.2},
+			{-0.3,-0.1,-0.3, 0.3,0,0.2},
+			{-0.2,0.1,0.25, 0.2,0.4,0.26}
+		},
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},
+	},
+groups = {snappy=2,choppy=3,oddly_breakable_by_hand=2,flammable=2}
+})
+minetest.register_craft({
+	output = 'lottblocks:junglewood_chair',
+	recipe = {
+		{'group:stick', ''},
+		{'default:junglewood', 'default:junglewood'},
+		{'group:stick', 'group:stick'},
+	}
+})
+
 minetest.register_node("lottblocks:strategy_table", {
 	description = "Strategy Table",
 	tiles = {
