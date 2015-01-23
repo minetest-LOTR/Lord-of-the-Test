@@ -4,8 +4,6 @@
 -- Aliases for map generator outputs
 --
 
-minetest.clear_registered_biomes()
-
 minetest.register_on_mapgen_init(function(params)
 	minetest.set_mapgen_params({
 		mgname = "v5",
