@@ -3,10 +3,10 @@ minetest.register_node("lottpotion:cauldron_full",{
 	description= "Filled Cauldron",
     tiles = {"lottpotion_cauldron_top.png", "lottpotion_cauldron_side.png", "lottpotion_cauldron_side.png",
 		"lottpotion_cauldron_side.png", "lottpotion_cauldron_side.png", "lottpotion_cauldron_side.png"},
+	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {choppy=2,oddly_breakable_by_hand=2},
+	groups = {cracky=2},
 	legacy_facedir_simple = true,
-    groups = {choppy=2},
     node_box = {
         type = "fixed",
         fixed = {
@@ -28,8 +28,9 @@ minetest.register_node("lottpotion:cauldron_two_third_full",{
     description= "Two Third Filled Cauldron",
     tiles = {"lottpotion_cauldron_top.png", "lottpotion_cauldron_side.png", "lottpotion_cauldron_side.png",
 		"lottpotion_cauldron_side.png", "lottpotion_cauldron_side.png", "lottpotion_cauldron_side.png"},
+	paramtype = "light",
 	paramtype2 = "facedir",
-    groups = {choppy=2,oddly_breakable_by_hand=2, not_in_creative_inventory=1},
+    groups = {cracky=2, not_in_creative_inventory=1},
     node_box = {
         type = "fixed",
         fixed = {
@@ -51,8 +52,9 @@ minetest.register_node("lottpotion:cauldron_one_third_full",{
 	description= "One Third Filled Cauldron",
     tiles = {"lottpotion_cauldron_top.png", "lottpotion_cauldron_side.png", "lottpotion_cauldron_side.png",
 		"lottpotion_cauldron_side.png", "lottpotion_cauldron_side.png", "lottpotion_cauldron_side.png"},
+	paramtype = "light",
 	paramtype2 = "facedir",
-    groups = {choppy=2,oddly_breakable_by_hand=2, not_in_creative_inventory=1},
+    groups = {cracky=2, not_in_creative_inventory=1},
     node_box = {
         type = "fixed",
         fixed = {
@@ -72,6 +74,7 @@ minetest.register_node("lottpotion:cauldron_one_third_full",{
 minetest.register_node("lottpotion:cauldron_empty",{
     drawtype="nodebox",
     tiles = {"lottpotion_cauldron_side.png"},
+    paramtype = "light",
 	paramtype2 = "facedir",
     groups = {cracky=1,level=2},
     node_box = {
