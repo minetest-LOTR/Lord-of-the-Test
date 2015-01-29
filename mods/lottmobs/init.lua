@@ -150,7 +150,7 @@ lottmobs:register_mob("lottmobs:ent", {
 	type = "npc",
 	hp_min = 50,
 	hp_max = 70,
-	collisionbox = {-1.8, -0.02, -1.4, 1.4, 5.2, 1.4},
+	collisionbox = {-0.5, 0, -0.5, 0.5, 5, 0.5},
 	available_textures = {
 		total = 1,
 		texture_1 = {"lottmobs_ent.png"},
