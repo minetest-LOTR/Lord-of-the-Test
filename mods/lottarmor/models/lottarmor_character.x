@@ -2031,21 +2031,21 @@ Frame Root {
              96.078431;
              0.000000; 0.000000; 0.000000;;
              0.000000; 0.000000; 0.000000;;
-            TextureFilename {"character.png";}
+           // TextureFilename {"character.png";}
           }
           Material Armor {
              0.640000; 0.640000; 0.640000; 1.000000;;
              96.078431;
              0.500000; 0.500000; 0.500000;;
              0.000000; 0.000000; 0.000000;;
-            TextureFilename {"armor.png";}
+            //TextureFilename {"armor.png";}
           }
           Material Wielditem {
              0.640000; 0.640000; 0.640000; 1.000000;;
              96.078431;
              0.500000; 0.500000; 0.500000;;
              0.000000; 0.000000; 0.000000;;
-            TextureFilename {"sword.png";}
+            //TextureFilename {"sword.png";}
           }
         } // End of Player material list
         XSkinMeshHeader {
