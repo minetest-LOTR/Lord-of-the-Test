@@ -45,7 +45,7 @@ function horse:on_rightclick(clicker)
 		clicker:set_detach()
 	elseif not self.driver then
 		self.driver = clicker
-		clicker:set_attach(self.object, "", {x=0,y=5,z=0}, {x=0,y=0,z=0})
+		clicker:set_attach(self.object, "", {x=0,y=15,z=0}, {x=0,y=90,z=0})
 		self.object:setyaw(clicker:get_look_yaw())
 	end
 end
@@ -213,7 +213,7 @@ function horsepeg:on_rightclick(clicker)
 		clicker:set_detach()
 	elseif not self.driver then
 		self.driver = clicker
-		clicker:set_attach(self.object, "", {x=0,y=5,z=0}, {x=0,y=0,z=0})
+		clicker:set_attach(self.object, "", {x=0,y=15,z=0}, {x=0,y=90,z=0})
 		self.object:setyaw(clicker:get_look_yaw())
 	end
 end
@@ -382,7 +382,7 @@ function horseara:on_rightclick(clicker)
 		clicker:set_detach()
 	elseif not self.driver then
 		self.driver = clicker
-		clicker:set_attach(self.object, "", {x=0,y=5,z=0}, {x=0,y=0,z=0})
+		clicker:set_attach(self.object, "", {x=0,y=15,z=0}, {x=0,y=90,z=0})
 		self.object:setyaw(clicker:get_look_yaw())
 	end
 end
@@ -548,7 +548,7 @@ function shireponyblack:on_rightclick(clicker)
 		clicker:set_detach()
 	elseif not self.driver then
 		self.driver = clicker
-		clicker:set_attach(self.object, "", {x=0,y=5,z=0}, {x=0,y=0,z=0})
+		clicker:set_attach(self.object, "", {x=0,y=15,z=0}, {x=0,y=90,z=0})
 		self.object:setyaw(clicker:get_look_yaw())
 	end
 end
@@ -714,7 +714,7 @@ function shirepony:on_rightclick(clicker)
 		clicker:set_detach()
 	elseif not self.driver then
 		self.driver = clicker
-		clicker:set_attach(self.object, "", {x=0,y=5,z=0}, {x=0,y=0,z=0})
+		clicker:set_attach(self.object, "", {x=0,y=15,z=0}, {x=0,y=90,z=0})
 		self.object:setyaw(clicker:get_look_yaw())
 	end
 end
