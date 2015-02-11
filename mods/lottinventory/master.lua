@@ -140,7 +140,7 @@ zmc.formspec = function(pn)
 			end
 		end
 	end
-	
+
 	-- Node list
 	local npp = 8*3 -- nodes per page
 	local i = 0 -- for positionning buttons
@@ -162,7 +162,7 @@ zmc.formspec = function(pn)
      formspec = formspec .. "button[0,2.8;2,0.5;potions;Potions]"
      formspec = formspec .. "button[0,2.1;2,0.5;brews;Brewing]"
      formspec = formspec .. "label[0,0;Master Book of Crafts]"
-     formspec = formspec .. "background[5,5;1,1;gui_formbg.png;true]"
+     formspec = formspec .. "background[5,5;1,1;craft_formbg.png;true]"
 	return formspec
 end
 
@@ -209,7 +209,7 @@ minetest.register_tool("lottinventory:master_book",{
     inventory_image = "lottinventory_master_book.png",
     wield_image = "",
     wield_scale = {x=1,y=1,z=1},
-    stack_max = 1, 
+    stack_max = 1,
     tool_capabilities = {
         full_punch_interval = 1.0,
         max_drop_level=0,

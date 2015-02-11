@@ -178,7 +178,7 @@ zcg.formspec = function(pn)
 		formspec = formspec .. "button[1,7;1,.5;zcg_page:"..(page+1)..";>>]"
 	end
 	formspec = formspec .. "label[2,6.85;Page "..(page+1).."/"..(math.floor(#zcg.itemlist/npp+1)).."]" -- The Y is approximatively the good one to have it centered vertically...
-     formspec = formspec .. "background[5,5;1,1;gui_formbg.png;true]"
+     formspec = formspec .. "background[5,5;1,1;craft_formbg.png;true]"
      formspec = formspec .. "label[0,0;Book of Crafts]"
 	return formspec
 end

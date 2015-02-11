@@ -12,7 +12,7 @@ local time = 0
 local get_formspec = function(player,page)
 	if page=="brews" then
 		return "size[8,5.5]"
-               .."background[5,5;1,1;gui_formbg.png;true]"
+               .."background[5,5;1,1;craft_formbg.png;true]"
                .."label[0,0;Book of Brewing]"
                .."button_exit[6,0;2,0.5;quit;Exit]"
                .."image_button[7,1;1,1;zcg_next.png;brews2;;false;false;zcg_next_press.png]"
@@ -23,7 +23,7 @@ local get_formspec = function(player,page)
                .."item_image_button[5,2;1,1;lottfarming:berries;zcg:berries;5]"
                .."image[6,1;1,1;zcg_craft_arrow.png]"
                .."item_image_button[7,2;1,1;lottpotion:wine;zcg:wine;]"
-               --Second 
+               --Second
                .."label[1,3.2; Beer (Method:Brewing)]"
                .."item_image_button[4,3;1,1;lottpotion:drinking_glass_water;zcg:drinking_glass_water;]"
                .."item_image_button[5,3;1,1;farming:wheat;zcg:wheat;3]"
@@ -38,7 +38,7 @@ local get_formspec = function(player,page)
      end
      if page=="brews2" then
 		return "size[8,5.5]"
-               .."background[5,5;1,1;gui_formbg.png;true]"
+               .."background[5,5;1,1;craft_formbg.png;true]"
                .."label[0,0;Book of Brewing]"
                .."button_exit[6,0;2,0.5;quit;Exit]"
                .."image[7,1;1,1;zcg_next_inactive.png]"
@@ -78,7 +78,7 @@ minetest.register_tool("lottinventory:brewing_book",{
     inventory_image = "lottinventory_brewing_book.png",
     wield_image = "",
     wield_scale = {x=1,y=1,z=1},
-    stack_max = 1, 
+    stack_max = 1,
     groups = {cook_crafts=1, book=1},
     tool_capabilities = {
         full_punch_interval = 1.0,

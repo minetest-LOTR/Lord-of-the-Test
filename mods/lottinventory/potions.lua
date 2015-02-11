@@ -12,7 +12,7 @@ local time = 0
 local get_formspec = function(player,page)
 	if page=="potions" then
 		return "size[8,5.5]"
-               .."background[5,5;1,1;gui_formbg.png;true]"
+               .."background[5,5;1,1;craft_formbg.png;true]"
                .."label[0,0;Book of Potions]"
                .."button_exit[6,0;2,0.5;quit;Exit]"
                .."image_button[7,1;1,1;zcg_next.png;potions2;;false;false;zcg_next_press.png]"
@@ -24,7 +24,7 @@ local get_formspec = function(player,page)
                .."item_image_button[5,2;1,1;default:mese_crystal_fragment;zcg:mese_crystal_fragment;]"
                .."image[6,2;1,1;zcg_craft_arrow.png]"
                .."item_image_button[7,2;1,1;lottpotion:glass_bottle_mese;zcg:glass_bottle_mese;]"
-               --Second 
+               --Second
                .."label[1,3.2; Geodes Base Potion]"
                .."item_image_button[4,3;1,1;vessels:glass_bottle;zcg:glass_bottle;]"
                .."item_image_button[5,3;1,1;lottores:geodes_crystal_1;zcg:geodes_crystal_1;]"
@@ -50,7 +50,7 @@ local get_formspec = function(player,page)
                .."item_image_button[5,2;1,1;lottmobs:meat_raw;zcg:meat_raw;5]"
                .."image[6,2;1,1;zcg_craft_arrow.png]"
                .."item_image_button[7,2;1,1;lottpotion:orcdraught_power1;zcg:orcdraught_power1;]"
-               --Second 
+               --Second
                .."label[1,3.2; Power Level: 2]"
                .."item_image_button[4,3;1,1;lottpotion:orcdraught_power1;zcg:orcdraught_power1;]"
                .."item_image_button[5,3;1,1;lottmobs:meat_raw;zcg:meat_raw;5]"
@@ -62,7 +62,7 @@ local get_formspec = function(player,page)
                .."item_image_button[5,4;1,1;lottmobs:meat_raw;zcg:meat_raw;5]"
                .."image[6,4;1,1;zcg_craft_arrow.png]"
                .."item_image_button[7,4;1,1;lottpotion:orcdraught_power3;zcg:orcdraught_power3;]"
-               .."background[5,5;1,1;gui_formbg.png;true]"
+               .."background[5,5;1,1;craft_formbg.png;true]"
      end
      if page=="potions3" then
 		return "size[8,5.5]"
@@ -77,7 +77,7 @@ local get_formspec = function(player,page)
                .."item_image_button[5,2;1,1;lottmobs:spiderpoison;zcg:lottmobs:spiderpoison;2]"
                .."image[6,2;1,1;zcg_craft_arrow.png]"
                .."item_image_button[7,2;1,1;lottpotion:spiderpoison_power1;zcg:spiderpoison_power1;]"
-               --Second 
+               --Second
                .."label[1,3.2; Power Level: 2]"
                .."item_image_button[4,3;1,1;lottpotion:spiderpoison_power1;zcg:spiderpoison_power1;]"
                .."item_image_button[5,3;1,1;lottmobs:spiderpoison;zcg:lottmobs:spiderpoison;2]"
@@ -89,7 +89,7 @@ local get_formspec = function(player,page)
                .."item_image_button[5,4;1,1;lottmobs:spiderpoison;zcg:lottmobs:spiderpoison;2]"
                .."image[6,4;1,1;zcg_craft_arrow.png]"
                .."item_image_button[7,4;1,1;lottpotion:spiderpoison_power2;zcg:spiderpoison_power3;]"
-               .."background[5,5;1,1;gui_formbg.png;true]"
+               .."background[5,5;1,1;craft_formbg.png;true]"
 	end
      if page=="potions4" then
 		return "size[8,5.5]"
@@ -104,7 +104,7 @@ local get_formspec = function(player,page)
                .."item_image_button[5,2;1,1;lottplants:yavannamireleaf;zcg:yavannamireleaf;10]"
                .."image[6,2;1,1;zcg_craft_arrow.png]"
                .."item_image_button[7,2;1,1;lottpotion:limpe_power1;zcg:limpe_power1;]"
-               --Second 
+               --Second
                .."label[1,3.2; Power Level: 2]"
                .."item_image_button[4,3;1,1;lottpotion:limpe_power1;zcg:limpe_power1;]"
                .."item_image_button[5,3;1,1;lottplants:yavannamireleaf;zcg:yavannamireleaf;10]"
@@ -116,7 +116,7 @@ local get_formspec = function(player,page)
                .."item_image_button[5,4;1,1;lottplants:yavannamireleaf;zcg:yavannamireleaf;10]"
                .."image[6,4;1,1;zcg_craft_arrow.png]"
                .."item_image_button[7,4;1,1;lottpotion:limpe_power3;zcg:limpe_power3;]"
-               .."background[5,5;1,1;gui_formbg.png;true]"
+               .."background[5,5;1,1;craft_formbg.png;true]"
 	end
      if page=="potions5" then
 		return "size[8,5.5]"
@@ -131,7 +131,7 @@ local get_formspec = function(player,page)
                .."item_image_button[5,2;1,1;lottplants:yavannamirefruit;zcg:yavannamirefruit;2]"
                .."image[6,2;1,1;zcg_craft_arrow.png]"
                .."item_image_button[7,2;1,1;lottpotion:miruvor_power1;zcg:miruvor_power1;]"
-               --Second 
+               --Second
                .."label[1,3.2; Power Level: 2]"
                .."item_image_button[4,3;1,1;lottpotion:miruvor_power1;zcg:miruvor_power1;]"
                .."item_image_button[5,3;1,1;lottplants:yavannamirefruit;zcg:yavannamirefruit;2]"
@@ -143,7 +143,7 @@ local get_formspec = function(player,page)
                .."item_image_button[5,4;1,1;lottplants:yavannamirefruit;zcg:yavannamirefruit;2]"
                .."image[6,4;1,1;zcg_craft_arrow.png]"
                .."item_image_button[7,4;1,1;lottpotion:miruvor_power3;zcg:miruvor_power3;]"
-               .."background[5,5;1,1;gui_formbg.png;true]"
+               .."background[5,5;1,1;craft_formbg.png;true]"
 	end
      if page=="potions6" then
 		return "size[8,5.5]"
@@ -158,7 +158,7 @@ local get_formspec = function(player,page)
                .."item_image_button[5,2;1,1;lottfarming:athelas;zcg:athelas;3]"
                .."image[6,2;1,1;zcg_craft_arrow.png]"
                .."item_image_button[7,2;1,1;lottpotion:athelasbrew_power1;zcg:athelasbrew_power1;]"
-               --Second 
+               --Second
                .."label[1,3.2; Power Level: 2]"
                .."item_image_button[4,3;1,1;lottpotion:athelasbrew_power1;zcg:athelasbrew_power1;]"
                .."item_image_button[5,3;1,1;lottfarming:athelas;zcg:athelas;3]"
@@ -170,7 +170,7 @@ local get_formspec = function(player,page)
                .."item_image_button[5,4;1,1;lottfarming:athelas;zcg:athelas;3]"
                .."image[6,4;1,1;zcg_craft_arrow.png]"
                .."item_image_button[7,4;1,1;lottpotion:athelasbrew_power3;zcg:athelasbrew_power3;]"
-               .."background[5,5;1,1;gui_formbg.png;true]"
+               .."background[5,5;1,1;craft_formbg.png;true]"
 	end
      if page=="potions7" then
 		return "size[8,5.5]"
@@ -185,7 +185,7 @@ local get_formspec = function(player,page)
                .."item_image_button[5,2;1,1;default:leaves;zcg:leaves;10]"
                .."image[6,2;1,1;zcg_craft_arrow.png]"
                .."item_image_button[7,2;1,1;lottpotion:entdraught_power1;zcg:entdraught_power1;]"
-               --Second 
+               --Second
                .."label[1,3.2; Power Level: 2]"
                .."item_image_button[4,3;1,1;lottpotion:entdraught_power1;zcg:entdraught_power1;]"
                .."item_image_button[5,3;1,1;default:leaves;zcg:leaves;10]"
@@ -197,7 +197,7 @@ local get_formspec = function(player,page)
                .."item_image_button[5,4;1,1;default:leaves;zcg:leaves;10]"
                .."image[6,4;1,1;zcg_craft_arrow.png]"
                .."item_image_button[7,4;1,1;lottpotion:entdraught_power3;zcg:entdraught_power3;]"
-               .."background[5,5;1,1;gui_formbg.png;true]"
+               .."background[5,5;1,1;craft_formbg.png;true]"
 	end
 end
 
@@ -230,7 +230,7 @@ minetest.register_tool("lottinventory:potions_book",{
     inventory_image = "lottinventory_potion_book.png",
     wield_image = "",
     wield_scale = {x=1,y=1,z=1},
-    stack_max = 1, 
+    stack_max = 1,
     groups = {cook_crafts=1, book=1},
     tool_capabilities = {
         full_punch_interval = 1.0,

@@ -151,7 +151,7 @@ zcc.formspec = function(pn)
 			end
 		end
 	end
-	
+
 	-- Node list
 	local npp = 8*3 -- nodes per page
 	local i = 0 -- for positionning buttons
@@ -170,7 +170,7 @@ zcc.formspec = function(pn)
 		formspec = formspec .. "button[1,7;1,.5;zcc_page:"..(page+1)..";>>]"
 	end
 	formspec = formspec .. "label[2,6.85;Page "..(page+1).."/"..(math.floor(#zcc.itemlist/npp+1)).."]" -- The Y is approximatively the good one to have it centered vertically...
-     formspec = formspec .. "background[5,5;1,1;gui_formbg.png;true]"
+     formspec = formspec .. "background[5,5;1,1;craft_formbg.png;true]"
      formspec = formspec .. "label[0,0;Book of Cooking]"
 	return formspec
 end
@@ -215,11 +215,11 @@ end)
 
 minetest.register_tool("lottinventory:cooking_book",{
     description = "Book of Cooking",
-    groups = {book=1}, 
+    groups = {book=1},
     inventory_image = "lottinventory_cooks_book.png",
     wield_image = "",
     wield_scale = {x=1,y=1,z=1},
-    stack_max = 1, 
+    stack_max = 1,
     tool_capabilities = {
         full_punch_interval = 1.0,
         max_drop_level=0,

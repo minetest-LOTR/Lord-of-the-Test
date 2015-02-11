@@ -143,7 +143,7 @@ zfc.formspec = function(pn)
 			end
 		end
 	end
-	
+
 	-- Node list
 	local npp = 8*3 -- nodes per page
 	local i = 0 -- for positionning buttons
@@ -163,7 +163,7 @@ zfc.formspec = function(pn)
 	end
 	formspec = formspec .. "label[2,6.85;Page "..(page+1).."/"..(math.floor(#zfc.itemlist/npp+1)).."]" -- The Y is approximatively the good one to have it centered vertically...
      formspec = formspec .. "label[0,0;Forbidden Crafts Book]"
-     formspec = formspec .. "background[5,5;1,1;gui_formbg.png;true]"
+     formspec = formspec .. "background[5,5;1,1;craft_formbg.png;true]"
 	return formspec
 end
 
@@ -210,7 +210,7 @@ minetest.register_tool("lottinventory:forbidden_crafts_book",{
     inventory_image = "lottinventory_forbidden_book.png",
     wield_image = "",
     wield_scale = {x=1,y=1,z=1},
-    stack_max = 1, 
+    stack_max = 1,
     tool_capabilities = {
         full_punch_interval = 1.0,
         max_drop_level=0,
