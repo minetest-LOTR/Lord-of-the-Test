@@ -9,6 +9,7 @@
 -- lottclothes:flax_<color> - made of flaxthread (5x) and dye:<color> (4x)
 
 local fabric_colors = {
+	black  = "dye:black",
 	blue   = "dye:blue",
 	brown  = "dye:brown",
 	green  = "dye:green",
