@@ -86,19 +86,18 @@ local np_random = {
 }
 
 -- Stuff
-
+local mapgen_params = minetest.get_mapgen_params()
 lottmapgen = {}
 
 dofile(minetest.get_modpath("lottmapgen").."/nodes.lua")
 dofile(minetest.get_modpath("lottmapgen").."/functions.lua")
 
 -- On generated function
-
 minetest.register_on_generated(function(minp, maxp, seed)
-	if minp.y < -32 or minp.y > 208 then
+	if minp.y < (mapgen_params.water_level-86) or minp.y > 208 then
 		return
 	end
-	
+
 	local t1 = os.clock()
 	local x1 = maxp.x
 	local y1 = maxp.y
@@ -106,13 +105,13 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local x0 = minp.x
 	local y0 = minp.y
 	local z0 = minp.z
-	
+
 	--print ("[lottmapgen_checking] chunk minp ("..x0.." "..y0.." "..z0..")")
-	
+
 	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
 	local data = vm:get_data()
-	
+
 	local c_air = minetest.get_content_id("air")
 	local c_sand = minetest.get_content_id("default:sand")
 	local c_desertsand = minetest.get_content_id("default:desert_sand")
@@ -130,7 +129,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_stoneiron = minetest.get_content_id("default:stone_with_iron")
 	local c_stonecoal = minetest.get_content_id("default:stone_with_coal")
 	local c_water = minetest.get_content_id("default:water_source")
-	
+
      local c_morstone = minetest.get_content_id("lottmapgen:mordor_stone")
      local c_frozenstone = minetest.get_content_id("lottmapgen:frozen_stone")
      local c_dungrass = minetest.get_content_id("lottmapgen:dunland_grass")
@@ -160,15 +159,15 @@ minetest.register_on_generated(function(minp, maxp, seed)
      local c_malltre = minetest.get_content_id("lottmapgen:mallornhouse")
      local c_mirktre = minetest.get_content_id("lottmapgen:mirkhouse")
      local c_rohfort = minetest.get_content_id("lottmapgen:rohanfort")
-	
+
 	local sidelen = x1 - x0 + 1
 	local chulens = {x=sidelen, y=sidelen, z=sidelen}
 	local minposxz = {x=x0, y=z0}
-	
+
 	local nvals_temp = minetest.get_perlin_map(np_temp, chulens):get2dMap_flat(minposxz)
 	local nvals_humid = minetest.get_perlin_map(np_humid, chulens):get2dMap_flat(minposxz)
 	local nvals_random = minetest.get_perlin_map(np_random, chulens):get2dMap_flat(minposxz)
-	
+
 	local nixz = 1
 	for z = z0, z1 do
 	for x = x0, x1 do -- for each column do
@@ -209,8 +208,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
                     biome = 5 -- (Gondor)
 			end
 		end
-		
-		local sandy = 5 + math.random(-1, 1) -- sandline
+
+		local sandy = (mapgen_params.water_level+5) + math.random(-1, 1) -- sandline
+		local sandmin = (mapgen_params.water_level-15) + math.random(-5, 0) -- lowest sand
 		local open = true -- open to sky?
 		local solid = true -- solid node above?
 		local water = false -- water node above?
@@ -227,31 +227,41 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			or nodid == c_stonecoal then
 				if biome == 4 or biome == 12 then
 					data[vi] = c_desertstone
-                    elseif biome == 8 then
-                         data[vi] = c_morstone
-                    elseif biome == 11 then
+                elseif biome == 8 then
+                     data[vi] = c_morstone
+                elseif biome == 11 then
 					data[vi] = c_stoneiron
 				end
 				if not solid then -- if surface
 					surfy = y
 					if nodiduu ~= c_air and nodiduu ~= c_water and fimadep >= 1 then -- if supported by 2 stone nodes
-						if y <= sandy then -- sand
-							if open and water and y == 0 and biome >= 4
-							and math.random(PAPCHA) == 2 then -- papyrus
-								lottmapgen_papyrus(x, 2, z, area, data)
+						if y <= sandy and y >= sandmin then -- sand
+							if open and water and y == (mapgen_params.water_level-1) and biome > 4
+							and biome ~= 8 and math.random(PAPCHA) == 2 then -- papyrus
+								lottmapgen_papyrus(x, (mapgen_params.water_level+1), z, area, data)
 								data[vi] = c_dirt
-							elseif math.abs(n_temp) < 0.05 and y == -1 then -- clay
+							elseif math.abs(n_temp) < 0.05 and y == (mapgen_params.water_level-1) then -- clay
 								data[vi] = c_clay
-							elseif math.abs(n_temp) < 0.05 and y == -5 then -- salt
-                                        data[vi] = c_salt
-                                   elseif math.abs(n_temp) < 0.05 and y == -20 then -- pearl
-                                        data[vi] = c_pearl
-                                   else
+							elseif math.abs(n_temp) < 0.05 and y == (mapgen_params.water_level-5) then -- salt
+                                data[vi] = c_salt
+                           elseif math.abs(n_temp) < 0.05 and y == (mapgen_params.water_level-20) then -- pearl
+                                data[vi] = c_pearl
+                           else
 								data[vi] = c_sand
 							end
-							if open and y >= 4 + math.random(0, 1) and math.random(DUGCHA) == 2 then -- dune grass
+							if open and y > (mapgen_params.water_level + 4) + math.random(0, 1) and math.random(DUGCHA) == 2 then -- dune grass
 								local vi = area:index(x, y + 1, z)
 								data[vi] = c_dryshrub
+							end
+						elseif y <= sandmin then
+							if biome == 4 or biome == 12 then
+								data[vi] = c_desertstone
+			               	elseif biome == 8 then
+			                   	data[vi] = c_morstone
+			               	elseif biome == 11 then
+								data[vi] = c_stoneiron
+							else
+								data[vi] = c_stone
 							end
 						else -- above sandline
 							if biome == 1 then
@@ -466,16 +476,26 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					end
 				else -- underground
 					if nodiduu ~= c_air and nodiduu ~= c_water and surfy - y + 1 <= fimadep then
-						if y <= sandy then
+						if y <= sandy and y >= sandmin then
 							data[vi] = c_sand
+						elseif y <= sandmin then
+							if biome == 4 or biome == 12 then
+								data[vi] = c_desertstone
+			               	elseif biome == 8 then
+			                   	data[vi] = c_morstone
+			               	elseif biome == 11 then
+								data[vi] = c_stoneiron
+							else
+								data[vi] = c_stone
+							end
 						elseif biome == 1 or biome == 2 then
 							if math.random(121) == 2 then
 								data[vi] = c_ice
 							else
 								data[vi] = c_frozenstone
 							end
-                              elseif biome == 8 then
-                                   data[vi] = c_morstone
+                        elseif biome == 8 then
+                        	data[vi] = c_morstone
 						else
 							data[vi] = c_dirt
 						end
@@ -487,23 +507,23 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				solid = false
 				if nodid == c_water then
 					water = true
-					if n_temp < ICETET and y <= 1 -- ice
-					and y >= 1 - math.floor((ICETET - n_temp) * 10) then
+					if n_temp < ICETET and y <= mapgen_params.water_level -- ice
+					and y >= mapgen_params.water_level - math.floor((ICETET - n_temp) * 10) then
 						data[vi] = c_ice
 					end
 				end
 			end
 		end
 		nixz = nixz + 1
-	end	
 	end
-	
+	end
+
 	vm:set_data(data)
 	vm:set_lighting({day=0, night=0})
 	vm:calc_lighting()
 	vm:write_to_map(data)
 	local chugent = math.ceil((os.clock() - t1) * 1000)
-	--print ("[lottmapgen_checking] "..chugent.." ms")			
+	--print ("[lottmapgen_checking] "..chugent.." ms")
 end)
 
 dofile(minetest.get_modpath("lottmapgen").."/schematics.lua")
