@@ -129,6 +129,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_stoneiron = minetest.get_content_id("default:stone_with_iron")
 	local c_stonecoal = minetest.get_content_id("default:stone_with_coal")
 	local c_water = minetest.get_content_id("default:water_source")
+	local c_morwat = minetest.get_content_id("lottmapgen:blacksource")
 
      local c_morstone = minetest.get_content_id("lottmapgen:mordor_stone")
      local c_frozenstone = minetest.get_content_id("lottmapgen:frozen_stone")
@@ -507,6 +508,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				solid = false
 				if nodid == c_water then
 					water = true
+					if biome == 8 then
+	                     data[vi] = c_morwat
+					end
 					if n_temp < ICETET and y <= mapgen_params.water_level -- ice
 					and y >= mapgen_params.water_level - math.floor((ICETET - n_temp) * 10) then
 						data[vi] = c_ice

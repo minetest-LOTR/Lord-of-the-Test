@@ -58,18 +58,21 @@ minetest.register_node(":default:ice", {
 
 minetest.register_node("lottmapgen:blacksource", {
 	description = "Black Water Source",
+	drawtype = "liquid",
 	inventory_image = minetest.inventorycube("lottmapgen_black_water.png"),
 	tiles = {"lottmapgen_black_water.png"},
+	alpha = 240,
 	paramtype = "light",
 	walkable = false,
 	pointable = false,
 	diggable = false,
 	buildable_to = true,
+	drowning = 1,
 	liquidtype = "source",
 	liquid_alternative_flowing = "lottmapgen:blackflowing",
 	liquid_alternative_source = "lottmapgen:blacksource",
 	liquid_viscosity = 1,
-	post_effect_color = {a=224, r=31, g=56, b=8},
+	post_effect_color = {a=192, r=140, g=140, b=140},
 	groups = {water=3, liquid=3, puts_out_fire=1},
 })
 
@@ -88,7 +91,7 @@ minetest.register_node("lottmapgen:blackflowing", {
 			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=1}
 		},
 	},
-	-- alpha = 224,
+	alpha = 245,
 	paramtype = "light",
 	walkable = false,
 	pointable = false,
@@ -98,7 +101,7 @@ minetest.register_node("lottmapgen:blackflowing", {
 	liquid_alternative_flowing = "lottmapgen:blackflowing",
 	liquid_alternative_source = "lottmapgen:blacksource",
 	liquid_viscosity = 1,
-	post_effect_color = {a=224, r=31, g=56, b=8},
+	post_effect_color = {a=192, r=140, g=140, b=140},-- {a=224, r=31, g=56, b=8},
 	groups = {water=3, liquid=3, puts_out_fire=1, not_in_creative_inventory=1},
 })
 
@@ -161,7 +164,7 @@ minetest.register_node("lottmapgen:fangorn_grass", {
 
 minetest.register_node("lottmapgen:mirkwood_grass", {
 	description = "Mirkwood Grass",
-	tiles = {"lottmapgen_mirkwood_grass.png", "default_dirt.png", "default_dirt.png^lottmapgen_mirkwood_grass_side.png"}, 
+	tiles = {"lottmapgen_mirkwood_grass.png", "default_dirt.png", "default_dirt.png^lottmapgen_mirkwood_grass_side.png"},
 	is_ground_content = true,
 	groups = {crumbly=3,soil=1, not_in_creative_inventory =1,lottmapgen_grass=1},
 	drop = 'default:dirt',
@@ -229,7 +232,7 @@ minetest.register_abm({
 				if( not( count_grasses[ n.name ] )) then
 					count_grasses[ n.name ] = 1;
 				else
-					count_grasses[ n.name ] = count_grasses[ n.name ] + 1;	
+					count_grasses[ n.name ] = count_grasses[ n.name ] + 1;
 				end
 				if( count_grasses[ n.name ] > curr_max ) then
 					curr_max  = count_grasses[ n.name ];
