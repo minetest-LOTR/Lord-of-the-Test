@@ -1,8 +1,3 @@
-
-
-NOTICE: Development is once again delayed till December but you can expect a year-worth-waiting update, one that will completely change LOTT, to be released as a Christmas present. See ya in December!
-
-
 -This is a game for Minetest that will add Lord Of the Rings like elements into the game. It is currently in beta form which means that the main features are completed, however there will be some bugs here and there so please report them. This game will be updated every month and during some festivals (aka special releases) during which further stuff will be added in.
 -Licence:
 Mods starting with "lott...": "CC BY-SA 3.0"
