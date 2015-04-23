@@ -83,7 +83,7 @@ minetest.register_on_joinplayer(function(player)
 	elseif minetest.get_player_privs(name).elf then
 		armor.textures[name].skin = "elf_skin.png"
 		return
- 	elseif minetest.get_player_privs(name).men then
+	elseif minetest.get_player_privs(name).man then
 		armor.textures[name].skin = "man_skin.png"
 		return
 	elseif minetest.get_player_privs(name).orc then
