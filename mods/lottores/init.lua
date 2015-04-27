@@ -133,7 +133,6 @@ minetest.register_ore({
 	clust_size     = 2,
 	height_min     = -31000,
 	height_max     = -61,
-	flags          = "absheight",
 })
 
 minetest.register_ore({
@@ -145,7 +144,6 @@ minetest.register_ore({
 	clust_size     = 6,
 	height_min     = -31000,
 	height_max     = -50,
-	flags          = "absheight",
 })
 
 minetest.register_ore({
@@ -157,7 +155,6 @@ minetest.register_ore({
 	clust_size     = 2,
 	height_min     = -200,
 	height_max     = -50,
-	flags          = "absheight",
 })
 
 minetest.register_ore({
@@ -169,7 +166,6 @@ minetest.register_ore({
 	clust_size     = 3,
 	height_min     = -31000,
 	height_max     = -201,
-	flags          = "absheight",
 })
 
 minetest.register_ore({
@@ -192,7 +188,6 @@ minetest.register_ore({
 	clust_size     = 5,
 	height_min     = -31000,
 	height_max     = -61,
-	flags          = "absheight",
 })
 
 minetest.register_ore({
@@ -215,7 +210,6 @@ minetest.register_ore({
 	clust_size     = 3,
 	height_min     = -31000,
 	height_max     = -61,
-	flags          = "absheight",
 })
 
 minetest.register_ore({
@@ -227,7 +221,6 @@ minetest.register_ore({
 	clust_size     = 2,
 	height_min     = -300,
 	height_max     = -70,
-	flags          = "absheight",
 })
 
 minetest.register_ore({
@@ -239,7 +232,6 @@ minetest.register_ore({
 	clust_size     = 2,
 	height_min     = -31000,
 	height_max     = -301,
-	flags          = "absheight",
 })
 
 minetest.register_ore({
@@ -251,7 +243,6 @@ minetest.register_ore({
 	clust_size     = 2,
 	height_min     = -31000,
 	height_max     = -256,
-	flags          = "absheight",
 })
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -262,7 +253,6 @@ minetest.register_ore({
 	clust_size     = 2,
 	height_min     = -31000,
 	height_max     = -256,
-	flags          = "absheight",
 })
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -273,7 +263,6 @@ minetest.register_ore({
 	clust_size     = 2,
 	height_min     = -31000,
 	height_max     = -256,
-	flags          = "absheight",
 })
 
 
@@ -286,7 +275,6 @@ minetest.register_ore({
 	clust_size     = 3,
 	height_min     = -255,
 	height_max     = -128,
-	flags          = "absheight",
 })
 
 minetest.register_ore({
@@ -298,7 +286,6 @@ minetest.register_ore({
 	clust_size     = 3,
 	height_min     = -31000,
 	height_max     = -256,
-	flags          = "absheight",
 })
 
 -- Craft Items

@@ -94,7 +94,7 @@ dofile(minetest.get_modpath("lottmapgen").."/functions.lua")
 
 -- On generated function
 minetest.register_on_generated(function(minp, maxp, seed)
-	if minp.y < (mapgen_params.water_level-86) or minp.y > 208 then
+	if minp.y < (mapgen_params.water_level-86) or minp.y > 5000 then
 		return
 	end
 
@@ -217,7 +217,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local water = false -- water node above?
 			local surfy = y1 + 80 -- y of last surface detected
 			for y = y1, y0, -1 do -- working down each column for each node do
-				local fimadep = math.floor(6 - y / 16) + math.random(0, 1)
+				local fimadep = math.floor(6 - y / 512) + math.random(0, 1)
 				local vi = area:index(x, y, z)
 				local nodid = data[vi]
 				local viuu = area:index(x, y - 2, z)
