@@ -132,7 +132,7 @@ minetest.register_node("lottblocks:fence_pine", {
 	groups = {choppy=3,flammable=2},
 })
 minetest.register_craft({
-	output = 'lottblocks:fence_pine_6',
+	output = 'lottblocks:fence_pine 6',
 	recipe = {
 		{'lottplants:pinewood', 'lottplants:pinewood', 'lottplants:pinewood'},
 		{'lottplants:pinewood', 'lottplants:pinewood', 'lottplants:pinewood'},
