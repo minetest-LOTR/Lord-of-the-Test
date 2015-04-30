@@ -1,2 +1,3 @@
 (Just a file here till I get the main licsense file sorted out.)
-The skins, made by Gabo, are WTFPL.
+The male skins, made by Gabo, are WTFPL.
+The female skins, made by catninja, are CC BY-SA.
