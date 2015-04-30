@@ -77,21 +77,40 @@ end
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 	local privs = minetest.get_player_privs(name)
-	if minetest.get_player_privs(name).dwarf then
-		armor.textures[name].skin = "dwarf_skin.png"
-		return
-	elseif minetest.get_player_privs(name).elf then
-		armor.textures[name].skin = "elf_skin.png"
-		return
-	elseif minetest.get_player_privs(name).man then
-		armor.textures[name].skin = "man_skin.png"
-		return
-	elseif minetest.get_player_privs(name).orc then
-		armor.textures[name].skin = "orc_skin.png"
-		return
-	elseif minetest.get_player_privs(name).hobbit then
-		armor.textures[name].skin = "hobbit_skin.png"
-		return
+	if minetest.get_player_privs(name).male then
+		if minetest.get_player_privs(name).dwarf then
+			armor.textures[name].skin = "dwarf_skin.png"
+			return
+		elseif minetest.get_player_privs(name).elf then
+			armor.textures[name].skin = "elf_skin.png"
+			return
+		elseif minetest.get_player_privs(name).man then
+			armor.textures[name].skin = "man_skin.png"
+			return
+		elseif minetest.get_player_privs(name).orc then
+			armor.textures[name].skin = "orc_skin.png"
+			return
+		elseif minetest.get_player_privs(name).hobbit then
+			armor.textures[name].skin = "hobbit_skin.png"
+			return
+		end
+	elseif minetest.get_player_privs(name).female then
+		if minetest.get_player_privs(name).dwarf then
+			armor.textures[name].skin = "dwarf_skinf.png"
+			return
+		elseif minetest.get_player_privs(name).elf then
+			armor.textures[name].skin = "elf_skinf.png"
+			return
+		elseif minetest.get_player_privs(name).man then
+			armor.textures[name].skin = "man_skinf.png"
+			return
+		elseif minetest.get_player_privs(name).orc then
+			armor.textures[name].skin = "orc_skin.png"
+			return
+		elseif minetest.get_player_privs(name).hobbit then
+			armor.textures[name].skin = "hobbit_skinf.png"
+			return
+		end
 	else
 		minetest.show_formspec(name, "race_selector",
 			"size[8,6]"..
@@ -105,7 +124,8 @@ minetest.register_on_joinplayer(function(player)
 			"image[4.75,2.4;0.75,0.75;orc.png]"..
 			"button_exit[5.5,2.5;2,0.5;orc;Orc]"..
 			"image[0.25,3.4;0.75,0.75;hobbit.png]"..
-			"button_exit[1,3.5;2,0.5;hobbit;Hobbit]"
+			"button_exit[1,3.5;2,0.5;hobbit;Hobbit]"..
+			"dropdown[3,4.5;2;gender;Male,Female;1]"
 		)
 	end
 end)
@@ -113,55 +133,119 @@ end)
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname ~= "race_selector" then return end
 	local name = player:get_player_name()
-	if fields.dwarf then
-		minetest.chat_send_player(name, "You are now a member of the race of dwarves, go forth into the world.")
-		local privs = minetest.get_player_privs(name)
-		privs.dwarf = true
-		minetest.set_player_privs(name, privs)
-		give_stuff_dwarf(player)
-		default.player_set_textures(player, {"dwarf_skin.png", "lottarmor_trans.png", "lottarmor_trans.png"})
-		armor.textures[name].skin = "dwarf_skin.png"
-		minetest.log("action", name.. " chose to be a dwarf")
-		return
-	elseif fields.elf then
-		minetest.chat_send_player(name, "You are now a member of the race of elves, go forth into the world.")
-		local privs = minetest.get_player_privs(name)
-		privs.elf = true
-		minetest.set_player_privs(name, privs)
-		give_stuff_elf(player)
-		default.player_set_textures(player, {"elf_skin.png", "lottarmor_trans.png", "lottarmor_trans.png"})
-		armor.textures[name].skin = "elf_skin.png"
-		minetest.log("action", name.. " chose to be an elf")
-		return
-	elseif fields.man then
-		minetest.chat_send_player(name, "You are now a member of the race of men, go forth into the world.")
-		local privs = minetest.get_player_privs(name)
-		privs.man = true
-		minetest.set_player_privs(name, privs)
-		give_stuff_man(player)
-		default.player_set_textures(player, {"man_skin.png", "lottarmor_trans.png", "lottarmor_trans.png"})
-		armor.textures[name].skin = "man_skin.png"
-		minetest.log("action", name.. " chose to be a man")
-		return
-	elseif fields.orc then
-		minetest.chat_send_player(name, "You are now a member of the race of orcs, go forth into the world.")
-		local privs = minetest.get_player_privs(name)
-		privs.orc = true
-		minetest.set_player_privs(name, privs)
-		give_stuff_orc(player)
-		default.player_set_textures(player, {"orc_skin.png", "lottarmor_trans.png", "lottarmor_trans.png"})
-		armor.textures[name].skin = "orc_skin.png"
-		minetest.log("action", name.. " chose to be a orc")
-		return
-	elseif fields.hobbit then
-		minetest.chat_send_player(name, "You are now a member of the race of hobbits, go forth into the world.")
-		local privs = minetest.get_player_privs(name)
-		privs.hobbit = true
-		minetest.set_player_privs(name, privs)
-		give_stuff_hobbit(player)
-		default.player_set_textures(player, {"hobbit_skin.png", "lottarmor_trans.png", "lottarmor_trans.png"})
-		armor.textures[name].skin = "hobbit_skin.png"
-		minetest.log("action", name.. " chose to be a hobbit.")
-		return
+	if fields.gender == "Male" then
+		if fields.dwarf then
+			minetest.chat_send_player(name, "You are now a member of the race of dwarves, go forth into the world.")
+			local privs = minetest.get_player_privs(name)
+			privs.dwarf = true
+			privs.male = true
+			minetest.set_player_privs(name, privs)
+			give_stuff_dwarf(player)
+			default.player_set_textures(player, {"dwarf_skin.png", "lottarmor_trans.png", "lottarmor_trans.png"})
+			armor.textures[name].skin = "dwarf_skin.png"
+			minetest.log("action", name.. " chose to be a dwarf")
+			return
+		elseif fields.elf then
+			minetest.chat_send_player(name, "You are now a member of the race of elves, go forth into the world.")
+			local privs = minetest.get_player_privs(name)
+			privs.elf = true
+			privs.male = true
+			minetest.set_player_privs(name, privs)
+			give_stuff_elf(player)
+			default.player_set_textures(player, {"elf_skin.png", "lottarmor_trans.png", "lottarmor_trans.png"})
+			armor.textures[name].skin = "elf_skin.png"
+			minetest.log("action", name.. " chose to be an elf")
+			return
+		elseif fields.man then
+			minetest.chat_send_player(name, "You are now a member of the race of men, go forth into the world.")
+			local privs = minetest.get_player_privs(name)
+			privs.man = true
+			privs.male = true
+			minetest.set_player_privs(name, privs)
+			give_stuff_man(player)
+			default.player_set_textures(player, {"man_skin.png", "lottarmor_trans.png", "lottarmor_trans.png"})
+			armor.textures[name].skin = "man_skin.png"
+			minetest.log("action", name.. " chose to be a man")
+			return
+		elseif fields.orc then
+			minetest.chat_send_player(name, "You are now a member of the race of orcs, go forth into the world.")
+			local privs = minetest.get_player_privs(name)
+			privs.orc = true
+			privs.male = true
+			minetest.set_player_privs(name, privs)
+			give_stuff_orc(player)
+			default.player_set_textures(player, {"orc_skin.png", "lottarmor_trans.png", "lottarmor_trans.png"})
+			armor.textures[name].skin = "orc_skin.png"
+			minetest.log("action", name.. " chose to be a orc")
+			return
+		elseif fields.hobbit then
+			minetest.chat_send_player(name, "You are now a member of the race of hobbits, go forth into the world.")
+			local privs = minetest.get_player_privs(name)
+			privs.hobbit = true
+			privs.male = true
+			minetest.set_player_privs(name, privs)
+			give_stuff_hobbit(player)
+			default.player_set_textures(player, {"hobbit_skin.png", "lottarmor_trans.png", "lottarmor_trans.png"})
+			armor.textures[name].skin = "hobbit_skin.png"
+			minetest.log("action", name.. " chose to be a hobbit.")
+			return
+		end
+	elseif fields.gender == "Female" then
+		if fields.dwarf then
+			minetest.chat_send_player(name, "You are now a member of the race of dwarves, go forth into the world.")
+			local privs = minetest.get_player_privs(name)
+			privs.dwarf = true
+			privs.female = true
+			minetest.set_player_privs(name, privs)
+			give_stuff_dwarf(player)
+			default.player_set_textures(player, {"dwarf_skinf.png", "lottarmor_trans.png", "lottarmor_trans.png"})
+			armor.textures[name].skin = "dwarf_skinf.png"
+			minetest.log("action", name.. " chose to be a dwarf")
+			return
+		elseif fields.elf then
+			minetest.chat_send_player(name, "You are now a member of the race of elves, go forth into the world.")
+			local privs = minetest.get_player_privs(name)
+			privs.elf = true
+			privs.female = true
+			minetest.set_player_privs(name, privs)
+			give_stuff_elf(player)
+			default.player_set_textures(player, {"elf_skinf.png", "lottarmor_trans.png", "lottarmor_trans.png"})
+			armor.textures[name].skin = "elf_skinf.png"
+			minetest.log("action", name.. " chose to be an elf")
+			return
+		elseif fields.man then
+			minetest.chat_send_player(name, "You are now a member of the race of men, go forth into the world.")
+			local privs = minetest.get_player_privs(name)
+			privs.man = true
+			privs.female = true
+			minetest.set_player_privs(name, privs)
+			give_stuff_man(player)
+			default.player_set_textures(player, {"man_skinf.png", "lottarmor_trans.png", "lottarmor_trans.png"})
+			armor.textures[name].skin = "man_skinf.png"
+			minetest.log("action", name.. " chose to be a woman")
+			return
+		elseif fields.orc then
+			minetest.chat_send_player(name, "You are now a member of the race of orcs, go forth into the world.")
+			local privs = minetest.get_player_privs(name)
+			privs.orc = true
+			privs.female = true
+			minetest.set_player_privs(name, privs)
+			give_stuff_orc(player)
+			default.player_set_textures(player, {"orc_skin.png", "lottarmor_trans.png", "lottarmor_trans.png"})
+			armor.textures[name].skin = "orc_skin.png"
+			minetest.log("action", name.. " chose to be a orc")
+			return
+		elseif fields.hobbit then
+			minetest.chat_send_player(name, "You are now a member of the race of hobbits, go forth into the world.")
+			local privs = minetest.get_player_privs(name)
+			privs.hobbit = true
+			privs.female = true
+			minetest.set_player_privs(name, privs)
+			give_stuff_hobbit(player)
+			default.player_set_textures(player, {"hobbit_skinf.png", "lottarmor_trans.png", "lottarmor_trans.png"})
+			armor.textures[name].skin = "hobbit_skinf.png"
+			minetest.log("action", name.. " chose to be a hobbit.")
+			return
+		end
 	end
 end)
