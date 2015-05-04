@@ -1,22 +1,30 @@
+minetest.register_privilege("male", {
+	description = "A male player",
+	give_to_singleplayer = false,
+})
+minetest.register_privilege("female", {
+	description = "A female player",
+	give_to_singleplayer = false,
+})
 minetest.register_privilege("dwarf", {
 	description = "A dwarf player",
-	give_to_singleplayer= false,
+	give_to_singleplayer = false,
 })
 minetest.register_privilege("elf", {
 	description = "An elf player",
-	give_to_singleplayer= false,
+	give_to_singleplayer = false,
 })
 minetest.register_privilege("man", {
 	description = "A human player",
-	give_to_singleplayer= false,
+	give_to_singleplayer = false,
 })
 minetest.register_privilege("orc", {
 	description = "An orc player",
-	give_to_singleplayer= false,
+	give_to_singleplayer = false,
 })
 minetest.register_privilege("hobbit", {
 	description = "A hobbit player",
-	give_to_singleplayer= false,
+	give_to_singleplayer = false,
 })
 
 local function give_stuff_dwarf(player)
