@@ -86,15 +86,15 @@ local np_random = {
 }
 
 -- Stuff
-local mapgen_params = minetest.get_mapgen_params()
 lottmapgen = {}
+local mapgen_params = minetest.get_mapgen_params()
 
 dofile(minetest.get_modpath("lottmapgen").."/nodes.lua")
 dofile(minetest.get_modpath("lottmapgen").."/functions.lua")
 
 -- On generated function
 minetest.register_on_generated(function(minp, maxp, seed)
-	if minp.y < (mapgen_params.water_level-86) or minp.y > 5000 then
+	if minp.y < (mapgen_params.water_level-1000) or minp.y > 5000 then
 		return
 	end
 
@@ -226,13 +226,15 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				or nodid == c_stonecopper
 				or nodid == c_stoneiron
 				or nodid == c_stonecoal then
-					if biome == 4 or biome == 12 then
-						data[vi] = c_desertstone
-					elseif biome == 8 then
-						data[vi] = c_morstone
-					elseif biome == 11 then
-						if math.random(3) == 1 then
-							data[vi] = c_stoneiron
+					if y > mapgen_params.water_level-32 then
+						if biome == 4 or biome == 12 then
+							data[vi] = c_desertstone
+						elseif biome == 8 then
+							data[vi] = c_morstone
+						elseif biome == 11 then
+							if math.random(3) == 1 then
+								data[vi] = c_stoneiron
+							end
 						end
 					end
 					if not solid then -- if surface
@@ -257,15 +259,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										data[vi] = c_dryshrub
 									end
 								elseif y <= sandmin then
-									if biome == 4 or biome == 12 then
-										data[vi] = c_desertstone
-									elseif biome == 8 then
-										data[vi] = c_morstone
-									elseif biome == 11 then
-										data[vi] = c_stoneiron
-									else
-										data[vi] = c_stone
-									end
+									data[vi] = c_stone
 								else -- above sandline
 									if biome == 1 then
 										if math.random(121) == 2 then
@@ -481,26 +475,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						if nodiduu ~= c_air and nodiduu ~= c_water and surfy - y + 1 <= fimadep then
 							if y <= sandy and y >= sandmin then
 								data[vi] = c_sand
-							elseif y <= sandmin then
-								if biome == 4 or biome == 12 then
-									data[vi] = c_desertstone
-								elseif biome == 8 then
-									data[vi] = c_morstone
-								elseif biome == 11 then
-									data[vi] = c_stoneiron
-								else
-									data[vi] = c_stone
-								end
-							elseif biome == 1 or biome == 2 then
-								if math.random(121) == 2 then
-									data[vi] = c_ice
-								else
-									data[vi] = c_frozenstone
-								end
-							elseif biome == 8 then
-								data[vi] = c_morstone
-							else
-								data[vi] = c_dirt
 							end
 						end
 					end
@@ -528,7 +502,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:calc_lighting()
 	vm:write_to_map(data)
 	local chugent = math.ceil((os.clock() - t1) * 1000)
-	--print ("[lottmapgen_checking] "..chugent.." ms")
 end)
 
 dofile(minetest.get_modpath("lottmapgen").."/schematics.lua")
