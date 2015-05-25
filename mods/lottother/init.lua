@@ -1,6 +1,5 @@
 dofile(minetest.get_modpath("lottother").."/rings.lua")
 dofile(minetest.get_modpath("lottother").."/ms.lua")
-dofile(minetest.get_modpath("lottother").."/misc.lua")
 dofile(minetest.get_modpath("lottother").."/flags.lua")
 
 minetest.register_node("lottother:blue_torch", {
@@ -70,11 +69,11 @@ minetest.register_node("lottother:blue_flame", {
 	walkable = false,
 	buildable_to = true,
 	damage_per_second = 4,
-	
+
 	after_place_node = function(pos, placer)
 		fire.on_flame_add_at(pos)
 	end,
-	
+
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		fire.on_flame_remove_at(pos)
 	end,
