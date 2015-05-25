@@ -152,8 +152,9 @@ function lottblocks.register_lamp(material, description, inv_texture, post1_text
 		minetest.register_craft({
 			output = node_small,
 			recipe = {
-				{"lottother:blue_torch"},
-				{material_code_name},
+				{material_code_name, material_code_name, material_code_name},
+				{material_code_name, "lottother:blue_torch", material_code_name},
+				{material_code_name, material_code_name, material_code_name},
 			}
 		})
 	elseif race == "orc" then
@@ -168,8 +169,9 @@ function lottblocks.register_lamp(material, description, inv_texture, post1_text
 		minetest.register_craft({
 			output = node_small,
 			recipe = {
-				{"lottother:orc_torch"},
-				{material_code_name},
+				{material_code_name, material_code_name, material_code_name},
+				{material_code_name, "lottother:orc_torch", material_code_name},
+				{material_code_name, material_code_name, material_code_name},
 			}
 		})
 	end
