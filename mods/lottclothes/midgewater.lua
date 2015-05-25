@@ -7,7 +7,7 @@ local level=1
 minetest.register_tool("lottclothes:cap_midgewater", {
 	description = "Midgewater Cap",
 	inventory_image = "lottclothes_inv_cap_midgewater.png",
-	groups = {armor_head=0, armor_heal=0, armor_use=WEAR_BASE_HEAD-(WEAR_DECREASE*level)},
+	groups = {armor_head=0, armor_heal=0},
 	wear = 0
 })
 
@@ -24,7 +24,7 @@ minetest.register_craft({
 minetest.register_tool("lottclothes:jacket_midgewater", {
 	description = "Midgewater Jacket",
 	inventory_image = "lottclothes_inv_jacket_midgewater.png",
-	groups = {armor_torso=0, armor_heal=0, armor_use=WEAR_BASE_TORSO-(WEAR_DECREASE*level)},
+	groups = {armor_torso=0, armor_heal=0},
 	wear = 0
 })
 
@@ -41,7 +41,7 @@ minetest.register_craft({
 minetest.register_tool("lottclothes:pants_midgewater", {
 	description = "Midgewater Pants",
 	inventory_image = "lottclothes_inv_pants_midgewater.png",
-	groups = {armor_legs=0, armor_heal=0, armor_use=WEAR_BASE_LEGS-(WEAR_DECREASE*level)},
+	groups = {armor_legs=0, armor_heal=0},
 	wear = 0
 })
 
@@ -58,7 +58,7 @@ minetest.register_craft({
 minetest.register_tool("lottclothes:boots_midgewater", {
 	description = "Midgewater Boots",
 	inventory_image = "lottclothes_inv_boots_midgewater.png",
-	groups = {armor_feet=0, armor_heal=0, armor_use=WEAR_BASE_FEET-(WEAR_DECREASE*level)},
+	groups = {armor_feet=0, armor_heal=0},
 	wear = 0
 })
 

@@ -8,7 +8,7 @@ local level=2
 minetest.register_tool("lottclothes:shirt_brandybuck", {
 	description = "Brandybuck Shirt",
 	inventory_image = "lottclothes_inv_shirt_brandybuck.png",
-	groups = {armor_torso=0, armor_heal=0, armor_use=WEAR_BASE_TORSO-(WEAR_DECREASE*level)},
+	groups = {armor_torso=0, armor_heal=0},
 	wear = 0
 })
 
@@ -25,7 +25,7 @@ minetest.register_craft({
 minetest.register_tool("lottclothes:trousers_brandybuck", {
 	description = "Brandybuck Trousers",
 	inventory_image = "lottclothes_inv_trousers_brandybuck.png",
-	groups = {armor_legs=0, armor_heal=0, armor_use=WEAR_BASE_LEGS-(WEAR_DECREASE*level)},
+	groups = {armor_legs=0, armor_heal=0},
 	wear = 0
 })
 
@@ -42,7 +42,7 @@ minetest.register_craft({
 minetest.register_tool("lottclothes:shoes_brandybuck", {
 	description = "Brandybuck Shoes",
 	inventory_image = "lottclothes_inv_shoes_brandybuck.png",
-	groups = {armor_feet=0, armor_heal=0, armor_use=WEAR_BASE_FEET-(WEAR_DECREASE*level)},
+	groups = {armor_feet=0, armor_heal=0},
 	wear = 0
 })
 
