@@ -15,28 +15,31 @@ gui_slots = "listcolors[#606060AA;#606060;#141318;#30434C;#FFF]"
 armor = {
 	player_hp = {},
 	elements = {"head", "torso", "legs", "feet"},
-     physics = {"jump","speed","gravity","sneak","sneak_glitch"},
-	formspec = "size[8,8.5]" .. gui_bg_img .. gui_slots .."image[0,0;1,1;lottarmor_helmet.png]"
-          .."image[3,0;1,1;lottarmor_helmet.png]"
-          .."image[0,1;1,1;lottarmor_chestplate.png]"
-          .."image[0,2;1,1;lottarmor_leggings.png]"
-          .."image[0,3;1,1;lottarmor_boots.png]"
-          .."image[3,1;1,1;lottarmor_shirt.png]"
-          .."image[3,2;1,1;lottarmor_pants.png]"
-          .."image[3,3;1,1;lottarmor_shoes.png]"
-          .."list[detached:player_name_armor;armor;0,0;1,4;]"
-          .."list[detached:player_name_armor;armor;2,2;1,1;4]"
-          .."list[detached:player_name_armor;armor;3,0;1,4;5]"
-          .."image[1.16,0.25;2,4;armor_preview]"
-          .."image[2,2;1,1;lottarmor_shield.png]"
+	physics = {"jump","speed","gravity","sneak","sneak_glitch"},
+	formspec = "size[8,8.5]"
+		..gui_bg_img
+		..gui_slots
+		.."image[0,0;1,1;lottarmor_helmet.png]"
+		.."image[3,0;1,1;lottarmor_helmet.png]"
+		.."image[0,1;1,1;lottarmor_chestplate.png]"
+		.."image[0,2;1,1;lottarmor_leggings.png]"
+		.."image[0,3;1,1;lottarmor_boots.png]"
+		.."image[3,1;1,1;lottarmor_shirt.png]"
+		.."image[3,2;1,1;lottarmor_pants.png]"
+		.."image[3,3;1,1;lottarmor_shoes.png]"
+		.."list[detached:player_name_armor;armor;0,0;1,4;]"
+		.."list[detached:player_name_armor;armor;2,2;1,1;4]"
+		.."list[detached:player_name_armor;armor;3,0;1,4;5]"
+		.."image[1.16,0.25;2,4;armor_preview]"
+		.."image[2,2;1,1;lottarmor_shield.png]"
 		.."list[current_player;main;0,4.25;8,1;]"
 		.."list[current_player;main;0,5.5;8,3;8]"
-          .."image[4.05,0;4.5,1;lottarmor_crafting.png]"
-    	     .."list[current_player;craft;4,1;3,3;]"
-    	     .."list[current_player;craftpreview;7,2;1,1;]"
-          .."image[7,3;1,1;lottarmor_trash.png]"
-          .."list[detached:armor_trash;main;7,3;1,1;]"
-          .."image_button[7,1;1,1;bags.png;bags;]",
+		.."image[4.05,0;4.5,1;lottarmor_crafting.png]"
+		.."list[current_player;craft;4,1;3,3;]"
+		.."list[current_player;craftpreview;7,2;1,1;]"
+		.."image[7,3;1,1;lottarmor_trash.png]"
+		.."list[detached:armor_trash;main;7,3;1,1;]"
+		.."image_button[7,1;1,1;bags.png;bags;]",
 	textures = {},
 	default_skin = "character",
 }
@@ -65,7 +68,7 @@ local get_formspec = function(player,page)
 				.."button[2,0;2,0.5;bags;Bags]"
 				.."image[7,0;1,1;"..image.."]"
 				.."list[current_player;bag"..i.."contents;0,1;8,3;]"
-                    .."background[5,5;1,1;gui_formbg.png;true]"
+                .."background[5,5;1,1;gui_formbg.png;true]"
 		end
 	end
 end
@@ -131,7 +134,7 @@ armor.set_player_armor = function(self, player)
 	local armor_texture = "lottarmor_trans.png"
 	local armor_level = 0
 	local armor_heal = 0
-     local armor_healing = 0
+	local armor_healing = 0
 	local state = 0
 	local items = 0
 	local elements = {}
@@ -150,13 +153,16 @@ armor.set_player_armor = function(self, player)
 			for k, v in pairs(elements) do
 				if v == false then
 					local level = def.groups["armor_"..k]
+					local clothes = def.groups["clothes"] or 0
 					if level then
 						local texture = item:gsub("%:", "_")
 						table.insert(textures, texture..".png")
 						preview = preview.."^"..texture.."_preview.png"
 						armor_level = armor_level + level
 						state = state + stack:get_wear()
-						items = items + 1
+						if clothes ~= 1 then
+							items = items + 1
+						end
 						local heal = def.groups["armor_heal"] or 0
 						armor_heal = armor_heal + heal
                               local heal_plus = def.groups["armor_healing"] or 0
@@ -189,7 +195,7 @@ armor.set_player_armor = function(self, player)
 	end
 	armor_level = armor_level * ARMOR_LEVEL_MULTIPLIER
 	armor_heal = armor_heal * ARMOR_HEAL_MULTIPLIER
-     armor_healing = armor_healing
+	armor_healing = armor_healing
 	if #textures > 0 then
 		armor_texture = table.concat(textures, "^")
 	end
@@ -228,21 +234,24 @@ armor.update_armor = function(self, player)
 			return
 		end
 		local heal_max = 0
-          local heal_max2 = 0
+		local heal_max2 = 0
 		local state = 0
 		local items = 0
 		for i=1, 9 do
 			local stack = player_inv:get_stack("armor", i)
 			if stack:get_count() > 0 then
+				local clothes = stack:get_definition().groups["clothes"] or 0
 				local use = stack:get_definition().groups["armor_use"] or 0
 				local heal = stack:get_definition().groups["armor_heal"] or 0
-                    local heal_plus = stack:get_definition().groups["armor_healing"] or 0
+				local heal_plus = stack:get_definition().groups["armor_healing"] or 0
 				local item = stack:get_name()
 				stack:add_wear(use)
 				armor_inv:set_stack("armor", i, stack)
 				player_inv:set_stack("armor", i, stack)
 				state = state + stack:get_wear()
-				items = items + 1
+				if clothes ~= 1 then
+					items = items + 1
+				end
 				if stack:get_count() == 0 then
 					local desc = minetest.registered_items[item].description
 					if desc then
@@ -281,7 +290,7 @@ armor.get_armor_formspec = function(self, name)
 	local formspec = armor.formspec:gsub("player_name", name)
 	formspec = formspec:gsub("armor_preview", armor.textures[name].preview)
 	formspec = formspec:gsub("armor_level", armor.def[name].level)
-     formspec = formspec:gsub("armor_healing", armor.def[name].heal)
+	formspec = formspec:gsub("armor_healing", armor.def[name].heal)
 	return formspec:gsub("armor_heal", armor.def[name].heal)
 end
 armor.update_inventory = function(self, player)
@@ -414,7 +423,7 @@ minetest.register_on_joinplayer(function(player)
 		count = 0,
 		level = 0,
 		heal = 0,
-          heal_plus = 0,
+		heal_plus = 0,
 	}
 	armor.textures[name] = {
 		skin = armor.default_skin..".png",

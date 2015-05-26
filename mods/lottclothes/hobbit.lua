@@ -22,7 +22,7 @@ for color, fabric in pairs(fabric_colors) do
 	minetest.register_tool("lottclothes:shirt_hobbit_"..color, {
 		description = color:gsub("^%l", string.upper).." Hobbit Shirt",
 		inventory_image = "lottclothes_inv_shirt_hobbit_"..color..".png",
-		groups = {armor_torso=0, armor_heal=0},
+		groups = {armor_torso=0, armor_heal=0, clothes=1},
 		wear = 0
 	})
 
@@ -39,7 +39,7 @@ for color, fabric in pairs(fabric_colors) do
 	minetest.register_tool("lottclothes:shorts_hobbit_"..color, {
 		description = color:gsub("^%l", string.upper).." Hobbit Shorts",
 		inventory_image = "lottclothes_inv_shorts_hobbit_"..color..".png",
-		groups = {armor_legs=0, armor_heal=0},
+		groups = {armor_legs=0, armor_heal=0, clothes=1},
 		wear = 0
 	})
 
@@ -56,7 +56,7 @@ for color, fabric in pairs(fabric_colors) do
 	minetest.register_tool("lottclothes:shoes_hobbit_"..color, {
 		description = color:gsub("^%l", string.upper).." Hobbit Shoes",
 		inventory_image = "lottclothes_inv_shoes_hobbit_"..color..".png",
-		groups = {armor_feet=0, armor_heal=0},
+		groups = {armor_feet=0, armor_heal=0, clothes=1},
 		wear = 0
 	})
 
