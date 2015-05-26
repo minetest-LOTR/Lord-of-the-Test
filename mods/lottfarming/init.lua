@@ -172,65 +172,8 @@ dofile(minetest.get_modpath("lottfarming").."/melon.lua")
 -- ========= BARLEY =========
 dofile(minetest.get_modpath("lottfarming").."/barley.lua")
 
-minetest.register_node("lottfarming:decay_tree", {
-	description = "Decaying Wood",
-	tile_images = {'default_tree_top.png^lottfarming_decay_tree.png', 'default_tree.png', 	'default_tree.png'},
-     is_ground_content = true,
-	groups = {crumbly=3, fungi=3},
-	sounds = default.node_sound_dirt_defaults(),
-	drop = "default:dirt",
-})
-
-local function decaying_wood(pos, inv, p)
-	if pos == nil then
-		return false
-	end
-	local node = minetest.env:get_node(pos)
-	local name = node.name
-	local above = minetest.env:get_node({x=pos.x, y=pos.y+1, z=pos.z})
-	if name == "default:tree" or name == "default:jungletree" then
-		if above.name == "air" then
-			node.name = "lottfarming:decay_tree"
-			minetest.env:set_node(pos, node)
-			return true
-		end
-	end
-	return false
-end
-
-minetest.register_tool("lottfarming:bacteria_fertiliser", {
-	description = "Bacteria Fertiliser",
-	inventory_image = "lottfarming_bacteria_fertiliser.png",
-	on_use = function(itemstack, user, pointed_thing)
-		if decaying_wood(pointed_thing.under, user:get_inventory(), 10) then
-			itemstack:add_wear(65535/80)
-			return itemstack
-		end
-	end
-})
-
-minetest.register_craft({
-	output = "lottfarming:bacteria_fertiliser",
-	recipe = {
-		{"default:glass", "", "default:glass"},
-		{"default:glass", "bones:bones", "default:glass"},
-		{"default:glass", "default:glass", "default:glass"},
-	}
-})
-
-minetest.register_craft({
-	output = "lottfarming:bowl",
-	recipe = {
-		{"default:wood", "", "default:wood"},
-		{"", "default:wood", ""},
-		{"", "", ""},
-	}
-})
-
-minetest.register_craftitem("lottfarming:bowl", {
-	description = "Bowl",
-	inventory_image = "lottfarming_bowl.png",
-})
+-- ========= CRAFTS =========
+dofile(minetest.get_modpath("lottfarming").."/crafting.lua")
 
 -- ========= BROWN MUSHROOM =========
 dofile(minetest.get_modpath("lottfarming").."/brown.lua")
