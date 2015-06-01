@@ -384,6 +384,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 									elseif biome == 7 then
 										if math.random(TREE3) == 2 then
 											lottmapgen_mallornsmalltree(x, y, z, area, data)
+										elseif math.random(TREE2) == 2 then
+											lottmapgen_young_mallorn(x, y, z, area, data)
 										elseif math.random(PLANT1) == 2 then
 											lottmapgen_lorien_grass(data, vi)
 										elseif math.random(TREE5) == 3 then

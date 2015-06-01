@@ -412,6 +412,24 @@ minetest.register_node("lottplants:mallorntree", {
 	on_place = minetest.rotate_node
 })
 
+minetest.register_node("lottplants:mallorntree_young", {
+	description = "Young Mallorn Trunk",
+	tiles = {"lottplants_mallorntree_top.png", "lottplants_mallorntree_top.png", "lottplants_mallorntree.png"},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.125, -0.5, -0.1875, 0.125, 0.5, 0.1875},
+			{-0.1875, -0.5, -0.125, 0.1875, 0.5, 0.125},
+		},
+	},
+	paramtype2 = "facedir",
+	groups = {tree=1,choppy=1,flammable=2,fuel=1},
+	sounds = default.node_sound_wood_defaults(),
+	on_place = minetest.rotate_node
+})
+
 -- SAPLINGS
 
 minetest.register_node("lottplants:aldersapling", {
@@ -847,6 +865,13 @@ minetest.register_craft({
 	output = 'lottplants:mallornwood 4',
 	recipe = {
 		{'lottplants:mallorntree'},
+	}
+})
+
+minetest.register_craft({
+	output = 'lottplants:mallornwood 2',
+	recipe = {
+		{'lottplants:mallorntree_young'},
 	}
 })
 

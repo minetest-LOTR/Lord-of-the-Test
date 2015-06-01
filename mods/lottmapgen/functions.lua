@@ -384,6 +384,28 @@ function lottmapgen_mallornsmalltree(x, y, z, area, data)
 	end
 end
 
+function lottmapgen_young_mallorn(x, y, z, area, data)
+	local c_youngmallorn = minetest.get_content_id("lottplants:mallorntree_young")
+	local c_mallornleaf = minetest.get_content_id("lottplants:mallornleaf")
+	local t = 6 + math.random(1) -- trunk height
+	for j = 0, t do
+		if j == t or j == t - 2 then
+			for i = -1, 1 do
+			for k = -1, 1 do
+				local vil = area:index(x + i, y + j + math.random(0, 1), z + k)
+				local absi = math.abs(i)
+				local absk = math.abs(k)
+				if math.random() > (absi + absk) / 24 then
+					data[vil] = c_mallornleaf
+				end
+			end
+			end
+		end
+		local vit = area:index(x, y + j, z)
+		data[vit] = c_youngmallorn
+	end
+end
+
 function lottmapgen_jungletree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_leaves = minetest.get_content_id("default:leaves")

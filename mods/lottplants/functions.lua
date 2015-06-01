@@ -300,6 +300,24 @@ function lottplants_smallmallorntree(pos)
 	end
 end
 
+function lottplants_young_mallorn(pos)
+	local t = 6 + math.random(1) -- trunk height
+	for j = 0, t do
+		if j == t or j == t - 2 then
+			for i = -1, 1 do
+			for k = -1, 1 do
+				local absi = math.abs(i)
+				local absk = math.abs(k)
+				if math.random() > (absi + absk) / 24 then
+					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:mallornleaf"})
+				end
+			end
+			end
+		end
+		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:mallorntree_young"})
+	end
+end
+
 -- Oaks
 
 function lottplants_oaktree(pos)
@@ -672,10 +690,12 @@ minetest.register_abm({
     interval = MALINT,
     chance = MALCHA,
     action = function(pos, node, active_object_count, active_object_count_wider)
-		if math.random(2) == 1 then
+		if math.random(3) == 1 then
 			lottplants_mallorntree(pos)
-		else
+		elseif math.random(3) == 2 then
 			lottplants_smallmallorntree(pos)
+		else
+			lottplants_young_mallorn(pos)
 		end
 		print ("[lottplants] Mallorn Grows")
     end,
