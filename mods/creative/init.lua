@@ -75,7 +75,7 @@ minetest.after(0, function()
  	--print("creative inventory size: "..dump(creative_inventory.creative_inventory_size))
 end)
 
-dofile(minetest.get_modpath("lottarmor").."/armor.lua")
+--dofile(minetest.get_modpath("lottarmor").."/armor.lua")
 
 creative_inventory.set_creative_formspec = function(player, start_i, pagenum)
 	pagenum = math.floor(pagenum)

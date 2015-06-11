@@ -1,9 +1,7 @@
 lottblocks = {}
 
-dofile(minetest.get_modpath("lottblocks").."/doors.lua") --This has doors and fences.
-dofile(minetest.get_modpath("lottblocks").."/tables.lua") --This has tables and chairs.
+dofile(minetest.get_modpath("lottblocks").."/wooden_stuff.lua") --This has trapdoors, doors, tables and chairs in all the kinds of wood.
 dofile(minetest.get_modpath("lottblocks").."/beds.lua") --This has beds.
-dofile(minetest.get_modpath("lottblocks").."/hatches.lua") --This has hatches/trapdoors, by catninja.
 dofile(minetest.get_modpath("lottblocks").."/music.lua") --This has musical insturments, and the music they play.
 dofile(minetest.get_modpath("lottblocks").."/decoration.lua") --This has various decoration nodes, by catninja.
 dofile(minetest.get_modpath("lottblocks").."/lamps.lua")
