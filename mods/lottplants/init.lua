@@ -1,7 +1,6 @@
 dofile(minetest.get_modpath("lottplants").."/nodes.lua")
 dofile(minetest.get_modpath("lottplants").."/wild_food.lua")
 dofile(minetest.get_modpath("lottplants").."/flowers.lua")
-dofile(minetest.get_modpath("lottplants").."/crafting.lua")
 
 -- ===== GROWING TIME =====
 
