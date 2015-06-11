@@ -1,7 +1,5 @@
 minetest.register_privilege("worldedit", "Can use WorldEdit commands")
 
---wip: fold the hollow stuff into the main functions and add a hollow flag at the end, then add the compatibility stuff
-
 worldedit.set_pos = {}
 worldedit.inspect = {}
 
@@ -13,9 +11,10 @@ if minetest.place_schematic then
 end
 
 dofile(minetest.get_modpath("worldedit_commands") .. "/mark.lua")
-dofile(minetest.get_modpath("worldedit_commands") .. "/safe.lua"); safe_region = safe_region or function(callback) return callback end
+dofile(minetest.get_modpath("worldedit_commands") .. "/safe.lua")
+safe_region = rawget(_G, "safe_region") or function(callback) return callback end
 
-local get_position = function(name) --position 1 retrieval function for when not using `safe_region`
+local function get_position(name) --position 1 retrieval function for when not using `safe_region`
 	local pos1 = worldedit.pos1[name]
 	if pos1 == nil then
 		worldedit.player_notify(name, "no position 1 selected")
@@ -23,7 +22,7 @@ local get_position = function(name) --position 1 retrieval function for when not
 	return pos1
 end
 
-local get_node = function(name, nodename)
+local function get_node(name, nodename)
 	local node = worldedit.normalize_nodename(nodename)
 	if not node then
 		worldedit.player_notify(name, "invalid node name: " .. nodename)
@@ -32,7 +31,7 @@ local get_node = function(name, nodename)
 	return node
 end
 
-worldedit.player_notify = function(name, message)
+function worldedit.player_notify(name, message)
 	minetest.chat_send_player(name, "WorldEdit -!- " .. message, false)
 end
 
@@ -58,8 +57,8 @@ worldedit.normalize_nodename = function(nodename)
 	return nil
 end
 
---determines the axis in which a player is facing, returning an axis ("x", "y", or "z") and the sign (1 or -1)
-worldedit.player_axis = function(name)
+-- Determines the axis in which a player is facing, returning an axis ("x", "y", or "z") and the sign (1 or -1)
+function worldedit.player_axis(name)
 	local dir = minetest.get_player_by_name(name):get_look_dir()
 	local x, y, z = math.abs(dir.x), math.abs(dir.y), math.abs(dir.z)
 	if x > y then
@@ -71,6 +70,15 @@ worldedit.player_axis = function(name)
 	end
 	return "z", dir.z > 0 and 1 or -1
 end
+
+function worldedit.mkdir(path)
+	if minetest.mkdir then
+		minetest.mkdir(path)
+	else
+		os.execute('mkdir "' .. path .. '"')
+	end
+end
+
 
 minetest.register_chatcommand("/about", {
 	params = "",
@@ -279,6 +287,21 @@ minetest.register_chatcommand("/volume", {
 	end,
 })
 
+minetest.register_chatcommand("/deleteblocks", {
+	params = "",
+	description = "remove all MapBlocks (16x16x16) containing the selected area from the map",
+	privs = {worldedit=true},
+	func = safe_region(function(name, param)
+		local pos1, pos2 = worldedit.pos1[name], worldedit.pos2[name]
+		local success = minetest.delete_area(pos1, pos2)
+		if success then
+			worldedit.player_notify(name, "Area deleted.")
+		else
+			worldedit.player_notify(name, "There was an error during deletion of the area.")
+		end
+	end),
+})
+
 minetest.register_chatcommand("/set", {
 	params = "<node>",
 	description = "Set the current WorldEdit region to <node>",
@@ -340,10 +363,11 @@ minetest.register_chatcommand("/replace", {
 	description = "Replace all instances of <search node> with <replace node> in the current WorldEdit region",
 	privs = {worldedit=true},
 	func = safe_region(function(name, param)
-		local found, _, searchnode, replacenode = param:find("^([^%s]+)%s+(.+)$")
-		local newsearchnode = worldedit.normalize_nodename(searchnode)
-		local newreplacenode = worldedit.normalize_nodename(replacenode)
-		local count = worldedit.replace(worldedit.pos1[name], worldedit.pos2[name], newsearchnode, newreplacenode)
+		local found, _, search_node, replace_node = param:find("^([^%s]+)%s+(.+)$")
+		local norm_search_node = worldedit.normalize_nodename(search_node)
+		local norm_replace_node = worldedit.normalize_nodename(replace_node)
+		local count = worldedit.replace(worldedit.pos1[name], worldedit.pos2[name],
+				norm_search_node, norm_replace_node)
 		worldedit.player_notify(name, count .. " nodes replaced")
 	end, check_replace),
 })
@@ -353,10 +377,11 @@ minetest.register_chatcommand("/replaceinverse", {
 	description = "Replace all nodes other than <search node> with <replace node> in the current WorldEdit region",
 	privs = {worldedit=true},
 	func = safe_region(function(name, param)
-		local found, _, searchnode, replacenode = param:find("^([^%s]+)%s+(.+)$")
-		local newsearchnode = worldedit.normalize_nodename(searchnode)
-		local newreplacenode = worldedit.normalize_nodename(replacenode)
-		local count = worldedit.replaceinverse(worldedit.pos1[name], worldedit.pos2[name], searchnode, replacenode)
+		local found, _, search_node, replace_node = param:find("^([^%s]+)%s+(.+)$")
+		local norm_search_node = worldedit.normalize_nodename(search_node)
+		local norm_replace_node = worldedit.normalize_nodename(replace_node)
+		local count = worldedit.replace(worldedit.pos1[name], worldedit.pos2[name],
+				norm_search_node, norm_replace_node, true)
 		worldedit.player_notify(name, count .. " nodes replaced")
 	end, check_replace),
 })
@@ -383,7 +408,7 @@ minetest.register_chatcommand("/hollowsphere", {
 	func = safe_region(function(name, param)
 		local found, _, radius, nodename = param:find("^(%d+)%s+(.+)$")
 		local node = get_node(name, nodename)
-		local count = worldedit.hollow_sphere(worldedit.pos1[name], tonumber(radius), node)
+		local count = worldedit.sphere(worldedit.pos1[name], tonumber(radius), node, true)
 		worldedit.player_notify(name, count .. " nodes added")
 	end, check_sphere),
 })
@@ -422,7 +447,7 @@ minetest.register_chatcommand("/hollowdome", {
 	func = safe_region(function(name, param)
 		local found, _, radius, nodename = param:find("^(%d+)%s+(.+)$")
 		local node = get_node(name, nodename)
-		local count = worldedit.hollow_dome(worldedit.pos1[name], tonumber(radius), node)
+		local count = worldedit.dome(worldedit.pos1[name], tonumber(radius), node, true)
 		worldedit.player_notify(name, count .. " nodes added")
 	end, check_dome),
 })
@@ -466,7 +491,7 @@ minetest.register_chatcommand("/hollowcylinder", {
 			length = length * sign
 		end
 		local node = get_node(name, nodename)
-		local count = worldedit.hollow_cylinder(worldedit.pos1[name], axis, length, tonumber(radius), node)
+		local count = worldedit.cylinder(worldedit.pos1[name], axis, length, tonumber(radius), node, true)
 		worldedit.player_notify(name, count .. " nodes added")
 	end, check_cylinder),
 })
@@ -861,20 +886,22 @@ minetest.register_chatcommand("/save", {
 			worldedit.player_notify(name, "invalid usage: " .. param)
 			return
 		end
-		if not string.find(param, "^[%w \t.,+-_=!@#$%%^&*()%[%]{};'\"]+$") then
-			worldedit.player_notify(name, "invalid file name: " .. param)
+		if not param:find("^[a-zA-Z0-9_%-.]+$") then
+			worldedit.player_notify(name, "Disallowed file name: " .. param)
 			return
 		end
 
-		local result, count = worldedit.serialize(worldedit.pos1[name], worldedit.pos2[name])
+		local result, count = worldedit.serialize(worldedit.pos1[name],
+				worldedit.pos2[name])
 
 		local path = minetest.get_worldpath() .. "/schems"
+		-- Create directory if it does not already exist
+		worldedit.mkdir(path)
+
 		local filename = path .. "/" .. param .. ".we"
-		filename = filename:gsub("\"", "\\\""):gsub("\\", "\\\\") --escape any nasty characters
-		os.execute("mkdir \"" .. path .. "\"") --create directory if it does not already exist
 		local file, err = io.open(filename, "wb")
 		if err ~= nil then
-			worldedit.player_notify(name, "could not save file to \"" .. filename .. "\"")
+			worldedit.player_notify(name, "Could not save file to \"" .. filename .. "\"")
 			return
 		end
 		file:write(result)
@@ -1022,24 +1049,31 @@ minetest.register_chatcommand("/luatransform", {
 
 minetest.register_chatcommand("/mtschemcreate", {
 	params = "<file>",
-	description = "Save the current WorldEdit region using the Minetest Schematic format to \"(world folder)/schems/<filename>.mts\"",
+	description = "Save the current WorldEdit region using the Minetest "..
+		"Schematic format to \"(world folder)/schems/<filename>.mts\"",
 	privs = {worldedit=true},
 	func = safe_region(function(name, param)
 		if param == nil then
 			worldedit.player_notify(name, "No filename specified")
 			return
 		end
+		if not param:find("^[a-zA-Z0-9_%-.]+$") then
+			worldedit.player_notify(name, "Disallowed file name: " .. param)
+			return
+		end
 
 		local path = minetest.get_worldpath() .. "/schems"
-		local filename = path .. "/" .. param .. ".mts"
-		filename = filename:gsub("\"", "\\\""):gsub("\\", "\\\\") --escape any nasty characters
-		os.execute("mkdir \"" .. path .. "\"") --create directory if it does not already exist
+		-- Create directory if it does not already exist
+		worldedit.mkdir(path)
 
-		local ret = minetest.create_schematic(worldedit.pos1[name], worldedit.pos2[name], worldedit.prob_list[name], filename)
+		local filename = path .. "/" .. param .. ".mts"
+		local ret = minetest.create_schematic(worldedit.pos1[name],
+				worldedit.pos2[name], worldedit.prob_list[name],
+				filename)
 		if ret == nil then
-			worldedit.player_notify(name, "failed to create Minetest schematic", false)
+			worldedit.player_notify(name, "Failed to create Minetest schematic", false)
 		else
-			worldedit.player_notify(name, "saved Minetest schematic to " .. param, false)
+			worldedit.player_notify(name, "Saved Minetest schematic to " .. param, false)
 		end
 		worldedit.prob_list[name] = {}
 	end),
@@ -1114,7 +1148,7 @@ minetest.register_chatcommand("/clearobjects", {
 	description = "Clears all objects within the WorldEdit region",
 	privs = {worldedit=true},
 	func = safe_region(function(name, param)
-		local count = worldedit.clearobjects(worldedit.pos1[name], worldedit.pos2[name])
+		local count = worldedit.clear_objects(worldedit.pos1[name], worldedit.pos2[name])
 		worldedit.player_notify(name, count .. " objects cleared")
 	end),
 })
