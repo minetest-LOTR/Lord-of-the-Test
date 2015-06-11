@@ -139,9 +139,9 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'lottfarming:tobacco_seed 2',
+	output = 'lottfarming:pipeweed_seed 2',
 	recipe = {
-		{'lottfarming:tobacco'},
+		{'lottfarming:pipeweed'},
 	}
 })
 minetest.register_craft({
@@ -173,8 +173,8 @@ minetest.register_craft({
 minetest.register_craft({
 	type = "cooking",
 	cooktime = 15,
-	output = "lottfarming:tobacco_cooked",
-	recipe = "lottfarming:tobacco"
+	output = "lottfarming:pipeweed_cooked",
+	recipe = "lottfarming:pipeweed"
 })
 
 minetest.register_craft({
