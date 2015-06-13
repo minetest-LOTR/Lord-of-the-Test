@@ -1,17 +1,15 @@
-dofile(minetest.get_modpath("lottmobs").."/api.lua")
 dofile(minetest.get_modpath("lottmobs").."/horse.lua")
 -- Mobs
 
-lottmobs:register_mob("lottmobs:elf", {
+mobs:register_mob("lottmobs:elf", {
 	type = "npc",
 	hp_min = 25,
 	hp_max = 40,
 	collisionbox = {-0.3,-1.1,-0.3, 0.3,0.91,0.3},
-	available_textures = {
-		total = 3,
-		texture_1 = {"lottmobs_lorien_elf_1.png", "lottarmor_trans.png", "lottarmor_trans.png"},
-		texture_2 = {"lottmobs_lorien_elf_2.png", "lottarmor_trans.png", "lottarmor_trans.png"},
-		texture_3 = {"lottmobs_lorien_elf_3.png", "lottarmor_trans.png", "lottarmor_trans.png"},
+	textures = {
+		{"lottmobs_lorien_elf_1.png", "lottarmor_trans.png", "lottarmor_trans.png"},
+		{"lottmobs_lorien_elf_2.png", "lottarmor_trans.png", "lottarmor_trans.png"},
+		{"lottmobs_lorien_elf_3.png", "lottarmor_trans.png", "lottarmor_trans.png"},
 	},
 	visual = "mesh",
 	visual_size = {x=0.95, y=1.15},
@@ -81,7 +79,7 @@ lottmobs:register_mob("lottmobs:elf", {
 	group_attack = true,
 	step = 1,
 })
-lottmobs:register_spawn("lottmobs:elf", {"lottmapgen:lorien_grass"}, 20, 0, 6000, 3, 31000)
+mobs:register_spawn("lottmobs:elf", {"lottmapgen:lorien_grass"}, 20, 0, 6000, 3, 31000)
 
 minetest.register_craftitem("lottmobs:meat", {
 	description = "Cooked Meat",
@@ -100,14 +98,13 @@ minetest.register_craft({
 	recipe = "lottmobs:meat_raw",
 })
 
-lottmobs:register_mob("lottmobs:chicken", {
+mobs:register_mob("lottmobs:chicken", {
 	type = "animal",
 	hp_min = 5,
 	hp_max = 10,
 	collisionbox = {-0.3,0,-0.3, 0.3,0.8,0.3},
-	available_textures = {
-		total = 1,
-		texture_1 = {"lottmobs_chicken.png"},
+	textures = {
+		{"lottmobs_chicken.png"},
 	},
 	visual = "mesh",
 	mesh = "chicken_model.x",
@@ -141,19 +138,18 @@ lottmobs:register_mob("lottmobs:chicken", {
 	sounds = {
 	},
 })
-lottmobs:register_spawn("lottmobs:chicken", {"lottmapgen:gondor_grass"}, 20, -1, 6000, 3, 31000)
-lottmobs:register_spawn("lottmobs:chicken", {"lottmapgen:dunland_grass"}, 20, -1, 6000, 3, 31000)
-lottmobs:register_spawn("lottmobs:chicken", {"lottmapgen:rohan_grass"}, 20, -1, 6000, 3, 31000)
-lottmobs:register_spawn("lottmobs:chicken", {"lottmapgen:shire_grass"}, 20, -1, 5000, 3, 31000)
+mobs:register_spawn("lottmobs:chicken", {"lottmapgen:gondor_grass"}, 20, -1, 6000, 3, 31000)
+mobs:register_spawn("lottmobs:chicken", {"lottmapgen:dunland_grass"}, 20, -1, 6000, 3, 31000)
+mobs:register_spawn("lottmobs:chicken", {"lottmapgen:rohan_grass"}, 20, -1, 6000, 3, 31000)
+mobs:register_spawn("lottmobs:chicken", {"lottmapgen:shire_grass"}, 20, -1, 5000, 3, 31000)
 
-lottmobs:register_mob("lottmobs:ent", {
+mobs:register_mob("lottmobs:ent", {
 	type = "npc",
 	hp_min = 50,
 	hp_max = 70,
 	collisionbox = {-0.5, 0, -0.5, 0.5, 5, 0.5},
-	available_textures = {
-		total = 1,
-		texture_1 = {"lottmobs_ent.png"},
+	textures = {
+		{"lottmobs_ent.png"},
 	},
 	visual_size = {x=3.5,y=3.5},
 	visual = "mesh",
@@ -240,18 +236,17 @@ lottmobs:register_mob("lottmobs:ent", {
 	step = 1,
 
 })
-lottmobs:register_spawn("lottmobs:ent", {"lottmapgen:fangorn_grass"}, 20, -1, 6000, 3, 31000)
+mobs:register_spawn("lottmobs:ent", {"lottmapgen:fangorn_grass"}, 20, -1, 6000, 3, 31000)
 
-lottmobs:register_mob("lottmobs:spider", {
+mobs:register_mob("lottmobs:spider", {
 	type = "monster",
 	hp_min = 20,
 	hp_max = 40,
 	collisionbox = {-0.9, -0.01, -0.7, 0.7, 0.6, 0.7},
-	available_textures = {
-		total = 3,
-		texture_1 = {"lottmobs_spider.png"},
-		texture_2 = {"lottmobs_spider_1.png"},
-		texture_3 = {"lottmobs_spider_2.png"},
+	textures = {
+		{"lottmobs_spider.png"},
+		{"lottmobs_spider_1.png"},
+		{"lottmobs_spider_2.png"},
 	},
 	visual_size = {x=7,y=7},
 	visual = "mesh",
@@ -295,19 +290,18 @@ lottmobs:register_mob("lottmobs:spider", {
 	},
 	step = 1,
 })
-lottmobs:register_spawn("lottmobs:spider", {"lottmapgen:mirkwood_grass"}, 20, -10, 6000, 3, 31000)
+mobs:register_spawn("lottmobs:spider", {"lottmapgen:mirkwood_grass"}, 20, -10, 6000, 3, 31000)
 
-lottmobs:register_mob("lottmobs:rohan_guard", {
+mobs:register_mob("lottmobs:rohan_guard", {
 	type = "npc",
 	hp_min = 20,
 	hp_max = 30,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
-	available_textures = {
-		total = 4,
-		texture_1 = {"lottmobs_rohan_guard.png"},
-		texture_2 = {"lottmobs_rohan_guard_1.png"},
-		texture_3 = {"lottmobs_rohan_guard_2.png"},
-		texture_4 = {"lottmobs_rohan_guard_3.png"},
+	textures = {
+		{"lottmobs_rohan_guard.png"},
+		{"lottmobs_rohan_guard_1.png"},
+		{"lottmobs_rohan_guard_2.png"},
+		{"lottmobs_rohan_guard_3.png"},
 	},
 	visual = "mesh",
 	mesh = "human_model.x",
@@ -389,19 +383,18 @@ lottmobs:register_mob("lottmobs:rohan_guard", {
 	group_attack = true,
 	step = 1,
 })
-lottmobs:register_spawn("lottmobs:rohan_guard", {"lottmapgen:rohan_grass"}, 20, -1, 6000, 3, 31000)
+mobs:register_spawn("lottmobs:rohan_guard", {"lottmapgen:rohan_grass"}, 20, -1, 6000, 3, 31000)
 
-lottmobs:register_mob("lottmobs:gondor_guard", {
+mobs:register_mob("lottmobs:gondor_guard", {
 	type = "npc",
 	hp_min = 20,
 	hp_max = 30,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
-	available_textures = {
-		total = 4,
-		texture_1 = {"lottmobs_gondor_guard.png"},
-		texture_2 = {"lottmobs_gondor_guard_1.png"},
-		texture_3 = {"lottmobs_gondor_guard_2.png"},
-		texture_4 = {"lottmobs_gondor_guard_3.png"},
+	textures = {
+		{"lottmobs_gondor_guard.png"},
+		{"lottmobs_gondor_guard_1.png"},
+		{"lottmobs_gondor_guard_2.png"},
+		{"lottmobs_gondor_guard_3.png"},
 	},
 	visual = "mesh",
 	mesh = "human_model.x",
@@ -487,21 +480,20 @@ lottmobs:register_mob("lottmobs:gondor_guard", {
 	group_attack = true,
 	step = 1,
 })
-lottmobs:register_spawn("lottmobs:gondor_guard", {"lottmapgen:gondor_grass"}, 20, -1, 6000, 3, 31000)
+mobs:register_spawn("lottmobs:gondor_guard", {"lottmapgen:gondor_grass"}, 20, -1, 6000, 3, 31000)
 
-lottmobs:register_mob("lottmobs:dunlending", {
+mobs:register_mob("lottmobs:dunlending", {
 	type = "monster",
 	hp_min = 17,
 	hp_max = 27,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
 	mesh = "human_model.x",
-	available_textures = {
-		total = 4,
-		texture_1 = {"lottmobs_dunlending.png"},
-		texture_2 = {"lottmobs_dunlending_1.png"},
-		texture_3 = {"lottmobs_dunlending_2.png"},
-		texture_4 = {"lottmobs_dunlending_3.png"},
+	textures = {
+		{"lottmobs_dunlending.png"},
+		{"lottmobs_dunlending_1.png"},
+		{"lottmobs_dunlending_2.png"},
+		{"lottmobs_dunlending_3.png"},
 	},
 	makes_footstep_sound = true,
 	view_range = 15,
@@ -562,19 +554,18 @@ lottmobs:register_mob("lottmobs:dunlending", {
 	},
 	step = 1,
 })
-lottmobs:register_spawn("lottmobs:dunlending", {"lottmapgen:dunland_grass"}, 20, -1, 6000, 3, 31000)
+mobs:register_spawn("lottmobs:dunlending", {"lottmapgen:dunland_grass"}, 20, -1, 6000, 3, 31000)
 
-lottmobs:register_mob("lottmobs:hobbit", {
+mobs:register_mob("lottmobs:hobbit", {
 	type = "animal",
 	hp_min = 5,
 	hp_max = 15,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
-	available_textures = {
-		total = 4,
-		texture_1 = {"lottmobs_hobbit.png"},
-		texture_2 = {"lottmobs_hobbit_1.png"},
-		texture_3 = {"lottmobs_hobbit_2.png"},
-		texture_4 = {"lottmobs_hobbit_3.png"},
+	textures = {
+		{"lottmobs_hobbit.png"},
+		{"lottmobs_hobbit_1.png"},
+		{"lottmobs_hobbit_2.png"},
+		{"lottmobs_hobbit_3.png"},
 	},
 	visual = "mesh",
 	mesh = "dwarf_model.x",
@@ -610,20 +601,19 @@ lottmobs:register_mob("lottmobs:hobbit", {
 	sounds = {
 	},
 })
-lottmobs:register_spawn("lottmobs:hobbit", {"lottmapgen:shire_grass"}, 20, -1, 6000, 3, 31000)
+mobs:register_spawn("lottmobs:hobbit", {"lottmapgen:shire_grass"}, 20, -1, 6000, 3, 31000)
 
-lottmobs:register_mob("lottmobs:orc", {
+mobs:register_mob("lottmobs:orc", {
 	type = "monster",
 	hp_min = 15,
 	hp_max = 35,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
 	mesh = "human_model.x",
-	available_textures = {
-		total = 3,
-		texture_1 = {"lottmobs_orc.png"},
-		texture_2 = {"lottmobs_orc_1.png"},
-		texture_3 = {"lottmobs_orc_2.png"},
+	textures = {
+		{"lottmobs_orc.png"},
+		{"lottmobs_orc_1.png"},
+		{"lottmobs_orc_2.png"},
 	},
 	makes_footstep_sound = true,
 	view_range = 15,
@@ -667,22 +657,21 @@ lottmobs:register_mob("lottmobs:orc", {
 	group_attack = true,
 	step = 1,
 })
-lottmobs:register_spawn("lottmobs:orc", {"lottmapgen:mordor_stone"}, 20, -1, 500, 3, 31000)
-lottmobs:register_spawn("lottmobs:orc", {"lottmapgen:angsnowblock"}, 20, -1, 6000, 5, 31000)
+mobs:register_spawn("lottmobs:orc", {"lottmapgen:mordor_stone"}, 20, -1, 500, 3, 31000)
+mobs:register_spawn("lottmobs:orc", {"lottmapgen:angsnowblock"}, 20, -1, 6000, 5, 31000)
 
-lottmobs:register_mob("lottmobs:uruk_hai", {
+mobs:register_mob("lottmobs:uruk_hai", {
 	type = "monster",
 	hp_min = 25,
 	hp_max = 40,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
 	mesh = "human_model.x",
-	available_textures = {
-		total = 4,
-		texture_1 = {"lottmobs_uruk_hai.png"},
-		texture_2 = {"lottmobs_uruk_hai_1.png"},
-		texture_3 = {"lottmobs_uruk_hai_2.png"},
-		texture_4 = {"lottmobs_uruk_hai_3.png"},
+	textures = {
+		{"lottmobs_uruk_hai.png"},
+		{"lottmobs_uruk_hai_1.png"},
+		{"lottmobs_uruk_hai_2.png"},
+		{"lottmobs_uruk_hai_3.png"},
 	},
 	makes_footstep_sound = true,
 	view_range = 15,
@@ -726,19 +715,18 @@ lottmobs:register_mob("lottmobs:uruk_hai", {
 	group_attack = true,
 	step = 1,
 })
-lottmobs:register_spawn("lottmobs:uruk_hai", {"lottmapgen:mordor_stone"}, 15, -1, 2000, 3, 31000)
-lottmobs:register_spawn("lottmobs:uruk_hai", {"lottmapgen:fangorn_grass"}, 2, -1, 2000, 3, 31000)
+mobs:register_spawn("lottmobs:uruk_hai", {"lottmapgen:mordor_stone"}, 15, -1, 2000, 3, 31000)
+mobs:register_spawn("lottmobs:uruk_hai", {"lottmapgen:fangorn_grass"}, 2, -1, 2000, 3, 31000)
 
-lottmobs:register_mob("lottmobs:battle_troll", {
+mobs:register_mob("lottmobs:battle_troll", {
 	type = "monster",
 	hp_min = 45,
 	hp_max = 60,
 	collisionbox = {-0.7, -0.01, -0.7, 0.7, 2.6, 0.7},
 	visual = "mesh",
 	mesh = "troll_model.x",
-	available_textures = {
-		total = 1,
-		texture_1 = {"lottmobs_battle_troll.png"},
+	textures = {
+		{"lottmobs_battle_troll.png"},
 	},
 	visual_size = {x=8, y=8},
 	makes_footstep_sound = true,
@@ -781,18 +769,17 @@ lottmobs:register_mob("lottmobs:battle_troll", {
 	group_attack = true,
 	step = 1,
 })
-lottmobs:register_spawn("lottmobs:battle_troll", {"lottmapgen:mordor_stone"}, 10, -1, 10000, 5, 31000)
+mobs:register_spawn("lottmobs:battle_troll", {"lottmapgen:mordor_stone"}, 10, -1, 10000, 5, 31000)
 
-lottmobs:register_mob("lottmobs:half_troll", {
+mobs:register_mob("lottmobs:half_troll", {
 	type = "monster",
 	hp_min = 20,
 	hp_max = 30,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
 	mesh = "human_model.x",
-	available_textures = {
-		total = 1,
-		texture_1 = {"lottmobs_half_troll.png"},
+	textures = {
+		{"lottmobs_half_troll.png"},
 	},
 	makes_footstep_sound = true,
 	view_range = 15,
@@ -836,20 +823,19 @@ lottmobs:register_mob("lottmobs:half_troll", {
 	group_attack = true,
 	step = 1,
 })
-lottmobs:register_spawn("lottmobs:half_troll", {"default:snow"}, 15, -1, 8000, 3, 31000)
-lottmobs:register_spawn("lottmobs:half_troll", {"default:snowblock"}, 15, -1, 8000, 3, 31000)
-lottmobs:register_spawn("lottmobs:half_troll", {"lottmapgen:angsnowblock"}, 20, -1, 6000, 5, 31000)
+mobs:register_spawn("lottmobs:half_troll", {"default:snow"}, 15, -1, 8000, 3, 31000)
+mobs:register_spawn("lottmobs:half_troll", {"default:snowblock"}, 15, -1, 8000, 3, 31000)
+mobs:register_spawn("lottmobs:half_troll", {"lottmapgen:angsnowblock"}, 20, -1, 6000, 5, 31000)
 
-lottmobs:register_mob("lottmobs:nazgul", {
+mobs:register_mob("lottmobs:nazgul", {
 	type = "monster",
 	hp_min = 90,
 	hp_max = 110,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
 	mesh = "ringwraith_model.x",
-	available_textures = {
-		total = 1,
-		texture_1 = {"lottmobs_nazgul.png"},
+	textures = {
+		{"lottmobs_nazgul.png"},
 	},
 	visual_size = {x=2, y=2},
 	makes_footstep_sound = true,
@@ -896,18 +882,17 @@ lottmobs:register_mob("lottmobs:nazgul", {
 	group_attack = true,
 	step = 1,
 })
-lottmobs:register_spawn("lottmobs:nazgul", {"default:stone"}, 2, -1, 20000, 3, -50)
+mobs:register_spawn("lottmobs:nazgul", {"default:stone"}, 2, -1, 20000, 3, -50)
 
-lottmobs:register_mob("lottmobs:witch_king", {
+mobs:register_mob("lottmobs:witch_king", {
 	type = "monster",
 	hp_min = 250,
 	hp_max = 350,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
 	mesh = "human_model.x",
-	available_textures = {
-		total = 1,
-		texture_1 = {"lottmobs_witch_king.png"},
+	textures = {
+		{"lottmobs_witch_king.png"},
 	},
 	makes_footstep_sound = true,
 	view_range = 15,
@@ -953,9 +938,9 @@ lottmobs:register_mob("lottmobs:witch_king", {
 	group_attack = true,
 	step = 1,
 })
-lottmobs:register_spawn("lottmobs:witch_king", {"default:stone"}, 2, -1, 40000, 10, -1000)
+mobs:register_spawn("lottmobs:witch_king", {"default:stone"}, 2, -1, 40000, 10, -1000)
 
-lottmobs:register_mob("lottmobs:balrog", {
+mobs:register_mob("lottmobs:balrog", {
 	type = "monster",
 	hp_min = 1000,
 	hp_max = 1250,
@@ -963,9 +948,8 @@ lottmobs:register_mob("lottmobs:balrog", {
 	visual_size = {x=2, y=2},
 	visual = "mesh",
 	mesh = "balrog_model.b3d",
-	available_textures = {
-		total = 1,
-		texture_1 = {"lottmobs_balrog.png"},
+	textures = {
+		{"lottmobs_balrog.png"},
 	},
 	makes_footstep_sound = true,
 	view_range = 15,
@@ -1011,18 +995,17 @@ lottmobs:register_mob("lottmobs:balrog", {
 	group_attack = true,
 	step = 1,
 })
-lottmobs:register_spawn("lottmobs:balrog", {"default:stone"}, 2, -1, 100000, 10, -10000)
+mobs:register_spawn("lottmobs:balrog", {"default:stone"}, 2, -1, 100000, 10, -10000)
 
-lottmobs:register_mob("lottmobs:dead_men", {
+mobs:register_mob("lottmobs:dead_men", {
 	type = "monster",
 	hp_min = 1,
 	hp_max = 1,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
 	mesh = "human_model.x",
-	available_textures = {
-		total = 1,
-		texture_1 = {"lottmobs_dead_men.png"},
+	textures = {
+		{"lottmobs_dead_men.png"},
 	},
 	makes_footstep_sound = true,
 	view_range = 10,
@@ -1059,21 +1042,20 @@ lottmobs:register_mob("lottmobs:dead_men", {
 	group_attack = true,
 	step = 1,
 })
-lottmobs:register_spawn("lottmobs:dead_men", {"default:mossycobble"}, 2, -1, 6000, 10, -100)
+mobs:register_spawn("lottmobs:dead_men", {"default:mossycobble"}, 2, -1, 6000, 10, -100)
 
-lottmobs:register_mob("lottmobs:troll", {
+mobs:register_mob("lottmobs:troll", {
 	type = "monster",
 	hp_min = 50,
 	hp_max = 65,
 	collisionbox = {-0.7, -0.01, -0.7, 0.7, 2.6, 0.7},
 	visual = "mesh",
 	mesh = "troll_model.x",
-	available_textures = {
-		total = 4,
-		texture_1 = {"lottmobs_troll.png"},
-		texture_2 = {"lottmobs_troll_1.png"},
-		texture_3 = {"lottmobs_troll_2.png"},
-		texture_4 = {"lottmobs_troll_3.png"},
+	textures = {
+		{"lottmobs_troll.png"},
+		{"lottmobs_troll_1.png"},
+		{"lottmobs_troll_2.png"},
+		{"lottmobs_troll_3.png"},
 	},
 	visual_size = {x=8, y=8},
 	makes_footstep_sound = true,
@@ -1115,22 +1097,21 @@ lottmobs:register_mob("lottmobs:troll", {
 	group_attack = true,
 	step = 1,
 })
-lottmobs:register_spawn("lottmobs:troll", {"default:stone"}, 2, -1, 8000, 5, -10)
-lottmobs:register_spawn("lottmobs:troll", {"default:snow"}, 2, -1, 6000, 5, 31000)
-lottmobs:register_spawn("lottmobs:troll", {"default:snowblock"}, 2, -1, 6000, 5, 31000)
-lottmobs:register_spawn("lottmobs:troll", {"lottmapgen:angsnowblock"}, 2, -1, 6000, 5, 31000)
+mobs:register_spawn("lottmobs:troll", {"default:stone"}, 2, -1, 8000, 5, -10)
+mobs:register_spawn("lottmobs:troll", {"default:snow"}, 2, -1, 6000, 5, 31000)
+mobs:register_spawn("lottmobs:troll", {"default:snowblock"}, 2, -1, 6000, 5, 31000)
+mobs:register_spawn("lottmobs:troll", {"lottmapgen:angsnowblock"}, 2, -1, 6000, 5, 31000)
 
-lottmobs:register_mob("lottmobs:dwarf", {
+mobs:register_mob("lottmobs:dwarf", {
 	type = "npc",
 	hp_min = 20,
 	hp_max = 30,
 	collisionbox = {-0.3,-.85,-0.3, 0.3,0.68,0.3},
-	available_textures = {
-		total = 4,
-		texture_1 = {"lottmobs_dwarf.png", "lottarmor_trans.png", "lottarmor_trans.png"},
-		texture_2 = {"lottmobs_dwarf_1.png", "lottarmor_trans.png", "lottarmor_trans.png"},
-		texture_3 = {"lottmobs_dwarf_2.png", "lottarmor_trans.png", "lottarmor_trans.png"},
-		texture_4 = {"lottmobs_dwarf_3.png", "lottarmor_trans.png", "lottarmor_trans.png"},
+	textures = {
+		{"lottmobs_dwarf.png", "lottarmor_trans.png", "lottarmor_trans.png"},
+		{"lottmobs_dwarf_1.png", "lottarmor_trans.png", "lottarmor_trans.png"},
+		{"lottmobs_dwarf_2.png", "lottarmor_trans.png", "lottarmor_trans.png"},
+		{"lottmobs_dwarf_3.png", "lottarmor_trans.png", "lottarmor_trans.png"},
 	},
 	visual = "mesh",
 	visual_size = {x=1.1, y=0.85},
@@ -1177,12 +1158,12 @@ lottmobs:register_mob("lottmobs:dwarf", {
 	group_attack = true,
 	step = 1,
 })
-lottmobs:register_spawn("lottmobs:dwarf", {"default:stone"}, 15, -1, 6000, 3, -10)
-lottmobs:register_spawn("lottmobs:dwarf", {"lottmapgen:ironhill_grass"}, 20, -1, 6000, 3, 31000)
+mobs:register_spawn("lottmobs:dwarf", {"default:stone"}, 15, -1, 6000, 3, -10)
+mobs:register_spawn("lottmobs:dwarf", {"lottmapgen:ironhill_grass"}, 20, -1, 6000, 3, 31000)
 
 -- Arrows
 
-lottmobs:register_arrow("lottmobs:darkball", {
+mobs:register_arrow("lottmobs:darkball", {
 	visual = "sprite",
 	visual_size = {x=1, y=1},
 	textures = {"lottmobs_darkball.png"},
@@ -1227,7 +1208,7 @@ lottmobs:register_arrow("lottmobs:darkball", {
 	end
 })
 
-lottmobs:register_arrow("lottmobs:fireslash", {
+mobs:register_arrow("lottmobs:fireslash", {
 	visual = "sprite",
 	visual_size = {x=1, y=1},
 	textures = {"lottmobs_fireslash.png"},
@@ -1254,6 +1235,12 @@ lottmobs:register_arrow("lottmobs:fireslash", {
 				end
 			end
 		end
+	end,
+	hit_mob = function(self, player)
+		player:punch(self.object, 1.0,  {
+			full_punch_interval=1.0,
+			damage_groups = {fleshy=1},
+		}, 0)
 	end,
 	hit_node = function(self, pos, node)
 		for dx=-1,1 do

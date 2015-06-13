@@ -105,7 +105,7 @@ function horse:on_step(dtime)
 		self.v = 0
 		return
 	end
-	
+
 	if math.abs(self.v) > 7 then
 		self.v = 7*get_sign(self.v)
 	end
@@ -276,7 +276,7 @@ function horsepeg:on_step(dtime)
 	if math.abs(self.v) > 7 then
 		self.v = 7*get_sign(self.v)
 	end
-	
+
 	local p = self.object:getpos()
 	p.y = p.y-0.5
 	if not is_ground(p) then
@@ -333,8 +333,8 @@ end
 
 --horse arabik
   local horseara = {
-    
-	
+
+
 	physical = true,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
 	visual = "mesh",
@@ -342,7 +342,7 @@ end
 	visual_size = {x=1,y=1},
 	mesh = "horseh1_model.x",
 	textures = {"lottmobs_horseara.png"},
-		
+
 	driver = nil,
 	v = 0,
 }
@@ -434,7 +434,7 @@ function horseara:on_step(dtime)
 				self.object:setvelocity(v)
 			end
 		end
-		
+
 	end
 	local s = get_sign(self.v)
 	self.v = self.v - 0.02*s
@@ -446,7 +446,7 @@ function horseara:on_step(dtime)
 	if math.abs(self.v) > 7 then
 		self.v = 7*get_sign(self.v)
 	end
-	
+
 	local p = self.object:getpos()
 	p.y = p.y-0.5
 	if not is_ground(p) then
@@ -600,7 +600,7 @@ function shireponyblack:on_step(dtime)
 				self.object:setvelocity(v)
 			end
 		end
-		
+
 	end
 	local s = get_sign(self.v)
 	self.v = self.v - 0.02*s
@@ -612,7 +612,7 @@ function shireponyblack:on_step(dtime)
 	if math.abs(self.v) > 5 then
 		self.v = 5*get_sign(self.v)
 	end
-	
+
 	local p = self.object:getpos()
 	p.y = p.y-0.5
 	if not is_ground(p) then
@@ -766,7 +766,7 @@ function shirepony:on_step(dtime)
 				self.object:setvelocity(v)
 			end
 		end
-		
+
 	end
 	local s = get_sign(self.v)
 	self.v = self.v - 0.02*s
@@ -778,7 +778,7 @@ function shirepony:on_step(dtime)
 	if math.abs(self.v) > 5 then
 		self.v = 5*get_sign(self.v)
 	end
-	
+
 	local p = self.object:getpos()
 	p.y = p.y-0.5
 	if not is_ground(p) then
@@ -836,7 +836,7 @@ end
 minetest.register_craftitem("lottmobs:horseh1", {
 	description = "Brown Horse",
 	inventory_image = "lottmobs_horse_inventory.png",
-	
+
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.above then
 			minetest.env:add_entity(pointed_thing.above, "lottmobs:horseh1")
@@ -852,7 +852,7 @@ minetest.register_entity("lottmobs:horseh1", horse)
 minetest.register_craftitem("lottmobs:horsepegh1", {
 	description = "White Horse",
 	inventory_image = "lottmobs_horsepeg_inventory.png",
-	
+
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.above then
 			minetest.env:add_entity(pointed_thing.above, "lottmobs:horsepegh1")
@@ -868,7 +868,7 @@ minetest.register_entity("lottmobs:horsepegh1", horsepeg)
 minetest.register_craftitem("lottmobs:horsearah1", {
 	description = "Black Horse",
 	inventory_image = "lottmobs_horseara_inventory.png",
-	
+
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.above then
 			minetest.env:add_entity(pointed_thing.above, "lottmobs:horsearah1")
@@ -884,7 +884,7 @@ minetest.register_entity("lottmobs:horsearah1", horseara)
 minetest.register_craftitem("lottmobs:shireponyh1", {
 	description = "Shire Pony",
 	inventory_image = "lottmobs_shirepony_inventory.png",
-	
+
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.above then
 			minetest.env:add_entity(pointed_thing.above, "lottmobs:shireponyh1")
@@ -900,7 +900,7 @@ minetest.register_entity("lottmobs:shireponyh1", shirepony)
 minetest.register_craftitem("lottmobs:shireponyblackh1", {
 	description = "Shire Pony",
 	inventory_image = "lottmobs_shireponyblack_inventory.png",
-	
+
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.above then
 			minetest.env:add_entity(pointed_thing.above, "lottmobs:shireponyblackh1")
@@ -913,14 +913,13 @@ minetest.register_craftitem("lottmobs:shireponyblackh1", {
 })
 minetest.register_entity("lottmobs:shireponyblackh1", shireponyblack)
 
-lottmobs:register_mob("lottmobs:horse", {
+mobs:register_mob("lottmobs:horse", {
 	type = "animal",
 	hp_min = 5,
      hp_max = 7,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	available_textures = {
-		total = 1,
-		texture_1 = {"lottmobs_horse.png"},
+	textures = {
+		{"lottmobs_horse.png"},
 	},
 	visual = "mesh",
 	mesh = "horse_model.x",
@@ -964,16 +963,15 @@ lottmobs:register_mob("lottmobs:horse", {
 	step=1,
 	passive = true,
 })
-lottmobs:register_spawn("lottmobs:horse", {"lottmapgen:rohan_grass"}, 20, -1, 6000, 3, 31000)
+mobs:register_spawn("lottmobs:horse", {"lottmapgen:rohan_grass"}, 20, -1, 6000, 3, 31000)
 
-lottmobs:register_mob("lottmobs:horsepeg", {
+mobs:register_mob("lottmobs:horsepeg", {
 	type = "animal",
 	hp_min = 5,
      hp_max = 7,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	available_textures = {
-		total = 1,
-		texture_1 = {"lottmobs_horsepeg.png"},
+	textures = {
+		{"lottmobs_horsepeg.png"},
 	},
 	visual = "mesh",
 	mesh = "horse_model.x",
@@ -1017,17 +1015,16 @@ lottmobs:register_mob("lottmobs:horsepeg", {
 	step=1,
 	passive = true,
 })
-lottmobs:register_spawn("lottmobs:horsepeg", {"lottmapgen:rohan_grass"}, 20, -1, 7000, 3, 31000)
+mobs:register_spawn("lottmobs:horsepeg", {"lottmapgen:rohan_grass"}, 20, -1, 7000, 3, 31000)
 
 
-lottmobs:register_mob("lottmobs:horseara", {
+mobs:register_mob("lottmobs:horseara", {
 	type = "animal",
 	hp_min = 5,
      hp_max = 7,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	available_textures = {
-		total = 1,
-		texture_1 = {"lottmobs_horseara.png"},
+	textures = {
+		{"lottmobs_horseara.png"},
 	},
 	visual = "mesh",
 	mesh = "horse_model.x",
@@ -1071,16 +1068,15 @@ lottmobs:register_mob("lottmobs:horseara", {
 	step=1,
 	passive = true,
 })
-lottmobs:register_spawn("lottmobs:horseara", {"lottmapgen:rohan_grass"}, 20, -1, 7000, 3, 31000)
+mobs:register_spawn("lottmobs:horseara", {"lottmapgen:rohan_grass"}, 20, -1, 7000, 3, 31000)
 
-lottmobs:register_mob("lottmobs:shirepony", {
+mobs:register_mob("lottmobs:shirepony", {
 	type = "animal",
 	hp_min = 5,
      hp_max = 7,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	available_textures = {
-		total = 1,
-		texture_1 = {"lottmobs_shirepony.png"},
+	textures = {
+		{"lottmobs_shirepony.png"},
 	},
 	visual = "mesh",
 	mesh = "shirepony_model.x",
@@ -1125,16 +1121,15 @@ lottmobs:register_mob("lottmobs:shirepony", {
 	step=1,
 	passive = true,
 })
-lottmobs:register_spawn("lottmobs:shirepony", {"lottmapgen:shire_grass"}, 20, -1, 6000, 3, 31000)
+mobs:register_spawn("lottmobs:shirepony", {"lottmapgen:shire_grass"}, 20, -1, 6000, 3, 31000)
 
-lottmobs:register_mob("lottmobs:shireponyblack", {
+mobs:register_mob("lottmobs:shireponyblack", {
 	type = "animal",
 	hp_min = 5,
      hp_max = 7,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	available_textures = {
-		total = 1,
-		texture_1 = {"lottmobs_shireponyblack.png"},
+	textures = {
+		{"lottmobs_shireponyblack.png"},
 	},
 	visual = "mesh",
 	mesh = "shirepony_model.x",
@@ -1179,4 +1174,4 @@ lottmobs:register_mob("lottmobs:shireponyblack", {
 	step=1,
 	passive = true,
 })
-lottmobs:register_spawn("lottmobs:shireponyblack", {"lottmapgen:shire_grass"}, 20, -1, 9000, 3, 31000)
+mobs:register_spawn("lottmobs:shireponyblack", {"lottmapgen:shire_grass"}, 20, -1, 9000, 3, 31000)
