@@ -37,6 +37,27 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
         		{wood_name, wood_name},
         	}
         })
+		minetest.register_node("lottblocks:fence_" .. name, {
+			description = description .. " Fence",
+			drawtype = "fencelike",
+			tiles = {texture},
+			inventory_image = "lottblocks_" .. name .. "_fence.png",
+			wield_image = "lottblocks_" .. name .. "_fence.png",
+			paramtype = "light",
+			is_ground_content = false,
+			selection_box = {
+				type = "fixed",
+				fixed = {-1/7, -1/2, -1/7, 1/7, 1/2, 1/7},
+			},
+			groups = {choppy=2,flammable=2},
+		})
+		minetest.register_craft({
+			output = "lottblocks:fence_" .. name .." 6",
+			recipe = {
+				{wood_name, wood_name, wood_name,},
+				{wood_name, wood_name, wood_name,},
+			}
+		})
     end
     minetest.register_node("lottblocks:" .. name .. "_table", {
         description = description .. "Table",
