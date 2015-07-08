@@ -2,7 +2,7 @@
 
 minetest.register_node("fire:basic_flame", {
 	description = "Fire",
-	drawtype = "plantlike",
+	drawtype = "firelike",
 	tiles = {{
 		name="fire_basic_flame_animated.png",
 		animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=1},
@@ -14,11 +14,11 @@ minetest.register_node("fire:basic_flame", {
 	walkable = false,
 	buildable_to = true,
 	damage_per_second = 4,
-	
+
 	after_place_node = function(pos, placer)
 		fire.on_flame_add_at(pos)
 	end,
-	
+
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		fire.on_flame_remove_at(pos)
 	end,
@@ -189,4 +189,3 @@ minetest.register_abm({
 		end
 	end,
 })
-

@@ -64,7 +64,7 @@ minetest.register_node("default:stone_with_gold", {
 	drop = "default:gold_lump",
 	sounds = default.node_sound_stone_defaults(),
 })
-	
+
 minetest.register_node("default:stone_with_diamond", {
 	description = "Diamond Ore",
 	tiles = {"default_stone.png^default_mineral_diamond.png"},
@@ -438,8 +438,8 @@ minetest.register_node("default:bookshelf", {
 
 minetest.register_node("default:glass", {
 	description = "Glass",
-	drawtype = "glasslike",
-	tiles = {"default_glass.png"},
+	drawtype = "glasslike_framed_optional",
+	tiles = {"default_glass.png", "default_glass_detail.png"},
 	inventory_image = minetest.inventorycube("default_glass.png"),
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -722,7 +722,7 @@ minetest.register_node("default:sign_wall", {
 	end,
 })
 
-default.chest_formspec = 
+default.chest_formspec =
 	"size[8,9]"..
 	"list[current_name;main;0,0;8,4;]"..
 	"list[current_player;main;0,5;8,4;]"..
@@ -798,7 +798,7 @@ minetest.register_node("default:chest", {
 		minetest.log("action", player:get_player_name()..
 				" takes stuff from chest at "..minetest.pos_to_string(pos))
 	end,
-    	
+
   	--backwards compatibility: punch to set formspec
   	on_punch = function(pos,player)
   	    local meta = minetest.get_meta(pos)
@@ -1008,7 +1008,7 @@ minetest.register_node("default:furnace", {
 			return 0
 		end
 	end,
-    	
+
   	--backwards compatibility: punch to set formspec
   	on_punch = function(pos,player)
   	    local meta = minetest.get_meta(pos)
@@ -1119,13 +1119,13 @@ minetest.register_abm({
 		local srclist = inv:get_list("src")
 		local cooked = nil
 		local aftercooked
-		
+
 		if srclist then
 			cooked, aftercooked = minetest.get_craft_result({method = "cooking", width = 1, items = srclist})
 		end
-		
+
 		local was_active = false
-		
+
 		if meta:get_float("fuel_time") < meta:get_float("fuel_totaltime") then
 			was_active = true
 			meta:set_float("fuel_time", meta:get_float("fuel_time") + 1)
@@ -1143,7 +1143,7 @@ minetest.register_abm({
 				meta:set_string("src_time", 0)
 			end
 		end
-		
+
 		if meta:get_float("fuel_time") < meta:get_float("fuel_totaltime") then
 			local percent = math.floor(meta:get_float("fuel_time") /
 					meta:get_float("fuel_totaltime") * 100)
@@ -1158,7 +1158,7 @@ minetest.register_abm({
 		local cooked = nil
 		local fuellist = inv:get_list("fuel")
 		local srclist = inv:get_list("src")
-		
+
 		if srclist then
 			cooked = minetest.get_craft_result({method = "cooking", width = 1, items = srclist})
 		end
@@ -1184,7 +1184,7 @@ minetest.register_abm({
 
 		meta:set_string("fuel_totaltime", fuel.time)
 		meta:set_string("fuel_time", 0)
-		
+
 		inv:set_stack("fuel", 1, afterfuel.items[1])
 	end,
 })
@@ -1272,8 +1272,8 @@ minetest.register_node("default:diamondblock", {
 
 minetest.register_node("default:obsidian_glass", {
 	description = "Obsidian Glass",
-	drawtype = "glasslike",
-	tiles = {"default_obsidian_glass.png"},
+	drawtype = "glasslike_framed_optional",
+	tiles = {"default_obsidian_glass.png", "default_obsidian_glass_detail.png"},
 	paramtype = "light",
 	is_ground_content = false,
 	sunlight_propagates = true,

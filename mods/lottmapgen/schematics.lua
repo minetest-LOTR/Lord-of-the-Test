@@ -16,9 +16,13 @@ for i in ipairs(lottmapgen_list) do
 
 minetest.register_node("lottmapgen:"..build, {
         description = builddesc,
+        drawtype = "glasslike",
+        walkable = false,
         tiles = {"lottother_air.png"},
-	   is_ground_content = true,
-	   groups = {not_in_creative_inventory =1},
+        pointable = false,
+        sunlight_propagates = true,
+        is_ground_content = true,
+        groups = {not_in_creative_inventory = 1},
         on_place = function(itemstack, placer, pointed_thing)
             if pointed_thing.above then
                 local file = io.open(minetest.get_modpath("lottmapgen").."/schems/"..build..".we")
