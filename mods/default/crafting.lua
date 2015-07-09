@@ -323,7 +323,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:sandstone',
+	output = 'default:sandstone 2',
 	recipe = {
 		{'group:sand', 'group:sand'},
 		{'group:sand', 'group:sand'},
@@ -338,7 +338,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:sandstonebrick',
+	output = 'default:sandstonebrick 4',
 	recipe = {
 		{'default:sandstone', 'default:sandstone'},
 		{'default:sandstone', 'default:sandstone'},
@@ -394,7 +394,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:ladder',
+	output = 'default:ladder 7',
 	recipe = {
 		{'group:stick', '', 'group:stick'},
 		{'group:stick', 'group:stick', 'group:stick'},
@@ -442,7 +442,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:stonebrick',
+	output = 'default:stonebrick 4',
 	recipe = {
 		{'default:stone', 'default:stone'},
 		{'default:stone', 'default:stone'},
@@ -450,7 +450,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:desert_stonebrick',
+	output = 'default:desert_stonebrick 4',
 	recipe = {
 		{'default:desert_stone', 'default:desert_stone'},
 		{'default:desert_stone', 'default:desert_stone'},
@@ -477,6 +477,13 @@ minetest.register_craft({
 	type = "shapeless",
 	output = "default:bronze_ingot",
 	recipe = {"lottores:tin_ingot", "default:copper_ingot"},
+})
+
+minetest.register_craft({
+	output = "default:gravel",
+	recipe = {
+		{'default:cobble'},
+	}
 })
 
 --
@@ -537,6 +544,12 @@ minetest.register_craft({
 	type = "cooking",
 	output = "default:clay_brick",
 	recipe = "default:clay_lump",
+})
+
+minetest.register_craft({
+	type = "cooking",
+	output = "default:cobble",
+	recipe = "default:gravel",
 })
 
 --
