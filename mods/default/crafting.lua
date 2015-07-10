@@ -202,9 +202,9 @@ minetest.register_craft({
 minetest.register_craft({
 	output = 'default:chest',
 	recipe = {
-		{'group:wood', 'group:wood', 'group:wood'},
-		{'group:wood', '', 'group:wood'},
-		{'group:wood', 'group:wood', 'group:wood'},
+		{'default:wood', 'default:wood', 'default:wood'},
+		{'default:wood', '', 'default:wood'},
+		{'default:wood', 'default:wood', 'default:wood'},
 	}
 })
 

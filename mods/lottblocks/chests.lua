@@ -211,6 +211,69 @@ minetest.register_node("lottblocks:angmar_chest", {
         end
 })
 
+minetest.register_craft({
+	output = "lottblocks:hobbit_chest",
+	recipe = {
+		{"lottplants:birchwood", "lottplants:birchwood", "lottplants:birchwood"},
+		{"lottplants:birchwood", "", "lottplants:birchwood"},
+		{"lottplants:birchwood", "lottplants:birchwood", "lottplants:birchwood"},
+	}
+})
+
+minetest.register_craft({
+	output = "lottblocks:gondor_chest",
+	recipe = {
+		{"lottplants:alderwood", "lottplants:alderwood", "lottplants:alderwood"},
+		{"lottplants:alderwood", "", "lottplants:alderwood"},
+		{"lottplants:alderwood", "lottplants:alderwood", "lottplants:alderwood"},
+	}
+})
+
+minetest.register_craft({
+	output = "lottblocks:rohan_chest",
+	recipe = {
+		{"lottplants:lebethronwood", "lottplants:lebethronwood", "lottplants:lebethronwood"},
+		{"lottplants:lebethronwood", "", "lottplants:lebethronwood"},
+		{"lottplants:lebethronwood", "lottplants:lebethronwood", "lottplants:lebethronwood"},
+	}
+})
+
+minetest.register_craft({
+	output = "lottblocks:elfloth_chest",
+	recipe = {
+		{"lottplants:mallornwood", "lottplants:mallornwood", "lottplants:mallornwood"},
+		{"lottplants:mallornwood", "", "lottplants:mallornwood"},
+		{"lottplants:mallornwood", "lottplants:mallornwood", "lottplants:mallornwood"},
+	}
+})
+
+minetest.register_craft({
+	output = "lottblocks:elfmirk_chest",
+	recipe = {
+		{"default:junglewood", "default:junglewood", "default:junglewood"},
+		{"default:junglewood", "", "default:junglewood"},
+		{"default:junglewood", "default:junglewood", "default:junglewood"},
+	}
+})
+
+minetest.register_craft({
+	output = "lottblocks:mordor_chest",
+	recipe = {
+		{"lottmapgen:mordor_stone", "lottmapgen:mordor_stone", "lottmapgen:mordor_stone"},
+		{"lottmapgen:mordor_stone", "", "lottmapgen:mordor_stone"},
+		{"lottmapgen:mordor_stone", "lottmapgen:mordor_stone", "lottmapgen:mordor_stone"},
+	}
+})
+
+minetest.register_craft({
+	output = "lottblocks:angmar_chest",
+	recipe = {
+		{"lottplants:pinewood", "lottplants:pinewood", "lottplants:pinewood"},
+		{"lottplants:pinewood", "", "lottplants:pinewood"},
+		{"lottplants:pinewood", "lottplants:pinewood", "lottplants:pinewood"},
+	}
+})
+
 minetest.register_alias("lottmapgen:hobbit_chest", "lottblocks:hobbit_chest")
 minetest.register_alias("lottmapgen:gondor_chest", "lottblocks:gondor_chest")
 minetest.register_alias("lottmapgen:rohan_chest", "lottblocks:rohan_chest")
