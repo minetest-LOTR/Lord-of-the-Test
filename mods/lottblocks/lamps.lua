@@ -121,8 +121,6 @@ function lottblocks.register_lamp(material, description, inv_texture, post1_text
 	       	},
 		},
 		paramtype = "light",
-		paramtype2 = "wallmounted",
-		legacy_wallmounted = true,
 		drawtype = "nodebox",
 		light_source = 14,
 		node_box = {

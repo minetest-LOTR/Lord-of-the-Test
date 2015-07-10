@@ -4,6 +4,7 @@ dofile(minetest.get_modpath("lottblocks").."/wooden_stuff.lua") --This has trapd
 dofile(minetest.get_modpath("lottblocks").."/beds.lua") --This has beds.
 dofile(minetest.get_modpath("lottblocks").."/music.lua") --This has musical insturments, and the music they play.
 dofile(minetest.get_modpath("lottblocks").."/decoration.lua") --This has various decoration nodes, by catninja.
+dofile(minetest.get_modpath("lottblocks").."/chests.lua")
 dofile(minetest.get_modpath("lottblocks").."/lamps.lua")
 
 minetest.register_node("lottblocks:snowycobble", {
