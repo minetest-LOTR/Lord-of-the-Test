@@ -1,13 +1,3 @@
-local function chest_formspec(image)
-	local formspec =
-		"size[8,9]"..
-		"list[current_name;main;0,0;8,4;]"..
-		"list[current_player;main;0,5;8,4;]"..
-    	"background[-0.5,-0.65;9,10.35;"..image.."]"..
-    	"listcolors[#606060AA;#888;#141318;#30434C;#FFF]"
-	return formspec
-end
-
 minetest.register_node("lottblocks:hobbit_chest", {
         description = "Hobbit Chest",
         tiles = {"lottblocks_hobbit_chest_top.png", "lottblocks_hobbit_chest_top.png", "lottblocks_hobbit_chest_side.png",
@@ -20,21 +10,31 @@ minetest.register_node("lottblocks:hobbit_chest", {
         on_construct = function(pos, node, active_object_count, active_object_count_wider)
                 local meta = minetest.get_meta(pos)
                 meta:set_string("infotext", "Hobbit Chest")
-           		meta:set_string("formspec",chest_folottblocks_rmspec("gui_hobbitbg.png"))
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
         end,
+		on_rightclick = function(pos, node, clicker)
+			local player = clicker:get_player_name()
+			if minetest.check_player_privs(player, {hobbit=true}) then
+				minetest.show_formspec(
+					player,
+					"lottblocks:hobbit_chest",
+					default.get_chest_formspec(pos, "gui_hobbitbg.png")
+				)
+			else
+				minetest.chat_send_player(player, "Only Hobbits can open this kind of chest!")
+			end
+		end,
     	can_dig = function(pos,player)
     		local meta = minetest.get_meta(pos)
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
     	end,
-    	--backwards compatibility: punch to set formspec
-    	on_punch = function(pos,player)
+		on_punch = function(pos,player)
     	    local meta = minetest.get_meta(pos)
             meta:set_string("infotext", "Hobbit Chest")
-           	meta:set_string("formspec",chest_formspec("gui_hobbitbg.png"))
-        end
+			meta:set_string("formspec", "")
+        end,
 })
 
 minetest.register_node("lottblocks:gondor_chest", {
@@ -49,21 +49,31 @@ minetest.register_node("lottblocks:gondor_chest", {
         on_construct = function(pos, node, active_object_count, active_object_count_wider)
                 local meta = minetest.get_meta(pos)
                 meta:set_string("infotext", "Gondorian Chest")
-           		meta:set_string("formspec",chest_formspec("gui_gondorbg.png"))
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
         end,
+		on_rightclick = function(pos, node, clicker)
+			local player = clicker:get_player_name()
+			if minetest.check_player_privs(player, {man=true}) then
+				minetest.show_formspec(
+					player,
+					"lottblocks:gondor_chest",
+					default.get_chest_formspec(pos, "gui_gondorbg.png")
+				)
+			else
+				minetest.chat_send_player(player, "Only Humans can open this kind of chest!")
+			end
+		end,
     	can_dig = function(pos,player)
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
     	end,
-    	--backwards compatibility: punch to set formspec
-    	on_punch = function(pos,player)
+		on_punch = function(pos,player)
     	    local meta = minetest.get_meta(pos)
             meta:set_string("infotext", "Gondorian Chest")
-           	meta:set_string("formspec",chest_formspec("gui_gondorbg.png"))
-        end
+			meta:set_string("formspec", "")
+        end,
 })
 
 minetest.register_node("lottblocks:rohan_chest", {
@@ -78,21 +88,31 @@ minetest.register_node("lottblocks:rohan_chest", {
         on_construct = function(pos, node, active_object_count, active_object_count_wider)
                 local meta = minetest.get_meta(pos)
                 meta:set_string("infotext", "Rohirrim Chest")
-           		meta:set_string("formspec",chest_formspec("gui_rohanbg.png"))
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
         end,
+		on_rightclick = function(pos, node, clicker)
+			local player = clicker:get_player_name()
+			if minetest.check_player_privs(player, {man=true}) then
+				minetest.show_formspec(
+					player,
+					"lottblocks:rohan_chest",
+					default.get_chest_formspec(pos, "gui_rohanbg.png")
+				)
+			else
+				minetest.chat_send_player(player, "Only Humans can open this kind of chest!")
+			end
+		end,
     	can_dig = function(pos,player)
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
     	end,
-    	--backwards compatibility: punch to set formspec
-    	on_punch = function(pos,player)
+		on_punch = function(pos,player)
     	    local meta = minetest.get_meta(pos)
             meta:set_string("infotext", "Rohirrim Chest")
-           	meta:set_string("formspec",chest_formspec("gui_rohanbg.png"))
-        end
+			meta:set_string("formspec", "")
+        end,
 })
 
 minetest.register_node("lottblocks:elfloth_chest", {
@@ -107,21 +127,31 @@ minetest.register_node("lottblocks:elfloth_chest", {
         on_construct = function(pos, node, active_object_count, active_object_count_wider)
                 local meta = minetest.get_meta(pos)
                 meta:set_string("infotext", "Elven (Lorien) Chest")
-           		meta:set_string("formspec",chest_formspec("gui_elfbg.png"))
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
         end,
+		on_rightclick = function(pos, node, clicker)
+			local player = clicker:get_player_name()
+			if minetest.check_player_privs(player, {elf=true}) then
+				minetest.show_formspec(
+					player,
+					"lottblocks:elfloth_chest",
+					default.get_chest_formspec(pos, "gui_elfbg.png")
+				)
+			else
+				minetest.chat_send_player(player, "Only Elves can open this kind of chest!")
+			end
+		end,
     	can_dig = function(pos,player)
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
     	end,
-    	--backwards compatibility: punch to set formspec
-    	on_punch = function(pos,player)
+		on_punch = function(pos,player)
     	    local meta = minetest.get_meta(pos)
             meta:set_string("infotext", "Elven (Lorien) Chest")
-           	meta:set_string("formspec",chest_formspec("gui_elfbg.png"))
-        end
+			meta:set_string("formspec", "")
+        end,
 })
 
 minetest.register_node("lottblocks:elfmirk_chest", {
@@ -136,21 +166,31 @@ minetest.register_node("lottblocks:elfmirk_chest", {
         on_construct = function(pos, node, active_object_count, active_object_count_wider)
                 local meta = minetest.get_meta(pos)
                 meta:set_string("infotext", "Elven (Mirkwood) Chest")
-           		meta:set_string("formspec",chest_formspec("gui_elfbg.png"))
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
         end,
+		on_rightclick = function(pos, node, clicker)
+			local player = clicker:get_player_name()
+			if minetest.check_player_privs(player, {elf=true}) then
+				minetest.show_formspec(
+					player,
+					"lottblocks:elfmirk_chest",
+					default.get_chest_formspec(pos, "gui_elfbg.png")
+				)
+			else
+				minetest.chat_send_player(player, "Only Elves can open this kind of chest!")
+			end
+		end,
     	can_dig = function(pos,player)
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
     	end,
-    	--backwards compatibility: punch to set formspec
-    	on_punch = function(pos,player)
+		on_punch = function(pos,player)
     	    local meta = minetest.get_meta(pos)
             meta:set_string("infotext", "Elven (Mirkwood) Chest")
-           	meta:set_string("formspec",chest_formspec("gui_elfbg.png"))
-        end
+			meta:set_string("formspec", "")
+        end,
 })
 
 minetest.register_node("lottblocks:mordor_chest", {
@@ -165,21 +205,31 @@ minetest.register_node("lottblocks:mordor_chest", {
         on_construct = function(pos, node, active_object_count, active_object_count_wider)
                 local meta = minetest.get_meta(pos)
                 meta:set_string("infotext", "Mordor Chest")
-           		meta:set_string("formspec",chest_formspec("gui_mordorbg.png"))
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
         end,
+		on_rightclick = function(pos, node, clicker)
+			local player = clicker:get_player_name()
+			if minetest.check_player_privs(player, {orc=true}) then
+				minetest.show_formspec(
+					player,
+					"lottblocks:mordor_chest",
+					default.get_chest_formspec(pos, "gui_mordorbg.png")
+				)
+			else
+				minetest.chat_send_player(player, "Only Orcs can open this kind of chest!")
+			end
+		end,
     	can_dig = function(pos,player)
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
     		return inv:is_empty("main")
     	end,
-    	--backwards compatibility: punch to set formspec
-    	on_punch = function(pos,player)
+		on_punch = function(pos,player)
     	    local meta = minetest.get_meta(pos)
             meta:set_string("infotext", "Mordor Chest")
-           	meta:set_string("formspec",chest_formspec("gui_mordorbg.png"))
-        end
+			meta:set_string("formspec", "")
+        end,
 })
 
 minetest.register_node("lottblocks:angmar_chest", {
@@ -194,10 +244,21 @@ minetest.register_node("lottblocks:angmar_chest", {
         on_construct = function(pos, node, active_object_count, active_object_count_wider)
                 local meta = minetest.get_meta(pos)
                 meta:set_string("infotext", "Angmar Chest")
-           		meta:set_string("formspec",chest_formspec("gui_angmarbg.png"))
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
         end,
+		on_rightclick = function(pos, node, clicker)
+			local player = clicker:get_player_name()
+			if minetest.check_player_privs(player, {orc=true}) then
+				minetest.show_formspec(
+					player,
+					"lottblocks:angmar_chest",
+					default.get_chest_formspec(pos, "gui_angmarbg.png")
+				)
+			else
+				minetest.chat_send_player(player, "Only Orcs can open this kind of chest!")
+			end
+		end,
     	can_dig = function(pos,player)
     		local meta = minetest.get_meta(pos);
     		local inv = meta:get_inventory()
@@ -207,8 +268,8 @@ minetest.register_node("lottblocks:angmar_chest", {
     	on_punch = function(pos,player)
     	    local meta = minetest.get_meta(pos)
             meta:set_string("infotext", "Angmar Chest")
-           	meta:set_string("formspec",chest_formspec("gui_angmarbg.png"))
-        end
+			meta:set_string("formspec", "")
+        end,
 })
 
 minetest.register_craft({
