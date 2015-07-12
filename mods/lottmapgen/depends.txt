@@ -4,3 +4,4 @@ lottfarming
 lottores
 worldedit
 lottother
+areas?
