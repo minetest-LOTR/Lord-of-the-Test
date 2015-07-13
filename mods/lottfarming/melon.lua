@@ -2,7 +2,7 @@ minetest.register_craftitem("lottfarming:melon_seed", {
 	description = "Melon Seed",
 	inventory_image = "lottfarming_melon_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		return place_seed(itemstack, placer, pointed_thing, "lottfarming:melon_1")
+		return place_seed(itemstack, placer, pointed_thing, "lottfarming:melon_3")
 	end,
 })
 
@@ -64,15 +64,9 @@ minetest.register_node("lottfarming:melon_3", {
 	},
 	groups = {choppy=2, oddly_breakable_by_hand=1, flammable=2, plant=1},
 	sounds = default.node_sound_wood_defaults(),
-     on_punch = function(pos, node, puncher)
-		local tool = puncher:get_wielded_item():get_name()
-		if tool and string.match(tool, "sword") then
-			node.name = "lottspecial:jackomelon"
-			minetest.set_node(pos, node)
-		end
-	end
 })
 
+minetest.register_alias("lottfarming:melon_slice", "lottfarming:melon")
 minetest.register_craftitem("lottfarming:melon", {
 	description = "Melon",
 	inventory_image = "lottfarming_melon.png",

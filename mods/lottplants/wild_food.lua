@@ -118,12 +118,12 @@ minetest.register_node("lottplants:melon_wild", {
 	tiles = {"lottfarming_melon_top.png", "lottfarming_melon_top.png", "lottfarming_melon_side.png", "lottfarming_melon_side.png", "lottfarming_melon_side.png", "lottfarming_melon_side.png"},
 	sunlight_propagates = true,
 	paramtype = "light",
-drop = {
+	drop = {
 		max_items = 3,
 		items = {
-			{ items = {'lottfarming:melon_slice 18'} },
-			{ items = {'lottfarming:melon_slice 9'}, rarity = 5},
-			{ items = {'lottfarming:melon_slice 9'}, rarity = 10}
+			{ items = {'lottfarming:melon 3'} },
+			{ items = {'lottfarming:melon 6'}, rarity = 3},
+			{ items = {'lottfarming:melon 6'}, rarity = 8}
 		}
 	},
 	walkable = false,
@@ -182,7 +182,7 @@ minetest.register_node("lottplants:pipeweed_wild", {
 			{ items = {'lottfarming:pipeweed'}, rarity = 5},
 			{ items = {'lottfarming:pipeweed'}, rarity = 10}
 		}
-	},	
+	},
 	walkable = false,
 	buildable_to = true,
 	groups = {snappy=3,flammable=2,flora=1,attached_node=1},
