@@ -1,4 +1,9 @@
+lottmobs = {}
+
 dofile(minetest.get_modpath("lottmobs").."/horse.lua")
+dofile(minetest.get_modpath("lottmobs").."/trader_goods.lua")
+dofile(minetest.get_modpath("lottmobs").."/trader.lua")
+dofile(minetest.get_modpath("lottmobs").."/special_mobs.lua")
 -- Mobs
 
 mobs:register_mob("lottmobs:elf", {
