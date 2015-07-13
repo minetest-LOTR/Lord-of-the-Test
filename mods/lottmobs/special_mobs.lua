@@ -45,7 +45,7 @@ mobs:register_mob("lottmobs:elf_trader", {
 	group_attack = true,
 	step = 1,
 	on_rightclick = function(self, clicker)
-		lottmobs_trader(self, clicker, entity, lottmobs.elf)
+		lottmobs_trader(self, clicker, entity, lottmobs.elf, "gui_elfbg.png")
 	end,
 })
 mobs:register_spawn("lottmobs:elf_trader", {"lottmapgen:lorien_grass"}, 20, 0, 30000, 3, 31000)
@@ -97,10 +97,11 @@ mobs:register_mob("lottmobs:human_trader", {
 	group_attack = true,
 	step = 1,
 	on_rightclick = function(self, clicker)
-		lottmobs_trader(self, clicker, entity, lottmobs.human)
+		lottmobs_trader(self, clicker, entity, lottmobs.human, "gui_gondorbg.png")
 	end,
 })
-mobs:register_spawn("lottmobs:rohan_guard", {"lottmapgen:rohan_grass"}, 20, -1, 6000, 3, 31000)
+mobs:register_spawn("lottmobs:human_trader", {"lottmapgen:rohan_grass"}, 20, -1, 30000, 3, 31000)
+mobs:register_spawn("lottmobs:human_trader", {"lottmapgen:gondor_grass"}, 20, -1, 30000, 3, 31000)
 
 mobs:register_mob("lottmobs:hobbit_trader", {
 	type = "animal",
@@ -140,10 +141,10 @@ mobs:register_mob("lottmobs:hobbit_trader", {
 	sounds = {
 	},
 	on_rightclick = function(self, clicker)
-		lottmobs_trader(self, clicker, entity, lottmobs.hobbit)
+		lottmobs_trader(self, clicker, entity, lottmobs.hobbit, "gui_hobbitbg.png")
 	end,
 })
-mobs:register_spawn("lottmobs:hobbit", {"lottmapgen:shire_grass"}, 20, -1, 6000, 3, 31000)
+mobs:register_spawn("lottmobs:hobbit_trader", {"lottmapgen:shire_grass"}, 20, -1, 30000, 3, 31000)
 
 mobs:register_mob("lottmobs:dwarf_trader", {
 	type = "npc",
@@ -198,7 +199,7 @@ mobs:register_mob("lottmobs:dwarf_trader", {
 	group_attack = true,
 	step = 1,
 	on_rightclick = function(self, clicker)
-		lottmobs_trader(self, clicker, entity, lottmobs.dwarf)
+		lottmobs_trader(self, clicker, entity, lottmobs.dwarf, "gui_angmarbg.png")
 	end,
 })
-mobs:register_spawn("lottmobs:dwarf", {"lottmapgen:ironhill_grass"}, 20, -1, 6000, 3, 31000)
+mobs:register_spawn("lottmobs:dwarf_trader", {"lottmapgen:ironhill_grass"}, 20, -1, 30000, 3, 31000)

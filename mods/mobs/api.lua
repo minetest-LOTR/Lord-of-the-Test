@@ -840,6 +840,7 @@ function mobs:register_mob(name, def)
 			self.object:set_armor_groups({fleshy=self.armor})
 			self.object:setacceleration({x=0, y= self.fall_speed, z=0})
 			self.id = (math.random(1, 1000) * math.random(1, 10000)) .. self.name .. (math.random(1, 1000) ^ 2)
+			self.name = nil
 			self.state = "stand"
 			self.object:setvelocity({x=0, y=self.object:getvelocity().y, z=0})
 			self.old_y = self.object:getpos().y
@@ -871,6 +872,9 @@ function mobs:register_mob(name, def)
 					end
 					if tmp.id then
 						self.id = tmp.id
+					end
+					if tmp.name then
+						self.name = tmp.name
 					end
 					if tmp.mesh then
 						self.mesh = tmp.mesh
@@ -931,6 +935,7 @@ function mobs:register_mob(name, def)
 				mesh = mesh,
 				textures = textures,
 				id = self.id,
+				name = self.name,
 				visual_size = vis_size,
 				base_texture = self.base_texture,
 				collisionbox = colbox,

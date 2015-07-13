@@ -147,7 +147,7 @@ function lottmobs.face_pos(self,pos)
 end
 ----
 
-function lottmobs_trader(self, clicker, entity, race)
+function lottmobs_trader(self, clicker, entity, race, image)
 	lottmobs.face_pos(self, clicker:getpos())
 	local player = clicker:get_player_name()
 	local unique_entity_id = self.id
@@ -192,7 +192,7 @@ function lottmobs_trader(self, clicker, entity, race)
 		on_take = lottmobs.on_take
 	}
 	if is_inventory == nil then
-		lottmobs.name = tostring(race.names[math.random(1,#race.names)])
+		self.name = tostring(race.names[math.random(1,#race.names)])
 		lottmobs.trader_inventory = minetest.create_detached_inventory(unique_entity_id, move_put_take)
 		lottmobs.trader_inventory.set_size(lottmobs.trader_inventory,"goods",15)
 		lottmobs.trader_inventory.set_size(lottmobs.trader_inventory,"takeaway",1)
@@ -201,11 +201,11 @@ function lottmobs_trader(self, clicker, entity, race)
 		lottmobs.trader_inventory.set_size(lottmobs.trader_inventory,"payment",1)
 		lottmobs.add_goods(entity, race)
 	end
-	minetest.chat_send_player(player, "[NPC] <Trader " .. lottmobs.name .. "> Hello, " .. player .. ", have a look at my wares.")
+	minetest.chat_send_player(player, "[NPC] <Trader " .. self.name .. "> Hello, " .. player .. ", have a look at my wares.")
 	minetest.show_formspec(player, "trade",
 		"size[8,10;]" ..
-		 "background[5,5;1,1;gui_elfbg.png;true]" ..
-		"label[0,0;Trader " .. lottmobs.name .. "'s stock:]" ..
+		 "background[5,5;1,1;" .. image .. ";true]" ..
+		"label[0,0;Trader " .. self.name .. "'s stock:]" ..
 		"list[detached:" .. unique_entity_id .. ";goods;.5,.5;3,5;]" ..
 		"label[4.5,0.5;Selection]" ..
 		"list[detached:" .. unique_entity_id .. ";selection;4.5,1;5.5,2;]" ..
