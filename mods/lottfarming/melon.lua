@@ -2,7 +2,7 @@ minetest.register_craftitem("lottfarming:melon_seed", {
 	description = "Melon Seed",
 	inventory_image = "lottfarming_melon_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		return place_seed(itemstack, placer, pointed_thing, "lottfarming:melon_3")
+		return place_seed(itemstack, placer, pointed_thing, "lottfarming:melon_1")
 	end,
 })
 
