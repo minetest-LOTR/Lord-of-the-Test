@@ -1,3 +1,19 @@
+minetest.register_tool("lottblocks:lockpick", {
+    description = "Lockpick",
+    inventory_image = "lottblocks_steel_lockpick.png", --Made by HeroOfTheWinds
+        --https://github.com/HeroOfTheWinds/lockpicks/blob/master/textures/steel_lockpick.png
+    max_stack = 1,
+})
+
+minetest.register_craft({
+	output = "lottblocks:lockpick",
+	recipe = {
+		{"", "default:steel_ingot", "default:steel_ingot"},
+		{"", "default:steel_ingot", ""},
+		{"", "group:stick", ""}
+	}
+})
+
 minetest.register_node("lottblocks:hobbit_chest", {
         description = "Hobbit Chest",
         tiles = {"lottblocks_hobbit_chest_top.png", "lottblocks_hobbit_chest_top.png", "lottblocks_hobbit_chest_side.png",
@@ -13,14 +29,23 @@ minetest.register_node("lottblocks:hobbit_chest", {
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
         end,
-		on_rightclick = function(pos, node, clicker)
+		on_rightclick = function(pos, node, clicker, itemstack)
 			local player = clicker:get_player_name()
+            local item = itemstack:get_name()
 			if minetest.check_player_privs(player, {hobbit=true}) then
 				minetest.show_formspec(
-					player,
-					"lottblocks:hobbit_chest",
-					default.get_chest_formspec(pos, "gui_hobbitbg.png")
+					player, "lottblocks:hobbit_chest", default.get_chest_formspec(pos, "gui_hobbitbg.png")
 				)
+            elseif item == "lottblocks:lockpick" then
+                if math.random(1, 4) ~= 3 then
+                    itemstack:add_wear(65535/20)
+                    minetest.chat_send_player(player, "Lockpick failed")
+                else
+                    itemstack:add_wear(65535/18)
+                    minetest.show_formspec(
+    					player, "lottblocks:hobbit_chest", default.get_chest_formspec(pos, "gui_hobbitbg.png")
+    				)
+                end
 			else
 				minetest.chat_send_player(player, "Only Hobbits can open this kind of chest!")
 			end
@@ -52,14 +77,25 @@ minetest.register_node("lottblocks:gondor_chest", {
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
         end,
-		on_rightclick = function(pos, node, clicker)
+		on_rightclick = function(pos, node, clicker, itemstack)
 			local player = clicker:get_player_name()
+            local item = itemstack:get_name()
 			if minetest.check_player_privs(player, {man=true}) then
 				minetest.show_formspec(
 					player,
 					"lottblocks:gondor_chest",
 					default.get_chest_formspec(pos, "gui_gondorbg.png")
 				)
+            elseif item == "lottblocks:lockpick" then
+                if math.random(1, 4) ~= 3 then
+                    itemstack:add_wear(65535/20)
+                    minetest.chat_send_player(player, "Lockpick failed")
+                else
+                    itemstack:add_wear(65535/18)
+                    minetest.show_formspec(
+        				player, "lottblocks:gondor_chest", default.get_chest_formspec(pos, "gui_gondorbg.png")
+        			)
+                end
 			else
 				minetest.chat_send_player(player, "Only Humans can open this kind of chest!")
 			end
@@ -91,14 +127,25 @@ minetest.register_node("lottblocks:rohan_chest", {
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
         end,
-		on_rightclick = function(pos, node, clicker)
+		on_rightclick = function(pos, node, clicker, itemstack)
 			local player = clicker:get_player_name()
+            local item = itemstack:get_name()
 			if minetest.check_player_privs(player, {man=true}) then
 				minetest.show_formspec(
 					player,
 					"lottblocks:rohan_chest",
 					default.get_chest_formspec(pos, "gui_rohanbg.png")
 				)
+            elseif item == "lottblocks:lockpick" then
+                if math.random(1, 4) ~= 3 then
+                    itemstack:add_wear(65535/20)
+                    minetest.chat_send_player(player, "Lockpick failed")
+                else
+                    itemstack:add_wear(65535/18)
+                    minetest.show_formspec(
+        				player, "lottblocks:rohan_chest", default.get_chest_formspec(pos, "gui_rohanbg.png")
+        			)
+                end
 			else
 				minetest.chat_send_player(player, "Only Humans can open this kind of chest!")
 			end
@@ -130,14 +177,25 @@ minetest.register_node("lottblocks:elfloth_chest", {
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
         end,
-		on_rightclick = function(pos, node, clicker)
+		on_rightclick = function(pos, node, clicker, itemstack)
 			local player = clicker:get_player_name()
+            local item = itemstack:get_name()
 			if minetest.check_player_privs(player, {elf=true}) then
 				minetest.show_formspec(
 					player,
 					"lottblocks:elfloth_chest",
 					default.get_chest_formspec(pos, "gui_elfbg.png")
 				)
+            elseif item == "lottblocks:lockpick" then
+                if math.random(1, 4) ~= 3 then
+                    itemstack:add_wear(65535/20)
+                    minetest.chat_send_player(player, "Lockpick failed")
+                else
+                    itemstack:add_wear(65535/18)
+                    minetest.show_formspec(
+                        player, "lottblocks:elfloth_chest", default.get_chest_formspec(pos, "gui_elfbg.png")
+                    )
+                end
 			else
 				minetest.chat_send_player(player, "Only Elves can open this kind of chest!")
 			end
@@ -169,14 +227,25 @@ minetest.register_node("lottblocks:elfmirk_chest", {
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
         end,
-		on_rightclick = function(pos, node, clicker)
+		on_rightclick = function(pos, node, clicker, itemstack)
 			local player = clicker:get_player_name()
+            local item = itemstack:get_name()
 			if minetest.check_player_privs(player, {elf=true}) then
 				minetest.show_formspec(
 					player,
 					"lottblocks:elfmirk_chest",
 					default.get_chest_formspec(pos, "gui_elfbg.png")
 				)
+            elseif item == "lottblocks:lockpick" then
+                if math.random(1, 4) ~= 3 then
+                    itemstack:add_wear(65535/20)
+                    minetest.chat_send_player(player, "Lockpick failed")
+                else
+                    itemstack:add_wear(65535/18)
+                    minetest.show_formspec(
+                        player, "lottblocks:elfmirk_chest", default.get_chest_formspec(pos, "gui_elfbg.png")
+                    )
+                end
 			else
 				minetest.chat_send_player(player, "Only Elves can open this kind of chest!")
 			end
@@ -208,14 +277,25 @@ minetest.register_node("lottblocks:mordor_chest", {
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
         end,
-		on_rightclick = function(pos, node, clicker)
+		on_rightclick = function(pos, node, clicker, itemstack)
 			local player = clicker:get_player_name()
+            local item = itemstack:get_name()
 			if minetest.check_player_privs(player, {orc=true}) then
 				minetest.show_formspec(
 					player,
 					"lottblocks:mordor_chest",
 					default.get_chest_formspec(pos, "gui_mordorbg.png")
 				)
+            elseif item == "lottblocks:lockpick" then
+                if math.random(1, 4) ~= 3 then
+                    itemstack:add_wear(65535/20)
+                    minetest.chat_send_player(player, "Lockpick failed")
+                else
+                    itemstack:add_wear(65535/18)
+                    minetest.show_formspec(
+        				player, "lottblocks:mordor_chest", default.get_chest_formspec(pos, "gui_mordorbg.png")
+        			)
+                end
 			else
 				minetest.chat_send_player(player, "Only Orcs can open this kind of chest!")
 			end
@@ -247,14 +327,25 @@ minetest.register_node("lottblocks:angmar_chest", {
                 local inv = meta:get_inventory()
                 inv:set_size("main", 8*4)
         end,
-		on_rightclick = function(pos, node, clicker)
+		on_rightclick = function(pos, node, clicker, itemstack)
 			local player = clicker:get_player_name()
+            local item = itemstack:get_name()
 			if minetest.check_player_privs(player, {orc=true}) then
 				minetest.show_formspec(
 					player,
 					"lottblocks:angmar_chest",
 					default.get_chest_formspec(pos, "gui_angmarbg.png")
 				)
+            elseif item == "lottblocks:lockpick" then
+                if math.random(1, 4) ~= 3 then
+                    itemstack:add_wear(65535/20)
+                    minetest.chat_send_player(player, "Lockpick failed")
+                else
+                    itemstack:add_wear(65535/18)
+                    minetest.show_formspec(
+        				player, "lottblocks:angmar_chest", default.get_chest_formspec(pos, "gui_angmarbg.png")
+        			)
+                end
 			else
 				minetest.chat_send_player(player, "Only Orcs can open this kind of chest!")
 			end
