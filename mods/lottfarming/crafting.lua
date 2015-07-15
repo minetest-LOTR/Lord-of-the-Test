@@ -125,6 +125,13 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = 'lottfarming:tomatoes_seed 2',
+	recipe = {
+		{'lottfarming:tomatoes'},
+	}
+})
+
+minetest.register_craft({
 	output = 'lottfarming:melon_seed 2',
 	recipe = {
 		{'lottfarming:melon'},
