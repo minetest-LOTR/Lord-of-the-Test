@@ -26,6 +26,24 @@ minetest.register_privilege("hobbit", {
 	description = "A hobbit player",
 	give_to_singleplayer = false,
 })
+minetest.register_privilege("cra", {
+	description = "This player needs to choose his/her race again...",
+	give_to_singleplayer = false,
+})
+
+local race_chooser = "size[8,6]"..
+"label[0.5,0.5;Please select which race you want to be:]"..
+"image[0.25,1.4;0.75,0.75;dwarf.png]"..
+"button_exit[1,1.5;2,0.5;dwarf;Dwarf]"..
+"image[4.75,1.4;0.75,0.75;elf.png]"..
+"button_exit[5.5,1.5;2,0.5;elf;Elf]"..
+"image[0.25,2.4;0.75,0.75;man.png]"..
+"button_exit[1,2.5;2,0.5;man;Man]"..
+"image[4.75,2.4;0.75,0.75;orc.png]"..
+"button_exit[5.5,2.5;2,0.5;orc;Orc]"..
+"image[0.25,3.4;0.75,0.75;hobbit.png]"..
+"button_exit[1,3.5;2,0.5;hobbit;Hobbit]"..
+"dropdown[5.5,3.4;2;gender;Male,Female;1]"
 
 local function give_stuff_dwarf(player)
 	player:get_inventory():add_item('main', 'lottores:mithrilpick')
@@ -85,66 +103,64 @@ end
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 	local privs = minetest.get_player_privs(name)
-	if minetest.get_player_privs(name).male then
-		if minetest.get_player_privs(name).dwarf then
-			armor.textures[name].skin = "dwarf_skin.png"
-			return
-		elseif minetest.get_player_privs(name).elf then
-			armor.textures[name].skin = "elf_skin.png"
-			return
-		elseif minetest.get_player_privs(name).man then
-			armor.textures[name].skin = "man_skin.png"
-			return
-		elseif minetest.get_player_privs(name).orc then
-			armor.textures[name].skin = "orc_skin.png"
-			return
-		elseif minetest.get_player_privs(name).hobbit then
-			armor.textures[name].skin = "hobbit_skin.png"
-			return
+	if not minetest.get_player_privs(name).cra then
+		if minetest.get_player_privs(name).male then
+			if minetest.get_player_privs(name).dwarf then
+				armor.textures[name].skin = "dwarf_skin.png"
+				return
+			elseif minetest.get_player_privs(name).elf then
+				armor.textures[name].skin = "elf_skin.png"
+				return
+			elseif minetest.get_player_privs(name).man then
+				armor.textures[name].skin = "man_skin.png"
+				return
+			elseif minetest.get_player_privs(name).orc then
+				armor.textures[name].skin = "orc_skin.png"
+				return
+			elseif minetest.get_player_privs(name).hobbit then
+				armor.textures[name].skin = "hobbit_skin.png"
+				return
+			end
+		elseif minetest.get_player_privs(name).female then
+			if minetest.get_player_privs(name).dwarf then
+				armor.textures[name].skin = "dwarf_skinf.png"
+				return
+			elseif minetest.get_player_privs(name).elf then
+				armor.textures[name].skin = "elf_skinf.png"
+				return
+			elseif minetest.get_player_privs(name).man then
+				armor.textures[name].skin = "man_skinf.png"
+				return
+			elseif minetest.get_player_privs(name).orc then
+				armor.textures[name].skin = "orc_skin.png"
+				return
+			elseif minetest.get_player_privs(name).hobbit then
+				armor.textures[name].skin = "hobbit_skinf.png"
+				return
+			end
+		else
+			minetest.after(1, function()
+				if minetest.is_singleplayer() then
+					minetest.show_formspec(name, "race_selector", race_chooser ..
+					"button[1,4.75;2,0.5;fast;Fast]" ..
+					"button[3,4.75;2,0.5;fly;Fly]" ..
+					"button[5,4.75;2,0.5;noclip;Noclip]" ..
+					"button[2.5,5.5;3,0.5;fast_fly_noclip;Fast, Fly & Noclip]")
+				else
+					minetest.show_formspec(name, "race_selector", race_chooser)
+				end
+			end)
 		end
-	elseif minetest.get_player_privs(name).female then
-		if minetest.get_player_privs(name).dwarf then
-			armor.textures[name].skin = "dwarf_skinf.png"
-			return
-		elseif minetest.get_player_privs(name).elf then
-			armor.textures[name].skin = "elf_skinf.png"
-			return
-		elseif minetest.get_player_privs(name).man then
-			armor.textures[name].skin = "man_skinf.png"
-			return
-		elseif minetest.get_player_privs(name).orc then
-			armor.textures[name].skin = "orc_skin.png"
-			return
-		elseif minetest.get_player_privs(name).hobbit then
-			armor.textures[name].skin = "hobbit_skinf.png"
-			return
-		end
-	else
-		minetest.show_formspec(name, "race_selector",
-			"size[8,6]"..
-			"label[0.5,0.5;Please select which race you want to be:]"..
-			"image[0.25,1.4;0.75,0.75;dwarf.png]"..
-			"button_exit[1,1.5;2,0.5;dwarf;Dwarf]"..
-			"image[4.75,1.4;0.75,0.75;elf.png]"..
-			"button_exit[5.5,1.5;2,0.5;elf;Elf]"..
-			"image[0.25,2.4;0.75,0.75;man.png]"..
-			"button_exit[1,2.5;2,0.5;man;Man]"..
-			"image[4.75,2.4;0.75,0.75;orc.png]"..
-			"button_exit[5.5,2.5;2,0.5;orc;Orc]"..
-			"image[0.25,3.4;0.75,0.75;hobbit.png]"..
-			"button_exit[1,3.5;2,0.5;hobbit;Hobbit]"..
-			"dropdown[3,4.5;2;gender;Male,Female;1]"
-		)
 	end
 end)
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname ~= "race_selector" then return end
 	local name = player:get_player_name()
+	local privs = minetest.get_player_privs(name)
 	if fields.gender == "Male" then
 		if fields.dwarf then
 			minetest.chat_send_player(name, "You are now a member of the race of dwarves, go forth into the world.")
-			local privs = minetest.get_player_privs(name)
 			privs.dwarf = true
 			privs.male = true
 			minetest.set_player_privs(name, privs)
@@ -155,7 +171,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			return
 		elseif fields.elf then
 			minetest.chat_send_player(name, "You are now a member of the race of elves, go forth into the world.")
-			local privs = minetest.get_player_privs(name)
 			privs.elf = true
 			privs.male = true
 			minetest.set_player_privs(name, privs)
@@ -166,7 +181,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			return
 		elseif fields.man then
 			minetest.chat_send_player(name, "You are now a member of the race of men, go forth into the world.")
-			local privs = minetest.get_player_privs(name)
 			privs.man = true
 			privs.male = true
 			minetest.set_player_privs(name, privs)
@@ -177,7 +191,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			return
 		elseif fields.orc then
 			minetest.chat_send_player(name, "You are now a member of the race of orcs, go forth into the world.")
-			local privs = minetest.get_player_privs(name)
 			privs.orc = true
 			privs.male = true
 			minetest.set_player_privs(name, privs)
@@ -188,7 +201,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			return
 		elseif fields.hobbit then
 			minetest.chat_send_player(name, "You are now a member of the race of hobbits, go forth into the world.")
-			local privs = minetest.get_player_privs(name)
 			privs.hobbit = true
 			privs.male = true
 			minetest.set_player_privs(name, privs)
@@ -201,7 +213,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	elseif fields.gender == "Female" then
 		if fields.dwarf then
 			minetest.chat_send_player(name, "You are now a member of the race of dwarves, go forth into the world.")
-			local privs = minetest.get_player_privs(name)
 			privs.dwarf = true
 			privs.female = true
 			minetest.set_player_privs(name, privs)
@@ -212,7 +223,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			return
 		elseif fields.elf then
 			minetest.chat_send_player(name, "You are now a member of the race of elves, go forth into the world.")
-			local privs = minetest.get_player_privs(name)
 			privs.elf = true
 			privs.female = true
 			minetest.set_player_privs(name, privs)
@@ -223,7 +233,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			return
 		elseif fields.man then
 			minetest.chat_send_player(name, "You are now a member of the race of men, go forth into the world.")
-			local privs = minetest.get_player_privs(name)
 			privs.man = true
 			privs.female = true
 			minetest.set_player_privs(name, privs)
@@ -234,7 +243,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			return
 		elseif fields.orc then
 			minetest.chat_send_player(name, "You are now a member of the race of orcs, go forth into the world.")
-			local privs = minetest.get_player_privs(name)
 			privs.orc = true
 			privs.female = true
 			minetest.set_player_privs(name, privs)
@@ -245,7 +253,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			return
 		elseif fields.hobbit then
 			minetest.chat_send_player(name, "You are now a member of the race of hobbits, go forth into the world.")
-			local privs = minetest.get_player_privs(name)
 			privs.hobbit = true
 			privs.female = true
 			minetest.set_player_privs(name, privs)
@@ -256,4 +263,23 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			return
 		end
 	end
+	if fields.fast then
+		privs.fast = true
+        minetest.set_player_privs(name, privs)
+        return
+	elseif fields.fly then
+		privs.fly = true
+        minetest.set_player_privs(name, privs)
+        return
+	elseif fields.noclip then
+		privs.noclip = true
+        minetest.set_player_privs(name, privs)
+        return
+	elseif fields.fast_fly_noclip then
+		privs.fly, privs.fast, privs.noclip = true, true, true
+        minetest.set_player_privs(name, privs)
+        return
+	end
 end)
+
+dofile(minetest.get_modpath("lottclasses").."/anti-cheat.lua")
