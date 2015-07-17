@@ -2,6 +2,7 @@
 --They may however, have fast, fly, and noclip.
 
 local cheater_on_join = "size[4,4.5]" ..
+"background[4,4.5;1,1;gui_formbg.png;true]"..
 "button_exit[0,0;2,0.5;dwarf;Dwarf]" ..
 "button_exit[2,0;2,0.5;elf;Elf]" ..
 "button_exit[0,1;2,0.5;man;Man]" ..

@@ -32,7 +32,10 @@ minetest.register_privilege("cra", {
 })
 
 local race_chooser = "size[8,6]"..
-"label[0.5,0.5;Please select which race you want to be:]"..
+"background[8,6;1,1;gui_formbg.png;true]"..
+"tablecolumns[color;text]"..
+"tableoptions[background=#00000000;highlight=#00000000;border=false]"..
+"table[0,0;6,0.5;race_message;#A52A2A,Please select the race you wish to be:;1]"..
 "image[0.25,1.4;0.75,0.75;dwarf.png]"..
 "button_exit[1,1.5;2,0.5;dwarf;Dwarf]"..
 "image[4.75,1.4;0.75,0.75;elf.png]"..
