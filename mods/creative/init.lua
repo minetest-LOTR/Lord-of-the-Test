@@ -69,7 +69,7 @@ minetest.after(0, function()
  		-- Make a stack of the right number of items
  		local stack2 = ItemStack(stack:get_name().." "..(1))
  		inv:add_item("main", stack2)
- 
+
  	end
  	creative_inventory.creative_inventory_size = #creative_list
  	--print("creative inventory size: "..dump(creative_inventory.creative_inventory_size))
@@ -82,24 +82,28 @@ creative_inventory.set_creative_formspec = function(player, start_i, pagenum)
 	local pagemax = math.floor((creative_inventory.creative_inventory_size-1) / (10*6) + 1)
 	player:set_inventory_formspec("size[12,9.5]"..
 			"list[current_player;main;0,0;8,2;]"..
-               "list[current_player;main;10,0;2,8;16]"..
+            "list[current_player;main;10,0;2,8;16]"..
 			"button[8,0;2,1;creative_switchpalette;Palette]"..
 			"button[8,1;2,1;creative_clear;Clear]"..
-               "label[4,2;Trash:]"..
-               "list[detached:creative_trash;main;5,2;1,1;]"..
+            "label[4,2;Trash:]"..
+            "list[detached:creative_trash;main;5,2;1,1;]"..
+			"listring[current_player;main]"..
+			"listring[current_player;craft]"..
+			"listring[current_player;main]"..
+			"listring[detached:creative;main]"..
 			"button[0,2.3;1,1;creative_prev;<]"..
 			"button[1,2.3;1,1;creative_next;>]"..
-               "button[10,8.5;2,1;main;Main]"..
-               "background[5,5;1,1;gui_formbg.png;true]"..
-               "label[2,2.4;"..tostring(pagenum).."/"..tostring(pagemax).."]"..
+            "button[10,8.5;2,1;main;Main]"..
+    		"background[5,5;1,1;gui_formbg.png;true]"..
+        	"label[2,2.4;"..tostring(pagenum).."/"..tostring(pagemax).."]"..
 			"list[detached:creative;main;0,3.3;10,6;"..tostring(start_i).."]")
 end
 
 minetest.register_on_joinplayer(function(player)
 	-- If in creative mode, modify player's inventory forms
 	if minetest.setting_getbool("creative_mode") then
-	creative_inventory.set_creative_formspec(player, 0, 1)
-end
+		creative_inventory.set_creative_formspec(player, 0, 1)
+	end
 end)
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
@@ -141,7 +145,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			if items[i].name and items[i].count then
 				inv:set_stack("main", (i), ItemStack(items[i].name.." "..items[i].count))
 			else
-				inv:set_stack("main", i, nil)	
+				inv:set_stack("main", i, nil)
 			end
 		end
 	end
@@ -152,11 +156,11 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if start_i >= creative_inventory.creative_inventory_size then
 		start_i = start_i - 10*6
 	end
-		
+
 	if start_i < 0 or start_i >= creative_inventory.creative_inventory_size then
 		start_i = 0
  	end
- 
+
 	creative_inventory.set_creative_formspec(player, start_i, start_i / (6*10) + 1)
 end)
 
@@ -180,11 +184,11 @@ if minetest.setting_getbool("creative_mode") then
 			damage_groups = {fleshy = 10},
 		}
 	})
-	
+
 	minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack)
 		return true
 	end)
-	
+
 	function minetest.handle_node_drops(pos, drops, digger)
 		if not digger or not digger:is_player() then
 			return
@@ -199,5 +203,5 @@ if minetest.setting_getbool("creative_mode") then
 			end
 		end
 	end
-	
+
 end

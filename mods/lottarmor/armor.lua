@@ -37,6 +37,8 @@ armor = {
 		.."image[4.05,0;4.5,1;lottarmor_crafting.png]"
 		.."list[current_player;craft;4,1;3,3;]"
 		.."list[current_player;craftpreview;7,2;1,1;]"
+		.."listring[current_player;main]"
+		.."listring[current_player;craft]"
 		.."image[7,3;1,1;lottarmor_trash.png]"
 		.."list[detached:armor_trash;main;7,3;1,1;]"
 		.."image_button[7,1;1,1;bags.png;bags;]",
@@ -167,7 +169,7 @@ armor.set_player_armor = function(self, player)
 						armor_heal = armor_heal + heal
                               local heal_plus = def.groups["armor_healing"] or 0
 						armor_healing = armor_healing + heal_plus
-						for kk,vv in ipairs(self.physics) do							
+						for kk,vv in ipairs(self.physics) do
 							local o_value = def.groups["physics_"..vv]
 							if o_value then
 								physics_o[vv] = physics_o[vv] + o_value
@@ -372,8 +374,8 @@ minetest.register_on_joinplayer(function(player)
 		local stack = player_inv:get_stack("armor", i)
 		armor_inv:set_stack("armor", i, stack)
 	end
-     
-     
+
+
      --Bags
      local bags_inv = minetest.create_detached_inventory(player:get_player_name().."_bags",{
 		on_put = function(inv, listname, index, stack, player)

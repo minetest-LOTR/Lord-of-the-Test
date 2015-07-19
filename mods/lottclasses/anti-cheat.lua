@@ -45,26 +45,31 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
         if fields.dwarf then
             privs.dwarf, privs.male, privs.cra = true, true, false
             minetest.set_player_privs(name, privs)
+            minetest.auth_reload()
 			armor.textures[name].skin = "dwarf_skin.png"
             return
         elseif fields.elf then
             privs.elf, privs.male, privs.cra = true, true, false
             minetest.set_player_privs(name, privs)
+            minetest.auth_reload()
 			armor.textures[name].skin = "elf_skin.png"
             return
         elseif fields.man then
             privs.man, privs.male, privs.cra = true, true, false
             minetest.set_player_privs(name, privs)
+            minetest.auth_reload()
             armor.textures[name].skin = "man_skin.png"
             return
         elseif fields.orc then
             privs.orc, privs.male, privs.cra = true, true, false
             minetest.set_player_privs(name, privs)
+            minetest.auth_reload()
             armor.textures[name].skin = "orc_skin.png"
             return
         elseif fields.hobbit then
             privs.hobbit, privs.male, privs.cra = true, true, false
             minetest.set_player_privs(name, privs)
+            minetest.auth_reload()
             armor.textures[name].skin = "hobbit_skin.png"
             return
         end
@@ -72,26 +77,31 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
         if fields.dwarf then
             privs.dwarf, privs.female, privs.cra = true, true, false
             minetest.set_player_privs(name, privs)
+            minetest.auth_reload()
             armor.textures[name].skin = "dwarf_skinf.png"
             return
         elseif fields.elf then
             privs.elf, privs.female, privs.cra = true, true, false
             minetest.set_player_privs(name, privs)
+            minetest.auth_reload()
             armor.textures[name].skin = "elf_skinf.png"
             return
         elseif fields.man then
             privs.man, privs.female, privs.cra = true, true, false
             minetest.set_player_privs(name, privs)
+            minetest.auth_reload()
             armor.textures[name].skin = "man_skinf.png"
             return
         elseif fields.orc then
             privs.orc, privs.female, privs.cra = true, true, false
             minetest.set_player_privs(name, privs)
+            minetest.auth_reload()
             armor.textures[name].skin = "orc_skin.png"
             return
         elseif fields.hobbit then
             privs.hobbit, privs.female, privs.cra = true, true, false
             minetest.set_player_privs(name, privs)
+            minetest.auth_reload()
             armor.textures[name].skin = "hobbit_skin.png"
             return
         end
