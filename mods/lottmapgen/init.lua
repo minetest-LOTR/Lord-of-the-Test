@@ -210,7 +210,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				end
 			end
 
-			local sandy = (mapgen_params.water_level+5) + math.random(-1, 1) -- sandline
+			local sandy = (mapgen_params.water_level+2) + math.random(-1, 1) -- sandline
 			local sandmin = (mapgen_params.water_level-15) + math.random(-5, 0) -- lowest sand
 			local open = true -- open to sky?
 			local solid = true -- solid node above?
@@ -241,20 +241,21 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						surfy = y
 						if nodiduu ~= c_air and nodiduu ~= c_water and fimadep >= 1 then -- if supported by 2 stone nodes
 							if y <= sandy and y >= sandmin then -- sand
-								if open and water and y == (mapgen_params.water_level-1) and biome > 4
-								and biome ~= 8 and math.random(PAPCHA) == 2 then -- papyrus
-									lottmapgen_papyrus(x, (mapgen_params.water_level+1), z, area, data)
-									data[vi] = c_dirt
-								elseif math.abs(n_temp) < 0.05 and y == (mapgen_params.water_level-1) then -- clay
-									data[vi] = c_clay
-								elseif math.abs(n_temp) < 0.05 and y == (mapgen_params.water_level-5) then -- salt
-									data[vi] = c_salt
-								elseif math.abs(n_temp) < 0.05 and y == (mapgen_params.water_level-20) then -- pearl
-									data[vi] = c_pearl
-								else
-									data[vi] = c_sand
+								if biome ~= 8 then
+									if open and water and y == (mapgen_params.water_level-1) and biome > 4 and math.random(PAPCHA) == 2 then -- papyrus
+										lottmapgen_papyrus(x, (mapgen_params.water_level+1), z, area, data)
+										data[vi] = c_dirt
+									elseif math.abs(n_temp) < 0.05 and y == (mapgen_params.water_level-1) then -- clay
+										data[vi] = c_clay
+									elseif math.abs(n_temp) < 0.05 and y == (mapgen_params.water_level-5) then -- salt
+										data[vi] = c_salt
+									elseif math.abs(n_temp) < 0.05 and y == (mapgen_params.water_level-20) then -- pearl
+										data[vi] = c_pearl
+									else
+										data[vi] = c_sand
+									end
 								end
-								if open and y > (mapgen_params.water_level + 4) + math.random(0, 1) and math.random(DUGCHA) == 2 then -- dune grass
+								if open and y > (mapgen_params.water_level + 4) + math.random(0, 1) and math.random(DUGCHA) == 2 and biome ~= 8 and biome ~= 7 then -- dune grass
 									local vi = area:index(x, y + 1, z)
 										data[vi] = c_dryshrub
 									end
@@ -476,7 +477,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					else -- underground
 						if nodiduu ~= c_air and nodiduu ~= c_water and surfy - y + 1 <= fimadep then
 							if y <= sandy and y >= sandmin then
-								data[vi] = c_sand
+								if biome ~= 8 then
+									data[vi] = c_sand
+								end
 							end
 						end
 					end
