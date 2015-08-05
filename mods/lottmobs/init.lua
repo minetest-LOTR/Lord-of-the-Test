@@ -295,7 +295,7 @@ mobs:register_mob("lottmobs:spider", {
 	},
 	jump = true,
 	sounds = {
-		war_cry = "mobs_eerie",
+		war_cry = "mobs_spider",
 		death = "mobs_howl",
 		attack = "mobs_oerkki_attack",
 	},

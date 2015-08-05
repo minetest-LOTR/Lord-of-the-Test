@@ -290,6 +290,14 @@ end
 
 armor.get_armor_formspec = function(self, name)
 	local formspec = armor.formspec:gsub("player_name", name)
+	if formspec                      == nil or
+	name                          == nil or
+	armor                         == nil or
+	armor.textures                == nil or
+	armor.textures [name]         == nil or
+	armor.textures [name].preview == nil then
+		return nil
+	end
 	formspec = formspec:gsub("armor_preview", armor.textures[name].preview)
 	formspec = formspec:gsub("armor_level", armor.def[name].level)
 	formspec = formspec:gsub("armor_healing", armor.def[name].heal)
@@ -298,7 +306,9 @@ end
 armor.update_inventory = function(self, player)
 	local name = player:get_player_name()
 	local formspec = armor:get_armor_formspec(name)
-	player:set_inventory_formspec(formspec)
+	if formspec ~= nil then
+		player:set_inventory_formspec(formspec)
+	end
 end
 
 -- Register Player Model
