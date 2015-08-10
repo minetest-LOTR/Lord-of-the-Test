@@ -119,3 +119,21 @@ minetest.register_alias("lottspecial:jackomelon_lighted", "lottfarming:melon")
 minetest.register_alias("lottspecial:scarecrow", "lottfarming:melon")
 minetest.register_alias("lottspecial:scarecrow_bottom", "lottfarming:melon")
 minetest.register_alias("lottspecial:scarecrow_light", "lottfarming:melon")
+
+gaurds = {"dwarven", "elven", "gondor", "orc", "rohan", "uruk_hai"}
+for i, v in pairs(gaurds) do
+    minetest.register_alias("lottnpc:" .. v .. "_guard_spawner", "default:dirt")
+    minetest.register_entity(":lottnpc:" .. v .. "_guard", {
+        physical = false,
+        on_step = function(self)
+            self.object:remove()
+        end
+    })
+end
+
+minetest.register_entity(":npcf:nametag", {
+    physical = false,
+    on_step = function(self)
+        self.object:remove()
+    end
+})
