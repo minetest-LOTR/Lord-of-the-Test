@@ -1,14 +1,3 @@
-ARMOR_INIT_DELAY = 1
-ARMOR_INIT_TIMES = 1
-ARMOR_BONES_DELAY = 1
-ARMOR_UPDATE_TIME = 1
-ARMOR_DROP = false
-ARMOR_DESTROY = false
-ARMOR_LEVEL_MULTIPLIER = 1
-ARMOR_HEAL_MULTIPLIER = 1
-
-local time = 0
-
 local get_formspec = function(player,page)
 	if page=="potions" then
 		return "size[8,5.5]"
