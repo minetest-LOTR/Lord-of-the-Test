@@ -1,12 +1,13 @@
--- Mobs Api (27th July 2015)
+-- Mobs Api (9th August 2015)
 mobs = {}
 mobs.mod = "redo"
 
 -- Initial settings check
-local damage_enabled = minetest.setting_getbool("enable_damage")
-local peaceful_only = minetest.setting_getbool("only_peaceful_mobs")
+local damage_enabled = minetest.setting_getbool("enable_damage") or true
+local peaceful_only = minetest.setting_getbool("only_peaceful_mobs") or false
 local enable_blood = minetest.setting_getbool("mobs_enable_blood") or true
 mobs.protected = tonumber(minetest.setting_get("mobs_spawn_protected")) or 0
+mobs.remove = minetest.setting_getbool("remove_far_mobs") or false
 
 function mobs:register_mob(name, def)
 	minetest.register_entity(name, {
@@ -20,7 +21,6 @@ function mobs:register_mob(name, def)
 		do_custom = def.do_custom,
 		jump_height = def.jump_height or 6,
 		jump_chance = def.jump_chance or 0,
-		--rotate = def.rotate or 0, -- 0=front, 1.5=side, 3.0=back, 4.5=side2
 		rotate = math.rad(def.rotate or 0), --  0=front, 90=side, 180=back, 270=side2
 		lifetimer = def.lifetimer or 180, -- 3 minutes
 		hp_min = def.hp_min or 5,
@@ -256,7 +256,7 @@ function mobs:register_mob(name, def)
 					-- fall damage
 					if self.fall_damage == 1
 					and self.object:getvelocity().y == 0 then
-						local d = self.old_y - self.object:getpos().y
+						local d = (self.old_y or 0) - self.object:getpos().y
 						if d > 5 then
 							self.object:set_hp(self.object:get_hp() - math.floor(d - 5))
 							effect(self.object:getpos(), 5, "tnt_smoke.png")
@@ -492,11 +492,8 @@ function mobs:register_mob(name, def)
 					self.object:set_properties({
 						textures = self.base_texture,
 						mesh = self.base_mesh,
-						visual_size = {
-							x = self.visual_size.x,
-							y = self.visual_size.y
-						},
-						collisionbox = self.collisionbox,
+						visual_size = self.base_size,
+						collisionbox = self.base_colbox,
 					})
 				end
 			end
@@ -512,13 +509,26 @@ function mobs:register_mob(name, def)
 				for i,obj in ipairs(ents) do
 					ent = obj:get_luaentity()
 
-				-- quick fix for racist sheep
-				if ent
-				and string.find(ent.name, "mobs:sheep_") then
-					ent.name = "mobs:sheep"
+				-- check for same animal with different colour
+				local canmate = false
+				if ent then
+					if ent.name == self.name then
+						canmate = true
+					else
+						local entname = string.split(ent.name,":")
+						local selfname = string.split(self.name,":")
+						if entname[1] == selfname[1] then
+							entname = string.split(entname[2],"_")
+							selfname = string.split(selfname[2],"_")
+							if entname[1] == selfname[1] then
+								canmate = true
+							end
+						end
+					end
 				end
+
 					if ent
-					and ent.name == self.name
+					and canmate == true
 					and ent.horny == true
 					and ent.hornytimer <= 40 then
 						num = num + 1
@@ -536,17 +546,21 @@ function mobs:register_mob(name, def)
 							mob:set_properties({
 								textures = textures,
 								visual_size = {
-									x = self.visual_size.x / 2,
-									y = self.visual_size.y / 2
+									x = self.base_size.x / 2,
+									y = self.base_size.y / 2
 								},
 								collisionbox = {
-									self.collisionbox[1] / 2, self.collisionbox[2] / 2, self.collisionbox[3] / 2,
-									self.collisionbox[4] / 2, self.collisionbox[5] / 2, self.collisionbox[6] / 2
+									self.base_colbox[1] / 2,
+									self.base_colbox[2] / 2,
+									self.base_colbox[3] / 2,
+									self.base_colbox[4] / 2,
+									self.base_colbox[5] / 2,
+									self.base_colbox[6] / 2
 								},
 							})
 							ent2.child = true
 							ent2.tamed = true
-							ent2.following = ent -- follow mother
+							--ent2.following = ent -- follow mother
 						end)
 						num = 0
 						break
@@ -788,8 +802,8 @@ end
 						self.timer = 0
 						self.blinktimer = 0
 					else
-					     self.timer = 0
-						 self.blinktimer = 0
+						self.timer = 0
+						self.blinktimer = 0
 						if self.get_velocity(self) <= 0.5
 						and self.object:getvelocity().y == 0 then
 							local v = self.object:getvelocity()
@@ -906,7 +920,7 @@ end
 				local vec = {x = p.x - s.x, y = p.y - s.y, z = p.z - s.z}
 				yaw = (math.atan(vec.z / vec.x) + math.pi / 2) - self.rotate
 				if p.x > s.x then
-					yaw = yaw+math.pi
+					yaw = yaw + math.pi
 				end
 				self.object:setyaw(yaw)
 				-- attack distance is 2 + half of mob width so the bigger mobs can attack (like slimes)
@@ -1029,17 +1043,19 @@ end
 				end
 			end
 
-			-- select random texture, set model
+			-- select random texture, set model and size
 			if not self.base_texture then
 				self.base_texture = def.textures[math.random(1, #def.textures)]
 				self.base_mesh = def.mesh
+				self.base_size = self.visual_size
+				self.base_colbox = self.collisionbox
 			end
 
 			-- set texture, model and size
 			local textures = self.base_texture
 			local mesh = self.base_mesh
-			local vis_size = def.visual_size
-			local colbox = def.collisionbox
+			local vis_size = self.base_size
+			local colbox = self.base_colbox
 
 			-- specific texture if gotten
 			if self.gotten == true
@@ -1056,19 +1072,19 @@ end
 			-- if object is child then set half size
 			if self.child == true then
 				vis_size = {
-					x = def.visual_size.x / 2,
-					y = def.visual_size.y / 2
+					x = self.base_size.x / 2,
+					y = self.base_size.y / 2
 				}
 				if def.child_texture then
 					textures = def.child_texture[1]
 				end
 				colbox = {
-					def.collisionbox[1] / 2,
-					def.collisionbox[2] / 2,
-					def.collisionbox[3] / 2,
-					def.collisionbox[4] / 2,
-					def.collisionbox[5] / 2,
-					def.collisionbox[6] / 2
+					self.base_colbox[1] / 2,
+					self.base_colbox[2] / 2,
+					self.base_colbox[3] / 2,
+					self.base_colbox[4] / 2,
+					self.base_colbox[5] / 2,
+					self.base_colbox[6] / 2
 				}
 			end
 
@@ -1079,6 +1095,8 @@ end
 			self.object:set_hp( self.health )
 			self.object:set_armor_groups({fleshy = self.armor})
 			self.state = "stand"
+			self.order = "stand"
+			self.following = nil
 			self.old_y = self.object:getpos().y
 			self.object:setyaw(math.random(1, 360) / 180 * math.pi)
 			self.sounds.distance = (self.sounds.distance or 10)
@@ -1092,6 +1110,15 @@ end
 		end,
 
 		get_staticdata = function(self)
+
+-- remove mob when out of range unless tamed
+if mobs.remove == true and self.remove_ok and not self.tamed then
+	print ("REMOVED", self.remove_ok, self.name)
+	self.object:remove()
+end
+self.remove_ok = true
+self.attack = nil
+
 			local tmp = {}
 			for _,stat in pairs(self) do
 				local t = type(stat)
@@ -1551,5 +1578,49 @@ function mobs:capture_mob(self, clicker, chance_hand, chance_net, chance_lasso, 
 				minetest.chat_send_player(name, "Missed!")
 			end
 		end
+	end
+end
+
+-- feeding, taming and breeding (thanks blert2112)
+function mobs:feed_tame(self, clicker, feed_count, breed)
+	local item = clicker:get_wielded_item()
+	if item:get_name() == self.follow then
+
+		-- take item
+		if not minetest.setting_getbool("creative_mode") then
+			item:take_item()
+			clicker:set_wielded_item(item)
+		end
+
+		-- make children grow quicker
+		if self.child == true then
+			self.hornytimer = self.hornytimer + 20
+			return true
+		end
+
+		-- feed and tame
+		self.food = (self.food or 0) + 1
+		if self.food == feed_count then
+			self.food = 0
+			if breed and self.hornytimer == 0 then
+				self.horny = true
+			end
+			self.gotten = false
+			self.tamed = true
+			if not self.owner or self.owner == "" then
+				self.owner = clicker:get_player_name()
+			end
+
+			-- make sound when fed so many times
+			if self.sounds.random then
+				minetest.sound_play(self.sounds.random, {
+					object = self.object,
+					max_hear_distance = self.sounds.distance
+				})
+			end
+		end
+		return true
+	else
+		return false
 	end
 end

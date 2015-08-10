@@ -540,6 +540,84 @@ mobs:register_mob("lottmobs:gondor_guard", {
 })
 mobs:register_spawn("lottmobs:gondor_guard", {"lottmapgen:gondor_grass"}, 20, -1, 6000, 3, 31000)
 
+mobs:register_mob("lottmobs:ithilien_ranger", {
+	type = "npc",
+	hp_min = 25,
+	hp_max = 40,
+	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
+	textures = {
+		{"lottmobs_ithilien_ranger.png", "lottarmor_trans.png", "lottarmor_trans.png"},
+		{"lottmobs_ithilien_ranger_1.png", "lottarmor_trans.png", "lottarmor_trans.png"},
+	},
+	visual = "mesh",
+	mesh = "lottarmor_character.x",
+	makes_footstep_sound = true,
+	view_range = 16,
+	walk_velocity = 2.5,
+	run_velocity = 4,
+	armor = 100,
+	damage = 8,
+	drops = {
+		{name = "default:steel_ingot",
+		chance = 10,
+		min = 2,
+		max = 5,},
+		{name = "lottweapons:galvorn_battleaxe",
+		chance = 150,
+		min = 1,
+		max = 1,},
+		{name = "default:steel_sword",
+		chance = 25,
+		min = 1,
+		max = 1,},
+		{name = "lottplants:whitesapling",
+		chance = 250,
+		min = 1,
+		max = 1,},
+		{name = "lottweapons:steel_battleaxe",
+		chance = 50,
+		min = 1,
+		max = 1,},
+		{name = "lottweapons:steel_warhammer",
+		chance = 50,
+		min = 1,
+		max = 1,},
+	},
+	light_resistant = true,
+	drawtype = "front",
+	water_damage = 1,
+	lava_damage = 5,
+	light_damage = 0,
+	attack_type = "dogfight",
+	follow = "lottother:narya",
+	animation = {
+		speed_normal = 15,
+		speed_run = 15,
+		stand_start = 0,
+		stand_end = 79,
+		walk_start = 168,
+		walk_end = 187,
+		run_start = 168,
+		run_end = 187,
+		punch_start = 189,
+		punch_end = 198,
+	},
+	jump = true,
+	sounds = {
+		war_cry = "mobs_die_yell",
+		death = "default_death",
+		attack = "default_punch2",
+	},
+	on_rightclick = function(self, clicker)
+		lottmobs.guard(self, clicker, "default:goldblock")
+	end,
+	attacks_monsters = true,
+	peaceful = true,
+	group_attack = true,
+	step = 1,
+})
+mobs:register_spawn("lottmobs:ithilien_ranger", {"lottmapgen:ithilien_grass"}, 20, -1, 6000, 3, 31000)
+
 mobs:register_mob("lottmobs:dunlending", {
 	type = "monster",
 	hp_min = 17,
@@ -661,17 +739,22 @@ mobs:register_mob("lottmobs:hobbit", {
 })
 mobs:register_spawn("lottmobs:hobbit", {"lottmapgen:shire_grass"}, 20, -1, 6000, 3, 31000)
 
+local orc_armor = "lottarmor_chestplate_steel.png^lottarmor_leggings_steel.png^lottarmor_helmet_steel.png^lottarmor_boots_steel.png^lottarmor_shield_steel.png^[colorize:#00000055"
+
 mobs:register_mob("lottmobs:orc", {
 	type = "monster",
 	hp_min = 15,
 	hp_max = 35,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
-	mesh = "human_model.x",
+	mesh = "lottarmor_character.x",
 	textures = {
 		{"lottmobs_orc.png"},
+		{"lottmobs_orc.png", orc_armor, "default_tool_steelsword.png"},
 		{"lottmobs_orc_1.png"},
+		{"lottmobs_orc_1.png", orc_armor, "default_tool_steelsword.png"},
 		{"lottmobs_orc_2.png"},
+		{"lottmobs_orc_2.png", orc_armor, "default_tool_steelsword.png"},
 	},
 	makes_footstep_sound = true,
 	view_range = 15,
@@ -717,6 +800,84 @@ mobs:register_mob("lottmobs:orc", {
 })
 mobs:register_spawn("lottmobs:orc", {"lottmapgen:mordor_stone"}, 20, -1, 500, 3, 31000)
 mobs:register_spawn("lottmobs:orc", {"lottmapgen:angsnowblock"}, 20, -1, 6000, 5, 31000)
+
+mobs:register_mob("lottmobs:raiding_orc", {
+	type = "monster",
+	hp_min = 15,
+	hp_max = 35,
+	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
+	visual = "mesh",
+	mesh = "lottarmor_character.x",
+	textures = {
+		{"lottmobs_orc.png", orc_armor, "default_tool_steelsword.png"},
+		{"lottmobs_orc_1.png", orc_armor, "default_tool_steelsword.png"},
+		{"lottmobs_orc_2.png", orc_armor, "default_tool_steelsword.png"},
+	},
+	makes_footstep_sound = true,
+	view_range = 15,
+	walk_velocity = 1,
+	armor = 200,
+	run_velocity = 3,
+	damage = 3,
+	drops = {
+		{name = "default:sword_steel",
+		chance = 5,
+		min = 1,
+		max = 1,},
+		{name = "lottarmor:helmet_steel",
+		chance = 12,
+		min = 1,
+		max = 1,},
+		{name = "lottarmor:chestplate_steel",
+		chance = 12,
+		min = 1,
+		max = 1,},
+		{name = "lottarmor:leggings_steel",
+		chance = 12,
+		min = 1,
+		max = 1,},
+		{name = "lottarmor:boots_steel",
+		chance = 12,
+		min = 1,
+		max = 1,},
+		{name = "lottarmor:shield_steel",
+		chance = 12,
+		min = 1,
+		max = 1,},
+	},
+	light_resistant = true,
+	drawtype = "front",
+	water_damage = 5,
+	lava_damage = 10,
+	light_damage = 2,
+	on_rightclick = nil,
+	attack_type = "dogfight",
+	animation = {
+		speed_normal = 15,
+		speed_run = 15,
+		stand_start = 0,
+		stand_end = 79,
+		walk_start = 168,
+		walk_end = 187,
+		run_start = 168,
+		run_end = 187,
+		punch_start = 189,
+		punch_end = 198,
+	},
+	jump = true,
+	sounds = {
+		war_cry = "mobs_barbarian_yell1",
+		death = "mobs_death1",
+		attack = "default_punch2",
+	},
+	attacks_monsters = true,
+	peaceful = true,
+	group_attack = true,
+	step = 1,
+})
+mobs:register_spawn("lottmobs:raiding_orc", {"lottmapgen:ithilien_grass"}, 2, -1, 4000, 5, 31000)
+mobs:register_spawn("lottmobs:raiding_orc", {"lottmapgen:rohan_grass"}, 2, -1, 4000, 5, 31000)
+mobs:register_spawn("lottmobs:raiding_orc", {"lottmapgen:gondor_grass"}, 2, -1, 4000, 5, 31000)
 
 mobs:register_mob("lottmobs:uruk_hai", {
 	type = "monster",
