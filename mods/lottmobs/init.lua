@@ -1,5 +1,43 @@
 lottmobs = {}
 
+lottmobs.guard = function(self, clicker, payment)
+	local item = clicker:get_wielded_item()
+	local name = clicker:get_player_name()
+	if item:get_name() == "lottfarming:corn"
+	or item:get_name() == "farming:bread" then
+		local hp = self.object:get_hp()
+		if hp >= self.hp_max then
+			minetest.chat_send_player(name, "NPC at full health.")
+			return
+		end
+		hp = hp + 4
+		if hp > self.hp_max then hp = self.hp_max end
+		self.object:set_hp(hp)
+		if not minetest.setting_getbool("creative_mode") then
+			item:take_item()
+			clicker:set_wielded_item(item)
+		end
+	elseif item:get_name() == payment then
+		if not minetest.setting_getbool("creative_mode") then
+			item:take_item()
+			clicker:set_wielded_item(item)
+		end
+		self.tamed = true
+		if not self.owner or self.owner == "" then
+			self.owner = clicker:get_player_name()
+		end
+		self.order = "follow"
+	else
+		if self.owner and self.owner == name then
+			if self.order == "follow" then
+				self.order = "stand"
+			else
+				self.order = "follow"
+			end
+		end
+	end
+end
+
 dofile(minetest.get_modpath("lottmobs").."/horse.lua")
 dofile(minetest.get_modpath("lottmobs").."/trader_goods.lua")
 dofile(minetest.get_modpath("lottmobs").."/trader.lua")
@@ -27,8 +65,8 @@ mobs:register_mob("lottmobs:elf", {
 	mesh = "lottarmor_character.x",
 	view_range = 20,
 	makes_footstep_sound = true,
-	walk_velocity = 1.5,
-	run_velocity = 4,
+	walk_velocity = 2.5,
+	run_velocity = 5,
 	damage = 4,
 	armor = 200,
 	drops = {
@@ -86,6 +124,9 @@ mobs:register_mob("lottmobs:elf", {
 		attack = "mobs_slash_attack",
 	},
 	attacks_monsters = true,
+	on_rightclick = function(self, clicker)
+		lottmobs.guard(self, clicker, "default:goldblock")
+	end,
 	peaceful = true,
 	group_attack = true,
 	step = 1,
@@ -318,8 +359,8 @@ mobs:register_mob("lottmobs:rohan_guard", {
 	mesh = "human_model.x",
 	makes_footstep_sound = true,
 	view_range = 12,
-	walk_velocity = 1,
-	run_velocity = 3,
+	walk_velocity = 2,
+	run_velocity = 3.5,
 	armor = 100,
 	damage = 5,
 	drops = {
@@ -389,6 +430,9 @@ mobs:register_mob("lottmobs:rohan_guard", {
 		death = "default_death",
 		attack = "default_punch2",
 	},
+	on_rightclick = function(self, clicker)
+		lottmobs.guard(self, clicker, "default:goldblock")
+	end,
 	attacks_monsters = true,
 	peaceful = true,
 	group_attack = true,
@@ -411,8 +455,8 @@ mobs:register_mob("lottmobs:gondor_guard", {
 	mesh = "human_model.x",
 	makes_footstep_sound = true,
 	view_range = 12,
-	walk_velocity = 1,
-	run_velocity = 2.5,
+	walk_velocity = 2,
+	run_velocity = 3.5,
 	armor = 100,
 	damage = 5,
 	drops = {
@@ -486,6 +530,9 @@ mobs:register_mob("lottmobs:gondor_guard", {
 		death = "default_death",
 		attack = "default_punch2",
 	},
+	on_rightclick = function(self, clicker)
+		lottmobs.guard(self, clicker, "default:goldblock")
+	end,
 	attacks_monsters = true,
 	peaceful = true,
 	group_attack = true,
@@ -628,7 +675,7 @@ mobs:register_mob("lottmobs:orc", {
 	},
 	makes_footstep_sound = true,
 	view_range = 15,
-	walk_velocity = 1,
+	walk_velocity = 1.5,
 	armor = 200,
 	run_velocity = 3,
 	damage = 2,
@@ -1125,8 +1172,8 @@ mobs:register_mob("lottmobs:dwarf", {
 	mesh = "lottarmor_character.x",
 	view_range = 10,
 	makes_footstep_sound = true,
-	walk_velocity = 1,
-	run_velocity = 2,
+	walk_velocity = 2,
+	run_velocity = 3,
 	armor = 200,
 	damage = 4,
 	drops = {
@@ -1161,6 +1208,9 @@ mobs:register_mob("lottmobs:dwarf", {
 		attack = "default_punch2",
 	},
 	attacks_monsters = true,
+	on_rightclick = function(self, clicker)
+		lottmobs.guard(self, clicker, "default:goldblock")
+	end,
 	peaceful = true,
 	group_attack = true,
 	step = 1,
