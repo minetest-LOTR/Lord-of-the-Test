@@ -6,6 +6,8 @@
 -- basics
 --------------------------------------------------------------------------------
 
+dofile(minetest.get_modpath(minetest.get_current_modname()).."/clothing.lua")
+
 -- crafting ingredients
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/fabrics.lua")
 

@@ -4,11 +4,11 @@ mobs:register_mob("lottmobs:elf_trader", {
 	hp_max = 50,
 	collisionbox = {-0.3,-1.1,-0.3, 0.3,0.91,0.3},
 	textures = {
-		{"lottmobs_elf_trader.png", "lottarmor_trans.png", "lottarmor_trans.png"},
+		{"lottmobs_elf_trader.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png"},
 	},
 	visual = "mesh",
 	visual_size = {x=0.95, y=1.15},
-	mesh = "lottarmor_character.x",
+	mesh = "lottarmor_character.b3d",
 	view_range = 20,
 	makes_footstep_sound = true,
 	walk_velocity = 1.5,
@@ -48,7 +48,7 @@ mobs:register_mob("lottmobs:elf_trader", {
 		lottmobs_trader(self, clicker, entity, lottmobs.elf, "gui_elfbg.png")
 	end,
 })
-mobs:register_spawn("lottmobs:elf_trader", {"lottmapgen:lorien_grass"}, 20, 0, 30000, 3, 31000)
+mobs:register_spawn("lottmobs:elf_trader", {"lottmapgen:lorien_grass"}, 20, 0, 60000, 3, 31000)
 
 mobs:register_mob("lottmobs:human_trader", {
 	type = "npc",
@@ -56,10 +56,10 @@ mobs:register_mob("lottmobs:human_trader", {
 	hp_max = 35,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	textures = {
-		{"lottmobs_human_trader.png", "lottarmor_trans.png", "lottarmor_trans.png"},
+		{"lottmobs_human_trader.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png"},
 	},
 	visual = "mesh",
-	mesh = "lottarmor_character.x",
+	mesh = "lottarmor_character.b3d",
 	makes_footstep_sound = true,
 	view_range = 12,
 	walk_velocity = 1,
@@ -100,8 +100,8 @@ mobs:register_mob("lottmobs:human_trader", {
 		lottmobs_trader(self, clicker, entity, lottmobs.human, "gui_gondorbg.png")
 	end,
 })
-mobs:register_spawn("lottmobs:human_trader", {"lottmapgen:rohan_grass"}, 20, -1, 30000, 3, 31000)
-mobs:register_spawn("lottmobs:human_trader", {"lottmapgen:gondor_grass"}, 20, -1, 30000, 3, 31000)
+mobs:register_spawn("lottmobs:human_trader", {"lottmapgen:rohan_grass"}, 20, -1, 60000, 3, 31000)
+mobs:register_spawn("lottmobs:human_trader", {"lottmapgen:gondor_grass"}, 20, -1, 60000, 3, 31000)
 
 mobs:register_mob("lottmobs:hobbit_trader", {
 	type = "animal",
@@ -109,11 +109,11 @@ mobs:register_mob("lottmobs:hobbit_trader", {
 	hp_max = 15,
 	collisionbox = {-0.3,-0.75,-0.3, 0.3,0.7,0.3},
 	textures = {
-		{"lottmobs_hobbit_trader.png", "lottarmor_trans.png", "lottarmor_trans.png"},
+		{"lottmobs_hobbit_trader.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png"},
 	},
 	visual = "mesh",
 	visual_size = {x=1.1, y=0.75},
-	mesh = "lottarmor_character.x",
+	mesh = "lottarmor_character.b3d",
 	makes_footstep_sound = true,
 	walk_velocity = 1,
 	armor = 300,
@@ -144,7 +144,7 @@ mobs:register_mob("lottmobs:hobbit_trader", {
 		lottmobs_trader(self, clicker, entity, lottmobs.hobbit, "gui_hobbitbg.png")
 	end,
 })
-mobs:register_spawn("lottmobs:hobbit_trader", {"lottmapgen:shire_grass"}, 20, -1, 30000, 3, 31000)
+mobs:register_spawn("lottmobs:hobbit_trader", {"lottmapgen:shire_grass"}, 20, -1, 60000, 3, 31000)
 
 mobs:register_mob("lottmobs:dwarf_trader", {
 	type = "npc",
@@ -152,11 +152,11 @@ mobs:register_mob("lottmobs:dwarf_trader", {
 	hp_max = 30,
 	collisionbox = {-0.3,-.85,-0.3, 0.3,0.68,0.3},
 	textures = {
-		{"lottmobs_dwarf_trader.png", "lottarmor_trans.png", "lottarmor_trans.png"},
+		{"lottmobs_dwarf_trader.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png"},
 	},
 	visual = "mesh",
 	visual_size = {x=1.1, y=0.85},
-	mesh = "lottarmor_character.x",
+	mesh = "lottarmor_character.b3d",
 	view_range = 10,
 	makes_footstep_sound = true,
 	walk_velocity = 1,
@@ -202,4 +202,4 @@ mobs:register_mob("lottmobs:dwarf_trader", {
 		lottmobs_trader(self, clicker, entity, lottmobs.dwarf, "gui_angmarbg.png")
 	end,
 })
-mobs:register_spawn("lottmobs:dwarf_trader", {"lottmapgen:ironhill_grass"}, 20, -1, 30000, 3, 31000)
+mobs:register_spawn("lottmobs:dwarf_trader", {"lottmapgen:ironhill_grass"}, 20, -1, 60000, 3, 31000)
