@@ -141,7 +141,7 @@ minetest.register_abm({
 		if is_soil == 0 then
 			return
 		end
-		
+
 		minetest.log("action", "A sapling grows into a tree at "..minetest.pos_to_string(pos))
 		local vm = minetest.get_voxel_manip()
 		local minp, maxp = vm:read_from_map({x=pos.x-16, y=pos.y, z=pos.z-16}, {x=pos.x+16, y=pos.y+16, z=pos.z+16})
@@ -164,7 +164,7 @@ minetest.register_abm({
 		if is_soil == 0 then
 			return
 		end
-		
+
 		minetest.log("action", "A jungle sapling grows into a tree at "..minetest.pos_to_string(pos))
 		local vm = minetest.get_voxel_manip()
 		local minp, maxp = vm:read_from_map({x=pos.x-16, y=pos.y-1, z=pos.z-16}, {x=pos.x+16, y=pos.y+16, z=pos.z+16})
@@ -413,3 +413,11 @@ else
 	end
 end
 
+minetest.register_on_punchplayer(function(player, hitter, time_from_last_punch, tool_capabilities)
+	local weapon = hitter:get_wielded_item()
+	if tool_capabilities ~= nil then
+		local wear = ((tool_capabilities.full_punch_interval or 1.4) / 75 ) * 9000
+		weapon:add_wear(wear)
+		hitter:set_wielded_item(weapon)
+	end
+end)
