@@ -10,7 +10,7 @@ local fabric_colors = {
 	pink   = "lottclothes:flax_pink",
 	red    = "lottclothes:flax_red",
 	white  = "lottclothes:flax_white",
-	yellow = "lottclothes:flax_yellow"	
+	yellow = "lottclothes:flax_yellow"
 }
 
 local level=2
@@ -33,8 +33,8 @@ for color, fabric in pairs(fabric_colors) do
 			{fabric, "lottclothes:flax_white", fabric},
 			{fabric, fabric, fabric}
 		}
-	})	
-	
+	})
+
 	-- shorts(legs)
 	minetest.register_tool("lottclothes:shorts_hobbit_"..color, {
 		description = color:gsub("^%l", string.upper).." Hobbit Shorts",
@@ -50,8 +50,8 @@ for color, fabric in pairs(fabric_colors) do
 			{fabric, "", fabric},
 			{"lottclothes:flax_white","" , "lottclothes:flax_white"}
 		}
-	})	
-	
+	})
+
 	-- shoes(feet)
 	minetest.register_tool("lottclothes:shoes_hobbit_"..color, {
 		description = color:gsub("^%l", string.upper).." Hobbit Shoes",
@@ -66,6 +66,23 @@ for color, fabric in pairs(fabric_colors) do
 			{fabric, "", fabric},
 			{"lottclothes:flax_black","" , "lottclothes:flax_black"}
 		}
-	})	
-		
+	})
+
+	-- cloak
+	minetest.register_tool("lottclothes:cloak_hobbit_"..color, {
+		description = color:gsub("^%l", string.upper).." Hobbit Cloak",
+		inventory_image = "lottclothes_inv_cloak_hobbit_"..color..".png",
+		groups = {armor_heal=0, clothes=1, no_preview = 1},
+		wear = 0
+	})
+
+	minetest.register_craft({
+		output = "lottclothes:cloak_hobbit_"..color,
+		recipe = {
+			{fabric, fabric},
+			{fabric, fabric},
+			{fabric, fabric}
+		}
+	})
+
 end
