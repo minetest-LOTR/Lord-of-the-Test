@@ -73,11 +73,11 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 	if pt.type ~= "node" then
 		return
 	end
-	
+
 	local under = minetest.get_node(pt.under)
 	local p = {x=pt.under.x, y=pt.under.y+1, z=pt.under.z}
 	local above = minetest.get_node(p)
-	
+
 	-- return if any of the nodes is not registered
 	if not minetest.registered_nodes[under.name] then
 		return
@@ -85,17 +85,17 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 	if not minetest.registered_nodes[above.name] then
 		return
 	end
-	
+
 	-- check if the node above the pointed thing is air
 	if above.name ~= "air" then
 		return
 	end
-	
+
 	-- check if pointing at dirt
 	if minetest.get_item_group(under.name, "soil") ~= 1 then
 		return
 	end
-	
+
 	-- turn the node into soil, wear out item and play sound
 	minetest.set_node(pt.under, {name="farming:soil"})
 	minetest.sound_play("default_dig_crumbly", {
@@ -186,3 +186,6 @@ dofile(minetest.get_modpath("lottfarming").."/blue.lua")
 
 -- ========= GREEN MUSHROOM =========
 dofile(minetest.get_modpath("lottfarming").."/green.lua")
+
+-- ========= ORC FOOD =========
+dofile(minetest.get_modpath("lottfarming").."/orc_food.lua")
