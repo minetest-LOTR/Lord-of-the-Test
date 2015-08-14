@@ -17,7 +17,6 @@ minetest.register_on_mapgen_init(function(params)
 		water_level = mapgen.water_level,
 		flags = "caves, dungeons",
 	})
-	minetest.setting_set("mgv5_spflags", "noblobs")
 end)
 
 minetest.register_alias("mapgen_stone", "default:stone")

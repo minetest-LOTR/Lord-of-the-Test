@@ -345,8 +345,8 @@ dofile(minetest.get_modpath("lottthrowing").."/bolt.lua")
 dofile(minetest.get_modpath("lottthrowing").."/mithril_bolt.lua")
 dofile(minetest.get_modpath("lottthrowing").."/fire_bolt.lua")
 
+dofile(minetest.get_modpath("lottthrowing").."/axe.lua")
 
 if minetest.setting_get("log_mods") then
 	minetest.log("action", "lottthrowing loaded")
 end
-
