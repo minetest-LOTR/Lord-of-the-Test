@@ -67,3 +67,38 @@ minetest.register_craft({
 		{"default:gold_ingot", "default:gold_ingot", ""}
 	}
 })
+
+local whistle = {
+	{"birch", "D", "lottplants:birchwood"},
+	{"mallorn", "Eb", "lottplants:mallornwood"},
+	{"wood", "C", "default:wood"},
+	{"jungle", "G", "default:junglewood"},
+	{"pine", "Bb", "lottplants:pinewood"},
+	{"lebethron", "A", "lottplants:lebethronwood"},
+	{"alder", "F", "lottplants:alderwood"},
+}
+
+for _, row in ipairs(whistle) do
+	local wood = row[1]
+	local note = row[2]
+	local craftwood = row[3]
+	minetest.register_craftitem("lottblocks:whistle_" .. wood, {
+		description = wood:gsub("^%l", string.upper) .. "(Note " .. note .. ") Whistle",
+		inventory_image = "lottblocks_" .. wood .. "_whistle.png",
+		on_use = function(itemstack, user)
+			minetest.sound_play(note, {
+				pos = user:getpos(),
+				max_hear_distance = 7,
+				gain = 1,
+			})
+		end
+	})
+	minetest.register_craft({
+		output = "lottblocks:whistle_" .. wood,
+		recipe = {
+			{craftwood, "", ""},
+			{"", craftwood, ""},
+			{"", "", "lottores:silver_ingot"}
+		}
+	})
+end
