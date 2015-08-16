@@ -81,7 +81,7 @@ armor = {
 		.."image[0,3;1,1;lottarmor_boots.png]"
 		.."image[3,0;1,1;lottarmor_helmet.png]"
 		.."image[3,1;1,1;lottarmor_shirt.png]"
-		.."image[3,2;1,1;lottarmor_pants.png]"
+		.."image[3,2;1,1;lottarmor_trousers.png]"
 		.."image[3,3;1,1;lottarmor_shoes.png]"
 		.."image[4,0;1,1;lottarmor_cloak.png]"
 		.."list[detached:player_name_armor;armor;0,0;1,4;]"
