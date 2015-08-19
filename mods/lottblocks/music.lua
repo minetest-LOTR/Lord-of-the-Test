@@ -83,7 +83,7 @@ for _, row in ipairs(whistle) do
 	local note = row[2]
 	local craftwood = row[3]
 	minetest.register_craftitem("lottblocks:whistle_" .. wood, {
-		description = wood:gsub("^%l", string.upper) .. "(Note " .. note .. ") Whistle",
+		description = wood:gsub("^%l", string.upper) .. " (Note " .. note .. ") Whistle",
 		inventory_image = "lottblocks_" .. wood .. "_whistle.png",
 		on_use = function(itemstack, user)
 			minetest.sound_play(note, {
