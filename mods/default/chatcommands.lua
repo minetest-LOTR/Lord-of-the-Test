@@ -1,4 +1,4 @@
---Modified from builtin/game/chatcommands.lua to hide privs starting with @
+--Modified from builtin/game/chatcommands.lua to hide privs starting with GAME
 
 minetest.register_chatcommand("privs", {
 	params = "<name>",
@@ -9,7 +9,7 @@ minetest.register_chatcommand("privs", {
 		local privs = ""
 		local i = 1
 		for key,value in pairs(privs_table) do
-			if key:match("@", 1) then
+			if key:match("GAME", 1) then
 				key, value = nil
 			elseif i == 1 then
 				privs = privs .. key
@@ -50,9 +50,8 @@ minetest.register_chatcommand("grant", {
 			if not minetest.registered_privileges[priv] then
 				privs_unknown = privs_unknown .. "Unknown privilege: " .. priv .. "\n"
 			end
-			privs[priv] = true
-			if priv:find("@", 1) ~= nil then
-                privs[priv] = nil
+			if not priv:match("GAME", 1) then
+				privs[priv] = true
             end
 		end
 		if privs_unknown ~= "" then
@@ -63,7 +62,7 @@ minetest.register_chatcommand("grant", {
 		local privs_string = ""
 		local i = 1
 		for key,value in pairs(privs_table) do
-			if key:match("@", 1) then
+			if key:match("GAME", 1) then
 				key, value = nil
 			elseif i == 1 then
 				privs_string = privs_string .. key
@@ -107,16 +106,14 @@ minetest.register_chatcommand("revoke", {
 		end
 		if revoke_priv_str == "all" then
             for priv, _ in pairs(privs) do
-				privs[priv] = nil
-                if priv:find("@", 1) ~= nil then
-                    privs[priv] = true
+                if priv:find("GAME", 1) == nil then
+                    privs[priv] = nil
                 end
 			end
 		else
 			for priv, _ in pairs(revoke_privs) do
-				privs[priv] = nil
-                if priv:find("@", 1) ~= nil then
-                    privs[priv] = true
+                if priv:find("GAME", 1) == nil then
+                    privs[priv] = nil
                 end
 			end
 		end
@@ -125,7 +122,7 @@ minetest.register_chatcommand("revoke", {
 		local privs_string = ""
 		local i = 1
 		for key,value in pairs(privs_table) do
-			if key:match("@", 1) then
+			if key:match("GAME", 1) then
 				key, value = nil
 			elseif i == 1 then
 				privs_string = privs_string .. key
