@@ -1,0 +1,3 @@
+rowboat.x, sailboat.x, all the textures, made by desanta, CC BY-SA.
+
+Code: Originally by PlizAdam, modified by desanta, and tweaked by Amaz. LGPL v2.1

@@ -1,0 +1,11 @@
+Code: Zeg9, modified by fishyWET - LGPL v2.1
+
+Textures:
+
+fishyWET - lottinventory_*
+
+Zeg9 - zcg_*
+
+Amaz - bags_*
+
+Flipsels - craft_formbg.png

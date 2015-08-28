@@ -3,6 +3,9 @@ Default Item Textures (C) Cisoun - WTFPL
 
 Original Armor Textures: Copyright (C) 2013 Ryan Jones - CC-BY-SA
 
-Source Code: Copyright (C) 2013 Stuart Jones - LGPL
+Source Code: Copyright (C) 2013 Stuart Jones
+Modified by Amaz and fishyWET
+
+ LGPL v2.1 
 
 Special credit to Jordach and MirceaKitsune for providing the default 3d character model.

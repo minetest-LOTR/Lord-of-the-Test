@@ -1,0 +1,21 @@
+Minetest mod "Better HUD"
+=========================
+Version: 1.3
+
+License of source code:
+-----------------------------
+(c) Copyright BlockMen (2013-2014)
+
+LGPL v2.1
+
+License of textures:
+--------------------
+hud_heart_fg.png - celeron55 (CC BY-SA 3.0), modified by BlockMen
+hud_heart_bg.png - celeron55 (CC BY-SA 3.0), modified by BlockMen
+wieldhand.png (from character.png) - Jordach (CC BY-SA 3.0), modified by BlockMen
+hud_air_fg.png - kaeza (WTFPL), modified by BlockMen
+hud_armor_fg.png - Stu (CC BY-SA 3.0), modified by BlockMen
+hud_armor_bg.png - Stu (CC BY-SA 3.0), modified by BlockMen
+
+everything else is WTFPL:
+(c) Copyright BlockMen (2013)

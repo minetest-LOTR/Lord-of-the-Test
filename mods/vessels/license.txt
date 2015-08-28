@@ -1,0 +1,9 @@
+Code:
+Copyright (C) 2012 Vanessa Ezekowitz
+Version 2012-09-02
+Modifications by Perttu Ahola <celeron55@gmail.com>
+
+LGPL v2.1
+
+Textures: CC BY-SA
+Vanessa Ezekowitz

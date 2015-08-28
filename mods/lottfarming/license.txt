@@ -1,0 +1,9 @@
+Code: fishyWET, based on farming - LGPL v2.1
+
+Textures CC BY-SA:
+Amaz -
+orc_*.png
+lottfarming_orc_food.png
+lottfarming_orc_medicine.png
+
+fishyWET - Everything else.

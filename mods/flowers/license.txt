@@ -1,0 +1,12 @@
+Minetest 0.4 mod: flowers
+=========================
+
+License of source code:
+-----------------------
+Copyright (C) 2012-2013 Ironzorg, VanessaE
+
+LGPL v2.1
+
+License of media (textures and sounds)
+--------------------------------------
+WTFPL

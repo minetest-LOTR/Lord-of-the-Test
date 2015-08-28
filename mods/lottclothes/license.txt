@@ -1,0 +1,8 @@
+Code: Flipsels, modified by Amaz - LGPL v2.1
+
+Textures CC BY-SA:
+Amaz -
+lottclothes_cloak*
+lottclothes*_elven.png
+
+Flipsels - Everything else.

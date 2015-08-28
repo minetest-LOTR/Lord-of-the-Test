@@ -1,0 +1,22 @@
+All code, LGPL v2.1
+
+Textures, CC BY-SA
+
+Flipsels - gui_*.png
+
+catninja -
+lottblocks_tree_vine*.png
+lottblocks_tree_mossy*.png
+lottblocks_leafroof.png
+lottblocks_mallornroof.png
+lottblocks_mallorn_pillar.png
+lottblocks_mallorn_white.png
+lottblocks_dwarfstone_white*.png
+lottblocks_dwarfstone_black*.png
+lottblocks_dwarfstone_stripe*.png
+
+Amaz - All of the others, often based on textures from default.
+
+Sounds, CC BY-SA
+
+STHGOM - All of them

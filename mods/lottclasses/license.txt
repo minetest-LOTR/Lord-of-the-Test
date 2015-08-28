@@ -1,0 +1,12 @@
+Code: Amaz - LGPL v2.1
+
+Textures, CC BY-SA:
+Gabo -
+*_skin.png
+dwarf.png
+elf.png
+orc.png
+man.png
+hobbit.png
+
+catninja - *_skinf.png
