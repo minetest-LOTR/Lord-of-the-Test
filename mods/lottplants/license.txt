@@ -1,3 +1,10 @@
 Code: fishyWET - LGPL v2.1
 
-Textures: fishyWET - CC BY-SA
+Textures: CC BY-SA
+
+ philipbenr -
+lottplants_*_wood.png
+lottplants_*leaves.png
+lottplants_mallorn*.png
+
+fishyWET - The rest.
