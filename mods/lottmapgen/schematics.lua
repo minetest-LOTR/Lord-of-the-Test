@@ -9,6 +9,7 @@ local lottmapgen_list = {
     { "Rohan Fort", "rohanfort"},
     { "Orc Fort", "orcfort"},
     { "Mallorn House", "mallornhouse"},
+    { "Lorien House", "lorienhouse"}, --Different version of "mallornhouse", made by fireuser
     { "Mirkwood House", "mirkhouse"},
     { "Hobbit Hole", "hobbithole"},
 }
@@ -40,6 +41,29 @@ for i in ipairs(lottmapgen_list) do
         end,
     })
 end
+
+minetest.register_abm({
+    nodenames = {"lottmapgen:lorienhouse"},
+    interval = 1,
+	chance = 1,
+     action = function(pos)
+          if pos then
+               local file = io.open(minetest.get_modpath("lottmapgen").."/schems/lorienhouse.we")
+               local value = file:read("*a")
+               file:close()
+               local p = pos
+               p.x = p.x - 5
+               p.z = p.z - 2
+               local count = worldedit.deserialize(pos, value)
+               if areas_mod ~= nil and protect_houses == true then
+                    local pos1 = {x = pos.x - 2, y = pos.y - 15, z = pos.z - 2}
+                    local pos2 = {x = pos.x + 12, y = pos.y + 45, z = pos.z + 12}
+                    areas:add("Elven Guard", "Elven House", pos1, pos2, nil)
+                    areas:save()
+               end
+          end
+     end,
+})
 
 minetest.register_abm({
     nodenames = {"lottmapgen:mallornhouse"},

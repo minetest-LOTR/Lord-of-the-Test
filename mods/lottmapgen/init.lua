@@ -158,6 +158,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_hobhole = minetest.get_content_id("lottmapgen:hobbithole")
 	local c_orcfort = minetest.get_content_id("lottmapgen:orcfort")
 	local c_malltre = minetest.get_content_id("lottmapgen:mallornhouse")
+	local c_lorhous = minetest.get_content_id("lottmapgen:lorienhouse")
 	local c_mirktre = minetest.get_content_id("lottmapgen:mirkhouse")
 	local c_rohfort = minetest.get_content_id("lottmapgen:rohanfort")
 
@@ -388,7 +389,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										elseif math.random(PLANT4) == 11 then
 											lottmapgen_lorienplants(data, vi)
 										elseif math.random(PLANT13) == 13 then
-											data[vi] = c_malltre
+											if math.random(1, 2) == 1 then
+												data[vi] = c_malltre
+											else
+												data[vi] = c_lorhous
+											end
 										end
 									elseif biome == 8 then
 										if math.random(TREE10) == 2 then
