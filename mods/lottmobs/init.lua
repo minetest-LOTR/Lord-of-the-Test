@@ -812,6 +812,7 @@ mobs:register_mob("lottmobs:orc", {
 	step = 1,
 })
 mobs:register_spawn("lottmobs:orc", {"lottmapgen:mordor_stone"}, 20, -1, 500, 3, 31000)
+mobs:register_spawn("lottmobs:orc", {"default:snowblock"}, 15, -1, 8000, 3, 31000)
 mobs:register_spawn("lottmobs:orc", {"lottmapgen:angsnowblock"}, 20, -1, 6000, 5, 31000)
 
 mobs:register_mob("lottmobs:raiding_orc", {
@@ -891,6 +892,53 @@ mobs:register_mob("lottmobs:raiding_orc", {
 mobs:register_spawn("lottmobs:raiding_orc", {"lottmapgen:ithilien_grass"}, 2, -1, 4000, 5, 31000)
 mobs:register_spawn("lottmobs:raiding_orc", {"lottmapgen:rohan_grass"}, 2, -1, 4000, 5, 31000)
 mobs:register_spawn("lottmobs:raiding_orc", {"lottmapgen:gondor_grass"}, 2, -1, 4000, 5, 31000)
+
+mobs:register_mob("lottmobs:warg", {
+	type = "monster",
+	hp_min = 25,
+	hp_max = 40,
+	collisionbox = {-1.1, -0.75, -1.1, 1.1, 1, 1.1},
+	visual_size = {x = 0.8, y = 0.8},
+	textures = {
+		{"lottmobs_warg.png"},
+	},
+	visual = "mesh",
+	mesh = "warg.b3d",
+	makes_footstep_sound = true,
+	walk_velocity = 2,
+	run_velocity = 5,
+	view_range = 16,
+	armor = 300,
+	drops = {},
+	light_resistant = true,
+	drawtype = "front",
+	water_damage = 1,
+	lava_damage = 5,
+	light_damage = 0,
+	damage = 8,
+	attack_type = "dogfight", --Rather suitible name!
+	animation = {
+		speed_normal = 15,
+		speed_run = 25,
+		stand_start = 100,
+		stand_end = 260,
+		walk_start = 0,
+		walk_end = 40,
+		run_start = 40,
+		run_end = 100,
+		punch_start = 260,
+		punch_end = 290,
+	},
+	jump = true,
+	attacks_monsters = true,
+	peaceful = true,
+	group_attack = true,
+	step = 1,
+	sounds = {},
+})
+mobs:register_spawn("lottmobs:warg", {"lottmapgen:mordor_stone"}, 20, -1, 5000, 3, 31000)
+mobs:register_spawn("lottmobs:warg", {"default:snowblock"}, 15, -1, 7500, 3, 31000)
+mobs:register_spawn("lottmobs:warg", {"lottmapgen:angsnowblock"}, 20, -1, 5000, 5, 31000)
 
 mobs:register_mob("lottmobs:uruk_hai", {
 	type = "monster",
