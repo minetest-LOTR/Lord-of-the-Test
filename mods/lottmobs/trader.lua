@@ -126,8 +126,14 @@ lottmobs.trader_inventories = {}
 function lottmobs.add_goods(entity, race)
 	local goods_to_add = nil
 	for i=1,15 do
-		if math.random(0, 100) > race.items[i][3] then
-			lottmobs.trader_inventory.set_stack(lottmobs.trader_inventory,"goods", i, race.items[i][1])
+		if same_race == true then
+			if math.random(0, 100) > race.items_race[i][3] then
+				lottmobs.trader_inventory.set_stack(lottmobs.trader_inventory,"goods", i, race.items_race[i][1])
+			end
+		else
+			if math.random(0, 100) > race.items[i][3] then
+				lottmobs.trader_inventory.set_stack(lottmobs.trader_inventory,"goods", i, race.items[i][1])
+			end
 		end
 	end
 end
@@ -147,11 +153,15 @@ function lottmobs.face_pos(self,pos)
 end
 ----
 
-function lottmobs_trader(self, clicker, entity, race, image)
+function lottmobs_trader(self, clicker, entity, race, image, priv)
 	lottmobs.face_pos(self, clicker:getpos())
 	local player = clicker:get_player_name()
 	local unique_entity_id = self.id
 	local is_inventory = minetest.get_inventory({type="detached", name=unique_entity_id})
+	local same_race = false
+	if minetest.get_player_privs(player)[priv] ~= nil then
+		same_race = true
+	end
 	local move_put_take = {
 		allow_move = lottmobs.allow_move,
 		allow_put = lottmobs.allow_put,
@@ -174,10 +184,19 @@ function lottmobs_trader(self, clicker, entity, race, image)
 				end
 				local good = nil
 				local good = nil
-				for i = 1,#race.items,1 do
-					local stackstring = goodname .." " .. count
-					if race.items[i][1] == stackstring then
-						good = race.items[i]
+				if same_race == true then
+					for i = 1,#race.items_race,1 do
+						local stackstring = goodname .." " .. count
+						if race.items_race[i][1] == stackstring then
+							good = race.items_race[i]
+						end
+					end
+				else
+					for i = 1,#race.items,1 do
+						local stackstring = goodname .." " .. count
+						if race.items[i][1] == stackstring then
+							good = race.items[i]
+						end
 					end
 				end
 				if good ~= nil then
@@ -192,7 +211,7 @@ function lottmobs_trader(self, clicker, entity, race, image)
 		on_take = lottmobs.on_take
 	}
 	if is_inventory == nil then
-		self.name = tostring(race.names[math.random(1,#race.names)])
+		self.game_name = tostring(race.names[math.random(1,#race.names)])
 		lottmobs.trader_inventory = minetest.create_detached_inventory(unique_entity_id, move_put_take)
 		lottmobs.trader_inventory.set_size(lottmobs.trader_inventory,"goods",15)
 		lottmobs.trader_inventory.set_size(lottmobs.trader_inventory,"takeaway",1)
@@ -201,11 +220,11 @@ function lottmobs_trader(self, clicker, entity, race, image)
 		lottmobs.trader_inventory.set_size(lottmobs.trader_inventory,"payment",1)
 		lottmobs.add_goods(entity, race)
 	end
-	minetest.chat_send_player(player, "[NPC] <Trader " .. self.name .. "> Hello, " .. player .. ", have a look at my wares.")
+	minetest.chat_send_player(player, "[NPC] <Trader " .. self.game_name .. "> Hello, " .. player .. ", have a look at my wares.")
 	minetest.show_formspec(player, "trade",
 		"size[8,10;]" ..
 		 "background[5,5;1,1;" .. image .. ";true]" ..
-		"label[0,0;Trader " .. self.name .. "'s stock:]" ..
+		"label[0,0;Trader " .. self.game_name .. "'s stock:]" ..
 		"list[detached:" .. unique_entity_id .. ";goods;.5,.5;3,5;]" ..
 		"label[4.5,0.5;Selection]" ..
 		"list[detached:" .. unique_entity_id .. ";selection;4.5,1;5.5,2;]" ..
