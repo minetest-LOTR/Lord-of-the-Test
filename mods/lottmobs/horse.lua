@@ -1,4 +1,225 @@
-local horse = {
+
+local function is_ground(pos)
+	local nn = minetest.get_node(pos).name
+	return minetest.get_item_group(nn, "crumbly") ~= 0 or
+	minetest.get_item_group(nn, "cracky") ~= 0 or
+	minetest.get_item_group(nn, "choppy") ~= 0 or
+	minetest.get_item_group(nn, "snappy") ~= 0
+end
+
+local function get_sign(i)
+	if i == 0 then
+		return 0
+	else
+		return i/math.abs(i)
+	end
+end
+
+local function get_velocity(v, yaw, y)
+	local x = math.cos(yaw)*v
+	local z = math.sin(yaw)*v
+	return {x=x, y=y, z=z}
+end
+
+local function get_v(v)
+	return math.sqrt(v.x^2+v.z^2)
+end
+
+
+local function register_horse(name, craftitem, horse)
+
+	if craftitem ~= nil then
+		function craftitem.on_place(itemstack, placer, pointed_thing)
+			if pointed_thing.above then
+				minetest.env:add_entity(pointed_thing.above, name)
+				if not minetest.setting_getbool("creative_mode") then
+					itemstack:take_item()
+				end
+			end
+			return itemstack
+		end
+		minetest.register_craftitem(name, craftitem)
+	end
+
+	horse.v = 0
+	horse.driver = nil
+
+	function horse:set_animation(type)
+		if not self.animation then
+			return
+		end
+		if not self.animation.current then
+			self.animation.current = ""
+		end
+		if type == "stand" and self.animation.current ~= "stand" then
+			if
+				self.animation.stand_start
+				and self.animation.stand_end
+				and self.animation.speed_normal
+			then
+				self.object:set_animation(
+					{x=self.animation.stand_start,y=self.animation.stand_end},
+					self.animation.speed_normal * 0.6, 0
+				)
+				self.animation.current = "stand"
+			end
+		elseif type == "walk" and self.animation.current ~= "walk"  then
+			if
+				self.animation.walk_start
+				and self.animation.walk_end
+				and self.animation.speed_normal
+			then
+				self.object:set_animation(
+					{x=self.animation.walk_start,y=self.animation.walk_end},
+					self.animation.speed_normal * 3, 0
+				)
+				self.animation.current = "walk"
+			end
+		end
+	end
+
+	function horse:on_step(dtime)
+		local p = self.object:getpos()
+		p.y = p.y - 0.1
+		local on_ground = is_ground(p)
+
+		self.v = get_v(self.object:getvelocity())*get_sign(self.v)
+
+		-- driver controls
+		if self.driver then
+			local ctrl = self.driver:get_player_control()
+
+			-- rotation (the faster we go, the less we rotate)
+			if ctrl.left then
+				self.object:setyaw(self.object:getyaw()+2*(1.5-math.abs(self.v/self.max_speed))*math.pi/90 +dtime*math.pi/90)
+			end
+			if ctrl.right then
+				self.object:setyaw(self.object:getyaw()-2*(1.5-math.abs(self.v/self.max_speed))*math.pi/90 -dtime*math.pi/90)
+			end
+			-- jumping (only if on ground)
+			if ctrl.jump and on_ground then
+				local v = self.object:getvelocity()
+				v.y = (self.jump_speed or 3)
+				self.object:setvelocity(v)
+			end
+
+			-- forwards/backwards
+			if ctrl.up then
+				self.v = self.v + self.forward_boost
+			elseif ctrl.down then
+				self.v = self.v - 0.3
+			elseif on_ground then
+				if math.abs(self.v) < 1 then
+					self.v = 0
+				else
+					self.v = self.v * 0.8
+				end
+			end
+		else
+			if math.abs(self.v) < 1 then
+				self.v = 0
+			else
+				self.v = self.v * 0.95
+			end
+		end
+
+		if self.v == 0 then
+			self.object:setvelocity({x=0,y=0,z=0})
+			self:set_animation("stand")
+			return
+		else
+			self:set_animation("walk")
+		end
+
+		-- make sure we don't go past the limit
+		if math.abs(self.v) > self.max_speed then
+			self.v = self.max_speed*get_sign(self.v)
+		end
+
+		local p = self.object:getpos()
+		p.y = p.y+1
+		if not is_ground(p) then
+			if minetest.registered_nodes[minetest.get_node(p).name].walkable then
+				self.v = 0
+			end
+			self.object:setacceleration({x=0, y=-10, z=0})
+			self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
+		else
+			self.object:setacceleration({x=0, y=0, z=0})
+			-- falling
+			if math.abs(self.object:getvelocity().y) < 1 then
+				local pos = self.object:getpos()
+				pos.y = math.floor(pos.y)+0.5
+				self.object:setpos(pos)
+				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
+			else
+				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
+			end
+		end
+
+		if self.object:getvelocity().y > 0.1 then
+			local yaw = self.object:getyaw()
+			if self.drawtype == "side" then
+				yaw = yaw+(math.pi/2)
+			end
+			local x = math.sin(yaw) * -2
+			local z = math.cos(yaw) * 2
+			if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+				self.object:setacceleration({x = x, y = 2, z = z})
+			else
+				self.object:setacceleration({x = x, y = -5, z = z})
+			end
+		else
+			if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+				self.object:setacceleration({x = 0, y = 2, z = 0})
+			else
+				self.object:setacceleration({x = 0, y = -5, z = 0})
+			end
+		end
+
+	end
+
+	function horse:on_rightclick(clicker)
+		if not clicker or not clicker:is_player() then
+			return
+		end
+		if self.driver and clicker == self.driver then
+			self.driver = nil
+			clicker:set_detach()
+		elseif not self.driver then
+			self.driver = clicker
+			clicker:set_attach(self.object, "", {x=0,y=15,z=0}, {x=0,y=90,z=0})
+			self.object:setyaw(clicker:get_look_yaw())
+		end
+	end
+
+	function horse:on_activate(staticdata, dtime_s)
+		self.object:set_armor_groups({immortal=1})
+		if staticdata then
+			self.v = tonumber(staticdata)
+		end
+	end
+
+	function horse:get_staticdata()
+		return tostring(self.v)
+	end
+
+	function horse:on_punch(puncher, time_from_last_punch, tool_capabilities, direction)
+		self.object:remove()
+		if puncher and puncher:is_player() then
+			puncher:get_inventory():add_item("main", name)
+		end
+	end
+
+	minetest.register_entity(name, horse)
+end
+
+---------------------
+
+register_horse("lottmobs:horseh1", {
+	description = "Brown Horse",
+	inventory_image = "lottmobs_horse_inventory.png",
+}, {
 	physical = true,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
 	visual = "mesh",
@@ -6,166 +227,24 @@ local horse = {
 	visual_size = {x=1,y=1},
 	mesh = "horseh1_model.x",
 	textures = {"lottmobs_horse.png"},
-	driver = nil,
-	v = 0,
-}
-
-local function is_ground(pos)
-	local nn = minetest.get_node(pos).name
-	return minetest.get_item_group(nn, "crumbly") ~= 0 or
-	minetest.get_item_group(nn, "cracky") ~= 0 or
-	minetest.get_item_group(nn, "choppy") ~= 0 or
-	minetest.get_item_group(nn, "snappy") ~= 0
-end
-
-local function get_sign(i)
-	if i == 0 then
-		return 0
-	else
-		return i/math.abs(i)
-	end
-end
-
-local function get_velocity(v, yaw, y)
-	local x = math.cos(yaw)*v
-	local z = math.sin(yaw)*v
-	return {x=x, y=y, z=z}
-end
-
-local function get_v(v)
-	return math.sqrt(v.x^2+v.z^2)
-end
-
-function horse:on_rightclick(clicker)
-	if not clicker or not clicker:is_player() then
-		return
-	end
-	if self.driver and clicker == self.driver then
-		self.driver = nil
-		clicker:set_detach()
-	elseif not self.driver then
-		self.driver = clicker
-		clicker:set_attach(self.object, "", {x=0,y=15,z=0}, {x=0,y=90,z=0})
-		self.object:setyaw(clicker:get_look_yaw())
-	end
-end
-
-
-function horse:on_activate(staticdata, dtime_s)
-	self.object:set_armor_groups({immortal=1})
-	if staticdata then
-		self.v = tonumber(staticdata)
-	end
-end
-
-function horse:get_staticdata()
-	return tostring(v)
-end
-
-function horse:on_punch(puncher, time_from_last_punch, tool_capabilities, direction)
-	self.object:remove()
-	if puncher and puncher:is_player() then
-		puncher:get_inventory():add_item("main", "lottmobs:horseh1")
-	end
-end
-
-
-function horse:on_step(dtime)
-
-	self.v = get_v(self.object:getvelocity())*get_sign(self.v)
-	if self.driver then
-		local ctrl = self.driver:get_player_control()
-		if ctrl.up then
-			self.v = self.v+2.33
-		end
-		if ctrl.down then
-			self.v = self.v-0.3
-		end
-		if ctrl.left then
-			self.object:setyaw(self.object:getyaw()+math.pi/60+dtime*math.pi/60)
-		end
-		if ctrl.right then
-			self.object:setyaw(self.object:getyaw()-math.pi/60-dtime*math.pi/60)
-		end
-		if ctrl.jump then
-		local p = self.object:getpos()
-		p.y = p.y-0.5
-			if is_ground(p) then
-			local v = self.object:getvelocity()
-				v.y = 4
-				self.object:setvelocity(v)
-			end
-		end
-	end
-	local s = get_sign(self.v)
-	self.v = self.v - 0.02*s
-	if s ~= get_sign(self.v) then
-		self.object:setvelocity({x=0, y=0, z=0})
-		self.v = 0
-		return
-	end
-	
-	if math.abs(self.v) > 7 then
-		self.v = 7*get_sign(self.v)
-	end
-
-	local p = self.object:getpos()
-	p.y = p.y-0.5
-	if not is_ground(p) then
-		if minetest.registered_nodes[minetest.get_node(p).name].walkable then
-			self.v = 0
-		end
-		self.object:setacceleration({x=0, y=-10, z=0})
-		self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
-	else
-		p.y = p.y+1
-		if is_ground(p) then
-			self.object:setacceleration({x=0, y=3, z=0})
-			local y = self.object:getvelocity().y
-			if y > 2 then
-				y = 2
-			end
-			if y < 0 then
-				self.object:setacceleration({x=0, y=10, z=0})
-			end
-			self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), y))
-		else
-			self.object:setacceleration({x=0, y=0, z=0})
-			if math.abs(self.object:getvelocity().y) < 1 then
-				local pos = self.object:getpos()
-				pos.y = math.floor(pos.y)+0.5
-				self.object:setpos(pos)
-				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
-			else
-				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
-			end
-		end
-	end
-
-	if self.object:getvelocity().y > 0.1 then
-		local yaw = self.object:getyaw()
-		if self.drawtype == "side" then
-			yaw = yaw+(math.pi/2)
-		end
-		local x = math.sin(yaw) * -2
-		local z = math.cos(yaw) * 2
-		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
-			self.object:setacceleration({x = x, y = 2, z = z})
-		else
-			self.object:setacceleration({x = x, y = -5, z = z})
-        end
-	else
-		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
-			self.object:setacceleration({x = 0, y = 2, z = 0})
-		else
-			self.object:setacceleration({x = 0, y = -5, z = 0})
-		end
-	end
-end
+	animation = {
+		speed_normal = 10,
+		stand_start = 0,
+		stand_end = 50,
+		walk_start = 75,
+		walk_end = 98,
+	},
+	max_speed = 7,
+	forward_boost = 2.33,
+	jump_boost = 4
+})
 
 --horse white
 
-local horsepeg = {
+register_horse("lottmobs:horsepegh1", {
+	description = "White Horse",
+	inventory_image = "lottmobs_horsepeg_inventory.png",
+}, {
 	physical = true,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
 	visual = "mesh",
@@ -173,167 +252,24 @@ local horsepeg = {
 	visual_size = {x=1,y=1},
 	mesh = "horseh1_model.x",
 	textures = {"lottmobs_horsepeg.png"},
-	driver = nil,
-	v = 0,
-}
-
-
-local function is_ground(pos)
-	local nn = minetest.get_node(pos).name
-	return minetest.get_item_group(nn, "crumbly") ~= 0 or
-	minetest.get_item_group(nn, "cracky") ~= 0 or
-	minetest.get_item_group(nn, "choppy") ~= 0 or
-	minetest.get_item_group(nn, "snappy") ~= 0
-end
-
-local function get_sign(i)
-	if i == 0 then
-		return 0
-	else
-		return i/math.abs(i)
-	end
-end
-
-local function get_velocity(v, yaw, y)
-	local x = math.cos(yaw)*v
-	local z = math.sin(yaw)*v
-	return {x=x, y=y, z=z}
-end
-
-local function get_v(v)
-	return math.sqrt(v.x^2+v.z^2)
-end
-
-function horsepeg:on_rightclick(clicker)
-	if not clicker or not clicker:is_player() then
-		return
-	end
-	if self.driver and clicker == self.driver then
-		self.driver = nil
-		clicker:set_detach()
-	elseif not self.driver then
-		self.driver = clicker
-		clicker:set_attach(self.object, "", {x=0,y=15,z=0}, {x=0,y=90,z=0})
-		self.object:setyaw(clicker:get_look_yaw())
-	end
-end
-
-
-function horsepeg:on_activate(staticdata, dtime_s)
-	self.object:set_armor_groups({immortal=1})
-	if staticdata then
-		self.v = tonumber(staticdata)
-	end
-end
-
-function horsepeg:get_staticdata()
-	return tostring(v)
-end
-
-function horsepeg:on_punch(puncher, time_from_last_punch, tool_capabilities, direction)
-	self.object:remove()
-	if puncher and puncher:is_player() then
-		puncher:get_inventory():add_item("main", "lottmobs:horsepegh1")
-	end
-end
-
-
-function horsepeg:on_step(dtime)
-
-	self.v = get_v(self.object:getvelocity())*get_sign(self.v)
-	if self.driver then
-		local ctrl = self.driver:get_player_control()
-		if ctrl.up then
-			self.v = self.v+2.33
-		end
-		if ctrl.down then
-			self.v = self.v-0.3
-		end
-		if ctrl.left then
-			self.object:setyaw(self.object:getyaw()+math.pi/60+dtime*math.pi/60)
-		end
-		if ctrl.right then
-			self.object:setyaw(self.object:getyaw()-math.pi/60-dtime*math.pi/60)
-		end
-		if ctrl.jump then
-		local p = self.object:getpos()
-		p.y = p.y-0.5
-			if is_ground(p) then
-			local v = self.object:getvelocity()
-				v.y = 4
-				self.object:setvelocity(v)
-			end
-		end
-	end
-	local s = get_sign(self.v)
-	self.v = self.v - 0.02*s
-	if s ~= get_sign(self.v) then
-		self.object:setvelocity({x=0, y=0, z=0})
-		self.v = 0
-		return
-	end
-	if math.abs(self.v) > 7 then
-		self.v = 7*get_sign(self.v)
-	end
-	
-	local p = self.object:getpos()
-	p.y = p.y-0.5
-	if not is_ground(p) then
-		if minetest.registered_nodes[minetest.get_node(p).name].walkable then
-			self.v = 0
-		end
-		self.object:setacceleration({x=0, y=-10, z=0})
-		self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
-	else
-		p.y = p.y+1
-		if is_ground(p) then
-			self.object:setacceleration({x=0, y=3, z=0})
-			local y = self.object:getvelocity().y
-			if y > 2 then
-				y = 2
-			end
-			if y < 0 then
-				self.object:setacceleration({x=0, y=10, z=0})
-			end
-			self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), y))
-		else
-			self.object:setacceleration({x=0, y=0, z=0})
-			if math.abs(self.object:getvelocity().y) < 1 then
-				local pos = self.object:getpos()
-				pos.y = math.floor(pos.y)+0.5
-				self.object:setpos(pos)
-				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
-			else
-				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
-			end
-		end
-	end
-
-	if self.object:getvelocity().y > 0.1 then
-		local yaw = self.object:getyaw()
-		if self.drawtype == "side" then
-			yaw = yaw+(math.pi/2)
-		end
-		local x = math.sin(yaw) * -2
-		local z = math.cos(yaw) * 2
-		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
-			self.object:setacceleration({x = x, y = 2, z = z})
-		else
-			self.object:setacceleration({x = x, y = -5, z = z})
-        end
-	else
-		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
-			self.object:setacceleration({x = 0, y = 2, z = 0})
-		else
-			self.object:setacceleration({x = 0, y = -5, z = 0})
-		end
-	end
-end
+	animation = {
+		speed_normal = 10,
+		stand_start = 0,
+		stand_end = 50,
+		walk_start = 75,
+		walk_end = 98,
+	},
+	max_speed = 7,
+	forward_boost = 2.33,
+	jump_boost = 4
+})
 
 --horse arabik
-  local horseara = {
-    
-	
+
+register_horse("lottmobs:horsearah1", {
+	description = "Black Horse",
+	inventory_image = "lottmobs_horseara_inventory.png",
+}, {
 	physical = true,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
 	visual = "mesh",
@@ -341,166 +277,23 @@ end
 	visual_size = {x=1,y=1},
 	mesh = "horseh1_model.x",
 	textures = {"lottmobs_horseara.png"},
-		
-	driver = nil,
-	v = 0,
-}
+	animation = {
+		speed_normal = 10,
+		stand_start = 0,
+		stand_end = 50,
+		walk_start = 75,
+		walk_end = 98,
+	},
+	max_speed = 7,
+	forward_boost = 2.33,
+	jump_boost = 4
+})
 
 
-local function is_ground(pos)
-	local nn = minetest.get_node(pos).name
-	return minetest.get_item_group(nn, "crumbly") ~= 0 or
-	minetest.get_item_group(nn, "cracky") ~= 0 or
-	minetest.get_item_group(nn, "choppy") ~= 0 or
-	minetest.get_item_group(nn, "snappy") ~= 0
-end
-
-local function get_sign(i)
-	if i == 0 then
-		return 0
-	else
-		return i/math.abs(i)
-	end
-end
-
-local function get_velocity(v, yaw, y)
-	local x = math.cos(yaw)*v
-	local z = math.sin(yaw)*v
-	return {x=x, y=y, z=z}
-end
-
-local function get_v(v)
-	return math.sqrt(v.x^2+v.z^2)
-end
-
-function horseara:on_rightclick(clicker)
-	if not clicker or not clicker:is_player() then
-		return
-	end
-	if self.driver and clicker == self.driver then
-		self.driver = nil
-		clicker:set_detach()
-	elseif not self.driver then
-		self.driver = clicker
-		clicker:set_attach(self.object, "", {x=0,y=15,z=0}, {x=0,y=90,z=0})
-		self.object:setyaw(clicker:get_look_yaw())
-	end
-end
-
-
-function horseara:on_activate(staticdata, dtime_s)
-	self.object:set_armor_groups({immortal=1})
-	if staticdata then
-		self.v = tonumber(staticdata)
-	end
-end
-
-function horseara:get_staticdata()
-	return tostring(v)
-end
-
-function horseara:on_punch(puncher, time_from_last_punch, tool_capabilities, direction)
-	self.object:remove()
-	if puncher and puncher:is_player() then
-		puncher:get_inventory():add_item("main", "lottmobs:horsearah1")
-	end
-end
-
-
-function horseara:on_step(dtime)
-
-	self.v = get_v(self.object:getvelocity())*get_sign(self.v)
-	if self.driver then
-		local ctrl = self.driver:get_player_control()
-		if ctrl.up then
-			self.v = self.v+2.33
-		end
-		if ctrl.down then
-			self.v = self.v-0.3
-		end
-		if ctrl.left then
-			self.object:setyaw(self.object:getyaw()+math.pi/60+dtime*math.pi/60)
-		end
-		if ctrl.right then
-			self.object:setyaw(self.object:getyaw()-math.pi/60-dtime*math.pi/60)
-		end
-		if ctrl.jump then
-		local p = self.object:getpos()
-		p.y = p.y-0.5
-			if is_ground(p) then
-			local v = self.object:getvelocity()
-				v.y = 4
-				self.object:setvelocity(v)
-			end
-		end
-		
-	end
-	local s = get_sign(self.v)
-	self.v = self.v - 0.02*s
-	if s ~= get_sign(self.v) then
-		self.object:setvelocity({x=0, y=0, z=0})
-		self.v = 0
-		return
-	end
-	if math.abs(self.v) > 7 then
-		self.v = 7*get_sign(self.v)
-	end
-	
-	local p = self.object:getpos()
-	p.y = p.y-0.5
-	if not is_ground(p) then
-		if minetest.registered_nodes[minetest.get_node(p).name].walkable then
-			self.v = 0
-		end
-		self.object:setacceleration({x=0, y=-10, z=0})
-		self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
-	else
-		p.y = p.y+1
-		if is_ground(p) then
-			self.object:setacceleration({x=0, y=3, z=0})
-			local y = self.object:getvelocity().y
-			if y > 2 then
-				y = 2
-			end
-			if y < 0 then
-				self.object:setacceleration({x=0, y=10, z=0})
-			end
-			self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), y))
-		else
-			self.object:setacceleration({x=0, y=0, z=0})
-			if math.abs(self.object:getvelocity().y) < 1 then
-				local pos = self.object:getpos()
-				pos.y = math.floor(pos.y)+0.5
-				self.object:setpos(pos)
-				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
-			else
-				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
-			end
-		end
-	end
-
-	if self.object:getvelocity().y > 0.1 then
-		local yaw = self.object:getyaw()
-		if self.drawtype == "side" then
-			yaw = yaw+(math.pi/2)
-		end
-		local x = math.sin(yaw) * -2
-		local z = math.cos(yaw) * 2
-		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
-			self.object:setacceleration({x = x, y = 2, z = z})
-		else
-			self.object:setacceleration({x = x, y = -5, z = z})
-        end
-	else
-		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
-			self.object:setacceleration({x = 0, y = 2, z = 0})
-		else
-			self.object:setacceleration({x = 0, y = -5, z = 0})
-		end
-	end
-end
-
-local shireponyblack = {
+register_horse("lottmobs:shireponyblackh1", {
+	description = "Shire Pony",
+	inventory_image = "lottmobs_shireponyblack_inventory.png",
+}, {
 	physical = true,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
 	visual = "mesh",
@@ -508,165 +301,23 @@ local shireponyblack = {
 	visual_size = {x=1.3,y=1.3},
 	mesh = "shireponyh1_model.x",
 	textures = {"lottmobs_shireponyblack.png"},
-	driver = nil,
-	v = 0,
-}
+	animation = {
+		speed_normal = 15,
+		stand_start = 0,
+		stand_end = 39,
+		walk_start = 45,
+		walk_end = 85,
+	},
+	max_speed = 5,
+	forward_boost = 1.67,
+	jump_boost = 3
+})
 
 
-local function is_ground(pos)
-	local nn = minetest.get_node(pos).name
-	return minetest.get_item_group(nn, "crumbly") ~= 0 or
-	minetest.get_item_group(nn, "cracky") ~= 0 or
-	minetest.get_item_group(nn, "choppy") ~= 0 or
-	minetest.get_item_group(nn, "snappy") ~= 0
-end
-
-local function get_sign(i)
-	if i == 0 then
-		return 0
-	else
-		return i/math.abs(i)
-	end
-end
-
-local function get_velocity(v, yaw, y)
-	local x = math.cos(yaw)*v
-	local z = math.sin(yaw)*v
-	return {x=x, y=y, z=z}
-end
-
-local function get_v(v)
-	return math.sqrt(v.x^2+v.z^2)
-end
-
-function shireponyblack:on_rightclick(clicker)
-	if not clicker or not clicker:is_player() then
-		return
-	end
-	if self.driver and clicker == self.driver then
-		self.driver = nil
-		clicker:set_detach()
-	elseif not self.driver then
-		self.driver = clicker
-		clicker:set_attach(self.object, "", {x=0,y=15,z=0}, {x=0,y=90,z=0})
-		self.object:setyaw(clicker:get_look_yaw())
-	end
-end
-
-
-function shireponyblack:on_activate(staticdata, dtime_s)
-	self.object:set_armor_groups({immortal=1})
-	if staticdata then
-		self.v = tonumber(staticdata)
-	end
-end
-
-function shireponyblack:get_staticdata()
-	return tostring(v)
-end
-
-function shireponyblack:on_punch(puncher, time_from_last_punch, tool_capabilities, direction)
-	self.object:remove()
-	if puncher and puncher:is_player() then
-		puncher:get_inventory():add_item("main", "lottmobs:shireponyblackh1")
-	end
-end
-
-
-function shireponyblack:on_step(dtime)
-
-	self.v = get_v(self.object:getvelocity())*get_sign(self.v)
-	if self.driver then
-		local ctrl = self.driver:get_player_control()
-		if ctrl.up then
-			self.v = self.v+1.67
-		end
-		if ctrl.down then
-			self.v = self.v-0.2
-		end
-		if ctrl.left then
-			self.object:setyaw(self.object:getyaw()+math.pi/90+dtime*math.pi/90)
-		end
-		if ctrl.right then
-			self.object:setyaw(self.object:getyaw()-math.pi/90-dtime*math.pi/90)
-		end
-		if ctrl.jump then
-		local p = self.object:getpos()
-		p.y = p.y-0.5
-			if is_ground(p) then
-			local v = self.object:getvelocity()
-				v.y = 3
-				self.object:setvelocity(v)
-			end
-		end
-		
-	end
-	local s = get_sign(self.v)
-	self.v = self.v - 0.02*s
-	if s ~= get_sign(self.v) then
-		self.object:setvelocity({x=0, y=0, z=0})
-		self.v = 0
-		return
-	end
-	if math.abs(self.v) > 5 then
-		self.v = 5*get_sign(self.v)
-	end
-	
-	local p = self.object:getpos()
-	p.y = p.y-0.5
-	if not is_ground(p) then
-		if minetest.registered_nodes[minetest.get_node(p).name].walkable then
-			self.v = 0
-		end
-		self.object:setacceleration({x=0, y=-10, z=0})
-		self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
-	else
-		p.y = p.y+1
-		if is_ground(p) then
-			self.object:setacceleration({x=0, y=3, z=0})
-			local y = self.object:getvelocity().y
-			if y > 2 then
-				y = 2
-			end
-			if y < 0 then
-				self.object:setacceleration({x=0, y=10, z=0})
-			end
-			self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), y))
-		else
-			self.object:setacceleration({x=0, y=0, z=0})
-			if math.abs(self.object:getvelocity().y) < 1 then
-				local pos = self.object:getpos()
-				pos.y = math.floor(pos.y)+0.5
-				self.object:setpos(pos)
-				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
-			else
-				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
-			end
-		end
-	end
-
-	if self.object:getvelocity().y > 0.1 then
-		local yaw = self.object:getyaw()
-		if self.drawtype == "side" then
-			yaw = yaw+(math.pi/2)
-		end
-		local x = math.sin(yaw) * -2
-		local z = math.cos(yaw) * 2
-		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
-			self.object:setacceleration({x = x, y = 2, z = z})
-		else
-			self.object:setacceleration({x = x, y = -5, z = z})
-        end
-	else
-		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
-			self.object:setacceleration({x = 0, y = 2, z = 0})
-		else
-			self.object:setacceleration({x = 0, y = -5, z = 0})
-		end
-	end
-end
-
-  local shirepony = {
+register_horse("lottmobs:shireponyh1", {
+	description = "Shire Pony",
+	inventory_image = "lottmobs_shirepony_inventory.png",
+}, {
 	physical = true,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
 	visual = "mesh",
@@ -674,243 +325,20 @@ end
 	visual_size = {x=1.3,y=1.3},
 	mesh = "shireponyh1_model.x",
 	textures = {"lottmobs_shirepony.png"},
-	driver = nil,
-	v = 0,
-}
-
-
-local function is_ground(pos)
-	local nn = minetest.get_node(pos).name
-	return minetest.get_item_group(nn, "crumbly") ~= 0 or
-	minetest.get_item_group(nn, "cracky") ~= 0 or
-	minetest.get_item_group(nn, "choppy") ~= 0 or
-	minetest.get_item_group(nn, "snappy") ~= 0
-end
-
-local function get_sign(i)
-	if i == 0 then
-		return 0
-	else
-		return i/math.abs(i)
-	end
-end
-
-local function get_velocity(v, yaw, y)
-	local x = math.cos(yaw)*v
-	local z = math.sin(yaw)*v
-	return {x=x, y=y, z=z}
-end
-
-local function get_v(v)
-	return math.sqrt(v.x^2+v.z^2)
-end
-
-function shirepony:on_rightclick(clicker)
-	if not clicker or not clicker:is_player() then
-		return
-	end
-	if self.driver and clicker == self.driver then
-		self.driver = nil
-		clicker:set_detach()
-	elseif not self.driver then
-		self.driver = clicker
-		clicker:set_attach(self.object, "", {x=0,y=15,z=0}, {x=0,y=90,z=0})
-		self.object:setyaw(clicker:get_look_yaw())
-	end
-end
-
-
-function shirepony:on_activate(staticdata, dtime_s)
-	self.object:set_armor_groups({immortal=1})
-	if staticdata then
-		self.v = tonumber(staticdata)
-	end
-end
-
-function shirepony:get_staticdata()
-	return tostring(v)
-end
-
-function shirepony:on_punch(puncher, time_from_last_punch, tool_capabilities, direction)
-	self.object:remove()
-	if puncher and puncher:is_player() then
-		puncher:get_inventory():add_item("main", "lottmobs:shireponyh1")
-	end
-end
-
-
-function shirepony:on_step(dtime)
-
-	self.v = get_v(self.object:getvelocity())*get_sign(self.v)
-	if self.driver then
-		local ctrl = self.driver:get_player_control()
-		if ctrl.up then
-			self.v = self.v+1.67
-		end
-		if ctrl.down then
-			self.v = self.v-0.2
-		end
-		if ctrl.left then
-			self.object:setyaw(self.object:getyaw()+math.pi/90+dtime*math.pi/90)
-		end
-		if ctrl.right then
-			self.object:setyaw(self.object:getyaw()-math.pi/90-dtime*math.pi/90)
-		end
-		if ctrl.jump then
-		local p = self.object:getpos()
-		p.y = p.y-0.5
-			if is_ground(p) then
-			local v = self.object:getvelocity()
-				v.y = 3
-				self.object:setvelocity(v)
-			end
-		end
-		
-	end
-	local s = get_sign(self.v)
-	self.v = self.v - 0.02*s
-	if s ~= get_sign(self.v) then
-		self.object:setvelocity({x=0, y=0, z=0})
-		self.v = 0
-		return
-	end
-	if math.abs(self.v) > 5 then
-		self.v = 5*get_sign(self.v)
-	end
-	
-	local p = self.object:getpos()
-	p.y = p.y-0.5
-	if not is_ground(p) then
-		if minetest.registered_nodes[minetest.get_node(p).name].walkable then
-			self.v = 0
-		end
-		self.object:setacceleration({x=0, y=-10, z=0})
-		self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
-	else
-		p.y = p.y+1
-		if is_ground(p) then
-			self.object:setacceleration({x=0, y=3, z=0})
-			local y = self.object:getvelocity().y
-			if y > 2 then
-				y = 2
-			end
-			if y < 0 then
-				self.object:setacceleration({x=0, y=10, z=0})
-			end
-			self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), y))
-		else
-			self.object:setacceleration({x=0, y=0, z=0})
-			if math.abs(self.object:getvelocity().y) < 1 then
-				local pos = self.object:getpos()
-				pos.y = math.floor(pos.y)+0.5
-				self.object:setpos(pos)
-				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
-			else
-				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
-			end
-		end
-	end
-
-	if self.object:getvelocity().y > 0.1 then
-		local yaw = self.object:getyaw()
-		if self.drawtype == "side" then
-			yaw = yaw+(math.pi/2)
-		end
-		local x = math.sin(yaw) * -2
-		local z = math.cos(yaw) * 2
-		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
-			self.object:setacceleration({x = x, y = 2, z = z})
-		else
-			self.object:setacceleration({x = x, y = -5, z = z})
-        end
-	else
-		if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
-			self.object:setacceleration({x = 0, y = 2, z = 0})
-		else
-			self.object:setacceleration({x = 0, y = -5, z = 0})
-		end
-	end
-end
-
-minetest.register_craftitem("lottmobs:horseh1", {
-	description = "Brown Horse",
-	inventory_image = "lottmobs_horse_inventory.png",
-	
-	on_place = function(itemstack, placer, pointed_thing)
-		if pointed_thing.above then
-			minetest.env:add_entity(pointed_thing.above, "lottmobs:horseh1")
-			if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-			end
-		end
-		return itemstack
-	end,
+	animation = {
+		speed_normal = 15,
+		stand_start = 0,
+		stand_end = 39,
+		walk_start = 45,
+		walk_end = 85,
+	},
+	max_speed = 5,
+	forward_boost = 1.67,
+	jump_boost = 3
 })
-minetest.register_entity("lottmobs:horseh1", horse)
 
-minetest.register_craftitem("lottmobs:horsepegh1", {
-	description = "White Horse",
-	inventory_image = "lottmobs_horsepeg_inventory.png",
-	
-	on_place = function(itemstack, placer, pointed_thing)
-		if pointed_thing.above then
-			minetest.env:add_entity(pointed_thing.above, "lottmobs:horsepegh1")
-			if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-			end
-		end
-		return itemstack
-	end,
-})
-minetest.register_entity("lottmobs:horsepegh1", horsepeg)
 
-minetest.register_craftitem("lottmobs:horsearah1", {
-	description = "Black Horse",
-	inventory_image = "lottmobs_horseara_inventory.png",
-	
-	on_place = function(itemstack, placer, pointed_thing)
-		if pointed_thing.above then
-			minetest.env:add_entity(pointed_thing.above, "lottmobs:horsearah1")
-			if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-			end
-		end
-		return itemstack
-	end,
-})
-minetest.register_entity("lottmobs:horsearah1", horseara)
-
-minetest.register_craftitem("lottmobs:shireponyh1", {
-	description = "Shire Pony",
-	inventory_image = "lottmobs_shirepony_inventory.png",
-	
-	on_place = function(itemstack, placer, pointed_thing)
-		if pointed_thing.above then
-			minetest.env:add_entity(pointed_thing.above, "lottmobs:shireponyh1")
-			if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-			end
-		end
-		return itemstack
-	end,
-})
-minetest.register_entity("lottmobs:shireponyh1", shirepony)
-
-minetest.register_craftitem("lottmobs:shireponyblackh1", {
-	description = "Shire Pony",
-	inventory_image = "lottmobs_shireponyblack_inventory.png",
-	
-	on_place = function(itemstack, placer, pointed_thing)
-		if pointed_thing.above then
-			minetest.env:add_entity(pointed_thing.above, "lottmobs:shireponyblackh1")
-			if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-			end
-		end
-		return itemstack
-	end,
-})
-minetest.register_entity("lottmobs:shireponyblackh1", shireponyblack)
+----------------------
 
 lottmobs:register_mob("lottmobs:horse", {
 	type = "animal",
@@ -1016,6 +444,8 @@ lottmobs:register_mob("lottmobs:horsepeg", {
 	step=1,
 	passive = true,
 })
+
+
 lottmobs:register_spawn("lottmobs:horsepeg", {"lottmapgen:rohan_grass"}, 20, -1, 7000, 3, 31000)
 
 
@@ -1178,4 +608,6 @@ lottmobs:register_mob("lottmobs:shireponyblack", {
 	step=1,
 	passive = true,
 })
+
+
 lottmobs:register_spawn("lottmobs:shireponyblack", {"lottmapgen:shire_grass"}, 20, -1, 9000, 3, 31000)
