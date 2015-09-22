@@ -6,17 +6,11 @@
 
 minetest.register_on_mapgen_init(function(params)
 	local mapgen = minetest.get_mapgen_params()
-	if mapgen.mgname == "v7" then
-		mapgen.mgname = "v7"
-	else
-		mapgen.mgname = "v5"
+	if mapgen.mgname == "singlenode" or mapgen.mgname == "v6" then
+		minetest.set_mapgen_params({
+			mgname = "v7",
+		})
 	end
-	minetest.set_mapgen_params({
-		mgname = mapgen.mgname,
-		seed = params.seed,
-		water_level = mapgen.water_level,
-		flags = "caves, dungeons",
-	})
 end)
 
 minetest.register_alias("mapgen_stone", "default:stone")
