@@ -105,6 +105,59 @@ minetest.register_node("lottmapgen:blackflowing", {
 	groups = {water=3, liquid=3, puts_out_fire=1, not_in_creative_inventory=1},
 })
 
+minetest.register_node("lottmapgen:black_river_source", {
+	description = "Black River Source",
+	drawtype = "liquid",
+	inventory_image = minetest.inventorycube("lottmapgen_black_water.png"),
+	tiles = {"lottmapgen_black_water.png"},
+	alpha = 240,
+	paramtype = "light",
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	drowning = 1,
+	liquidtype = "source",
+	liquid_alternative_flowing = "lottmapgen:black_river_flowing",
+	liquid_alternative_source = "lottmapgen:black_river_source",
+	liquid_viscosity = 1,
+	liquid_renewable = false,
+	liquid_range = 2,
+	post_effect_color = {a=192, r=140, g=140, b=140},
+	groups = {water=3, liquid=3, puts_out_fire=1},
+})
+
+minetest.register_node("lottmapgen:black_river_flowing", {
+	drawtype = "flowingliquid",
+	tiles = {"lottmapgen_black_water.png"},
+	special_tiles = {
+		{
+			image="lottmapgen_black_water_flow.png",
+			backface_culling=false,
+			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=1}
+		},
+		{
+			image="lottmapgen_black_water_flow.png",
+			backface_culling=true,
+			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=1}
+		},
+	},
+	alpha = 245,
+	paramtype = "light",
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	liquidtype = "flowing",
+	liquid_alternative_flowing = "lottmapgen:black_river_flowing",
+	liquid_alternative_source = "lottmapgen:black_river_source",
+	liquid_viscosity = 1,
+	liquid_renewable = false,
+	liquid_range = 2,
+	post_effect_color = {a=192, r=140, g=140, b=140},-- {a=224, r=31, g=56, b=8},
+	groups = {water=3, liquid=3, puts_out_fire=1, not_in_creative_inventory=1},
+})
+
 -- Grasses
 
 minetest.register_node("lottmapgen:dunland_grass", {

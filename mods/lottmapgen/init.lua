@@ -131,6 +131,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_water = minetest.get_content_id("default:water_source")
 	local c_river_water = minetest.get_content_id("default:river_water_source")
 	local c_morwat = minetest.get_content_id("lottmapgen:blacksource")
+	local c_morrivwat = minetest.get_content_id("lottmapgen:black_river_source")
 
 	local c_morstone = minetest.get_content_id("lottmapgen:mordor_stone")
 	local c_frozenstone = minetest.get_content_id("lottmapgen:frozen_stone")
@@ -247,7 +248,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							if nodida == c_river_water or data[area:index(x + 1, y, z)] == c_river_water
 							or data[area:index(x, y, z + 1)] == c_river_water or data[area:index(x - 1, y, z)] == c_river_water
 							or data[area:index(x, y, z - 1)] == c_river_water then
-								data[vi] = c_dirt
+								if biome == 8 then
+									data[vi] = c_morstone
+								else
+									data[vi] = c_sand
+								end
 							elseif y <= sandy and y >= sandmin then -- sand
 								if biome ~= 8 then
 									if open and water and y == (mapgen_params.water_level-1) and biome > 4 and math.random(PAPCHA) == 2 then -- papyrus
@@ -497,15 +502,18 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					end
 				open = false
 				solid = true
-				elseif nodid == c_air or nodid == c_water then
+				elseif nodid == c_air or nodid == c_water or nodid == c_river_water then
 					solid = false
-					if nodid == c_water then
+					if nodid == c_water or nodid == c_river_water then
 						water = true
 						if biome == 8 then
-							data[vi] = c_morwat
+							if nodid == c_river_water then
+								data[vi] = c_morriwat
+							else
+								data[vi] = c_morwat
+							end
 						end
-						if n_temp < ICETET and y <= mapgen_params.water_level -- ice
-						and y >= mapgen_params.water_level - math.floor((ICETET - n_temp) * 10) then
+						if n_temp < ICETET and y >= mapgen_params.water_level - math.floor((ICETET - n_temp) * 10) then --ice
 							data[vi] = c_ice
 						end
 					end
