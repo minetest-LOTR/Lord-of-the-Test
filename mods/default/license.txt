@@ -88,6 +88,11 @@ Calinou (CC BY-SA):
   default_copper_lump.png
   default_mineral_copper.png
 
+paramat (CC BY-SA):
+  default_river_water.png
+  default_river_water_source_animated.png
+  default_river_water_flowing_animated.png
+
 MirceaKitsune (WTFPL):
   character.x
 

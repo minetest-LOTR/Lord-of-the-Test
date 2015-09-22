@@ -129,6 +129,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_stoneiron = minetest.get_content_id("default:stone_with_iron")
 	local c_stonecoal = minetest.get_content_id("default:stone_with_coal")
 	local c_water = minetest.get_content_id("default:water_source")
+	local c_river_water = minetest.get_content_id("default:river_water_source")
 	local c_morwat = minetest.get_content_id("lottmapgen:blacksource")
 
 	local c_morstone = minetest.get_content_id("lottmapgen:mordor_stone")
@@ -223,6 +224,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				local nodid = data[vi]
 				local viuu = area:index(x, y - 2, z)
 				local nodiduu = data[viuu]
+				local via = area:index(x, y + 1, z)
+				local nodida = data[via]
 				if nodid == c_stone -- if stone
 				or nodid == c_stonecopper
 				or nodid == c_stoneiron
@@ -241,7 +244,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					if not solid then -- if surface
 						surfy = y
 						if nodiduu ~= c_air and nodiduu ~= c_water and fimadep >= 1 then -- if supported by 2 stone nodes
-							if y <= sandy and y >= sandmin then -- sand
+							if nodida == c_river_water or data[area:index(x + 1, y, z)] == c_river_water
+							or data[area:index(x, y, z + 1)] == c_river_water or data[area:index(x - 1, y, z)] == c_river_water
+							or data[area:index(x, y, z - 1)] == c_river_water then
+								data[vi] = c_dirt
+							elseif y <= sandy and y >= sandmin then -- sand
 								if biome ~= 8 then
 									if open and water and y == (mapgen_params.water_level-1) and biome > 4 and math.random(PAPCHA) == 2 then -- papyrus
 										lottmapgen_papyrus(x, (mapgen_params.water_level+1), z, area, data)
