@@ -508,7 +508,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						water = true
 						if biome == 8 then
 							if nodid == c_river_water then
-								data[vi] = c_morriwat
+								data[vi] = c_morrivwat
 							else
 								data[vi] = c_morwat
 							end
