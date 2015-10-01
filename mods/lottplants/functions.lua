@@ -591,8 +591,8 @@ end
 
 minetest.register_abm({
     nodenames = {"lottplants:aldersapling"},
-    interval = ALDINT,
-    chance = ALDCHA,
+    interval = 67,
+    chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
 		lottplants_aldertree(pos)
 		print ("[lottplants] Alder Grows")
@@ -603,8 +603,8 @@ minetest.register_abm({
 
 minetest.register_abm({
     nodenames = {"lottplants:applesapling"},
-    interval = APPINT,
-    chance = APPCHA,
+    interval = 67,
+    chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
 		lottplants_appletree(pos)
 		print ("[lottplants] Apple Tree Grows")
@@ -615,8 +615,8 @@ minetest.register_abm({
 
 minetest.register_abm({
     nodenames = {"lottplants:birchsapling"},
-    interval = BIRINT,
-    chance = BIRCHA,
+    interval = 67,
+    chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
 		lottplants_birchtree(pos)
 		print ("[lottplants] Birch Grows")
@@ -627,8 +627,8 @@ minetest.register_abm({
 
 minetest.register_abm({
     nodenames = {"lottplants:beechsapling"},
-    interval = BEEINT,
-    chance = BEECHA,
+    interval = 67,
+    chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
 		lottplants_beechtree(pos)
 		print ("[lottplants] Beech Grows")
@@ -639,8 +639,8 @@ minetest.register_abm({
 
 minetest.register_abm({
     nodenames = {"lottplants:culumaldasapling"},
-    interval = CULINT,
-    chance = CULCHA,
+    interval = 67,
+    chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
 		lottplants_culumaldatree(pos)
 		print ("[lottplants] Culumalda Grows")
@@ -651,8 +651,8 @@ minetest.register_abm({
 
 minetest.register_abm({
     nodenames = {"lottplants:elmsapling"},
-    interval = ELMINT,
-    chance = ELMCHA,
+    interval = 67,
+    chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
 		lottplants_elmtree(pos)
 		print ("[lottplants] Elm Grows")
@@ -663,8 +663,8 @@ minetest.register_abm({
 
 minetest.register_abm({
     nodenames = {"lottplants:firsapling"},
-    interval = FIRINT,
-    chance = FIRCHA,
+    interval = 67,
+    chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
 		lottplants_firtree(pos)
 		print ("[lottplants] Fir Grows")
@@ -675,8 +675,8 @@ minetest.register_abm({
 
 minetest.register_abm({
     nodenames = {"lottplants:lebethronsapling"},
-    interval = LEBINT,
-    chance = LEBCHA,
+    interval = 67,
+    chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
 		lottplants_lebethrontree(pos)
 		print ("[lottplants] Lebethron Grows")
@@ -687,8 +687,8 @@ minetest.register_abm({
 
 minetest.register_abm({
     nodenames = {"lottplants:mallornsapling"},
-    interval = MALINT,
-    chance = MALCHA,
+    interval = 67,
+    chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
 		if math.random(3) == 1 then
 			lottplants_mallorntree(pos)
@@ -705,8 +705,8 @@ minetest.register_abm({
 
 minetest.register_abm({
     nodenames = {"lottplants:pinesapling"},
-    interval = PININT,
-    chance = PINCHA,
+    interval = 67,
+    chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
 		lottplants_pinetree(pos)
 		print ("[lottplants] Pine Grows")
@@ -717,8 +717,8 @@ minetest.register_abm({
 
 minetest.register_abm({
     nodenames = {"lottplants:plumsapling"},
-    interval = PLUINT,
-    chance = PLUCHA,
+    interval = 67,
+    chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
 		lottplants_plumtree(pos)
 		print ("[lottplants] Plum Tree Grows")
@@ -729,8 +729,8 @@ minetest.register_abm({
 
 minetest.register_abm({
     nodenames = {"lottplants:rowansapling"},
-    interval = ROWINT,
-    chance = ROWCHA,
+    interval = 67,
+    chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
 		lottplants_rowantree(pos)
 		print ("[lottplants] Rowan Grows")
@@ -741,8 +741,8 @@ minetest.register_abm({
 
 minetest.register_abm({
     nodenames = {"lottplants:whitesapling"},
-    interval = WHIINT,
-    chance = WHICHA,
+    interval = 67,
+    chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
 		lottplants_whitetree(pos)
 		print ("[lottplants] The White Tree of Minetest Grows")
@@ -753,8 +753,8 @@ minetest.register_abm({
 
 minetest.register_abm({
     nodenames = {"lottplants:yavannamiresapling"},
-    interval = YAVINT,
-    chance = YAVCHA,
+    interval = 67,
+    chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
 		lottplants_yavannamiretree(pos)
 		print ("[lottplants] Yavannamire Grows")
@@ -765,8 +765,8 @@ minetest.register_abm({
 
 minetest.register_abm({
     nodenames = {"lottplants:mirksapling"},
-    interval = MIRINT,
-    chance = MIRCHA,
+    interval = 67,
+    chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
 		if math.random(2) == 1 then
 			lottplants_mirktree(pos)
