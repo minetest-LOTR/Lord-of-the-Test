@@ -1,4 +1,5 @@
 ## Lord of the Test: A Minetest subgame.
+###Version 1.0.0
 
 This is a game for Minetest that adds Lord of the Rings like elements into the game. It is currently in beta form which means that the main features are completed, however there will be some bugs here and there so please report them.
 
