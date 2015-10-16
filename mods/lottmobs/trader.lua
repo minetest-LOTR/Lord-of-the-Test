@@ -156,6 +156,9 @@ end
 function lottmobs_trader(self, clicker, entity, race, image, priv)
 	lottmobs.face_pos(self, clicker:getpos())
 	local player = clicker:get_player_name()
+	if self.id == 0 then
+		self.id = (math.random(1, 1000) * math.random(1, 10000)) .. self.name .. (math.random(1, 1000) ^ 2)
+	end
 	local unique_entity_id = self.id
 	local is_inventory = minetest.get_inventory({type="detached", name=unique_entity_id})
 	local same_race = false
