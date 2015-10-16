@@ -9,6 +9,12 @@ minetest.register_craftitem("lottmobs:meat_raw", {
 	inventory_image = "lottmobs_meat_raw.png",
 })
 
+minetest.register_craftitem("lottmobs:spiderpoison", {
+	description = "Spider Poison",
+	inventory_image = "lottmobs_spiderpoison.png",
+	on_use = minetest.item_eat(-15)
+})
+
 minetest.register_craft({
 	type = "cooking",
 	output = "lottmobs:meat",

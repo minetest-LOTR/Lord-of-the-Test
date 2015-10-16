@@ -5,7 +5,7 @@ minetest.register_node("lottpotion:cauldron_full",{
 		"lottpotion_cauldron_side.png", "lottpotion_cauldron_side.png", "lottpotion_cauldron_side.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {cracky=2},
+	groups = {cracky=1},
 	legacy_facedir_simple = true,
     node_box = {
         type = "fixed",
@@ -20,7 +20,19 @@ minetest.register_node("lottpotion:cauldron_full",{
             {0.375000,-0.500000,0.375000,0.500000,0.500000,0.500000},
             {-0.500000,-0.500000,0.375000,-0.375000,0.500000,0.500000},
         }
-    }
+    },
+    on_punch = function(pos, node, player)
+        local player_inv = player:get_inventory()
+        local itemstack = player:get_wielded_item()
+        if itemstack:get_name() == "vessels:glass_bottle" then
+            minetest.set_node(pos, {name="lottpotion:cauldron_two_third_full"})
+            if player_inv:room_for_item("main", 1) then
+                itemstack:take_item(1)
+                player_inv:add_item("main", "lottpotion:glass_bottle_water")
+            end
+            player:set_wielded_item(itemstack)
+        end
+    end,
 })
 
 minetest.register_node("lottpotion:cauldron_two_third_full",{
@@ -30,7 +42,7 @@ minetest.register_node("lottpotion:cauldron_two_third_full",{
 		"lottpotion_cauldron_side.png", "lottpotion_cauldron_side.png", "lottpotion_cauldron_side.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
-    groups = {cracky=2, not_in_creative_inventory=1},
+    groups = {cracky=1, not_in_creative_inventory=1},
     node_box = {
         type = "fixed",
         fixed = {
@@ -44,7 +56,19 @@ minetest.register_node("lottpotion:cauldron_two_third_full",{
             {0.375000,-0.500000,0.375000,0.500000,0.500000,0.500000},
             {-0.500000,-0.500000,0.375000,-0.375000,0.500000,0.500000},
         }
-    }
+    },
+    on_punch = function(pos, node, player)
+        local player_inv = player:get_inventory()
+        local itemstack = player:get_wielded_item()
+        if itemstack:get_name() == "vessels:glass_bottle" then
+            minetest.set_node(pos, {name="lottpotion:cauldron_one_third_full"})
+            if player_inv:room_for_item("main", 1) then
+                itemstack:take_item(1)
+                player_inv:add_item("main", "lottpotion:glass_bottle_water")
+            end
+            player:set_wielded_item(itemstack)
+        end
+    end,
 })
 
 minetest.register_node("lottpotion:cauldron_one_third_full",{
@@ -54,7 +78,7 @@ minetest.register_node("lottpotion:cauldron_one_third_full",{
 		"lottpotion_cauldron_side.png", "lottpotion_cauldron_side.png", "lottpotion_cauldron_side.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
-    groups = {cracky=2, not_in_creative_inventory=1},
+    groups = {cracky=1, not_in_creative_inventory=1},
     node_box = {
         type = "fixed",
         fixed = {
@@ -68,7 +92,19 @@ minetest.register_node("lottpotion:cauldron_one_third_full",{
             {0.375000,-0.500000,0.375000,0.500000,0.500000,0.500000},
             {-0.500000,-0.500000,0.375000,-0.375000,0.500000,0.500000},
         }
-    }
+    },
+    on_punch = function(pos, node, player)
+        local player_inv = player:get_inventory()
+        local itemstack = player:get_wielded_item()
+        if itemstack:get_name() == "vessels:glass_bottle" then
+            minetest.set_node(pos, {name="lottpotion:cauldron_empty"})
+            if player_inv:room_for_item("main", 1) then
+                itemstack:take_item(1)
+                player_inv:add_item("main", "lottpotion:glass_bottle_water")
+            end
+            player:set_wielded_item(itemstack)
+        end
+    end,
 })
 
 minetest.register_node("lottpotion:cauldron_empty",{
@@ -92,52 +128,10 @@ minetest.register_node("lottpotion:cauldron_empty",{
         },
     },
     on_rightclick = function(pos, node, clicker, itemstack)
-            if itemstack:get_name() == "bucket:bucket_water" then
-			     minetest.set_node(pos, {name="lottpotion:cauldron_full"})
-				 return {name="bucket:bucket_empty"}
-            end
-    end
-})
-
-minetest.register_node(":vessels:glass_bottle", {
-	description = "Glass Bottle (empty)",
-	drawtype = "plantlike",
-	tiles = {"vessels_glass_bottle.png"},
-	inventory_image = "vessels_glass_bottle_inv.png",
-	wield_image = "vessels_glass_bottle.png",
-	paramtype = "light",
-	walkable = false,
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.25, -0.5, -0.25, 0.25, 0.4, 0.25}
-	},
-	groups = {vessel=1,dig_immediate=3,attached_node=1},
-	sounds = default.node_sound_glass_defaults(),
-    on_use = function(itemstack, user, pointed_thing)
-		pos = pointed_thing.above
-        if pos == nil then return itemstack end
-		pos.y = pos.y - 1
-		if (minetest.get_node(pos).name == "lottpotion:cauldron_full") then
-			minetest.remove_node(pos)
-			minetest.set_node(pos, {name="lottpotion:cauldron_two_third_full"})
-               itemstack:take_item()
-               user:get_inventory():add_item("main", "lottpotion:glass_bottle_water")
-               return itemstack
-		end
-		if (minetest.get_node(pos).name == "lottpotion:cauldron_two_third_full") then
-			minetest.remove_node(pos)
-			minetest.set_node(pos, {name="lottpotion:cauldron_one_third_full"})
-               itemstack:take_item()
-               user:get_inventory():add_item('main', "lottpotion:glass_bottle_water")
-               return itemstack
-		end
-		if (minetest.get_node(pos).name == "lottpotion:cauldron_one_third_full") then
-			minetest.remove_node(pos)
-			minetest.set_node(pos, {name="lottpotion:cauldron_empty"})
-               itemstack:take_item()
-               user:get_inventory():add_item('main', "lottpotion:glass_bottle_water")
-               return itemstack
-		end
+        if itemstack:get_name() == "bucket:bucket_water" then
+		    minetest.set_node(pos, {name="lottpotion:cauldron_full"})
+			return {name="bucket:bucket_empty"}
+        end
     end
 })
 

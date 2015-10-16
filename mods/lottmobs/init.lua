@@ -239,6 +239,17 @@ mobs:register_mob("lottmobs:spider", {
 		punch_start = 50,
 		punch_end = 90,
 	},
+	on_rightclick = function(self, clicker)
+		local player_inv = clicker:get_inventory()
+		local item = clicker:get_wielded_item()
+		if item:get_name() == "vessels:glass_bottle" then
+			if player_inv:room_for_item("main", 1) then
+                item:take_item(1)
+                player_inv:add_item("main", "lottmobs:spiderpoison")
+            end
+			clicker:set_wielded_item(item)
+		end
+	end,
 	jump = true,
 	sounds = {
 		war_cry = "mobs_spider",
