@@ -9,19 +9,19 @@ local get_formspec = function(player,page)
                .."label[0,0.5;Base Potions:]"
                --First potion
                .."label[1,2.2; Mese Base Potion]"
-               .."item_image_button[4,2;1,1;vessels:glass_bottle;zcg:vessels:glass_bottle;]"
+               .."item_image_button[4,2;1,1;lottpotion:glass_bottle_water;zcg:vessels:glass_bottle;]"
                .."item_image_button[5,2;1,1;default:mese_crystal_fragment;zcg:mese_crystal_fragment;]"
                .."image[6,2;1,1;zcg_craft_arrow.png]"
                .."item_image_button[7,2;1,1;lottpotion:glass_bottle_mese;zcg:glass_bottle_mese;]"
                --Second
                .."label[1,3.2; Geodes Base Potion]"
-               .."item_image_button[4,3;1,1;vessels:glass_bottle;zcg:glass_bottle;]"
+               .."item_image_button[4,3;1,1;lottpotion:glass_bottle_water;zcg:glass_bottle;]"
                .."item_image_button[5,3;1,1;lottores:geodes_crystal_1;zcg:geodes_crystal_1;]"
                .."image[6,3;1,1;zcg_craft_arrow.png]"
                .."item_image_button[7,3;1,1;lottpotion:glass_bottle_geodes;zcg:glass_bottle_geodes;]"
                --Third
                .."label[1,4.2; Seregon Base Potion]"
-               .."item_image_button[4,4;1,1;vessels:glass_bottle;zcg:glass_bottle;]"
+               .."item_image_button[4,4;1,1;lottpotion:glass_bottle_water;zcg:glass_bottle;]"
                .."item_image_button[5,4;1,1;lottplants:seregon;zcg:seregon;]"
                .."image[6,4;1,1;zcg_craft_arrow.png]"
                .."item_image_button[7,4;1,1;lottpotion:glass_bottle_seregon;zcg:glass_bottle_seregon;]"
