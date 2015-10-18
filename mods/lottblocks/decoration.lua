@@ -69,7 +69,7 @@ minetest.register_node("lottblocks:leafroof_mallorn", {
 	drawtype = "allfaces_optional",
 	is_ground_content = false,
 	sounds = default.node_sound_leaves_defaults(),
-	grups = {oddly_breakable_by_hand=2,leaves=1},
+	groups = {oddly_breakable_by_hand=2,leaves=1},
 })
 
 stairs.register_stair_and_slab("leafroof_mallorn", "lottblocks:leafroof_mallorn",
