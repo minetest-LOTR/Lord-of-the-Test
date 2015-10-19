@@ -32,7 +32,7 @@ local row_boat = {
 	physical = true,
 	collisionbox = {-1,-0.5,-1, 1,0.5,1},
 	visual = "mesh",
-	mesh = "rowboat.x",
+	mesh = "rowboat.b3d",
 	textures = {"default_wood.png"},
 
 	driver = nil,
@@ -53,7 +53,7 @@ function row_boat.on_rightclick(self, clicker)
 		default.player_set_animation(clicker, "stand" , 30)
 	elseif not self.driver then
 		self.driver = clicker
-		clicker:set_attach(self.object, "", {x=0,y=11,z=0}, {x=0,y=0,z=0})
+		clicker:set_attach(self.object, "", {x=0,y=11,z=-5}, {x=0,y=0,z=0})
 		default.player_attached[name] = true
 		minetest.after(0.2, function()
 			default.player_set_animation(clicker, "sit" , 30)
@@ -213,7 +213,7 @@ local sail_boat = {
 	physical = true,
 	collisionbox = {-1,-0.5,-1, 1,2,1},
 	visual = "mesh",
-	mesh = "sailboat.x",
+	mesh = "sailboat.b3d",
 	textures = {"sailboat.png"},
 	driver = nil,
 	v = 0,
