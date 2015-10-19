@@ -44,7 +44,7 @@ minetest.register_node("lottores:lead_ore", {
 	drop = "lottores:lead_lump",
 	sounds = default.node_sound_stone_defaults(),
 })
-	
+
 minetest.register_node("lottores:mithril_ore", {
 	description = "Mithril Ore",
 	tiles = {"default_stone.png^lottores_mithril_ore.png"},
@@ -112,6 +112,8 @@ minetest.register_node("lottores:red_gem_ore", {
 })
 
 -- Ores Spawning
+local mapgen_params = minetest.get_mapgen_params()
+local wl = mapgen_params.water_level
 
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -120,8 +122,8 @@ minetest.register_ore({
 	clust_scarcity = 9*9*9,
 	clust_num_ores = 5,
 	clust_size     = 2,
-	height_min     = -60,
-	height_max     = -10,
+	height_min     = wl - 60,
+	height_max     = wl - 10,
 })
 
 minetest.register_ore({
@@ -131,8 +133,8 @@ minetest.register_ore({
 	clust_scarcity = 7*7*7,
 	clust_num_ores = 5,
 	clust_size     = 2,
-	height_min     = -31000,
-	height_max     = -61,
+	height_min     = wl - 31000,
+	height_max     = wl - 61,
 })
 
 minetest.register_ore({
@@ -142,8 +144,8 @@ minetest.register_ore({
 	clust_scarcity = 24*24*24,
 	clust_num_ores = 15,
 	clust_size     = 6,
-	height_min     = -31000,
-	height_max     = -50,
+	height_min     = wl - 31000,
+	height_max     = wl - 50,
 })
 
 minetest.register_ore({
@@ -153,8 +155,8 @@ minetest.register_ore({
 	clust_scarcity = 15*15*15,
 	clust_num_ores = 3,
 	clust_size     = 2,
-	height_min     = -200,
-	height_max     = -50,
+	height_min     = wl - 200,
+	height_max     = wl - 50,
 })
 
 minetest.register_ore({
@@ -164,8 +166,8 @@ minetest.register_ore({
 	clust_scarcity = 13*13*13,
 	clust_num_ores = 6,
 	clust_size     = 3,
-	height_min     = -31000,
-	height_max     = -201,
+	height_min     = wl - 31000,
+	height_max     = wl - 201,
 })
 
 minetest.register_ore({
@@ -175,8 +177,8 @@ minetest.register_ore({
 	clust_scarcity = 12*12*12,
 	clust_num_ores = 5,
 	clust_size     = 2,
-	height_min     = -60,
-	height_max     = -20,
+	height_min     = wl - 60,
+	height_max     = wl - 20,
 })
 
 minetest.register_ore({
@@ -186,8 +188,8 @@ minetest.register_ore({
 	clust_scarcity = 9*9*9,
 	clust_num_ores = 10,
 	clust_size     = 5,
-	height_min     = -31000,
-	height_max     = -61,
+	height_min     = wl - 31000,
+	height_max     = wl - 61,
 })
 
 minetest.register_ore({
@@ -197,8 +199,8 @@ minetest.register_ore({
 	clust_scarcity = 12*12*12,
 	clust_num_ores = 4,
 	clust_size     = 3,
-	height_min     = -60,
-	height_max     = -30,
+	height_min     = wl - 60,
+	height_max     = wl - 30,
 })
 
 minetest.register_ore({
@@ -208,8 +210,8 @@ minetest.register_ore({
 	clust_scarcity = 9*9*9,
 	clust_num_ores = 5,
 	clust_size     = 3,
-	height_min     = -31000,
-	height_max     = -61,
+	height_min     = wl - 31000,
+	height_max     = wl - 61,
 })
 
 minetest.register_ore({
@@ -219,8 +221,8 @@ minetest.register_ore({
 	clust_scarcity = 15*15*15,
 	clust_num_ores = 3,
 	clust_size     = 2,
-	height_min     = -300,
-	height_max     = -70,
+	height_min     = wl - 300,
+	height_max     = wl - 70,
 })
 
 minetest.register_ore({
@@ -230,8 +232,8 @@ minetest.register_ore({
 	clust_scarcity = 13*13*13,
 	clust_num_ores = 3,
 	clust_size     = 2,
-	height_min     = -31000,
-	height_max     = -301,
+	height_min     = wl - 31000,
+	height_max     = wl - 301,
 })
 
 minetest.register_ore({
@@ -241,9 +243,10 @@ minetest.register_ore({
 	clust_scarcity = 14*14*14,
 	clust_num_ores = 4,
 	clust_size     = 2,
-	height_min     = -31000,
-	height_max     = -256,
+	height_min     = wl - 31000,
+	height_max     = wl - 256,
 })
+
 minetest.register_ore({
 	ore_type       = "scatter",
 	ore            = "lottores:red_gem_ore",
@@ -251,9 +254,10 @@ minetest.register_ore({
 	clust_scarcity = 14*14*14,
 	clust_num_ores = 4,
 	clust_size     = 2,
-	height_min     = -31000,
-	height_max     = -256,
+	height_min     = wl - 31000,
+	height_max     = wl - 256,
 })
+
 minetest.register_ore({
 	ore_type       = "scatter",
 	ore            = "lottores:white_gem_ore",
@@ -261,10 +265,9 @@ minetest.register_ore({
 	clust_scarcity = 14*14*14,
 	clust_num_ores = 4,
 	clust_size     = 2,
-	height_min     = -31000,
-	height_max     = -256,
+	height_min     = wl - 31000,
+	height_max     = wl - 256,
 })
-
 
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -273,8 +276,8 @@ minetest.register_ore({
 	clust_scarcity = 18*18*18,
 	clust_num_ores = 4,
 	clust_size     = 3,
-	height_min     = -255,
-	height_max     = -128,
+	height_min     = wl - 255,
+	height_max     = wl - 128,
 })
 
 minetest.register_ore({
@@ -284,8 +287,8 @@ minetest.register_ore({
 	clust_scarcity = 16*16*16,
 	clust_num_ores = 4,
 	clust_size     = 3,
-	height_min     = -31000,
-	height_max     = -256,
+	height_min     = wl - 31000,
+	height_max     = wl - 256,
 })
 
 -- Craft Items
@@ -778,6 +781,7 @@ minetest.register_tool("lottores:copperpick", {
 		damage_groups = {fleshy=4},
 	},
 })
+
 minetest.register_tool("lottores:tinpick", {
 	description = "Tin Pickaxe",
 	inventory_image = "lottores_tinpick.png",
@@ -790,6 +794,7 @@ minetest.register_tool("lottores:tinpick", {
 		damage_groups = {fleshy=4},
 	},
 })
+
 minetest.register_tool("lottores:silverpick", {
 	description = "Silver Pickaxe",
 	inventory_image = "lottores_silverpick.png",
@@ -802,6 +807,7 @@ minetest.register_tool("lottores:silverpick", {
 		damage_groups = {fleshy=4},
 	},
 })
+
 minetest.register_tool("lottores:goldpick", {
 	description = "Gold Pickaxe",
 	inventory_image = "lottores_goldpick.png",
@@ -814,6 +820,7 @@ minetest.register_tool("lottores:goldpick", {
 		damage_groups = {fleshy=4},
 	},
 })
+
 minetest.register_tool("lottores:galvornpick", {
 	description = "Galvorn Pickaxe",
 	inventory_image = "lottores_galvornpick.png",
@@ -827,6 +834,7 @@ minetest.register_tool("lottores:galvornpick", {
 		damage_groups = {fleshy=5},
 	},
 })
+
 minetest.register_tool("lottores:mithrilpick", {
 	description = "Mithril Pickaxe",
 	inventory_image = "lottores_mithrilpick.png",
@@ -854,6 +862,7 @@ minetest.register_tool("lottores:copperaxe", {
 		damage_groups = {fleshy=4},
 	},
 })
+
 minetest.register_tool("lottores:tinaxe", {
 	description = "Tin Axe",
 	inventory_image = "lottores_tinaxe.png",
@@ -866,6 +875,7 @@ minetest.register_tool("lottores:tinaxe", {
 		damage_groups = {fleshy=4},
 	},
 })
+
 minetest.register_tool("lottores:silveraxe", {
 	description = "Silver Axe",
 	inventory_image = "lottores_silveraxe.png",
@@ -878,6 +888,7 @@ minetest.register_tool("lottores:silveraxe", {
 		damage_groups = {fleshy=4},
 	},
 })
+
 minetest.register_tool("lottores:goldaxe", {
 	description = "Gold Axe",
 	inventory_image = "lottores_goldaxe.png",
@@ -890,6 +901,7 @@ minetest.register_tool("lottores:goldaxe", {
 		damage_groups = {fleshy=4},
 	},
 })
+
 minetest.register_tool("lottores:galvornaxe", {
 	description = "Galvorn Axe",
 	inventory_image = "lottores_galvornaxe.png",
@@ -903,6 +915,7 @@ minetest.register_tool("lottores:galvornaxe", {
 		damage_groups = {fleshy=6},
 	},
 })
+
 minetest.register_tool("lottores:mithrilaxe", {
 	description = "Mithril Axe",
 	inventory_image = "lottores_mithrilaxe.png",
@@ -930,6 +943,7 @@ minetest.register_tool("lottores:coppersword", {
 		damage_groups = {fleshy=6},
 	}
 })
+
 minetest.register_tool("lottores:tinsword", {
 	description = "Tin Sword",
 	inventory_image = "lottores_tinsword.png",
@@ -942,6 +956,7 @@ minetest.register_tool("lottores:tinsword", {
 		damage_groups = {fleshy=6},
 	}
 })
+
 minetest.register_tool("lottores:silversword", {
 	description = "Silver Sword",
 	inventory_image = "lottores_silversword.png",
@@ -954,6 +969,7 @@ minetest.register_tool("lottores:silversword", {
 		damage_groups = {fleshy=6},
 	}
 })
+
 minetest.register_tool("lottores:goldsword", {
 	description = "Gold Sword",
 	inventory_image = "lottores_goldsword.png",
@@ -966,6 +982,7 @@ minetest.register_tool("lottores:goldsword", {
 		damage_groups = {fleshy=6},
 	}
 })
+
 minetest.register_tool("lottores:galvornsword", {
 	description = "Galvorn Sword",
 	inventory_image = "lottores_galvornsword.png",
@@ -979,6 +996,7 @@ minetest.register_tool("lottores:galvornsword", {
 		damage_groups = {fleshy=7},
 	}
 })
+
 minetest.register_tool("lottores:mithrilsword", {
 	description = "Mithril Sword",
 	inventory_image = "lottores_mithrilsword.png",
@@ -1007,6 +1025,7 @@ minetest.register_tool("lottores:coppershovel", {
 		damage_groups = {fleshy=3},
 	},
 })
+
 minetest.register_tool("lottores:tinshovel", {
 	description = "Tin Shovel",
 	inventory_image = "lottores_tinshovel.png",
@@ -1020,6 +1039,7 @@ minetest.register_tool("lottores:tinshovel", {
 		damage_groups = {fleshy=3},
 	},
 })
+
 minetest.register_tool("lottores:silvershovel", {
 	description = "Silver Shovel",
 	inventory_image = "lottores_silvershovel.png",
@@ -1033,6 +1053,7 @@ minetest.register_tool("lottores:silvershovel", {
 		damage_groups = {fleshy=3},
 	},
 })
+
 minetest.register_tool("lottores:goldshovel", {
 	description = "Gold Shovel",
 	inventory_image = "lottores_goldshovel.png",
@@ -1046,6 +1067,7 @@ minetest.register_tool("lottores:goldshovel", {
 		damage_groups = {fleshy=3},
 	},
 })
+
 minetest.register_tool("lottores:galvornshovel", {
 	description = "Galvorn Shovel",
 	inventory_image = "lottores_galvornshovel.png",
@@ -1060,6 +1082,7 @@ minetest.register_tool("lottores:galvornshovel", {
 		damage_groups = {fleshy=4},
 	},
 })
+
 minetest.register_tool("lottores:mithrilshovel", {
 	description = "Mithril Shovel",
 	inventory_image = "lottores_mithrilshovel.png",
@@ -1082,7 +1105,7 @@ stairs.register_stair_and_slab("tilkal", "lottores:tilkal",
 		"Tilkal Stair",
 		"Tilkal Slab",
 		default.node_sound_stone_defaults())
-		
+
 stairs.register_stair_and_slab("limestone", "lottores:limestone",
         {cracky=3, stone=2},
 		{"lottores_limestone_ore.png"},
@@ -1117,21 +1140,21 @@ stairs.register_stair_and_slab("lead_block", "lottores:lead_block",
 		"Lead Stair",
 		"Lead Slab",
 		default.node_sound_stone_defaults())
-	
+
 stairs.register_stair_and_slab("mithril_block", "lottores:mithril_block",
         {cracky=1,level=2},
 		{"lottores_mithril_block.png"},
 		"Mithril Stair",
 		"Mithril Slab",
 		default.node_sound_stone_defaults())
-	
+
 stairs.register_stair_and_slab("tin_block", "lottores:galvorn_block",
         {cracky=1,level=2,forbidden=1},
 		{"lottores_galvorn_block.png"},
 		"Galvorn Stair",
 		"Galvorn Slab",
 		default.node_sound_stone_defaults())
-	
+
 -- Crafting
 
 minetest.register_craft({
@@ -1180,7 +1203,6 @@ minetest.register_craft({
 		{'lottores:limestone'},
 	}
 })
-
 
 minetest.register_craft({
 	type = "cooking",
@@ -1619,7 +1641,7 @@ minetest.register_node("lottores:salt", {
 minetest.register_craftitem("lottores:pearl", {
 	description = "Pearl",
 	inventory_image = "lottores_pearl.png",
-})	
+})
 
 -- Crafting
 
