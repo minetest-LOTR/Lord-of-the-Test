@@ -432,11 +432,11 @@ end
 -- White Tree
 
 function lottplants_whitetree(pos)
-	local t = 4 + math.random(2) -- trunk height
+	local t = 6 + math.random(2) -- trunk height
 	for j = -2, t do
-		if j == t or j == t - 2 then
-			for i = -2, 2 do
-			for k = -2, 2 do
+		if j == t or j == t - 2 or j == t - 4 then
+			for i = -3, 3 do
+			for k = -3, 3 do
 				local absi = math.abs(i)
 				local absk = math.abs(k)
 				if math.random() > (absi + absk) / 24 then
@@ -445,7 +445,20 @@ function lottplants_whitetree(pos)
 			end
 			end
 		end
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
+		if j == t - 1 then
+			for i = -2, 2 do
+			for k = -2, 2 do
+				if i == -1 and k == 0 or i == 1 and k == 0
+				or k == 1 and i == 0 or k == -1 and i == 0
+				or i == -2 and k == 0 or i == 2 and k == 0
+				or k == 2 and i == 0 or k == -2 and i == 0 then
+					minetest.add_node({x = pos.x + i, y = pos.y + j, z = pos.z}, {name="default:tree", param2 = 16})
+					minetest.add_node({x = pos.x, y = pos.y + j, z = pos.z + k}, {name="default:tree", param2 = 10})
+				end
+			end
+			end
+		end
+		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z}, {name="default:tree"})
 	end
 end
 

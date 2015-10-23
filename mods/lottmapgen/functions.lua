@@ -309,15 +309,29 @@ end
 function lottmapgen_whitetree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_whiteleaf = minetest.get_content_id("lottplants:whiteleaf")
-	for j = -2, 4 do
-		if j >= 1 then
-			for i = -2, 2 do
-			for k = -2, 2 do
-				local vil = area:index(x + i, y + j + 1, z + k)
+	local t = 6 + math.random(2) -- trunk height
+	for j = -2, t do
+		if j == t or j == t - 2 or j == t - 4 then
+			for i = -3, 3 do
+			for k = -3, 3 do
+				local vil = area:index(x + i, y + j + math.random(0, 1), z + k)
 				if math.random(48) == 2 then
 					data[vil] = c_whiteleaf
 				elseif math.random(3) ~= 2 then
 					data[vil] = c_whiteleaf
+				end
+			end
+			end
+		end
+		if j == t - 1 then
+			for i = -2, 2 do
+			for k = -2, 2 do
+				if i == -1 and k == 0 or i == 1 and k == 0
+				or k == 1 and i == 0 or k == -1 and i == 0
+				or i == -2 and k == 0 or i == 2 and k == 0
+				or k == 2 and i == 0 or k == -2 and i == 0 then
+					local vil = area:index(x + i, y + j + 1, z + k)
+					data[vil] = c_tree
 				end
 			end
 			end
