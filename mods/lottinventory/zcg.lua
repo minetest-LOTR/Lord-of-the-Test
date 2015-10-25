@@ -159,7 +159,7 @@ zcg.formspec = function(pn)
 			end
 		end
 	end
-	
+
 	-- Node list
 	local npp = 8*3 -- nodes per page
 	local i = 0 -- for positionning buttons
@@ -223,18 +223,18 @@ end)
 
 minetest.register_tool("lottinventory:crafts_book",{
     description = "Book of Crafts",
-    groups = {book=1}, 
+    groups = {book=1},
     inventory_image = "lottinventory_crafts_book.png",
     wield_image = "",
     wield_scale = {x=1,y=1,z=1},
-    stack_max = 1, 
+    stack_max = 1,
     tool_capabilities = {
         full_punch_interval = 1.0,
         max_drop_level=0,
         groupcaps={
-            fleshy={times={[2]=0.80, [3]=0.40}, maxwear=0.05, maxlevel=1},
-            snappy={times={[2]=0.80, [3]=0.40}, maxwear=0.05, maxlevel=1},
-            choppy={times={[3]=0.90}, maxwear=0.05, maxlevel=0}
+            fleshy={times={[2]=0.80, [3]=0.40}, maxlevel=1},
+            snappy={times={[2]=0.80, [3]=0.40}, maxlevel=1},
+            choppy={times={[3]=0.90}, maxlevel=0}
         }
     },
     on_place = function(itemstack, player, pointed_thing)

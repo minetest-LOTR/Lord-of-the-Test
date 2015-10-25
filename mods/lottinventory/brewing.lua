@@ -73,9 +73,9 @@ minetest.register_tool("lottinventory:brewing_book",{
         full_punch_interval = 1.0,
         max_drop_level=0,
         groupcaps={
-            fleshy={times={[2]=0.80, [3]=0.40}, maxwear=0.05, maxlevel=1},
-            snappy={times={[2]=0.80, [3]=0.40}, maxwear=0.05, maxlevel=1},
-            choppy={times={[3]=0.90}, maxwear=0.05, maxlevel=0}
+            fleshy={times={[2]=0.80, [3]=0.40}, maxlevel=1},
+            snappy={times={[2]=0.80, [3]=0.40}, maxlevel=1},
+            choppy={times={[3]=0.90}, maxlevel=0}
         }
     },
     on_place = function(itemstack, player, pointed_thing)

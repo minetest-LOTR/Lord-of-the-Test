@@ -122,8 +122,8 @@ minetest.register_ore({
 	clust_scarcity = 9*9*9,
 	clust_num_ores = 5,
 	clust_size     = 2,
-	height_min     = wl - 60,
-	height_max     = wl - 10,
+	y_min     = wl - 60,
+	y_max     = wl - 10,
 })
 
 minetest.register_ore({
@@ -133,8 +133,8 @@ minetest.register_ore({
 	clust_scarcity = 7*7*7,
 	clust_num_ores = 5,
 	clust_size     = 2,
-	height_min     = wl - 31000,
-	height_max     = wl - 61,
+	y_min     = wl - 31000,
+	y_max     = wl - 61,
 })
 
 minetest.register_ore({
@@ -144,8 +144,8 @@ minetest.register_ore({
 	clust_scarcity = 24*24*24,
 	clust_num_ores = 15,
 	clust_size     = 6,
-	height_min     = wl - 31000,
-	height_max     = wl - 50,
+	y_min     = wl - 31000,
+	y_max     = wl - 50,
 })
 
 minetest.register_ore({
@@ -155,8 +155,8 @@ minetest.register_ore({
 	clust_scarcity = 15*15*15,
 	clust_num_ores = 3,
 	clust_size     = 2,
-	height_min     = wl - 200,
-	height_max     = wl - 50,
+	y_min     = wl - 200,
+	y_max     = wl - 50,
 })
 
 minetest.register_ore({
@@ -166,8 +166,8 @@ minetest.register_ore({
 	clust_scarcity = 13*13*13,
 	clust_num_ores = 6,
 	clust_size     = 3,
-	height_min     = wl - 31000,
-	height_max     = wl - 201,
+	y_min     = wl - 31000,
+	y_max     = wl - 201,
 })
 
 minetest.register_ore({
@@ -177,8 +177,8 @@ minetest.register_ore({
 	clust_scarcity = 12*12*12,
 	clust_num_ores = 5,
 	clust_size     = 2,
-	height_min     = wl - 60,
-	height_max     = wl - 20,
+	y_min     = wl - 60,
+	y_max     = wl - 20,
 })
 
 minetest.register_ore({
@@ -188,8 +188,8 @@ minetest.register_ore({
 	clust_scarcity = 9*9*9,
 	clust_num_ores = 10,
 	clust_size     = 5,
-	height_min     = wl - 31000,
-	height_max     = wl - 61,
+	y_min     = wl - 31000,
+	y_max     = wl - 61,
 })
 
 minetest.register_ore({
@@ -199,8 +199,8 @@ minetest.register_ore({
 	clust_scarcity = 12*12*12,
 	clust_num_ores = 4,
 	clust_size     = 3,
-	height_min     = wl - 60,
-	height_max     = wl - 30,
+	y_min     = wl - 60,
+	y_max     = wl - 30,
 })
 
 minetest.register_ore({
@@ -210,8 +210,8 @@ minetest.register_ore({
 	clust_scarcity = 9*9*9,
 	clust_num_ores = 5,
 	clust_size     = 3,
-	height_min     = wl - 31000,
-	height_max     = wl - 61,
+	y_min     = wl - 31000,
+	y_max     = wl - 61,
 })
 
 minetest.register_ore({
@@ -221,8 +221,8 @@ minetest.register_ore({
 	clust_scarcity = 15*15*15,
 	clust_num_ores = 3,
 	clust_size     = 2,
-	height_min     = wl - 300,
-	height_max     = wl - 70,
+	y_min     = wl - 300,
+	y_max     = wl - 70,
 })
 
 minetest.register_ore({
@@ -232,8 +232,8 @@ minetest.register_ore({
 	clust_scarcity = 13*13*13,
 	clust_num_ores = 3,
 	clust_size     = 2,
-	height_min     = wl - 31000,
-	height_max     = wl - 301,
+	y_min     = wl - 31000,
+	y_max     = wl - 301,
 })
 
 minetest.register_ore({
@@ -243,8 +243,8 @@ minetest.register_ore({
 	clust_scarcity = 14*14*14,
 	clust_num_ores = 4,
 	clust_size     = 2,
-	height_min     = wl - 31000,
-	height_max     = wl - 256,
+	y_min     = wl - 31000,
+	y_max     = wl - 256,
 })
 
 minetest.register_ore({
@@ -254,8 +254,8 @@ minetest.register_ore({
 	clust_scarcity = 14*14*14,
 	clust_num_ores = 4,
 	clust_size     = 2,
-	height_min     = wl - 31000,
-	height_max     = wl - 256,
+	y_min     = wl - 31000,
+	y_max     = wl - 256,
 })
 
 minetest.register_ore({
@@ -265,8 +265,8 @@ minetest.register_ore({
 	clust_scarcity = 14*14*14,
 	clust_num_ores = 4,
 	clust_size     = 2,
-	height_min     = wl - 31000,
-	height_max     = wl - 256,
+	y_min     = wl - 31000,
+	y_max     = wl - 256,
 })
 
 minetest.register_ore({
@@ -276,8 +276,8 @@ minetest.register_ore({
 	clust_scarcity = 18*18*18,
 	clust_num_ores = 4,
 	clust_size     = 3,
-	height_min     = wl - 255,
-	height_max     = wl - 128,
+	y_min     = wl - 255,
+	y_max     = wl - 128,
 })
 
 minetest.register_ore({
@@ -287,8 +287,8 @@ minetest.register_ore({
 	clust_scarcity = 16*16*16,
 	clust_num_ores = 4,
 	clust_size     = 3,
-	height_min     = wl - 31000,
-	height_max     = wl - 256,
+	y_min     = wl - 31000,
+	y_max     = wl - 256,
 })
 
 -- Craft Items
@@ -1607,7 +1607,7 @@ minetest.register_node("lottores:mineral_salt", {
 minetest.register_node( "lottores:pearl_block", {
 	description = "Pearl Block",
      alpha = 200,
-	tile_images = { "default_sand.png^lottores_pearl_block.png" },
+	tiles = { "default_sand.png^lottores_pearl_block.png" },
 	is_ground_content = true,
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3},
      sounds = default.node_sound_glass_defaults(),
@@ -1615,7 +1615,7 @@ minetest.register_node( "lottores:pearl_block", {
 
 minetest.register_node( "lottores:salt_block", {
 	description = "Salt Block",
-	tile_images = { "default_clay.png^lottores_salt_block.png" },
+	tiles = { "default_clay.png^lottores_salt_block.png" },
 	is_ground_content = true,
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3},
 	on_use = minetest.item_eat(9),

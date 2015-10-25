@@ -16,7 +16,7 @@ minetest.register_craftitem("lottfarming:bowl", {
 
 minetest.register_node("lottfarming:decay_tree", {
 	description = "Decaying Wood",
-	tile_images = {'default_tree_top.png^lottfarming_decay_tree.png', 'default_tree.png', 	'default_tree.png'},
+	tiles = {'default_tree_top.png^lottfarming_decay_tree.png', 'default_tree.png', 	'default_tree.png'},
      is_ground_content = true,
 	groups = {crumbly=3, fungi=3},
 	sounds = default.node_sound_dirt_defaults(),
@@ -85,7 +85,7 @@ minetest.register_craft({
 		{'group:salad', 'group:salad', 'group:salad'},
 		{'', 'lottfarming:bowl', ''},
 	}
-}) 
+})
 
 -- SEEDS
 
