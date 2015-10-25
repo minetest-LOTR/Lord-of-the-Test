@@ -567,6 +567,41 @@ minetest.register_node("lottplants:mallornsapling", {
 	sounds = default.node_sound_defaults(),
 })
 
+minetest.register_node("lottplants:mallorntree_young_grower", {
+	description = "Young Mallorn Trunk",
+	tiles = {"lottplants_mallorntree_top.png", "lottplants_mallorntree_top.png", "lottplants_mallorntree.png"},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.125, -0.5, -0.1875, 0.125, 0.5, 0.1875},
+			{-0.1875, -0.5, -0.125, 0.1875, 0.5, 0.125},
+		},
+	},
+	paramtype2 = "facedir",
+	groups = {tree=1,choppy=1,flammable=2,fuel=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_wood_defaults(),
+	drop = "lottplants:mallorntree_young",
+	on_place = minetest.rotate_node,
+	on_dig = function(pos, node, digger)
+		default.dig_tree(pos, node, "lottplants:mallorntree_young", digger, 10, 1)
+	end,
+})
+
+minetest.register_node("lottplants:mallorntree_grower", {
+	description = "Mallorn Tree",
+	tiles = {"lottplants_mallorntree_top.png", "lottplants_mallorntree_top.png", "lottplants_mallorntree.png"},
+	paramtype2 = "facedir",
+	groups = {tree=1,choppy=1,flammable=2, not_in_creative_inventory=1},
+	sounds = default.node_sound_wood_defaults(),
+	drops = "lottplants:mallorntree",
+	on_place = minetest.rotate_node,
+	on_dig = function(pos, node, digger)
+		default.dig_tree(pos, node, "lottplants:mallorntree", digger, 30, 5)
+	end,
+})
+
 minetest.register_node("lottplants:pinesapling", {
 	description = "Pine Sapling",
 	drawtype = "plantlike",
