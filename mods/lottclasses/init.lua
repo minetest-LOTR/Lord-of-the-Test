@@ -46,6 +46,11 @@ local race_chooser = "size[8,6]"..
 	"button_exit[1,3.5;2,0.5;hobbit;Hobbit]"..
 	"dropdown[5.5,3.4;2;gender;Male,Female;1]"
 
+local fly_stuff = "button[1,4.75;2,0.5;fast;Fast]" ..
+	"button[3,4.75;2,0.5;fly;Fly]" ..
+	"button[5,4.75;2,0.5;noclip;Noclip]" ..
+	"button[2.5,5.5;3,0.5;fast_fly_noclip;Fast, Fly & Noclip]"
+
 chance = 0
 
 local function regen_chance()
@@ -301,11 +306,7 @@ minetest.register_on_joinplayer(function(player)
 	else
 		minetest.after(1, function()
 			if minetest.is_singleplayer() then
-				minetest.show_formspec(name, "race_selector", race_chooser ..
-				"button[1,4.75;2,0.5;fast;Fast]" ..
-				"button[3,4.75;2,0.5;fly;Fly]" ..
-				"button[5,4.75;2,0.5;noclip;Noclip]" ..
-				"button[2.5,5.5;3,0.5;fast_fly_noclip;Fast, Fly & Noclip]")
+				minetest.show_formspec(name, "race_selector", race_chooser .. fly_stuff)
 			else
 				minetest.show_formspec(name, "race_selector", race_chooser)
 			end
@@ -393,7 +394,15 @@ minetest.register_chatcommand("race", {
 		elseif minetest.check_player_privs(param, {GAMEhobbit = true}) then
 			return true, "Race of " .. param .. ": Hobbit"
 		elseif minetest.check_player_privs(param, {shout = true}) ~= nil then
-			return true, param .. " has not chosen a race!"
+			if param == name then
+				if minetest.is_singleplayer() then
+					minetest.show_formspec(name, "race_selector", race_chooser .. fly_stuff)
+				else
+					minetest.show_formspec(name, "race_selector", race_chooser)
+				end
+			else
+				return true, param .. " has not chosen a race!"
+			end
 		else
 			return true, param .. " does not exist!"
 		end
