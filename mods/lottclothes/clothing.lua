@@ -92,17 +92,65 @@ minetest.register_on_joinplayer(function(player)
 			clothing:update_inventory(player)
 		end,
 		allow_put = function(inv, listname, index, stack, player)
-			return 1
+			local to_stack = inv:get_stack(listname, index)
+			if listname == "clothing_head" then
+				if minetest.get_item_group(stack:get_name(), "clothes_head") ~= 0
+				and to_stack:is_empty() then
+					return 1
+				else
+					return 0
+				end
+			elseif listname == "clothing_body" then
+				if minetest.get_item_group(stack:get_name(), "clothes_torso") ~= 0
+				and to_stack:is_empty() then
+					return 1
+				else
+					return 0
+				end
+			elseif listname == "clothing_legs" then
+				if minetest.get_item_group(stack:get_name(), "clothes_legs") ~= 0
+				and to_stack:is_empty() then
+					return 1
+				else
+					return 0
+				end
+			elseif listname == "clothing_feet" then
+				if minetest.get_item_group(stack:get_name(), "clothes_feet") ~= 0
+				and to_stack:is_empty() then
+					return 1
+				else
+					return 0
+				end
+			elseif listname == "clothing_cloak" then
+				if minetest.get_item_group(stack:get_name(), "clothes_cloak") ~= 0
+				and to_stack:is_empty() then
+					return 1
+				else
+					return 0
+				end
+			end
 		end,
 		allow_take = function(inv, listname, index, stack, player)
 			return stack:get_count()
 		end,
 		allow_move = function(inv, from_list, from_index, to_list, to_index, count, player)
-			return count
+			if to_list == "main" or to_list == "craft" then
+				return count
+			else
+				return 0
+			end
 		end,
 	})
-	clothing_inv:set_size("clothing", 5)
-	player_inv:set_size("clothing", 5)
+	clothing_inv:set_size("clothing_head", 1)
+	clothing_inv:set_size("clothing_body", 1)
+	clothing_inv:set_size("clothing_legs", 1)
+	clothing_inv:set_size("clothing_feet", 1)
+	clothing_inv:set_size("clothing_cloak", 1)
+	player_inv:set_size("clothing_head", 1)
+	player_inv:set_size("clothing_body", 1)
+	player_inv:set_size("clothing_legs", 1)
+	player_inv:set_size("clothing_feet", 1)
+	player_inv:set_size("clothing_cloak", 1)
 	for i=1, 5 do
 		local stack = player_inv:get_stack("clothing", i)
 		clothing_inv:set_stack("clothing", i, stack)
