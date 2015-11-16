@@ -340,7 +340,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		elseif fields.elf then
 			player_race_stuff("elf", "elves", "male", give_stuff_elf, name, privs, player)
 		elseif fields.man then
-			player_race_stuff("men", "man", "male", give_stuff_man, name, privs, player)
+			player_race_stuff("man", "men", "male", give_stuff_man, name, privs, player)
 		elseif fields.orc then
 			player_race_stuff("orc", "orcs", "male", give_stuff_orc, name, privs, player)
 		elseif fields.hobbit then
