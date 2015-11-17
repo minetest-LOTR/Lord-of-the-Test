@@ -1,3 +1,8 @@
+minetest.register_privilege("GAMEwizard", {
+	description = "A wizard player",
+	give_to_singleplayer = false,
+})
+
 minetest.register_privilege("GAMEmale", {
 	description = "A male player",
 	give_to_singleplayer = false,
@@ -312,7 +317,7 @@ end
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 	local privs = minetest.get_player_privs(name)
-	if minetest.get_player_privs(name).server then
+	if minetest.get_player_privs(name).GAMEwizard then
 		multiskin[name].skin = "wizard_skin.png"
 	elseif minetest.get_player_privs(name).GAMEmale then
 		if minetest.get_player_privs(name).GAMEdwarf then
@@ -420,7 +425,7 @@ minetest.register_chatcommand("race", {
 	description = "print out privileges of player",
 	func = function(name, param)
 		param = (param ~= "" and param or name)
-		if minetest.check_player_privs(param, {server = true}) then
+		if minetest.check_player_privs(param, {GAMEwizard = true}) then
 			return true, "Race of " .. param .. ":Wizard"
 		elseif minetest.check_player_privs(param, {GAMEdwarf = true}) then
 			return true, "Race of " .. param .. ": Dwarf"
