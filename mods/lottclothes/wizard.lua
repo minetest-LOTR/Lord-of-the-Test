@@ -20,7 +20,7 @@ minetest.register_craft({
 -- cloak
 minetest.register_tool("lottclothes:cloak_wizard", {
 	description = "Wizard Cloak",
-	inventory_image = "lottclothes_inv_cloak_wizard",
+	inventory_image = "lottclothes_inv_cloak_wizard.png",
 	groups = {armor_heal=0, clothes=1, no_preview=1, clothes_cloak=1},
 	wear = 0
 })
@@ -28,7 +28,7 @@ minetest.register_tool("lottclothes:cloak_wizard", {
 -- cap
 minetest.register_tool("lottclothes:cap_wizard", {
 	description = "Wizard Cap",
-	inventory_image = "lottclothes_inv_cap_wizard",
+	inventory_image = "lottclothes_inv_cap_wizard.png",
 	groups = {armor_heal=0, clothes=1, no_preview=1, clothes_head=1},
 	wear = 0
 })
@@ -36,7 +36,7 @@ minetest.register_tool("lottclothes:cap_wizard", {
 -- robe
 minetest.register_tool("lottclothes:robewizard", {
 	description = "Wizard Robe",
-	inventory_image = "lottclothes_inv_robe_wizard",
+	inventory_image = "lottclothes_inv_robe_wizard.png",
 	groups = {armor_heal=0, clothes=1, no_preview=1, clothes_torso=1},
 	wear = 0
 })
