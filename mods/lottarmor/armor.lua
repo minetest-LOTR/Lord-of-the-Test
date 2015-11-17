@@ -84,16 +84,10 @@ armor = {
 		.."image[3,2;1,1;lottarmor_trousers.png]"
 		.."image[3,3;1,1;lottarmor_shoes.png]"
 		.."image[4,0;1,1;lottarmor_cloak.png]"
-		.."list[detached:player_name_armor;armor_head;0,0;1,1;]"
-		.."list[detached:player_name_armor;armor_torso;0,1;1,1;]"
-		.."list[detached:player_name_armor;armor_legs;0,2;1,1;]"
-		.."list[detached:player_name_armor;armor_feet;0,3;1,1;]"
-		.."list[detached:player_name_armor;armor_shield;2,2;1,1;]"
-		.."list[detached:player_name_clothing;clothing_head;3,0;1,1;]"
-		.."list[detached:player_name_clothing;clothing_body;3,1;1,1;]"
-		.."list[detached:player_name_clothing;clothing_legs;3,2;1,1;]"
-		.."list[detached:player_name_clothing;clothing_feet;3,3;1,1;]"
-		.."list[detached:player_name_clothing;clothing_cloak;4,0;1,1;]"
+		.."list[detached:player_name_armor;armor;0,0;1,4;]"
+		.."list[detached:player_name_armor;armor;2,2;1,1;4]"
+		.."list[detached:player_name_clothing;clothing;3,0;1,4;]"
+		.."list[detached:player_name_clothing;clothing;4,0;1,1;4]"
 		.."image[1.16,0.25;2,4;armor_preview]"
 		.."image[2,2;1,1;lottarmor_shield.png]"
 		.."list[current_player;main;0,4.25;8,1;]"
@@ -433,68 +427,50 @@ minetest.register_on_joinplayer(function(player)
 			armor:update_inventory(player)
 		end,
 		allow_put = function(inv, listname, index, stack, player)
-		    local to_stack = inv:get_stack(listname, index)
-		    if listname == "armor_head" then
-		        if minetest.get_item_group(stack:get_name(), "armor_head") ~= 0
-		        and to_stack:is_empty() then
-		            return 1
-		        else
-		            return 0
-		        end
-		    elseif listname == "armor_torso" then
-		        if minetest.get_item_group(stack:get_name(), "armor_torso") ~= 0
-		        and to_stack:is_empty() then
-		            return 1
-		        else
-		            return 0
-		        end
-		    elseif listname == "armor_legs" then
-		        if minetest.get_item_group(stack:get_name(), "armor_legs") ~= 0
-		        and to_stack:is_empty() then
-		            return 1
-		        else
-		            return 0
-		        end
-		    elseif listname == "armor_feet" then
-		        if minetest.get_item_group(stack:get_name(), "armor_feet") ~= 0
-		        and to_stack:is_empty() then
-		            return 1
-		        else
-		            return 0
-		        end
-		    elseif listname == "armor_shield" then
-		        if minetest.get_item_group(stack:get_name(), "armor_shield") ~= 0
-		        and to_stack:is_empty() then
-		            return 1
-		        else
-		            return 0
-		        end
-		    end
+			if index == 1 then
+				if stack:get_definition().groups.armor_head == nil then
+					return 0
+				else
+					return 1
+				end
+			elseif index == 2 then
+				if stack:get_definition().groups.armor_torso == nil then
+					return 0
+				else
+					return 1
+				end
+			elseif index == 3 then
+				if stack:get_definition().groups.armor_legs == nil then
+					return 0
+				else
+					return 1
+				end
+			elseif index == 4 then
+				if stack:get_definition().groups.armor_feet == nil then
+					return 0
+				else
+					return 1
+				end
+			elseif index == 5 then
+				if stack:get_definition().groups.armor_shield == nil then
+					return 0
+				else
+					return 1
+				end
+			end
 		end,
 		allow_take = function(inv, listname, index, stack, player)
 			return stack:get_count()
 		end,
 		allow_move = function(inv, from_list, from_index, to_list, to_index, count, player)
-			if to_list == "main" or to_list == "craft" then
-				return count
-			else
-				return 0
-			end
+			return 0
 		end,
 	})
 	if inv_mod == "inventory_plus" then
 		inventory_plus.register_button(player,"armor", "Armor")
 	end
-	armor_inv:set_size("armor_head", 1)
-	armor_inv:set_size("armor_torso", 1)
-	armor_inv:set_size("armor_legs", 1)
-	armor_inv:set_size("armor_feet", 1)
-	armor_inv:set_size("armor_shield", 1)
-	player_inv:set_size("armor_head", 1)
-	player_inv:set_size("armor_torso", 1)
-	player_inv:set_size("armor_legs", 1)
-	player_inv:set_size("armor_feet", 1)
-	player_inv:set_size("armor_shield", 1)
+	armor_inv:set_size("armor", 5)
+	player_inv:set_size("armor", 5)
 	for i = 1, 5 do
 		local stack = player_inv:get_stack("armor", i)
 		armor_inv:set_stack("armor", i, stack)
