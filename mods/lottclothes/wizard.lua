@@ -34,7 +34,7 @@ minetest.register_tool("lottclothes:cap_wizard", {
 })
 
 -- robe
-minetest.register_tool("lottclothes:robewizard", {
+minetest.register_tool("lottclothes:robe_wizard", {
 	description = "Wizard Robe",
 	inventory_image = "lottclothes_inv_robe_wizard.png",
 	groups = {armor_heal=0, clothes=1, no_preview=1, clothes_torso=1},
