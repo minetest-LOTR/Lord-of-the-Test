@@ -1,6 +1,7 @@
 -- Clothes made for wizards
 
 
+-- gandalf the grey:
 -- big black dwarf boots
 minetest.register_tool("lottclothes:boots_dwarf", {
 	description = "Dwarven Boots",
@@ -18,25 +19,58 @@ minetest.register_craft({
 })
 
 -- cloak
-minetest.register_tool("lottclothes:cloak_wizard", {
-	description = "Wizard Cloak",
-	inventory_image = "lottclothes_inv_cloak_wizard.png",
+minetest.register_tool("lottclothes:cloak_wizard_grey", {
+	description = "Grey Wizard Cloak",
+	inventory_image = "lottclothes_inv_cloak_wizard_grey.png",
 	groups = {armor_heal=0, clothes=1, no_preview=1, clothes_cloak=1},
 	wear = 0
 })
 
--- cap
-minetest.register_tool("lottclothes:cap_wizard", {
-	description = "Wizard Cap",
-	inventory_image = "lottclothes_inv_cap_wizard.png",
+-- hood
+minetest.register_tool("lottclothes:hood_wizard_blue", {
+	description = "Blue Wizard Hood",
+	inventory_image = "lottclothes_inv_hood_wizard_blue.png",
 	groups = {armor_heal=0, clothes=1, no_preview=1, clothes_head=1},
 	wear = 0
 })
 
 -- robe
-minetest.register_tool("lottclothes:robe_wizard", {
-	description = "Wizard Robe",
-	inventory_image = "lottclothes_inv_robe_wizard.png",
+minetest.register_tool("lottclothes:robe_wizard_grey", {
+	description = "Grey Wizard Robe",
+	inventory_image = "lottclothes_inv_robe_wizard_grey.png",
 	groups = {armor_heal=0, clothes=1, no_preview=1, clothes_torso=1},
+	wear = 0
+})
+
+-- gandalf the white
+-- hood
+minetest.register_tool("lottclothes:hood_wizard_white", {
+	description = "White Wizard Hood",
+	inventory_image = "lottclothes_inv_hood_wizard_white.png",
+	groups = {armor_heal=0, clothes=1, no_preview=1, clothes_head=1},
+	wear = 0
+})
+
+-- robe
+minetest.register_tool("lottclothes:robe_wizard_white", {
+	description = "White Wizard Robe",
+	inventory_image = "lottclothes_inv_robe_wizard_white.png",
+	groups = {armor_heal=0, clothes=1, no_preview=1, clothes_torso=1},
+	wear = 0
+})
+
+-- trousers
+minetest.register_tool("lottclothes:trousers_wizard_white", {
+	description = "White Wizard Trousers",
+	inventory_image = "lottclothes_inv_trousers_wizard_white.png",
+	groups = {armor_heal=0, clothes=1, no_preview=1, clothes_legs=1},
+	wear = 0
+})
+
+-- cloak
+minetest.register_tool("lottclothes:cloak_wizard_white", {
+	description = "White Wizard Cloak",
+	inventory_image = "lottclothes_inv_cloak_wizard_white.png",
+	groups = {armor_heal=0, clothes=1, no_preview=1, clothes_cloak=1},
 	wear = 0
 })
