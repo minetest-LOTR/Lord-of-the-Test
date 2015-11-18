@@ -314,6 +314,14 @@ local function give_stuff_wizard(player)
 	player:get_inventory():add_item('main', 'lottinventory:master_book')
 end
 
+minetest.register_on_newplayer(function(player)
+	local name = player:get_player_name()
+	local privs = minetest.get_player_privs(name)
+	if minetest.get_player_privs(name).GAMEwizard then
+		give_stuff_wizard(player)
+	end
+end)
+
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 	local privs = minetest.get_player_privs(name)
@@ -403,20 +411,20 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 	if fields.fast then
 		privs.fast = true
-        minetest.set_player_privs(name, privs)
-        return
+		minetest.set_player_privs(name, privs)
+		return
 	elseif fields.fly then
 		privs.fly = true
-        minetest.set_player_privs(name, privs)
-        return
+		minetest.set_player_privs(name, privs)
+		return
 	elseif fields.noclip then
 		privs.noclip = true
-        minetest.set_player_privs(name, privs)
-        return
+		minetest.set_player_privs(name, privs)
+		return
 	elseif fields.fast_fly_noclip then
 		privs.fly, privs.fast, privs.noclip = true, true, true
-        minetest.set_player_privs(name, privs)
-        return
+		minetest.set_player_privs(name, privs)
+		return
 	end
 end)
 
@@ -426,7 +434,7 @@ minetest.register_chatcommand("race", {
 	func = function(name, param)
 		param = (param ~= "" and param or name)
 		if minetest.check_player_privs(param, {GAMEwizard = true}) then
-			return true, "Race of " .. param .. ":Wizard"
+			return true, "Race of " .. param .. ": Wizard"
 		elseif minetest.check_player_privs(param, {GAMEdwarf = true}) then
 			return true, "Race of " .. param .. ": Dwarf"
 		elseif minetest.check_player_privs(param, {GAMEelf = true}) then
