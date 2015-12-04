@@ -165,20 +165,23 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_rohfort = minetest.get_content_id("lottmapgen:rohanfort")
 
 	local sidelen = x1 - x0 + 1
-	local chulens = {x=sidelen, y=sidelen, z=sidelen}
-	local minposxz = {x=x0, y=z0}
-
-	local nvals_temp = minetest.get_perlin_map(np_temp, chulens):get2dMap_flat(minposxz)
-	local nvals_humid = minetest.get_perlin_map(np_humid, chulens):get2dMap_flat(minposxz)
-	local nvals_random = minetest.get_perlin_map(np_random, chulens):get2dMap_flat(minposxz)
+	local offset = 5
+	local chulens = {x=sidelen+2*offset, y=sidelen+2*offset, z=sidelen+2*offset}
+	local minposxz = {x=x0-offset, y=z0-offset }
+	local nvals_temp = minetest.get_perlin_map(np_temp, chulens):get2dMap(minposxz)
+	local nvals_humid = minetest.get_perlin_map(np_humid, chulens):get2dMap(minposxz)
+	local nvals_random = minetest.get_perlin_map(np_random, chulens):get2dMap(minposxz)
 
 	local nixz = 1
 	for z = z0, z1 do
 		for x = x0, x1 do -- for each column do
-			local n_temp = nvals_temp[nixz] -- select biome
-			local n_humid = nvals_humid[nixz]
-			local n_ran = nvals_random[nixz]
+			local offsetpos = {x=(x-x0)+offset+math.random(-offset,offset)+1, z=(z-z0)+offset+math.random(-offset,offset)+1}
+			local n_temp = nvals_temp[offsetpos.z][offsetpos.x] -- select biome
+			local n_humid = nvals_humid[offsetpos.z][offsetpos.x]
+			local n_ran = nvals_random[offsetpos.z][offsetpos.x]
+
 			local biome = false
+
 			if n_temp < LOTET then
 				if n_humid < LOHUT then
 					biome = 1 -- (Angmar)
