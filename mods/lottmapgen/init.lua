@@ -165,7 +165,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_rohfort = minetest.get_content_id("lottmapgen:rohanfort")
 
 	local sidelen = x1 - x0 + 1
-	local offset = 5
+	local offset = math.random(5,20)
 	local chulens = {x=sidelen+2*offset, y=sidelen+2*offset, z=sidelen+2*offset}
 	local minposxz = {x=x0-offset, y=z0-offset }
 	local nvals_temp = minetest.get_perlin_map(np_temp, chulens):get2dMap(minposxz)
