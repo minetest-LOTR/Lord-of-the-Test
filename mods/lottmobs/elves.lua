@@ -41,7 +41,7 @@ function lottmobs.register_elf(n, hpmin, hpmax, textures, wv, rv, damg, arm, dro
     	},
     	attacks_monsters = true,
     	on_rightclick = function(self, clicker)
-    		lottmobs.guard(self, clicker, "default:goldblock")
+            lottmobs.guard(self, clicker, "default:gold_ingot")
     	end,
     	peaceful = true,
     	group_attack = true,

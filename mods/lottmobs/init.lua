@@ -18,15 +18,23 @@ lottmobs.guard = function(self, clicker, payment)
 			clicker:set_wielded_item(item)
 		end
 	elseif item:get_name() == payment then
-		if not minetest.setting_getbool("creative_mode") then
-			item:take_item()
-			clicker:set_wielded_item(item)
+		minetest.show_formspec(name, "mob_hiring", lottmobs.hiring)
+		lottmobs.hire = function(cost)
+			local count = item:get_count()
+			if count > cost then
+				if not minetest.setting_getbool("creative_mode") then
+					item:take_item(cost)
+					clicker:set_wielded_item(item)
+				end
+				self.tamed = true
+				if not self.owner or self.owner == "" then
+					self.owner = clicker:get_player_name()
+				end
+				self.order = "follow"
+			else
+				minetest.chat_send_all("[NPC] <ABC> What, you don't have that much money?! Stop wasting my time!")
+			end
 		end
-		self.tamed = true
-		if not self.owner or self.owner == "" then
-			self.owner = clicker:get_player_name()
-		end
-		self.order = "follow"
 	else
 		if self.owner and self.owner == name then
 			if self.order == "follow" then
@@ -351,7 +359,7 @@ mobs:register_mob("lottmobs:rohan_guard", {
 		attack = "default_punch2",
 	},
 	on_rightclick = function(self, clicker)
-		lottmobs.guard(self, clicker, "default:goldblock")
+		lottmobs.guard(self, clicker, "default:gold_ingot")
 	end,
 	attacks_monsters = true,
 	peaceful = true,
@@ -467,7 +475,7 @@ mobs:register_mob("lottmobs:gondor_guard", {
 		attack = "default_punch2",
 	},
 	on_rightclick = function(self, clicker)
-		lottmobs.guard(self, clicker, "default:goldblock")
+		lottmobs.guard(self, clicker, "default:gold_ingot")
 	end,
 	attacks_monsters = true,
 	peaceful = true,
@@ -563,7 +571,7 @@ mobs:register_mob("lottmobs:ithilien_ranger", {
 		attack = "default_punch2",
 	},
 	on_rightclick = function(self, clicker)
-		lottmobs.guard(self, clicker, "default:goldblock")
+		lottmobs.guard(self, clicker, "default:gold_ingot")
 	end,
 	attacks_monsters = true,
 	peaceful = true,

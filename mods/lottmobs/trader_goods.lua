@@ -164,3 +164,25 @@ lottmobs.human = {
 		"Gilraen", "Írimon", "Minardil", "Oromendil", "Tarcil", "Vorondil"
 	}
 }
+
+lottmobs.hiring = "size[8,9]" ..
+	"label[0,0;Select the ammout of gold you want to offer:]" ..
+	"dropdown[0.5,1;2;offer;1,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,99;1]" ..
+	"button_exit[0.5,2;1.5,1;done;Done]"
+
+minetest.register_on_player_receive_fields(function(player, formname, fields)
+	if formname ~= "mob_hiring" then return end
+	if fields.done then
+		if tonumber(fields.offer) then
+			local n = tonumber(fields.offer)
+			if math.random(1, (50/n)) == 1 then
+				minetest.chat_send_all("[NPC] <ABC> Okay, I'll work for you.")
+				lottmobs.hire(n)
+			else
+				minetest.chat_send_all("[NPC] <ABC> Do you really think I'll work for you for that much?!")
+			end
+		else
+			minetest.chat_send_all("Offer must be a number!")
+		end
+	end
+end)
