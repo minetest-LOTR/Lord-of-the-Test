@@ -42,7 +42,7 @@ function lottmobs.register_dwarf(n, hpmin, hpmax, textures, wv, rv, damg, arm, d
     	},
     	attacks_monsters = true,
     	on_rightclick = function(self, clicker)
-            lottmobs.guard(self, clicker, "default:gold_ingot")
+            lottmobs.guard(self, clicker, "default:gold_ingot", "dwarf")
     	end,
     	peaceful = true,
     	group_attack = true,

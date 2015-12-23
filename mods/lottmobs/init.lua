@@ -1,6 +1,6 @@
 lottmobs = {}
 
-lottmobs.guard = function(self, clicker, payment)
+lottmobs.guard = function(self, clicker, payment, mob_name)
 	local item = clicker:get_wielded_item()
 	local name = clicker:get_player_name()
 	if item:get_name() == "lottfarming:corn"
@@ -18,21 +18,47 @@ lottmobs.guard = function(self, clicker, payment)
 			clicker:set_wielded_item(item)
 		end
 	elseif item:get_name() == payment then
-		minetest.show_formspec(name, "mob_hiring", lottmobs.hiring)
-		lottmobs.hire = function(cost)
-			local count = item:get_count()
-			if count > cost then
-				if not minetest.setting_getbool("creative_mode") then
-					item:take_item(cost)
-					clicker:set_wielded_item(item)
+		if self.tamed == false then
+			lottmobs.face_pos(self, clicker:getpos())
+			self.state = "stand"
+			minetest.show_formspec(name, "mob_hiring", lottmobs.hiring)
+			lottmobs.hire = function(cost)
+				if math.random(1, (50/cost)) == 1 then
+					minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> Okay, I'll work for you.")
+					local count = item:get_count()
+					if count > cost or minetest.setting_getbool("creative_mode") then
+						if not minetest.setting_getbool("creative_mode") then
+							item:take_item(cost)
+							clicker:set_wielded_item(item)
+						end
+						self.tamed = true
+						if not self.owner or self.owner == "" then
+							self.owner = clicker:get_player_name()
+						end
+						self.order = "follow"
+						minetest.show_formspec(name, "mob_naming", "field[naming;Name your guard:;]")
+					else
+						minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> What, you don't have that much money?! Stop wasting my time!")
+					end
+				else
+					local rand = math.random(1, 5)
+					if rand == 1 then
+						minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> Stop bothering me!")
+						self.object:remove()
+					elseif rand == 2 then
+						minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> Are you mocking me? I don't take kindly to mockers!")
+						self.state = "attack"
+						self.attack = clicker
+					elseif rand == 3 then
+						minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> Your joking, right? Oh, you're serious? Well, to let you know, I won't be working for you for that pitiful amount.")
+					else
+						minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> Do you really think I'll work for you for that much?!")
+					end
 				end
-				self.tamed = true
-				if not self.owner or self.owner == "" then
-					self.owner = clicker:get_player_name()
-				end
-				self.order = "follow"
-			else
-				minetest.chat_send_all("[NPC] <ABC> What, you don't have that much money?! Stop wasting my time!")
+			end
+			lottmobs.name = function(name)
+				self.game_name = name
+				self.nametag = name
 			end
 		end
 	else
@@ -359,7 +385,7 @@ mobs:register_mob("lottmobs:rohan_guard", {
 		attack = "default_punch2",
 	},
 	on_rightclick = function(self, clicker)
-		lottmobs.guard(self, clicker, "default:gold_ingot")
+		lottmobs.guard(self, clicker, "default:gold_ingot", "Rohan Guard")
 	end,
 	attacks_monsters = true,
 	peaceful = true,
@@ -475,7 +501,7 @@ mobs:register_mob("lottmobs:gondor_guard", {
 		attack = "default_punch2",
 	},
 	on_rightclick = function(self, clicker)
-		lottmobs.guard(self, clicker, "default:gold_ingot")
+		lottmobs.guard(self, clicker, "default:gold_ingot", "Gondor Guard")
 	end,
 	attacks_monsters = true,
 	peaceful = true,
@@ -571,7 +597,7 @@ mobs:register_mob("lottmobs:ithilien_ranger", {
 		attack = "default_punch2",
 	},
 	on_rightclick = function(self, clicker)
-		lottmobs.guard(self, clicker, "default:gold_ingot")
+		lottmobs.guard(self, clicker, "default:gold_ingot", "Ithilien Ranger")
 	end,
 	attacks_monsters = true,
 	peaceful = true,
