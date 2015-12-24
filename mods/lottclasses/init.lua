@@ -1,3 +1,8 @@
+minetest.register_privilege("GAMEwizard", {
+	description = "A wizard player",
+	give_to_singleplayer = false,
+})
+
 minetest.register_privilege("GAMEmale", {
 	description = "A male player",
 	give_to_singleplayer = false,
@@ -276,10 +281,53 @@ local function give_stuff_hobbit(player)
 	player:get_inventory():add_item('main', 'lottinventory:small')
 end
 
+local function give_stuff_wizard(player)
+	regen_chance()
+	if chance <= 2 then
+		player:get_inventory():add_item('main', 'default:pick_steel')
+	elseif chance == 3 or chance == 4 or chance == 5 then
+		player:get_inventory():add_item('main', 'lottores:copperpick')
+	elseif chance == 6 then
+		player:get_inventory():add_item('main', 'lottores:galvornpick')
+	end
+	regen_chance()
+	if chance == 1 then
+		player:get_inventory():add_item('main', 'default:axe_steel')
+	elseif chance == 2 or chance == 3 then
+		player:get_inventory():add_item('main', 'lottores:tinaxe')
+	elseif chance == 4 then
+		player:get_inventory():add_item('main', 'lottores:galvornaxe')
+	elseif chance >= 5 then
+		player:get_inventory():add_item('main', 'lottores:copperaxe')
+	end
+	regen_chance()
+	if chance <= 3 then
+		player:get_inventory():add_item('main', 'lottores:coppershovel')
+	elseif chance >= 4 then
+		player:get_inventory():add_item('main', 'default:shovel_steel')
+	end
+	player:get_inventory():add_item('main', 'default:sword_steel')
+	regen_chance()
+	if chance < 5 then
+		player:get_inventory():add_item('main', 'lottinventory:potions_book')
+	end
+	player:get_inventory():add_item('main', 'lottinventory:master_book')
+end
+
+minetest.register_on_newplayer(function(player)
+	local name = player:get_player_name()
+	local privs = minetest.get_player_privs(name)
+	if minetest.get_player_privs(name).GAMEwizard then
+		give_stuff_wizard(player)
+	end
+end)
+
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 	local privs = minetest.get_player_privs(name)
-	if minetest.get_player_privs(name).GAMEmale then
+	if minetest.get_player_privs(name).GAMEwizard then
+		multiskin[name].skin = "wizard_skin.png"
+	elseif minetest.get_player_privs(name).GAMEmale then
 		if minetest.get_player_privs(name).GAMEdwarf then
 			multiskin[name].skin = "dwarf_skin.png"
 		elseif minetest.get_player_privs(name).GAMEelf then
@@ -320,7 +368,7 @@ local function player_race_stuff(race, text, mf, func, name, privs, player)
 	privs["GAME" .. mf] = true
 	minetest.set_player_privs(name, privs)
 	func(player)
-	if mf == "male" or race == "orc" then
+	if mf == "male" or race == "orc" or race == "wizard" then
 		default.player_set_textures(player, {race .. "_skin.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png"})
 		multiskin[name].skin = race .. "_skin.png"
 	elseif mf == "female" then
@@ -340,7 +388,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		elseif fields.elf then
 			player_race_stuff("elf", "elves", "male", give_stuff_elf, name, privs, player)
 		elseif fields.man then
-			player_race_stuff("men", "man", "male", give_stuff_man, name, privs, player)
+			player_race_stuff("man", "men", "male", give_stuff_man, name, privs, player)
 		elseif fields.orc then
 			player_race_stuff("orc", "orcs", "male", give_stuff_orc, name, privs, player)
 		elseif fields.hobbit then
@@ -354,27 +402,27 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		elseif fields.man then
 			player_race_stuff("man", "men", "female", give_stuff_man, name, privs, player)
 		elseif fields.orc then
-			player_race_stuff("orc", "orc", "female", give_stuff_orc, name, privs, player)
+			player_race_stuff("orc", "orcs", "female", give_stuff_orc, name, privs, player)
 		elseif fields.hobbit then
 			player_race_stuff("hobbit", "hobbits", "female", give_stuff_hobbit, name, privs, player)
 		end
 	end
 	if fields.fast then
 		privs.fast = true
-        minetest.set_player_privs(name, privs)
-        return
+		minetest.set_player_privs(name, privs)
+		return
 	elseif fields.fly then
 		privs.fly = true
-        minetest.set_player_privs(name, privs)
-        return
+		minetest.set_player_privs(name, privs)
+		return
 	elseif fields.noclip then
 		privs.noclip = true
-        minetest.set_player_privs(name, privs)
-        return
+		minetest.set_player_privs(name, privs)
+		return
 	elseif fields.fast_fly_noclip then
 		privs.fly, privs.fast, privs.noclip = true, true, true
-        minetest.set_player_privs(name, privs)
-        return
+		minetest.set_player_privs(name, privs)
+		return
 	end
 end)
 
@@ -383,7 +431,9 @@ minetest.register_chatcommand("race", {
 	description = "print out privileges of player",
 	func = function(name, param)
 		param = (param ~= "" and param or name)
-		if minetest.check_player_privs(param, {GAMEdwarf = true}) then
+		if minetest.check_player_privs(param, {GAMEwizard = true}) then
+			return true, "Race of " .. param .. ": Wizard"
+		elseif minetest.check_player_privs(param, {GAMEdwarf = true}) then
 			return true, "Race of " .. param .. ": Dwarf"
 		elseif minetest.check_player_privs(param, {GAMEelf = true}) then
 			return true, "Race of " .. param .. ": Elf"

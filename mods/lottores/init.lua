@@ -1148,7 +1148,7 @@ stairs.register_stair_and_slab("mithril_block", "lottores:mithril_block",
 		"Mithril Slab",
 		default.node_sound_stone_defaults())
 
-stairs.register_stair_and_slab("tin_block", "lottores:galvorn_block",
+stairs.register_stair_and_slab("galvorn_block", "lottores:galvorn_block",
         {cracky=1,level=2,forbidden=1},
 		{"lottores_galvorn_block.png"},
 		"Galvorn Stair",

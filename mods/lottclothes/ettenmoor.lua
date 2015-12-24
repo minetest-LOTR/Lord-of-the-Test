@@ -1,5 +1,5 @@
 -- outfit from the ettenmoor region. wizard style (as possible).
--- made from grey and brown felt & gold ingot. 
+-- made from grey and brown felt & gold ingot.
 -- it's difficult to make because dye:brown, dye:grey and lottores:gold.
 -- hasn't got boots.
 
@@ -9,7 +9,7 @@ local level=4
 minetest.register_tool("lottclothes:hood_ettenmoor", {
 	description = "Ettenmoor Hood",
 	inventory_image = "lottclothes_inv_hood_ettenmoor.png",
-	groups = {armor_head=0, armor_heal=0, clothes=1},
+	groups = {armor_head=0, armor_heal=0, clothes=1, clothes_head=1},
 	wear = 0
 })
 
@@ -26,7 +26,7 @@ minetest.register_craft({
 minetest.register_tool("lottclothes:robe_ettenmoor", {
 	description = "Ettenmoor Robe",
 	inventory_image = "lottclothes_inv_robe_ettenmoor.png",
-	groups = {armor_torso=0, armor_heal=0, clothes=1},
+	groups = {armor_torso=0, armor_heal=0, clothes=1, clothes_torso=1},
 	wear = 0
 })
 
@@ -43,7 +43,7 @@ minetest.register_craft({
 minetest.register_tool("lottclothes:trousers_ettenmoor", {
 	description = "Ettenmoor Trousers",
 	inventory_image = "lottclothes_inv_trousers_ettenmoor.png",
-	groups = {armor_legs=0, armor_heal=0, clothes=1},
+	groups = {armor_legs=0, armor_heal=0, clothes=1, clothes_legs=1},
 	wear = 0
 })
 

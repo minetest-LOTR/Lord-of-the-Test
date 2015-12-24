@@ -227,7 +227,7 @@ minetest.register_abm({
 })
 
 minetest.register_abm({
-	nodenames = {"lottmapgen:gondorfort","lottmapgen:hobbithole","lottmapgen:orcfort","lottmapgen:rohanfort","lottmapgen:mallornhouse"},
+	nodenames = {"lottmapgen:gondorfort","lottmapgen:hobbithole","lottmapgen:orcfort","lottmapgen:rohanfort","lottmapgen:mallornhouse","lottmapgen:lorienhouse"},
 	interval = 4,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)

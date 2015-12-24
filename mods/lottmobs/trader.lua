@@ -159,6 +159,10 @@ function lottmobs_trader(self, clicker, entity, race, image, priv)
 	if self.id == 0 then
 		self.id = (math.random(1, 1000) * math.random(1, 10000)) .. self.name .. (math.random(1, 1000) ^ 2)
 	end
+	if self.game_name == "mob" then
+		self.game_name = tostring(race.names[math.random(1,#race.names)])
+		--self.nametag = self.game_name
+	end
 	local unique_entity_id = self.id
 	local is_inventory = minetest.get_inventory({type="detached", name=unique_entity_id})
 	local same_race = false
@@ -214,7 +218,6 @@ function lottmobs_trader(self, clicker, entity, race, image, priv)
 		on_take = lottmobs.on_take
 	}
 	if is_inventory == nil then
-		self.game_name = tostring(race.names[math.random(1,#race.names)])
 		lottmobs.trader_inventory = minetest.create_detached_inventory(unique_entity_id, move_put_take)
 		lottmobs.trader_inventory.set_size(lottmobs.trader_inventory,"goods",15)
 		lottmobs.trader_inventory.set_size(lottmobs.trader_inventory,"takeaway",1)

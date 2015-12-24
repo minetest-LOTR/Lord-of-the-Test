@@ -92,13 +92,43 @@ minetest.register_on_joinplayer(function(player)
 			clothing:update_inventory(player)
 		end,
 		allow_put = function(inv, listname, index, stack, player)
-			return 1
+			if index == 1 then
+				if stack:get_definition().groups.clothes_head == nil then
+					return 0
+				else
+					return 1
+				end
+			elseif index == 2 then
+				if stack:get_definition().groups.clothes_torso == nil then
+					return 0
+				else
+					return 1
+				end
+			elseif index == 3 then
+				if stack:get_definition().groups.clothes_legs == nil then
+					return 0
+				else
+					return 1
+				end
+			elseif index == 4 then
+				if stack:get_definition().groups.clothes_feet == nil then
+					return 0
+				else
+					return 1
+				end
+			elseif index == 5 then
+				if stack:get_definition().groups.clothes_cloak == nil then
+					return 0
+				else
+					return 1
+				end
+			end
 		end,
 		allow_take = function(inv, listname, index, stack, player)
 			return stack:get_count()
 		end,
 		allow_move = function(inv, from_list, from_index, to_list, to_index, count, player)
-			return count
+			return 0
 		end,
 	})
 	clothing_inv:set_size("clothing", 5)
