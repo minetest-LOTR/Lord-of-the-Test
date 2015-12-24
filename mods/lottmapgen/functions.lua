@@ -953,3 +953,39 @@ minetest.register_node("lottmapgen:mirktest", {
 	drop = '',
 	sounds = default.node_sound_stone_defaults(),
 })
+
+function lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, HITET, HIHUT, HIRAN)
+	if n_temp < LOTET then
+		if n_humid < LOHUT then
+			return 1 -- (Angmar)
+		elseif n_humid > HIHUT then
+			return 3 -- (Trollshaws)
+		else
+			return 2 -- (Snowplains)
+		end
+	elseif n_temp > HITET then
+		if n_humid < LOHUT then
+			return 7 -- (Lorien)
+		elseif n_humid > HIHUT then
+			return 9 -- (Fangorn)
+		elseif n_ran < LORAN then
+			return 10 -- (Mirkwood)
+		elseif n_ran > HIRAN then
+			return 11 -- (Iron Hills)
+		else
+			return 4 -- (Dunlands)
+		end
+	else
+		if n_humid < LOHUT then
+			return 8 -- (Mordor)
+		elseif n_humid > HIHUT then
+			return 6 -- (Ithilien)
+		elseif n_ran < LORAN then
+			return 13 -- (Shire)
+		elseif n_ran > HIRAN then
+			return 12 -- (Rohan)
+		else
+			return 5 -- (Gondor)
+		end
+	end
+end

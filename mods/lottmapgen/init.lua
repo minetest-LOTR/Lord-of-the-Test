@@ -171,6 +171,14 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local nvals_temp = minetest.get_perlin_map(np_temp, chulens):get2dMap_flat(minposxz)
 	local nvals_humid = minetest.get_perlin_map(np_humid, chulens):get2dMap_flat(minposxz)
 	local nvals_random = minetest.get_perlin_map(np_random, chulens):get2dMap_flat(minposxz)
+	local offset = math.random(5,20)
+	if minetest.setting_getbool("biome_blend") == true then
+		chulens = {x=sidelen+2*offset, y=sidelen+2*offset, z=sidelen+2*offset}
+		minposxz = {x=x0-offset, y=z0-offset }
+		nvals_temp = minetest.get_perlin_map(np_temp, chulens):get2dMap(minposxz)
+		nvals_humid = minetest.get_perlin_map(np_humid, chulens):get2dMap(minposxz)
+		nvals_random = minetest.get_perlin_map(np_random, chulens):get2dMap(minposxz)
+	end
 
 	local nixz = 1
 	for z = z0, z1 do
@@ -178,39 +186,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local n_temp = nvals_temp[nixz] -- select biome
 			local n_humid = nvals_humid[nixz]
 			local n_ran = nvals_random[nixz]
+
 			local biome = false
-			if n_temp < LOTET then
-				if n_humid < LOHUT then
-					biome = 1 -- (Angmar)
-				elseif n_humid > HIHUT then
-					biome = 3 -- (Trollshaws)
-				else
-					biome = 2 -- (Snowplains)
-				end
-			elseif n_temp > HITET then
-				if n_humid < LOHUT then
-					biome = 7 -- (Lorien)
-				elseif n_humid > HIHUT then
-					biome = 9 -- (Fangorn)
-				elseif n_ran < LORAN then
-					biome = 10 -- (Mirkwood)
-				elseif n_ran > HIRAN then
-					biome = 11 -- (Iron Hills)
-				else
-					biome = 4 -- (Dunlands)
-				end
-			else
-				if n_humid < LOHUT then
-					biome = 8 -- (Mordor)
-				elseif n_humid > HIHUT then
-					biome = 6 -- (Ithilien)
-				elseif n_ran < LORAN then
-					biome = 13 -- (Shire)
-				elseif n_ran > HIRAN then
-					biome = 12 -- (Rohan)
-				else
-					biome = 5 -- (Gondor)
-				end
+
+			if minetest.setting_getbool("biome_blend") ~= true then
+				biome = lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, HITET, HIHUT, HIRAN)
 			end
 
 			local sandy = (mapgen_params.water_level+2) + math.random(-1, 1) -- sandline
@@ -220,6 +200,13 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local water = false -- water node above?
 			local surfy = y1 + 80 -- y of last surface detected
 			for y = y1, y0, -1 do -- working down each column for each node do
+				if minetest.setting_getbool("biome_blend") == true then
+					local offsetpos = {x = (x-x0) + offset + math.random(-offset, offset) + 1, z = (z - z0) + offset + math.random(-offset, offset) + 1}
+					n_temp = nvals_temp[offsetpos.z][offsetpos.x] -- select biome
+					n_humid = nvals_humid[offsetpos.z][offsetpos.x]
+					n_ran = nvals_random[offsetpos.z][offsetpos.x]
+					biome = lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, HITET, HIHUT, HIRAN)
+				end
 				local fimadep = math.floor(6 - y / 512) + math.random(0, 1)
 				local vi = area:index(x, y, z)
 				local nodid = data[vi]
