@@ -175,47 +175,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local nixz = 1
 	for z = z0, z1 do
 		for x = x0, x1 do -- for each column do
-			local offsetpos = {x=(x-x0)+offset+math.random(-offset,offset)+1, z=(z-z0)+offset+math.random(-offset,offset)+1}
-			local n_temp = nvals_temp[offsetpos.z][offsetpos.x] -- select biome
-			local n_humid = nvals_humid[offsetpos.z][offsetpos.x]
-			local n_ran = nvals_random[offsetpos.z][offsetpos.x]
-
-			local biome = false
-
-			if n_temp < LOTET then
-				if n_humid < LOHUT then
-					biome = 1 -- (Angmar)
-				elseif n_humid > HIHUT then
-					biome = 3 -- (Trollshaws)
-				else
-					biome = 2 -- (Snowplains)
-				end
-			elseif n_temp > HITET then
-				if n_humid < LOHUT then
-					biome = 7 -- (Lorien)
-				elseif n_humid > HIHUT then
-					biome = 9 -- (Fangorn)
-				elseif n_ran < LORAN then
-					biome = 10 -- (Mirkwood)
-				elseif n_ran > HIRAN then
-					biome = 11 -- (Iron Hills)
-				else
-					biome = 4 -- (Dunlands)
-				end
-			else
-				if n_humid < LOHUT then
-					biome = 8 -- (Mordor)
-				elseif n_humid > HIHUT then
-					biome = 6 -- (Ithilien)
-				elseif n_ran < LORAN then
-					biome = 13 -- (Shire)
-				elseif n_ran > HIRAN then
-					biome = 12 -- (Rohan)
-				else
-					biome = 5 -- (Gondor)
-				end
-			end
-
 			local sandy = (mapgen_params.water_level+2) + math.random(-1, 1) -- sandline
 			local sandmin = (mapgen_params.water_level-15) + math.random(-5, 0) -- lowest sand
 			local open = true -- open to sky?
@@ -223,6 +182,48 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local water = false -- water node above?
 			local surfy = y1 + 80 -- y of last surface detected
 			for y = y1, y0, -1 do -- working down each column for each node do
+				-- recalc biome with jitter for each column to spread the jitter in 3D
+				local offsetpos = {x=(x-x0)+offset+math.random(-offset,offset)+1, z=(z-z0)+offset+math.random(-offset,offset)+1}
+				local n_temp = nvals_temp[offsetpos.z][offsetpos.x] -- select biome
+				local n_humid = nvals_humid[offsetpos.z][offsetpos.x]
+				local n_ran = nvals_random[offsetpos.z][offsetpos.x]
+
+				local biome = false
+
+				if n_temp < LOTET then
+					if n_humid < LOHUT then
+						biome = 1 -- (Angmar)
+					elseif n_humid > HIHUT then
+						biome = 3 -- (Trollshaws)
+					else
+						biome = 2 -- (Snowplains)
+					end
+				elseif n_temp > HITET then
+					if n_humid < LOHUT then
+						biome = 7 -- (Lorien)
+					elseif n_humid > HIHUT then
+						biome = 9 -- (Fangorn)
+					elseif n_ran < LORAN then
+						biome = 10 -- (Mirkwood)
+					elseif n_ran > HIRAN then
+						biome = 11 -- (Iron Hills)
+					else
+						biome = 4 -- (Dunlands)
+					end
+				else
+					if n_humid < LOHUT then
+						biome = 8 -- (Mordor)
+					elseif n_humid > HIHUT then
+						biome = 6 -- (Ithilien)
+					elseif n_ran < LORAN then
+						biome = 13 -- (Shire)
+					elseif n_ran > HIRAN then
+						biome = 12 -- (Rohan)
+					else
+						biome = 5 -- (Gondor)
+					end
+				end
+
 				local fimadep = math.floor(6 - y / 512) + math.random(0, 1)
 				local vi = area:index(x, y, z)
 				local nodid = data[vi]
