@@ -1,8 +1,14 @@
 ## Lord of the Test: A Minetest subgame.
-###Version 1.0.0
+### Version 1.0.0
 
 This is a game for Minetest that adds Lord of the Rings like elements into the game. It is currently in beta form which means that the main features are completed, however there will be some bugs here and there so please report them.
 
+#### Instalation:
+To install this game [download it](), and extract the zip to <your minetest folder>/games/Lord-of-the-Test.
+If you use Linux, the folder which will contain the games folder be .minetest in your home directory. (You may need to use ctrl+h to show hidden files.) On Windows, it will be somewhere around the place you launch Minetest from...
+
+If you use Arch Linux, you can install LOTT via the AUR. There is a [stable package](https://aur.archlinux.org/packages/minetest-lott/) and a [latest git package](https://aur.archlinux.org/packages/minetest-lott-git/).  
+MadTux (@agwilt) is the maintainer of these packages.
 
 #### Licence:
 
