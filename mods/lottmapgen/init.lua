@@ -21,9 +21,9 @@ local HIHUT = 0.4 -- High humidity threshold
 local LOHUT = -0.4 -- Low ..
 local HIRAN = 0.4
 local LORAN = -0.4
-
 local PAPCHA = 3 -- Papyrus
 local DUGCHA = 5 -- Dune grass
+local biome_blend = minetest.setting_getbool("biome_blend")
 
 --Rarity for Trees
 
@@ -172,7 +172,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local nvals_humid = minetest.get_perlin_map(np_humid, chulens):get2dMap_flat(minposxz)
 	local nvals_random = minetest.get_perlin_map(np_random, chulens):get2dMap_flat(minposxz)
 	local offset = math.random(5,20)
-	if minetest.setting_getbool("biome_blend") == true then
+	if biome_blend == true then
 		chulens = {x=sidelen+2*offset, y=sidelen+2*offset, z=sidelen+2*offset}
 		minposxz = {x=x0-offset, y=z0-offset }
 		nvals_temp = minetest.get_perlin_map(np_temp, chulens):get2dMap(minposxz)
@@ -189,7 +189,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 
 			local biome = false
 
-			if minetest.setting_getbool("biome_blend") ~= true then
+			if biome_blend ~= true then
 				biome = lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, HITET, HIHUT, HIRAN)
 			end
 
@@ -200,7 +200,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local water = false -- water node above?
 			local surfy = y1 + 80 -- y of last surface detected
 			for y = y1, y0, -1 do -- working down each column for each node do
-				if minetest.setting_getbool("biome_blend") == true then
+				if biome_blend == true then
 					local offsetpos = {x = (x-x0) + offset + math.random(-offset, offset) + 1, z = (z - z0) + offset + math.random(-offset, offset) + 1}
 					n_temp = nvals_temp[offsetpos.z][offsetpos.x] -- select biome
 					n_humid = nvals_humid[offsetpos.z][offsetpos.x]
