@@ -3,7 +3,7 @@
 
 This is a game for Minetest that adds Lord of the Rings like elements into the game. It is currently in beta form which means that the main features are completed, however there will be some bugs here and there so please report them.
 
-#### Instalation:
+#### Installation:
 To install this game [download it](), and extract the zip to <your minetest folder>/games/Lord-of-the-Test.
 If you use Linux, the folder which will contain the games folder be .minetest in your home directory. (You may need to use ctrl+h to show hidden files.) On Windows, it will be somewhere around the place you launch Minetest from...
 
@@ -17,7 +17,7 @@ Code of most mods: *LGPL v2.1*
 All textures: *CC BY-SA*
 
 *See LICENSE.txt for the full text of the licenses*
-*See the license.txt of each mod for more infomation on that mod.*
+*See the license.txt of each mod for more information on that mod.*
 
 -----------------------------------------------------------------------------------------------
 Contributors:

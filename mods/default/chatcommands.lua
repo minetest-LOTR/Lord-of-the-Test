@@ -71,11 +71,11 @@ minetest.register_chatcommand("grant", {
 			end
 			i = i + 1
 		end
-		minetest.log("action", name..' granted ' .. minetest.privs_to_string(grantprivs, ', ') .. ' privileges to '.. grant_name)
+		minetest.log("action", name..' granted ' .. privs_string .. ' privileges to '.. grant_name)
 		if grant_name ~= name then
 			minetest.chat_send_player(grant_name, name
 					.. " granted you privileges: "
-					.. minetest.privs_to_string(grantprivs, ' '))
+					.. privs_string)
 		end
 		return true, "Privileges of " .. grant_name .. ": " .. privs_string
 	end,
@@ -132,12 +132,12 @@ minetest.register_chatcommand("revoke", {
 			i = i + 1
 		end
 		minetest.log("action", name..' revoked ('
-				..minetest.privs_to_string(revoke_privs, ', ')
+				.. privs_string
 				..') privileges from '..revoke_name)
 		if revoke_name ~= name then
 			minetest.chat_send_player(revoke_name, name
 					.. " revoked privileges from you: "
-					.. minetest.privs_to_string(revoke_privs, ' '))
+					.. privs_string)
 		end
 		return true, "Privileges of " .. revoke_name .. ": " .. privs_string
 	end,
