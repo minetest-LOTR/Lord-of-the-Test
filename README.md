@@ -1,3 +1,4 @@
+![alt text](https://raw.githubusercontent.com/minetest-LOTT/Lord-of-the-Test/master/menu/header.png)
 ## Lord of the Test: A Minetest subgame.
 ### Version 1.0.0
 
@@ -10,7 +11,7 @@ If you use Linux, the folder which will contain the games folder be .minetest in
 If you use Arch Linux, you can install LOTT via the AUR. There is a [stable package](https://aur.archlinux.org/packages/minetest-lott/) and a [latest git package](https://aur.archlinux.org/packages/minetest-lott-git/).  
 MadTux (@agwilt) is the maintainer of these packages.
 
-#### Licence:
+#### License:
 
 Code of most mods: *LGPL v2.1*
 
