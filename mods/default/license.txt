@@ -92,6 +92,9 @@ paramat (CC BY-SA):
   default_river_water.png
   default_river_water_source_animated.png
   default_river_water_flowing_animated.png
+  default_stone_brick.png, derived from a texture by Cisoun
+  default_desert_stone_brick.png, derived from a texture by VanessaE
+  default_sandstone_brick.png
 
 MirceaKitsune (WTFPL):
   character.x
@@ -141,6 +144,13 @@ Zeg9 (CC BY-SA 3.0):
   default_bronze_block.png
   default_gold_block.png
   default_diamond_block.png
+
+Neuromancer (CC BY-SA 2.0):
+  default_cobble.png, based on texture by Brane praefect
+  default_mossycobble.png, based on texture by Brane praefect
+
+BlockMen (CC BY-SA 3.0):
+  default_sandstone.png
 
 kaeza (WTFPL):
   bubble.png

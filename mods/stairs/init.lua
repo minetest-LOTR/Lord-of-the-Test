@@ -138,7 +138,7 @@ function stairs.register_slab(subname, recipeitem, groups, images, description, 
 				end
 				return itemstack
 			end
-			
+
 			-- Upside down slabs
 			if p0.y-1 == p1.y then
 				-- Turn into full block if pointing at a existing slab
@@ -268,6 +268,13 @@ stairs.register_stair_and_slab("desert_stonebrick", "default:desert_stonebrick",
 		"Desert Stone Brick Slab",
 		default.node_sound_stone_defaults())
 
+stairs.register_stair_and_slab("sandstone_brick", "default:sandstone_brick",
+		{cracky=3},
+		{"default_sandstone_brick.png"},
+		"Sandstone Brick Stair",
+		"Sandstone Brick Slab",
+		default.node_sound_stone_defaults())
+
 stairs.register_stair_and_slab("desert_stone", "default:desert_stone",
 		{cracky=3},
 		{"default_desert_stone.png"},
@@ -281,4 +288,3 @@ stairs.register_stair_and_slab("desert_cobble", "default:desert_cobble",
 		"Desert Cobble Stair",
 		"Desert Cobble Slab",
 		default.node_sound_stone_defaults())
-
