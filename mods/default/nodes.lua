@@ -483,24 +483,53 @@ minetest.register_node("default:rail", {
 
 minetest.register_node("default:ladder", {
 	description = "Ladder",
-	drawtype = "signlike",
+	drawtype = "nodebox",
 	tiles = {"default_ladder.png"},
-	inventory_image = "default_ladder.png",
-	wield_image = "default_ladder.png",
+	inventory_image = "default_ladder_inv.png",
+	wield_image = "default_ladder_inv.png",
 	paramtype = "light",
-	paramtype2 = "wallmounted",
-	walkable = false,
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	walkable = true,
 	climbable = true,
 	is_ground_content = false,
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.375, -0.5, 0.3125, -0.25, 0.5, 0.5}, -- NodeBox1
+			{0.25, -0.5, 0.3125, 0.375, 0.5, 0.5}, -- NodeBox2
+			{-0.25, -0.4375, 0.3125, 0.25, -0.3125, 0.5}, -- NodeBox3
+			{-0.25, -0.1875, 0.3125, 0.25, -0.0625, 0.5}, -- NodeBox5
+			{-0.25, 0.0625, 0.3125, 0.25, 0.1875, 0.5}, -- NodeBox6
+			{-0.25, 0.3125, 0.3125, 0.25, 0.4375, 0.5}, -- NodeBox7
+		}
+	},
 	selection_box = {
-		type = "wallmounted",
-		--wall_top = = <default>
-		--wall_bottom = = <default>
-		--wall_side = = <default>
+		type = "fixed",
+		fixed = {{-0.4375, -0.5, 0.3125, 0.4375, 0.5, 0.5}}
 	},
 	groups = {choppy=2,oddly_breakable_by_hand=3,flammable=2},
 	legacy_wallmounted = true,
 	sounds = default.node_sound_wood_defaults(),
+	after_place_node = function(pos, placer, itemstack, pointed_thing)
+		local dir = minetest.dir_to_facedir(placer:get_look_dir())
+		local npos = pos
+		if dir == 0 then
+			npos = {x = pos.x, y = pos.y, z = pos.z + 1}
+		elseif dir == 1 then
+			npos = {x = pos.x + 1, y = pos.y, z = pos.z}
+		elseif dir == 2 then
+			npos = {x = pos.x, y = pos.y, z = pos.z - 1}
+		elseif dir == 3 then
+			npos = {x = pos.x - 1, y = pos.y, z = pos.z}
+		end
+		if minetest.registered_nodes[minetest.get_node(npos).name]["walkable"] == false then
+			minetest.remove_node(pos)
+			return true
+		else
+			minetest.set_node(pos, {name = "default:ladder", param2 = dir})
+		end
+	end,
 })
 
 minetest.register_node("default:wood", {
@@ -777,8 +806,8 @@ minetest.register_node("default:torch", {
 
 minetest.register_node("default:sign_wall", {
 	description = "Sign",
-	drawtype = "signlike",
-	tiles = {"default_sign_wall.png"},
+	drawtype = "nodebox",
+	tiles = {"default_sign.png"},
 	inventory_image = "default_sign_wall.png",
 	wield_image = "default_sign_wall.png",
 	paramtype = "light",
@@ -786,13 +815,13 @@ minetest.register_node("default:sign_wall", {
 	sunlight_propagates = true,
 	is_ground_content = false,
 	walkable = false,
-	selection_box = {
+	node_box = {
 		type = "wallmounted",
-		--wall_top = <default>
-		--wall_bottom = <default>
-		--wall_side = <default>
+		wall_top    = {-0.4375, 0.4375, -0.3125, 0.4375, 0.5, 0.3125},
+		wall_bottom = {-0.4375, -0.5, -0.3125, 0.4375, -0.4375, 0.3125},
+		wall_side   = {-0.5, -0.3125, -0.4375, -0.4375, 0.3125, 0.4375},
 	},
-	groups = {choppy=2,dig_immediate=2,attached_node=1},
+	groups = {choppy = 2, dig_immediate = 2, attached_node = 1},
 	legacy_wallmounted = true,
 	sounds = default.node_sound_defaults(),
 	on_construct = function(pos)
@@ -808,11 +837,11 @@ minetest.register_node("default:sign_wall", {
 			return
 		end
 		local meta = minetest.get_meta(pos)
-		fields.text = fields.text or ""
-		minetest.log("action", (sender:get_player_name() or "").." wrote \""..fields.text..
-				"\" to sign at "..minetest.pos_to_string(pos))
+		if not fields.text then return end
+		minetest.log("action", (sender:get_player_name() or "") .. " wrote \"" ..
+			fields.text .. "\" to sign at " .. minetest.pos_to_string(pos))
 		meta:set_string("text", fields.text)
-		meta:set_string("infotext", '"'..fields.text..'"')
+		meta:set_string("infotext", '"' .. fields.text .. '"')
 	end,
 })
 
