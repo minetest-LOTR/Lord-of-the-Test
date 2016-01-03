@@ -1,3 +1,5 @@
+minetest.register_alias("lottother:blue_torch", "lottblocks:elf_torch")
+minetest.register_alias("lottother:orc_torch", "lottblocks:orc_torch")
 minetest.register_alias("lottother:lamp_wood", "lottblocks:lamp_wood")
 minetest.register_alias("lottother:lamp_middle_wood", "lottblocks:lamp_middle_wood")
 minetest.register_alias("lottother:lamp_top_wood", "lottblocks:lamp_top_wood")
@@ -151,7 +153,7 @@ function lottblocks.register_lamp(material, description, inv_texture, post1_text
 			output = node_small,
 			recipe = {
 				{material_code_name, material_code_name, material_code_name},
-				{material_code_name, "lottother:blue_torch", material_code_name},
+				{material_code_name, "lottblocks:elf_torch", material_code_name},
 				{material_code_name, material_code_name, material_code_name},
 			}
 		})
@@ -168,7 +170,7 @@ function lottblocks.register_lamp(material, description, inv_texture, post1_text
 			output = node_small,
 			recipe = {
 				{material_code_name, material_code_name, material_code_name},
-				{material_code_name, "lottother:orc_torch", material_code_name},
+				{material_code_name, "lottblocks:orc_torch", material_code_name},
 				{material_code_name, material_code_name, material_code_name},
 			}
 		})
@@ -191,3 +193,85 @@ lottblocks.register_lamp("junglewood_orc", "Mordor Junglewood", "lottblocks_orc_
 lottblocks.register_lamp("birch_orc", "Mordor Birch", "lottblocks_orc_lamp_inv_birch.png", "lottblocks_orc_brick.png", "lottplants_birchwood.png", "lottplants_birchwood.png", "lottblocks_orc_lamp_active_birch.png",  "lottplants:birchwood", "orc")
 lottblocks.register_lamp("pine_orc", "Mordor Pine", "lottblocks_orc_lamp_inv_pine.png", "lottblocks_orc_brick.png", "lottplants_pinewood.png", "lottplants_pinewood.png", "lottblocks_orc_lamp_active_pine.png",  "lottplants:pinewood", "orc")
 lottblocks.register_lamp("lebethron_orc", "Mordor Lebethron", "lottblocks_orc_lamp_inv_lebethron.png", "lottblocks_orc_brick.png", "lottplants_lebethronwood.png", "lottplants_lebethronwood.png", "lottblocks_orc_lamp_active_lebethron.png",  "lottplants:lebethronwood", "orc")
+
+minetest.register_node("lottblocks:elf_torch", {
+	description = "Elf Torch",
+	drawtype = "nodebox",
+	tiles = {
+		{name = "lottblocks_torch_elf_top.png",    animation = {type = "vertical_frames", aspect_w = 16, aspect_h = 16, length = 5.0}},
+		{name = "lottblocks_torch_elf_bottom.png", animation = {type = "vertical_frames", aspect_w = 16, aspect_h = 16, length = 5.0}},
+		{name = "lottblocks_torch_elf_side.png",   animation = {type = "vertical_frames", aspect_w = 16, aspect_h = 16, length = 5.0}},
+	},
+	inventory_image = "lottblocks_torch_elf_inv.png",
+	wield_image = "lottblocks_torch_elf_inv.png",
+	wield_scale = {x = 1, y = 1, z = 1.25},
+	paramtype = "light",
+	paramtype2 = "wallmounted",
+	sunlight_propagates = true,
+	is_ground_content = false,
+	walkable = false,
+	light_source = LIGHT_MAX - 1,
+	node_box = {
+		type = "wallmounted",
+		wall_top    = {-0.0625, -0.0625, -0.0625, 0.0625, 0.5   , 0.0625},
+		wall_bottom = {-0.0625, -0.5   , -0.0625, 0.0625, 0.0625, 0.0625},
+		wall_side   = {-0.5   , -0.5   , -0.0625, -0.375, 0.0625, 0.0625},
+	},
+	selection_box = {
+		type = "wallmounted",
+		wall_top    = {-0.25, -0.0625, -0.25, 0.25, 0.5   , 0.25},
+		wall_bottom = {-0.25, -0.5   , -0.25, 0.25, 0.0625, 0.25},
+		wall_side   = {-0.25, -0.5  , -0.25, -0.5, 0.0625, 0.25},
+	},
+	groups = {choppy = 2, dig_immediate = 3, flammable = 1, attached_node = 1, hot = 2},
+	sounds = default.node_sound_wood_defaults(),
+})
+
+minetest.register_craft({
+	output = 'lottblocks:elf_torch 2',
+	recipe = {
+		{'lottores:rough_rock_lump'},
+		{'group:stick'},
+	}
+})
+
+minetest.register_node("lottblocks:orc_torch", {
+	description = "Orc Torch",
+	drawtype = "nodebox",
+	tiles = {
+		{name = "lottblocks_torch_orc_top.png",    animation = {type = "vertical_frames", aspect_w = 16, aspect_h = 16, length = 5.0}},
+		{name = "lottblocks_torch_orc_bottom.png", animation = {type = "vertical_frames", aspect_w = 16, aspect_h = 16, length = 5.0}},
+		{name = "lottblocks_torch_orc_side.png",   animation = {type = "vertical_frames", aspect_w = 16, aspect_h = 16, length = 5.0}},
+	},
+	inventory_image = "lottblocks_torch_orc_inv.png",
+	wield_image = "lottblocks_torch_orc_inv.png",
+	wield_scale = {x = 1, y = 1, z = 1.25},
+	paramtype = "light",
+	paramtype2 = "wallmounted",
+	sunlight_propagates = true,
+	is_ground_content = false,
+	walkable = false,
+	light_source = LIGHT_MAX - 2,
+	node_box = {
+		type = "wallmounted",
+		wall_top    = {-0.0625, -0.0625, -0.0625, 0.0625, 0.5   , 0.0625},
+		wall_bottom = {-0.0625, -0.5   , -0.0625, 0.0625, 0.0625, 0.0625},
+		wall_side   = {-0.5   , -0.5   , -0.0625, -0.375, 0.0625, 0.0625},
+	},
+	selection_box = {
+		type = "wallmounted",
+		wall_top    = {-0.25, -0.0625, -0.25, 0.25, 0.5   , 0.25},
+		wall_bottom = {-0.25, -0.5   , -0.25, 0.25, 0.0625, 0.25},
+		wall_side   = {-0.25, -0.5  , -0.25, -0.5, 0.0625, 0.25},
+	},
+	groups = {choppy = 2, dig_immediate = 3, flammable = 1, attached_node = 1, hot = 2},
+	sounds = default.node_sound_wood_defaults(),
+})
+
+minetest.register_craft({
+	output = 'lottblocks:orc_torch 2',
+	recipe = {
+		{'bones:bone'},
+		{'group:stick'},
+	}
+})

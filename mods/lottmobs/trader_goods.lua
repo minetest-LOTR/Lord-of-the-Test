@@ -46,7 +46,7 @@ lottmobs.elf = {
 	items = {
 		{"lottplants:mallorntree 10", "default:gold_ingot 4", 5},
 		{"lottores:rough_rock 4", "default:gold_ingot 30", 17},
-		{"lottother:blue_torch 10", "default:gold_ingot 20", 15},
+		{"lottblocks:elf_torch 10", "default:gold_ingot 20", 15},
 		{"lottweapons:galvorn_spear 1", "default:gold_ingot 25", 20},
 		{"lottweapons:silver_battleaxe 1", "default:gold_ingot 18", 14},
 		{"lottores:galvornsword 1", "default:gold_ingot 23", 25},
@@ -63,7 +63,7 @@ lottmobs.elf = {
 	items_race = {
 		{"lottplants:mallorntree 10", "default:gold_ingot 4", 5},
 		{"lottores:rough_rock 4", "default:gold_ingot 28", 17},
-		{"lottother:blue_torch 10", "default:gold_ingot 18", 15},
+		{"lottblocks:elf_torch 10", "default:gold_ingot 18", 15},
 		{"lottweapons:galvorn_spear 1", "default:gold_ingot 22", 20},
 		{"lottweapons:silver_battleaxe 1", "default:gold_ingot 15", 14},
 		{"lottores:galvornsword 1", "default:gold_ingot 21", 25},

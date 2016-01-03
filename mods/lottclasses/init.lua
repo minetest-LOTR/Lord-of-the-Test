@@ -237,7 +237,7 @@ local function give_stuff_orc(player)
 	player:get_inventory():add_item('main', 'lottblocks:orc_brick 99')
 	player:get_inventory():add_item('main', 'lottfarming:orc_food 5')
 	player:get_inventory():add_item('main', 'lottfarming:orc_medicine 3')
-	player:get_inventory():add_item('main', 'lottother:orc_torch 50')
+	player:get_inventory():add_item('main', 'lottblocks:orc_torch 50')
 	player:get_inventory():add_item('main', 'lottmobs:meat_raw 10')
 	player:get_inventory():add_item('main', 'lottinventory:crafts_book')
 end

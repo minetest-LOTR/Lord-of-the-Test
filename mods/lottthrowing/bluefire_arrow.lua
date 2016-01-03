@@ -19,7 +19,7 @@ minetest.register_node("lottthrowing:arrow_fire_blue_box", {
 			{7.5/17, -2.5/17, 2.5/17, 6.5/17, -1.5/17, 1.5/17},
 			{7.5/17, 2.5/17, -2.5/17, 6.5/17, 1.5/17, -1.5/17},
 			{6.5/17, -1.5/17, -1.5/17, 7.5/17, -2.5/17, -2.5/17},
-			
+
 			{7.5/17, 2.5/17, 2.5/17, 8.5/17, 3.5/17, 3.5/17},
 			{8.5/17, -3.5/17, 3.5/17, 7.5/17, -2.5/17, 2.5/17},
 			{8.5/17, 3.5/17, -3.5/17, 7.5/17, 2.5/17, -2.5/17},
@@ -90,7 +90,7 @@ minetest.register_entity("lottthrowing:arrow_fire_blue_entity", THROWING_ARROW_E
 minetest.register_craft({
 	output = 'lottthrowing:arrow_fire_blue 1',
 	recipe = {
-		{'default:stick', 'default:stick', 'lottother:blue_torch'},
+		{'default:stick', 'default:stick', 'lottblocks:elf_torch'},
 	},
 })
 
