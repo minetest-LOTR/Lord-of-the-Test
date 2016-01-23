@@ -1,14 +1,5 @@
 -- Ores:
 
-minetest.register_node("lottores:limestone_ore", {
-	description = "Limestone Ore",
-	tiles = {"default_stone.png^lottores_limestone_ore.png"},
-	is_ground_content = true,
-	groups = {cracky=3},
-	drop = 'lottores:limestone_lump',
-	sounds = default.node_sound_stone_defaults(),
-})
-
 minetest.register_node("lottores:rough_rock", {
 	description = "Rough Rock",
 	tiles = {"default_stone.png^lottores_rough_rock.png"},
@@ -35,6 +26,16 @@ minetest.register_node("lottores:tin_ore", {
 	drop = "lottores:tin_lump",
 	sounds = default.node_sound_stone_defaults(),
 })
+
+minetest.register_node("lottores:limestone", {
+	description = "Limestone",
+	tiles = {"lottores_limestone.png"},
+	is_ground_content = true,
+	groups = {cracky=3, stone=2},
+	sounds = default.node_sound_stone_defaults(),
+})
+minetest.register_alias("lottores:limestone_ore", "lottores:limestone")
+minetest.register_alias("lottores:limestone_lump", "lottores:limestone")
 
 minetest.register_node("lottores:lead_ore", {
 	description = "Lead Ore",
@@ -117,7 +118,7 @@ local wl = mapgen_params.water_level
 
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "lottores:limestone_ore",
+	ore            = "lottores:limestone",
 	wherein        = "default:stone",
 	clust_scarcity = 9*9*9,
 	clust_num_ores = 5,
@@ -128,7 +129,7 @@ minetest.register_ore({
 
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "lottores:limestone_ore",
+	ore            = "lottores:limestone",
 	wherein        = "default:stone",
 	clust_scarcity = 7*7*7,
 	clust_num_ores = 5,
@@ -139,7 +140,7 @@ minetest.register_ore({
 
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "lottores:limestone_ore",
+	ore            = "lottores:limestone",
 	wherein        = "default:stone",
 	clust_scarcity = 24*24*24,
 	clust_num_ores = 15,
@@ -293,11 +294,6 @@ minetest.register_ore({
 
 -- Craft Items
 
-minetest.register_craftitem("lottores:limestone_lump", {
-	description = "Limestone Lump",
-	inventory_image = "lottores_limestone_lump.png",
-})
-
 minetest.register_craftitem("lottores:rough_rock_lump", {
 	description = "Rough Rock Lump",
 	inventory_image = "lottores_rough_rock_lump.png",
@@ -377,14 +373,6 @@ minetest.register_node("lottores:tilkal", {
 	tiles = {"lottores_tilkal.png"},
 	sounds = default.node_sound_defaults(),
 	groups = {forbidden=1},
-})
-
-minetest.register_node("lottores:limestone", {
-	description = "Limestone",
-	tiles = {"lottores_limestone_ore.png"},
-	is_ground_content = true,
-	groups = {cracky=3, stone=2},
-	sounds = default.node_sound_stone_defaults(),
 })
 
 minetest.register_node("lottores:marble", {
@@ -1108,7 +1096,7 @@ stairs.register_stair_and_slab("tilkal", "lottores:tilkal",
 
 stairs.register_stair_and_slab("limestone", "lottores:limestone",
         {cracky=3, stone=2},
-		{"lottores_limestone_ore.png"},
+		{"lottores_limestone.png"},
 		"Limestone Stair",
 		"Limestone Slab",
 		default.node_sound_stone_defaults())
@@ -1185,22 +1173,6 @@ minetest.register_craft({
 	recipe = {
 		{'default:copper_ingot', 'lottores:silver_ingot', 'lottores:tin_ingot'},
 		{'lottores:lead_ingot', 'default:steel_ingot', 'default:gold_ingot'},
-	}
-})
-
-minetest.register_craft({
-	output = 'lottores:limestone',
-	recipe = {
-		{'lottores:limestone_lump', 'lottores:limestone_lump', 'lottores:limestone_lump'},
-		{'lottores:limestone_lump', 'lottores:limestone_lump', 'lottores:limestone_lump'},
-		{'lottores:limestone_lump', 'lottores:limestone_lump', 'lottores:limestone_lump'},
-	}
-})
-
-minetest.register_craft({
-	output = 'lottores:limestone_lump 9',
-	recipe = {
-		{'lottores:limestone'},
 	}
 })
 

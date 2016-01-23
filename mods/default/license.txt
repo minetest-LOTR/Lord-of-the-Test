@@ -137,15 +137,20 @@ Splizard (CC BY-SA 3.0):
 
 Zeg9 (CC BY-SA 3.0):
   default_coal_block.png
+  default_diamond_block.png
+
+kilbith (CC BY-SA 3.0):
   default_steel_block.png
   default_copper_block.png
   default_bronze_block.png
   default_gold_block.png
-  default_diamond_block.png
 
-Neuromancer (CC BY-SA 2.0):
+Neuromancer:
+  (CC BY-SA 2.0)
   default_cobble.png, based on texture by Brane praefect
   default_mossycobble.png, based on texture by Brane praefect
+  (CC BY-SA 3.0)
+  default_dirt.png
 
 BlockMen (CC BY-SA 3.0):
   default_sandstone.png
