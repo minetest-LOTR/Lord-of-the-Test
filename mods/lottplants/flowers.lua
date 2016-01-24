@@ -8,6 +8,7 @@ minetest.register_node("lottplants:athelas", {
 	wield_image = "lottplants_athelas.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	drop = {
 		max_items = 3,
 		items = {
@@ -33,6 +34,7 @@ minetest.register_node("lottplants:anemones", {
 	wield_image = "lottplants_anemones.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop = {
@@ -55,6 +57,7 @@ minetest.register_node("lottplants:asphodel", {
 	tiles = { "lottplants_asphodel.png" },
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop = {
@@ -80,6 +83,7 @@ minetest.register_node("lottplants:eglantive", {
 	wield_image = "lottplants_eglantive.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop = {
@@ -105,6 +109,7 @@ minetest.register_node("lottplants:elanor", {
 	wield_image = "lottplants_elanor.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop = {
@@ -130,6 +135,7 @@ minetest.register_node("lottplants:iris", {
 	wield_image = "lottplants_iris.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop = {
@@ -155,6 +161,7 @@ minetest.register_node("lottplants:lissuin", {
 	wield_image = "lottplants_lissuin.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop = {
@@ -180,6 +187,7 @@ minetest.register_node("lottplants:mallos", {
 	wield_image = "lottplants_mallos.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop = {
@@ -205,6 +213,7 @@ minetest.register_node("lottplants:niphredil", {
 	wield_image = "lottplants_niphredil.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop = {
@@ -230,6 +239,7 @@ minetest.register_node("lottplants:seregon", {
 	wield_image = "lottplants_seregon.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop = {
@@ -257,6 +267,7 @@ minetest.register_node("lottplants:anemones_fake", {
 	wield_image = "lottplants_anemones.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_blue=1},
@@ -275,6 +286,7 @@ minetest.register_node("lottplants:asphodel_fake", {
 	wield_image = "lottplants_asphodel.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_white=1},
@@ -293,6 +305,7 @@ minetest.register_node("lottplants:eglantive_fake", {
 	wield_image = "lottplants_eglantive.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_pink=1},
@@ -311,6 +324,7 @@ minetest.register_node("lottplants:elanor_fake", {
 	wield_image = "lottplants_elanor.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_yellow=1},
@@ -329,6 +343,7 @@ minetest.register_node("lottplants:iris_fake", {
 	wield_image = "lottplants_iris.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_yellow=1},
@@ -348,6 +363,7 @@ minetest.register_node("lottplants:lissuin_fake", {
 	wield_image = "lottplants_lissuin.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_pink=1},
@@ -366,6 +382,7 @@ minetest.register_node("lottplants:mallos_fake", {
 	wield_image = "lottplants_mallos.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_yellow=1},
@@ -384,6 +401,7 @@ minetest.register_node("lottplants:niphredil_fake", {
 	wield_image = "lottplants_niphredil.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_brown=1},
@@ -402,6 +420,7 @@ minetest.register_node("lottplants:seregon_fake", {
 	wield_image = "lottplants_seregon.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_red=1},

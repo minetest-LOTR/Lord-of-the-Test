@@ -17,6 +17,7 @@ minetest.register_node("lottfarming:corn_1", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_corn_1.png"},
+	waving = 1,
 	selection_box = {
 		type = "fixed",
 		fixed = {
@@ -32,6 +33,7 @@ minetest.register_node("lottfarming:corn_2", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_corn_2.png"},
+	waving = 1,
 	selection_box = {
 		type = "fixed",
 		fixed = {
@@ -47,6 +49,7 @@ minetest.register_node("lottfarming:corn_3", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_corn_3.png"},
+	waving = 1,
 	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
@@ -56,6 +59,7 @@ minetest.register_node("lottfarming:corn_4", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_corn_4.png"},
+	waving = 1,
 	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
@@ -65,6 +69,7 @@ minetest.register_node("lottfarming:corn_21", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_corn_21.png"},
+	waving = 1,
 	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
@@ -74,6 +79,7 @@ minetest.register_node("lottfarming:corn_22", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_corn_22.png"},
+	waving = 1,
 	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
@@ -83,6 +89,7 @@ minetest.register_node("lottfarming:corn_23", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_corn_23.png"},
+	waving = 1,
 	drop = {
 		max_items = 6,
 		items = {
@@ -103,6 +110,7 @@ minetest.register_node("lottfarming:corn_31", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_corn_31.png"},
+	waving = 1,
 	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
@@ -112,6 +120,7 @@ minetest.register_node("lottfarming:corn_32", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_corn_32.png"},
+	waving = 1,
 	drop = {
 		max_items = 6,
 		items = {
@@ -153,7 +162,7 @@ wherein = "air"
 				return
 			end
 			pos.y=pos.y-1
-			
+
 			minetest.env:set_node(pos, {name='lottfarming:corn_2'})
 		end
 }	)
@@ -177,7 +186,7 @@ wherein = "air"
 			minetest.env:set_node(pos, {name='lottfarming:corn_21'})
 			pos.y=pos.y-1
 			minetest.env:set_node(pos, {name='lottfarming:corn_3'})
-			
+
 		end
 }	)
 	minetest.register_abm({
@@ -200,11 +209,11 @@ wherein = "air"
 			pos.y=pos.y+1
 			minetest.env:set_node(pos, {name='lottfarming:corn_31'})
 			pos.y=pos.y-1
-			
+
 			minetest.env:set_node(pos, {name='lottfarming:corn_22'})
 			pos.y=pos.y-1
 			minetest.env:set_node(pos, {name='lottfarming:corn_4'})
-			
+
 		end
 }	)
 	minetest.register_abm({
@@ -222,6 +231,6 @@ wherein = "air"
 			minetest.env:set_node(pos, {name='lottfarming:corn_32'})
 			pos.y=pos.y-1
 			minetest.env:set_node(pos, {name='lottfarming:corn_23'})
-			
+
 		end
 }	)

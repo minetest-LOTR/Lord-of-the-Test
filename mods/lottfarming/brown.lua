@@ -19,6 +19,7 @@ minetest.register_node("lottfarming:brown_mushroom_1", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_brown_mushroom_1.png"},
+	waving = 1,
 	selection_box = {
 		type = "fixed",
 		fixed = {
@@ -34,6 +35,7 @@ minetest.register_node("lottfarming:brown_mushroom_2", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_brown_mushroom_2.png"},
+	waving = 1,
 	selection_box = {
 		type = "fixed",
 		fixed = {
@@ -49,6 +51,7 @@ minetest.register_node("lottfarming:brown_mushroom_3", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_brown_mushroom_3.png"},
+	waving = 1,
 	selection_box = {
 		type = "fixed",
 		fixed = {
@@ -64,6 +67,7 @@ minetest.register_node("lottfarming:brown_mushroom_4", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_brown_mushroom_4.png"},
+	waving = 1,
 	after_dig_node = function(pos)
 	end,
 	drop = {
@@ -120,9 +124,9 @@ wherein = "air"
 			if minetest.env:get_node_light(pos) > 8 then
 				return
 			end
-			
+
 			minetest.env:set_node(pos, {name='lottfarming:brown_mushroom_3'})
-			
+
 		end
 }	)
 
@@ -143,7 +147,7 @@ wherein = "air"
 				return
 			end
 			minetest.env:set_node(pos, {name='lottfarming:brown_mushroom_4'})
-			
+
 		end
 }	)
 num = PseudoRandom(111)
@@ -152,12 +156,12 @@ num = PseudoRandom(111)
 		interval = 30,
 		chance = 10,
 		action = function(pos, node)
-			
+
 			pos.x = pos.x-1
 			x = num:next(1, 3)
 			if x > 1 then
 				pos.x = pos.x+1
-				if x > 2 then	
+				if x > 2 then
 					pos.x = pos.x+1
 				end
 			end
@@ -165,7 +169,7 @@ num = PseudoRandom(111)
 			z = num:next(1, 3)
 			if z > 1 then
 				pos.z = pos.z+1
-				if z > 2 then	
+				if z > 2 then
 					pos.z = pos.z+1
 				end
 			end
@@ -188,7 +192,7 @@ num = PseudoRandom(111)
 						minetest.env:set_node(pos, {name='lottfarming:brown_mushroom_3'})
 					end
 				end
-				
+
 			end
 			pos.y=pos.y+1
 			if minetest.env:get_node(pos).name=="air" then
@@ -201,7 +205,7 @@ num = PseudoRandom(111)
 					minetest.env:set_node(pos, {name='lottfarming:brown_mushroom_3'})
 				end
 			end
-			
-			
+
+
 		end
 }	)

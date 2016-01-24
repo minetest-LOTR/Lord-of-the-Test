@@ -6,6 +6,7 @@ minetest.register_node("lottplants:alderleaf", {
 	visual_scale = 1.3,
 	tiles = {"lottplants_alderleaf.png"},
 	paramtype = "light",
+	waving = 1,
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
 	drop = {
 		max_items = 1,
@@ -28,6 +29,7 @@ minetest.register_node("lottplants:appleleaf", {
 	visual_scale = 1.3,
 	tiles = {"lottplants_appleleaf.png"},
 	paramtype = "light",
+	waving = 1,
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
 	drop = {
 		max_items = 1,
@@ -50,6 +52,7 @@ minetest.register_node("lottplants:birchleaf", {
 	visual_scale = 1.3,
 	tiles = {"lottplants_birchleaf.png"},
 	paramtype = "light",
+	waving = 1,
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
 	drop = {
 		max_items = 1,
@@ -72,6 +75,7 @@ minetest.register_node("lottplants:beechleaf", {
 	visual_scale = 1.3,
 	tiles = {"lottplants_beechleaf.png"},
 	paramtype = "light",
+	waving = 1,
 	groups = {snappy=3, flammable=2},
 	drop = {
 		max_items = 1,
@@ -94,6 +98,7 @@ minetest.register_node("lottplants:culumaldaleaf", {
 	visual_scale = 1.3,
 	tiles = {"lottplants_culumaldaleaf.png"},
 	paramtype = "light",
+	waving = 1,
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
 	drop = {
 		max_items = 1,
@@ -116,6 +121,7 @@ minetest.register_node("lottplants:yellowflowers", {
 	visual_scale = 1.3,
 	tiles = {"lottplants_yellowflowers.png"},
 	paramtype = "light",
+	waving = 1,
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
     drop = {
 	    	max_items = 3,
@@ -134,6 +140,7 @@ minetest.register_node("lottplants:elmleaf", {
 	visual_scale = 1.3,
 	tiles = {"lottplants_elmleaf.png"},
 	paramtype = "light",
+	waving = 1,
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
 	drop = {
 		max_items = 1,
@@ -156,6 +163,7 @@ minetest.register_node("lottplants:firleaf", {
 	visual_scale = 1.3,
 	tiles = {"lottplants_firleaf.png"},
 	paramtype = "light",
+	waving = 1,
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
 	drop = {
 		max_items = 1,
@@ -178,6 +186,7 @@ minetest.register_node("lottplants:lebethronleaf", {
 	visual_scale = 1.3,
 	tiles = {"lottplants_lebethronleaf.png"},
 	paramtype = "light",
+	waving = 1,
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
 	drop = {
 		max_items = 1,
@@ -200,6 +209,7 @@ minetest.register_node("lottplants:mallornleaf", {
 	visual_scale = 1.3,
 	tiles = {"lottplants_mallornleaf.png"},
 	paramtype = "light",
+	waving = 1,
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
 	drop = {
 		max_items = 1,
@@ -222,6 +232,7 @@ minetest.register_node("lottplants:pineleaf", {
 	visual_scale = 1.3,
 	tiles = {"lottplants_pineleaf.png"},
 	paramtype = "light",
+	waving = 1,
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
 	drop = {
 		max_items = 1,
@@ -244,6 +255,7 @@ minetest.register_node("lottplants:plumleaf", {
 	visual_scale = 1.3,
 	tiles = {"lottplants_plumleaf.png"},
 	paramtype = "light",
+	waving = 1,
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
 	drop = {
 		max_items = 1,
@@ -266,6 +278,7 @@ minetest.register_node("lottplants:rowanleaf", {
 	visual_scale = 1.3,
 	tiles = {"lottplants_rowanleaf.png"},
 	paramtype = "light",
+	waving = 1,
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
     drop = {
 	    	max_items = 1,
@@ -284,6 +297,7 @@ minetest.register_node("lottplants:rowanberry", {
 	visual_scale = 1.3,
 	tiles = {"lottplants_rowanleaf.png^lottplants_rowanberry.png"},
 	paramtype = "light",
+	waving = 1,
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
     drop = {
 	    	max_items = 2,
@@ -301,6 +315,7 @@ minetest.register_node("lottplants:whiteleaf", {
 	visual_scale = 1.3,
 	tiles = {"lottplants_whiteleaf.png"},
 	paramtype = "light",
+	waving = 1,
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
 	drop = {
 		max_items = 1,
@@ -323,6 +338,7 @@ minetest.register_node("lottplants:yavannamireleaf", {
 	visual_scale = 1.3,
 	tiles = {"lottplants_yavannamireleaf.png"},
 	paramtype = "light",
+	waving = 1,
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
 	drop = {
 		max_items = 1,
@@ -349,7 +365,7 @@ minetest.register_node("lottplants:mirkleaf", {
 	sunlight_propagates = false,
 	waving = 1,
 	is_ground_content = false,
-	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1, not_in_creative_inventory =1},
+	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
 	drop = {
 		max_items = 1,
 		items = {
@@ -776,6 +792,7 @@ minetest.register_node("lottplants:lorien_grass_1", {
 	wield_image = "lottplants_lorien_grass_3.png",
 	paramtype = "light",
 	walkable = false,
+	waving = 1,
 	is_ground_content = true,
 	buildable_to = true,
 	groups = {snappy=3,flammable=3,flora=1,attached_node=1},
@@ -801,6 +818,7 @@ minetest.register_node("lottplants:lorien_grass_2", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
+	waving = 1,
 	is_ground_content = true,
 	drop = "lottplants:lorien_grass_1",
 	groups = {snappy=3,flammable=3,flora=1,attached_node=1,not_in_creative_inventory=1},
@@ -820,6 +838,7 @@ minetest.register_node("lottplants:lorien_grass_3", {
 	walkable = false,
 	buildable_to = true,
 	is_ground_content = true,
+	waving = 1,
 	drop = "lottplants:lorien_grass_1",
 	groups = {snappy=3,flammable=3,flora=1,attached_node=1,not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
@@ -839,6 +858,7 @@ minetest.register_node("lottplants:lorien_grass_4", {
 	walkable = false,
 	buildable_to = true,
 	is_ground_content = true,
+	waving = 1,
 	drop = "lottplants:lorien_grass_1",
 	groups = {snappy=3,flammable=3,flora=1,attached_node=1,not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),

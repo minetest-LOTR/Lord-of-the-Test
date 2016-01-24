@@ -12,6 +12,7 @@ minetest.register_node("lottfarming:athelas_1", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_athelas_1.png"},
+	waving = 1,
 	selection_box = {
 		type = "fixed",
 		fixed = {
@@ -28,6 +29,7 @@ minetest.register_node("lottfarming:athelas_2", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_athelas_2.png"},
+	waving = 1,
 	selection_box = {
 		type = "fixed",
 		fixed = {
@@ -43,6 +45,7 @@ minetest.register_node("lottfarming:athelas_3", {
 	walkable = false,
 	drawtype = "plantlike",
 	tiles = {"lottfarming_athelas_3.png"},
+	waving = 1,
 	drop = {
 		max_items = 6,
 		items = {

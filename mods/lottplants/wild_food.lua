@@ -10,7 +10,8 @@ minetest.register_node("lottplants:barley_wild", {
 	wield_image = "lottfarming_barley_3.png",
 	sunlight_propagates = true,
 	paramtype = "light",
-drop = {
+	waving = 1,
+	drop = {
 		max_items = 3,
 		items = {
 			{ items = {'lottfarming:barley'} },
@@ -38,6 +39,7 @@ minetest.register_node("lottplants:berries_wild", {
 	wield_image = "lottplants_berries_wild.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	drop = {
 		max_items = 3,
 		items = {
@@ -66,6 +68,7 @@ minetest.register_node("lottplants:corn_wild", {
 	wield_image = "lottplants_corn_wild.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	drop = {
 		max_items = 3,
 		items = {
@@ -146,6 +149,7 @@ minetest.register_node("lottplants:mushroom_wild", {
 	wield_image = "lottplants_mushroom_wild.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	drop = {
 		max_items = 5,
 		items = {
@@ -175,6 +179,7 @@ minetest.register_node("lottplants:pipeweed_wild", {
 	wield_image = "lottplants_pipeweed_wild.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	drop = {
 		max_items = 3,
 		items = {
@@ -203,6 +208,7 @@ minetest.register_node("lottplants:potato_wild", {
 	wield_image = "lottplants_potato_wild.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	drop = {
 		max_items = 3,
 		items = {
@@ -231,6 +237,7 @@ minetest.register_node("lottplants:tomatoes_wild", {
 	wield_image = "lottplants_tomatoes_wild.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	drop = {
 		max_items = 3,
 		items = {
@@ -259,6 +266,7 @@ minetest.register_node("lottplants:turnips_wild", {
 	wield_image = "lottplants_turnips_wild.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	waving = 1,
 	drop = {
 		max_items = 3,
 		items = {

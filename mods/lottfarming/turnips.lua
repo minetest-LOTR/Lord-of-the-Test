@@ -12,6 +12,7 @@ minetest.register_node("lottfarming:turnips_1", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_turnips_1.png"},
+	waving = 1,
 	selection_box = {
 		type = "fixed",
 		fixed = {
@@ -28,6 +29,7 @@ minetest.register_node("lottfarming:turnips_2", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_turnips_2.png"},
+	waving = 1,
 	selection_box = {
 		type = "fixed",
 		fixed = {
@@ -44,6 +46,7 @@ minetest.register_node("lottfarming:turnips_3", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_turnips_3.png"},
+	waving = 1,
 	selection_box = {
 		type = "fixed",
 		fixed = {
@@ -59,6 +62,7 @@ minetest.register_node("lottfarming:turnips_4", {
 	walkable = false,
 	drawtype = "plantlike",
 	tiles = {"lottfarming_turnips_4.png"},
+	waving = 1,
 	drop = {
 		max_items = 6,
 		items = {

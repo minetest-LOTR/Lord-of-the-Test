@@ -12,6 +12,7 @@ minetest.register_node("lottfarming:berries_1", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_berries_1.png"},
+	waving = 1,
 	selection_box = {
 		type = "fixed",
 		fixed = {
@@ -28,6 +29,7 @@ minetest.register_node("lottfarming:berries_2", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_berries_2.png"},
+	waving = 1,
 	selection_box = {
 		type = "fixed",
 		fixed = {
@@ -44,6 +46,7 @@ minetest.register_node("lottfarming:berries_3", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"lottfarming_berries_3.png"},
+	waving = 1,
 	selection_box = {
 		type = "fixed",
 		fixed = {
@@ -59,6 +62,7 @@ minetest.register_node("lottfarming:berries_4", {
 	walkable = false,
 	drawtype = "plantlike",
 	tiles = {"lottfarming_berries_4.png"},
+	waving = 1,
 	drop = {
 		max_items = 6,
 		items = {
