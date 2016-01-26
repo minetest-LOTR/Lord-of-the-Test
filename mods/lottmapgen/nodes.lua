@@ -158,6 +158,14 @@ minetest.register_node("lottmapgen:black_river_flowing", {
 	groups = {water=3, liquid=3, puts_out_fire=1, not_in_creative_inventory=1},
 })
 
+bucket.register_liquid(
+	"lottmapgen:blacksource",
+	"lottmapgen:blackflowing",
+	"lottmapgen:bucket_mordor",
+	"lottmapgen_bucket_mordor_water.png",
+	"Mordor Water Bucket"
+)
+
 -- Grasses
 
 minetest.register_node("lottmapgen:dunland_grass", {
