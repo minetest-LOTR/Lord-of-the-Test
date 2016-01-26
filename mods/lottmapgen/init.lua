@@ -424,8 +424,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										end
 									elseif biome == 10 then
 										if math.random(TREE2) == 2 then
-											data[vi] = c_mirktreegen
-										elseif math.random(TREE4) == 3 then
+											lottmapgen_mirktree(x, y, z, area, data)
+										elseif math.random(TREE2) == 3 then
 											lottmapgen_jungletree2(x, y, z, area, data)
 										elseif math.random(PLANT13) == 13 then
 											data[vi] = c_mirktre
