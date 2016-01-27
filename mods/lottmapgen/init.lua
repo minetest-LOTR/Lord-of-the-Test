@@ -145,9 +145,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_ironhillgrass = minetest.get_content_id("lottmapgen:ironhill_grass")
 	local c_salt = minetest.get_content_id("lottores:mineral_salt")
 	local c_pearl = minetest.get_content_id("lottores:mineral_pearl")
-	local c_mallorngen = minetest.get_content_id("lottmapgen:mallorngen")
-	local c_beechgen = minetest.get_content_id("lottmapgen:beechgen")
-	local c_mirktreegen = minetest.get_content_id("lottmapgen:mirktreegen")
 	local c_angsnowblock = minetest.get_content_id("lottmapgen:angsnowblock")
 	local c_mallos = minetest.get_content_id("lottplants:mallos")
 	local c_seregon = minetest.get_content_id("lottplants:seregon")
@@ -302,7 +299,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										if math.random(PLANT3) == 2 then
 											data[vi] = c_dryshrub
 										elseif math.random(TREE10) == 2 then
-											data[vi] = c_beechgen
+											lottmapgen_beechtree(x, y, z, area, data)
 										elseif math.random(TREE7) == 3 then
 											lottmapgen_pinetree(x, y, z, area, data)
 										elseif math.random(TREE8) == 4 then
@@ -318,7 +315,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										if math.random(PLANT3) == 2 then
 											data[vi] = c_dryshrub
 										elseif math.random(TREE10) == 2 then
-											data[vi] = c_beechgen
+											lottmapgen_beechtree(x, y, z, area, data)
 										elseif math.random(TREE4) == 3 then
 											lottmapgen_pinetree(x, y, z, area, data)
 										elseif math.random(TREE3) == 4 then
@@ -384,7 +381,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										elseif math.random(PLANT1) == 2 then
 											lottmapgen_lorien_grass(data, vi)
 										elseif math.random(TREE5) == 3 then
-											data[vi] = c_mallorngen
+											lottmapgen_mallorntree(x, y, z, area, data)
 										elseif math.random(PLANT4) == 11 then
 											lottmapgen_lorienplants(data, vi)
 										elseif math.random(PLANT13) == 13 then
@@ -432,7 +429,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										end
 									elseif biome == 11 then
 										if math.random(TREE10) == 2 then
-											data[vi] = c_beechgen
+											lottmapgen_beechtree(x, y, z, area, data)
 										elseif math.random(TREE4) == 3 then
 											lottmapgen_pinetree(x, y, z, area, data)
 										elseif math.random(TREE6) == 4 then

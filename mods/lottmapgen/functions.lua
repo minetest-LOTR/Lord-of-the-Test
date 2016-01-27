@@ -600,87 +600,88 @@ end
 
 -- Trees Big
 
-function add_tree_branch_mallorn(pos)
-	minetest.env:add_node(pos, {name="lottplants:mallorntree"})
-	for i = math.floor(math.random(2)), -math.floor(math.random(2)), -1 do
-		for k = math.floor(math.random(2)), -math.floor(math.random(2)), -1 do
-			local p = {x=pos.x+i, y=pos.y, z=pos.z+k}
-			local n = minetest.env:get_node(p)
-			if (n.name=="air") then
-				minetest.env:add_node(p, {name="lottplants:mallornleaf"})
-			end
-			local chance = math.abs(i+k)
-			if (chance < 1) then
-				p = {x=pos.x+i, y=pos.y+1, z=pos.z+k}
-				n = minetest.env:get_node(p)
-				if (n.name=="air") then
-					minetest.env:add_node(p, {name="lottplants:mallornleaf"})
+function lottmapgen_mallorntree(x, y, z, area, data)
+	local c_maltree = minetest.get_content_id("lottplants:mallorntree")
+	local c_malleaf = minetest.get_content_id("lottplants:mallornleaf")
+	local top = math.random(25, 30)
+	local mid = math.floor(top/2)
+	for j = math.random(-4, -2), top do
+		if j == top or j == top - 1 or j == top + 1
+		or j == top - 2 or j == top - 3 then
+			for i = -3, 2 do -- leaves
+			for k = -3, 2 do
+				local vi = area:index(x + i, y + j, z + k)
+				if math.random(5) ~= 2 then
+					data[vi] = c_malleaf
 				end
+			end
+			end
+			for i = -1, 4 do -- leaves
+			for k = -1, 4 do
+				local vi = area:index(x + i, y + j, z + k)
+				if math.random(5) ~= 2 then
+					data[vi] = c_malleaf
+				end
+			end
+			end
+		elseif j == mid + 5 or j == mid + 4 then
+			for i = -1, 2 do -- leaves
+			for k = -1, 2 do
+				local vi = area:index(x + i, y + j, z + k)
+				if math.random(5) ~= 2 then
+					data[vi] = c_malleaf
+				end
+			end
+			end
+		elseif j == mid - 3 or j == mid - 2 or j == mid - 1 then
+			for i = -2, 3 do -- leaves
+			for k = -2, 3 do
+				local vi = area:index(x + i, y + j, z + k)
+				if math.random(5) ~= 2 then
+					data[vi] = c_malleaf
+				end
+			end
+			end
+		end
+		if j <= math.random(-1, 0) then -- roots
+			for i = -2, 3 do
+			for k = -2, 3 do
+				if i == 0 and k == -1 or i == -1 and k == 1 or
+				i == 1 and k == 2 or i == 2 and k == 0 then
+					local vi = area:index(x + i, y + j, z + k)
+					data[vi] = c_maltree
+				end
+			end
+			end
+		elseif j == top - 2 then
+			for i = -2, 3 do
+			for k = -2, 3 do
+				if i == 0 and k == -1 or i == -1 and k == 1 or
+				i == 1 and k == 2 or i == 2 and k == 0 then
+					local vi = area:index(x + i, y + j, z + k)
+					data[vi] = c_maltree
+				elseif i == 0 and k == -2 or i == -2 and k == 1
+				or i == 1 and k == 3 or i == 3 and k == 0 then
+					local vi = area:index(x + i, y + j, z + k)
+					data[vi] = c_maltree
+				end
+			end
+			end
+		end
+		if j >= -1 and j <= top - 1 then -- trunk
+			for i = 0, 1 do
+			for k = 0, 1 do
+				local vi = area:index(x + i, y + j, z + k)
+				data[vi] = c_maltree
+			end
 			end
 		end
 	end
 end
 
-function lottmapgen_mallorntree(pos)
-    local height = 25 + math.random(5)
-		if height < 10 then
-			for i = height, -2, -1 do
-				local p = {x=pos.x, y=pos.y+i, z=pos.z}
-				minetest.env:add_node(p, {name="lottplants:mallorntree"})
-				if i == height then
-					add_tree_branch_mallorn({x=pos.x, y=pos.y+height+math.random(0, 1), z=pos.z})
-					add_tree_branch_mallorn({x=pos.x+1, y=pos.y+i-math.random(2), z=pos.z})
-					add_tree_branch_mallorn({x=pos.x-1, y=pos.y+i-math.random(2), z=pos.z})
-					add_tree_branch_mallorn({x=pos.x, y=pos.y+i-math.random(2), z=pos.z+1})
-					add_tree_branch_mallorn({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1})
-				end
-				if i < 0 then
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i-math.random(2), z=pos.z}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z+1}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x-1, y=pos.y+i-math.random(2), z=pos.z}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1}, {name="lottplants:mallorntree"})
-				end
-				if (math.sin(i/height*i) < 0.2 and i > 3 and math.random(0,2) < 1.5) then
-					local branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
-					add_tree_branch_mallorn(branch_pos)
-				end
-			end
-		else
-			for i = height, -5, -1 do
-				if (math.sin(i/height*i) < 0.2 and i > 3 and math.random(0,2) < 1.5) then
-					local branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
-					add_tree_branch_mallorn(branch_pos)
-				end
-				if i < math.random(0,1) then
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z+1}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x+2, y=pos.y+i, z=pos.z-1}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z-2}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x-1, y=pos.y+i, z=pos.z}, {name="lottplants:mallorntree"})
-				end
-				if i == height then
-					add_tree_branch_mallorn({x=pos.x+1, y=pos.y+i, z=pos.z+1})
-					add_tree_branch_mallorn({x=pos.x+2, y=pos.y+i, z=pos.z-1})
-					add_tree_branch_mallorn({x=pos.x, y=pos.y+i, z=pos.z-2})
-					add_tree_branch_mallorn({x=pos.x-1, y=pos.y+i, z=pos.z})
-					add_tree_branch_mallorn({x=pos.x+1, y=pos.y+i, z=pos.z+2})
-					add_tree_branch_mallorn({x=pos.x+3, y=pos.y+i, z=pos.z-1})
-					add_tree_branch_mallorn({x=pos.x, y=pos.y+i, z=pos.z-3})
-					add_tree_branch_mallorn({x=pos.x-2, y=pos.y+i, z=pos.z})
-					add_tree_branch_mallorn({x=pos.x+1, y=pos.y+i, z=pos.z})
-					add_tree_branch_mallorn({x=pos.x+1, y=pos.y+i, z=pos.z-1})
-					add_tree_branch_mallorn({x=pos.x, y=pos.y+i, z=pos.z-1})
-					add_tree_branch_mallorn({x=pos.x, y=pos.y+i, z=pos.z})
-				else
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z-1}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z-1}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z}, {name="lottplants:mallorntree"})
-				end
-			end
-		end
-end
-
-function lottmapgen_beechtree(pos)
+function lottmapgen_beechtree(x, y, z, area, data)
+	local c_tree = minetest.get_content_id("default:tree")
+	local c_beechleaf = minetest.get_content_id("lottplants:beechleaf")
 	local t = 10 + math.random(3) -- trunk height
 	for i = -2, 2 do
 	for k = -2, 2 do
@@ -692,37 +693,37 @@ function lottmapgen_beechtree(pos)
 			j = t - absk
 		end
 		if math.random() > (absi + absk) / 24 then
-		    minetest.add_node({x=pos.x+i,y=pos.y+j+7,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j+4,z=pos.z+k},{name="lottplants:beechleaf"})
-		    minetest.add_node({x=pos.x+i+2,y=pos.y+j+4,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i-2,y=pos.y+j+4,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j+4,z=pos.z+k+2},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j+4,z=pos.z+k-2},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j+1,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i+3,y=pos.y+j+1,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i-3,y=pos.y+j+1,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j+1,z=pos.z+k+3},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j+1,z=pos.z+k-3},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i+3,y=pos.y+j-2,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i-3,y=pos.y+j-2,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k+3},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k-3},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i+4,y=pos.y+j-5,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i-4,y=pos.y+j-5,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k+4},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k-4},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-8,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i+4,y=pos.y+j-8,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i-4,y=pos.y+j-8,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-8,z=pos.z+k+4},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-8,z=pos.z+k-4},{name="lottplants:beechleaf"})
+			data[area:index(x+i, y+j+7, z+k)] = c_beechleaf
+			data[area:index(x+i, y+j+4, z+k)] = c_beechleaf
+		    data[area:index(x+i+2, y+j+4, z+k)] = c_beechleaf
+			data[area:index(x+i-2, y+j+4, z+k)] = c_beechleaf
+			data[area:index(x+i, y+j+4, z+k+2)] = c_beechleaf
+			data[area:index(x+i, y+j+4, z+k-2)] = c_beechleaf
+			data[area:index(x+i, y+j+1, z+k)] = c_beechleaf
+			data[area:index(x+i+3, y+j+1, z+k)] = c_beechleaf
+			data[area:index(x+i-3, y+j+1, z+k)] = c_beechleaf
+			data[area:index(x+i, y+j+1, z+k+3)] = c_beechleaf
+			data[area:index(x+i, y+j+1, z+k-3)] = c_beechleaf
+			data[area:index(x+i, y+j-2, z+k)] = c_beechleaf
+			data[area:index(x+i+3, y+j-2, z+k)] = c_beechleaf
+			data[area:index(x+i-3, y+j-2, z+k)] = c_beechleaf
+			data[area:index(x+i, y+j-2, z+k+3)] = c_beechleaf
+			data[area:index(x+i, y+j-2, z+k-3)] = c_beechleaf
+			data[area:index(x+i, y+j-5, z+k)] = c_beechleaf
+			data[area:index(x+i+4, y+j-5, z+k)] = c_beechleaf
+			data[area:index(x+i-4, y+j-5, z+k)] = c_beechleaf
+			data[area:index(x+i, y+j-5, z+k+4)] = c_beechleaf
+			data[area:index(x+i, y+j-5, z+k-4)] = c_beechleaf
+			data[area:index(x+i, y+j-8, z+k)] = c_beechleaf
+			data[area:index(x+i+4, y+j-8, z+k)] = c_beechleaf
+			data[area:index(x+i-4, y+j-8, z+k)] = c_beechleaf
+			data[area:index(x+i, y+j-8, z+k+4)] = c_beechleaf
+			data[area:index(x+i, y+j-8, z+k-4)] = c_beechleaf
 		end
 	end
 	end
 	for j = -3, t do
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
+		data[area:index(x, y+j, z)] = c_tree
 	end
 end
 
@@ -772,40 +773,6 @@ function lottmapgen_mirktree(x, y, z, area, data)
 		end
 	end
 end
-
-minetest.register_node("lottmapgen:mallorngen", {
-	tiles = {"lottmapgen_lorien_grass.png", "default_dirt.png", "default_dirt.png^lottmapgen_lorien_grass_side.png"},
-	is_ground_content = true,
-	groups = {cracky=3, stone=1, not_in_creative_inventory=1},
-	drop = '',
-	sounds = default.node_sound_stone_defaults(),
-})
-
-minetest.register_node("lottmapgen:beechgen", {
-	tiles = {"default_snow.png"},
-	is_ground_content = true,
-	groups = {cracky=3, stone=1, not_in_creative_inventory=1},
-	drop = '',
-	sounds = default.node_sound_stone_defaults(),
-})
-
-minetest.register_abm({
-	nodenames = {"lottmapgen:mallorngen"},
-	interval = 1,
-	chance = 1,
-	action = function(pos, node)
-          lottmapgen_mallorntree(pos)
-     end,
-})
-
-minetest.register_abm({
-    nodenames = {"lottmapgen:beechgen"},
-    	interval = 1,
-	chance = 1,
-    action = function(pos, node, active_object_count, active_object_count_wider)
-		lottmapgen_beechtree(pos)
-    end,
-})
 
 function lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, HITET, HIHUT, HIRAN)
 	if n_temp < LOTET then
