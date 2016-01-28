@@ -219,6 +219,13 @@ stairs.register_stair_and_slab("wood", "default:wood",
 		"Wooden Slab",
 		default.node_sound_wood_defaults())
 
+stairs.register_stair_and_slab("tree", "default:tree",
+		{tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2},
+		{"default_tree_top.png", "default_tree_top.png", "default_tree.png"},
+		"Tree Stair",
+		"Tree Slab",
+		default.node_sound_wood_defaults())
+
 stairs.register_stair_and_slab("stone", "default:stone",
 		{cracky=3},
 		{"default_stone.png"},
@@ -252,6 +259,13 @@ stairs.register_stair_and_slab("junglewood", "default:junglewood",
 		{"default_junglewood.png"},
 		"Junglewood Stair",
 		"Junglewood Slab",
+		default.node_sound_wood_defaults())
+
+stairs.register_stair_and_slab("jungletree", "default:jungletree",
+		{tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2},
+		{"default_jungletree_top.png", "default_jungletree_top.png", "default_jungletree.png"},
+		"Tree Stair",
+		"Tree Slab",
 		default.node_sound_wood_defaults())
 
 stairs.register_stair_and_slab("stonebrick", "default:stonebrick",

@@ -877,11 +877,25 @@ stairs.register_stair_and_slab("birchwood", "lottplants:birchwood",
 		"Birch Wood Slab",
 		default.node_sound_wood_defaults())
 
+stairs.register_stair_and_slab("birchtree", "lottplants:birchtree",
+		{tree=1,choppy=3,flammable=2},
+		{"lottplants_birchtree_top.png", "lottplants_birchtree_top.png", "lottplants_birchtree.png"},
+		"Birch Tree Stair",
+		"Birch Tree Slab",
+		default.node_sound_wood_defaults())
+
 stairs.register_stair_and_slab("pinewood", "lottplants:pinewood",
 		{snappy=2,choppy=3,flammable=3},
 		{"lottplants_pinewood.png"},
 		"Pine Wood Stair",
 		"Pine Wood Slab",
+		default.node_sound_wood_defaults())
+
+stairs.register_stair_and_slab("pinetree", "lottplants:pinetree",
+		{tree=1,choppy=3,flammable=2},
+		{"lottplants_pinetree_top.png", "lottplants_pinetree_top.png", "lottplants_pinetree.png"},
+		"Pine Tree Stair",
+		"Pine Tree Slab",
 		default.node_sound_wood_defaults())
 
 stairs.register_stair_and_slab("alderwood", "lottplants:alderwood",
@@ -891,11 +905,25 @@ stairs.register_stair_and_slab("alderwood", "lottplants:alderwood",
 		"Alder Wood Slab",
 		default.node_sound_wood_defaults())
 
+stairs.register_stair_and_slab("aldertree", "lottplants:aldertree",
+		{tree=1,choppy=2,flammable=2},
+		{"lottplants_aldertree_top.png", "lottplants_aldertree_top.png", "lottplants_aldertree.png"},
+		"Alder Tree Stair",
+		"Alder Tree Slab",
+		default.node_sound_wood_defaults())
+
 stairs.register_stair_and_slab("lebethronwood", "lottplants:lebethronwood",
 		{snappy=2,choppy=1,flammable=3},
 		{"lottplants_lebethronwood.png"},
 		"Lebethron Wood Stair",
 		"Lebethron Wood Slab",
+		default.node_sound_wood_defaults())
+
+stairs.register_stair_and_slab("lebethrontree", "lottplants:lebethrontree",
+		{tree=1,choppy=1,flammable=2},
+		{"lottplants_lebethrontree_top.png", "lottplants_lebethrontree_top.png", "default_tree.png"},
+		"Lebethron Tree Stair",
+		"Lebethron Tree Slab",
 		default.node_sound_wood_defaults())
 
 stairs.register_stair_and_slab("mallornwood", "lottplants:mallornwood",
@@ -904,6 +932,14 @@ stairs.register_stair_and_slab("mallornwood", "lottplants:mallornwood",
 		"Mallorn Wood Stair",
 		"Mallorn Wood Slab",
 		default.node_sound_wood_defaults())
+
+stairs.register_stair_and_slab("mallorntree", "lottplants:mallorntree",
+		{tree=1,choppy=1,flammable=2},
+		{"lottplants_mallorntree_top.png", "lottplants_mallorntree_top.png", "lottplants_mallorntree.png"},
+		"Mallorn Tree Stair",
+		"Mallorn Tree Slab",
+		default.node_sound_wood_defaults())
+
 --Crafting
 
 minetest.register_craft({
