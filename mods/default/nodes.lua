@@ -373,13 +373,20 @@ minetest.register_node("default:papyrus", {
 	},
 	groups = {snappy=3,flammable=2},
 	sounds = default.node_sound_leaves_defaults(),
+	after_dig_node = function(pos, node, metadata, digger)
+		default.dig_up(pos, node, digger)
+	end,
 })
 
 default.bookshelf_formspec =
 	"size[8,7;]"..
+	"background[8,7;1,1;gui_chestbg.png;true]"..
+	"listcolors[#606060AA;#888;#141318;#30434C;#FFF]"..
 	"list[context;books;0,0.3;8,2;]"..
 	"list[current_player;main;0,2.85;8,1;]"..
-	"list[current_player;main;0,4.08;8,3;8]"
+	"list[current_player;main;0,4.08;8,3;8]"..
+	"listring[context;books]"..
+	"listring[current_player;main]"
 
 minetest.register_node("default:bookshelf", {
 	description = "Bookshelf",
@@ -401,8 +408,10 @@ minetest.register_node("default:bookshelf", {
 	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
 		local meta = minetest.env:get_meta(pos)
 		local inv = meta:get_inventory()
+		local to_stack = inv:get_stack(listname, index)
 		if listname == "books" then
-			if stack:get_definition().groups["book"] == 1 then
+			if stack:get_definition().groups["book"] == 1
+			and to_stack:is_empty() then
 				return 1
 			else
 				return 0
@@ -415,7 +424,8 @@ minetest.register_node("default:bookshelf", {
 		local stack = inv:get_stack(from_list, from_index)
 		local to_stack = inv:get_stack(to_list, to_index)
 		if to_list == "books" then
-			if stack:get_definition().groups["book"] == 1 and to_stack:is_empty() then
+			if stack:get_definition().groups["book"] == 1
+			and to_stack:is_empty() then
 				return 1
 			else
 				return 0
@@ -894,30 +904,6 @@ minetest.register_node("default:chest", {
 		local inv = meta:get_inventory()
 		return inv:is_empty("main")
 	end,
-     allow_metadata_inventory_put = function(pos, listname, index, stack, player)
-		local meta = minetest.env:get_meta(pos)
-		local inv = meta:get_inventory()
-		if listname == "main" then
-			if stack:get_definition().groups["book"] == 1 then
-				return 0
-               else
-                    return 65535
-			end
-		end
-	end,
-     allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-		local meta = minetest.env:get_meta(pos)
-		local inv = meta:get_inventory()
-		local stack = inv:get_stack(from_list, from_index)
-		local to_stack = inv:get_stack(to_list, to_index)
-		if to_list == "main" then
-			if stack:get_definition().groups["book"] == 1 and to_stack:is_empty() then
-				return 0
-               else
-                    return 65535
-			end
-		end
-	end,
 	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
 		minetest.log("action", player:get_player_name()..
 				" moves stuff in chest at "..minetest.pos_to_string(pos))
@@ -958,7 +944,8 @@ minetest.register_node("default:chest_locked", {
 	after_place_node = function(pos, placer)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("owner", placer:get_player_name() or "")
-		meta:set_string("infotext", "Locked Chest (owned by "..meta:get_string("owner")..")")
+		meta:set_string("infotext", "Locked Chest (owned by " ..
+				meta:get_string("owner") .. ")")
 	end,
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
@@ -972,78 +959,43 @@ minetest.register_node("default:chest_locked", {
 		local inv = meta:get_inventory()
 		return inv:is_empty("main") and has_locked_chest_privilege(meta, player)
 	end,
-	allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+	allow_metadata_inventory_move = function(pos, from_list, from_index,
+			to_list, to_index, count, player)
 		local meta = minetest.get_meta(pos)
 		if not has_locked_chest_privilege(meta, player) then
-			minetest.log("action", player:get_player_name()..
-					" tried to access a locked chest belonging to "..
-					meta:get_string("owner").." at "..
-					minetest.pos_to_string(pos))
 			return 0
-		end
-          local inv = meta:get_inventory()
-		local stack = inv:get_stack(from_list, from_index)
-		local to_stack = inv:get_stack(to_list, to_index)
-		if to_list == "main" then
-			if stack:get_definition().groups["book"] == 1 and to_stack:is_empty() then
-				return 0
-               else
-                    return 65535
-			end
 		end
 		return count
 	end,
     allow_metadata_inventory_put = function(pos, listname, index, stack, player)
 		local meta = minetest.get_meta(pos)
 		if not has_locked_chest_privilege(meta, player) then
-			minetest.log("action", player:get_player_name()..
-					" tried to access a locked chest belonging to "..
-					meta:get_string("owner").." at "..
-					minetest.pos_to_string(pos))
 			return 0
-		end
-          local inv = meta:get_inventory()
-		if listname == "main" then
-			if stack:get_definition().groups["book"] == 1 then
-				return 0
-               else
-                    return 65535
-			end
 		end
 		return stack:get_count()
 	end,
     allow_metadata_inventory_take = function(pos, listname, index, stack, player)
 		local meta = minetest.get_meta(pos)
 		if not has_locked_chest_privilege(meta, player) then
-			minetest.log("action", player:get_player_name()..
-					" tried to access a locked chest belonging to "..
-					meta:get_string("owner").." at "..
-					minetest.pos_to_string(pos))
 			return 0
 		end
 		return stack:get_count()
 	end,
-	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-		minetest.log("action", player:get_player_name()..
-				" moves stuff in locked chest at "..minetest.pos_to_string(pos))
-	end,
     on_metadata_inventory_put = function(pos, listname, index, stack, player)
-		minetest.log("action", player:get_player_name()..
-				" moves stuff to locked chest at "..minetest.pos_to_string(pos))
+		minetest.log("action", player:get_player_name() ..
+			" moves stuff to locked chest at " .. minetest.pos_to_string(pos))
 	end,
     on_metadata_inventory_take = function(pos, listname, index, stack, player)
-		minetest.log("action", player:get_player_name()..
-				" takes stuff from locked chest at "..minetest.pos_to_string(pos))
+		minetest.log("action", player:get_player_name() ..
+			" takes stuff from locked chest at " .. minetest.pos_to_string(pos))
 	end,
-
-	on_rightclick = function(pos, node, player)
+	on_rightclick = function(pos, node, clicker)
 		local meta = minetest.get_meta(pos)
-		if has_locked_chest_privilege(meta, player) then
-		    -- minetest.chat_send_player(player:get_player_name(), "You opened a locked chest")
+		if has_locked_chest_privilege(meta, clicker) then
 			minetest.show_formspec(
-				player:get_player_name(),
+				clicker:get_player_name(),
 				"default:chest_locked",
-				default.get_chest_formspec(pos,"gui_chestbg.png")
+				default.get_chest_formspec(pos, "gui_chestbg.png")
 			)
 		end
 	end,

@@ -21,7 +21,7 @@ local function book_on_use(itemstack, user, pointed_thing)
 	local formspec
 	if owner == player_name then
 		formspec = "size[8,8]"..
-		"background[8,8;1,1;craft_formbg.png;true]"..
+			"background[8,8;1,1;craft_formbg.png;true]"..
 			"field[0.5,1;7.5,0;title;Title:;"..
 				minetest.formspec_escape(title).."]"..
 			"textarea[0.5,1.5;7.5,7;text;Contents:;"..
