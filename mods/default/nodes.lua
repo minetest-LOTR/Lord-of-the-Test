@@ -24,7 +24,7 @@ minetest.register_node("default:stone_with_coal", {
 	description = "Coal Ore",
 	tiles = {"default_stone.png^default_mineral_coal.png"},
 	is_ground_content = true,
-	groups = {cracky=3},
+	groups = {cracky=3, stone=1},
 	drop = 'default:coal_lump',
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -33,7 +33,7 @@ minetest.register_node("default:stone_with_iron", {
 	description = "Iron Ore",
 	tiles = {"default_stone.png^default_mineral_iron.png"},
 	is_ground_content = true,
-	groups = {cracky=2},
+	groups = {cracky=2, stone=1},
 	drop = 'default:iron_lump',
 	sounds = default.node_sound_stone_defaults(),
 })

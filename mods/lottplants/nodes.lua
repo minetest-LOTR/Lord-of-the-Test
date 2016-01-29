@@ -475,7 +475,7 @@ minetest.register_node("lottplants:aldersapling", {
 	wield_image = "lottplants_aldersapling.png",
 	paramtype = "light",
 	walkable = false,
-	groups = {snappy=2,dig_immediate=3,flammable=2},
+	groups = {snappy=2,dig_immediate=3,flammable=2,sapling=1},
 	sounds = default.node_sound_defaults(),
 })
 
@@ -488,7 +488,7 @@ minetest.register_node("lottplants:applesapling", {
 	wield_image = "lottplants_applesapling.png",
 	paramtype = "light",
 	walkable = false,
-	groups = {snappy=2,dig_immediate=3,flammable=2},
+	groups = {snappy=2,dig_immediate=3,flammable=2,sapling=1},
 	sounds = default.node_sound_defaults(),
 })
 
@@ -501,7 +501,7 @@ minetest.register_node("lottplants:birchsapling", {
 	wield_image = "lottplants_birchsapling.png",
 	paramtype = "light",
 	walkable = false,
-	groups = {snappy=2,dig_immediate=3,flammable=2},
+	groups = {snappy=2,dig_immediate=3,flammable=2,sapling=1},
 	sounds = default.node_sound_defaults(),
 })
 
@@ -514,7 +514,7 @@ minetest.register_node("lottplants:beechsapling", {
 	wield_image = "lottplants_beechsapling.png",
 	paramtype = "light",
 	walkable = false,
-	groups = {snappy=2,dig_immediate=3,flammable=2},
+	groups = {snappy=2,dig_immediate=3,flammable=2,sapling=1},
 	sounds = default.node_sound_defaults(),
 })
 
@@ -527,7 +527,7 @@ minetest.register_node("lottplants:culumaldasapling", {
 	wield_image = "lottplants_culumaldasapling.png",
 	paramtype = "light",
 	walkable = false,
-	groups = {snappy=2,dig_immediate=3,flammable=2},
+	groups = {snappy=2,dig_immediate=3,flammable=2,sapling=1},
 	sounds = default.node_sound_defaults(),
 })
 
@@ -540,7 +540,7 @@ minetest.register_node("lottplants:elmsapling", {
 	wield_image = "lottplants_elmsapling.png",
 	paramtype = "light",
 	walkable = false,
-	groups = {snappy=2,dig_immediate=3,flammable=2},
+	groups = {snappy=2,dig_immediate=3,flammable=2,sapling=1},
 	sounds = default.node_sound_defaults(),
 })
 
@@ -553,7 +553,7 @@ minetest.register_node("lottplants:firsapling", {
 	wield_image = "lottplants_firsapling.png",
 	paramtype = "light",
 	walkable = false,
-	groups = {snappy=2,dig_immediate=3,flammable=2},
+	groups = {snappy=2,dig_immediate=3,flammable=2,sapling=1},
 	sounds = default.node_sound_defaults(),
 })
 
@@ -566,7 +566,7 @@ minetest.register_node("lottplants:lebethronsapling", {
 	wield_image = "lottplants_lebethronsapling.png",
 	paramtype = "light",
 	walkable = false,
-	groups = {snappy=2,dig_immediate=3,flammable=2},
+	groups = {snappy=2,dig_immediate=3,flammable=2,sapling=1},
 	sounds = default.node_sound_defaults(),
 })
 
@@ -579,7 +579,7 @@ minetest.register_node("lottplants:mallornsapling", {
 	wield_image = "lottplants_mallornsapling.png",
 	paramtype = "light",
 	walkable = false,
-	groups = {snappy=2,dig_immediate=3,flammable=2},
+	groups = {snappy=2,dig_immediate=3,flammable=2,sapling=1},
 	sounds = default.node_sound_defaults(),
 })
 
@@ -596,7 +596,7 @@ minetest.register_node("lottplants:mallorntree_young_grower", {
 		},
 	},
 	paramtype2 = "facedir",
-	groups = {tree=1,choppy=1,flammable=2,fuel=1, not_in_creative_inventory=1},
+	groups = {tree=1,choppy=1,flammable=2,fuel=1, not_in_creative_inventory=1,sapling=1},
 	sounds = default.node_sound_wood_defaults(),
 	drop = "lottplants:mallorntree_young",
 	on_place = minetest.rotate_node,
@@ -609,7 +609,7 @@ minetest.register_node("lottplants:mallorntree_grower", {
 	description = "Mallorn Tree",
 	tiles = {"lottplants_mallorntree_top.png", "lottplants_mallorntree_top.png", "lottplants_mallorntree.png"},
 	paramtype2 = "facedir",
-	groups = {tree=1,choppy=1,flammable=2, not_in_creative_inventory=1},
+	groups = {tree=1,choppy=1,flammable=2, not_in_creative_inventory=1,sapling=1},
 	sounds = default.node_sound_wood_defaults(),
 	drops = "lottplants:mallorntree",
 	on_place = minetest.rotate_node,
@@ -627,7 +627,7 @@ minetest.register_node("lottplants:pinesapling", {
 	wield_image = "lottplants_pinesapling.png",
 	paramtype = "light",
 	walkable = false,
-	groups = {snappy=2,dig_immediate=3,flammable=2},
+	groups = {snappy=2,dig_immediate=3,flammable=2,sapling=1},
 	sounds = default.node_sound_defaults(),
 })
 
@@ -640,7 +640,7 @@ minetest.register_node("lottplants:plumsapling", {
 	wield_image = "lottplants_plumsapling.png",
 	paramtype = "light",
 	walkable = false,
-	groups = {snappy=2,dig_immediate=3,flammable=2},
+	groups = {snappy=2,dig_immediate=3,flammable=2,sapling=1},
 	sounds = default.node_sound_defaults(),
 })
 
@@ -653,7 +653,7 @@ minetest.register_node("lottplants:rowansapling", {
 	wield_image = "lottplants_rowansapling.png",
 	paramtype = "light",
 	walkable = false,
-	groups = {snappy=2,dig_immediate=3,flammable=2},
+	groups = {snappy=2,dig_immediate=3,flammable=2,sapling=1},
 	sounds = default.node_sound_defaults(),
 })
 
@@ -666,7 +666,7 @@ minetest.register_node("lottplants:whitesapling", {
 	wield_image = "lottplants_whitesapling.png",
 	paramtype = "light",
 	walkable = false,
-	groups = {snappy=2,dig_immediate=3,flammable=2},
+	groups = {snappy=2,dig_immediate=3,flammable=2,sapling=1},
 	sounds = default.node_sound_defaults(),
 })
 
@@ -679,7 +679,7 @@ minetest.register_node("lottplants:yavannamiresapling", {
 	wield_image = "lottplants_yavannamiresapling.png",
 	paramtype = "light",
 	walkable = false,
-	groups = {snappy=2,dig_immediate=3,flammable=2},
+	groups = {snappy=2,dig_immediate=3,flammable=2,sapling=1},
 	sounds = default.node_sound_defaults(),
 })
 
@@ -692,7 +692,7 @@ minetest.register_node("lottplants:mirksapling", {
 	wield_image = "lottplants_mirksapling.png",
 	paramtype = "light",
 	walkable = false,
-	groups = {snappy=2,dig_immediate=3,flammable=2},
+	groups = {snappy=2,dig_immediate=3,flammable=2,sapling=1},
 	sounds = default.node_sound_defaults(),
 })
 

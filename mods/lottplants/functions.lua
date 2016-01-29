@@ -1,5 +1,12 @@
 -- TREE FUNCTIONS
 
+local function check_add_node(pos, name)
+	local nn = minetest.get_node(pos).name
+	if nn == "air" or minetest.get_item_group(nn, "sapling") then
+		minetest.set_node(pos, name)
+	end
+end
+
 -- Alders
 
 function lottplants_aldertree(pos)
@@ -11,12 +18,12 @@ function lottplants_aldertree(pos)
 				local absi = math.abs(i)
 				local absk = math.abs(k)
 				if math.random() > (absi + absk) / 24 then
-					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:alderleaf"})
+					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:alderleaf"})
 				end
 			end
 			end
 		end
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:aldertree"})
+		check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:aldertree"})
 	end
 end
 
@@ -31,15 +38,15 @@ function lottplants_appletree(pos)
 				local absi = math.abs(i)
 				local absk = math.abs(k)
 				if math.random() > (absi + absk) / 24 then
-					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:appleleaf"})
+					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:appleleaf"})
 				end
 				if math.random() > (absi + absk) / 12 then
-					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="default:apple"})
+					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="default:apple"})
 				end
 			end
 			end
 		end
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
+		check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
 	end
 end
 
@@ -54,12 +61,12 @@ function lottplants_birchtree(pos)
 				local absi = math.abs(i)
 				local absk = math.abs(k)
 				if math.random() > (absi + absk) / 24 then
-					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:birchleaf"})
+					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:birchleaf"})
 				end
 			end
 			end
 		end
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:birchtree"})
+		check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:birchtree"})
 	end
 end
 
@@ -77,37 +84,37 @@ function lottplants_beechtree(pos)
 			j = t - absk
 		end
 		if math.random() > (absi + absk) / 24 then
-		    minetest.add_node({x=pos.x+i,y=pos.y+j+7,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j+4,z=pos.z+k},{name="lottplants:beechleaf"})
-		    minetest.add_node({x=pos.x+i+2,y=pos.y+j+4,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i-2,y=pos.y+j+4,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j+4,z=pos.z+k+2},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j+4,z=pos.z+k-2},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j+1,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i+3,y=pos.y+j+1,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i-3,y=pos.y+j+1,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j+1,z=pos.z+k+3},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j+1,z=pos.z+k-3},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i+3,y=pos.y+j-2,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i-3,y=pos.y+j-2,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k+3},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k-3},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i+4,y=pos.y+j-5,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i-4,y=pos.y+j-5,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k+4},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k-4},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-8,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i+4,y=pos.y+j-8,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i-4,y=pos.y+j-8,z=pos.z+k},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-8,z=pos.z+k+4},{name="lottplants:beechleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-8,z=pos.z+k-4},{name="lottplants:beechleaf"})
+		    check_add_node({x=pos.x+i,y=pos.y+j+7,z=pos.z+k},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j+4,z=pos.z+k},{name="lottplants:beechleaf"})
+		    check_add_node({x=pos.x+i+2,y=pos.y+j+4,z=pos.z+k},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i-2,y=pos.y+j+4,z=pos.z+k},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j+4,z=pos.z+k+2},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j+4,z=pos.z+k-2},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j+1,z=pos.z+k},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i+3,y=pos.y+j+1,z=pos.z+k},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i-3,y=pos.y+j+1,z=pos.z+k},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j+1,z=pos.z+k+3},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j+1,z=pos.z+k-3},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i+3,y=pos.y+j-2,z=pos.z+k},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i-3,y=pos.y+j-2,z=pos.z+k},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k+3},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k-3},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i+4,y=pos.y+j-5,z=pos.z+k},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i-4,y=pos.y+j-5,z=pos.z+k},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k+4},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k-4},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-8,z=pos.z+k},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i+4,y=pos.y+j-8,z=pos.z+k},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i-4,y=pos.y+j-8,z=pos.z+k},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-8,z=pos.z+k+4},{name="lottplants:beechleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-8,z=pos.z+k-4},{name="lottplants:beechleaf"})
 		end
 	end
 	end
 	for j = -3, t do
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
+		check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
 	end
 end
 
@@ -122,15 +129,15 @@ function lottplants_culumaldatree(pos)
 				local absi = math.abs(i)
 				local absk = math.abs(k)
 				if math.random() > (absi + absk) / 24 then
-					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:culumaldaleaf"})
+					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:culumaldaleaf"})
 				end
 				if math.random() > (absi + absk) / 12 then
-					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:yellowflowers"})
+					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:yellowflowers"})
 				end
 			end
 			end
 		end
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
+		check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
 	end
 end
 
@@ -145,12 +152,12 @@ function lottplants_elmtree(pos)
 				local absi = math.abs(i)
 				local absk = math.abs(k)
 				if math.random() > (absi + absk) / 24 then
-					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:elmleaf"})
+					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:elmleaf"})
 				end
 			end
 			end
 		end
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
+		check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
 	end
 end
 
@@ -168,14 +175,14 @@ function lottplants_firtree(pos)
 			j = t - absk
 		end
 		if math.random() > (absi + absk) / 24 then
-			minetest.add_node({x=pos.x+i,y=pos.y+j+1,z=pos.z+k},{name="lottplants:firleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k},{name="lottplants:firleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k},{name="lottplants:firleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j+1,z=pos.z+k},{name="lottplants:firleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k},{name="lottplants:firleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k},{name="lottplants:firleaf"})
 		end
 	end
 	end
 	for j = -3, t do
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:pinetree"})
+		check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:pinetree"})
 	end
 end
 
@@ -190,33 +197,27 @@ function lottplants_lebethrontree(pos)
 				local absi = math.abs(i)
 				local absk = math.abs(k)
 				if math.random() > (absi + absk) / 24 then
-					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:lebethronleaf"})
+					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:lebethronleaf"})
 				end
 			end
 			end
 		end
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:lebethrontree"})
+		check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:lebethrontree"})
 	end
 end
 
 -- Mallorn
 
 function add_tree_branch_mallorn(pos)
-	minetest.env:add_node(pos, {name="lottplants:mallorntree"})
+	check_add_node(pos, {name="lottplants:mallorntree"})
 	for i = math.floor(math.random(2)), -math.floor(math.random(2)), -1 do
 		for k = math.floor(math.random(2)), -math.floor(math.random(2)), -1 do
 			local p = {x=pos.x+i, y=pos.y, z=pos.z+k}
-			local n = minetest.env:get_node(p)
-			if (n.name=="air") then
-				minetest.env:add_node(p, {name="lottplants:mallornleaf"})
-			end
+			check_add_node(p, {name="lottplants:mallornleaf"})
 			local chance = math.abs(i+k)
 			if (chance < 1) then
 				p = {x=pos.x+i, y=pos.y+1, z=pos.z+k}
-				n = minetest.env:get_node(p)
-				if (n.name=="air") then
-					minetest.env:add_node(p, {name="lottplants:mallornleaf"})
-				end
+				check_add_node(p, {name="lottplants:mallornleaf"})
 			end
 		end
 	end
@@ -227,7 +228,7 @@ function lottplants_mallorntree(pos)
 		if height < 10 then
 			for i = height, -2, -1 do
 				local p = {x=pos.x, y=pos.y+i, z=pos.z}
-				minetest.env:add_node(p, {name="lottplants:mallorntree"})
+				check_add_node(p, {name="lottplants:mallorntree"})
 				if i == height then
 					add_tree_branch_mallorn({x=pos.x, y=pos.y+height+math.random(0, 1), z=pos.z})
 					add_tree_branch_mallorn({x=pos.x+1, y=pos.y+i-math.random(2), z=pos.z})
@@ -236,10 +237,10 @@ function lottplants_mallorntree(pos)
 					add_tree_branch_mallorn({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1})
 				end
 				if i < 0 then
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i-math.random(2), z=pos.z}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z+1}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x-1, y=pos.y+i-math.random(2), z=pos.z}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1}, {name="lottplants:mallorntree"})
+					check_add_node({x=pos.x+1, y=pos.y+i-math.random(2), z=pos.z}, {name="lottplants:mallorntree"})
+					check_add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z+1}, {name="lottplants:mallorntree"})
+					check_add_node({x=pos.x-1, y=pos.y+i-math.random(2), z=pos.z}, {name="lottplants:mallorntree"})
+					check_add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1}, {name="lottplants:mallorntree"})
 				end
 				if (math.sin(i/height*i) < 0.2 and i > 3 and math.random(0,2) < 1.5) then
 					local branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
@@ -253,10 +254,10 @@ function lottplants_mallorntree(pos)
 					add_tree_branch_mallorn(branch_pos)
 				end
 				if i < math.random(0,1) then
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z+1}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x+2, y=pos.y+i, z=pos.z-1}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z-2}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x-1, y=pos.y+i, z=pos.z}, {name="lottplants:mallorntree"})
+					check_add_node({x=pos.x+1, y=pos.y+i, z=pos.z+1}, {name="lottplants:mallorntree"})
+					check_add_node({x=pos.x+2, y=pos.y+i, z=pos.z-1}, {name="lottplants:mallorntree"})
+					check_add_node({x=pos.x, y=pos.y+i, z=pos.z-2}, {name="lottplants:mallorntree"})
+					check_add_node({x=pos.x-1, y=pos.y+i, z=pos.z}, {name="lottplants:mallorntree"})
 				end
 				if i == height then
 					add_tree_branch_mallorn({x=pos.x+1, y=pos.y+i, z=pos.z+1})
@@ -272,10 +273,10 @@ function lottplants_mallorntree(pos)
 					add_tree_branch_mallorn({x=pos.x, y=pos.y+i, z=pos.z-1})
 					add_tree_branch_mallorn({x=pos.x, y=pos.y+i, z=pos.z})
 				else
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z-1}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z-1}, {name="lottplants:mallorntree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z}, {name="lottplants:mallorntree"})
+					check_add_node({x=pos.x+1, y=pos.y+i, z=pos.z}, {name="lottplants:mallorntree"})
+					check_add_node({x=pos.x+1, y=pos.y+i, z=pos.z-1}, {name="lottplants:mallorntree"})
+					check_add_node({x=pos.x, y=pos.y+i, z=pos.z-1}, {name="lottplants:mallorntree"})
+					check_add_node({x=pos.x, y=pos.y+i, z=pos.z}, {name="lottplants:mallorntree"})
 				end
 			end
 		end
@@ -289,16 +290,16 @@ function lottplants_smallmallorntree(pos)
 				local absi = math.abs(i)
 				local absk = math.abs(k)
 				if math.random() > (absi + absk) / 24 then
-					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:mallornleaf"})
+					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:mallornleaf"})
 				end
 			end
 			end
 		end
 	end
 	for j = -3, 15 do
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:mallorntree"})
+		check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:mallorntree"})
 		if j == 0 then
-			minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:mallorntree_grower"})
+			check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:mallorntree_grower"})
 		end
 	end
 end
@@ -312,14 +313,14 @@ function lottplants_young_mallorn(pos)
 				local absi = math.abs(i)
 				local absk = math.abs(k)
 				if math.random() > (absi + absk) / 24 then
-					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:mallornleaf"})
+					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:mallornleaf"})
 				end
 			end
 			end
 		end
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:mallorntree_young"})
+		check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:mallorntree_young"})
 		if j == 0 then
-			minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:mallorntree_young_grower"})
+			check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:mallorntree_young_grower"})
 		end
 	end
 end
@@ -338,18 +339,18 @@ function lottplants_oaktree(pos)
 			j = t - absk
 		end
 		if math.random() > (absi + absk) / 24 then
-			minetest.add_node({x=pos.x+i,y=pos.y+j+3,z=pos.z+k},{name="lottplants:firleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j+1,z=pos.z+k},{name="lottplants:firleaf"})
-			minetest.add_node({x=pos.x+i+1,y=pos.y+j-1,z=pos.z+k},{name="lottplants:firleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k+1},{name="lottplants:firleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-3,z=pos.z+k},{name="lottplants:firleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-4,z=pos.z+k},{name="lottplants:firleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k},{name="lottplants:firleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j+3,z=pos.z+k},{name="lottplants:firleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j+1,z=pos.z+k},{name="lottplants:firleaf"})
+			check_add_node({x=pos.x+i+1,y=pos.y+j-1,z=pos.z+k},{name="lottplants:firleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k+1},{name="lottplants:firleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-3,z=pos.z+k},{name="lottplants:firleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-4,z=pos.z+k},{name="lottplants:firleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k},{name="lottplants:firleaf"})
 		end
 	end
 	end
 	for j = -5, t do
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:pinetree"})
+		check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:pinetree"})
 	end
 end
 
@@ -367,27 +368,27 @@ function lottplants_pinetree(pos)
 			j = t - absk
 		end
 		if math.random() > (absi + absk) / 24 then
-			minetest.add_node({x=pos.x+i,y=pos.y+j+1,z=pos.z+k},{name="lottplants:pineleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k},{name="lottplants:pineleaf"})
-			minetest.add_node({x=pos.x+i+1,y=pos.y+j-2,z=pos.z+k},{name="lottplants:pineleaf"})
-			minetest.add_node({x=pos.x+i-1,y=pos.y+j-2,z=pos.z+k},{name="lottplants:pineleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k+1},{name="lottplants:pineleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k-1},{name="lottplants:pineleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k},{name="lottplants:pineleaf"})
-			minetest.add_node({x=pos.x+i+1,y=pos.y+j-5,z=pos.z+k},{name="lottplants:pineleaf"})
-			minetest.add_node({x=pos.x+i-1,y=pos.y+j-5,z=pos.z+k},{name="lottplants:pineleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k+1},{name="lottplants:pineleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k-1},{name="lottplants:pineleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-8,z=pos.z+k},{name="lottplants:pineleaf"})
-			minetest.add_node({x=pos.x+i+2,y=pos.y+j-8,z=pos.z+k},{name="lottplants:pineleaf"})
-			minetest.add_node({x=pos.x+i-2,y=pos.y+j-8,z=pos.z+k},{name="lottplants:pineleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-8,z=pos.z+k+2},{name="lottplants:pineleaf"})
-			minetest.add_node({x=pos.x+i,y=pos.y+j-8,z=pos.z+k-2},{name="lottplants:pineleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j+1,z=pos.z+k},{name="lottplants:pineleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k},{name="lottplants:pineleaf"})
+			check_add_node({x=pos.x+i+1,y=pos.y+j-2,z=pos.z+k},{name="lottplants:pineleaf"})
+			check_add_node({x=pos.x+i-1,y=pos.y+j-2,z=pos.z+k},{name="lottplants:pineleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k+1},{name="lottplants:pineleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-2,z=pos.z+k-1},{name="lottplants:pineleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k},{name="lottplants:pineleaf"})
+			check_add_node({x=pos.x+i+1,y=pos.y+j-5,z=pos.z+k},{name="lottplants:pineleaf"})
+			check_add_node({x=pos.x+i-1,y=pos.y+j-5,z=pos.z+k},{name="lottplants:pineleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k+1},{name="lottplants:pineleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-5,z=pos.z+k-1},{name="lottplants:pineleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-8,z=pos.z+k},{name="lottplants:pineleaf"})
+			check_add_node({x=pos.x+i+2,y=pos.y+j-8,z=pos.z+k},{name="lottplants:pineleaf"})
+			check_add_node({x=pos.x+i-2,y=pos.y+j-8,z=pos.z+k},{name="lottplants:pineleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-8,z=pos.z+k+2},{name="lottplants:pineleaf"})
+			check_add_node({x=pos.x+i,y=pos.y+j-8,z=pos.z+k-2},{name="lottplants:pineleaf"})
 		end
 	end
 	end
 	for j = -3, t do
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:pinetree"})
+		check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="lottplants:pinetree"})
 	end
 end
 
@@ -402,15 +403,15 @@ function lottplants_plumtree(pos)
 				local absi = math.abs(i)
 				local absk = math.abs(k)
 				if math.random() > (absi + absk) / 24 then
-					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:plumleaf"})
+					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:plumleaf"})
 				end
 				if math.random() > (absi + absk) / 12 then
-					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:plum"})
+					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:plum"})
 				end
 			end
 			end
 		end
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
+		check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
 	end
 end
 
@@ -426,12 +427,12 @@ function lottplants_rowantree(pos)
 				local absi = math.abs(i)
 				local absk = math.abs(k)
 				if math.random() > (absi + absk) / 12 then
-					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:rowanleaf"})
+					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:rowanleaf"})
 				end
 			end
 			end
 		end
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
+		check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
 	end
 end
 
@@ -446,7 +447,7 @@ function lottplants_whitetree(pos)
 				local absi = math.abs(i)
 				local absk = math.abs(k)
 				if math.random() > (absi + absk) / 24 then
-					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:whiteleaf"})
+					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:whiteleaf"})
 				end
 			end
 			end
@@ -458,13 +459,13 @@ function lottplants_whitetree(pos)
 				or k == 1 and i == 0 or k == -1 and i == 0
 				or i == -2 and k == 0 or i == 2 and k == 0
 				or k == 2 and i == 0 or k == -2 and i == 0 then
-					minetest.add_node({x = pos.x + i, y = pos.y + j, z = pos.z}, {name="default:tree", param2 = 16})
-					minetest.add_node({x = pos.x, y = pos.y + j, z = pos.z + k}, {name="default:tree", param2 = 10})
+					check_add_node({x = pos.x + i, y = pos.y + j, z = pos.z}, {name="default:tree", param2 = 16})
+					check_add_node({x = pos.x, y = pos.y + j, z = pos.z + k}, {name="default:tree", param2 = 10})
 				end
 			end
 			end
 		end
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z}, {name="default:tree"})
+		check_add_node({x=pos.x,y=pos.y+j,z=pos.z}, {name="default:tree"})
 	end
 end
 
@@ -479,35 +480,35 @@ function lottplants_yavannamiretree(pos)
 				local absi = math.abs(i)
 				local absk = math.abs(k)
 				if math.random() > (absi + absk) / 24 then
-					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:yavannamireleaf"})
+					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:yavannamireleaf"})
 				end
 				if math.random() > (absi + absk) / 12 then
-					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:yavannamirefruit"})
+					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:yavannamirefruit"})
 				end
 			end
 			end
 		end
-		minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
+		check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
 	end
 end
 
 --Mirk large
 
 function add_tree_branch_mirktree(pos)
-	minetest.env:add_node(pos, {name="default:jungletree"})
+	check_add_node(pos, {name="default:jungletree"})
 	for i = math.floor(math.random(2)), -math.floor(math.random(2)), -1 do
 		for k = math.floor(math.random(2)), -math.floor(math.random(2)), -1 do
 			local p = {x=pos.x+i, y=pos.y, z=pos.z+k}
 			local n = minetest.env:get_node(p)
 			if (n.name=="air") then
-				minetest.env:add_node(p, {name="lottplants:mirkleaf"})
+				check_add_node(p, {name="lottplants:mirkleaf"})
 			end
 			local chance = math.abs(i+k)
 			if (chance < 1) then
 				p = {x=pos.x+i, y=pos.y+1, z=pos.z+k}
 				n = minetest.env:get_node(p)
 				if (n.name=="air") then
-					minetest.env:add_node(p, {name="lottplants:mirkleaf"})
+					check_add_node(p, {name="lottplants:mirkleaf"})
 				end
 			end
 		end
@@ -519,7 +520,7 @@ function lottplants_mirktree(pos)
 		if height < 1 then
 			for i = height, -2, -1 do
 				local p = {x=pos.x, y=pos.y+i, z=pos.z}
-				minetest.env:add_node(p, {name="default:jungletree"})
+				check_add_node(p, {name="default:jungletree"})
 				if i == height then
 					add_tree_branch_mirktree({x=pos.x, y=pos.y+height+math.random(0, 1), z=pos.z})
 					add_tree_branch_mirktree({x=pos.x+1, y=pos.y+i-math.random(2), z=pos.z})
@@ -528,10 +529,10 @@ function lottplants_mirktree(pos)
 					add_tree_branch_mirktree({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1})
 				end
 				if i < 0 then
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i-math.random(2), z=pos.z}, {name="default:jungletree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z+1}, {name="default:jungletree"})
-					minetest.env:add_node({x=pos.x-1, y=pos.y+i-math.random(2), z=pos.z}, {name="default:jungletree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1}, {name="default:jungletree"})
+					check_add_node({x=pos.x+1, y=pos.y+i-math.random(2), z=pos.z}, {name="default:jungletree"})
+					check_add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z+1}, {name="default:jungletree"})
+					check_add_node({x=pos.x-1, y=pos.y+i-math.random(2), z=pos.z}, {name="default:jungletree"})
+					check_add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1}, {name="default:jungletree"})
 				end
 				if (math.sin(i/height*i) < 0.2 and i > 3 and math.random(0,2) < 1.5) then
 					local branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
@@ -545,10 +546,10 @@ function lottplants_mirktree(pos)
 					add_tree_branch_mirktree(branch_pos)
 				end
 				if i < math.random(0,1) then
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z+1}, {name="default:jungletree"})
-					minetest.env:add_node({x=pos.x+2, y=pos.y+i, z=pos.z-1}, {name="default:jungletree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z-2}, {name="default:jungletree"})
-					minetest.env:add_node({x=pos.x-1, y=pos.y+i, z=pos.z}, {name="default:jungletree"})
+					check_add_node({x=pos.x+1, y=pos.y+i, z=pos.z+1}, {name="default:jungletree"})
+					check_add_node({x=pos.x+2, y=pos.y+i, z=pos.z-1}, {name="default:jungletree"})
+					check_add_node({x=pos.x, y=pos.y+i, z=pos.z-2}, {name="default:jungletree"})
+					check_add_node({x=pos.x-1, y=pos.y+i, z=pos.z}, {name="default:jungletree"})
 				end
 				if i == height then
 					add_tree_branch_mirktree({x=pos.x+1, y=pos.y+i, z=pos.z+1})
@@ -564,10 +565,10 @@ function lottplants_mirktree(pos)
 					add_tree_branch_mirktree({x=pos.x, y=pos.y+i, z=pos.z-1})
 					add_tree_branch_mirktree({x=pos.x, y=pos.y+i, z=pos.z})
 				else
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z}, {name="default:jungletree"})
-					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z-1}, {name="default:jungletree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z-1}, {name="default:jungletree"})
-					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z}, {name="default:jungletree"})
+					check_add_node({x=pos.x+1, y=pos.y+i, z=pos.z}, {name="default:jungletree"})
+					check_add_node({x=pos.x+1, y=pos.y+i, z=pos.z-1}, {name="default:jungletree"})
+					check_add_node({x=pos.x, y=pos.y+i, z=pos.z-1}, {name="default:jungletree"})
+					check_add_node({x=pos.x, y=pos.y+i, z=pos.z}, {name="default:jungletree"})
 				end
 			end
 		end
@@ -581,30 +582,57 @@ function lottplants_smallmirktree(pos)
 			for i = -4, 4 do
 			for k = -4, 4 do
 				if math.random(20) ~= 10 then
-					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(1, 2),z=pos.z+k},{name="lottplants:mirkleaf"})
+					check_add_node({x=pos.x+i,y=pos.y+j+math.random(1, 2),z=pos.z+k},{name="lottplants:mirkleaf"})
 				end
 			end
 			end
       for i = -1, 1 do
 			for k = -1, 1 do
           if math.abs(i) + math.abs(k) == 2 then
-            minetest.add_node({x=pos.x+i,y=pos.y+j,z=pos.z+k},{name="default:jungletree"})
+            check_add_node({x=pos.x+i,y=pos.y+j,z=pos.z+k},{name="default:jungletree"})
           end
       end
       end
 		elseif j == 7 then
 			for i = -2, 2, 4 do
 			for k = -2, 2, 4 do
-				minetest.add_node({x=pos.x+i,y=pos.y+j,z=pos.z+k},{name="default:jungletree"})
+				check_add_node({x=pos.x+i,y=pos.y+j,z=pos.z+k},{name="default:jungletree"})
 			end
 			end
 		else
-			minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:jungletree"})
+			check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:jungletree"})
 		end
 	end
 end
 
 -- SAPLINGS
+
+local function can_grow(pos)
+	local node = minetest.get_node_or_nil({x = pos.x, y = pos.y, z = pos.z})
+	if not node then
+		return false
+	end
+	local is_soil = minetest.get_item_group(node.name, "soil")
+	local is_soil = minetest.get_item_group(node.name, "sand")
+	local is_stone = minetest.get_item_group(node.name, "stone")
+	if is_soil == 0 and is_sand == 0 and is_stone == 0 then
+		return false
+	else
+		return true
+	end
+end
+
+local function large_roots(pos)
+	for j = -5, 0 do
+		for i = -1, 2 do
+		for k = -1, 2 do
+			if not can_grow({x = pos.x + i, y = pos.y + j, z = pos.z + k}) then
+				return false
+			end
+		end
+		end
+	end
+end
 
 -- Alders sapling
 
@@ -613,7 +641,10 @@ minetest.register_abm({
     interval = 67,
     chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
-		lottplants_aldertree(pos)
+		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) then
+			lottplants_aldertree(pos)
+		end
     end,
 })
 
@@ -624,7 +655,10 @@ minetest.register_abm({
     interval = 67,
     chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
-		lottplants_appletree(pos)
+		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) then
+			lottplants_appletree(pos)
+		end
     end,
 })
 
@@ -635,7 +669,11 @@ minetest.register_abm({
     interval = 67,
     chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
-		lottplants_birchtree(pos)
+		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 3, z = pos.z}) then
+			lottplants_birchtree(pos)
+		end
     end,
 })
 
@@ -646,7 +684,11 @@ minetest.register_abm({
     interval = 67,
     chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
-		lottplants_beechtree(pos)
+		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 3, z = pos.z}) then
+			lottplants_beechtree(pos)
+		end
     end,
 })
 
@@ -657,7 +699,10 @@ minetest.register_abm({
     interval = 67,
     chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
-		lottplants_culumaldatree(pos)
+		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) then
+			lottplants_culumaldatree(pos)
+		end
     end,
 })
 
@@ -668,7 +713,11 @@ minetest.register_abm({
     interval = 67,
     chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
-		lottplants_elmtree(pos)
+		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 3, z = pos.z}) then
+			lottplants_elmtree(pos)
+		end
     end,
 })
 
@@ -679,7 +728,11 @@ minetest.register_abm({
     interval = 67,
     chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
-		lottplants_firtree(pos)
+		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 3, z = pos.z}) then
+			lottplants_firtree(pos)
+		end
     end,
 })
 
@@ -690,7 +743,11 @@ minetest.register_abm({
     interval = 67,
     chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
-		lottplants_lebethrontree(pos)
+		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 3, z = pos.z}) then
+			lottplants_lebethrontree(pos)
+		end
     end,
 })
 
@@ -713,7 +770,11 @@ minetest.register_abm({
 		local na = minetest.get_node_or_nil({x = pos.x, y = pos.y + 1, z = pos.z})
 		local naa = minetest.get_node_or_nil({x = pos.x, y = pos.y + 2, z = pos.z})
 		if na.name == "lottplants:mallorntree_young" and naa.name == "lottplants:mallorntree_young" then
-			lottplants_smallmallorntree(pos)
+			if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
+			can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
+			can_grow({x = pos.x, y = pos.y - 3, z = pos.z}) then
+				lottplants_smallmallorntree(pos)
+			end
 		end
     end,
 })
@@ -726,7 +787,9 @@ minetest.register_abm({
 		local na = minetest.get_node_or_nil({x = pos.x, y = pos.y + 1, z = pos.z})
 		local naa = minetest.get_node_or_nil({x = pos.x, y = pos.y + 2, z = pos.z})
 		if na.name == "lottplants:mallorntree" and naa.name == "lottplants:mallorntree" then
-			lottplants_mallorntree(pos)
+			if large_roots(pos) ~= false then
+				lottplants_mallorntree(pos)
+			end
 		end
 	end,
 })
@@ -738,7 +801,11 @@ minetest.register_abm({
     interval = 67,
     chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
-		lottplants_pinetree(pos)
+		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 3, z = pos.z}) then
+			lottplants_pinetree(pos)
+		end
     end,
 })
 
@@ -749,7 +816,10 @@ minetest.register_abm({
     interval = 67,
     chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
-		lottplants_plumtree(pos)
+		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) then
+			lottplants_plumtree(pos)
+		end
     end,
 })
 
@@ -760,7 +830,10 @@ minetest.register_abm({
     interval = 67,
     chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
-		lottplants_rowantree(pos)
+		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) then
+			lottplants_rowantree(pos)
+		end
     end,
 })
 
@@ -771,7 +844,10 @@ minetest.register_abm({
     interval = 67,
     chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
-		lottplants_whitetree(pos)
+		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) then
+			lottplants_whitetree(pos)
+		end
     end,
 })
 
@@ -782,7 +858,10 @@ minetest.register_abm({
     interval = 67,
     chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
-		lottplants_yavannamiretree(pos)
+		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
+		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) then
+			lottplants_yavannamiretree(pos)
+		end
     end,
 })
 
@@ -794,9 +873,15 @@ minetest.register_abm({
     chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
 		if math.random(2) == 1 then
-			lottplants_mirktree(pos)
+			if large_roots(pos) ~= false then
+				lottplants_mirktree(pos)
+			end
 		else
-			lottplants_smallmirktree(pos)
+			if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
+			can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
+			can_grow({x = pos.x, y = pos.y - 3, z = pos.z}) then
+				lottplants_smallmirktree(pos)
+			end
 		end
     end,
 })
