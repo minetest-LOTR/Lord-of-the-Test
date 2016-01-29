@@ -134,6 +134,10 @@ minetest.register_alias("lottspecial:scarecrow", "lottfarming:melon")
 minetest.register_alias("lottspecial:scarecrow_bottom", "lottfarming:melon")
 minetest.register_alias("lottspecial:scarecrow_light", "lottfarming:melon")
 
+minetest.register_alias("lottmapgen:beechgen", "air")
+minetest.register_alias("lottmapgen:mallorngen", "air")
+minetest.register_alias("lottmapgen:mirkgen", "air")
+
 gaurds = {"dwarven", "elven", "gondor", "orc", "rohan", "uruk_hai"}
 for i, v in pairs(gaurds) do
     minetest.register_alias("lottnpc:" .. v .. "_guard_spawner", "legacy:dirt")
