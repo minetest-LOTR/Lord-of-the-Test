@@ -323,7 +323,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:sandstone 2',
+	output = 'default:sandstone',
 	recipe = {
 		{'group:sand', 'group:sand'},
 		{'group:sand', 'group:sand'},
