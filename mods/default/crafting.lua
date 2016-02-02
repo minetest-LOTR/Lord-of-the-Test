@@ -322,6 +322,7 @@ minetest.register_craft({
 	}
 })
 
+-- Making sandstone easier to craft. 4 Sand --> 2 Sandstone, so later 1 Sandstone --> 2 Sand
 minetest.register_craft({
 	output = 'default:sandstone 2',
 	recipe = {
@@ -331,7 +332,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:sand 4',
+	output = 'default:sand 2',
 	recipe = {
 		{'default:sandstone'},
 	}

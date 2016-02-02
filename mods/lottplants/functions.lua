@@ -613,7 +613,7 @@ local function can_grow(pos)
 		return false
 	end
 	local is_soil = minetest.get_item_group(node.name, "soil")
-	local is_soil = minetest.get_item_group(node.name, "sand")
+	local is_sand = minetest.get_item_group(node.name, "sand")
 	local is_stone = minetest.get_item_group(node.name, "stone")
 	if is_soil == 0 and is_sand == 0 and is_stone == 0 then
 		return false
