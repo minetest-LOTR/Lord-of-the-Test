@@ -586,13 +586,11 @@ function lottplants_smallmirktree(pos)
 				end
 			end
 			end
-      for i = -1, 1 do
-			for k = -1, 1 do
-          if math.abs(i) + math.abs(k) == 2 then
-            check_add_node({x=pos.x+i,y=pos.y+j,z=pos.z+k},{name="default:jungletree"})
-          end
-      end
-      end
+			for i = -1, 1, 2 do
+			for k = -1, 1, 2 do
+				check_add_node({x=pos.x+i,y=pos.y+j,z=pos.z+k},{name="default:jungletree"})
+			end
+			end
 		elseif j == 7 then
 			for i = -2, 2, 4 do
 			for k = -2, 2, 4 do
@@ -612,26 +610,31 @@ local function can_grow(pos)
 	if not node then
 		return false
 	end
-	local is_soil = minetest.get_item_group(node.name, "soil")
-	local is_sand = minetest.get_item_group(node.name, "sand")
-	local is_stone = minetest.get_item_group(node.name, "stone")
-	if is_soil == 0 and is_sand == 0 and is_stone == 0 then
-		return false
-	else
+	local growable_nodes = { "soil", "stone", "sand", "water" }
+	for i, growable_node in ipairs (growable_nodes) do
+		if minetest.get_item_group(node.name, growable_node) ~= 0 then
+			return true
+		end
+	end     
+        if "air" == node.name then
 		return true
-	end
+        end
+	return false
 end
 
 local function large_roots(pos)
 	for j = -5, 0 do
 		for i = -1, 2 do
 		for k = -1, 2 do
-			if not can_grow({x = pos.x + i, y = pos.y + j, z = pos.z + k}) then
+			if i == 0 and j == 0 and k == 0 then
+				-- This is the sapling, ignore it
+			elseif not can_grow({x = pos.x + i, y = pos.y + j, z = pos.z + k}) then
 				return false
 			end
 		end
 		end
 	end
+	return true
 end
 
 -- Alders sapling
@@ -872,10 +875,8 @@ minetest.register_abm({
     interval = 67,
     chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
-		if math.random(2) == 1 then
-			if large_roots(pos) ~= false then
-				lottplants_mirktree(pos)
-			end
+		if math.random(2) == 1 and large_roots(pos) then
+			lottplants_mirktree(pos)
 		else
 			if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
 			can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
