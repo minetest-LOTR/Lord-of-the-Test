@@ -616,9 +616,9 @@ local function can_grow(pos)
 			return true
 		end
 	end     
-        if "air" == node.name then
+	if "air" == node.name then
 		return true
-        end
+	end
 	return false
 end
 
