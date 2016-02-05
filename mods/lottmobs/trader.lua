@@ -141,7 +141,7 @@ end
 function lottmobs.face_pos(self,pos)
 	local s = self.object:getpos()
 	local vec = {x=pos.x-s.x, y=pos.y-s.y, z=pos.z-s.z}
-	local yaw = math.atan(vec.z/vec.x)+math.pi/2
+	local yaw = math.atan2(vec.z,vec.x)+math.pi/2
 	if self.drawtype == "side" then
 		yaw = yaw+(math.pi/2)
 	end
