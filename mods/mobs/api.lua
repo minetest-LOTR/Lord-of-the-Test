@@ -1013,7 +1013,6 @@ minetest.register_entity(name, {
 				else
 					local vec = {
 						x = p.x - s.x,
-						y = p.y - s.y,
 						z = p.z - s.z
 					}
 
@@ -1079,13 +1078,12 @@ minetest.register_entity(name, {
 
 					local vec = {
 						x = lp.x - s.x,
-						y = lp.y - s.y,
 						z = lp.z - s.z
 					}
 
 					yaw = (math.atan2(vec.z, vec.x) - pi / 2) - self.rotate
 				else
-					yaw = self.object:getyaw() + ((math.random() - 0.5) * pi)
+					yaw = math.random() * 2 * pi
 				end
 
 				self.object:setyaw(yaw)
@@ -1135,17 +1133,17 @@ minetest.register_entity(name, {
 			if lp then
 				local vec = {
 					x = lp.x - s.x,
-					y = lp.y - s.y,
 					z = lp.z - s.z
 				}
 
 				yaw = math.atan2(vec.z, vec.x) + pi / 2 - self.rotate
+
 				self.object:setyaw(yaw)
 
 			-- otherwise randomly turn
 			elseif math.random(1, 100) <= 30 then
 
-				yaw = self.object:getyaw() + ((math.random() - 0.5) * pi)
+				yaw = math.random() * 2 * pi
 
 				self.object:setyaw(yaw)
 			end
@@ -1209,7 +1207,6 @@ minetest.register_entity(name, {
 
 			local vec = {
 				x = p.x - s.x,
-				y = p.y - s.y,
 				z = p.z - s.z
 			}
 
@@ -1355,7 +1352,6 @@ minetest.register_entity(name, {
 			}
 
 			yaw = (math.atan2(vec.z, vec.x) - pi / 2) - self.rotate
-
 			self.object:setyaw(yaw)
 
 			-- move towards enemy if beyond mob reach
