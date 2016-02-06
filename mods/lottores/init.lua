@@ -911,7 +911,7 @@ minetest.register_tool("lottores:mithrilaxe", {
 		full_punch_interval = 0.8,
 		max_drop_level=1,
 		groupcaps={
-			choppy={times={[1]=1.80, [2]=0.60, [3]=0.30}, uses=60, maxlevel=2},
+			choppy={times={[1]=1.80, [2]=0.60, [3]=0.30}, uses=60, maxlevel=3},
 		},
 		damage_groups = {fleshy=7},
 	},
