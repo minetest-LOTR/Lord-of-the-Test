@@ -1127,16 +1127,29 @@ minetest.register_entity(name, {
 				return
 			end
 
-			lp = minetest.find_node_near(s, 3, {"group:water"})
+			if s.water_damage ~= 0 then
+				lp = minetest.find_node_near(s, 5, {"group:water"})
+			end
 
 			-- if water nearby then turn away
 			if lp then
-				local vec = {
-					x = lp.x - s.x,
-					z = lp.z - s.z
-				}
+				if minetest.registered_nodes[node_ok(pos).name].groups.water then
+					-- lp was liquid position, but now is is land position. Drwoning, swim to closest land.
+					lp = minetest.find_node_near(s, 5, {"group:soil", "group:stone", "group:sand"})
+					local vec = {
+						x = lp.x - s.x,
+						z = lp.z - s.z
+					}
 
-				yaw = math.atan2(vec.z, vec.x) + pi / 2 - self.rotate
+					yaw = math.atan2(vec.z, vec.x) - pi / 2 - self.rotate
+				else
+					local vec = {
+						x = lp.x - s.x,
+						z = lp.z - s.z
+					}
+
+					yaw = math.atan2(vec.z, vec.x) + pi / 2 - self.rotate
+				end
 
 				self.object:setyaw(yaw)
 
