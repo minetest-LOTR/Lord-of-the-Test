@@ -1,9 +1,9 @@
 function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 	local wood_groups = minetest.registered_nodes[wood_name].groups
 	local node_groups = {}
-	for i,v in ipairs(wood_groups) do
-		if i ~= "wood" then
-			node_groups[i] = v
+	for k,v in pairs(wood_groups) do
+		if k ~= "wood" then
+			node_groups[k] = v
 		end
 	end
 
