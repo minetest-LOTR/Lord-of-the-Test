@@ -318,6 +318,7 @@ minetest.register_tool("lottweapons:copper_spear", {
 	description = "Copper Spear",
 	inventory_image = "lottweapons_copper_spear.png",
 	wield_image = "lottweapons_copper_spear.png^[transformFX",
+	range = 7,
 	tool_capabilities = {
 		full_punch_interval = 1.30,
 		max_drop_level=1,

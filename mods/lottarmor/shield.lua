@@ -2,7 +2,7 @@
 minetest.register_tool("lottarmor:shield_wood", {
 	description = "Training Shield",
 	inventory_image = "lottarmor_inv_shield_wood.png",
-	groups = {armor_head=2.5, armor_heal=0, armor_use=2000, armor_healing=0, physics_speed=0.2},
+	groups = {armor_shield=2.5, armor_heal=0, armor_use=2000, armor_healing=0, physics_speed=0.2},
 	wear = 0,
 })
 
