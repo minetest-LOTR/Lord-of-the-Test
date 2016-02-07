@@ -1134,7 +1134,7 @@ minetest.register_entity(name, {
 			-- if water nearby then turn away
 			if lp then
 				if minetest.registered_nodes[node_ok(pos).name].groups.water then
-					-- lp was liquid position, but now is is land position. Drwoning, swim to closest land.
+					-- lp was liquid position, but now is is land position. Drowning, swim to closest land.
 					lp = minetest.find_node_near(s, 5, {"group:soil", "group:stone", "group:sand"})
 					local vec = {
 						x = lp.x - s.x,
