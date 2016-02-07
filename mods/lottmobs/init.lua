@@ -1013,7 +1013,7 @@ mobs:register_mob("lottmobs:warg", {
 	type = "monster",
 	hp_min = 25,
 	hp_max = 40,
-	collisionbox = {-1.1, -0.75, -1.1, 1.1, 1, 1.1},
+	collisionbox = {-0.7, -0.75, -0.7, 0.7, 1, 0.7},
 	visual_size = {x = 0.8, y = 0.8},
 	textures = {
 		{"lottmobs_warg.png"},
