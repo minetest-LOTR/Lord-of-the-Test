@@ -1013,21 +1013,11 @@ minetest.register_entity(name, {
 				else
 					local vec = {
 						x = p.x - s.x,
-						y = p.y - s.y,
 						z = p.z - s.z
 					}
 
-					if vec.x ~= 0
-					or vec.z ~= 0 then
-
-						yaw = (math.atan(vec.z / vec.x) + pi / 2) - self.rotate
-
-						if p.x > s.x then
-							yaw = yaw + pi
-						end
-
-						self.object:setyaw(yaw)
-					end
+					yaw = (math.atan2(vec.z, vec.x) - pi / 2) - self.rotate
+					self.object:setyaw(yaw)
 
 					-- anyone but standing npc's can move along
 					if dist > self.reach
@@ -1088,21 +1078,12 @@ minetest.register_entity(name, {
 
 					local vec = {
 						x = lp.x - s.x,
-						y = lp.y - s.y,
 						z = lp.z - s.z
 					}
 
-					if vec.x ~= 0
-					or vec.z ~= 0 then
-
-						yaw = (math.atan(vec.z / vec.x) + pi / 2) - self.rotate
-
-						if lp.x > s.x then
-							yaw = yaw + pi
-						end
-					end
+					yaw = (math.atan2(vec.z, vec.x) - pi / 2) - self.rotate
 				else
-					yaw = self.object:getyaw() + ((math.random(0, 360) - 180) / 180 * pi)
+					yaw = math.random() * 2 * pi
 				end
 
 				self.object:setyaw(yaw)
@@ -1146,31 +1127,40 @@ minetest.register_entity(name, {
 				return
 			end
 
+			if s.water_damage ~= 0 then
+				lp = minetest.find_node_near(s, 5, {"group:water"})
+			end
+
 			-- if water nearby then turn away
 			if lp then
+				if minetest.registered_nodes[node_ok(pos).name].groups.water then
+					-- lp was liquid position, but now is is land position. Drowning, swim to closest land.
+					lp = minetest.find_node_near(s, 5, {"group:soil", "group:stone", "group:sand", "default:ice"})
+					if lp then
+						local vec = {
+							x = lp.x - s.x,
+							z = lp.z - s.z
+						}
 
-				local vec = {
-					x = lp.x - s.x,
-					y = lp.y - s.y,
-					z = lp.z - s.z
-				}
-
-				if vec.x ~= 0
-				or vec.z ~= 0 then
-
-					yaw = math.atan(vec.z / vec.x) + 3 * pi / 2 - self.rotate
-
-					if lp.x > s.x then
-						yaw = yaw + pi
+						yaw = math.atan2(vec.z, vec.x) - pi / 2 - self.rotate
+					else
+						yaw = math.random() * 2 * pi
 					end
+				else
+					local vec = {
+						x = lp.x - s.x,
+						z = lp.z - s.z
+					}
 
-					self.object:setyaw(yaw)
+					yaw = math.atan2(vec.z, vec.x) + pi / 2 - self.rotate
 				end
+
+				self.object:setyaw(yaw)
 
 			-- otherwise randomly turn
 			elseif math.random(1, 100) <= 30 then
 
-				yaw = self.object:getyaw() + ((math.random(0, 360) - 180) / 180 * pi)
+				yaw = math.random() * 2 * pi
 
 				self.object:setyaw(yaw)
 			end
@@ -1234,21 +1224,11 @@ minetest.register_entity(name, {
 
 			local vec = {
 				x = p.x - s.x,
-				y = p.y - s.y,
 				z = p.z - s.z
 			}
 
-			if vec.x ~= 0
-			or vec.z ~= 0 then
-
-				yaw = math.atan(vec.z / vec.x) + pi / 2 - self.rotate
-
-				if p.x > s.x then
-					yaw = yaw + pi
-				end
-
-				self.object:setyaw(yaw)
-			end
+			yaw = math.atan2(vec.z, vec.x) - pi / 2 - self.rotate
+			self.object:setyaw(yaw)
 
 			if dist > self.reach then
 
@@ -1388,17 +1368,8 @@ minetest.register_entity(name, {
 				z = p.z - s.z
 			}
 
-			if vec.x ~= 0
-			or vec.z ~= 0 then
-
-				yaw = (math.atan(vec.z / vec.x) + pi / 2) - self.rotate
-
-				if p.x > s.x then
-					yaw = yaw + pi
-				end
-
-				self.object:setyaw(yaw)
-			end
+			yaw = (math.atan2(vec.z, vec.x) - pi / 2) - self.rotate
+			self.object:setyaw(yaw)
 
 			-- move towards enemy if beyond mob reach
 			if dist > self.reach then
@@ -1476,17 +1447,8 @@ minetest.register_entity(name, {
 				z = p.z - s.z
 			}
 
-			if vec.x ~= 0
-			or vec.z ~= 0 then
-
-				yaw = (math.atan(vec.z / vec.x) + pi / 2) - self.rotate
-
-				if p.x > s.x then
-					yaw = yaw + pi
-				end
-
-				self.object:setyaw(yaw)
-			end
+			yaw = (math.atan2(vec.z, vec.x) - pi / 2) - self.rotate
+			self.object:setyaw(yaw)
 
 			set_velocity(self, 0)
 

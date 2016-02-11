@@ -323,7 +323,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:sandstone 2',
+	output = 'default:sandstone',
 	recipe = {
 		{'group:sand', 'group:sand'},
 		{'group:sand', 'group:sand'},
@@ -334,6 +334,13 @@ minetest.register_craft({
 	output = 'default:sand 4',
 	recipe = {
 		{'default:sandstone'},
+	}
+})
+
+minetest.register_craft({
+	output = 'default:sand',
+	recipe = {
+		{'default:gravel'},
 	}
 })
 
@@ -422,6 +429,15 @@ minetest.register_craft({
 	output = 'default:mese_crystal_fragment 9',
 	recipe = {
 		{'default:mese_crystal'},
+	}
+})
+
+minetest.register_craft({
+	output = 'default:mese_crystal',
+	recipe = {
+		{'default:mese_crystal_fragment', 'default:mese_crystal_fragment', 'default:mese_crystal_fragment'},
+		{'default:mese_crystal_fragment', 'default:mese_crystal_fragment', 'default:mese_crystal_fragment'},
+		{'default:mese_crystal_fragment', 'default:mese_crystal_fragment', 'default:mese_crystal_fragment'},
 	}
 })
 
