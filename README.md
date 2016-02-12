@@ -33,6 +33,7 @@ Contributors:
 - rickmcfarley (@rickmcfarley)
 - MadTux (@agwilt)
 - narrnika (@narrnika)
+- BadToad2000 (@BadToad2000)
 
 More Contributors wanted, just send a PM on the [Minetest Forum](https://forum.minetest.net/index.php) to Amaz or fishyWET, email amazlott [at] gmail [dot] com or join [#lordofthetest on freenode](http://webchat.freenode.net/?channels=#lordofthetest).
 
