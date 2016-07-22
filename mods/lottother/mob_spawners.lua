@@ -135,6 +135,28 @@ minetest.register_node("lottother:angmarms", {
 	groups = {not_in_creative_inventory=1,dig_immediate=3},
 })
 
+--Dwarf
+
+minetest.register_node("lottother:dwarfms", {
+	description = "Dwarf Mob Spawner",
+	drawtype = "glasslike",
+	tiles = {"lottother_air.png"},
+	drop = '',
+	paramtype = "light",
+	sunlight_propagates = true,
+	is_ground_content = false,
+	walkable = false,
+	buildable_to = true,
+	pointable = false,
+	on_construct = function(pos, node)
+		if math.random(1, 2) == 2 then
+			minetest.add_entity({x = pos.x, y = pos.y+1, z = pos.z}, "lottmobs:dwarf")
+		end
+		minetest.remove_node(pos)
+	end,
+	groups = {not_in_creative_inventory=1,dig_immediate=3},
+})
+
 minetest.register_alias("lottother:gondorms_on", "lottother:gondorms")
 minetest.register_alias("lottother:gondorms_off", "lottother:gondorms")
 minetest.register_alias("lottother:rohanms_on", "lottother:rohanms")

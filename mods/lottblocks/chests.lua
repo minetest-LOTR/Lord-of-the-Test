@@ -363,6 +363,57 @@ minetest.register_node("lottblocks:angmar_chest", {
         end,
 })
 
+minetest.register_node("lottblocks:dwarf_chest", {
+        description = "Dwarf Chest",
+        tiles = {"lottblocks_dwarf_chest_top.png", "lottblocks_dwarf_chest_top.png", "lottblocks_dwarf_chest_side.png",
+                "lottblocks_dwarf_chest_side.png", "lottblocks_dwarf_chest_side.png", "lottblocks_dwarf_chest_front.png"},
+        paramtype2 = "facedir",
+        groups = {choppy=2,oddly_breakable_by_hand=2},
+        legacy_facedir_simple = true,
+        is_ground_content = false,
+        sounds = default.node_sound_wood_defaults(),
+        on_construct = function(pos, node, active_object_count, active_object_count_wider)
+                local meta = minetest.get_meta(pos)
+                meta:set_string("infotext", "Dwarf Chest")
+                local inv = meta:get_inventory()
+                inv:set_size("main", 8*4)
+        end,
+		on_rightclick = function(pos, node, clicker, itemstack)
+			local player = clicker:get_player_name()
+            local item = itemstack:get_name()
+			if minetest.check_player_privs(player, {GAMEdwarf=true}) then
+				minetest.show_formspec(
+					player,
+					"lottblocks:dwarf_chest",
+					default.get_chest_formspec(pos, "gui_dwarfbg.png")
+				)
+            elseif item == "lottblocks:lockpick" then
+                if math.random(1, 4) ~= 3 then
+                    itemstack:add_wear(65535/20)
+                    minetest.chat_send_player(player, "Lockpick failed")
+                else
+                    itemstack:add_wear(65535/18)
+                    minetest.show_formspec(
+        				player, "lottblocks:dwarf_chest", default.get_chest_formspec(pos, "gui_dwarfbg.png")
+        			)
+                end
+			else
+				minetest.chat_send_player(player, "Only Dwarfs can open this kind of chest!")
+			end
+		end,
+    	can_dig = function(pos,player)
+    		local meta = minetest.get_meta(pos);
+    		local inv = meta:get_inventory()
+    		return inv:is_empty("main")
+    	end,
+    	--backwards compatibility: punch to set formspec
+    	on_punch = function(pos,player)
+    	    local meta = minetest.get_meta(pos)
+            meta:set_string("infotext", "Dwarf Chest")
+			meta:set_string("formspec", "")
+        end,
+})
+
 minetest.register_craft({
 	output = "lottblocks:hobbit_chest",
 	recipe = {
@@ -425,6 +476,16 @@ minetest.register_craft({
 		{"lottplants:pinewood", "lottplants:pinewood", "lottplants:pinewood"},
 	}
 })
+
+minetest.register_craft({
+	output = "lottblocks:dwarf_chest",
+	recipe = {
+		{"default:stone", "default:stone", "default:stone"},
+		{"default:stone", "", "default:stone"},
+		{"default:stone", "default:stone", "default:stone"},
+	}
+})
+
 
 minetest.register_alias("lottmapgen:hobbit_chest", "lottblocks:hobbit_chest")
 minetest.register_alias("lottmapgen:gondor_chest", "lottblocks:gondor_chest")

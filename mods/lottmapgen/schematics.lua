@@ -4,19 +4,20 @@ local areas_mod = minetest.get_modpath("areas")
 local protect_houses = minetest.setting_getbool("protect_structures") or true
 
 local lottmapgen_list = {
-    { "Angmar Fort", "angmarfort"},
-    { "Gondor Fort", "gondorfort"},
-    { "Rohan Fort", "rohanfort"},
-    { "Orc Fort", "orcfort"},
-    { "Mallorn House", "mallornhouse"},
-    { "Lorien House", "lorienhouse"}, --Different version of "mallornhouse", made by fireuser
-    { "Mirkwood House", "mirkhouse"},
-    { "Hobbit Hole", "hobbithole"},
+    {"Angmar Fort",    "angmarfort"},
+    {"Gondor Fort",    "gondorfort"},
+    {"Rohan Fort",     "rohanfort"},
+    {"Orc Fort",       "orcfort"},
+    {"Mallorn House",  "mallornhouse"},
+    {"Lorien House",   "lorienhouse"}, --Different version of "mallornhouse", made by fireuser
+    {"Mirkwood House", "mirkhouse"},
+    {"Hobbit Hole",    "hobbithole"},
+    {"Dwarf House",    "dwarfhouse"},
 }
 
-for i in ipairs(lottmapgen_list) do
-    local builddesc = lottmapgen_list[i][1]
-    local build = lottmapgen_list[i][2]
+for _, v in ipairs(lottmapgen_list) do
+    local builddesc = v[1]
+    local build = v[2]
     minetest.register_node("lottmapgen:"..build, {
         description = builddesc,
         drawtype = "glasslike",
@@ -220,6 +221,29 @@ minetest.register_abm({
                    local pos1 = {x = pos.x - 4, y = pos.y - 15, z = pos.z - 4}
                    local pos2 = {x = pos.x + 29, y = pos.y + 25, z = pos.z + 29}
                    areas:add("Rohan Guard", "Rohan Fort", pos1, pos2, nil)
+                   areas:save()
+               end
+          end
+     end,
+})
+
+minetest.register_abm({
+    nodenames = {"lottmapgen:dwarfhouse"},
+    interval = 1,
+	chance = 1,
+	action = function(pos)
+          if pos then
+               local file = io.open(minetest.get_modpath("lottmapgen").."/schems/dwarfhouse.we")
+               local value = file:read("*a")
+               file:close()
+               local p = pos
+               p.x = p.x - 5
+               p.z = p.z - 2
+               local count = worldedit.deserialize(pos, value)
+               if areas_mod ~= nil and protect_houses == true then
+                   local pos1 = {x = pos.x - 5, y = pos.y - 5, z = pos.z - 5}
+                   local pos2 = {x = pos.x + 27, y = pos.y + 13, z = pos.z + 28}
+                   areas:add("Dwarf Smith", "Dwarf House", pos1, pos2, nil)
                    areas:save()
                end
           end

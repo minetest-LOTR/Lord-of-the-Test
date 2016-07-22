@@ -53,6 +53,7 @@ local PLANT10 = 1000
 local PLANT11 = 2000
 local PLANT12 = 5000
 local PLANT13 = 10000
+local PLANT14 = 100000
 
 -- 2D noise for temperature
 
@@ -113,6 +114,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local data = vm:get_data()
 
 	local c_air = minetest.get_content_id("air")
+	local c_ignore = minetest.get_content_id("ignore")
 	local c_sand = minetest.get_content_id("default:sand")
 	local c_desertsand = minetest.get_content_id("default:desert_sand")
 	local c_snowblock = minetest.get_content_id("default:snowblock")
@@ -160,6 +162,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_lorhous = minetest.get_content_id("lottmapgen:lorienhouse")
 	local c_mirktre = minetest.get_content_id("lottmapgen:mirkhouse")
 	local c_rohfort = minetest.get_content_id("lottmapgen:rohanfort")
+	local c_dwahous = minetest.get_content_id("lottmapgen:dwarfhouse")
 
 	local sidelen = x1 - x0 + 1
 	local chulens = {x=sidelen, y=sidelen, z=sidelen}
@@ -224,6 +227,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							if math.random(3) == 1 then
 								data[vi] = c_stoneiron
 							end
+						end
+					end
+					if y > - 40 and y < -5 and biome == 11 then
+						if math.random(PLANT14) == 1 then
+							data[vi] = c_dwahous
 						end
 					end
 					if not solid then -- if surface
@@ -508,7 +516,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	end
 	vm:set_data(data)
 	vm:set_lighting({day=0, night=0})
-	vm:calc_lighting()
+	vm:calc_lighting({x = minp.x, y = minp.y - 1, z = minp.z }, {x = maxp.x, y = maxp.y + 1, z = maxp.z})
 	vm:write_to_map(data)
 	local chugent = math.ceil((os.clock() - t1) * 1000)
 end)

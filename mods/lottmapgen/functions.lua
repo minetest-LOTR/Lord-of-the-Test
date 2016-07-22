@@ -43,10 +43,10 @@ function lottmapgen_farmingplants(data, vi)
 	local c_plant3 = minetest.get_content_id("lottplants:corn_wild")
 	local c_plant4 = minetest.get_content_id("lottplants:potato_wild")
 	local c_plant5 = minetest.get_content_id("lottplants:mushroom_wild")
-     local c_plant6 = minetest.get_content_id("lottplants:berries_wild")
-     local c_plant7 = minetest.get_content_id("lottplants:turnips_wild")
-     local c_plant8 = minetest.get_content_id("lottplants:tomatoes_wild")
-     local c_plant9 = minetest.get_content_id("lottplants:cabbage_wild")
+	local c_plant6 = minetest.get_content_id("lottplants:berries_wild")
+	local c_plant7 = minetest.get_content_id("lottplants:turnips_wild")
+	local c_plant8 = minetest.get_content_id("lottplants:tomatoes_wild")
+	local c_plant9 = minetest.get_content_id("lottplants:cabbage_wild")
 	local rand = math.random(9)
 	if rand == 1 then
 		data[vi] = c_plant1
@@ -58,13 +58,13 @@ function lottmapgen_farmingplants(data, vi)
 		data[vi] = c_plant4
 	elseif rand == 5 then
 		data[vi] = c_plant5
-     elseif rand == 6 then
-          data[vi] = c_plant6
-     elseif rand == 7 then
+	elseif rand == 6 then
+		data[vi] = c_plant6
+	elseif rand == 7 then
 		data[vi] = c_plant7
 	elseif rand == 8 then
 		data[vi] = c_plant8
-     else
+	else
 		data[vi] = c_plant9
 	end
 end

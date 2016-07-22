@@ -1,5 +1,5 @@
 dofile(minetest.get_modpath("lottother").."/rings.lua")
-dofile(minetest.get_modpath("lottother").."/ms.lua")
+dofile(minetest.get_modpath("lottother").."/mob_spawners.lua")
 
 minetest.register_node("lottother:blue_flame", {
 	description = "Blue Flame",
@@ -204,6 +204,67 @@ minetest.register_node("lottother:mordor_stone", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+minetest.register_node("lottother:stone", {
+	description = "Stone Substitute",
+	tiles = {"default_stone.png"},
+	is_ground_content = true,
+	drop = 'default:stone',
+	groups = {cracky=3, stone=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_stone_defaults(),
+	on_construct = function(pos)
+		local found_air = 0
+		local y = 0
+		for h = 1, 50 do
+			for i = -1, 1 do
+			for j = -3, -1 do
+				local p = {x = pos.x + i, y = pos.y + h, z = pos.z + j}
+				if j == -3 and i == 0  then
+					minetest.set_node(p, {name = "default:ladder", param2 = 2})
+				elseif h % 3 == 0 and j == -2 and i == -1 then
+					minetest.set_node(p, {name = "default:torch", param2 = 3})
+				elseif h % 3 == 0 and j == -2 and i == 1 then
+					minetest.set_node(p, {name = "default:torch", param2 = 2})
+				else
+					minetest.remove_node(p)
+				end
+			end
+			end
+			if minetest.get_node({x = pos.x, y = pos.y + h, z = pos.z}).name == "air" then
+				found_air = found_air + 1
+			end
+			if found_air > 3 then
+				y = h
+				break
+			end
+			if h == 50 then
+					y = 50
+			end
+		end
+		for j = -3, 0 do
+		for k = -4, 0 do
+		for i = -2, 2 do
+			if k == 0 or k == -4 or i == -2 or i == 2 or j == 0 then
+				minetest.set_node({x=pos.x+i, y = pos.y+y+j, z=pos.z+k}, {name="lottblocks:dwarfstone_black"})
+			end
+			if j == -3 then
+				minetest.set_node({x = pos.x+i, y = pos.y+y+j-1, z = pos.z+k}, {name = "lottblocks:dwarfstone_black"})
+			end
+			if j == -3 and k == -3 and i == 0  then
+				minetest.set_node({x = pos.x+i, y = pos.y+y+j-1, z = pos.z+k}, {name = "default:ladder", param2 = 2})
+			end
+			if k == 0 and i == 0 then
+				if j == -3 then
+					minetest.set_node({x = pos.x+i, y = pos.y+y+j, z = pos.z+k}, {name = "lottblocks:door_alder_b_1", param2 = 2})
+				elseif j == -2 then
+					minetest.set_node({x = pos.x+i, y = pos.y+y+j, z = pos.z+k}, {name = "lottblocks:door_alder_t_1", param2 = 2})
+				end
+			end
+		end
+		end
+		end
+	minetest.set_node(pos, {name = "default:stone"})
+	end,
+})
 
 minetest.register_node("lottother:air", {
 	description = "Air Substitute",
