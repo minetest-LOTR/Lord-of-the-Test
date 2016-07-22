@@ -45,9 +45,25 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 				{wood_name, wood_name},
 			}
 		})
+		node_groups.fence = 1
 		minetest.register_node("lottblocks:fence_" .. name, {
 			description = description .. " Fence",
-			drawtype = "fencelike",
+			drawtype = "nodebox",
+			node_box = {
+				type = "connected",
+				fixed = {{-1/8, -1/2, -1/8, 1/8, 1/2, 1/8}},
+				-- connect_top =
+				-- connect_bottom =
+				connect_front = {{-1/16,3/16,-1/2,1/16,5/16,-1/8},
+					{-1/16,-5/16,-1/2,1/16,-3/16,-1/8}},
+				connect_left = {{-1/2,3/16,-1/16,-1/8,5/16,1/16},
+					{-1/2,-5/16,-1/16,-1/8,-3/16,1/16}},
+				connect_back = {{-1/16,3/16,1/8,1/16,5/16,1/2},
+					{-1/16,-5/16,1/8,1/16,-3/16,1/2}},
+				connect_right = {{1/8,3/16,-1/16,1/2,5/16,1/16},
+					{1/8,-5/16,-1/16,1/2,-3/16,1/16}},
+			},
+			connects_to = {"group:fence", "group:wood", "group:tree"},
 			tiles = {texture},
 			inventory_image = "lottblocks_" .. name .. "_fence.png",
 			wield_image = "lottblocks_" .. name .. "_fence.png",
@@ -59,6 +75,7 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 			},
 			groups = node_groups
 		})
+		node_groups.fence = 0
 		minetest.register_craft({
 			output = "lottblocks:fence_" .. name .." 6",
 			recipe = {

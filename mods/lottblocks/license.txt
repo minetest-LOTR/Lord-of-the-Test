@@ -15,6 +15,26 @@ lottblocks_dwarfstone_white*.png
 lottblocks_dwarfstone_black*.png
 lottblocks_dwarfstone_stripe*.png
 
+Horse on lottblocks_rohan_banner_top.png - "[LPC] Horse."
+	Artist: bluecarrot16. License: CC-BY 3.0
+	Source: http://opengameart.org/content/lpc-horse
+
+Helmet on lottblocks_dwarf_banner_top.png - 7Soul1 - CC0
+	Source: http://7soul1.deviantart.com/art/420-Pixel-Art-Icons-for-RPG-129892453
+
+Hammer(s) on lottblocks_dwarf_banner_top.png - laxattack1226 - CC BY-SA
+	Source: http://opengameart.org/content/heavy-iron-hammer
+
+Anvil on lottblocks_dwarf_banner.png - Zabin, Hyptosis, and Danial Cook - CC BY-SA
+	Source: http://opengameart.org/content/castle-tiles-for-rpgs
+
+Hand on lottblocks_urukhai_banner.png - UnknownScribe - CC BY-SA
+	Source: http://opengameart.org/content/gui-buttons
+
+Upright sword of lottblocks_angmar_banner.png -
+	Copyright 2008 Jordan Trudgett - CC BY
+	Source: http://opengameart.org/content/character-and-item-sprites-for-ardentryst-by-jordan-trudgett
+
 Amaz - All of the others, often based on textures from default.
 
 Sounds, CC BY-SA

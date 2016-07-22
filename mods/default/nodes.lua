@@ -82,7 +82,7 @@ minetest.register_node("default:stonebrick", {
 })
 
 minetest.register_node("default:desert_stonebrick", {
-	description = "Desert Brick",
+	description = "Desert Stone Brick",
 	tiles = {"default_desert_stone_brick.png"},
 	groups = {cracky=2, stone=1},
 	sounds = default.node_sound_stone_defaults(),
