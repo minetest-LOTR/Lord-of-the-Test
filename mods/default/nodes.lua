@@ -65,15 +65,6 @@ minetest.register_node("default:stone_with_gold", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:stone_with_diamond", {
-	description = "Diamond Ore",
-	tiles = {"default_stone.png^default_mineral_diamond.png"},
-	is_ground_content = true,
-	groups = {cracky=1},
-	drop = "default:diamond",
-	sounds = default.node_sound_stone_defaults(),
-})
-
 minetest.register_node("default:stonebrick", {
 	description = "Stone Brick",
 	tiles = {"default_stone_brick.png"},
@@ -1343,14 +1334,6 @@ minetest.register_node("default:goldblock", {
 	tiles = {"default_gold_block.png"},
 	is_ground_content = true,
 	groups = {cracky=1},
-	sounds = default.node_sound_stone_defaults(),
-})
-
-minetest.register_node("default:diamondblock", {
-	description = "Diamond Block",
-	tiles = {"default_diamond_block.png"},
-	is_ground_content = true,
-	groups = {cracky=1,level=3},
 	sounds = default.node_sound_stone_defaults(),
 })
 

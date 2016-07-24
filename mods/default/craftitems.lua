@@ -145,11 +145,6 @@ minetest.register_craftitem("default:gold_lump", {
 	inventory_image = "default_gold_lump.png",
 })
 
-minetest.register_craftitem("default:diamond", {
-	description = "Diamond",
-	inventory_image = "default_diamond.png",
-})
-
 minetest.register_craftitem("default:clay_lump", {
 	description = "Clay Lump",
 	inventory_image = "default_clay_lump.png",

@@ -166,17 +166,6 @@ minetest.register_ore({
 
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "default:stone_with_diamond",
-	wherein        = "default:stone",
-	clust_scarcity = 14*14*14,
-	clust_num_ores = 4,
-	clust_size     = 2,
-	y_min     = wl - 31000,
-	y_max     = wl - 256,
-})
-
-minetest.register_ore({
-	ore_type       = "scatter",
 	ore            = "default:stone_with_copper",
 	wherein        = "default:stone",
 	clust_scarcity = 12*12*12,

@@ -307,22 +307,6 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:diamondblock',
-	recipe = {
-		{'default:diamond', 'default:diamond', 'default:diamond'},
-		{'default:diamond', 'default:diamond', 'default:diamond'},
-		{'default:diamond', 'default:diamond', 'default:diamond'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:diamond 9',
-	recipe = {
-		{'default:diamondblock'},
-	}
-})
-
-minetest.register_craft({
 	output = 'default:sandstone 2',
 	recipe = {
 		{'group:sand', 'group:sand'},
