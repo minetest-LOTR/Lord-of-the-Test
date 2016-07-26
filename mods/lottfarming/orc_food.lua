@@ -5,9 +5,7 @@ minetest.register_craftitem("lottfarming:orc_food", {
 		if minetest.setting_getbool("creative_mode") ~= true then
 			itemstack:take_item()
 		end
-		local name = user:get_player_name()
-		hud.hunger[name] = 20
-		hud.set_hunger(user)
+		stamina.change(user, 20)
 		local first_screen = user:hud_add({
 			hud_elem_type = "image",
 			position = {x=0, y=0},
