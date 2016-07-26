@@ -54,7 +54,8 @@ minetest.register_globalstep(function(dtime)
 end)
 
 minetest.register_on_leaveplayer(function(player)
-	time[player:get_player_name()] = nil
+	time_bow[player:get_player_name()] = nil
+	time_crossbow[player:get_player_name()] = nil
 end)
 
 local lottthrowing_shoot_arrow = function(itemstack, player)
