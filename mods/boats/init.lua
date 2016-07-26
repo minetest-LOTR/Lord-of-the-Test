@@ -63,7 +63,7 @@ function row_boat.on_rightclick(self, clicker)
 end
 
 function row_boat.on_activate(self, staticdata, dtime_s)
-	self.object:set_armor_groups({immortal = 1})
+	self.object:set_armor_groups({fleshy = 100})
 	if staticdata then
 		self.v = tonumber(staticdata)
 	end
@@ -244,7 +244,7 @@ function sail_boat.on_rightclick(self, clicker)
 end
 
 function sail_boat.on_activate(self, staticdata, dtime_s)
-	self.object:set_armor_groups({immortal = 1})
+	self.object:set_armor_groups({fleshy = 100})
 	if staticdata then
 		self.v = tonumber(staticdata)
 	end

@@ -194,7 +194,7 @@ function lottmobs:register_horse(name, craftitem, horse)
 	end
 
 	function horse:on_activate(staticdata, dtime_s)
-		self.object:set_armor_groups({immortal=1})
+		self.object:set_armor_groups({fleshy=100})
 		if staticdata then
 			self.v = tonumber(staticdata)
 		end
@@ -205,9 +205,9 @@ function lottmobs:register_horse(name, craftitem, horse)
 	end
 
 	function horse:on_punch(puncher, time_from_last_punch, tool_capabilities, direction)
-		self.object:remove()
 		if puncher and puncher:is_player() then
 			puncher:get_inventory():add_item("main", name)
+			self.object:remove()
 		end
 	end
 

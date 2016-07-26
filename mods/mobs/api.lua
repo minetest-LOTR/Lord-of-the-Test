@@ -6,6 +6,8 @@
 	-- line 313 - only show nametag health changes if show_health_change (line 44)
 	   is set to true
 	-- line 2326 & 2327 - declare some variables lott needs in other mods.
+	-- line 1684 to 1687 - attacking mobs focus on the horse/boat, so they
+	   can actually damage the player when it is dead/destroyed!
 ]]--
 
 mobs = {}
@@ -1680,6 +1682,10 @@ local do_states = function(self, dtime)
 							end
 
 							-- punch player
+							local attached = self.attack:get_attach()
+							if attached then
+							    self.attack = attached
+							end
 							self.attack:punch(self.object, 1.0, {
 								full_punch_interval = 1.0,
 								damage_groups = {fleshy = self.damage}
