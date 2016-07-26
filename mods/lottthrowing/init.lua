@@ -12,13 +12,80 @@ bolts = {
 	{"lottthrowing:bolt_fire", "lottthrowing:bolt_fire_entity"},
 }
 
+local time_bow = {}
+local time_crossbow = {}
+local ids = {}
+local count = 0
+minetest.register_globalstep(function(dtime)
+	count = count + dtime
+	if count > 1 then
+		for i, v in pairs(time_bow) do
+			if v > 0 then
+				local player = minetest.get_player_by_name(i)
+				time_bow[i] = v - 1
+				if player ~= nil then
+					if time_bow[i] <= 0 then
+						player:hud_remove(ids[i .. " img"])
+						player:hud_remove(ids[i .. " txt"])
+						v = 0
+					end
+					player:hud_change(ids[i .. " txt"], "text",
+						"Reloading bow... " .. v .. " s)")
+				end
+			end
+		end
+		for i, v in pairs(time_crossbow) do
+			if v > 0 then
+				local player = minetest.get_player_by_name(i)
+				time_crossbow[i] = v - 1
+				if player ~= nil then
+					if time_crossbow[i] <= 0 then
+						player:hud_remove(ids[i .. " cimg"])
+						player:hud_remove(ids[i .. " ctxt"])
+						v = 0
+					end
+					player:hud_change(ids[i .. " ctxt"], "text",
+						"Reloading crossbow... (" .. v .. " s)")
+				end
+			end
+		end
+		count = 0
+	end
+end)
+
+minetest.register_on_leaveplayer(function(player)
+	time[player:get_player_name()] = nil
+end)
+
 local lottthrowing_shoot_arrow = function(itemstack, player)
+	local name = player:get_player_name()
+	if time_bow[name] == nil then
+		time_bow[name] = 0
+	end
 	for _,arrow in ipairs(arrows) do
-		if player:get_inventory():get_stack("main", player:get_wield_index()+1):get_name() == arrow[1] then
+		if player:get_inventory():get_stack("main", player:get_wield_index()+1):get_name() == arrow[1]
+		and time_bow[name] == 0 then
 			if not minetest.setting_getbool("creative_mode") then
 				player:get_inventory():remove_item("main", arrow[1])
 			end
 			local playerpos = player:getpos()
+			time_bow[name] = 5
+			ids[name .. " img"] = player:hud_add({
+				hud_elem_type = "image",
+				scale = { x = 2, y = 2 },
+				position = { x = 0.9, y = 0.5 },
+				name = "lottthrowing_bow_wood.png",
+				text = "lottthrowing_bow_wood.png",
+				direction = 0,
+				--offset = { x = -186, y = pos*20 },
+			})
+			ids[name .. " txt"] = player:hud_add({
+				hud_elem_type = "text",
+				position = { x = 0.9, y = 0.55 },
+				name = "text",
+				text = "Reloading bow... (5 s)",
+				--offset = { x = -186, y = pos*20 },
+			})
 			local obj = minetest.env:add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, arrow[2])
 			local dir = player:get_look_dir()
 			obj:setvelocity({x=dir.x*19, y=dir.y*19, z=dir.z*19})
@@ -36,12 +103,34 @@ local lottthrowing_shoot_arrow = function(itemstack, player)
 end
 
 local lottthrowing_shoot_bolt = function(itemstack, player)
+	local name = player:get_player_name()
+	if time_crossbow[name] == nil then
+		time_crossbow[name] = 0
+	end
 	for _,arrow in ipairs(bolts) do
-		if player:get_inventory():get_stack("main", player:get_wield_index()+1):get_name() == arrow[1] then
+		if player:get_inventory():get_stack("main", player:get_wield_index()+1):get_name() == arrow[1]
+		and time_crossbow[name] == 0 then
 			if not minetest.setting_getbool("creative_mode") then
 				player:get_inventory():remove_item("main", arrow[1])
 			end
 			local playerpos = player:getpos()
+			time_crossbow[name] = 10
+			ids[name .. " cimg"] = player:hud_add({
+				hud_elem_type = "image",
+				scale = { x = 2, y = 2 },
+				position = { x = 0.9, y = 0.4 },
+				name = "lottthrowing_crossbow_steel.png",
+				text = "lottthrowing_crossbow_steel.png",
+				direction = 0,
+				--offset = { x = -186, y = pos*20 },
+			})
+			ids[name .. " ctxt"] = player:hud_add({
+				hud_elem_type = "text",
+				position = { x = 0.875, y = 0.45 },
+				name = "text",
+				text = "Reloading crossbow... (10 s)",
+				--offset = { x = -186, y = pos*20 },
+			})
 			local obj = minetest.env:add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, arrow[2])
 			local dir = player:get_look_dir()
 			obj:setvelocity({x=dir.x*25, y=dir.y*25, z=dir.z*25})

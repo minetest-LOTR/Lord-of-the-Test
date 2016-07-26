@@ -163,12 +163,7 @@ mobs:register_mob("lottmobs:dwarf_trader", {
 	run_velocity = 2,
 	armor = 200,
 	damage = 4,
-	drops = {
-		{name = "default:diamond",
-		chance = 30,
-		min = 1,
-		max = 2,},
-	},
+	drops = {},
 	light_resistant = true,
 	drawtype = "front",
 	water_damage = 0,

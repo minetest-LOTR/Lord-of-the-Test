@@ -60,10 +60,6 @@ local textures1 = {
 }
 
 local drops1 = {
-    {name = "default:diamond",
-    chance = 30,
-    min = 1,
-    max = 2,},
     {name = "default:iron_lump",
     chance = 3,
     min = 1,
@@ -104,10 +100,6 @@ local textures2 = {
 }
 
 local drops2 = {
-    {name = "default:diamond",
-    chance = 30,
-    min = 1,
-    max = 2,},
     {name = "default:iron_lump",
     chance = 3,
     min = 1,
@@ -148,10 +140,6 @@ local textures3 = {
 }
 
 local drops3 = {
-    {name = "default:diamond",
-    chance = 30,
-    min = 1,
-    max = 2,},
     {name = "default:iron_lump",
     chance = 3,
     min = 1,
