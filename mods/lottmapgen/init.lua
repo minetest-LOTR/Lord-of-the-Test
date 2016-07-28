@@ -489,6 +489,10 @@ minetest.register_on_generated(function(minp, maxp, seed)
 								if biome ~= 8 then
 									data[vi] = c_sand
 								end
+							elseif y > sandy and y >= surfy - 2 then
+								if biome ~= 8 then
+									data[vi] = c_dirt
+								end
 							end
 						end
 					end
