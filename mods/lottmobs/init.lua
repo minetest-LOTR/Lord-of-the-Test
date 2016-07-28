@@ -1,6 +1,6 @@
 lottmobs = {}
 
-lottmobs.guard = function(self, clicker, payment, mob_name)
+lottmobs.guard = function(self, clicker, payment, mob_name, race)
 	local item = clicker:get_wielded_item()
 	local name = clicker:get_player_name()
 	if item:get_name() == "lottfarming:corn"
@@ -61,14 +61,18 @@ lottmobs.guard = function(self, clicker, payment, mob_name)
 				self.nametag = name
 			end
 		end
-	else
-		if self.owner and self.owner == name then
-			if self.order == "follow" then
-				self.order = "stand"
-			else
-				self.order = "follow"
-			end
+	elseif self.owner and self.owner == name then
+		if self.order == "follow" then
+			self.order = "stand"
+		else
+			self.order = "follow"
 		end
+	else
+		if self.game_name == "mob" then
+			self.game_name = lottmobs[race]["names"][math.random(1, #lottmobs[race]["names"])]
+		end
+		minetest.chat_send_player(name, "[NPC] <" .. self.game_name .. "> " ..
+			lottmobs[race]["messages"][math.random(1, #lottmobs[race]["messages"])])
 	end
 end
 
@@ -385,7 +389,7 @@ mobs:register_mob("lottmobs:rohan_guard", {
 		attack = "default_punch2",
 	},
 	on_rightclick = function(self, clicker)
-		lottmobs.guard(self, clicker, "default:gold_ingot", "Rohan Guard")
+		lottmobs.guard(self, clicker, "default:gold_ingot", "Rohan Guard", "human")
 	end,
 	attacks_monsters = true,
 	peaceful = true,
@@ -501,7 +505,7 @@ mobs:register_mob("lottmobs:gondor_guard", {
 		attack = "default_punch2",
 	},
 	on_rightclick = function(self, clicker)
-		lottmobs.guard(self, clicker, "default:gold_ingot", "Gondor Guard")
+		lottmobs.guard(self, clicker, "default:gold_ingot", "Gondor Guard", "human")
 	end,
 	attacks_monsters = true,
 	peaceful = true,
@@ -597,7 +601,7 @@ mobs:register_mob("lottmobs:ithilien_ranger", {
 		attack = "default_punch2",
 	},
 	on_rightclick = function(self, clicker)
-		lottmobs.guard(self, clicker, "default:gold_ingot", "Ithilien Ranger")
+		lottmobs.guard(self, clicker, "default:gold_ingot", "Ithilien Ranger", "human")
 	end,
 	attacks_monsters = true,
 	peaceful = true,
