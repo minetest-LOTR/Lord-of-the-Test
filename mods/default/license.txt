@@ -145,6 +145,7 @@ Neuromancer:
 
 BlockMen (CC BY-SA 3.0):
   default_sandstone.png
+  default_book.png
 
 sofar (CC BY-SA 3.0):
   default_book_written.png, based on default_book.png
