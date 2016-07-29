@@ -520,7 +520,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	end
 	vm:set_data(data)
 	vm:set_lighting({day=0, night=0})
-	vm:calc_lighting({x = minp.x, y = minp.y - 1, z = minp.z }, {x = maxp.x, y = maxp.y + 1, z = maxp.z})
+	vm:calc_lighting()
 	vm:write_to_map(data)
 	local chugent = math.ceil((os.clock() - t1) * 1000)
 end)

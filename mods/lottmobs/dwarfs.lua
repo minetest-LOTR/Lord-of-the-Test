@@ -48,8 +48,8 @@ function lottmobs.register_dwarf(n, hpmin, hpmax, textures, wv, rv, damg, arm, d
     	group_attack = true,
     	step = 1,
     })
-    mobs:register_spawn("lottmobs:dwarf" .. n, {"default:stone"}, 15, -1, 6000, 3, -10)
-    mobs:register_spawn("lottmobs:dwarf" .. n, {"lottmapgen:ironhill_grass"}, 20, -1, 6000, 3, 31000)
+    mobs:register_spawn("lottmobs:dwarf" .. n, {"default:stone"}, 15, -1, 24000, 3, -10)
+    mobs:register_spawn("lottmobs:dwarf" .. n, {"lottmapgen:ironhill_grass"}, 20, -1, 18000, 3, 31000)
 end
 
 --Normal Dwarfs

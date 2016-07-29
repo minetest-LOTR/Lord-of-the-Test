@@ -47,7 +47,7 @@ function lottmobs.register_elf(n, hpmin, hpmax, textures, wv, rv, damg, arm, dro
 		group_attack = true,
 		step = 1,
 	})
-	mobs:register_spawn("lottmobs:elf" .. n, {"lottmapgen:lorien_grass"}, 20, 0, 6000, 3, 31000)
+	mobs:register_spawn("lottmobs:elf" .. n, {"lottmapgen:lorien_grass"}, 20, 0, 18000, 3, 31000)
 end
 
 --Basic elves
