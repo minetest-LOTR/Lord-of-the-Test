@@ -1,83 +1,81 @@
 local mapgen_params = minetest.get_mapgen_params()
 
+minetest.set_gen_notify("dungeon")
+
 minetest.register_on_generated(function(minp, maxp, seed)
-	if minp.y < (mapgen_params.water_level-1000) or minp.y > 5000 then
+	if minp.y < (mapgen_params.water_level-1250)
+	or minp.y > (mapgen_params.water_level-250) then
 		return
 	end
 
-	local t1 = os.clock()
-	local x1 = maxp.x
-	local y1 = maxp.y
-	local z1 = maxp.z
-	local x0 = minp.x
-	local y0 = minp.y
-	local z0 = minp.z
-
-	--print ("[lottmapgen_checking] chunk minp ("..x0.." "..y0.." "..z0..")")
-
-	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
-	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
-	local data = vm:get_data()
-
 	local c_air = minetest.get_content_id("air")
 	local c_mossycobble = minetest.get_content_id("default:mossycobble")
-	local c_tomb_1 = minetest.get_content_id("lottblocks:dwarf_bottom")
-	local c_tomb_2 = minetest.get_content_id("lottblocks:dwarf_head")
+	local c_tomb_1 = minetest.get_content_id("lottblocks:dwarf_tomb_bottom")
+	local c_tomb_2 = minetest.get_content_id("lottblocks:dwarf_tomb_top")
 	local c_gold = minetest.get_content_id("default:goldblock")
 
-	local nixz = 1
-	for z = z0, z1 do
-		for x = x0, x1 do
-			for y = y1, y0, -1 do -- working down each column for each node do
-				local fimadep = math.floor(6 - y / 512) + math.random(0, 1)
-				local vi = area:index(x, y, z)
-				local nodid = data[vi]
 
-				if y < (mapgen_params.water_level-500) and nodid == c_mossycobble then
-					local vi = area:index(x, y+1, z)
-					if data[vi] == c_air and data[area:index(x, y+1, z+1)] == c_air then
-						if math.random(1,500) == 10 then
-							data[vi] = c_tomb_1
-							local vi = area:index(x, y+1, z+1)
-							data[vi] = c_tomb_2
-							local vi = area:index(x, y, z+1)
-							data[vi] = c_mossycobble
-							if math.random(1,75) == 7 then
-								if math.random(1,2) == 1 then
-									for a = -1, 2 do
-										local vi = area:index(x+1, y, z+a)
-										data[vi] = c_gold
-										local vi = area:index(x-1, y, z+a)
-										data[vi] = c_gold
-									end
-									local vi = area:index(x, y, z+2)
-									data[vi] = c_gold
-									local vi = area:index(x, y, z-1)
-									data[vi] = c_gold
-								else
-									for a = 0, 1 do
-										local vi = area:index(x+1, y, z+a)
-										data[vi] = c_gold
-										local vi = area:index(x-1, y, z+a)
-										data[vi] = c_gold
-									end
-									local vi = area:index(x, y, z+2)
-									data[vi] = c_gold
-									local vi = area:index(x, y, z-1)
-									data[vi] = c_gold
-								end
-							end
-						end
-					end
+	local notify = minetest.get_mapgen_object("gennotify")
+	if notify ~= nil then
+		if notify.dungeon ~= nil then
+			local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
+			local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
+			local data = vm:get_data()
+			local c = 0
+			for k,v in pairs(notify.dungeon) do
+				local center = {x=v.x,y=v.y,z=v.z}
+
+				local ycheck = {x=center.x,y=center.y,z=center.z}
+				local i = area:indexp(ycheck)
+				c = 0
+				while data[i] == d_air and c < 25 do
+					ycheck.y = ycheck.y + 1
+					i = area:indexp(ycheck)
+					c = c + 1
+				end
+				ycheck.y = ycheck.y - 1
+				local height = ( ycheck.y - center.y )
+
+				local xcheck = {x=center.x,y=center.y,z=center.z}
+				local i = area:indexp(xcheck)
+				c = 0
+				while data[i] == d_air and c < 25 do
+					xcheck.x = xcheck.x + 1
+					i = area:indexp(xcheck)
+					c = c + 1
+				end
+				xcheck.x = xcheck.x - 1
+
+				local zcheck = {x=center.x,y=center.y,z=center.z}
+				local i = area:indexp(zcheck)
+				c = 0
+				while data[i] == d_air and c < 25 do
+					zcheck.z = zcheck.z + 1
+					i = area:indexp(zcheck)
+					c = c + 1
+				end
+				zcheck.z = zcheck.z - 1
+
+				local xsize = ( xcheck.x - center.x )
+				local zsize = ( zcheck.z - center.z )
+
+				if math.random(50) == 1 then
+					local vi = area:indexp({x=zcheck.x,y=(zcheck.y),z=(zcheck.z+1)})
+					data[vi] = c_tomb_1
+					vi = area:indexp({x=zcheck.x,y=(zcheck.y),z=(zcheck.z+2)})
+					data[vi] = c_tomb_2
+					vi = area:indexp({x=zcheck.x,y=(zcheck.y-1),z=(zcheck.z+1)})
+					data[vi] = c_gold
+					vi = area:indexp({x=zcheck.x,y=(zcheck.y-1),z=(zcheck.z+2)})
+					data[vi] = c_gold
 				end
 			end
-		nixz = nixz + 1
+
+			vm:set_data(data)
+			vm:calc_lighting()
+			vm:write_to_map(data)
 		end
 	end
-	vm:set_data(data)
-	vm:set_lighting({day=0, night=0})
-	vm:calc_lighting()
-	vm:write_to_map(data)
 end)
 
 -- Buildings
@@ -98,4 +96,3 @@ minetest.register_decoration({
 	schematic = minetest.get_modpath("lottmapgen").."/schems/abandoned_tower.mts",
 	flags = "place_center_x, place_center_z",
 })
-
