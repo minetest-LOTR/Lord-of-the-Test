@@ -968,8 +968,8 @@ minetest.register_craft({
 minetest.register_craft({
 	output = 'lottweapons:orc_sword',
 	recipe = {
-		{'', 'default:steel_ingot', 'default:steel_ingot'},
-		{'', 'default:steel_ingot', ''},
+		{'', 'lottores:orc_steel_ingot', 'lottores:orc_steel_ingot'},
+		{'', 'lottores:orc_steel_ingot', ''},
 		{'', 'group:stick', ''},
 	}
 })
