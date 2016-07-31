@@ -21,7 +21,7 @@ minetest.register_craftitem("lottother:purple_gem", {
 
 
 --ELF RINGS
---FUNCTION = Sets your health to max every 30 seconds.
+--FUNCTION = Sets your health to max every 10 seconds.
 minetest.register_craftitem("lottother:blue_gem_ring", {
 	description = "Blue Gem Ring.",
 	inventory_image = "lottother_bluegem_ring.png",
@@ -37,17 +37,16 @@ minetest.register_craftitem("lottother:vilya", {
 	inventory_image = "lottother_vilya.png",
      groups = {forbidden=1},
 })
+local time = 0
 minetest.register_globalstep(function(dtime)
-	for _, player in ipairs(minetest.get_connected_players()) do
-		if math.random() < 0.1 then
+	if time > 10 then
+		for _, player in ipairs(minetest.get_connected_players()) do
 			if player:get_inventory():get_stack("main", player:get_wield_index()):get_name() == "lottother:vilya"
 			and player:get_hp() < 19 then
 				player:set_hp(20)
 			end
-
 		end
 	end
-
 end)
 
 --FUNCTION = Makes (good) mobs follow you.
@@ -68,16 +67,16 @@ minetest.register_craftitem("lottother:narya", {
 })
 --follow = "lottother:narya",
 
---FUNCTION = Same armor stats as a full set of mithril. 
+--FUNCTION = Same armor stats as a full set of mithril.
 minetest.register_craftitem("lottother:white_gem_ring", {
 	description = "White Gem Ring",
 	inventory_image = "lottother_whitegem_ring.png",
-     groups = {forbidden=1},
+    groups = {forbidden=1},
 })
 minetest.register_craftitem("lottother:white_am_ring", {
 	description = "White Almost Magic Ring",
 	inventory_image = "lottother_whitegem_am_ring.png",
-     groups = {forbidden=1},
+    groups = {forbidden=1},
 })
 minetest.register_tool("lottother:nenya", {
 	description = "Nenya",
@@ -235,55 +234,37 @@ minetest.register_craft({
 --Dwarf ring crafts...
 minetest.register_craft({
 	type = "shapeless",
-	output = "lottores:limestone_lump 2",
-	recipe = {"lottores:limestone_lump", "lottother:dwarf_ring"},
-	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
-})
-minetest.register_craft({
-	type = "shapeless",
-	output = "lottores:silver_lump 2",
+	output = "lottores:silver_ingot 2",
 	recipe = {"lottores:silver_lump", "lottother:dwarf_ring"},
 	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
 })
 minetest.register_craft({
 	type = "shapeless",
-	output = "lottores:tin_lump 2",
+	output = "lottores:tin_ingot 2",
 	recipe = {"lottores:tin_lump", "lottother:dwarf_ring"},
 	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
 })
 minetest.register_craft({
 	type = "shapeless",
-	output = "lottores:lead_lump 2",
+	output = "lottores:lead_ingot 2",
 	recipe = {"lottores:lead_lump", "lottother:dwarf_ring"},
 	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
 })
 minetest.register_craft({
 	type = "shapeless",
-	output = "default:coal_lump 2",
-	recipe = {"default:coal_lump", "lottother:dwarf_ring"},
-	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
-})
-minetest.register_craft({
-	type = "shapeless",
-	output = "default:iron_lump 2",
+	output = "default:iron_ingot 2",
 	recipe = {"default:iron_lump", "lottother:dwarf_ring"},
 	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
 })
 minetest.register_craft({
 	type = "shapeless",
-	output = "default:copper_lump 2",
+	output = "default:copper_ingot 2",
 	recipe = {"default:copper_lump", "lottother:dwarf_ring"},
 	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
 })
 minetest.register_craft({
 	type = "shapeless",
-	output = "default:gold_lump 2",
+	output = "default:gold_ingot 2",
 	recipe = {"default:gold_lump", "lottother:dwarf_ring"},
-	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
-})
-minetest.register_craft({
-	type = "shapeless",
-	output = "lottores:rough_rock_lump 2",
-	recipe = {"lottores:rough_rock_lump", "lottother:dwarf_ring"},
 	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
 })
