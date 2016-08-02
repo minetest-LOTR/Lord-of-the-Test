@@ -237,6 +237,12 @@ local function growgen(pointed_thing)
 		minetest.set_node(pos, {name="lottfarming:red_mushroom_3"})
 	elseif n.name == "lottfarming:red_mushroom_3" then
 		minetest.set_node(pos, {name="lottfarming:red_mushroom_4"})
+	elseif n.name == "lottfarming:white_mushroom_1" then
+		minetest.set_node(pos, {name="lottfarming:white_mushroom_2"})
+	elseif n.name == "lottfarming:white_mushroom_2" then
+		minetest.set_node(pos, {name="lottfarming:white_mushroom_3"})
+	elseif n.name == "lottfarming:white_mushroom_3" then
+		minetest.set_node(pos, {name="lottfarming:white_mushroom_4"})                
 	elseif n.name == "lottfarming:tomatoes_1" then
 		minetest.set_node(pos, {name="lottfarming:tomatoes_2"})
 	elseif n.name == "lottfarming:tomatoes_2" then
