@@ -217,5 +217,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		end
 	elseif formname == "mob_naming" then
 		lottmobs.name(fields.naming)
+	elseif formname == "mob_settings" then
+		lottmobs.change_settings(fields)
 	end
 end)
