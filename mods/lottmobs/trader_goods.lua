@@ -196,28 +196,3 @@ lottmobs.human = {
 		"Life here is far from normal. We wish for peace, yet the only way we can get peace is through war...",
 	}
 }
-
-lottmobs.hiring = "size[6,3]" ..
-	"label[0,0;Select the amount of gold you want to offer:]" ..
-	"dropdown[2,1;2;offer;1,5,10,15,20,25,30,35,40,45,50;1]" ..
-	"button_exit[2.25,2;1.5,1;done;Done]"
-
-minetest.register_on_player_receive_fields(function(player, formname, fields)
-	if formname == "mob_hiring" then
-		if fields.done then
-			if tonumber(fields.offer) then
-				local n = tonumber(fields.offer)
-				if n > 50 then
-					n = 50
-				end
-				lottmobs.hire(n)
-			else
-				minetest.chat_send_player(player:get_player_name(), "Offer must be a number!")
-			end
-		end
-	elseif formname == "mob_naming" then
-		lottmobs.name(fields.naming)
-	elseif formname == "mob_settings" then
-		lottmobs.change_settings(fields)
-	end
-end)
