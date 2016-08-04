@@ -94,7 +94,7 @@ local get_guard_formspec = function(self)
 	if self.blacklist == nil then
 		self.blacklist = {}
 	end
-    if order == "stand" then selected_idx = 2 end
+    if self.order == "stand" then selected_idx = 2 end
     return "size[10,9]"..
         "label[1,1;Name:\t"..self.game_name.."]"..
         "dropdown[1,2;2;order;follow,stand;"..selected_idx.."]"..
