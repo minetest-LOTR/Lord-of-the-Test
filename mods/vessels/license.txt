@@ -5,5 +5,5 @@ Modifications by Perttu Ahola <celeron55@gmail.com>
 
 LGPL v2.1
 
-Textures: CC BY-SA
+Textures: CC BY-SA 3.0
 Vanessa Ezekowitz

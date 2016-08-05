@@ -1,6 +1,6 @@
 Code: fishyWET, based on farming - LGPL v2.1
 
-Textures CC BY-SA:
+Textures CC BY-SA 3.0:
 Amaz -
 orc_*.png
 lottfarming_orc_food.png

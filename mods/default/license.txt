@@ -75,7 +75,7 @@ VanessaE (WTFPL):
   default_desert_stone.png
   default_sand.png
 
-Calinou (CC BY-SA):
+Calinou (CC BY-SA 3.0):
   default_brick.png
   default_clay_brick.png
   default_papyrus.png
@@ -86,7 +86,7 @@ Calinou (CC BY-SA):
   default_mineral_copper.png
   default_sign.png, derived from default_sign_wall.png by Cisoun.
 
-paramat (CC BY-SA):
+paramat (CC BY-SA 3.0):
   default_river_water.png
   default_river_water_source_animated.png
   default_river_water_flowing_animated.png
@@ -162,7 +162,7 @@ Glass breaking sounds (CC BY 3.0):
   2: http://www.freesound.org/people/Tomlija/sounds/97669/
   3: http://www.freesound.org/people/lsprice/sounds/88808/
 
-Mito551 (sounds) (CC BY-SA):
+Mito551 (sounds) (CC BY-SA 3.0):
   default_dig_choppy.ogg
   default_dig_cracky.ogg
   default_dig_crumbly.1.ogg

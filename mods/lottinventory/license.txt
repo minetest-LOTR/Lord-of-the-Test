@@ -1,6 +1,6 @@
 Code: Zeg9, modified by fishyWET - LGPL v2.1
 
-Textures:
+Textures CC BY-SA 3.0:
 
 fishyWET - lottinventory_*
 

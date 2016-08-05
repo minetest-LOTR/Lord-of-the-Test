@@ -1,6 +1,6 @@
 All code, LGPL v2.1
 
-Textures, CC BY-SA
+Textures, CC BY-SA 3.0
 
 Flipsels - gui_*.png
 

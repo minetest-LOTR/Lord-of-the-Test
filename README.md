@@ -15,7 +15,7 @@ MadTux (@agwilt) is the maintainer of these packages.
 
 Code of most mods: *LGPL v2.1*
 
-All textures: *CC BY-SA*
+All textures: *CC BY-SA 3.0*
 
 *See LICENSE.txt for the full text of the licenses*
 *See the license.txt of each mod for more information on that mod.*

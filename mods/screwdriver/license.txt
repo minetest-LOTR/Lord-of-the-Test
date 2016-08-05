@@ -4,5 +4,5 @@ Modified by TenPlus1
 
 LGPL v2.1
 
-Textures: CC BY-SA
+Textures: CC BY-SA 3.0
 RealBadAngel
