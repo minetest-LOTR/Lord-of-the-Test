@@ -1,5 +1,6 @@
 dofile(minetest.get_modpath("lottother").."/rings.lua")
 dofile(minetest.get_modpath("lottother").."/mob_spawners.lua")
+dofile(minetest.get_modpath("lottother").."/credits.lua")
 
 minetest.register_node("lottother:blue_flame", {
 	description = "Blue Flame",
