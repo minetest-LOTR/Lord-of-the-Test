@@ -316,9 +316,7 @@ mobs:register_mob("lottmobs:rohan_guard", {
 	on_rightclick = function(self, clicker)
 		lottmobs.guard(self, clicker, "default:gold_ingot", "Rohan Guard", "human")
 	end,
-	do_custom = function(self, dtime)
-		lottmobs.do_custom_guard(self)
-	end,
+	do_custom = lottmobs.do_custom_guard,
 	attacks_monsters = true,
 	peaceful = true,
 	group_attack = true,
@@ -435,9 +433,7 @@ mobs:register_mob("lottmobs:gondor_guard", {
 	on_rightclick = function(self, clicker)
 		lottmobs.guard(self, clicker, "default:gold_ingot", "Gondor Guard", "human")
 	end,
-	do_custom = function(self, dtime)
-		lottmobs.do_custom_guard(self)
-	end,
+	do_custom = lottmobs.do_custom_guard,
 	attacks_monsters = true,
 	peaceful = true,
 	group_attack = true,
@@ -534,9 +530,7 @@ mobs:register_mob("lottmobs:ithilien_ranger", {
 	on_rightclick = function(self, clicker)
 		lottmobs.guard(self, clicker, "default:gold_ingot", "Ithilien Ranger", "human")
 	end,
-	do_custom = function(self, dtime)
-		lottmobs.do_custom_guard(self)
-	end,
+	do_custom = lottmobs.do_custom_guard,
 	attacks_monsters = true,
 	peaceful = true,
 	group_attack = true,
@@ -819,7 +813,6 @@ mobs:register_mob("lottmobs:orc", {
 	water_damage = 5,
 	lava_damage = 10,
 	light_damage = 0,
-	on_rightclick = nil,
 	attack_type = "dogfight",
 	animation = {
 		speed_normal = 15,
@@ -839,9 +832,13 @@ mobs:register_mob("lottmobs:orc", {
 		death = "mobs_death1",
 		attack = "default_punch2",
 	},
+	on_rightclick = function(self, clicker)
+		lottmobs.guard(self, clicker, "default:gold_ingot", "Orc", "orc")
+	end,
+	do_custom = lottmobs.do_custom_guard_evil,
 	attacks_monsters = true,
 	peaceful = true,
-	group_attack = true,
+	group_attack = false,
 	step = 1,
 })
 mobs:register_spawn("lottmobs:orc", {"lottmapgen:mordor_stone"}, 20, -1, 500, 3, 31000)
@@ -918,7 +915,6 @@ mobs:register_mob("lottmobs:raiding_orc", {
 	water_damage = 5,
 	lava_damage = 10,
 	light_damage = 2,
-	on_rightclick = nil,
 	attack_type = "dogfight",
 	animation = {
 		speed_normal = 15,
@@ -938,9 +934,13 @@ mobs:register_mob("lottmobs:raiding_orc", {
 		death = "mobs_death1",
 		attack = "default_punch2",
 	},
+	on_rightclick = function(self, clicker)
+		lottmobs.guard(self, clicker, "default:gold_ingot", "Raiding Orc", "orc")
+	end,
+	do_custom = lottmobs.do_custom_guard_evil,
 	attacks_monsters = true,
 	peaceful = true,
-	group_attack = true,
+	group_attack = false,
 	step = 1,
 })
 mobs:register_spawn("lottmobs:raiding_orc", {"lottmapgen:ithilien_grass"}, 2, -1, 4000, 5, 31000)
@@ -1069,7 +1069,6 @@ mobs:register_mob("lottmobs:uruk_hai", {
 	water_damage = 1,
 	lava_damage = 5,
 	light_damage = 0,
-	on_rightclick = nil,
 	attack_type = "dogfight",
 	animation = {
 		speed_normal = 15,
@@ -1089,9 +1088,13 @@ mobs:register_mob("lottmobs:uruk_hai", {
 		death = "mobs_death2",
 		attack = "mobs_slash_attack",
 	},
+	on_rightclick = function(self, clicker)
+		lottmobs.guard(self, clicker, "default:gold_ingot", "Uruk Hai", "orc")
+	end,
+	do_custom = lottmobs.do_custom_guard_evil,
 	attacks_monsters = true,
 	peaceful = true,
-	group_attack = true,
+	group_attack = false,
 	step = 1,
 })
 mobs:register_spawn("lottmobs:uruk_hai", {"lottmapgen:mordor_stone"}, 15, -1, 2000, 3, 31000)

@@ -1083,7 +1083,7 @@ local npc_attack = function(self)
 end
 
 -- follow player if owner or holding item, if fish outta water then flop
-local follow_flop = function(self)
+mobs.follow_flop = function(self)
 
 	-- find player to follow
 	if (self.follow ~= ""
@@ -1108,6 +1108,7 @@ local follow_flop = function(self)
 	end
 
 	if self.type == "npc"
+        or self.type == "monster"
 	and self.order == "follow"
 	and self.state ~= "attack"
 	and self.owner ~= "" then
@@ -1233,7 +1234,7 @@ local dogswitch = function(self, dtime)
 end
 
 -- execute current state (stand, walk, run, attacks)
-local do_states = function(self, dtime)
+mobs.do_states = function(self, dtime)
 
 	local yaw = 0
 
@@ -2220,9 +2221,9 @@ local mob_step = function(self, dtime)
 
 	breed(self)
 
-	follow_flop(self)
+	mobs.follow_flop(self)
 
-	do_states(self, dtime)
+	mobs.do_states(self, dtime)
 
 end
 

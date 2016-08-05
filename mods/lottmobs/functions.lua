@@ -1,3 +1,13 @@
+local invisibility = invisibility or {}
+local damage_enabled = minetest.setting_getbool("enable_damage")
+
+local get_distance = function(a, b)
+
+	local x, y, z = a.x - b.x, a.y - b.y, a.z - b.z
+
+	return math.sqrt(x * x + y * y + z * z)
+end
+
 local split = function(str, sep)
         local fields = {}
         local str = str or ""
@@ -17,14 +27,213 @@ local value_in_table = function(tab, val)
         return false
 end
 
-lottmobs.do_custom_guard = function(guard)
+local guard_attack_evil = function(guard)
+        if not damage_enabled or guard.state == "attack" or day_docile(guard) then
+                return
+        end
+        local player, entity_type, obj, min_player = nil, nil, nil, nil
+        local min_dist = guard.view_range + 1
+        local objs = minetest.get_objects_inside_radius(guard.object:getpos(), guard.view_range)
+        for n = 1, #objs do
+                if invisibility[ objs[n]:get_player_name() ] then
+                        entity_type = ""
+                elseif objs[n]:is_player() then
+                        player = objs[n]
+                        entity_type = "player"
+                else
+                        obj = objs[n]:get_luaentity()
+                        if obj then
+                                player = obj.object
+                                entity_type = obj.type
+                        end
+                end
+                
+                if entity_type == "player" or entity_type == "npc" then
+                        
+                        s = guard.object:getpos()
+                        p = player:getpos()
+                        sp = s
+                        
+                        -- aim higher to make looking up hills more realistic
+                        p.y = p.y + 1
+                        sp.y = sp.y + 1
+                        
+                        dist = get_distance(p, s)
+                        
+                        if dist < guard.view_range then
+                                
+                                -- choose closest player to attack
+                                if line_of_sight_water(guard, sp, p, 2) == true
+                                and dist < min_dist then
+                                        if (entity_type == "player" and player:get_player_name() ~= guard.owner) then
+                                                min_dist = dist
+                                                min_player = player
+                                        else
+                                                min_dist = dist
+                                                min_player = player
+                                        end
+                                end
+                        end
+                end
+        end
+        
+        -- attack player
+        if min_player then
+                if entity_type == "player" and guard.whitelist
+                and not value_in_table(guard.whitelist, min_player:get_player_name()) then
+                        local is_elf = minetest.check_player_privs(min_player, "GAMEelf")
+                        local is_man = minetest.check_player_privs(min_player, "GAMEman")
+                        local is_orc = minetest.check_player_privs(min_player, "GAMEorc")
+                        local is_hobbit = minetest.check_player_privs(min_player, "GAMEhobbit")
+                        local is_dwarf = minetest.check_player_privs(min_player, "GAMEdwarf")
+                        if (guard.attack_elves and is_elf)
+                                or (guard.attack_men and is_man)
+                                or (guard.attack_orcs and is_orc)
+                                or (guard.attack_hobbits and is_hobbit)
+                                or (guard.attack_dwarves and is_dwarf)
+                                or (guard.blacklist
+                                and value_in_table(guard.blacklist, min_player:get_player_name())) then
+                                        guard.state = "attack"
+                                        guard.attack = min_player
+                        end
+                elseif entity_type == "npc" and guard.attack_npcs then
+                        guard.state = "attack"
+                        guard.attack = min_player
+                end
+        end
+        
+end
+
+local monster_attack = function(self)
+
+	if not damage_enabled
+	or self.state == "attack"
+	or day_docile(self) then
+		return
+	end
+	local s = self.object:getpos()
+	local p, sp, dist
+	local player, type, obj, min_player = nil, nil, nil, nil
+	local min_dist = self.view_range + 1
+	local objs = minetest.get_objects_inside_radius(s, self.view_range)
+
+	for n = 1, #objs do
+
+		if objs[n]:is_player() then
+
+			if invisibility[ objs[n]:get_player_name() ] or minetest.check_player_privs(objs[n], "GAMEorc") then
+				type = ""
+			else
+				player = objs[n]
+				type = "player"
+			end
+		else
+			obj = objs[n]:get_luaentity()
+
+			if obj then
+				player = obj.object
+				type = obj.type
+			end
+		end
+
+		if type == "player"
+		or type == "npc" then
+
+			s = self.object:getpos()
+			p = player:getpos()
+			sp = s
+
+			-- aim higher to make looking up hills more realistic
+			p.y = p.y + 1
+			sp.y = sp.y + 1
+
+                        dist = get_distance(p, s)                       
+
+			if dist < self.view_range then
+			-- field of view check goes here
+
+				-- choose closest player to attack
+				if line_of_sight_water(self, sp, p, 2) == true
+				and dist < min_dist then
+					min_dist = dist
+					min_player = player
+				end
+			end
+		end
+	end
+
+	-- attack player
+	if min_player then
+		do_attack(self, min_player)
+        end
+end
+
+lottmobs.do_custom_guard_evil = function(guard, dtime)
+	-- attack timer
+	guard.timer = guard.timer + dtime
+
+	if guard.state ~= "attack" then
+
+		if guard.timer < 1 then
+			return false
+		end
+
+		guard.timer = 0
+	end
+
+	-- never go over 100
+	if guard.timer > 100 then
+		guard.timer = 1
+	end
+
+	-- node replace check (cow eats grass etc.)
+        local pos = guard.object:getpos()
+	replace(guard, pos)
+
+	-- mob plays random sound at times
+	if guard.sounds.random
+	and random(1, 100) == 1 then
+
+		minetest.sound_play(guard.sounds.random, {
+			object = guard.object,
+			max_hear_distance = guard.sounds.distance
+		})
+	end
+
+	-- environmental damage timer (every 1 second)
+	guard.env_damage_timer = guard.env_damage_timer + dtime
+
+	if (guard.state == "attack" and guard.env_damage_timer > 1)
+	or guard.state ~= "attack" then
+
+		guard.env_damage_timer = 0
+
+		do_env_damage(guard)
+	end
+	if guard.owner and guard.owner ~= "" then
+                guard_attack_evil(guard)
+        else
+                monster_attack(guard)
+	end
+        
+	mobs.follow_flop(guard)
+	mobs.do_states(guard, dtime)
+        
+        return false
+end
+
+lottmobs.do_custom_guard = function(guard, dtime)
+        if not damage_enabled or guard.state == "attack" then
+                return
+        end
 	if guard.owner and guard.owner ~= "" then
 		local player, entity_type, obj, min_player = nil, nil, nil, nil
 		local min_dist = guard.view_range + 1
 		local objs = minetest.get_objects_inside_radius(guard.object:getpos(), guard.view_range)
 		for n = 1, #objs do
-
-			if objs[n]:is_player() then
+                        if invisibility[ objs[n]:get_player_name() ] then
+                                entity_type = ""
+			elseif objs[n]:is_player() then
 				player = objs[n]
 				entity_type = "player"
 			end
@@ -39,8 +248,7 @@ lottmobs.do_custom_guard = function(guard)
 				p.y = p.y + 1
 				sp.y = sp.y + 1
 
-				local x, y, z = p.x - s.x, p.y - s.y, p.z - s.z
-				dist = math.sqrt(x * x + y * y + z * z)
+				dist = get_distance(p, s)
 
 				if dist < guard.view_range then
 
@@ -83,52 +291,70 @@ local attacks = {
 	"attack_men",
 	"attack_orcs",
 	"attack_hobbits",
-	"attack_dwarves"
+	"attack_dwarves",
+        "attack_npcs"
 }
 
 local get_guard_formspec = function(self)
-    local selected_idx = 1
+        local selected_idx = 1
 	if self.whitelist == nil then
 		self.whitelist = {}
 	end
 	if self.blacklist == nil then
 		self.blacklist = {}
 	end
-    if self.order == "stand" then selected_idx = 2 end
-    return "size[10,9]"..
-        "label[1,1;Name:\t"..self.game_name.."]"..
-        "dropdown[1,2;2;order;follow,stand;"..selected_idx.."]"..
-        "checkbox[1,3;attack_elves;Attack Elves;"..tostring(self.attack_elves).."]"..
-        "checkbox[1,4;attack_men;Attack Men;"..tostring(self.attack_men).."]"..
-        "checkbox[4,2;attack_orcs;Attack Orcs;"..tostring(self.attack_orcs).."]"..
-        "checkbox[4,3;attack_hobbits;Attack Hobbits;"..tostring(self.attack_hobbits).."]"..
-        "checkbox[4,4;attack_dwarves;Attack Dwarves;"..tostring(self.attack_dwarves).."]"..
-        "checkbox[7,2;attack_monsters;Attack Monsters;"..tostring(self.attack_monsters).."]"..
-        "field[1,6;9,1;whitelist;Whitelist;"..
+        local extra = nil
+        if self.type == "monster" then
+                extra = "checkbox[7,2;attack_npcs;Attack NPCs;"..tostring(self.attack_npcs).."]"
+        else
+                extra = "checkbox[7,2;attack_monsters;Attack Monsters;"..tostring(self.attack_monsters).."]"
+        end
+        
+        if self.order == "stand" then selected_idx = 2 end
+        return "size[10,9]"..
+                "label[1,1;Name:\t"..self.game_name.."]"..
+                "dropdown[1,2;2;order;follow,stand;"..selected_idx.."]"..
+                "checkbox[1,3;attack_elves;Attack Elves;"..tostring(self.attack_elves).."]"..
+                "checkbox[1,4;attack_men;Attack Men;"..tostring(self.attack_men).."]"..
+                "checkbox[4,2;attack_orcs;Attack Orcs;"..tostring(self.attack_orcs).."]"..
+                "checkbox[4,3;attack_hobbits;Attack Hobbits;"..tostring(self.attack_hobbits).."]"..
+                "checkbox[4,4;attack_dwarves;Attack Dwarves;"..tostring(self.attack_dwarves).."]"..
+                extra..
+                "field[1,6;9,1;whitelist;Whitelist;"..
 		minetest.formspec_escape(table.concat(self.whitelist, ";")).."]"..
-        "field[1,7;9,1;blacklist;Blacklist;"..
+                "field[1,7;9,1;blacklist;Blacklist;"..
 		minetest.formspec_escape(table.concat(self.blacklist, ";")).."]"..
-        "button_exit[1,8;2,1;exit_button; Proceed]"
+                "button_exit[1,8;2,1;exit_button; Proceed]"
+end
+
+local guard_can_be_hired = function(guard, clicker)
+        if guard.type == "npc" and (not minetest.check_player_privs(clicker, "GAMEorc") or minetest.check_player_privs(clicker, "GAMEwizard")) then
+                return true
+        elseif guard.type == "monster" and minetest.check_player_privs(clicker, "GAMEorc") then
+                return true
+        else
+                return false
+        end
 end
 
 lottmobs.guard = function(self, clicker, payment, mob_name, race)
-    lottmobs.change_settings = function(fields)
-        if fields.order then
-            self.order = fields.order
-        end
-        for i, v in pairs(attacks) do
-            if fields[v] == "true" then
+        lottmobs.change_settings = function(fields)
+                if fields.order then
+                        self.order = fields.order
+                end
+                for i, v in pairs(attacks) do
+                        if fields[v] == "true" then
 				self[v] = true
-            elseif fields[v] == "false" then
+                        elseif fields[v] == "false" then
 				self[v] = nil
-            end
-        end
-        if fields.whitelist then
-            self.whitelist = split(fields.whitelist, ";")
-        end
-        if fields.blacklist then
-            self.blacklist = split(fields.blacklist, ";")
-        end
+                        end
+                end
+                if fields.whitelist then
+                        self.whitelist = split(fields.whitelist, ";")
+                end
+                if fields.blacklist then
+                        self.blacklist = split(fields.blacklist, ";")
+                end
 	end
 	local item = clicker:get_wielded_item()
 	local name = clicker:get_player_name()
@@ -146,7 +372,7 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race)
 			item:take_item()
 			clicker:set_wielded_item(item)
 		end
-	elseif item:get_name() == payment and self.tamed == false then
+	elseif item:get_name() == payment and self.tamed == false and guard_can_be_hired(self, clicker) then
 		lottmobs.face_pos(self, clicker:getpos())
 		self.state = "stand"
 		minetest.show_formspec(name, "mob_hiring", lottmobs.hiring)
@@ -181,7 +407,7 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race)
 					self.state = "attack"
 					self.attack = clicker
 				elseif rand == 3 then
-					minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> Your joking, right? Oh, you're serious? Well, to let you know, I won't be working for you for that pitiful amount.")
+					minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> You're joking, right? Oh, you're serious? Well, to let you know, I won't be working for you for that pitiful amount.")
 				else
 					minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> Do you really think I'll work for you for that much?!")
 				end
