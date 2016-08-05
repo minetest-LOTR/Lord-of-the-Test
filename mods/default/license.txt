@@ -100,6 +100,10 @@ MirceaKitsune (WTFPL):
 Jordach (CC BY-SA 3.0):
   character.png
 
+pithy (CC BY-SA 3.0):
+  default_tree_stair.png
+  default_jungletree_stair.png
+
 PilzAdam (WTFPL):
   default_jungleleaves.png
   default_junglesapling.png

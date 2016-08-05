@@ -221,7 +221,8 @@ stairs.register_stair_and_slab("wood", "default:wood",
 
 stairs.register_stair_and_slab("tree", "default:tree",
 		{choppy=2,oddly_breakable_by_hand=1,flammable=2},
-		{"default_tree_top.png", "default_tree_top.png", "default_tree.png"},
+		{"default_tree_top.png", "default_tree_top.png", "default_tree.png",
+		"default_tree.png", "default_tree.png", "default_tree_stair.png"},
 		"Tree Stair",
 		"Tree Slab",
 		default.node_sound_wood_defaults())
@@ -263,9 +264,10 @@ stairs.register_stair_and_slab("junglewood", "default:junglewood",
 
 stairs.register_stair_and_slab("jungletree", "default:jungletree",
 		{choppy=2,oddly_breakable_by_hand=1,flammable=2},
-		{"default_jungletree_top.png", "default_jungletree_top.png", "default_jungletree.png"},
-		"Tree Stair",
-		"Tree Slab",
+		{"default_jungletree_top.png", "default_jungletree_top.png", "default_jungletree.png",
+		"default_jungletree.png", "default_jungletree.png", "default_jungletree_stair.png"},
+		"Jungle Tree Stair",
+		"Jungle Tree Slab",
 		default.node_sound_wood_defaults())
 
 stairs.register_stair_and_slab("stonebrick", "default:stonebrick",
@@ -282,7 +284,7 @@ stairs.register_stair_and_slab("desert_stonebrick", "default:desert_stonebrick",
 		"Desert Stone Brick Slab",
 		default.node_sound_stone_defaults())
 
-stairs.register_stair_and_slab("sandstone_brick", "default:sandstone_brick",
+stairs.register_stair_and_slab("sandstone_brick", "default:sandstonebrick",
 		{cracky=3},
 		{"default_sandstone_brick.png"},
 		"Sandstone Brick Stair",

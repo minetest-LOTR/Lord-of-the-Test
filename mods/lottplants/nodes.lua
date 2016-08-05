@@ -879,7 +879,8 @@ stairs.register_stair_and_slab("birchwood", "lottplants:birchwood",
 
 stairs.register_stair_and_slab("birchtree", "lottplants:birchtree",
 		{choppy=3,flammable=2},
-		{"lottplants_birchtree_top.png", "lottplants_birchtree_top.png", "lottplants_birchtree.png"},
+		{"lottplants_birchtree_top.png", "lottplants_birchtree_top.png", "lottplants_birchtree.png",
+		"lottplants_birchtree.png", "lottplants_birchtree.png", "lottplants_birchtree_stair.png"},
 		"Birch Tree Stair",
 		"Birch Tree Slab",
 		default.node_sound_wood_defaults())
@@ -893,7 +894,8 @@ stairs.register_stair_and_slab("pinewood", "lottplants:pinewood",
 
 stairs.register_stair_and_slab("pinetree", "lottplants:pinetree",
 		{choppy=3,flammable=2},
-		{"lottplants_pinetree_top.png", "lottplants_pinetree_top.png", "lottplants_pinetree.png"},
+		{"lottplants_pinetree_top.png", "lottplants_pinetree_top.png", "lottplants_pinetree.png",
+		"lottplants_pinetree.png", "lottplants_pinetree.png", "lottplants_pinetree_stair.png"},
 		"Pine Tree Stair",
 		"Pine Tree Slab",
 		default.node_sound_wood_defaults())
@@ -907,7 +909,8 @@ stairs.register_stair_and_slab("alderwood", "lottplants:alderwood",
 
 stairs.register_stair_and_slab("aldertree", "lottplants:aldertree",
 		{choppy=2,flammable=2},
-		{"lottplants_aldertree_top.png", "lottplants_aldertree_top.png", "lottplants_aldertree.png"},
+		{"lottplants_aldertree_top.png", "lottplants_aldertree_top.png", "lottplants_aldertree.png",
+		"lottplants_aldertree.png", "lottplants_aldertree.png", "lottplants_aldertree_stair.png"},
 		"Alder Tree Stair",
 		"Alder Tree Slab",
 		default.node_sound_wood_defaults())
@@ -921,7 +924,8 @@ stairs.register_stair_and_slab("lebethronwood", "lottplants:lebethronwood",
 
 stairs.register_stair_and_slab("lebethrontree", "lottplants:lebethrontree",
 		{choppy=1,flammable=2},
-		{"lottplants_lebethrontree_top.png", "lottplants_lebethrontree_top.png", "default_tree.png"},
+		{"lottplants_lebethrontree_top.png", "lottplants_lebethrontree_top.png", "default_tree.png",
+		"default_tree.png", "default_tree.png", "lottplants_lebethrontree_stair.png"},
 		"Lebethron Tree Stair",
 		"Lebethron Tree Slab",
 		default.node_sound_wood_defaults())
@@ -935,7 +939,8 @@ stairs.register_stair_and_slab("mallornwood", "lottplants:mallornwood",
 
 stairs.register_stair_and_slab("mallorntree", "lottplants:mallorntree",
 		{choppy=1,flammable=2},
-		{"lottplants_mallorntree_top.png", "lottplants_mallorntree_top.png", "lottplants_mallorntree.png"},
+		{"lottplants_mallorntree_top.png", "lottplants_mallorntree_top.png", "lottplants_mallorntree.png",
+		"lottplants_mallorntree.png", "lottplants_mallorntree.png", "lottplants_mallorntree_stair.png"},
 		"Mallorn Tree Stair",
 		"Mallorn Tree Slab",
 		default.node_sound_wood_defaults())

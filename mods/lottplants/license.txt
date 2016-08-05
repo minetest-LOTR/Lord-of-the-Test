@@ -6,5 +6,9 @@ Textures: CC BY-SA
 lottplants_*_wood.png
 lottplants_*leaves.png
 lottplants_mallorn*.png
+lottplants_birchtree*.png
+
+pithy -
+lottplants_*tree_stair.png (Based on lottplants_*tree.png)
 
 fishyWET - The rest.
