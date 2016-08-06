@@ -1738,3 +1738,6 @@ mobs:register_arrow("lottmobs:darkball", {
 		end
 	end
 })
+
+
+mobs:register_egg("lottmobs:orc", "Spawn an Orc", "mobs_blood.png", 0)
