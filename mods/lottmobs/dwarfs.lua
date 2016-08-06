@@ -1,7 +1,8 @@
 function lottmobs.register_dwarf(n, hpmin, hpmax, textures, wv, rv, damg, arm, drops)
     mobs:register_mob("lottmobs:dwarf" .. n, {
     	type = "npc",
-    	hp_min = hpmin,
+        race = "dwarves",
+        hp_min = hpmin,
     	hp_max = hpmax,
     	collisionbox = {-0.3,-.85,-0.3, 0.3,0.68,0.3},
     	textures = textures,

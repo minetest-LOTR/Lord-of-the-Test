@@ -31,7 +31,7 @@ local guard_attack_evil = function(guard)
         if not damage_enabled or guard.state == "attack" or day_docile(guard) then
                 return
         end
-        local player, entity_type, obj, min_player = nil, nil, nil, nil
+        local player, entity_type, obj, min_player, npc_race = nil, nil, nil, nil, nil
         local min_dist = guard.view_range + 1
         local objs = minetest.get_objects_inside_radius(guard.object:getpos(), guard.view_range)
         for n = 1, #objs do
@@ -45,6 +45,7 @@ local guard_attack_evil = function(guard)
                         if obj then
                                 player = obj.object
                                 entity_type = obj.type
+                                npc_race = obj.race
                         end
                 end
                 
@@ -93,15 +94,17 @@ local guard_attack_evil = function(guard)
                                 or (guard.attack_dwarves and is_dwarf)
                                 or (guard.blacklist
                                 and value_in_table(guard.blacklist, min_player:get_player_name())) then
-                                        guard.state = "attack"
-                                        guard.attack = min_player
+                                        do_attack(guard, min_player)
                         end
-                elseif entity_type == "npc" and guard.attack_npcs then
-                        guard.state = "attack"
-                        guard.attack = min_player
+                elseif entity_type == "npc" then
+                        if (guard.attack_men and npc_race == "men")
+                        or (guard.attack_hobbits and npc_race == "hobbits")
+                        or (guard.attack_dwarves and npc_race == "dwarves")
+                        or (guard.attack_elves and npc_race == "elves") then
+                                do_attack(guard, min_player)
+                        end
                 end
         end
-        
 end
 
 local monster_attack = function(self)
@@ -226,62 +229,67 @@ lottmobs.do_custom_guard = function(guard, dtime)
         if not damage_enabled or guard.state == "attack" then
                 return
         end
-	if guard.owner and guard.owner ~= "" then
-		local player, entity_type, obj, min_player = nil, nil, nil, nil
-		local min_dist = guard.view_range + 1
-		local objs = minetest.get_objects_inside_radius(guard.object:getpos(), guard.view_range)
-		for n = 1, #objs do
-                        if invisibility[ objs[n]:get_player_name() ] then
-                                entity_type = ""
-			elseif objs[n]:is_player() then
-				player = objs[n]
-				entity_type = "player"
-			end
+        local player, entity_type, obj, min_player = nil, nil, nil, nil
+        local min_dist = guard.view_range + 1
+        local objs = minetest.get_objects_inside_radius(guard.object:getpos(), guard.view_range)
+        for n = 1, #objs do
+                if invisibility[ objs[n]:get_player_name() ] then
+                        entity_type = ""
+                elseif objs[n]:is_player() then
+                        player = objs[n]
+                        entity_type = "player"
+                end
 
-			if entity_type == "player" then
+                if entity_type == "player" then
 
-				s = guard.object:getpos()
-				p = player:getpos()
-				sp = s
+                        s = guard.object:getpos()
+                        p = player:getpos()
+                        sp = s
 
-				-- aim higher to make looking up hills more realistic
-				p.y = p.y + 1
-				sp.y = sp.y + 1
+                        -- aim higher to make looking up hills more realistic
+                        p.y = p.y + 1
+                        sp.y = sp.y + 1
 
-				dist = get_distance(p, s)
+                        dist = get_distance(p, s)
 
-				if dist < guard.view_range then
+                        if dist < guard.view_range then
 
-					-- choose closest player to attack
-					if line_of_sight_water(guard, sp, p, 2) == true
+                                -- choose closest player to attack
+                                if line_of_sight_water(guard, sp, p, 2) == true
 					and dist < min_dist
-					and player:get_player_name() ~= guard.owner then
-						min_dist = dist
-						min_player = player
-					end
-				end
-			end
-		end
-
-	                -- attack player
-	    if min_player and guard.whitelist
-		and not value_in_table(guard.whitelist, min_player:get_player_name()) then
-	        local is_elf = minetest.check_player_privs(min_player, "GAMEelf")
-	        local is_man = minetest.check_player_privs(min_player, "GAMEman")
-	        local is_orc = minetest.check_player_privs(min_player, "GAMEorc")
-	        local is_hobbit = minetest.check_player_privs(min_player, "GAMEhobbit")
-	        local is_dwarf = minetest.check_player_privs(min_player, "GAMEdwarf")
-	        if (guard.attack_elves and is_elf)
-			or (guard.attack_men and is_man)
-			or (guard.attack_orcs and is_orc)
-			or (guard.attack_hobbits and is_hobbit)
-			or (guard.attack_dwarves and is_dwarf)
-			or (guard.blacklist
-			and value_in_table(guard.blacklist, min_player:get_player_name())) then
-	            guard.state = "attack"
-	            guard.attack = min_player
-	        end
-	    end
+                                and player:get_player_name() ~= guard.owner then
+                                        min_dist = dist
+                                        min_player = player
+                                end
+                        end
+                end
+                
+                -- attack player
+                if guard.owner and guard.owner ~= "" then
+                        if min_player and guard.whitelist
+                        and not value_in_table(guard.whitelist, min_player:get_player_name()) then
+                                local is_elf = minetest.check_player_privs(min_player, "GAMEelf")
+                                local is_man = minetest.check_player_privs(min_player, "GAMEman")
+                                local is_orc = minetest.check_player_privs(min_player, "GAMEorc")
+                                local is_hobbit = minetest.check_player_privs(min_player, "GAMEhobbit")
+                                local is_dwarf = minetest.check_player_privs(min_player, "GAMEdwarf")
+                                if (guard.attack_elves and is_elf)
+                                        or (guard.attack_men and is_man)
+                                        or (guard.attack_orcs and is_orc)
+                                        or (guard.attack_hobbits and is_hobbit)
+                                        or (guard.attack_dwarves and is_dwarf)
+                                        or (guard.blacklist
+                                            and value_in_table(guard.blacklist, min_player:get_player_name())) then
+                                                do_attack(guard, min_player)
+                                end
+                        end
+                else
+                        if min_player
+                        and minetest.check_player_privs(min_player, "GAMEorc")
+                        and not minetest.check_player_privs(min_player, "GAMEwizard") then
+                                do_attack(guard, min_player)
+                        end
+                end
 	end
 end
 
@@ -291,8 +299,7 @@ local attacks = {
 	"attack_men",
 	"attack_orcs",
 	"attack_hobbits",
-	"attack_dwarves",
-        "attack_npcs"
+	"attack_dwarves"
 }
 
 local get_guard_formspec = function(self)
@@ -305,9 +312,10 @@ local get_guard_formspec = function(self)
 	end
         local extra = nil
         if self.type == "monster" then
-                extra = "checkbox[7,2;attack_npcs;Attack NPCs;"..tostring(self.attack_npcs).."]"
+                extra = ""
         else
-                extra = "checkbox[7,2;attack_monsters;Attack Monsters;"..tostring(self.attack_monsters).."]"
+                extra = "checkbox[4,4;attack_orcs;Attack Orcs;"..tostring(self.attack_orcs).."]"..
+                        "checkbox[7,2;attack_monsters;Attack Monsters;"..tostring(self.attack_monsters).."]"
         end
         
         if self.order == "stand" then selected_idx = 2 end
@@ -316,9 +324,8 @@ local get_guard_formspec = function(self)
                 "dropdown[1,2;2;order;follow,stand;"..selected_idx.."]"..
                 "checkbox[1,3;attack_elves;Attack Elves;"..tostring(self.attack_elves).."]"..
                 "checkbox[1,4;attack_men;Attack Men;"..tostring(self.attack_men).."]"..
-                "checkbox[4,2;attack_orcs;Attack Orcs;"..tostring(self.attack_orcs).."]"..
-                "checkbox[4,3;attack_hobbits;Attack Hobbits;"..tostring(self.attack_hobbits).."]"..
-                "checkbox[4,4;attack_dwarves;Attack Dwarves;"..tostring(self.attack_dwarves).."]"..
+                "checkbox[4,2;attack_hobbits;Attack Hobbits;"..tostring(self.attack_hobbits).."]"..
+                "checkbox[4,3;attack_dwarves;Attack Dwarves;"..tostring(self.attack_dwarves).."]"..
                 extra..
                 "field[1,6;9,1;whitelist;Whitelist;"..
 		minetest.formspec_escape(table.concat(self.whitelist, ";")).."]"..
@@ -404,8 +411,7 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race)
 					self.object:remove()
 				elseif rand == 2 then
 					minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> Are you mocking me? I don't take kindly to mockers!")
-					self.state = "attack"
-					self.attack = clicker
+					do_attack(self, clicker)
 				elseif rand == 3 then
 					minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> You're joking, right? Oh, you're serious? Well, to let you know, I won't be working for you for that pitiful amount.")
 				else

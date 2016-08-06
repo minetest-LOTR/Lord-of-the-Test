@@ -224,7 +224,8 @@ mobs:register_mob("lottmobs:spider", {
 mobs:register_spawn("lottmobs:spider", {"lottmapgen:mirkwood_grass"}, 20, -10, 6000, 3, 31000)
 
 mobs:register_mob("lottmobs:rohan_guard", {
-	type = "npc",
+        type = "npc",
+        race = "men",
 	hp_min = 20,
 	hp_max = 30,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
@@ -326,7 +327,8 @@ mobs:register_spawn("lottmobs:rohan_guard", {"lottmapgen:rohan_grass"}, 20, -1, 
 
 mobs:register_mob("lottmobs:gondor_guard", {
 	type = "npc",
-	hp_min = 20,
+        race = "men",
+        hp_min = 20,
 	hp_max = 30,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	textures = {
@@ -443,7 +445,8 @@ mobs:register_spawn("lottmobs:gondor_guard", {"lottmapgen:gondor_grass"}, 20, -1
 
 mobs:register_mob("lottmobs:ithilien_ranger", {
 	type = "npc",
-	hp_min = 25,
+        race = "men",
+        hp_min = 25,
 	hp_max = 40,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	textures = {
@@ -539,7 +542,7 @@ mobs:register_mob("lottmobs:ithilien_ranger", {
 mobs:register_spawn("lottmobs:ithilien_ranger", {"lottmapgen:ithilien_grass"}, 20, -1, 6000, 3, 31000)
 
 mobs:register_mob("lottmobs:dunlending", {
-	type = "monster",
+        type = "monster",
 	hp_min = 17,
 	hp_max = 27,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
@@ -620,7 +623,10 @@ mobs:register_mob("lottmobs:dunlending", {
 	water_damage = 5,
 	lava_damage = 5,
 	light_damage = 0,
-	on_rightclick = nil,
+	on_rightclick = function(self, clicker)
+		lottmobs.guard(self, clicker, "default:gold_ingot", "Dunlending", "human")
+	end,                
+        do_custom = lottmobs.do_custom_guard_evil,
 	attack_type = "dogfight",
 	animation = {
 		speed_normal = 15,
@@ -645,7 +651,8 @@ mobs:register_mob("lottmobs:dunlending", {
 mobs:register_spawn("lottmobs:dunlending", {"lottmapgen:dunland_grass"}, 20, -1, 6000, 3, 31000)
 
 mobs:register_mob("lottmobs:hobbit", {
-	type = "animal",
+        type = "npc",
+        race = "hobbits",
 	hp_min = 5,
 	hp_max = 15,
 	collisionbox = {-0.3,-0.75,-0.3, 0.3,0.7,0.3},
@@ -838,7 +845,7 @@ mobs:register_mob("lottmobs:orc", {
 	do_custom = lottmobs.do_custom_guard_evil,
 	attacks_monsters = true,
 	peaceful = true,
-	group_attack = false,
+	group_attack = true,
 	step = 1,
 })
 mobs:register_spawn("lottmobs:orc", {"lottmapgen:mordor_stone"}, 20, -1, 500, 3, 31000)
@@ -940,7 +947,7 @@ mobs:register_mob("lottmobs:raiding_orc", {
 	do_custom = lottmobs.do_custom_guard_evil,
 	attacks_monsters = true,
 	peaceful = true,
-	group_attack = false,
+	group_attack = true,
 	step = 1,
 })
 mobs:register_spawn("lottmobs:raiding_orc", {"lottmapgen:ithilien_grass"}, 2, -1, 4000, 5, 31000)
@@ -992,6 +999,7 @@ mobs:register_mob("lottmobs:warg", {
 		punch_start = 260,
 		punch_end = 290,
 	},
+        do_custom = lottmobs.do_custom_guard_evil,
 	jump = true,
 	attacks_monsters = true,
 	peaceful = true,
@@ -1094,7 +1102,7 @@ mobs:register_mob("lottmobs:uruk_hai", {
 	do_custom = lottmobs.do_custom_guard_evil,
 	attacks_monsters = true,
 	peaceful = true,
-	group_attack = false,
+	group_attack = true,
 	step = 1,
 })
 mobs:register_spawn("lottmobs:uruk_hai", {"lottmapgen:mordor_stone"}, 15, -1, 2000, 3, 31000)
@@ -1153,6 +1161,7 @@ mobs:register_mob("lottmobs:battle_troll", {
 	lava_damage = 1,
 	light_damage = 0,
 	on_rightclick = nil,
+        do_custom = lottmobs.do_custom_guard_evil,
 	attack_type = "dogfight",
 	animation = {
 		stand_start = 0,
@@ -1238,6 +1247,7 @@ mobs:register_mob("lottmobs:half_troll", {
 	lava_damage = 10,
 	light_damage = 0,
 	on_rightclick = nil,
+        do_custom = lottmobs.do_custom_guard_evil,
 	attack_type = "dogfight",
 	animation = {
 		speed_normal = 15,

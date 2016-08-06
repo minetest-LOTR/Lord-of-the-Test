@@ -8,6 +8,12 @@
 	-- line 2326 & 2327 - declare some variables lott needs in other mods.
 	-- line 1684 to 1687 - attacking mobs focus on the horse/boat, so they
 	   can actually damage the player when it is dead/destroyed!
+        -- line 1087, 1237, 2225 & 2227 - change the local functions follow_flop
+           and do_states to mobs.follow_flop and mobs.do_states so they can be accessed
+           from do_custom functions in lottmobs
+        -- line 1115 - add "or self.type == "monster"" to if statement so that orcs and
+           uruk hai tamed by orc players can follow their owners
+
 ]]--
 
 mobs = {}
