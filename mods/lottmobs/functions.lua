@@ -66,10 +66,7 @@ local guard_attack_evil = function(guard)
                                 -- choose closest player to attack
                                 if line_of_sight_water(guard, sp, p, 2) == true
                                 and dist < min_dist then
-                                        if (entity_type == "player" and player:get_player_name() ~= guard.owner) then
-                                                min_dist = dist
-                                                min_player = player
-                                        else
+                                        if (entity_type == "player" and player:get_player_name() ~= guard.owner) or entity_type == "npc" then
                                                 min_dist = dist
                                                 min_player = player
                                         end
@@ -314,8 +311,7 @@ local get_guard_formspec = function(self)
         if self.type == "monster" then
                 extra = ""
         else
-                extra = "checkbox[4,4;attack_orcs;Attack Orcs;"..tostring(self.attack_orcs).."]"..
-                        "checkbox[7,2;attack_monsters;Attack Monsters;"..tostring(self.attack_monsters).."]"
+                extra = "checkbox[7,2;attack_monsters;Attack Monsters;"..tostring(self.attack_monsters).."]"
         end
         
         if self.order == "stand" then selected_idx = 2 end
@@ -326,6 +322,7 @@ local get_guard_formspec = function(self)
                 "checkbox[1,4;attack_men;Attack Men;"..tostring(self.attack_men).."]"..
                 "checkbox[4,2;attack_hobbits;Attack Hobbits;"..tostring(self.attack_hobbits).."]"..
                 "checkbox[4,3;attack_dwarves;Attack Dwarves;"..tostring(self.attack_dwarves).."]"..
+                "checkbox[4,4;attack_orcs;Attack Orcs;"..tostring(self.attack_orcs).."]"..
                 extra..
                 "field[1,6;9,1;whitelist;Whitelist;"..
 		minetest.formspec_escape(table.concat(self.whitelist, ";")).."]"..
