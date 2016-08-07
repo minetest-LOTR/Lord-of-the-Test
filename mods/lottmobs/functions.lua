@@ -456,3 +456,21 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		lottmobs.change_settings(fields)
 	end
 end)
+
+minetest.register_craftitem("lottmobs:orc", {
+                                    description = "Orc Guard",
+                                    inventory_image = "mobs_blood.png",
+                                    on_place = function(itemstack, placer, pointed_thing)
+                                            if pointed_thing.above then
+                                                    local pos = pointed_thing.above
+                                                    pos.y = pos.y + 1
+                                                    local obj = minetest.env:add_entity(pos, "lottmobs:orc"):get_luaentity()
+                                                    if not minetest.setting_getbool("creative_mode") then
+                                                            itemstack:take_item()
+                                                    end
+                                                    obj.tamed = true
+                                                    obj.owner = placer:get_player_name()
+                                            end
+                                            return itemstack
+                                    end
+})
