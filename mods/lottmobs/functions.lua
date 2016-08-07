@@ -360,6 +360,11 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race)
                         self.blacklist = split(fields.blacklist, ";")
                 end
 	end
+        lottmobs.name = function(name)
+                self.game_name = name
+                self.nametag = name
+                update_tag(self)
+        end        
 	local item = clicker:get_wielded_item()
 	local name = clicker:get_player_name()
 	if item:get_name() == "lottfarming:corn"
@@ -416,13 +421,12 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race)
 				end
 			end
 		end
-		lottmobs.name = function(name)
-			self.game_name = name
-			self.nametag = name
-			update_tag(self)
-		end
 	elseif self.owner and self.owner == name then
-		minetest.show_formspec(name, "mob_settings", get_guard_formspec(self))
+                if self.game_name == "mob" then
+                        minetest.show_formspec(name, "mob_naming", "field[naming;Name your guard:;")
+                else
+                        minetest.show_formspec(name, "mob_settings", get_guard_formspec(self))
+                end
 	else
 		if self.game_name == "mob" then
 			self.game_name = lottmobs[race]["names"][math.random(1, #lottmobs[race]["names"])]
@@ -456,21 +460,3 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		lottmobs.change_settings(fields)
 	end
 end)
-
-minetest.register_craftitem("lottmobs:orc", {
-                                    description = "Orc Guard",
-                                    inventory_image = "mobs_blood.png",
-                                    on_place = function(itemstack, placer, pointed_thing)
-                                            if pointed_thing.above then
-                                                    local pos = pointed_thing.above
-                                                    pos.y = pos.y + 1
-                                                    local obj = minetest.env:add_entity(pos, "lottmobs:orc"):get_luaentity()
-                                                    if not minetest.setting_getbool("creative_mode") then
-                                                            itemstack:take_item()
-                                                    end
-                                                    obj.tamed = true
-                                                    obj.owner = placer:get_player_name()
-                                            end
-                                            return itemstack
-                                    end
-})
