@@ -395,7 +395,7 @@ end
 -- Plum Trees
 
 function lottplants_plumtree(pos)
-	local t = 4 + math.random(2) -- trunk height
+	local t = 3 + math.random(2) -- trunk height
 	for j = -2, t do
 		if j == t or j == t - 2 then
 			for i = -2, 2 do
@@ -405,13 +405,15 @@ function lottplants_plumtree(pos)
 				if math.random() > (absi + absk) / 24 then
 					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:plumleaf"})
 				end
-				if math.random() > (absi + absk) / 12 then
+				if math.random() > (absi + absk) / 2 then
 					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:plum"})
 				end
 			end
 			end
 		end
-		check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
+		if j ~= t then
+			check_add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:tree"})
+		end
 	end
 end
 

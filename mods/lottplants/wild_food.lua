@@ -103,14 +103,8 @@ minetest.register_node("lottplants:cabbage_wild", {
 			{ items = {'lottfarming:cabbage'}, rarity = 10}
 		}
 	},
-	walkable = false,
-	buildable_to = true,
-	groups = {snappy=3,flammable=2,flora=1,attached_node=1},
+	groups = {snappy=3,flammable=2,flora=1},
 	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
-	},
 })
 
 -- MELON
@@ -129,14 +123,8 @@ minetest.register_node("lottplants:melon_wild", {
 			{ items = {'lottfarming:melon 6'}, rarity = 8}
 		}
 	},
-	walkable = false,
-	buildable_to = true,
-	groups = {snappy=3,flammable=2,flora=1,attached_node=1},
+	groups = {snappy=3,flammable=2,flora=1},
 	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
-	},
 })
 
 -- MUSHROOMS
