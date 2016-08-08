@@ -27,13 +27,13 @@ local value_in_table = function(tab, val)
         return false
 end
 
-local monster_guard_attack = function(guard)
-        if not damage_enabled or guard.state == "attack" or day_docile(guard) then
+local monster_guard_attack = function(self)
+        if not damage_enabled or self.state == "attack" or day_docile(self) then
                 return
         end
         local player, entity_type, obj, min_player, npc_race = nil, nil, nil, nil, nil
-        local min_dist = guard.view_range + 1
-        local objs = minetest.get_objects_inside_radius(guard.object:getpos(), guard.view_range)
+        local min_dist = self.view_range + 1
+        local objs = minetest.get_objects_inside_radius(self.object:getpos(), self.view_range)
         for n = 1, #objs do
                 if invisibility[ objs[n]:get_player_name() ] then
                         entity_type = ""
@@ -51,7 +51,7 @@ local monster_guard_attack = function(guard)
                 
                 if entity_type == "player" or entity_type == "npc" then
                         
-                        s = guard.object:getpos()
+                        s = self.object:getpos()
                         p = player:getpos()
                         sp = s
                         
@@ -61,14 +61,38 @@ local monster_guard_attack = function(guard)
                         
                         dist = get_distance(p, s)
                         
-                        if dist < guard.view_range then
+                        if dist < self.view_range then
                                 
                                 -- choose closest player to attack
-                                if line_of_sight_water(guard, sp, p, 2) == true
+                                if line_of_sight_water(self, sp, p, 2) == true
                                 and dist < min_dist then
-                                        if (entity_type == "player" and player:get_player_name() ~= guard.owner) or entity_type == "npc" then
-                                                min_dist = dist
-                                                min_player = player
+                                        if entity_type == "player"
+                                        and player:get_player_name() ~= self.owner
+                                        and self.whitelist
+                                        and not value_in_table(self.whitelist, player:get_player_name()) then
+                                                local is_elf = minetest.check_player_privs(player, "GAMEelf")
+                                                local is_man = minetest.check_player_privs(player, "GAMEman")
+                                                local is_orc = minetest.check_player_privs(player, "GAMEorc")
+                                                local is_hobbit = minetest.check_player_privs(player, "GAMEhobbit")
+                                                local is_dwarf = minetest.check_player_privs(_player, "GAMEdwarf")
+                                                if (self.attack_elves and is_elf)
+                                                or (self.attack_men and is_man)
+                                                or (self.attack_orcs and is_orc)
+                                                or (self.attack_hobbits and is_hobbit)
+                                                or (self.attack_dwarves and is_dwarf)
+                                                or (self.blacklist
+                                                and value_in_table(self.blacklist, player:get_player_name())) then
+                                                            min_dist = dist
+                                                            min_player = player
+                                                end
+                                        elseif entity_type == "npc" then
+                                                if (self.attack_men and npc_race == "men")
+                                                or (self.attack_hobbits and npc_race == "hobbits")
+                                                or (self.attack_dwarves and npc_race == "dwarves")
+                                                or (self.attack_elves and npc_race == "elves") then
+                                                        min_dist = dist
+                                                        min_player = player
+                                                end
                                         end
                                 end
                         end
@@ -77,40 +101,17 @@ local monster_guard_attack = function(guard)
         
         -- attack player
         if min_player then
-                if entity_type == "player" and guard.whitelist
-                and not value_in_table(guard.whitelist, min_player:get_player_name()) then
-                        local is_elf = minetest.check_player_privs(min_player, "GAMEelf")
-                        local is_man = minetest.check_player_privs(min_player, "GAMEman")
-                        local is_orc = minetest.check_player_privs(min_player, "GAMEorc")
-                        local is_hobbit = minetest.check_player_privs(min_player, "GAMEhobbit")
-                        local is_dwarf = minetest.check_player_privs(min_player, "GAMEdwarf")
-                        if (guard.attack_elves and is_elf)
-                                or (guard.attack_men and is_man)
-                                or (guard.attack_orcs and is_orc)
-                                or (guard.attack_hobbits and is_hobbit)
-                                or (guard.attack_dwarves and is_dwarf)
-                                or (guard.blacklist
-                                and value_in_table(guard.blacklist, min_player:get_player_name())) then
-                                        do_attack(guard, min_player)
-                        end
-                elseif entity_type == "npc" then
-                        if (guard.attack_men and npc_race == "men")
-                        or (guard.attack_hobbits and npc_race == "hobbits")
-                        or (guard.attack_dwarves and npc_race == "dwarves")
-                        or (guard.attack_elves and npc_race == "elves") then
-                                do_attack(guard, min_player)
-                        end
-                end
+                do_attack(self, min_player)
         end
 end
 
-local npc_guard_attack = function(guard)
-        if not damage_enabled or guard.state == "attack" then
+local npc_guard_attack = function(self)
+        if not damage_enabled or self.state == "attack" then
                 return
         end
         local player, entity_type, obj, min_player = nil, nil, nil, nil
-        local min_dist = guard.view_range + 1
-        local objs = minetest.get_objects_inside_radius(guard.object:getpos(), guard.view_range)
+        local min_dist = self.view_range + 1
+        local objs = minetest.get_objects_inside_radius(self.object:getpos(), self.view_range)
         for n = 1, #objs do
                 if invisibility[ objs[n]:get_player_name() ] then
                         entity_type = ""
@@ -127,7 +128,7 @@ local npc_guard_attack = function(guard)
                 
                 if entity_type == "player" or entity_type == "monster" then
                         
-                        s = guard.object:getpos()
+                        s = self.object:getpos()
                         p = player:getpos()
                         sp = s
                         
@@ -137,12 +138,31 @@ local npc_guard_attack = function(guard)
                         
                         dist = get_distance(p, s)
                         
-                        if dist < guard.view_range then
+                        if dist < self.view_range then
                                 
                                 -- choose closest player to attack
-                                if line_of_sight_water(guard, sp, p, 2) == true
+                                if line_of_sight_water(self, sp, p, 2) == true
                                 and dist < min_dist then
-                                        if (entity_type == "player" and player:get_player_name() ~= guard.owner) or entity_type == "monster" then
+                                        if entity_type == "player"
+                                        and player:get_player_name() ~= self.owner
+                                        and self.whitelist
+                                        and not value_in_table(self.whitelist, player:get_player_name()) then
+                                                local is_elf = minetest.check_player_privs(player, "GAMEelf")
+                                                local is_man = minetest.check_player_privs(player, "GAMEman")
+                                                local is_orc = minetest.check_player_privs(player, "GAMEorc")
+                                                local is_hobbit = minetest.check_player_privs(player, "GAMEhobbit")
+                                                local is_dwarf = minetest.check_player_privs(player, "GAMEdwarf")
+                                                if (self.attack_elves and is_elf)
+                                                or (self.attack_men and is_man)
+                                                or (self.attack_orcs and is_orc)
+                                                or (self.attack_hobbits and is_hobbit)
+                                                or (self.attack_dwarves and is_dwarf)
+                                                or (self.blacklist
+                                                and value_in_table(self.blacklist, player:get_player_name())) then
+                                                            min_dist = dist
+                                                            min_player = player
+                                                end
+                                        elseif entity_type == "monster" and self.attacks_monsters then
                                                 min_dist = dist
                                                 min_player = player
                                         end
@@ -153,25 +173,7 @@ local npc_guard_attack = function(guard)
         
         -- attack player
         if min_player then
-                if entity_type == "player" and guard.whitelist
-                and not value_in_table(guard.whitelist, min_player:get_player_name()) then
-                        local is_elf = minetest.check_player_privs(min_player, "GAMEelf")
-                        local is_man = minetest.check_player_privs(min_player, "GAMEman")
-                        local is_orc = minetest.check_player_privs(min_player, "GAMEorc")
-                        local is_hobbit = minetest.check_player_privs(min_player, "GAMEhobbit")
-                        local is_dwarf = minetest.check_player_privs(min_player, "GAMEdwarf")
-                        if (guard.attack_elves and is_elf)
-                                or (guard.attack_men and is_man)
-                                or (guard.attack_orcs and is_orc)
-                                or (guard.attack_hobbits and is_hobbit)
-                                or (guard.attack_dwarves and is_dwarf)
-                                or (guard.blacklist
-                                and value_in_table(guard.blacklist, min_player:get_player_name())) then
-                                        do_attack(guard, min_player)
-                        end
-                elseif entity_type == "monster" and guard.attacks_monsters then
-                        do_attack(guard, min_player)
-                end
+                do_attack(self, min_player)
         end
 end
 
@@ -242,7 +244,6 @@ end
 local npc_attack = function(self)
 
 	if self.type ~= "npc"
-        or not self.attacks_monsters
 	or self.state == "attack" then
 		return
 	end
@@ -281,20 +282,21 @@ local npc_attack = function(self)
                                 -- choose closest player to attack
                                 if line_of_sight_water(self, sp, p, 2) == true
                                 and dist < min_dist then
-                                        min_dist = dist
-                                        min_player = player
+                                        if entity_type == "player"
+                                        and minetest.check_player_privs(player, "GAMEorc")
+                                        and not minetest.check_player_privs(player, "GAMEwizard") then
+                                                min_dist = dist
+                                                min_player = player
+                                        elseif entity_type == "monster" then
+                                                min_dist = dist
+                                                min_player = player
+                                        end
                                 end
                         end
                 end
         end
         if min_player then
-                if entity_type == "player"
-                and minetest.check_player_privs(min_player, "GAMEorc")
-                and not minetest.check_player_privs(min_player, "GAMEwizard") then
-                        do_attack(self, min_player)
-                elseif entity_type == "monster" then
-                        do_attack(self, min_player)
-                end
+                do_attack(self, min_player)
         end        
 end
 
@@ -356,12 +358,11 @@ lottmobs.do_custom_guard = function(guard, dtime)
         
 	mobs.follow_flop(guard)
 	mobs.do_states(guard, dtime)
-        
         return false
 end
 
 local attacks = {
-	"attack_monsters",
+	"attacks_monsters",
 	"attack_elves",
 	"attack_men",
 	"attack_orcs",
@@ -381,7 +382,7 @@ local get_guard_formspec = function(self)
         if self.type == "monster" then
                 extra = ""
         else
-                extra = "checkbox[7,2;attack_monsters;Attack Monsters;"..tostring(self.attack_monsters).."]"
+                extra = "checkbox[7,2;attacks_monsters;Attack Monsters;"..tostring(self.attacks_monsters).."]"
         end
         
         if self.order == "stand" then selected_idx = 2 end
@@ -411,7 +412,7 @@ local guard_can_be_hired = function(guard, clicker)
         end
 end
 
-lottmobs.guard = function(self, clicker, payment, mob_name, race)
+lottmobs.guard = function(self, clicker, payment, mob_name, race, guard_dropped)
         lottmobs.change_settings = function(fields)
                 if fields.order then
                         self.order = fields.order
@@ -420,7 +421,7 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race)
                         if fields[v] == "true" then
 				self[v] = true
                         elseif fields[v] == "false" then
-				self[v] = nil
+				self[v] = false
                         end
                 end
                 if fields.whitelist then
@@ -464,15 +465,9 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race)
 						item:take_item(cost)
 						clicker:set_wielded_item(item)
 					end
-					self.tamed = true
-					if not self.owner or self.owner == "" then
-						self.owner = clicker:get_player_name()
-					end
-					self.order = "follow"
-					self.attack_monsters = true
-					minetest.after(1, function()
-						minetest.show_formspec(name, "mob_naming", "field[naming;Name your guard:;]")
-					end)
+                                        local guard_to_give = guard_dropped or self.name
+                                        clicker:get_inventory():add_item("main", guard_to_give)
+                                        self.object:remove()
 				else
 					minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> What, you don't have that much money?! Stop wasting my time!")
 				end
@@ -531,7 +526,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 end)
 
-lottmobs.register_guard_craftitem = function(name, description, inventory_image)
+lottmobs.register_guard_craftitem = function(name, description, inventory_image, mob_choices)
         minetest.register_craftitem(name, {
                                             description = description,
                                             inventory_image = inventory_image,
@@ -539,16 +534,20 @@ lottmobs.register_guard_craftitem = function(name, description, inventory_image)
                                                     if pointed_thing.above then
                                                             local pos = pointed_thing.above
                                                             pos.y = pos.y + 1
-                                                            local obj = minetest.env:add_entity(pos, name):get_luaentity()
+                                                            local mob = name
+                                                            if mob_choices then
+                                                                    mob = mob_choices[math.random(#mob_choices)]
+                                                            end
+                                                            local obj = minetest.env:add_entity(pos, mob):get_luaentity()
                                                             if not minetest.setting_getbool("creative_mode") then
                                                                     itemstack:take_item()
                                                             end
                                                             obj.tamed = true
                                                             obj.owner = placer:get_player_name()
+                                                            obj.order = "follow"
                                                             obj.on_rightclick(obj, placer)
                                                     end
                                                     return itemstack
                                             end
         })
 end
-lottmobs.register_guard_craftitem("lottmobs:orc", "Orc Guard", "mobs_blood.png")

@@ -43,7 +43,7 @@ function lottmobs.register_dwarf(n, hpmin, hpmax, textures, wv, rv, damg, arm, d
     	},
     	attacks_monsters = true,
     	on_rightclick = function(self, clicker)
-            lottmobs.guard(self, clicker, "default:gold_ingot", "Dwarf", "dwarf")
+            lottmobs.guard(self, clicker, "default:gold_ingot", "Dwarf", "dwarf", "lottmobs:dwarf")
     	end,
         do_custom = lottmobs.do_custom_guard,
     	peaceful = true,
@@ -173,3 +173,5 @@ local drops3 = {
 }
 
 lottmobs.register_dwarf("2", 25, 25, textures3, 2.5, 3.5, 7, 100, drops3)
+
+lottmobs.register_guard_craftitem("lottmobs:dwarf2", "Dwarf Guard", "lottmobs_dwarf_guard_inv.png", {"lottmobs:dwarf", "lottmobs:dwarf1", "lottmobs:dwarf2"})
