@@ -174,4 +174,4 @@ local drops3 = {
 
 lottmobs.register_dwarf("2", 25, 25, textures3, 2.5, 3.5, 7, 100, drops3)
 
-lottmobs.register_guard_craftitem("lottmobs:dwarf2", "Dwarf Guard", "lottmobs_dwarf_guard_inv.png", {"lottmobs:dwarf", "lottmobs:dwarf1", "lottmobs:dwarf2"})
+lottmobs.register_guard_craftitem("lottmobs:dwarf", "Dwarf Guard", "lottmobs_dwarf_guard_inv.png", {"lottmobs:dwarf", "lottmobs:dwarf1", "lottmobs:dwarf2"})
