@@ -59,7 +59,6 @@ minetest.register_node(":default:ice", {
 minetest.register_node("lottmapgen:blacksource", {
 	description = "Black Water Source",
 	drawtype = "liquid",
-	inventory_image = minetest.inventorycube("lottmapgen_black_water.png"),
 	tiles = {"lottmapgen_black_water.png"},
 	alpha = 240,
 	paramtype = "light",
@@ -110,7 +109,6 @@ minetest.register_node("lottmapgen:blackflowing", {
 minetest.register_node("lottmapgen:black_river_source", {
 	description = "Black River Source",
 	drawtype = "liquid",
-	inventory_image = minetest.inventorycube("lottmapgen_black_water.png"),
 	tiles = {"lottmapgen_black_water.png"},
 	alpha = 240,
 	paramtype = "light",
