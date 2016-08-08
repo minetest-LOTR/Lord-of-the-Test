@@ -300,64 +300,64 @@ local npc_attack = function(self)
         end        
 end
 
-lottmobs.do_custom_guard = function(guard, dtime)
+lottmobs.do_custom_guard = function(self, dtime)
 	-- attack timer
-	guard.timer = guard.timer + dtime
+	self.timer = self.timer + dtime
 
-	if guard.state ~= "attack" then
+	if self.state ~= "attack" then
 
-		if guard.timer < 1 then
+		if self.timer < 1 then
 			return false
 		end
 
-		guard.timer = 0
+		self.timer = 0
 	end
 
 	-- never go over 100
-	if guard.timer > 100 then
-		guard.timer = 1
+	if self.timer > 100 then
+		self.timer = 1
 	end
 
 	-- node replace check (cow eats grass etc.)
-        local pos = guard.object:getpos()
-	replace(guard, pos)
+        local pos = self.object:getpos()
+	replace(self, pos)
 
 	-- mob plays random sound at times
-	if guard.sounds.random
+	if self.sounds.random
 	and random(1, 100) == 1 then
 
-		minetest.sound_play(guard.sounds.random, {
-			object = guard.object,
-			max_hear_distance = guard.sounds.distance
+		minetest.sound_play(self.sounds.random, {
+			object = self.object,
+			max_hear_distance = self.sounds.distance
 		})
 	end
 
 	-- environmental damage timer (every 1 second)
-	guard.env_damage_timer = guard.env_damage_timer + dtime
+	self.env_damage_timer = self.env_damage_timer + dtime
 
-	if (guard.state == "attack" and guard.env_damage_timer > 1)
-	or guard.state ~= "attack" then
+	if (self.state == "attack" and self.env_damage_timer > 1)
+	or self.state ~= "attack" then
 
-		guard.env_damage_timer = 0
+		self.env_damage_timer = 0
 
-		do_env_damage(guard)
+		do_env_damage(self)
 	end
-	if guard.owner and guard.owner ~= "" then
-                if guard.type == "monster" then
-                        monster_guard_attack(guard)
-                elseif guard.type == "npc" then
-                        npc_guard_attack(guard)
+	if self.owner and self.owner ~= "" then
+                if self.type == "monster" then
+                        monster_guard_attack(self)
+                elseif self.type == "npc" then
+                        npc_guard_attack(self)
                 end
         else
-                if guard.type == "monster" then
-                        monster_attack(guard)
-                elseif guard.type == "npc" then
-                        npc_attack(guard)
+                if self.type == "monster" then
+                        monster_attack(self)
+                elseif self.type == "npc" then
+                        npc_attack(self)
                 end
 	end
         
-	mobs.follow_flop(guard)
-	mobs.do_states(guard, dtime)
+	mobs.follow_flop(self)
+	mobs.do_states(self, dtime)
         return false
 end
 
@@ -402,10 +402,10 @@ local get_guard_formspec = function(self)
                 "button_exit[1,8;2,1;exit_button; Proceed]"
 end
 
-local guard_can_be_hired = function(guard, clicker)
-        if guard.type == "npc" and (not minetest.check_player_privs(clicker, "GAMEorc") or minetest.check_player_privs(clicker, "GAMEwizard")) then
+local guard_can_be_hired = function(self, clicker)
+        if self.type == "npc" and (not minetest.check_player_privs(clicker, "GAMEorc") or minetest.check_player_privs(clicker, "GAMEwizard")) then
                 return true
-        elseif guard.type == "monster" and minetest.check_player_privs(clicker, "GAMEorc") then
+        elseif self.type == "monster" and minetest.check_player_privs(clicker, "GAMEorc") then
                 return true
         else
                 return false
