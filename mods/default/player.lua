@@ -145,8 +145,8 @@ minetest.register_on_joinplayer(function(player)
 	default.player_set_model(player, "character.x")
 	player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
 
-	player:hud_set_hotbar_image("gui_hotbar.png")
-	player:hud_set_hotbar_selected_image("gui_hotbar_selected.png")
+	player:hud_set_hotbar_image("hotbar.png")
+	player:hud_set_hotbar_selected_image("hotbar_selected.png")
 end)
 
 minetest.register_on_leaveplayer(function(player)

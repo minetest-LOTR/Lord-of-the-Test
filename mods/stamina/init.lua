@@ -341,8 +341,6 @@ if minetest.setting_getbool("enable_damage") and minetest.is_yes(minetest.settin
 		inv:set_size("stamina", 1)
 
 		local name = player:get_player_name()
-		player:hud_set_hotbar_image("hotbar.png")
-		player:hud_set_hotbar_selected_image("hotbar_selected.png")
 		stamina_players[name] = {}
 		stamina_players[name].level = stamina_read(player)
 		stamina_players[name].exhaust = 0
