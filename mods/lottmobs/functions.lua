@@ -27,7 +27,7 @@ local value_in_table = function(tab, val)
         return false
 end
 
-local guard_attack_evil = function(guard)
+local monster_guard_attack = function(guard)
         if not damage_enabled or guard.state == "attack" or day_docile(guard) then
                 return
         end
@@ -104,6 +104,77 @@ local guard_attack_evil = function(guard)
         end
 end
 
+local npc_guard_attack = function(guard)
+        if not damage_enabled or guard.state == "attack" then
+                return
+        end
+        local player, entity_type, obj, min_player = nil, nil, nil, nil
+        local min_dist = guard.view_range + 1
+        local objs = minetest.get_objects_inside_radius(guard.object:getpos(), guard.view_range)
+        for n = 1, #objs do
+                if invisibility[ objs[n]:get_player_name() ] then
+                        entity_type = ""
+                elseif objs[n]:is_player() then
+                        player = objs[n]
+                        entity_type = "player"
+                else
+                        obj = objs[n]:get_luaentity()
+                        if obj then
+                                player = obj.object
+                                entity_type = obj.type
+                        end
+                end
+                
+                if entity_type == "player" or entity_type == "monster" then
+                        
+                        s = guard.object:getpos()
+                        p = player:getpos()
+                        sp = s
+                        
+                        -- aim higher to make looking up hills more realistic
+                        p.y = p.y + 1
+                        sp.y = sp.y + 1
+                        
+                        dist = get_distance(p, s)
+                        
+                        if dist < guard.view_range then
+                                
+                                -- choose closest player to attack
+                                if line_of_sight_water(guard, sp, p, 2) == true
+                                and dist < min_dist then
+                                        if (entity_type == "player" and player:get_player_name() ~= guard.owner) or entity_type == "monster" then
+                                                min_dist = dist
+                                                min_player = player
+                                        end
+                                end
+                        end
+                end
+        end
+        
+        -- attack player
+        if min_player then
+                if entity_type == "player" and guard.whitelist
+                and not value_in_table(guard.whitelist, min_player:get_player_name()) then
+                        local is_elf = minetest.check_player_privs(min_player, "GAMEelf")
+                        local is_man = minetest.check_player_privs(min_player, "GAMEman")
+                        local is_orc = minetest.check_player_privs(min_player, "GAMEorc")
+                        local is_hobbit = minetest.check_player_privs(min_player, "GAMEhobbit")
+                        local is_dwarf = minetest.check_player_privs(min_player, "GAMEdwarf")
+                        if (guard.attack_elves and is_elf)
+                                or (guard.attack_men and is_man)
+                                or (guard.attack_orcs and is_orc)
+                                or (guard.attack_hobbits and is_hobbit)
+                                or (guard.attack_dwarves and is_dwarf)
+                                or (guard.blacklist
+                                and value_in_table(guard.blacklist, min_player:get_player_name())) then
+                                        do_attack(guard, min_player)
+                        end
+                elseif entity_type == "monster" and guard.attacks_monsters then
+                        do_attack(guard, min_player)
+                end
+        end
+end
+
 local monster_attack = function(self)
 
 	if not damage_enabled
@@ -168,7 +239,66 @@ local monster_attack = function(self)
         end
 end
 
-lottmobs.do_custom_guard_evil = function(guard, dtime)
+local npc_attack = function(self)
+
+	if self.type ~= "npc"
+        or not self.attacks_monsters
+	or self.state == "attack" then
+		return
+	end
+        local player, entity_type, obj, min_player = nil, nil, nil, nil
+        local min_dist = self.view_range + 1
+        local objs = minetest.get_objects_inside_radius(self.object:getpos(), self.view_range)
+        for n = 1, #objs do
+                if invisibility[ objs[n]:get_player_name() ] then
+                        entity_type = ""
+                elseif objs[n]:is_player() then
+                        player = objs[n]
+                        entity_type = "player"
+		else
+			obj = objs[n]:get_luaentity()
+
+			if obj then
+				player = obj.object
+				entity_type = obj.type
+			end                                
+                end
+
+                if entity_type == "player" or entity_type == "monster" then
+
+                        s = self.object:getpos()
+                        p = player:getpos()
+                        sp = s
+
+                        -- aim higher to make looking up hills more realistic
+                        p.y = p.y + 1
+                        sp.y = sp.y + 1
+
+                        dist = get_distance(p, s)
+
+                        if dist < self.view_range then
+
+                                -- choose closest player to attack
+                                if line_of_sight_water(self, sp, p, 2) == true
+                                and dist < min_dist then
+                                        min_dist = dist
+                                        min_player = player
+                                end
+                        end
+                end
+        end
+        if min_player then
+                if entity_type == "player"
+                and minetest.check_player_privs(min_player, "GAMEorc")
+                and not minetest.check_player_privs(min_player, "GAMEwizard") then
+                        do_attack(self, min_player)
+                elseif entity_type == "monster" then
+                        do_attack(self, min_player)
+                end
+        end        
+end
+
+lottmobs.do_custom_guard = function(guard, dtime)
 	-- attack timer
 	guard.timer = guard.timer + dtime
 
@@ -211,83 +341,23 @@ lottmobs.do_custom_guard_evil = function(guard, dtime)
 		do_env_damage(guard)
 	end
 	if guard.owner and guard.owner ~= "" then
-                guard_attack_evil(guard)
+                if guard.type == "monster" then
+                        monster_guard_attack(guard)
+                elseif guard.type == "npc" then
+                        npc_guard_attack(guard)
+                end
         else
-                monster_attack(guard)
+                if guard.type == "monster" then
+                        monster_attack(guard)
+                elseif guard.type == "npc" then
+                        npc_attack(guard)
+                end
 	end
         
 	mobs.follow_flop(guard)
 	mobs.do_states(guard, dtime)
         
         return false
-end
-
-lottmobs.do_custom_guard = function(guard, dtime)
-        if not damage_enabled or guard.state == "attack" then
-                return
-        end
-        local player, entity_type, obj, min_player = nil, nil, nil, nil
-        local min_dist = guard.view_range + 1
-        local objs = minetest.get_objects_inside_radius(guard.object:getpos(), guard.view_range)
-        for n = 1, #objs do
-                if invisibility[ objs[n]:get_player_name() ] then
-                        entity_type = ""
-                elseif objs[n]:is_player() then
-                        player = objs[n]
-                        entity_type = "player"
-                end
-
-                if entity_type == "player" then
-
-                        s = guard.object:getpos()
-                        p = player:getpos()
-                        sp = s
-
-                        -- aim higher to make looking up hills more realistic
-                        p.y = p.y + 1
-                        sp.y = sp.y + 1
-
-                        dist = get_distance(p, s)
-
-                        if dist < guard.view_range then
-
-                                -- choose closest player to attack
-                                if line_of_sight_water(guard, sp, p, 2) == true
-					and dist < min_dist
-                                and player:get_player_name() ~= guard.owner then
-                                        min_dist = dist
-                                        min_player = player
-                                end
-                        end
-                end
-                
-                -- attack player
-                if guard.owner and guard.owner ~= "" then
-                        if min_player and guard.whitelist
-                        and not value_in_table(guard.whitelist, min_player:get_player_name()) then
-                                local is_elf = minetest.check_player_privs(min_player, "GAMEelf")
-                                local is_man = minetest.check_player_privs(min_player, "GAMEman")
-                                local is_orc = minetest.check_player_privs(min_player, "GAMEorc")
-                                local is_hobbit = minetest.check_player_privs(min_player, "GAMEhobbit")
-                                local is_dwarf = minetest.check_player_privs(min_player, "GAMEdwarf")
-                                if (guard.attack_elves and is_elf)
-                                        or (guard.attack_men and is_man)
-                                        or (guard.attack_orcs and is_orc)
-                                        or (guard.attack_hobbits and is_hobbit)
-                                        or (guard.attack_dwarves and is_dwarf)
-                                        or (guard.blacklist
-                                            and value_in_table(guard.blacklist, min_player:get_player_name())) then
-                                                do_attack(guard, min_player)
-                                end
-                        end
-                else
-                        if min_player
-                        and minetest.check_player_privs(min_player, "GAMEorc")
-                        and not minetest.check_player_privs(min_player, "GAMEwizard") then
-                                do_attack(guard, min_player)
-                        end
-                end
-	end
 end
 
 local attacks = {
@@ -460,3 +530,25 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		lottmobs.change_settings(fields)
 	end
 end)
+
+lottmobs.register_guard_craftitem = function(name, description, inventory_image)
+        minetest.register_craftitem(name, {
+                                            description = description,
+                                            inventory_image = inventory_image,
+                                            on_place = function(itemstack, placer, pointed_thing)
+                                                    if pointed_thing.above then
+                                                            local pos = pointed_thing.above
+                                                            pos.y = pos.y + 1
+                                                            local obj = minetest.env:add_entity(pos, name):get_luaentity()
+                                                            if not minetest.setting_getbool("creative_mode") then
+                                                                    itemstack:take_item()
+                                                            end
+                                                            obj.tamed = true
+                                                            obj.owner = placer:get_player_name()
+                                                            obj.on_rightclick(obj, placer)
+                                                    end
+                                                    return itemstack
+                                            end
+        })
+end
+lottmobs.register_guard_craftitem("lottmobs:orc", "Orc Guard", "mobs_blood.png")

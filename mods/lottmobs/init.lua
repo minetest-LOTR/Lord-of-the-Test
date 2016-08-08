@@ -626,7 +626,7 @@ mobs:register_mob("lottmobs:dunlending", {
 	on_rightclick = function(self, clicker)
 		lottmobs.guard(self, clicker, "default:gold_ingot", "Dunlending", "human")
 	end,                
-        do_custom = lottmobs.do_custom_guard_evil,
+        do_custom = lottmobs.do_custom_guard,
 	attack_type = "dogfight",
 	animation = {
 		speed_normal = 15,
@@ -842,7 +842,7 @@ mobs:register_mob("lottmobs:orc", {
 	on_rightclick = function(self, clicker)
 		lottmobs.guard(self, clicker, "default:gold_ingot", "Orc", "orc")
 	end,
-	do_custom = lottmobs.do_custom_guard_evil,
+	do_custom = lottmobs.do_custom_guard,
 	attacks_monsters = true,
 	peaceful = true,
 	group_attack = true,
@@ -944,7 +944,7 @@ mobs:register_mob("lottmobs:raiding_orc", {
 	on_rightclick = function(self, clicker)
 		lottmobs.guard(self, clicker, "default:gold_ingot", "Raiding Orc", "orc")
 	end,
-	do_custom = lottmobs.do_custom_guard_evil,
+	do_custom = lottmobs.do_custom_guard,
 	attacks_monsters = true,
 	peaceful = true,
 	group_attack = true,
@@ -999,7 +999,7 @@ mobs:register_mob("lottmobs:warg", {
 		punch_start = 260,
 		punch_end = 290,
 	},
-        do_custom = lottmobs.do_custom_guard_evil,
+        do_custom = lottmobs.do_custom_guard,
 	jump = true,
 	attacks_monsters = true,
 	peaceful = true,
@@ -1099,7 +1099,7 @@ mobs:register_mob("lottmobs:uruk_hai", {
 	on_rightclick = function(self, clicker)
 		lottmobs.guard(self, clicker, "default:gold_ingot", "Uruk Hai", "orc")
 	end,
-	do_custom = lottmobs.do_custom_guard_evil,
+	do_custom = lottmobs.do_custom_guard,
 	attacks_monsters = true,
 	peaceful = true,
 	group_attack = true,
@@ -1161,7 +1161,7 @@ mobs:register_mob("lottmobs:battle_troll", {
 	lava_damage = 1,
 	light_damage = 0,
 	on_rightclick = nil,
-        do_custom = lottmobs.do_custom_guard_evil,
+        do_custom = lottmobs.do_custom_guard,
 	attack_type = "dogfight",
 	animation = {
 		stand_start = 0,
@@ -1247,7 +1247,7 @@ mobs:register_mob("lottmobs:half_troll", {
 	lava_damage = 10,
 	light_damage = 0,
 	on_rightclick = nil,
-        do_custom = lottmobs.do_custom_guard_evil,
+        do_custom = lottmobs.do_custom_guard,
 	attack_type = "dogfight",
 	animation = {
 		speed_normal = 15,

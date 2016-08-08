@@ -44,9 +44,7 @@ function lottmobs.register_elf(n, hpmin, hpmax, textures, wv, rv, damg, arm, dro
 		on_rightclick = function(self, clicker)
 			lottmobs.guard(self, clicker, "default:gold_ingot", "Elf", "elf")
 		end,
-		do_custom = function(self, dtime)
-			lottmobs.do_custom_guard(self)
-		end,
+		do_custom = lottmobs.do_custom_guard,
 		peaceful = true,
 		group_attack = true,
 		step = 1,

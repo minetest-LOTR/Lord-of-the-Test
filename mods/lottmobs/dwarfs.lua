@@ -45,9 +45,7 @@ function lottmobs.register_dwarf(n, hpmin, hpmax, textures, wv, rv, damg, arm, d
     	on_rightclick = function(self, clicker)
             lottmobs.guard(self, clicker, "default:gold_ingot", "Dwarf", "dwarf")
     	end,
-        do_custom = function(self, dtime)
-            lottmobs.do_custom_guard(self)
-        end,
+        do_custom = lottmobs.do_custom_guard,
     	peaceful = true,
     	group_attack = true,
     	step = 1,
