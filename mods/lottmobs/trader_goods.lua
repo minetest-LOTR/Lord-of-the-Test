@@ -196,3 +196,13 @@ lottmobs.human = {
 		"Life here is far from normal. We wish for peace, yet the only way we can get peace is through war...",
 	}
 }
+lottmobs.orc = {
+        names = {
+                "Azog", "Balcmeg", "Boldog", "Bolg", "Golfimbul", "Gorbag", "Gorgol",
+                "Grishnákh", "Lagduf", "Lug", "Lugdush", "Mauhúr", "Muzgash", "Orcobal",
+                "Othrod", "Radbug", "Shagrat", "Ufthak", "Uglúk"
+        },
+        messages = {
+                ""
+        },
+}

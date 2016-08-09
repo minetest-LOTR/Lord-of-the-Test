@@ -8,6 +8,16 @@
 	-- line 2326 & 2327 - declare some variables lott needs in other mods.
 	-- line 1684 to 1687 - attacking mobs focus on the horse/boat, so they
 	   can actually damage the player when it is dead/destroyed!
+        -- line 1087, 1237, 2225 & 2227 - change the local functions follow_flop
+           and do_states to mobs.follow_flop and mobs.do_states so they can be accessed
+           from do_custom functions in lottmobs
+        -- line 1115 - add "or self.type == "monster"" to if statement so that orcs and
+           uruk hai tamed by orc players can follow their owners
+        -- line 2261 - add "race" field to mobs so that monster guards can be ordered to
+           only attack certain races of NPCs
+        -- line 1294 - change "if self.type ~= "npc"" to "if (self.type ~= "npc" and
+           self.type ~= "monster")" to allow monster guards to stand still
+
 ]]--
 
 mobs = {}
@@ -1083,7 +1093,7 @@ local npc_attack = function(self)
 end
 
 -- follow player if owner or holding item, if fish outta water then flop
-local follow_flop = function(self)
+mobs.follow_flop = function(self)
 
 	-- find player to follow
 	if (self.follow ~= ""
@@ -1108,6 +1118,7 @@ local follow_flop = function(self)
 	end
 
 	if self.type == "npc"
+        or self.type == "monster"
 	and self.order == "follow"
 	and self.state ~= "attack"
 	and self.owner ~= "" then
@@ -1233,7 +1244,7 @@ local dogswitch = function(self, dtime)
 end
 
 -- execute current state (stand, walk, run, attacks)
-local do_states = function(self, dtime)
+mobs.do_states = function(self, dtime)
 
 	local yaw = 0
 
@@ -1282,7 +1293,7 @@ local do_states = function(self, dtime)
 		set_animation(self, "stand")
 
 		-- npc's ordered to stand stay standing
-		if self.type ~= "npc"
+		if (self.type ~= "npc" and self.type ~= "monster")
 		or self.order ~= "stand" then
 
 			if self.walk_chance ~= 0
@@ -2220,9 +2231,9 @@ local mob_step = function(self, dtime)
 
 	breed(self)
 
-	follow_flop(self)
+	mobs.follow_flop(self)
 
-	do_states(self, dtime)
+	mobs.do_states(self, dtime)
 
 end
 
@@ -2251,6 +2262,7 @@ minetest.register_entity(name, {
 	stepheight = def.stepheight or 0.6,
 	name = name,
 	type = def.type,
+        race = def.race,
 	attack_type = def.attack_type,
 	fly = def.fly,
 	fly_in = def.fly_in or "air",

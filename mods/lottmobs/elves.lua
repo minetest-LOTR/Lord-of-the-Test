@@ -1,7 +1,8 @@
 function lottmobs.register_elf(n, hpmin, hpmax, textures, wv, rv, damg, arm, drops)
 	mobs:register_mob("lottmobs:elf" .. n, {
 		type = "npc",
-		hp_min = hpmin,
+                race = "elves",
+                hp_min = hpmin,
 		hp_max = hpmax,
 		collisionbox = {-0.3,-1.1,-0.3, 0.3,0.91,0.3},
 		textures = textures,
@@ -41,11 +42,9 @@ function lottmobs.register_elf(n, hpmin, hpmax, textures, wv, rv, damg, arm, dro
 		},
 		attacks_monsters = true,
 		on_rightclick = function(self, clicker)
-			lottmobs.guard(self, clicker, "default:gold_ingot", "Elf", "elf")
+			lottmobs.guard(self, clicker, "default:gold_ingot", "Elf", "elf", "lottmobs:elf")
 		end,
-		do_custom = function(self, dtime)
-			lottmobs.do_custom_guard(self)
-		end,
+		do_custom = lottmobs.do_custom_guard,
 		peaceful = true,
 		group_attack = true,
 		step = 1,
@@ -211,3 +210,5 @@ local drops3 = {
 }
 
 lottmobs.register_elf(2, 20, 35, textures3, 2.25, 4.75, 8, 150, drops3)
+
+lottmobs.register_guard_craftitem("lottmobs:elf", "Elven Guard", "lottmobs_elven_guard_inv.png", {"lottmobs:elf", "lottmobs:elf1", "lottmobs:elf2"})
