@@ -142,6 +142,7 @@ mobs:register_mob("lottmobs:ent", {
 		death = "mobs_yeti_death",
 		attack = "default_punch2",
 	},
+        do_custom = lottmobs.do_custom_guard,
 	attacks_monsters = true,
 	peaceful = true,
 	group_attack = true,
@@ -213,6 +214,7 @@ mobs:register_mob("lottmobs:spider", {
 			clicker:set_wielded_item(item)
 		end
 	end,
+        do_custom = lottmobs.do_custom_guard,
 	jump = true,
 	sounds = {
 		war_cry = "mobs_spider",
