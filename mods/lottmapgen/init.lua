@@ -130,6 +130,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_stonecopper = minetest.get_content_id("default:stone_with_copper")
 	local c_stoneiron = minetest.get_content_id("default:stone_with_iron")
 	local c_stonecoal = minetest.get_content_id("default:stone_with_coal")
+        local c_chalk = minetest.get_content_id("darkage:chalk")
 	local c_water = minetest.get_content_id("default:water_source")
 	local c_river_water = minetest.get_content_id("default:river_water_source")
 	local c_morwat = minetest.get_content_id("lottmapgen:blacksource")
@@ -215,7 +216,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				local via = area:index(x, y + 1, z)
 				local nodida = data[via]
 				if nodid == c_stone -- if stone
-				or nodid == c_stonecopper
+                                or nodid == c_stonecopper
+                                or nodid == c_chalk
 				or nodid == c_stoneiron
 				or nodid == c_stonecoal then
 					if y > mapgen_params.water_level-32 then

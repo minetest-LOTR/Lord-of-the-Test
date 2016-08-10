@@ -502,3 +502,27 @@ minetest.register_abm({
 		minetest.set_node(pos, {name="farming:cotton_"..height})
 	end
 })
+
+minetest.register_node("farming:straw", {
+	description = "Straw",
+	tiles = {"farming_straw.png"},
+	is_ground_content = false,
+	groups = {snappy=3, flammable=4, fall_damage_add_percent=-30},
+	sounds = default.node_sound_leaves_defaults(),
+})
+
+minetest.register_craft({
+	output = "farming:straw 3",
+	recipe = {
+		{"farming:wheat", "farming:wheat", "farming:wheat"},
+		{"farming:wheat", "farming:wheat", "farming:wheat"},
+		{"farming:wheat", "farming:wheat", "farming:wheat"},
+	}
+})
+
+minetest.register_craft({
+	output = "farming:wheat 3",
+	recipe = {
+		{"farming:straw"},
+	}
+})
