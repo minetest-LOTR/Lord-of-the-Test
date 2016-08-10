@@ -177,7 +177,7 @@ minetest.register_ore({
 	column_height_max = 30,
 	column_height_min = 20,
 	y_min            = -20,
-	y_max            = 50,
+	y_max            = 100,
 	noise_threshold = 0.45,
 	noise_params     = {
 		offset = 0.35,
@@ -194,8 +194,8 @@ minetest.register_ore({
 	wherein         	= {"default:stone", "default:dirt", "default:gravel", "default:stone_with_coal"},
 	column_height_max = 20,
 	column_height_min = 15,
-	y_min            = -200,
-	y_max            = 200,
+	y_min            = -400,
+	y_max            = -20,
 	noise_threshold = 0.5,
 	noise_params     = {
 		offset = 0.35,
@@ -214,7 +214,7 @@ minetest.register_ore({
 	column_height_max = 20,
 	column_height_min = 15,
 	y_min            = -2000,
-	y_max            = 200,
+	y_max            = -20,
 	noise_threshold = 0.53,
 	noise_params     = {
 		offset = 0.35,
