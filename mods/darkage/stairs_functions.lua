@@ -29,11 +29,5 @@ elseif minetest.get_modpath("stairs") then
         minetest.register_alias("darkage:stair_"..node, "stairs:stair_darkage_"..node)
         minetest.register_alias("darkage:slab_"..node, "stairs:slab_darkage_"..node)
     end
-else 
-    -- No compatible stairs mod found.
-    minetest.log("error", "[darkage] Darkage requires at least moreblocks or stairs to be installed. Its not possible to register stairs.")
-    function darkage.register_stairs(nodeName)
-        minetest.log("warning", "could not create stair of type "..nodeName .." because no compatible stairs mod is installed.")
-    end
 end
 

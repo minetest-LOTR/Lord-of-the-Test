@@ -1,5 +1,3 @@
-minetest.log("action"," ---- Dark Age Version 1.3 is Loading! ---- ")
-
 darkage = {}; -- Create darkage namespace
 
 local MODPATH = minetest.get_modpath("darkage")

@@ -23,12 +23,9 @@ local function generate_stratus(data, area, name, c_wherein, ca_ceilin, minp, ma
 	local volume = ((maxp.x-minp.x+1)/area_size)*((y_max-y_min+1)/area_size)*((maxp.z-minp.z+1)/area_size)
 	local pr = PseudoRandom(seed)
 	local blocks = math.floor(stratus_per_volume*volume)
-	minetest.log("info", "	<<"..name..">>");
 	if blocks == 0 then
 		blocks = 1
 	end
-	minetest.log("info", string.format("	blocks: %d in vol: %d (%d,%d,%d)", 
-									   blocks, volume, maxp.x-minp.x+1, y_max-y_min+1, maxp.z-minp.z+1))
 	for i = 1,blocks do
 		if pr:next(1,stratus_chance) == 1 then
 			-- TODO deep
@@ -93,7 +90,6 @@ local function generate_stratus(data, area, name, c_wherein, ca_ceilin, minp, ma
 					end
 				end
 			end
-			minetest.log("info", "	generated "..i.." blocks in ("..x0..","..y0..","..z0..")")
 		end
 	end
 	--print("generate_ore done")
@@ -280,8 +276,6 @@ local function generate_strati(minp, maxp, seed)
 
 	vm:set_data(data)
 	vm:write_to_map()
-
-	minetest.log("info", string.format("[darkage] Generated Strati after %.2fs.", os.clock() - t1))
 end
 
 minetest.register_on_generated(generate_strati)
