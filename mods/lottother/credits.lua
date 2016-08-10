@@ -91,7 +91,9 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
                 local form = "size[12,10]" ..
                     "background[10,8;1,1;gui_formbg.png;true]" ..
                     "label[0,-0.2;" ..
-                    minetest.colorize("black", "License of " .. v .. " mod:") .. "]"
+                    minetest.colorize("black", "License of " .. v .. " mod:") .. "]" ..
+                    "button[10,1;2,1;back_to_mods;Back]" ..
+                    "textlist[0,0.5;10,9;license;"
                 local file = io.open(minetest.get_modpath(v) .. "/license.txt")
                 if not file then return end
                 local license = file:read('*a')
@@ -100,16 +102,23 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
                 for str in (license .. "\n"):gmatch("([^\n]*)[\n]") do
                 	lines[#lines+1] = str
                 end
-                for i,v in pairs(lines) do
-                    if v ~= "" then
-                        form = form ..
-                        "label[0," .. i * 0.3 .. ";" ..
-                        minetest.formspec_escape(minetest.colorize("black", v)) .. "]"
+                for j,w in pairs(lines) do
+                    if j == #lines then
+                        form = form .. "#000000" ..
+                            minetest.formspec_escape(w) .. ";-1;true]"
+                    elseif w ~= "" then
+                        form = form .. "#000000" ..
+                        minetest.formspec_escape(w) .. ","
                     end
                 end
-                minetest.show_formspec(player:get_player_name(), v .. "_license",
+                minetest.show_formspec(player:get_player_name(), "mod_license",
                     form)
             end
+        end
+    elseif formname == "mod_license" then
+        if fields.back_to_mods then
+            minetest.show_formspec(player:get_player_name(), "lott_more_credits",
+                more_credits)
         end
     end
 end)
