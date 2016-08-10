@@ -48,7 +48,7 @@ function darkage.register_reinforce(name, craftItem, nodedef)
 -- Reinforced Slope
 	local slope = table.copy(nodedef);
 	local slope_tname = modname..":reinforced_"..tname.."_slope"
-	slope.description = "Reinforced "..name.." Slope\nHint: use the screwdriver to rotate."
+	slope.description = "Reinforced "..name.." Slope"
 	slope.paramtype2 = "facedir";
 	local slope_tile_extend = {"^darkage_reinforce_right.png" , "^darkage_reinforce_right.png" , --top ,down
 			"^darkage_reinforce_right.png" , "^darkage_reinforce_right.png" , --right, left
@@ -93,7 +93,7 @@ function darkage.register_reinforce(name, craftItem, nodedef)
 	local arrow = table.copy(nodedef)
 	local arrow_tname = modname..":reinforced_"..tname.."_arrow"
 	arrow.paramtype2 = "facedir";
-	arrow.description = "Reinforced "..name.." Arrow \nHint: use the screwdriver to rotate."
+	arrow.description = "Reinforced "..name.." Arrow"
 	local arrow_tile_extend = {"" , "" , --top ,down
 			"^(darkage_reinforce_arrow.png^[transformR90)" , "^(darkage_reinforce_arrow.png^[transformR270)" , --right, left
 			"^(darkage_reinforce_arrow.png^[transformR180)" , "^darkage_reinforce_arrow.png"} -- front, back
