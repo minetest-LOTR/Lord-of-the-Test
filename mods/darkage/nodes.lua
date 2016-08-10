@@ -31,7 +31,7 @@ minetest.register_node("darkage:chalk", {
 	description = "Chalk",
 	tiles = {"darkage_chalk.png"},
 	is_ground_content = true,
-	drop = 'darkage:chalk_powder 2',
+	drop = 'darkage:chalk_powder 4',
 	groups = {crumbly=2,cracky=2},
 	sounds = default.node_sound_stone_defaults()
 })
