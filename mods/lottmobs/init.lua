@@ -8,6 +8,7 @@ dofile(minetest.get_modpath("lottmobs").."/horse.lua")
 dofile(minetest.get_modpath("lottmobs").."/trader_goods.lua")
 dofile(minetest.get_modpath("lottmobs").."/trader.lua")
 dofile(minetest.get_modpath("lottmobs").."/special_mobs.lua")
+dofile(minetest.get_modpath("lottmobs").."/animals.lua")
 -- Mobs
 
 mobs:register_mob("lottmobs:chicken", {
@@ -630,7 +631,7 @@ mobs:register_mob("lottmobs:dunlending", {
 	light_damage = 0,
 	on_rightclick = function(self, clicker)
 		lottmobs.guard(self, clicker, "default:gold_ingot", "Dunlending", "human")
-	end,                
+	end,
         do_custom = lottmobs.do_custom_guard,
 	attack_type = "dogfight",
 	animation = {

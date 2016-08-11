@@ -1,3 +1,10 @@
 Code: fishyWET & Amaz - LGPL v2.1
 
-Textures: fishyWET & Amaz - CC BY-SA 3.0
+Textures:
+  pumba/warthog - KrupnoPavel - CC BY-SA 3.0
+  chicken - JK Murray - CC BY-SA 3.0
+  sheep - texture converted to minetest by AMMOnym from Summerfield pack
+    CC BY-SA 3.0
+  rat - PilzAdam - CC BY-SA 3.0
+  The rest:
+    fishyWET & Amaz - CC BY-SA 3.0
