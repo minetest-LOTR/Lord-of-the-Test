@@ -1510,8 +1510,9 @@ mobs:register_mob("lottmobs:dead_men", {
 mobs:register_spawn("lottmobs:dead_men", {"default:mossycobble"}, 2, -1, 6000, 10, -100)
 
 mobs:register_mob("lottmobs:troll", {
-	type = "monster",
-	hp_min = 50,
+	type = "npc",
+        race = "orcs",
+        hp_min = 50,
 	hp_max = 65,
 	collisionbox = {-0.7, -0.01, -0.7, 0.7, 2.6, 0.7},
 	visual = "mesh",
