@@ -49,7 +49,7 @@ local npc_guard_attack = function(self)
                         end
                 end
                 
-                if entity_type == "player" or entity_type == "npc" then
+                if entity_type == "player" or entity_type == "npc" or entity_type == "monster" then
                         
                         s = self.object:getpos()
                         p = player:getpos()
@@ -94,6 +94,9 @@ local npc_guard_attack = function(self)
                                                         min_dist = dist
                                                         min_player = player
                                                 end
+                                        elseif entity_type == "monster" and self.attacks_monsters then
+                                                min_dist = dist
+                                                min_player = player
                                         end
                                 end
                         end
@@ -131,7 +134,7 @@ local npc_attack = function(self)
 			end                                
                 end
 
-                if entity_type == "player" or entity_type == "npc" then
+                if entity_type == "player" or entity_type == "npc" or entity_type == "monster" then
 
                         s = self.object:getpos()
                         p = player:getpos()
@@ -165,8 +168,10 @@ local npc_attack = function(self)
                                                 if npc_race ~= self.race and not lottclasses.allies[self.race][npc_race] then
                                                         min_dist = dist
                                                         min_player = player
-                                                        break
                                                 end
+                                        elseif entity_type == "monster" and self.attacks_monsters then
+                                                min_dist = dist
+                                                min_player = player
                                         end
                                 end
                         end
@@ -259,8 +264,9 @@ local get_guard_formspec = function(self)
         local j = 1
         local attack_race = nil
         for i = 1, 5, 1 do
-                if lottclasses.races[i] ~= self.race and not lottclasses.allies[self.race][lottclasses.races[i]] then
+                if lottclasses.races[i] ~= self.race then
                         attack_race = self["attack_npc_"..lottclasses.races[i]] or not lottclasses.allies[self.race][lottclasses.races[i]]
+                        self["attack_npc_"..lottclasses.races[i]] = attack_race
                         formspec = formspec..
                                 "checkbox["..checkbox_pos[j]..";attack_npc_"..lottclasses.races[i]..";"..
                                 lottclasses.races_pretty[i].." NPCs;"..tostring(attack_race).."]"
@@ -273,6 +279,7 @@ local get_guard_formspec = function(self)
                 else
                         attack_race = false
                 end
+                self["attack_player_"..lottclasses.races[i]] = attack_race
                 formspec = formspec..
                         "checkbox["..checkbox_pos[j]..";attack_player_"..lottclasses.races[i]..";"..
                         lottclasses.races_pretty[i].." Players;"..tostring(attack_race).."]"
