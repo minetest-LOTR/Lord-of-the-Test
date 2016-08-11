@@ -70,7 +70,7 @@ local npc_guard_attack = function(self)
                                         and player:get_player_name() ~= self.owner
                                         and self.whitelist
                                         and not value_in_table(self.whitelist, player:get_player_name()) then
-                                                local player_privs = minetest.get_player_privs(player)
+                                                local player_privs = minetest.get_player_privs(player:get_player_name())
                                                 if (self.attack_player_elves and player_privs.GAMEelf)
                                                 or (self.attack_player_men and player_privs.GAMEman)
                                                 or (self.attack_player_orcs and player_privs.GAMEorc)
@@ -148,7 +148,7 @@ local npc_attack = function(self)
                                 if line_of_sight_water(self, sp, p, 2) == true
                                 and dist < min_dist then
                                         if entity_type == "player" then
-                                                local player_privs = minetest.get_player_privs(player)
+                                                local player_privs = minetest.get_player_privs(player:get_player_name())
                                                 for i = 1, 5, 1 do
                                                         local player_race = nil
                                                         if player_privs[lottclasses.player_races[i]] then
@@ -295,7 +295,7 @@ end
 
 local guard_friendly = function(self, clicker)
         local is_race, player_race = nil, nil
-        local player_privs = minetest.get_player_privs(clicker)
+        local player_privs = minetest.get_player_privs(clicker:get_player_name())
         for i = 1, 5, 1 do
                 player_race = nil
                 if player_privs[lottclasses.player_races[i]] then

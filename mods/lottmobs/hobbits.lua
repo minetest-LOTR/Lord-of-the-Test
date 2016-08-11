@@ -63,22 +63,13 @@ local textures1 = {
 
 lottmobs.register_hobbit("", 20, 30, textures1, 2, 4, 5, 175, drops)
 
---Dwarfs with mithril armor & warhammers.
-local textures2 = {
-    {"lottmobs_hobbit_1.png", "lottarmor_helmet_mithril.png^lottarmor_chestplate_mithril.png^lottarmor_leggings_mithril.png^lottarmor_boots_mithril.png^lottarmor_shield_mithril.png", "lottweapons_mithril_warhammer.png", "lottarmor_trans.png"},
-    {"lottmobs_hobbit_2.png", "lottarmor_helmet_mithril.png^lottarmor_chestplate_mithril.png^lottarmor_leggings_mithril.png^lottarmor_boots_mithril.png^lottarmor_shield_mithril.png", "lottweapons_mithril_warhammer.png", "lottarmor_trans.png"},
-    {"lottmobs_hobbit_3.png", "lottarmor_helmet_mithril.png^lottarmor_chestplate_mithril.png^lottarmor_leggings_mithril.png^lottarmor_boots_mithril.png^lottarmor_shield_mithril.png", "lottweapons_mithril_warhammer.png", "lottarmor_trans.png"},
-}
-
-lottmobs.register_hobbit("1", 30, 40, textures2, 2.75, 3.5, 13, 75, drops)
-
---Dwarfs with steel armor & swords.
+--Hobbits with steel armor & swords.
 local textures3 = {
     {"lottmobs_hobbit_1.png", "lottarmor_helmet_steel.png^lottarmor_chestplate_steel.png^lottarmor_leggings_steel.png^lottarmor_boots_steel.png^lottarmor_shield_steel.png", "default_tool_steelsword.png", "lottarmor_trans.png"},
     {"lottmobs_hobbit_2.png", "lottarmor_helmet_steel.png^lottarmor_chestplate_steel.png^lottarmor_leggings_steel.png^lottarmor_boots_steel.png^lottarmor_shield_steel.png", "default_tool_steelsword.png", "lottarmor_trans.png"},
     {"lottmobs_hobbit_3.png", "lottarmor_helmet_steel.png^lottarmor_chestplate_steel.png^lottarmor_leggings_steel.png^lottarmor_boots_steel.png^lottarmor_shield_steel.png", "default_tool_steelsword.png", "lottarmor_trans.png"},
 }
 
-lottmobs.register_hobbit("2", 25, 25, textures3, 2.5, 3.5, 7, 100, drops)
+lottmobs.register_hobbit("1", 25, 25, textures3, 2.5, 3.5, 7, 100, drops)
 
-lottmobs.register_guard_craftitem("lottmobs:hobbit", "Hobbit Guard", "lottmobs_hobbit_guard_inv.png", {"lottmobs:hobbit", "lottmobs:hobbit1", "lottmobs:hobbit2"})
+lottmobs.register_guard_craftitem("lottmobs:hobbit", "Hobbit Guard", "lottmobs_hobbit_guard_inv.png", {"lottmobs:hobbit", "lottmobs:hobbit1"})
