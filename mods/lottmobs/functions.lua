@@ -27,14 +27,6 @@ local value_in_table = function(tab, val)
         return false
 end
 
-lottmobs.races_pretty = {
-        "Elven",
-        "Human",
-        "Orc",
-        "Hobbit",
-        "Dwarven"
-}
-
 local npc_guard_attack = function(self)
         if not damage_enabled or self.state == "attack" then
                 return
@@ -271,7 +263,7 @@ local get_guard_formspec = function(self)
                         attack_race = self["attack_npc_"..lottclasses.races[i]] or not lottclasses.allies[self.race][lottclasses.races[i]]
                         formspec = formspec..
                                 "checkbox["..checkbox_pos[j]..";attack_npc_"..lottclasses.races[i]..";"..
-                                lottmobs.races_pretty[i].." NPCs;"..tostring(attack_race).."]"
+                                lottclasses.races_pretty[i].." NPCs;"..tostring(attack_race).."]"
                         j = j + 1
                 end
         end
@@ -283,7 +275,7 @@ local get_guard_formspec = function(self)
                 end
                 formspec = formspec..
                         "checkbox["..checkbox_pos[j]..";attack_player_"..lottclasses.races[i]..";"..
-                        lottmobs.races_pretty[i].." Players;"..tostring(attack_race).."]"
+                        lottclasses.races_pretty[i].." Players;"..tostring(attack_race).."]"
                 j = j + 1
         end
         formspec = formspec..

@@ -47,6 +47,14 @@ lottclasses.player_races = {
         "GAMEdwarf"
 }
 
+lottclasses.races_pretty = {
+        "Elven",
+        "Human",
+        "Orc",
+        "Hobbit",
+        "Dwarven"
+}
+
 lottclasses.same_race_or_ally = function(self, other)
         local is_race, player_race = nil, nil
         if other:is_player() then
@@ -68,4 +76,77 @@ lottclasses.same_race_or_ally = function(self, other)
         end
 
         return false
+end
+
+local file = io.open(minetest.get_worldpath().."/allies.txt", "r")
+if file then
+	lottclasses.allies = minetest.deserialize(file:read("*all"))
+	file:close()
+end
+
+minetest.register_chatcommand("allies", {
+	params = "",
+	description = "Change Allies",
+	func = function(name, param)
+		lottclasses.show_allies_formspec(name)
+	end,
+})
+
+lottclasses.show_allies_formspec = function(player)
+        local x, y = nil
+        if not minetest.check_player_privs(player, "server") then
+                return
+        end
+        local formspec = "size[8,12]label[0,0;Allies:]"
+        y = 1
+        for i = 1, 5, 1 do
+                formspec = formspec.."label[0,"..y..";"..lottclasses.races[i]..":]"
+                x = 0
+                for j = 1, 5, 1 do
+                        if lottclasses.races[i] ~= lottclasses.races[j] then
+                                formspec = formspec..
+                                        "checkbox["..x..","..(y + 1)..";"..lottclasses.races[i].."_"..
+                                        lottclasses.races[j]..";"..lottclasses.races[j]..";"..
+                                        tostring(lottclasses.allies[lottclasses.races[i]][lottclasses.races[j]]).."]"
+                                x = x + 2
+                        end
+                end
+                y = y + 2
+        end
+        formspec = formspec.."button_exit[0,11;2,1;exit_button;Proceed]"
+
+        minetest.show_formspec(player, "ally_settings", formspec)
+end
+
+lottclasses.change_ally_settings = function(fields)
+        local race1, race2, field_name = nil, nil, nil
+        for i = 1, 5, 1 do
+                for j = 1, 5, 1 do
+                        race1 = lottclasses.races[i]
+                        race2 = lottclasses.races[j]
+                        field_name = race1.."_"..race2
+                        if fields[field_name] == "true" then
+                                lottclasses.allies[race1][race2] = true
+                        elseif fields[field_name] == "false" then
+                                lottclasses.allies[race1][race2] = false
+                        end
+                end
+        end
+        lottclasses.save_allies()
+end
+
+minetest.register_on_player_receive_fields(
+        function(player, formname, fields)
+                if formname == "ally_settings" then
+                        lottclasses.change_ally_settings(fields)
+                end
+        end
+)
+
+lottclasses.save_allies = function()
+	local file = io.open(minetest.get_worldpath().."/allies.txt", "w")
+	if (file) then
+		file:write(minetest.serialize(lottclasses.allies))
+		file:close()
+	end
 end
