@@ -265,8 +265,11 @@ local get_guard_formspec = function(self)
         local attack_race = nil
         for i = 1, 5, 1 do
                 if lottclasses.races[i] ~= self.race then
-                        attack_race = self["attack_npc_"..lottclasses.races[i]] or not lottclasses.allies[self.race][lottclasses.races[i]]
-                        self["attack_npc_"..lottclasses.races[i]] = attack_race
+                        attack_race = self["attack_npc_"..lottclasses.races[i]]
+                        if attack_race == nil then
+                                attack_race = not lottclasses.allies[self.race][lottclasses.races[i]]
+                                self["attack_npc_"..lottclasses.races[i]] = attack_race
+                        end
                         formspec = formspec..
                                 "checkbox["..checkbox_pos[j]..";attack_npc_"..lottclasses.races[i]..";"..
                                 lottclasses.races_pretty[i].." NPCs;"..tostring(attack_race).."]"
@@ -274,12 +277,11 @@ local get_guard_formspec = function(self)
                 end
         end
         for i = 1, 5, 1 do
-                if lottclasses.races[i] ~= self.race then
-                        attack_race = self["attack_player_"..lottclasses.races[i]] or not lottclasses.allies[self.race][lottclasses.races[i]]
-                else
-                        attack_race = false
+                attack_race = self["attack_player_"..lottclasses.races[i]]
+                if attack_race == nil then
+                        attack_race = not lottclasses.allies[self.race][lottclasses.races[i]]
+                        self["attack_player_"..lottclasses.races[i]] = attack_race
                 end
-                self["attack_player_"..lottclasses.races[i]] = attack_race
                 formspec = formspec..
                         "checkbox["..checkbox_pos[j]..";attack_player_"..lottclasses.races[i]..";"..
                         lottclasses.races_pretty[i].." Players;"..tostring(attack_race).."]"
