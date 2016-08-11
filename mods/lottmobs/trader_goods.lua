@@ -42,11 +42,11 @@ lottmobs.dwarf = {
 	},
 	messages = {
 		"We have many treasures, and for the right price we might be willing to part with them...",
-		"Don't even think of stealing our treasure... If you do, heads shall role.",
+		"Don't even think of stealing our treasure... If you do, heads shall roll.",
 		"What are you doing here? What do you want from us?",
 		"Be careful when you enter our homes, a fall from the ladder could well prove deadly.",
 		"If you want to mine, do so. There's plenty of iron to go around!",
-		"If you venture deep underground, beware! The are monsters there are very powerful, and kill the unprepared instantly.",
+		"If you venture deep underground, beware! The monsters there are very powerful, and kill the unprepared instantly.",
 	}
 }
 
@@ -143,7 +143,7 @@ lottmobs.hobbit = {
 		"There's nothing quite like the smell of pipe smoke rising on a cold October morning, is there?",
 		"If you are in need of any food, there are traders who wander around and they usually have a good stock.",
 		"If you are thinking that you'll find adventures here, think again! Good day!",
-		"We hear tales of war, but they cannot be more than tales - like that of the Oliphant.",
+		"We hear tales of war, but they cannot be more than tales - like that of the Oliphaunt.",
 		"Food is meant to be enjoyed, not rushed. Don't just eat a little here and a little there, sit down for a proper meal sometimes...",
 	}
 }
@@ -189,9 +189,9 @@ lottmobs.human = {
 	},
 	messages = {
 		"War comes swiftly... We are preparing, but are we doing enough?",
-		"The noble race of man rises in the world! Even the dwarfs are starting to show interest in some of our goods.",
+		"The noble race of man rises in the world! Even the dwarves are starting to show interest in some of our goods.",
 		"Are you willing to fight with us? We have much to lose, but much to gain also! We must rally together.",
-		"Don't lissten to those who say that all this talk of war will come to nothing, for we are at war now.",
+		"Don't listen to those who say that all this talk of war will come to nothing, for we are at war now.",
 		"We suffer raids from orcs, and other evil things, yet we do nothing! We must act, and act with force!",
 		"Life here is far from normal. We wish for peace, yet the only way we can get peace is through war...",
 	}
