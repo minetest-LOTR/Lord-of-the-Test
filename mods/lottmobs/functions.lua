@@ -70,16 +70,12 @@ local npc_guard_attack = function(self)
                                         and player:get_player_name() ~= self.owner
                                         and self.whitelist
                                         and not value_in_table(self.whitelist, player:get_player_name()) then
-                                                local is_elf = minetest.check_player_privs(player, "GAMEelf")
-                                                local is_man = minetest.check_player_privs(player, "GAMEman")
-                                                local is_orc = minetest.check_player_privs(player, "GAMEorc")
-                                                local is_hobbit = minetest.check_player_privs(player, "GAMEhobbit")
-                                                local is_dwarf = minetest.check_player_privs(player, "GAMEdwarf")
-                                                if (self.attack_player_elves and is_elf)
-                                                or (self.attack_player_men and is_man)
-                                                or (self.attack_player_orcs and is_orc)
-                                                or (self.attack_player_hobbits and is_hobbit)
-                                                or (self.attack_player_dwarves and is_dwarf)
+                                                local player_privs = minetest.get_player_privs(player)
+                                                if (self.attack_player_elves and player_privs.GAMEelf)
+                                                or (self.attack_player_men and player_privs.GAMEman)
+                                                or (self.attack_player_orcs and player_privs.GAMEorc)
+                                                or (self.attack_player_hobbits and player_privs.GAMEhobbit)
+                                                or (self.attack_player_dwarves and player_privs.GAMEdwarf)
                                                 or (self.blacklist
                                                 and value_in_table(self.blacklist, player:get_player_name())) then
                                                             min_dist = dist
@@ -152,10 +148,10 @@ local npc_attack = function(self)
                                 if line_of_sight_water(self, sp, p, 2) == true
                                 and dist < min_dist then
                                         if entity_type == "player" then
+                                                local player_privs = minetest.get_player_privs(player)
                                                 for i = 1, 5, 1 do
-                                                        local is_race = minetest.check_player_privs(player, lottclasses.player_races[i])
                                                         local player_race = nil
-                                                        if is_race then
+                                                        if player_privs[lottclasses.player_races[i]] then
                                                                 player_race = lottclasses.races[i]
                                                         end
                                                         if player_race and player_race ~= self.race and not lottclasses.allies[self.race][player_race] then
@@ -299,10 +295,10 @@ end
 
 local guard_friendly = function(self, clicker)
         local is_race, player_race = nil, nil
+        local player_privs = minetest.get_player_privs(clicker)
         for i = 1, 5, 1 do
-                is_race = minetest.check_player_privs(clicker, lottclasses.player_races[i])
                 player_race = nil
-                if is_race then
+                if player_privs[lottclasses.player_races[i]] then
                         player_race = lottclasses.races[i]
                 end
                 if player_race == self.race or lottclasses.allies[self.race][player_race] then

@@ -58,10 +58,10 @@ lottclasses.races_pretty = {
 lottclasses.same_race_or_ally = function(self, other)
         local is_race, player_race = nil, nil
         if other:is_player() then
+                local player_privs = minetest.get_player_privs(other)
                 for i = 1, 5, 1 do
-                        is_race = minetest.check_player_privs(other, lottclasses.player_races[i])
                         player_race = nil
-                        if is_race then
+                        if player_privs[lottclasses.player_races[i]] then
                                 player_race = lottclasses.races[i]
                         end
                         if player_race == self.race or lottclasses.allies[self.race][player_race] then
