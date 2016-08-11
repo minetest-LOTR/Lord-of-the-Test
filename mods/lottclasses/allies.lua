@@ -84,6 +84,10 @@ if file then
 	file:close()
 end
 
+minetest.register_privilege("allies", {
+                description = "Can change the allies",
+})
+
 minetest.register_chatcommand("allies", {
 	params = "",
 	description = "Change Allies",
@@ -94,24 +98,25 @@ minetest.register_chatcommand("allies", {
 
 lottclasses.show_allies_formspec = function(player)
         local x, y = nil
-        if not minetest.check_player_privs(player, "server") then
-                return
-        end
+        local player_privs = minetest.get_player_privs(player)
+        if not player_privs.allies then return end
         local formspec = "size[8,12]label[0,0;Allies:]"
         y = 1
         for i = 1, 5, 1 do
-                formspec = formspec.."label[0,"..y..";"..lottclasses.races[i]..":]"
-                x = 0
-                for j = 1, 5, 1 do
-                        if lottclasses.races[i] ~= lottclasses.races[j] then
-                                formspec = formspec..
-                                        "checkbox["..x..","..(y + 1)..";"..lottclasses.races[i].."_"..
-                                        lottclasses.races[j]..";"..lottclasses.races[j]..";"..
-                                        tostring(lottclasses.allies[lottclasses.races[i]][lottclasses.races[j]]).."]"
-                                x = x + 2
+                if player_privs.server or player_privs[lottclasses.player_races[i]] then
+                        formspec = formspec.."label[0,"..y..";"..lottclasses.races[i]..":]"
+                        x = 0
+                        for j = 1, 5, 1 do
+                                if lottclasses.races[i] ~= lottclasses.races[j] then
+                                        formspec = formspec..
+                                                "checkbox["..x..","..(y + 1)..";"..lottclasses.races[i].."_"..
+                                                lottclasses.races[j]..";"..lottclasses.races[j]..";"..
+                                                tostring(lottclasses.allies[lottclasses.races[i]][lottclasses.races[j]]).."]"
+                                        x = x + 2
+                                end
                         end
+                        y = y + 2
                 end
-                y = y + 2
         end
         formspec = formspec.."button_exit[0,11;2,1;exit_button;Proceed]"
 
