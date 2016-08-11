@@ -3,7 +3,8 @@ lottmobs = {}
 dofile(minetest.get_modpath("lottmobs").."/functions.lua")
 dofile(minetest.get_modpath("lottmobs").."/craftitems.lua")
 dofile(minetest.get_modpath("lottmobs").."/elves.lua")
-dofile(minetest.get_modpath("lottmobs").."/dwarfs.lua")
+dofile(minetest.get_modpath("lottmobs").."/dwarves.lua")
+dofile(minetest.get_modpath("lottmobs").."/hobbits.lua")
 dofile(minetest.get_modpath("lottmobs").."/horse.lua")
 dofile(minetest.get_modpath("lottmobs").."/trader_goods.lua")
 dofile(minetest.get_modpath("lottmobs").."/trader.lua")
@@ -547,8 +548,9 @@ mobs:register_spawn("lottmobs:ithilien_ranger", {"lottmapgen:ithilien_grass"}, 2
 lottmobs.register_guard_craftitem("lottmobs:ithilien_ranger", "Ithilien Ranger", "lottmobs_ithilien_ranger_inv.png")
 
 mobs:register_mob("lottmobs:dunlending", {
-        type = "monster",
-	hp_min = 17,
+        type = "npc",
+        race = "orcs",
+        hp_min = 17,
 	hp_max = 27,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
@@ -656,112 +658,12 @@ mobs:register_mob("lottmobs:dunlending", {
 mobs:register_spawn("lottmobs:dunlending", {"lottmapgen:dunland_grass"}, 20, -1, 6000, 3, 31000)
 lottmobs.register_guard_craftitem("lottmobs:dunlending", "Dunlending", "lottmobs_dunlending_inv.png")
 
-mobs:register_mob("lottmobs:hobbit", {
-        type = "npc",
-        race = "hobbits",
-	hp_min = 5,
-	hp_max = 15,
-	collisionbox = {-0.3,-0.75,-0.3, 0.3,0.7,0.3},
-	textures = {
-		{"lottmobs_hobbit.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png"},
-		{"lottmobs_hobbit_1.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png"},
-		{"lottmobs_hobbit_2.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png"},
-		{"lottmobs_hobbit_3.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png"},
-	},
-	visual = "mesh",
-	mesh = "lottarmor_character.b3d",
-	visual_size = {x=1, y=0.75},
-	makes_footstep_sound = true,
-	walk_velocity = 1,
-	armor = 300,
-	drops = {
-		{name = "lottfarming:corn_seed",
-		chance = 5,
-		min = 3,
-		max = 10,},
-		{name = "lottfarming:berries_seed",
-		chance = 5,
-		min = 3,
-		max = 10,},
-		{name = "lottfarming:barley_seed",
-		chance = 5,
-		min = 3,
-		max = 10,},
-		{name = "lottfarming:pipeweed_seed",
-		chance = 5,
-		min = 3,
-		max = 10,},
-		{name = "lottfarming:potato_seed",
-		chance = 5,
-		min = 3,
-		max = 10,},
-		{name = "lottfarming:pipeweed",
-		chance = 10,
-		min = 1,
-		max = 4,},
-		{name = "lottfarming:pipe",
-		chance = 10,
-		min = 1,
-		max = 1,},
-		{name = "lottfarming:tomatoes_cooked",
-		chance = 15,
-		min = 1,
-		max = 7,},
-		{name = "lottfarming:turnip_cooked",
-		chance = 15,
-		min = 1,
-		max = 7,},
-		{name = "lottfarming:melon",
-		chance = 15,
-		min = 1,
-		max = 7,},
-		{name = "lottpotion:ale",
-		chance = 20,
-		min = 1,
-		max = 5,},
-		{name = "lottpotion:wine",
-		chance = 20,
-		min = 1,
-		max = 5,},
-		{name = "lottpotion:beer",
-		chance = 20,
-		min = 1,
-		max = 5,},
-		{name = "lottpotion:cider",
-		chance = 20,
-		min = 1,
-		max = 5,},
-	},
-	light_resistant = true,
-	drawtype = "front",
-	water_damage = 1,
-	lava_damage = 5,
-	light_damage = 0,
-	animation = {
-		speed_normal = 15,
-		speed_run = 15,
-		stand_start = 0,
-		stand_end = 79,
-		walk_start = 168,
-		walk_end = 187,
-		run_start = 168,
-		run_end = 187,
-		punch_start = 189,
-		punch_end = 198,
-	},
-	jump = true,
-	step=1,
-	passive = true,
-	sounds = {
-	},
-})
-mobs:register_spawn("lottmobs:hobbit", {"lottmapgen:shire_grass"}, 20, -1, 6000, 3, 31000)
-
 local orc_armor = "lottarmor_chestplate_steel.png^lottarmor_leggings_steel.png^lottarmor_helmet_steel.png^lottarmor_boots_steel.png^lottarmor_shield_steel.png^[colorize:#00000055"
 
 mobs:register_mob("lottmobs:orc", {
-	type = "monster",
-	hp_min = 15,
+	type = "npc",
+        race = "orcs",
+        hp_min = 15,
 	hp_max = 35,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
@@ -861,8 +763,9 @@ mobs:register_spawn("lottmobs:orc", {"lottmapgen:angsnowblock"}, 20, -1, 6000, 5
 lottmobs.register_guard_craftitem("lottmobs:orc", "Orc Guard", "lottmobs_orc_guard_inv.png")
 
 mobs:register_mob("lottmobs:raiding_orc", {
-	type = "monster",
-	hp_min = 15,
+	type = "npc",
+        race = "orcs",
+        hp_min = 15,
 	hp_max = 35,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
@@ -962,8 +865,9 @@ mobs:register_spawn("lottmobs:raiding_orc", {"lottmapgen:rohan_grass"}, 2, -1, 4
 mobs:register_spawn("lottmobs:raiding_orc", {"lottmapgen:gondor_grass"}, 2, -1, 4000, 5, 31000)
 
 mobs:register_mob("lottmobs:warg", {
-	type = "monster",
-	hp_min = 25,
+	type = "npc",
+        race = "orcs",
+        hp_min = 25,
 	hp_max = 40,
 	collisionbox = {-0.7, -0.75, -0.7, 0.7, 1, 0.7},
 	visual_size = {x = 0.8, y = 0.8},
@@ -1019,8 +923,9 @@ mobs:register_spawn("lottmobs:warg", {"default:snowblock"}, 15, -1, 7500, 3, 310
 mobs:register_spawn("lottmobs:warg", {"lottmapgen:angsnowblock"}, 20, -1, 5000, 5, 31000)
 
 mobs:register_mob("lottmobs:uruk_hai", {
-	type = "monster",
-	hp_min = 25,
+	type = "npc",
+        race = "orcs",
+        hp_min = 25,
 	hp_max = 40,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
@@ -1117,8 +1022,9 @@ mobs:register_spawn("lottmobs:uruk_hai", {"lottmapgen:fangorn_grass"}, 2, -1, 20
 lottmobs.register_guard_craftitem("lottmobs:uruk_hai", "Uruk Hai Guard", "lottmobs_uruk_hai_guard_inv.png")
 
 mobs:register_mob("lottmobs:battle_troll", {
-	type = "monster",
-	hp_min = 45,
+	type = "npc",
+        race = "orcs",
+        hp_min = 45,
 	hp_max = 60,
 	collisionbox = {-0.7, -0.01, -0.7, 0.7, 2.6, 0.7},
 	visual = "mesh",
@@ -1195,8 +1101,9 @@ mobs:register_mob("lottmobs:battle_troll", {
 mobs:register_spawn("lottmobs:battle_troll", {"lottmapgen:mordor_stone"}, 10, -1, 10000, 5, 31000)
 
 mobs:register_mob("lottmobs:half_troll", {
-	type = "monster",
-	hp_min = 20,
+	type = "npc",
+        race = "orcs",
+        hp_min = 20,
 	hp_max = 30,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",

@@ -203,6 +203,7 @@ lottmobs.orc = {
                 "Othrod", "Radbug", "Shagrat", "Ufthak", "Uglúk"
         },
         messages = {
-                ""
+                "DIE!!!", "Urrrrrrrrrrrrrghhhhhhhhhhhhhhhhhhh!!",
+                "Arrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr!", "KILL! KILL! KILL!"
         },
 }
