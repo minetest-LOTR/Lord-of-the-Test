@@ -1,4 +1,4 @@
-function lottmobs.register_hobbit(n, hpmin, hpmax, textures, wv, rv, damg, arm, drops)
+function lottmobs.register_hobbit(n, hpmin, hpmax, textures, wv, rv, damg, arm, drops, price)
         mobs:register_mob("lottmobs:hobbit"..n, {
                                   type = "npc",
                                   race = "hobbits",
@@ -42,7 +42,7 @@ function lottmobs.register_hobbit(n, hpmin, hpmax, textures, wv, rv, damg, arm, 
                                   },
                                   attacks_monsters = true,
                                   on_rightclick = function(self, clicker)
-                                          lottmobs.guard(self, clicker, "default:gold_ingot", "Hobbit", "hobbit", "lottmobs:hobbit")
+                                          lottmobs.guard(self, clicker, "default:gold_ingot", "Hobbit", "hobbit", price)
                                   end,
                                   do_custom = lottmobs.do_custom_guard,
                                   peaceful=true,
@@ -51,7 +51,8 @@ function lottmobs.register_hobbit(n, hpmin, hpmax, textures, wv, rv, damg, arm, 
                                   sounds = {
                                   },
         })
-        mobs:register_spawn("lottmobs:hobbit"..n, {"lottmapgen:shire_grass"}, 20, -1, 6000, 3, 31000)        
+        mobs:register_spawn("lottmobs:hobbit"..n, {"lottmapgen:shire_grass"}, 20, -1, 6000, 3, 31000)
+        lottmobs.register_guard_craftitem("lottmobs:hobbit"..n, "Hobbit Guard", "lottmobs_hobbit_guard"..n.."_inv.png")
 end
 
 --Normal Hobbits
@@ -61,15 +62,22 @@ local textures1 = {
     {"lottmobs_hobbit_3.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png"},
 }
 
-lottmobs.register_hobbit("", 20, 30, textures1, 2, 4, 5, 175, drops)
+lottmobs.register_hobbit("", 20, 30, textures1, 2, 4, 5, 175, drops, 20)
 
---Hobbits with steel armor & swords.
+--Dwarfs with mithril armor & warhammers.
+local textures2 = {
+    {"lottmobs_hobbit_1.png", "lottarmor_helmet_mithril.png^lottarmor_chestplate_mithril.png^lottarmor_leggings_mithril.png^lottarmor_boots_mithril.png^lottarmor_shield_mithril.png", "lottweapons_mithril_warhammer.png", "lottarmor_trans.png"},
+    {"lottmobs_hobbit_2.png", "lottarmor_helmet_mithril.png^lottarmor_chestplate_mithril.png^lottarmor_leggings_mithril.png^lottarmor_boots_mithril.png^lottarmor_shield_mithril.png", "lottweapons_mithril_warhammer.png", "lottarmor_trans.png"},
+    {"lottmobs_hobbit_3.png", "lottarmor_helmet_mithril.png^lottarmor_chestplate_mithril.png^lottarmor_leggings_mithril.png^lottarmor_boots_mithril.png^lottarmor_shield_mithril.png", "lottweapons_mithril_warhammer.png", "lottarmor_trans.png"},
+}
+
+lottmobs.register_hobbit("1", 30, 40, textures2, 2.75, 3.5, 13, 75, drops, 60)
+
+--Dwarfs with steel armor & swords.
 local textures3 = {
     {"lottmobs_hobbit_1.png", "lottarmor_helmet_steel.png^lottarmor_chestplate_steel.png^lottarmor_leggings_steel.png^lottarmor_boots_steel.png^lottarmor_shield_steel.png", "default_tool_steelsword.png", "lottarmor_trans.png"},
     {"lottmobs_hobbit_2.png", "lottarmor_helmet_steel.png^lottarmor_chestplate_steel.png^lottarmor_leggings_steel.png^lottarmor_boots_steel.png^lottarmor_shield_steel.png", "default_tool_steelsword.png", "lottarmor_trans.png"},
     {"lottmobs_hobbit_3.png", "lottarmor_helmet_steel.png^lottarmor_chestplate_steel.png^lottarmor_leggings_steel.png^lottarmor_boots_steel.png^lottarmor_shield_steel.png", "default_tool_steelsword.png", "lottarmor_trans.png"},
 }
 
-lottmobs.register_hobbit("1", 25, 25, textures3, 2.5, 3.5, 7, 100, drops)
-
-lottmobs.register_guard_craftitem("lottmobs:hobbit", "Hobbit Guard", "lottmobs_hobbit_guard_inv.png", {"lottmobs:hobbit", "lottmobs:hobbit1"})
+lottmobs.register_hobbit("2", 25, 25, textures3, 2.5, 3.5, 7, 100, drops, 50)

@@ -1,4 +1,4 @@
-function lottmobs.register_dwarf(n, hpmin, hpmax, textures, wv, rv, damg, arm, drops)
+function lottmobs.register_dwarf(n, hpmin, hpmax, textures, wv, rv, damg, arm, drops, price)
     mobs:register_mob("lottmobs:dwarf" .. n, {
     	type = "npc",
         race = "dwarves",
@@ -43,7 +43,7 @@ function lottmobs.register_dwarf(n, hpmin, hpmax, textures, wv, rv, damg, arm, d
     	},
     	attacks_monsters = true,
     	on_rightclick = function(self, clicker)
-            lottmobs.guard(self, clicker, "default:gold_ingot", "Dwarf", "dwarf", "lottmobs:dwarf")
+            lottmobs.guard(self, clicker, "default:gold_ingot", "Dwarf", "dwarf", price)
     	end,
         do_custom = lottmobs.do_custom_guard,
     	peaceful = true,
@@ -52,6 +52,7 @@ function lottmobs.register_dwarf(n, hpmin, hpmax, textures, wv, rv, damg, arm, d
     })
     mobs:register_spawn("lottmobs:dwarf" .. n, {"default:stone"}, 15, -1, 24000, 3, -10)
     mobs:register_spawn("lottmobs:dwarf" .. n, {"lottmapgen:ironhill_grass"}, 20, -1, 18000, 3, 31000)
+    lottmobs.register_guard_craftitem("lottmobs:dwarf"..n, "Dwarf Guard", "lottmobs_dwarf_guard"..n.."_inv.png")
 end
 
 --Normal Dwarfs
@@ -92,7 +93,7 @@ local drops1 = {
     max = 3,},
 }
 
-lottmobs.register_dwarf("", 20, 30, textures1, 2, 4, 5, 175, drops1)
+lottmobs.register_dwarf("", 20, 30, textures1, 2, 4, 5, 175, drops1, 30)
 
 --Dwarfs with mithril armor & warhammers.
 local textures2 = {
@@ -132,7 +133,7 @@ local drops2 = {
     max = 3,},
 }
 
-lottmobs.register_dwarf("1", 30, 40, textures2, 2.75, 3.5, 13, 75, drops2)
+lottmobs.register_dwarf("1", 30, 40, textures2, 2.75, 3.5, 13, 75, drops2, 60)
 
 --Dwarfs with steel armor & swords.
 local textures3 = {
@@ -172,6 +173,4 @@ local drops3 = {
     max = 3,},
 }
 
-lottmobs.register_dwarf("2", 25, 25, textures3, 2.5, 3.5, 7, 100, drops3)
-
-lottmobs.register_guard_craftitem("lottmobs:dwarf", "Dwarf Guard", "lottmobs_dwarf_guard_inv.png", {"lottmobs:dwarf", "lottmobs:dwarf1", "lottmobs:dwarf2"})
+lottmobs.register_dwarf("2", 25, 25, textures3, 2.5, 3.5, 7, 100, drops3, 50)

@@ -309,7 +309,18 @@ local guard_friendly = function(self, clicker)
         return false
 end
 
-lottmobs.guard = function(self, clicker, payment, mob_name, race, guard_dropped)
+lottmobs.get_hiring_formspec = function(price)
+        local formspec = "size[6,3]" ..
+                "label[0,0;Select the amount of gold you want to offer:]"..
+                "dropdown[2,1;2;offer;1"
+        for i = 5, price, 5 do
+                formspec = formspec..","..i
+        end
+        formspec = formspec..";1]button_exit[2.25,2;1.5,1;done;Done]"
+        return formspec
+end
+
+lottmobs.guard = function(self, clicker, payment, mob_name, race, price, guard_dropped)
         lottmobs.change_settings = function(fields)
                 if fields.order then
                         self.order = fields.order
@@ -359,9 +370,10 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race, guard_dropped)
 	elseif item:get_name() == payment and self.tamed == false and guard_friendly(self, clicker) then
 		lottmobs.face_pos(self, clicker:getpos())
 		self.state = "stand"
-		minetest.show_formspec(name, "mob_hiring", lottmobs.hiring)
+                if not price then price = 50 end
+		minetest.show_formspec(name, "mob_hiring", lottmobs.get_hiring_formspec(price))
 		lottmobs.hire = function(cost)
-			if math.random(1, (50/cost)) == 1 then
+			if math.random(1, (price/cost)) == 1 then
 				minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> Okay, I'll work for you.")
 				local count = item:get_count()
 				if count > cost or minetest.setting_getbool("creative_mode") then
@@ -406,11 +418,6 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race, guard_dropped)
                 end
 	end
 end
-
-lottmobs.hiring = "size[6,3]" ..
-	"label[0,0;Select the amount of gold you want to offer:]" ..
-	"dropdown[2,1;2;offer;1,5,10,15,20,25,30,35,40,45,50;1]" ..
-	"button_exit[2.25,2;1.5,1;done;Done]"
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname == "mob_hiring" then
