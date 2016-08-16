@@ -10,52 +10,9 @@ dofile(minetest.get_modpath("lottmobs").."/trader_goods.lua")
 dofile(minetest.get_modpath("lottmobs").."/trader.lua")
 dofile(minetest.get_modpath("lottmobs").."/special_mobs.lua")
 dofile(minetest.get_modpath("lottmobs").."/animals.lua")
+
 -- Mobs
 
-mobs:register_mob("lottmobs:chicken", {
-	type = "animal",
-	hp_min = 5,
-	hp_max = 10,
-	collisionbox = {-0.3,0,-0.3, 0.3,0.8,0.3},
-	textures = {
-		{"lottmobs_chicken.png"},
-	},
-	visual = "mesh",
-	mesh = "chicken_model.x",
-	makes_footstep_sound = true,
-	walk_velocity = 1,
-	armor = 300,
-		drops = {
-		{name = "lottmobs:meat_raw",
-		chance = 1,
-		min = 1,
-		max = 3,},
-	},
-	light_resistant = true,
-	drawtype = "front",
-	water_damage = 1,
-	lava_damage = 10,
-	light_damage = 0,
-	animation = {
-		speed_normal = 10,
-		speed_run = 15,
-		stand_start = 0,
-		stand_end = 0,
-		sit_start = 1,
-		sit_end = 9,
-		walk_start = 10,
-		walk_end = 50,
-	},
-	jump = true,
-	step=1,
-	passive = true,
-	sounds = {
-	},
-})
-mobs:register_spawn("lottmobs:chicken", {"lottmapgen:gondor_grass"}, 20, -1, 6000, 3, 31000)
-mobs:register_spawn("lottmobs:chicken", {"lottmapgen:dunland_grass"}, 20, -1, 6000, 3, 31000)
-mobs:register_spawn("lottmobs:chicken", {"lottmapgen:rohan_grass"}, 20, -1, 6000, 3, 31000)
-mobs:register_spawn("lottmobs:chicken", {"lottmapgen:shire_grass"}, 20, -1, 5000, 3, 31000)
 
 mobs:register_mob("lottmobs:ent", {
 	type = "npc",
