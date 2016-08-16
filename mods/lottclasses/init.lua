@@ -1,3 +1,5 @@
+lottclasses = {}
+
 minetest.register_privilege("GAMEwizard", {
 	description = "A wizard player",
 	give_to_singleplayer = false,
@@ -33,6 +35,7 @@ minetest.register_privilege("GAMEhobbit", {
 })
 
 dofile(minetest.get_modpath("lottclasses").."/change-privs.lua")
+dofile(minetest.get_modpath("lottclasses").."/allies.lua")
 
 local race_chooser = "size[8,6]"..
 	"background[8,6;1,1;gui_formbg.png;true]"..

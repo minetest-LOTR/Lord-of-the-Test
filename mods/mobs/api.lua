@@ -3,20 +3,17 @@
 
 --[[
 	Changes from normal mobs api:
-	-- line 313 - only show nametag health changes if show_health_change (line 44)
+	-- line 364 - only show nametag health changes if show_health_change (line 44)
 	   is set to true
 	-- line 2326 & 2327 - declare some variables lott needs in other mods.
 	-- line 1684 to 1687 - attacking mobs focus on the horse/boat, so they
 	   can actually damage the player when it is dead/destroyed!
-        -- line 1087, 1237, 2225 & 2227 - change the local functions follow_flop
+        -- line 1133, 1283, 2271 & 2273 - change the local functions follow_flop
            and do_states to mobs.follow_flop and mobs.do_states so they can be accessed
            from do_custom functions in lottmobs
-        -- line 1115 - add "or self.type == "monster"" to if statement so that orcs and
-           uruk hai tamed by orc players can follow their owners
-        -- line 2261 - add "race" field to mobs so that monster guards can be ordered to
-           only attack certain races of NPCs
-        -- line 1294 - change "if self.type ~= "npc"" to "if (self.type ~= "npc" and
-           self.type ~= "monster")" to allow monster guards to stand still
+        -- line 2302 - add "race" field to mobs
+        -- line 2053 - add "and lottclasses.same_race_or_ally(self, objs[n])" so that only
+           NPCs from the same race help when group_attack is set to true
 
 ]]--
 
@@ -1118,7 +1115,6 @@ mobs.follow_flop = function(self)
 	end
 
 	if self.type == "npc"
-        or self.type == "monster"
 	and self.order == "follow"
 	and self.state ~= "attack"
 	and self.owner ~= "" then
@@ -1293,7 +1289,7 @@ mobs.do_states = function(self, dtime)
 		set_animation(self, "stand")
 
 		-- npc's ordered to stand stay standing
-		if (self.type ~= "npc" and self.type ~= "monster")
+		if self.type ~= "npc"
 		or self.order ~= "stand" then
 
 			if self.walk_chance ~= 0
@@ -1838,7 +1834,6 @@ local falling = function(self, pos)
 end
 
 local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
-
 	-- error checking when mod profiling is enabled
 	if not tool_capabilities then
 		print (S("[MOBS] mod profiling enabled, damage not enabled"))
@@ -1998,7 +1993,6 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 	and self.child == false
 	and hitter:get_player_name() ~= self.owner
 	and not invisibility[ hitter:get_player_name() ] then
-
 		-- attack whoever punched mob
 		self.state = ""
 		do_attack(self, hitter)
@@ -2014,6 +2008,7 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 			if obj then
 
 				if obj.group_attack == true
+                                and lottclasses.same_race_or_ally(self, objs[n])
 				and obj.state ~= "attack" then
 					do_attack(obj, hitter)
 				end
