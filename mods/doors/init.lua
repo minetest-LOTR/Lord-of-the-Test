@@ -96,12 +96,6 @@ function doors:register_door(name, def)
 				meta:set_string("doors_owner", pn)
 				meta:set_string("infotext", "Owned by "..pn)
 			end
-                        if def.race then
-                                local meta = minetest.get_meta(pt)
-                                meta:set_string("race", def.race)
-                                meta = minetest.get_meta(pt2)
-                                meta:set_string("race", def.race)
-                        end
 
 			if not minetest.setting_getbool("creative_mode") then
 				itemstack:take_item()
