@@ -263,14 +263,6 @@ doors:register_door("doors:door_wood", {
 	tiles_top = {"door_wood_a.png", "door_brown.png"},
 })
 
-doors:register_door("doors:door_dwarf", {
-                            description = "Dwarf Door",
-                            inventory_image = "doors_dwarf_door.png",
-                            groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
-                            tiles_bottom = {"doors_dwarf_door_b.png", "door_brown.png"},
-                            tiles_top = {"doors_dwarf_door_a.png", "door_brown.png"},                            
-})
-
 minetest.register_craft({
 	output = "doors:door_wood",
 	recipe = {
