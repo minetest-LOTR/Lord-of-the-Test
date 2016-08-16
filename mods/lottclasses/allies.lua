@@ -55,8 +55,23 @@ lottclasses.races_pretty = {
         "Dwarven"
 }
 
+lottclasses.player_same_race_or_ally = function(player, race)
+        local player_race = nil
+        local player_privs = minetest.get_player_privs(player:get_player_name())
+        for i = 1, 5, 1 do
+                player_race = nil
+                if player_privs[lottclasses.player_races[i]] then
+                        player_race = lottclasses.races[i]
+                end
+                if player_race == race or lottclasses.allies[race][player_race] then
+                        return true
+                end
+        end
+        return false
+end
+
 lottclasses.same_race_or_ally = function(self, other)
-        local is_race, player_race = nil, nil
+        local player_race = nil
         if other:is_player() then
                 local player_privs = minetest.get_player_privs(other)
                 for i = 1, 5, 1 do
