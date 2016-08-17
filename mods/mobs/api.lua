@@ -8,11 +8,11 @@
 	-- line 2326 & 2327 - declare some variables lott needs in other mods.
 	-- line 1684 to 1687 - attacking mobs focus on the horse/boat, so they
 	   can actually damage the player when it is dead/destroyed!
-        -- line 1133, 1283, 2271 & 2273 - change the local functions follow_flop
+        -- line 1093, 1243, 2229 & 2231 - change the local functions follow_flop
            and do_states to mobs.follow_flop and mobs.do_states so they can be accessed
            from do_custom functions in lottmobs
-        -- line 2302 - add "race" field to mobs
-        -- line 2053 - add "and lottclasses.same_race_or_ally(self, objs[n])" so that only
+        -- line 2260 - add "race" field to mobs
+        -- line 2011 - add "and lottclasses.lua_ent_same_race_or_ally(obj, self.race)" so that only
            NPCs from the same race help when group_attack is set to true
 
 ]]--
@@ -2008,7 +2008,7 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 			if obj then
 
 				if obj.group_attack == true
-                                and lottclasses.same_race_or_ally(self, objs[n])
+                                and lottclasses.lua_ent_same_race_or_ally(obj, self.race)
 				and obj.state ~= "attack" then
 					do_attack(obj, hitter)
 				end

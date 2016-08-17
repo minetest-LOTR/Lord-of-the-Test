@@ -8,6 +8,7 @@ function lottmobs.register_hobbit(n, hpmin, hpmax, textures, wv, rv, damg, arm, 
                                   textures = textures,
                                   visual = "mesh",
                                   mesh = "lottarmor_character.b3d",
+                                  view_range = 12,
                                   visual_size = {x=1, y=0.75},
                                   makes_footstep_sound = true,
                                   walk_velocity = wv,
@@ -48,8 +49,6 @@ function lottmobs.register_hobbit(n, hpmin, hpmax, textures, wv, rv, damg, arm, 
                                   peaceful=true,
                                   group_attack=true,
                                   step=1,
-                                  sounds = {
-                                  },
         })
         mobs:register_spawn("lottmobs:hobbit"..n, {"lottmapgen:shire_grass"}, 20, -1, 6000, 3, 31000)
         lottmobs.register_guard_craftitem("lottmobs:hobbit"..n, "Hobbit Guard", "lottmobs_hobbit_guard"..n.."_inv.png")
