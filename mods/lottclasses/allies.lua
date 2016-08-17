@@ -54,10 +54,10 @@ lottclasses.races_pretty = {
         "Hobbit",
         "Dwarven"
 }
-
 lottclasses.player_same_race_or_ally = function(player, race)
         local player_race = nil
         local player_privs = minetest.get_player_privs(player:get_player_name())
+        if player_privs["GAMEwizard"] then return true end
         for i = 1, 5, 1 do
                 player_race = nil
                 if player_privs[lottclasses.player_races[i]] then
@@ -70,24 +70,26 @@ lottclasses.player_same_race_or_ally = function(player, race)
         return false
 end
 
-lottclasses.same_race_or_ally = function(self, other)
+lottclasses.lua_ent_same_race_or_ally = function(lua_ent, race)
+        if lua_ent.type == "npc" and (race == lua_ent.race or lottclasses.allies[race][lua_ent.race]) then
+                return true
+        end
+end
+
+lottclasses.npc_same_race_or_ally = function(npc, race)
+        local lua_ent = npc:get_luaentity()
+        if lua_ent then
+                return lottclasses.lua_ent_same_race_or_ally(lua_ent, race)
+        end
+        return false
+end
+
+lottclasses.obj_same_race_or_ally = function(obj, race)
         local player_race = nil
-        if other:is_player() then
-                local player_privs = minetest.get_player_privs(other)
-                for i = 1, 5, 1 do
-                        player_race = nil
-                        if player_privs[lottclasses.player_races[i]] then
-                                player_race = lottclasses.races[i]
-                        end
-                        if player_race == self.race or lottclasses.allies[self.race][player_race] then
-                                return true
-                        end
-                end
+        if obj:is_player() then
+                return lottclasses.player_same_race_or_ally(obj, race)
         else
-                local lua_ent = other:get_luaentity()
-                if lua_ent.type == "npc" and (self.race == lua_ent.race or lottclasses.allies[self.race][lua_ent.race]) then
-                        return true
-                end
+                return lottclasses.npc_same_race_or_ally(obj, race)
         end
 
         return false

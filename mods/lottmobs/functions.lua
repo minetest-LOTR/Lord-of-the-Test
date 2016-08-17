@@ -108,6 +108,7 @@ end
 local npc_attack = function(self)
 
 	if self.type ~= "npc"
+        or not damage_enabled
 	or self.state == "attack" then
 		return
 	end
@@ -148,17 +149,9 @@ local npc_attack = function(self)
                                 if line_of_sight_water(self, sp, p, 2) == true
                                 and dist < min_dist then
                                         if entity_type == "player" then
-                                                local player_privs = minetest.get_player_privs(player:get_player_name())
-                                                for i = 1, 5, 1 do
-                                                        local player_race = nil
-                                                        if player_privs[lottclasses.player_races[i]] then
-                                                                player_race = lottclasses.races[i]
-                                                        end
-                                                        if player_race and player_race ~= self.race and not lottclasses.allies[self.race][player_race] then
-                                                                min_dist = dist
-                                                                min_player = player
-                                                                break
-                                                        end
+                                                if not lottclasses.player_same_race_or_ally(player, self.race) then
+                                                        min_dist = dist
+                                                        min_player = player
                                                 end
                                         elseif entity_type == "npc" then
                                                 if npc_race ~= self.race and not lottclasses.allies[self.race][npc_race] then
@@ -293,22 +286,6 @@ local get_guard_formspec = function(self)
         return formspec
 end
 
-local guard_friendly = function(self, clicker)
-        local is_race, player_race = nil, nil
-        local player_privs = minetest.get_player_privs(clicker:get_player_name())
-        for i = 1, 5, 1 do
-                player_race = nil
-                if player_privs[lottclasses.player_races[i]] then
-                        player_race = lottclasses.races[i]
-                end
-                if player_race == self.race or lottclasses.allies[self.race][player_race] then
-                        return true
-                end
-        end
-
-        return false
-end
-
 lottmobs.get_hiring_formspec = function(price)
         local formspec = "size[6,3]" ..
                 "label[0,0;Select the amount of gold you want to offer:]"..
@@ -320,7 +297,7 @@ lottmobs.get_hiring_formspec = function(price)
         return formspec
 end
 
-lottmobs.guard = function(self, clicker, payment, mob_name, race, price, guard_dropped)
+lottmobs.guard = function(self, clicker, payment, mob_name, race, price)
         lottmobs.change_settings = function(fields)
                 if fields.order then
                         self.order = fields.order
@@ -367,7 +344,7 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race, price, guard_d
 			item:take_item()
 			clicker:set_wielded_item(item)
 		end
-	elseif item:get_name() == payment and self.tamed == false and guard_friendly(self, clicker) then
+	elseif item:get_name() == payment and self.tamed == false and lottclasses.player_same_race_or_ally(clicker, self.race) then
 		lottmobs.face_pos(self, clicker:getpos())
 		self.state = "stand"
                 if not price then price = 50 end
@@ -381,8 +358,7 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race, price, guard_d
 						item:take_item(cost)
 						clicker:set_wielded_item(item)
 					end
-                                        local guard_to_give = guard_dropped or self.name
-                                        clicker:get_inventory():add_item("main", guard_to_give)
+                                        clicker:get_inventory():add_item("main", self.name)
                                         self.object:remove()
 				else
 					minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> What, you don't have that much money?! Stop wasting my time!")
@@ -439,7 +415,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 end)
 
-lottmobs.register_guard_craftitem = function(name, description, inventory_image, mob_choices)
+lottmobs.register_guard_craftitem = function(name, description, inventory_image)
         minetest.register_craftitem(name, {
                                             description = description,
                                             inventory_image = inventory_image,
@@ -447,11 +423,7 @@ lottmobs.register_guard_craftitem = function(name, description, inventory_image,
                                                     if pointed_thing.above then
                                                             local pos = pointed_thing.above
                                                             pos.y = pos.y + 1
-                                                            local mob = name
-                                                            if mob_choices then
-                                                                    mob = mob_choices[math.random(#mob_choices)]
-                                                            end
-                                                            local obj = minetest.env:add_entity(pos, mob):get_luaentity()
+                                                            local obj = minetest.env:add_entity(pos, name):get_luaentity()
                                                             if not minetest.setting_getbool("creative_mode") then
                                                                     itemstack:take_item()
                                                             end
