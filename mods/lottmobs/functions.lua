@@ -81,7 +81,7 @@ local npc_guard_attack = function(self)
                                                             min_dist = dist
                                                             min_player = player
                                                 end
-                                        elseif entity_type == "npc" and self.race ~= npc_race then
+                                        elseif entity_type == "npc" and npc_race ~= "ents" and self.race ~= npc_race then
                                                 if (self.attack_npc_elves and npc_race == "elves")
                                                 or (self.attack_npc_men and npc_race == "men")
                                                 or (self.attack_npc_orcs and npc_race == "orcs")
@@ -154,7 +154,7 @@ local npc_attack = function(self)
                                                         min_player = player
                                                 end
                                         elseif entity_type == "npc" then
-                                                if npc_race ~= self.race and not lottclasses.allies[self.race][npc_race] then
+                                                if npc_race ~= "ents" and npc_race ~= self.race and not lottclasses.allies[self.race][npc_race] then
                                                         min_dist = dist
                                                         min_player = player
                                                 end

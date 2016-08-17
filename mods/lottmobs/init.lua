@@ -16,7 +16,8 @@ dofile(minetest.get_modpath("lottmobs").."/animals.lua")
 
 mobs:register_mob("lottmobs:ent", {
 	type = "npc",
-	hp_min = 50,
+        race = "ents",
+        hp_min = 50,
 	hp_max = 70,
 	collisionbox = {-0.5, 0, -0.5, 0.5, 5, 0.5},
 	textures = {

@@ -71,7 +71,7 @@ lottclasses.player_same_race_or_ally = function(player, race)
 end
 
 lottclasses.lua_ent_same_race_or_ally = function(lua_ent, race)
-        if lua_ent.type == "npc" and (race == lua_ent.race or lottclasses.allies[race][lua_ent.race]) then
+        if lua_ent.type == "npc" and (lua_ent.race == "ents" or race == lua_ent.race or lottclasses.allies[race][lua_ent.race]) then
                 return true
         end
 end
