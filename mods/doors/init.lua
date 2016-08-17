@@ -15,6 +15,8 @@ doors = {}
 --    selection_box_top
 --    only_placer_can_open: if true only the player who placed the door can
 --                          open it
+--    race: optional; only players from this race or an ally can open it
+
 function doors:register_door(name, def)
 	def.groups.not_in_creative_inventory = 1
 
@@ -126,16 +128,21 @@ function doors:register_door(name, def)
 	end
 
 	local function check_player_priv(pos, player)
-		if not def.only_placer_can_open then
+		if not def.only_placer_can_open and not def.race then
 			return true
 		end
 		local meta = minetest.get_meta(pos)
 		local pn = player:get_player_name()
-		return meta:get_string("doors_owner") == pn
+		return meta:get_string("doors_owner") == pn or lottclasses.player_same_race_or_ally(player, def.race)
 	end
-
+        local tb_final_1 = nil
+        if table.getn(tb) > 2 then
+                tb_final_1 = {tb[1], tb[2], tb[3], tb[4], tb[5], tb[6].."^[transformfx"}
+        else
+                tb_final_1 = {tb[2], tb[2], tb[2], tb[2], tb[1], tb[1].."^[transformfx"}
+        end
 	minetest.register_node(name.."_b_1", {
-		tiles = {tb[2], tb[2], tb[2], tb[2], tb[1], tb[1].."^[transformfx"},
+		tiles = tb_final_1,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		drop = name,
@@ -163,9 +170,14 @@ function doors:register_door(name, def)
 
 		can_dig = check_player_priv,
 	})
-
+        local tt_final_1 = nil
+        if table.getn(tt) > 2 then
+                tt_final_1 = {tt[1], tt[2], tt[3], tt[4], tt[5], tt[6].."^[transformfx"}
+        else
+                tt_final_1 = {tt[2], tt[2], tt[2], tt[2], tt[1], tt[1].."^[transformfx"}
+        end
 	minetest.register_node(name.."_t_1", {
-		tiles = {tt[2], tt[2], tt[2], tt[2], tt[1], tt[1].."^[transformfx"},
+		tiles = tt_final_1,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		drop = name,
@@ -193,9 +205,14 @@ function doors:register_door(name, def)
 
 		can_dig = check_player_priv,
 	})
-
+        local tb_final_2 = nil
+        if table.getn(tb) > 2 then
+                tb_final_2 = {tb[1], tb[2], tb[3], tb[4], tb[5].."^[transformfx", tb[6]}
+        else
+                tb_final_2 = {tb[2], tb[2], tb[2], tb[2], tb[1].."^[transformfx", tb[1]}
+        end
 	minetest.register_node(name.."_b_2", {
-		tiles = {tb[2], tb[2], tb[2], tb[2], tb[1].."^[transformfx", tb[1]},
+		tiles = tb_final_2,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		drop = name,
@@ -223,9 +240,14 @@ function doors:register_door(name, def)
 
 		can_dig = check_player_priv,
 	})
-
+        local tt_final_2 = nil
+        if table.getn(tt) > 2 then
+                tt_final_2 = {tt[1], tt[2], tt[3], tt[4], tt[5].."^[transformfx", tt[6]}
+        else
+                tt_final_2 = {tt[2], tt[2], tt[2], tt[2], tt[1].."^[transformfx", tt[1]}
+        end
 	minetest.register_node(name.."_t_2", {
-		tiles = {tt[2], tt[2], tt[2], tt[2], tt[1].."^[transformfx", tt[1]},
+		tiles = tt_final_2,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		drop = name,
