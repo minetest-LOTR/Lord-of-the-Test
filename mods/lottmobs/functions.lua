@@ -385,7 +385,7 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race, price)
                         minetest.show_formspec(name, "mob_settings", get_guard_formspec(self))
                 end
 	else
-                if guard_friendly(self, clicker) then
+                if lottclasses.player_same_race_or_ally(clicker, self.race) then
                         if self.game_name == "mob" then
                                 self.game_name = lottmobs[race]["names"][math.random(1, #lottmobs[race]["names"])]
                         end
