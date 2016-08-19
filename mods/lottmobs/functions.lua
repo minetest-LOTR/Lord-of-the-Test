@@ -436,8 +436,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		lottmobs.name(fields.naming)
 	elseif formname == "mob_settings" then
 		lottmobs.change_settings(fields)
-        elseif formname == "food_box_naming" then
-                lottmobs.name_food_box(fields.naming)
 	end
 end)
 
@@ -457,7 +455,6 @@ lottmobs.register_guard_craftitem = function(name, description, inventory_image)
                                                             obj.owner = placer:get_player_name()
                                                             obj.order = "follow"
                                                             obj.eat_timer = 0
-                                                            obj.hurt_timer = 0
                                                             obj.food_level = 20
                                                             obj.infotext = "Food Level: 20"
                                                             obj.on_rightclick(obj, placer)
