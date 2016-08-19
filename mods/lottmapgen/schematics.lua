@@ -1,7 +1,7 @@
 lottmapgen = {}
 
 local areas_mod = minetest.get_modpath("areas")
-local protect_houses = minetest.setting_getbool("protect_structures") or true
+local protect_houses = minetest.setting_getbool("protect_structures") or false
 
 local lottmapgen_list = {
     {"Angmar Fort",    "angmarfort"},
