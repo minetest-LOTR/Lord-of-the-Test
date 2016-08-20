@@ -71,6 +71,9 @@ lottclasses.player_same_race_or_ally = function(player, race)
 end
 
 lottclasses.lua_ent_same_race_or_ally = function(lua_ent, race)
+        if not race or race == "" or not lua_ent.race or lua_ent.race == "" then
+                return false
+        end
         if race == "ents" then
                 if lua_ent.race == "ents" then
                         return true
