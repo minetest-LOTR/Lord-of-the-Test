@@ -287,7 +287,7 @@ minetest.register_node("lottblocks:mithril_stonelamp", {
 })
 
 minetest.register_craft({
-	output = "lottblocks:mithril_stonelamp",
+	output = "lottblocks:mithril_stonelamp 2",
 	recipe = {
 		{"default:stone", "default:stone","default:stone"},
 		{"default:stone", "lottores:mithril_ingot", "default:stone"},
