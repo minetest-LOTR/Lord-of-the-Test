@@ -275,3 +275,24 @@ minetest.register_craft({
 		{'group:stick'},
 	}
 })
+
+-- Made by lumidify - lottblocks_mithril_stonelamp.png
+-- created by modifying darkage_lamp.png
+minetest.register_node("lottblocks:mithril_stonelamp", {
+	description = "Mithril Stonelamp",
+	tiles = { "lottblocks_mithril_stonelamp.png" },
+	paramtype = "light",
+	sunlight_propagates = true,
+	light_source = LIGHT_MAX,
+	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3},
+	sounds = default.node_sound_glass_defaults(),
+})
+
+minetest.register_craft({
+	output = "lottblocks:mithril_stonelamp 2",
+	recipe = {
+		{"default:stone", "default:stone","default:stone"},
+		{"default:stone", "lottores:mithril_ingot", "default:stone"},
+		{"default:stone", "default:torch", "default:stone"},
+	}
+})
