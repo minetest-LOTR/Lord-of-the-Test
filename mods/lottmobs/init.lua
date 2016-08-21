@@ -1582,31 +1582,43 @@ mobs:register_arrow("lottmobs:darkball", {
 			damage_groups = {fleshy=4},
 		}, vec)
 		local pos = self.object:getpos()
+                local node1def = minetest.env:get_node(pos)
+                local n = node1def.name
+                if minetest.registered_nodes[n].groups.no_fireball then return end
 		for dx=-1,1 do
 			for dy=-1,1 do
 				for dz=-1,1 do
 					local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
-					local n = minetest.env:get_node(pos).name
-					if minetest.registered_nodes[n].groups.flammable or math.random(1, 100) <= 30 then
-						minetest.env:set_node(p, {name="fire:basic_flame"})
-					else
-						minetest.env:remove_node(p)
-					end
+                                        local node2def = minetest.env:get_node(p)
+                                        local n2 = node2def.name
+                                        if not minetest.registered_nodes[n2].groups.no_fireball then
+                                                if minetest.registered_nodes[n].groups.flammable or math.random(1, 100) <= 30 then
+                                                        minetest.env:set_node(p, {name="fire:basic_flame"})
+                                                else
+                                                        minetest.env:remove_node(p)
+                                                end
+                                        end
 				end
 			end
 		end
 	end,
 	hit_node = function(self, pos, node)
+                local node1def = minetest.env:get_node(pos)
+                local n = node1def.name
+                if minetest.registered_nodes[n].groups.no_fireball then return end                
 		for dx=-1,1 do
 			for dy=-2,1 do
 				for dz=-1,1 do
 					local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
-					local n = minetest.env:get_node(pos).name
-					if minetest.registered_nodes[n].groups.flammable or math.random(1, 100) <= 30 then
-						minetest.env:set_node(p, {name="fire:basic_flame"})
-					else
-						minetest.env:remove_node(p)
-					end
+                                        local node2def = minetest.env:get_node(p)
+                                        local n2 = node2def.name
+                                        if not minetest.registered_nodes[n2].groups.no_fireball then                                        
+                                                if minetest.registered_nodes[n].groups.flammable or math.random(1, 100) <= 30 then
+                                                        minetest.env:set_node(p, {name="fire:basic_flame"})
+                                                else
+                                                        minetest.env:remove_node(p)
+                                                end
+                                        end
 				end
 			end
 		end

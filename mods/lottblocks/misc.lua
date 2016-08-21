@@ -107,3 +107,19 @@ minetest.register_craft({
 		{"group:wool"}
 	}
 })
+
+minetest.register_node("lottblocks:whatever", {
+	description = "Whatever",
+	tiles = {"lottblocks_whatever.png"},
+	is_ground_content = false,
+	groups = {cracky=1,level=2, no_fireball=1, puts_out_fire=1},
+})
+
+doors:register_door("lottblocks:whatever_door", {
+	description = "Whatever Door",
+	inventory_image = "lottblocks_whatever_door.png",
+	groups = {snappy=1,bendy=2,cracky=1,level=2,door=1,no_fireball=1,puts_out_fire=1},
+	tiles_bottom = {"lottblocks_whatever_door_b.png", "lottblocks_door_black.png"},
+	tiles_top = {"lottblocks_whatever_door_a.png", "lottblocks_door_black.png"},
+	only_placer_can_open = true,
+})
