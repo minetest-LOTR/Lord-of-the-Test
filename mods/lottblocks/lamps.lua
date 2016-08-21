@@ -276,6 +276,8 @@ minetest.register_craft({
 	}
 })
 
+-- Made by lumidify - lottblocks_mithril_stonelamp.png
+-- created by modifying darkage_lamp.png
 minetest.register_node("lottblocks:mithril_stonelamp", {
 	description = "Mithril Stonelamp",
 	tiles = { "lottblocks_mithril_stonelamp.png" },
