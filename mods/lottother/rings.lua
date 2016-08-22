@@ -252,7 +252,7 @@ minetest.register_craft({
 })
 minetest.register_craft({
 	type = "shapeless",
-	output = "default:iron_ingot 2",
+	output = "default:steel_ingot 2",
 	recipe = {"default:iron_lump", "lottother:dwarf_ring"},
 	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
 })
