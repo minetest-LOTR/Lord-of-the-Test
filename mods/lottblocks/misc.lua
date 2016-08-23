@@ -108,18 +108,19 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_node("lottblocks:whatever", {
-	description = "Whatever",
-	tiles = {"lottblocks_whatever.png"},
+minetest.register_node("lottblocks:Thrundir", {
+	description = "Thrundir",
+	tiles = {"lottblocks_thrundir.png"},
 	is_ground_content = false,
 	groups = {cracky=1,level=2, no_darkball=1, puts_out_fire=1},
 })
 
-doors:register_door("lottblocks:whatever_door", {
-	description = "Whatever Door",
-	inventory_image = "lottblocks_whatever_door.png",
+doors:register_door("lottblocks:thrundir_door", {
+	description = "Thrundir Door",
+	inventory_image = "lottblocks_thrundir_door.png",
 	groups = {snappy=1,bendy=2,cracky=1,level=2,door=1,no_darkball=1,puts_out_fire=1},
-	tiles_bottom = {"lottblocks_whatever_door_b.png", "lottblocks_door_black.png"},
-	tiles_top = {"lottblocks_whatever_door_a.png", "lottblocks_door_black.png"},
+	tiles_bottom = {"lottblocks_thrundir_door_b.png", "lottblocks_door_black.png"},
+	tiles_top = {"lottblocks_thrundir_door_a.png", "lottblocks_door_black.png"},
 	only_placer_can_open = true,
+        races = {GAMEdwarf = true}
 })
