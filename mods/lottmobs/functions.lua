@@ -171,19 +171,25 @@ local npc_attack = function(self)
         end        
 end
 
+lottmobs.update_food_infotext = function(self)
+        self.infotext = "Food Level: "..self.food_level
+        self.object:set_properties({infotext = self.infotext})
+end
+
 lottmobs.guard_eat = function(self, dtime)
         if not lottmobs.connected_player_names[self.owner] then return end
         self.eat_timer = self.eat_timer + dtime
         if self.eat_timer >= 60 then
                 self.food_level = self.food_level - 1
                 self.eat_timer = 0
-                self.infotext = "Food Level: "..self.food_level
+                lottmobs.update_food_infotext(self)
         end
         if self.food_level <= 0 and self.timer >= 1 then
                 local food_inv = minetest.get_inventory({type="player", name=self.owner})
                 if food_inv then
-                        local taken = food_inv:remove_item("bag4contents", ItemStack("farming:bread 5"))
-                        self.food_level = self.food_level + taken:get_count() * 4
+                        local taken = food_inv:remove_item("bag4contents", ItemStack("farming:bread 2"))
+                        self.food_level = self.food_level + taken:get_count() * 10
+                        lottmobs.update_food_infotext(self)
                 end
                 if self.food_level <= 0 then
                         self.health = self.health - 1
@@ -456,7 +462,7 @@ lottmobs.register_guard_craftitem = function(name, description, inventory_image)
                                                             obj.order = "follow"
                                                             obj.eat_timer = 0
                                                             obj.food_level = 20
-                                                            obj.infotext = "Food Level: 20"
+                                                            lottmobs.update_food_infotext(obj)
                                                             obj.on_rightclick(obj, placer)
                                                     end
                                                     return itemstack
