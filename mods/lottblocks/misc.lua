@@ -108,10 +108,11 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_node("lottblocks:Thrundir", {
+minetest.register_node("lottblocks:thrundir", {
 	description = "Thrundir",
 	tiles = {"lottblocks_thrundir.png"},
 	is_ground_content = false,
+        sounds = default.node_sound_stone_defaults(),
 	groups = {cracky=1,level=2, no_darkball=1, puts_out_fire=1},
 })
 
@@ -123,4 +124,20 @@ doors:register_door("lottblocks:thrundir_door", {
 	tiles_top = {"lottblocks_thrundir_door_a.png", "lottblocks_door_black.png"},
 	only_placer_can_open = true,
         races = {GAMEdwarf = true}
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "lottblocks:thrundir",
+	recipe = {"default:steel_ingot", "lottother:dwarf_ring", "default:stone"},
+	replacements = {{ "lottother:dwarf_ring", "lottother:dwarf_ring"}},
+})
+
+minetest.register_craft({
+	output = "lottblocks:thrundir_door",
+	recipe = {
+		{"lottblocks:thrundir", "lottblocks:thrundir"},
+		{"lottblocks:thrundir", "lottblocks:thrundir"},
+		{"lottblocks:thrundir", "lottblocks:thrundir"},
+	}
 })
