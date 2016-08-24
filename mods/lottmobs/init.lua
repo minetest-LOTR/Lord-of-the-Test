@@ -1,4 +1,14 @@
 lottmobs = {}
+lottmobs.connected_player_names = {}
+
+minetest.register_on_joinplayer(function(player)
+                lottmobs.connected_player_names[player:get_player_name()] = true
+end)
+
+minetest.register_on_leaveplayer(function(player)
+                lottmobs.connected_player_names[player:get_player_name()] = nil
+end)
+
 
 dofile(minetest.get_modpath("lottmobs").."/functions.lua")
 dofile(minetest.get_modpath("lottmobs").."/craftitems.lua")

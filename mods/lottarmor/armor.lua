@@ -113,7 +113,7 @@ local get_formspec = function(player,page)
 			.."button[0,2;2,0.5;bag1;Bag 1]"
 			.."button[2,2;2,0.5;bag2;Bag 2]"
 			.."button[4,2;2,0.5;bag3;Bag 3]"
-			.."button[6,2;2,0.5;bag4;Bag 4]"
+			.."button[6,2;2,0.5;bag4;Food Bag]"
 			.."list[detached:"..player:get_player_name().."_bags;bag1;0.5,1;1,1;]"
 			.."list[detached:"..player:get_player_name().."_bags;bag2;2.5,1;1,1;]"
 			.."list[detached:"..player:get_player_name().."_bags;bag3;4.5,1;1,1;]"
