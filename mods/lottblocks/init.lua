@@ -8,7 +8,7 @@ dofile(minetest.get_modpath("lottblocks").."/decoration.lua") --This has various
 dofile(minetest.get_modpath("lottblocks").."/chests.lua")
 dofile(minetest.get_modpath("lottblocks").."/lamps.lua")
 dofile(minetest.get_modpath("lottblocks").."/banners.lua")
-dofile(minetest.get_modpath("lottblocks").."/race_doors.lua")
+dofile(minetest.get_modpath("lottblocks").."/doors.lua")
 
 minetest.register_node("lottblocks:snowycobble", {
 	description = "Snowy Cobblestone",

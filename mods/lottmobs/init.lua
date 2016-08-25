@@ -185,7 +185,7 @@ mobs:register_spawn("lottmobs:spider", {"lottmapgen:mirkwood_grass"}, 20, -10, 6
 
 mobs:register_mob("lottmobs:rohan_guard", {
         type = "npc",
-        race = "men",
+        race = "GAMEman",
 	hp_min = 20,
 	hp_max = 30,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
@@ -288,7 +288,7 @@ lottmobs.register_guard_craftitem("lottmobs:rohan_guard", "Rohan Guard", "lottmo
 
 mobs:register_mob("lottmobs:gondor_guard", {
 	type = "npc",
-        race = "men",
+        race = "GAMEman",
         hp_min = 20,
 	hp_max = 30,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
@@ -407,7 +407,7 @@ lottmobs.register_guard_craftitem("lottmobs:gondor_guard", "Gondor Guard", "lott
 
 mobs:register_mob("lottmobs:ithilien_ranger", {
 	type = "npc",
-        race = "men",
+        race = "GAMEman",
         hp_min = 25,
 	hp_max = 40,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
@@ -506,7 +506,7 @@ lottmobs.register_guard_craftitem("lottmobs:ithilien_ranger", "Ithilien Ranger",
 
 mobs:register_mob("lottmobs:dunlending", {
         type = "npc",
-        race = "orcs",
+        race = "GAMEorc",
         hp_min = 17,
 	hp_max = 27,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
@@ -619,7 +619,7 @@ local orc_armor = "lottarmor_chestplate_steel.png^lottarmor_leggings_steel.png^l
 
 mobs:register_mob("lottmobs:orc", {
 	type = "npc",
-        race = "orcs",
+        race = "GAMEorc",
         hp_min = 15,
 	hp_max = 35,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
@@ -721,7 +721,7 @@ lottmobs.register_guard_craftitem("lottmobs:orc", "Orc Guard", "lottmobs_orc_gua
 
 mobs:register_mob("lottmobs:raiding_orc", {
 	type = "npc",
-        race = "orcs",
+        race = "GAMEorc",
         hp_min = 15,
 	hp_max = 35,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
@@ -823,7 +823,7 @@ mobs:register_spawn("lottmobs:raiding_orc", {"lottmapgen:gondor_grass"}, 2, -1, 
 
 mobs:register_mob("lottmobs:warg", {
 	type = "npc",
-        race = "orcs",
+        race = "GAMEorc",
         hp_min = 25,
 	hp_max = 40,
 	collisionbox = {-0.7, -0.75, -0.7, 0.7, 1, 0.7},
@@ -881,7 +881,7 @@ mobs:register_spawn("lottmobs:warg", {"lottmapgen:angsnowblock"}, 20, -1, 5000, 
 
 mobs:register_mob("lottmobs:uruk_hai", {
 	type = "npc",
-        race = "orcs",
+        race = "GAMEorc",
         hp_min = 25,
 	hp_max = 40,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
@@ -980,7 +980,7 @@ lottmobs.register_guard_craftitem("lottmobs:uruk_hai", "Uruk Hai Guard", "lottmo
 
 mobs:register_mob("lottmobs:battle_troll", {
 	type = "npc",
-        race = "orcs",
+        race = "GAMEorc",
         hp_min = 45,
 	hp_max = 60,
 	collisionbox = {-0.7, -0.01, -0.7, 0.7, 2.6, 0.7},
@@ -1059,7 +1059,7 @@ mobs:register_spawn("lottmobs:battle_troll", {"lottmapgen:mordor_stone"}, 10, -1
 
 mobs:register_mob("lottmobs:half_troll", {
 	type = "npc",
-        race = "orcs",
+        race = "GAMEorc",
         hp_min = 20,
 	hp_max = 30,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
@@ -1468,7 +1468,7 @@ mobs:register_spawn("lottmobs:dead_men", {"default:mossycobble"}, 2, -1, 6000, 1
 
 mobs:register_mob("lottmobs:troll", {
 	type = "npc",
-        race = "orcs",
+        race = "GAMEorc",
         hp_min = 50,
 	hp_max = 65,
 	collisionbox = {-0.7, -0.01, -0.7, 0.7, 2.6, 0.7},

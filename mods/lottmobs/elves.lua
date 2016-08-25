@@ -1,7 +1,7 @@
 function lottmobs.register_elf(n, hpmin, hpmax, textures, wv, rv, damg, arm, drops, price)
 	mobs:register_mob("lottmobs:elf" .. n, {
 		type = "npc",
-                race = "elves",
+                race = "GAMEelf",
                 hp_min = hpmin,
 		hp_max = hpmax,
 		collisionbox = {-0.3,-1.1,-0.3, 0.3,0.91,0.3},
@@ -159,7 +159,7 @@ local drops2 = {
 
 lottmobs.register_elf(1, 20, 35, textures2, 2, 4.5, 6, 100, drops2, 50)
 
---Evels with chestplates and powerfull weapons!
+--Elves with chestplates and powerful weapons!
 
 local textures3 = {
     {"lottmobs_lorien_elf_1.png", "lottarmor_chestplate_galvorn.png", "lottweapons_elven_sword.png", "lottarmor_trans.png"},

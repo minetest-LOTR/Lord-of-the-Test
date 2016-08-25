@@ -1,45 +1,37 @@
 lottclasses.allies = {
-        elves = {
-                men = true,
-                orcs = false,
-                hobbits = true,
-                dwarves = true
+        GAMEelf = {
+                GAMEman = true,
+                GAMEorc = false,
+                GAMEhobbit = true,
+                GAMEdwarf = true
         },
-        men = {
-                elves = true,
-                orcs = false,
-                hobbits = true,
-                dwarves = true
+        GAMEman = {
+                GAMEelf = true,
+                GAMEorc = false,
+                GAMEhobbit = true,
+                GAMEdwarf = true
         },
-        orcs = {
-                elves = false,
-                men = false,
-                hobbits = false,
-                dwarves = false
+        GAMEorc = {
+                GAMEelf = false,
+                GAMEman = false,
+                GAMEhobbit = false,
+                GAMEdwarf = false
         },
-        hobbits = {
-                elves = true,
-                men = true,
-                orcs = false,
-                dwarves = true
+        GAMEhobbit = {
+                GAMEelf = true,
+                GAMEman = true,
+                GAMEorc = false,
+                GAMEdwarf = true
         },
-        dwarves = {
-                elves = true,
-                men = true,
-                orcs = false,
-                hobbits = true
+        GAMEdwarf = {
+                GAMEelf = true,
+                GAMEman = true,
+                GAMEorc = false,
+                GAMEhobbit = true
         }
 }
 
 lottclasses.races = {
-	"elves",
-	"men",
-	"orcs",
-	"hobbits",
-	"dwarves"
-}
-
-lottclasses.player_races = {
         "GAMEelf",
         "GAMEman",
         "GAMEorc",
@@ -47,23 +39,31 @@ lottclasses.player_races = {
         "GAMEdwarf"
 }
 
-lottclasses.races_pretty = {
+lottclasses.races_prefix = {
         "Elven",
         "Human",
         "Orc",
         "Hobbit",
         "Dwarven"
 }
+
+lottclasses.races_pretty = {
+        "Elves",
+        "Men",
+        "Orcs",
+        "Hobbits",
+        "Dwarves"
+}
+
 lottclasses.player_same_race_or_ally = function(player, race)
-        local player_race = nil
+        return minetest.check_player_privs(player:get_player_name(), {[race] = true})
+end
+
+lottclasses.player_race_in_table = function(player, races)
         local player_privs = minetest.get_player_privs(player:get_player_name())
-        if player_privs["GAMEwizard"] then return true end
-        for i = 1, 5, 1 do
-                player_race = nil
-                if player_privs[lottclasses.player_races[i]] then
-                        player_race = lottclasses.races[i]
-                end
-                if player_race == race or lottclasses.allies[race][player_race] then
+        local current_race = nil
+        for i, v in pairs(races) do
+                if player_privs[i] then
                         return true
                 end
         end
@@ -129,14 +129,14 @@ lottclasses.show_allies_formspec = function(player)
         local formspec = "size[8,12]label[0,0;Allies:]"
         y = 1
         for i = 1, 5, 1 do
-                if player_privs.server or player_privs[lottclasses.player_races[i]] then
-                        formspec = formspec.."label[0,"..y..";"..lottclasses.races[i]..":]"
+                if player_privs.server or player_privs[lottclasses.races[i]] then
+                        formspec = formspec.."label[0,"..y..";"..lottclasses.races_pretty[i]..":]"
                         x = 0
                         for j = 1, 5, 1 do
                                 if lottclasses.races[i] ~= lottclasses.races[j] then
                                         formspec = formspec..
                                                 "checkbox["..x..","..(y + 1)..";"..lottclasses.races[i].."_"..
-                                                lottclasses.races[j]..";"..lottclasses.races[j]..";"..
+                                                lottclasses.races[j]..";"..lottclasses.races_pretty[j]..";"..
                                                 tostring(lottclasses.allies[lottclasses.races[i]][lottclasses.races[j]]).."]"
                                         x = x + 2
                                 end
