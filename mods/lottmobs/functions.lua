@@ -198,12 +198,13 @@ lottmobs.guard_eat_active = function(self)
         if lottmobs.player_guards[self.owner] then
                 local hunger_def = lottmobs.player_guards[self.owner][self.game_name]
                 if hunger_def then
-                        self.health = hunger_def.health
+                        self.health = self.health + (hunger_def.health - hunger_def.last_active_health)
+                        hunger_def.last_active_health = self.health
+                        hunger_def.health = self.health
                         self.object:set_hp(self.health)
                         return
                 end
         end
-        self.old_health = 1
         self.health = 0
         self.object:set_hp(self.health)
 end
@@ -215,7 +216,7 @@ lottmobs.guard_eat = function(self, owner, name, dtime)
         end
         self.eat_timer = self.eat_timer + dtime
         self.timer = self.timer + dtime
-        if self.eat_timer >= 60 then
+        if self.eat_timer >= 1 then
                 self.food_level = self.food_level - 1
                 self.eat_timer = 0
         end
@@ -504,7 +505,7 @@ lottmobs.register_guard_craftitem = function(name, description, inventory_image)
                                                             lottmobs.name = function(name)
                                                                     if name and name ~= "" and not lottmobs.player_guards[owner][name] then
                                                                             local obj = add_guard(name)
-                                                                            lottmobs.player_guards[owner][name] = {food_level = 20, health = obj.health, eat_timer = 0, timer = 0}
+                                                                            lottmobs.player_guards[owner][name] = {food_level = 20, health = obj.health, eat_timer = 0, timer = 0, last_active_health = obj.health}
                                                                             lottmobs.save_guard_hunger()
                                                                     else
                                                                             minetest.show_formspec(owner, "mob_naming", "field[naming;Name your guard:;")
