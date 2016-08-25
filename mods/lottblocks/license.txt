@@ -40,3 +40,5 @@ Amaz - All of the others, often based on textures from default.
 Sounds, CC BY-SA
 
 STHGOM - All of them
+
+Models, CC0, VanessaE

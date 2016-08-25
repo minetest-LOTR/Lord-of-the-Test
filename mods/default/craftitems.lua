@@ -12,7 +12,7 @@ minetest.register_craftitem("default:paper", {
 })
 
 local lpp = 14 -- Lines per book's page
-local function book_on_use(itemstack, user)
+function default.book_on_use(itemstack, user, background)
 	local player_name = user:get_player_name()
 	local data = minetest.deserialize(itemstack:get_metadata())
 	local title, text, owner = "", "", player_name
@@ -41,8 +41,7 @@ local function book_on_use(itemstack, user)
 	local formspec
 	if owner == player_name then
 		formspec = "size[8,8]" ..
-			"bgcolor[#a0a0a0;false]"..
-			"background[8,8;1,1;gui_frame.png;true]"..
+			"background[8,8;1,1;" .. background .. ";true]"..
 			"field[0.5,1;7.5,0;title;Title:;" ..
 				minetest.formspec_escape(title) .. "]" ..
 			"textarea[0.5,1.5;7.5,7;text;Contents:;" ..
@@ -50,12 +49,9 @@ local function book_on_use(itemstack, user)
 			"button_exit[2.5,7.5;3,1;save;Save]"
 	else
 		formspec = "size[8,8]" ..
-			"background[8,8;1,1;gui_frame.png;true]"..
-			"bgcolor[#a0a0a0;false]"..
+			"background[8,8;1,1;" .. background .. ";true]" ..
 			"label[0.5,0.5;by " .. owner .. "]" ..
-			"tablecolumns[color;text]" ..
-			"tableoptions[background=#00000000;highlight=#00000000;border=false]" ..
-			"table[0.4,0;7,0.5;title;#FFFF00," .. minetest.formspec_escape(title) .. "]" ..
+			"label[0.4,0;" .. minetest.colorize("yellow", minetest.formspec_escape(title)) .. "]" ..
 			"textarea[0.5,1.5;7.5,7;;" ..
 			minetest.formspec_escape(string ~= "" and string or text) .. ";]" ..
 			"button[2.4,7.6;0.8,0.8;book_prev;<]" ..
@@ -123,7 +119,12 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 
 		local data_str = minetest.serialize(data)
 		stack:set_metadata(data_str)
-		book_on_use(stack, player)
+		--Hackyness!!
+		local background = "gui_hobbitbg.png"
+		if stack:get_name() == "lottblocks:palantir_guide" then
+			background = "gui_elfbg.png"
+		end
+		default.book_on_use(stack, player, background)
 	end
 
 	player:set_wielded_item(stack)
@@ -133,7 +134,9 @@ minetest.register_craftitem("default:book", {
 	description = "Book",
 	inventory_image = "default_book.png",
 	groups = {book = 1},
-	on_use = book_on_use,
+	on_use = function(itemstack, user)
+		default.book_on_use(itemstack, user, "gui_hobbitbg.png")
+	end,
 })
 
 minetest.register_craftitem("default:book_written", {
@@ -141,7 +144,9 @@ minetest.register_craftitem("default:book_written", {
 	inventory_image = "default_book_written.png",
 	groups = {book = 1, not_in_creative_inventory = 1},
 	stack_max = 1,
-	on_use = book_on_use,
+	on_use = function(itemstack, user)
+		default.book_on_use(itemstack, user, "gui_hobbitbg.png")
+	end,
 })
 
 minetest.register_craft({
