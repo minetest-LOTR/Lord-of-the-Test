@@ -216,7 +216,7 @@ lottmobs.guard_eat = function(self, owner, name, dtime)
         end
         self.eat_timer = self.eat_timer + dtime
         self.timer = self.timer + dtime
-        if self.eat_timer >= 1 then
+        if self.eat_timer >= 60 then
                 self.food_level = self.food_level - 1
                 self.eat_timer = 0
         end
