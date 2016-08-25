@@ -233,7 +233,6 @@ lottmobs.guard_eat = function(self, owner, name, dtime)
                         end
                 end
                 if self.food_level <= 0 then
-                        self.old_health = self.health
                         self.health = self.health - 1
                 end
         end
