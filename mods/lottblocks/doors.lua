@@ -64,11 +64,11 @@ doors:register_door("lottblocks:human_door", {
 })
 
 doors:register_door("lottblocks:ilmadris_door", {
-                            description = "Ilmadris Door",
-                            inventory_image = "lottblocks_ilmadris_door.png",
+                            description = "Imladris Door",
+                            inventory_image = "lottblocks_imladris_door.png",
                             groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
-                            tiles_bottom = {"lottblocks_ilmadris_door_b.png", "lottblocks_door_black.png"},
-                            tiles_top = {"lottblocks_ilmadris_door_a.png", "lottblocks_door_black.png"},
+                            tiles_bottom = {"lottblocks_imladris_door_b.png", "lottblocks_door_black.png"},
+                            tiles_top = {"lottblocks_imladris_door_a.png", "lottblocks_door_black.png"},
                             only_placer_can_open = true,
                             custom_on_place = function(itemstack, placer, pointed_thing, def)
                                     lottblocks.set_door_races = function(fields)
