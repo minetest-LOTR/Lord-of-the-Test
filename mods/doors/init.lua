@@ -15,7 +15,7 @@ doors = {}
 --    selection_box_top
 --    only_placer_can_open: if true only the player who placed the door can
 --                          open it
---    race: optional; only players from this race or an ally can open it
+--    races: optional; only players from these races can open or dig the door
 
 function doors:register_door(name, def)
 	def.groups.not_in_creative_inventory = 1
@@ -131,28 +131,15 @@ function doors:register_door(name, def)
 		minetest.swap_node(pos, {name=replace, param2=p2})
 	end
 
-        local function check_player_priv_dig(pos, player)
-                if not def.only_placer_can_open then
-                        return true
-                end
-                local meta = minetest.get_meta(pos)
-                local pn = player:get_player_name()
-                return meta:get_string("doors_owner") == pn or minetest.check_player_privs(pn, {GAMEwizard = true})
-        end
-	local function check_player_priv_open(pos, player)
+	local function check_player_priv(pos, player)
 		if not def.only_placer_can_open and not def.races then
 			return true
 		end
 		local meta = minetest.get_meta(pos)
 		local pn = player:get_player_name()
-		if def.only_placer_can_open and meta:get_string("doors_owner") == pn then
-                        return true
-                elseif def.races and lottclasses.player_race_in_table(player, def.races) then
-                        return true
-                elseif minetest.check_player_privs(pn, {GAMEwizard = true}) then
-                        return true
-                end
-                return false
+		return (def.only_placer_can_open and meta:get_string("doors_owner") == pn) or
+                        (def.races and lottclasses.player_race_in_table(player, def.races)) or
+                        minetest.check_player_privs(pn, {GAMEwizard = true})
 	end
         local tb_final_1 = nil
         if table.getn(tb) > 2 then
@@ -182,12 +169,12 @@ function doors:register_door(name, def)
 		end,
 
 		on_rightclick = function(pos, node, clicker)
-			if check_player_priv_open(pos, clicker) then
+			if check_player_priv(pos, clicker) then
 				on_rightclick(pos, 1, name.."_t_1", name.."_b_2", name.."_t_2", {1,2,3,0})
 			end
 		end,
 
-		can_dig = check_player_priv_dig,
+		can_dig = check_player_priv,
 	})
         local tt_final_1 = nil
         if table.getn(tt) > 2 then
@@ -217,12 +204,12 @@ function doors:register_door(name, def)
 		end,
 
 		on_rightclick = function(pos, node, clicker)
-			if check_player_priv_open(pos, clicker) then
+			if check_player_priv(pos, clicker) then
 				on_rightclick(pos, -1, name.."_b_1", name.."_t_2", name.."_b_2", {1,2,3,0})
 			end
 		end,
 
-		can_dig = check_player_priv_dig,
+		can_dig = check_player_priv,
 	})
         local tb_final_2 = nil
         if table.getn(tb) > 2 then
@@ -252,12 +239,12 @@ function doors:register_door(name, def)
 		end,
 
 		on_rightclick = function(pos, node, clicker)
-			if check_player_priv_open(pos, clicker) then
+			if check_player_priv(pos, clicker) then
 				on_rightclick(pos, 1, name.."_t_2", name.."_b_1", name.."_t_1", {3,0,1,2})
 			end
 		end,
 
-		can_dig = check_player_priv_dig,
+		can_dig = check_player_priv,
 	})
         local tt_final_2 = nil
         if table.getn(tt) > 2 then
@@ -287,12 +274,12 @@ function doors:register_door(name, def)
 		end,
 
 		on_rightclick = function(pos, node, clicker)
-			if check_player_priv_open(pos, clicker) then
+			if check_player_priv(pos, clicker) then
 				on_rightclick(pos, -1, name.."_b_2", name.."_t_1", name.."_b_1", {3,0,1,2})
 			end
 		end,
 
-		can_dig = check_player_priv_dig,
+		can_dig = check_player_priv,
 	})
 end
 
