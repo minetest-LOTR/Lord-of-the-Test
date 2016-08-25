@@ -240,7 +240,7 @@ minetest.register_node("lottores:tilkal", {
 	description = "Tilkal",
 	tiles = {"lottores_tilkal.png"},
 	sounds = default.node_sound_defaults(),
-	groups = {forbidden=1},
+	groups = {forbidden=1, very_hard = 1},
 })
 
 minetest.register_node("lottores:marble", {

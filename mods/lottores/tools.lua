@@ -74,6 +74,7 @@ minetest.register_tool("lottores:mithrilpick", {
 		max_drop_level=3,
 		groupcaps={
 			cracky = {times={[1]=1.5, [2]=0.8, [3]=0.40}, uses=60, maxlevel=3},
+			very_hard = {times={[1]=3.5, [2]=1.5, [3]=0.90}, uses=50, maxlevel=3},
 		},
 		damage_groups = {fleshy=5},
 	},

@@ -252,7 +252,7 @@ minetest.register_node("lottblocks:palantir", {
 			lottblocks.palantiri[meta:get_string("network")][meta:get_string("name")] = nil
 		end
 	end,
-	groups = {forbidden = 1, cracky = 1}
+	groups = {forbidden = 1, very_hard = 1},
 })
 
 minetest.register_craftitem("lottblocks:palantir_guide", {
