@@ -71,22 +71,18 @@ local npc_guard_attack = function(self)
                                         and self.whitelist
                                         and not value_in_table(self.whitelist, player:get_player_name()) then
                                                 local player_privs = minetest.get_player_privs(player:get_player_name())
-                                                if (self.attack_player_elves and player_privs.GAMEelf)
-                                                or (self.attack_player_men and player_privs.GAMEman)
-                                                or (self.attack_player_orcs and player_privs.GAMEorc)
-                                                or (self.attack_player_hobbits and player_privs.GAMEhobbit)
-                                                or (self.attack_player_dwarves and player_privs.GAMEdwarf)
+                                                if (self.attack_player_GAMEelf and player_privs.GAMEelf)
+                                                or (self.attack_player_GAMEman and player_privs.GAMEman)
+                                                or (self.attack_player_GAMEorc and player_privs.GAMEorc)
+                                                or (self.attack_player_GAMEhobbit and player_privs.GAMEhobbit)
+                                                or (self.attack_player_GAMEdwarf and player_privs.GAMEdwarf)
                                                 or (self.blacklist
                                                 and value_in_table(self.blacklist, player:get_player_name())) then
                                                             min_dist = dist
                                                             min_player = player
                                                 end
                                         elseif entity_type == "npc" and npc_race ~= "ents" and self.race ~= npc_race then
-                                                if (self.attack_npc_elves and npc_race == "elves")
-                                                or (self.attack_npc_men and npc_race == "men")
-                                                or (self.attack_npc_orcs and npc_race == "orcs")
-                                                or (self.attack_npc_hobbits and npc_race == "hobbits")
-                                                or (self.attack_npc_dwarves and npc_race == "dwarves") then
+                                                if (self["attack_npc_"..npc_race]) then
                                                         min_dist = dist
                                                         min_player = player
                                                 end
@@ -329,7 +325,7 @@ local get_guard_formspec = function(self)
                         end
                         formspec = formspec..
                                 "checkbox["..checkbox_pos[j]..";attack_npc_"..lottclasses.races[i]..";"..
-                                lottclasses.races_pretty[i].." NPCs;"..tostring(attack_race).."]"
+                                lottclasses.races_prefix[i].." NPCs;"..tostring(attack_race).."]"
                         j = j + 1
                 end
         end
@@ -341,7 +337,7 @@ local get_guard_formspec = function(self)
                 end
                 formspec = formspec..
                         "checkbox["..checkbox_pos[j]..";attack_player_"..lottclasses.races[i]..";"..
-                        lottclasses.races_pretty[i].." Players;"..tostring(attack_race).."]"
+                        lottclasses.races_prefix[i].." Players;"..tostring(attack_race).."]"
                 j = j + 1
         end
         formspec = formspec..

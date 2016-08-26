@@ -1,7 +1,7 @@
 function lottmobs.register_hobbit(n, hpmin, hpmax, textures, wv, rv, damg, arm, drops, price)
         mobs:register_mob("lottmobs:hobbit"..n, {
                                   type = "npc",
-                                  race = "hobbits",
+                                  race = "GAMEhobbit",
                                   hp_min = hpmin,
                                   hp_max = hpmax,
                                   collisionbox = {-0.3,-0.75,-0.3, 0.3,0.7,0.3},

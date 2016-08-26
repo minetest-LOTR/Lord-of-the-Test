@@ -8,7 +8,7 @@ doors:register_door("lottblocks:dwarf_door", {
                             tiles_top = {"lottblocks_dwarf_door_side_top.png", "lottblocks_dwarf_door_side_bottom.png",
                                          "lottblocks_dwarf_door_side_right.png", "lottblocks_dwarf_door_side_left.png",
                                          "lottblocks_dwarf_door_a.png", "lottblocks_dwarf_door_a.png"},
-                            race = "dwarves"
+                            races = {GAMEdwarf = true}
 })
 
 doors:register_door("lottblocks:elven_door", {
@@ -21,7 +21,7 @@ doors:register_door("lottblocks:elven_door", {
                             tiles_top = {"lottblocks_dwarf_door_side_top.png", "lottblocks_dwarf_door_side_bottom.png",
                                          "lottblocks_dwarf_door_side_right.png", "lottblocks_dwarf_door_side_left.png",
                                          "lottblocks_elven_door_a.png", "lottblocks_elven_door_a.png"},
-                            race = "elves"
+                            races = {GAMEelf = true}
 })
 
 doors:register_door("lottblocks:hobbit_door", {
@@ -34,7 +34,7 @@ doors:register_door("lottblocks:hobbit_door", {
                             tiles_top = {"lottblocks_hobbit_door_side_top.png", "lottblocks_hobbit_door_side_bottom.png",
                                          "lottblocks_hobbit_door_side_right.png", "lottblocks_hobbit_door_side_left.png",
                                          "lottblocks_hobbit_door_a.png", "lottblocks_hobbit_door_a.png"},
-                            race = "hobbits"
+                            races = {GAMEhobbit = true}
 })
 
 doors:register_door("lottblocks:orc_door", {
@@ -47,7 +47,7 @@ doors:register_door("lottblocks:orc_door", {
                             tiles_top = {"lottblocks_orc_door_side_top.png", "lottblocks_orc_door_side_bottom.png",
                                          "lottblocks_orc_door_side_right.png", "lottblocks_orc_door_side_left.png",
                                          "lottblocks_orc_door_a.png", "lottblocks_orc_door_a.png"},
-                            race = "orcs"
+                            races = {GAMEorc = true}
 })
 
 doors:register_door("lottblocks:human_door", {
@@ -60,7 +60,7 @@ doors:register_door("lottblocks:human_door", {
                             tiles_top = {"lottblocks_human_door_side_top.png", "lottblocks_human_door_side_bottom.png",
                                          "lottblocks_human_door_side_right.png", "lottblocks_human_door_side_left.png",
                                          "lottblocks_human_door_a.png", "lottblocks_human_door_a.png"},
-                            race = "men"
+                            races = {GAMEman = true}
 })
 
 minetest.register_craft({

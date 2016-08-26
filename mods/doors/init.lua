@@ -15,7 +15,7 @@ doors = {}
 --    selection_box_top
 --    only_placer_can_open: if true only the player who placed the door can
 --                          open it
---    race: optional; only players from this race or an ally can open it
+--    races: optional; only players from these races can open or dig the door
 
 function doors:register_door(name, def)
 	def.groups.not_in_creative_inventory = 1
@@ -97,6 +97,10 @@ function doors:register_door(name, def)
 				meta:set_string("infotext", "Owned by "..pn)
 			end
 
+                        if def.custom_on_place then
+                                def.custom_on_place(itemstack, placer, pointed_thing, def)
+                        end
+
 			if not minetest.setting_getbool("creative_mode") then
 				itemstack:take_item()
 			end
@@ -128,12 +132,14 @@ function doors:register_door(name, def)
 	end
 
 	local function check_player_priv(pos, player)
-		if not def.only_placer_can_open and not def.race then
+		if not def.only_placer_can_open and not def.races then
 			return true
 		end
 		local meta = minetest.get_meta(pos)
 		local pn = player:get_player_name()
-		return meta:get_string("doors_owner") == pn or lottclasses.player_same_race_or_ally(player, def.race)
+		return (def.only_placer_can_open and meta:get_string("doors_owner") == pn) or
+                        (def.races and lottclasses.player_race_in_table(player, def.races)) or
+                        minetest.check_player_privs(pn, {GAMEwizard = true})
 	end
         local tb_final_1 = nil
         if table.getn(tb) > 2 then

@@ -1,6 +1,7 @@
 mobs:register_mob("lottmobs:elf_trader", {
 	type = "npc",
-	hp_min = 20,
+        race = "GAMEelf",
+        hp_min = 20,
 	hp_max = 50,
 	collisionbox = {-0.3,-1.1,-0.3, 0.3,0.91,0.3},
 	textures = {
@@ -52,7 +53,8 @@ mobs:register_spawn("lottmobs:elf_trader", {"lottmapgen:lorien_grass"}, 20, 0, 6
 
 mobs:register_mob("lottmobs:human_trader", {
 	type = "npc",
-	hp_min = 15,
+        race = "GAMEman",
+        hp_min = 15,
 	hp_max = 35,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	textures = {
@@ -104,8 +106,9 @@ mobs:register_spawn("lottmobs:human_trader", {"lottmapgen:rohan_grass"}, 20, -1,
 mobs:register_spawn("lottmobs:human_trader", {"lottmapgen:gondor_grass"}, 20, -1, 60000, 3, 31000)
 
 mobs:register_mob("lottmobs:hobbit_trader", {
-	type = "animal",
-	hp_min = 5,
+	type = "npc",
+        race = "GAMEman",
+        hp_min = 5,
 	hp_max = 15,
 	collisionbox = {-0.3,-0.75,-0.3, 0.3,0.7,0.3},
 	textures = {
@@ -148,7 +151,8 @@ mobs:register_spawn("lottmobs:hobbit_trader", {"lottmapgen:shire_grass"}, 20, -1
 
 mobs:register_mob("lottmobs:dwarf_trader", {
 	type = "npc",
-	hp_min = 20,
+        race = "GAMEdwarf",
+        hp_min = 20,
 	hp_max = 30,
 	collisionbox = {-0.3,-.85,-0.3, 0.3,0.68,0.3},
 	textures = {
