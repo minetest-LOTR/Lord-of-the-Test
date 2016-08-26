@@ -8,31 +8,23 @@ local protect_houses = minetest.setting_getbool("protect_structures") or false
 local lottmapgen_list = {
 	["Angmar Fort"] =    {build="angmarfort",   area_owner = "Orc Guard",     area_name = "Angmar Fort",   
 		center = {x=9, y=2, z=3} },
-		--bbox = {xmin = -4, ymin = -15, zmin = -4, xmax = 22, ymax = 25, zmax = 22} },
 	["Gondor Fort"] =    {build="gondorfort",   area_owner = "Gondor Guard",  area_name = "Gondor Castle", 
 		center = {x=1, y=1, z=9} },
-		--bbox = {xmin = -2, ymin = -15, zmin = -5, xmax = 23, ymax = 35, zmax = 24} },
 	["Rohan Fort"] =     {build="rohanfort",    area_owner = "Rohan Guard",   area_name = "Rohan Fort",  
 		center = {x=1, y=1, z=9} },  
-		--bbox = {xmin = -4, ymin = -15, zmin = -4, xmax = 29, ymax = 25, zmax = 29} },
 	["Orc Fort"] =       {build="orcfort",      area_owner = "Orc Guard",     area_name = "Orc Fort", 
 		center = {x=15, y=2, z=1} },       
-		-- bbox = {xmin = -4, ymin = -15, zmin = -4, xmax = 26, ymax = 45, zmax = 26} },
 	["Mallorn House"] =  {build="mallornhouse", area_owner = "Elven Guard",   area_name = "Elven House",   
 		center = {x=2, y=1, z=5} },   
-		-- bbox = {xmin = -3, ymin = -15, zmin = -3, xmax = 10, ymax = 35, zmax = 10} },
 	["Lorien House"] =   {build="lorienhouse",  area_owner = "Elven Guard",   area_name = "Elven House",  
 		center = {x=2, y=1, z=5} }, 
-		-- bbox = {xmin = -2, ymin = -15, zmin = -2, xmax = 12, ymax = 45, zmax = 12} },--Different version of "mallornhouse", made by fireuser
 	["Mirkwood House"] = {build="mirkhouse",    area_owner = "Elven Guard",   area_name = "Elven House",  
 		center = {x=5, y=2, z=1} },  
-		--bbox = {xmin = -4, ymin = -15, zmin = -4, xmax = 15, ymax = 30, zmax = 15} },
 	["Hobbit Hole"] =    {build="hobbithole",   area_owner = "Hobbit Family", area_name = "Hobbit Hole",   
 		center = {x=13, y=3, z=24} },
-		--bbox = {xmin = 0,  ymin = -15, zmin = 0, xmax = 30, ymax = 10, zmax = 20} },
 	["Dwarf House"] =    {build="dwarfhouse",   area_owner = "Dwarf Smith",   area_name = "Dwarf House", 
 		center = {x=16, y=1, z=3} },  
-		--bbox = {xmin = -5, ymin = -5, zmin = -5, xmax = 27, ymax = 13, zmax = 28} }
+
 }
 
 -- load bounding box from files
@@ -44,9 +36,6 @@ for i, v in pairs(lottmapgen_list) do
 	lottmapgen_list[i].bbox = {
 			xmin = pos1.x-v.center.x, ymin = pos1.y-v.center.y, zmin = pos1.z-v.center.z,
 			xmax = pos2.x-v.center.x, ymax = pos2.y-v.center.y, zmax = pos2.z-v.center.z}
-print(i)
-print(lottmapgen_list[i].bbox.xmin.." , "..lottmapgen_list[i].bbox.ymin.." , "..lottmapgen_list[i].bbox.zmin)
-print(lottmapgen_list[i].bbox.xmax.." , "..lottmapgen_list[i].bbox.ymax.." , "..lottmapgen_list[i].bbox.zmax)
 end
 
 -- queue to store the buildings which are waiting to be built (queue structure from https://www.lua.org/pil/11.4.html)
