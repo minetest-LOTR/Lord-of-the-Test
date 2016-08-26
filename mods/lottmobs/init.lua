@@ -1,4 +1,29 @@
 lottmobs = {}
+lottmobs.connected_player_names = {}
+lottmobs.player_guards = {}
+
+local file = io.open(minetest.get_worldpath().."/guard_hunger.txt", "r")
+if file then
+	lottmobs.player_guards = minetest.deserialize(file:read("*all"))
+	file:close()
+end
+
+minetest.register_on_joinplayer(function(player)
+                lottmobs.connected_player_names[player:get_player_name()] = true
+end)
+
+minetest.register_on_leaveplayer(function(player)
+                lottmobs.connected_player_names[player:get_player_name()] = nil
+end)
+
+minetest.register_globalstep(function(dtime)
+                lottmobs.do_guard_hunger(dtime)
+end)
+
+minetest.register_on_shutdown(function()
+                lottmobs.save_guard_hunger()
+end)
+
 
 dofile(minetest.get_modpath("lottmobs").."/functions.lua")
 dofile(minetest.get_modpath("lottmobs").."/craftitems.lua")
