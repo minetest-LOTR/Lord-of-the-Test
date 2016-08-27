@@ -142,7 +142,7 @@ minetest.register_node("lottblocks:palantir", {
 				minetest.colorize("red", "Both the network and the palantir must have a name!!"))
 				return
 			end
-			if fields.palantii == "owner" or fields.palantir == "options" then
+			if fields.palantir == "owner" or fields.palantir == "options" then
 				minetest.chat_send_player(player_name,
 				minetest.colorize("red", "Palantir cannot use reserved name!"))
 				return
