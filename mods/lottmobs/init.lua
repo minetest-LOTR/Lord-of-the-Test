@@ -2,7 +2,7 @@ lottmobs = {}
 lottmobs.connected_player_names = {}
 lottmobs.player_guards = {}
 
-local file = io.open(minetest.get_worldpath().."/guard_hunger.txt", "r")
+local file = io.open(minetest.get_worldpath().."/"..SAVEDIR.."/guard_hunger.txt", "r")
 if file then
 	lottmobs.player_guards = minetest.deserialize(file:read("*all"))
 	file:close()

@@ -114,7 +114,7 @@ lottclasses.obj_same_race_or_ally = function(obj, race)
         return false
 end
 
-local file = io.open(minetest.get_worldpath().."/allies.txt", "r")
+local file = io.open(minetest.get_worldpath().."/"..SAVEDIR.."/allies.txt", "r")
 if file then
 	lottclasses.allies = minetest.deserialize(file:read("*all"))
 	file:close()
@@ -185,7 +185,8 @@ minetest.register_on_player_receive_fields(
 )
 
 lottclasses.save_allies = function()
-	local file = io.open(minetest.get_worldpath().."/allies.txt", "w")
+        minetest.mkdir(minetest.get_worldpath().."/"..SAVEDIR)
+	local file = io.open(minetest.get_worldpath().."/"..SAVEDIR.."/allies.txt", "w")
 	if (file) then
 		file:write(minetest.serialize(lottclasses.allies))
 		file:close()

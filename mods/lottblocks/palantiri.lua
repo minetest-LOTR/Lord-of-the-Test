@@ -1,6 +1,6 @@
 lottblocks.palantiri = {}
 local tmp
-local file = io.open(minetest.get_worldpath().."/palantiri", "r")
+local file = io.open(minetest.get_worldpath().."/"..SAVEDIR.."/palantiri", "r")
 if file then
 	tmp = minetest.deserialize(file:read("*all"))
 	file:close()
@@ -11,7 +11,8 @@ if tmp ~= nil then
 end
 
 local function save_palantiri()
-	local file = io.open(minetest.get_worldpath().."/palantiri", "w")
+        minetest.mkdir(minetest.get_worldpath().."/"..SAVEDIR)
+	local file = io.open(minetest.get_worldpath().."/"..SAVEDIR.."/palantiri", "w")
 	if file then
 		file:write(minetest.serialize({lottblocks.palantiri}))
 		file:close()

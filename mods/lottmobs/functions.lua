@@ -173,8 +173,9 @@ local guard_foods = {
 }
 
 lottmobs.save_guard_hunger = function()
-	local file = io.open(minetest.get_worldpath().."/guard_hunger.txt", "w")
-	if (file) then
+        minetest.mkdir(minetest.get_worldpath().."/"..SAVEDIR)
+	local file = io.open(minetest.get_worldpath().."/"..SAVEDIR.."/guard_hunger.txt", "w")
+	if file then
 		file:write(minetest.serialize(lottmobs.player_guards))
 		file:close()
 	end        
