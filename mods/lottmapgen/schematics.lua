@@ -72,11 +72,15 @@ function lottmapgen.dequeue_building()
 	return value
 end
 
+local check_voxel_manip = nil
+
 -- check if all the blocks that intersect the building are genrated
 function lottmapgen.check_building(bbox, pos)
 
+	if not check_voxel_manip then check_voxel_manip = minetest.get_voxel_manip() end
+
 	-- make sure the zone is loaded, so that "ignore" node are only ungenerated ones
-	local emin, emax = minetest.get_voxel_manip():read_from_map(
+	local emin, emax = check_voxel_manip:read_from_map(
 		{x=bbox.xmin+pos.x, y=bbox.ymin+pos.y, z=bbox.zmin+pos.z},
 		{x=bbox.xmax+pos.x, y=bbox.ymax+pos.y, z=bbox.zmax+pos.z})
 
@@ -104,9 +108,6 @@ function lottmapgen.place_building(building, pos)
 	local file = io.open(minetest.get_modpath("lottmapgen").."/schems/"..building.build..".we")
 	local value = file:read("*a")
 	file:close()
-	local emin, emax = minetest.get_voxel_manip():read_from_map(
-		{x=building.bbox.xmin+pos.x, y=building.bbox.ymin+pos.y, z=building.bbox.zmin+pos.z},
-		{x=building.bbox.xmax+pos.x, y=building.bbox.ymax+pos.y, z=building.bbox.zmax+pos.z})
 	local p = {x = pos.x-building.center.x, y = pos.y-building.center.y, z = pos.z-building.center.z}
 	local count = worldedit.deserialize(p, value)
 	if ignore_count == 0 and areas_mod ~= nil and protect_houses == true then
@@ -212,7 +213,7 @@ lottmapgen.fill_bellow = function(bbox, pos)
 	end
 end
 
--- folowinf function let as a way to "hack" building placement, but shouldn't be needed
+-- folowing function let as a way to "hack" building placement, but shouldn't be needed
 for builddesc, v in ipairs(lottmapgen_list) do
     local build = v.build
     minetest.register_node("lottmapgen:"..build, {
