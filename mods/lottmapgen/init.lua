@@ -428,7 +428,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										elseif math.random(TREE2) == 3 then
 											lottmapgen_jungletree2(x, y, z, area, data)
 										elseif math.random(PLANT13) == 13 then
-											data[vi] = c_mirktre
+											data[vi] = lottmapgen.enqueue_building("Mirkwood House", {x=x, y=y, z=z})
 										end
 									elseif biome == 11 then
 										if math.random(TREE10) == 2 then
