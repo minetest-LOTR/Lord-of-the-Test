@@ -41,14 +41,14 @@ end
 -- queue to store the buildings which are waiting to be built (queue structure from https://www.lua.org/pil/11.4.html)
 lottmapgen.queue = {first = 0, last = -1}
 
-local file = io.open(minetest.get_worldpath().."/building_queue", "r")
+local file = io.open(minetest.get_worldpath().."/"..SAVEDIR.."/building_queue", "r")
 if file then
 	lottmapgen.queue = minetest.deserialize(file:read("*all"))
 	file:close()
 end
 
 minetest.register_on_shutdown(function()
-	local file = io.open(minetest.get_worldpath().."/building_queue", "w")
+	local file = io.open(minetest.get_worldpath().."/"..SAVEDIR.."/building_queue", "w")
 	if (file) then
 		file:write(minetest.serialize(lottmapgen.queue))
 		file:close()
