@@ -72,17 +72,9 @@ function lottmapgen.dequeue_building()
 	return value
 end
 
-local check_voxel_manip = nil
-
 -- check if all the blocks that intersect the building are genrated
 function lottmapgen.check_building(bbox, pos)
 
-	if not check_voxel_manip then check_voxel_manip = minetest.get_voxel_manip() end
-
-	-- make sure the zone is loaded, so that "ignore" node are only ungenerated ones
-	local emin, emax = check_voxel_manip:read_from_map(
-		{x=bbox.xmin+pos.x, y=bbox.ymin+pos.y, z=bbox.zmin+pos.z},
-		{x=bbox.xmax+pos.x, y=bbox.ymax+pos.y, z=bbox.zmax+pos.z})
 
 	--mapgen chuncks generate 80 blocks at a time, so we only need to checks the limits of the bounding box and
 	-- each 80 inside nodes 
