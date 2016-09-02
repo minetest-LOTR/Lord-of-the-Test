@@ -3,6 +3,9 @@ lottmapgen = {}
 local areas_mod = minetest.get_modpath("areas")
 local protect_houses = minetest.setting_getbool("protect_structures") or false
 
+-- max number of nodes to try to fill below building
+local fill_below_count = 16
+
 
 -- list of building, with filename and bounding box
 local lottmapgen_list = {
@@ -60,7 +63,14 @@ function lottmapgen.enqueue_building(name, pos)
 	lottmapgen.queue.first = first
     lottmapgen.queue[first] = {name = name, pos = pos}
 end
+lottmapgen.enqueue_building("Orc Fort", {x=-245, y=70, z=543})
 
+-- request to fill some node below buildings
+function lottmapgen.enqueue_fill(fill)
+	local first = lottmapgen.queue.first - 1
+	lottmapgen.queue.first = first
+    lottmapgen.queue[first] = {fill=fill}
+end
 
 
 function lottmapgen.dequeue_building()
@@ -94,6 +104,14 @@ function lottmapgen.check_building(bbox, pos)
 	return true
 end
 
+	
+function lottmapgen.check_fill(fill)
+	local bbox = {
+		xmin = fill.xmin, ymin = fill.y-fill_below_count, zmin = fill.zmin,
+		xmax = fill.xmax, ymax = fill.y,                  zmax = fill.zmax}
+	return lottmapgen.check_building(bbox, {x=0, y=0, z=0})
+end
+
 -- place building using worldedit
 function lottmapgen.place_building(building, pos)
 	--print(building.build.." placed at "..pos.x..' '..pos.y..' '..pos.z)
@@ -101,14 +119,15 @@ function lottmapgen.place_building(building, pos)
 	local value = file:read("*a")
 	file:close()
 	local p = {x = pos.x-building.center.x, y = pos.y-building.center.y, z = pos.z-building.center.z}
+	local pos1 = {x = pos.x + building.bbox.xmin, y = pos.y + building.bbox.ymin, z = pos.z + building.bbox.zmin}
+	local pos2 = {x = pos.x + building.bbox.xmax, y = pos.y + building.bbox.ymax, z = pos.z + building.bbox.zmax}
 	local count = worldedit.deserialize(p, value)
-	if ignore_count == 0 and areas_mod ~= nil and protect_houses == true then
-		local pos1 = {x = pos.x + building.bbox.xmin, y = pos.y + building.bbox.ymin, z = pos.z + building.bbox.zmin}
-		local pos2 = {x = pos.x + building.bbox.xmax, y = pos.y + building.bbox.ymax, z = pos.z + building.bbox.zmax}
+	if areas_mod ~= nil and protect_houses == true then	
                 areas:add(building.area_owner, building.area_name, pos1, pos2, nil)
                 areas:save()
-               end
-	lottmapgen.fill_bellow(building.bbox, pos)
+	end
+	
+	lottmapgen.enqueue_fill({xmin = pos1.x, zmin = pos1.z, xmax = pos2.x, zmax = pos2.z, y = pos1.y})
 end
 
 
@@ -118,33 +137,40 @@ minetest.register_globalstep(function(dtime)
 	for count= 1, 50 do
 		local queued = lottmapgen.dequeue_building()
 		if not queued then return end
-		local building = lottmapgen_list[queued.name];
 
-		-- not all the building will be placed, ask to replace it later
-		if not lottmapgen.check_building(building.bbox, queued.pos) then 
-			lottmapgen.enqueue_building(queued.name, queued.pos)
+		if queued.fill then 
+			if not lottmapgen.check_fill(queued.fill) then 
+				lottmapgen.enqueue_fill(queued.fill)
+			else
+				lottmapgen.fill_bellow(queued.fill)
+			end
 		else
-			-- place the building on generated nodes
-			lottmapgen.place_building(building, queued.pos)
+
+			local building = lottmapgen_list[queued.name];
+
+			-- not all the building will be placed, ask to replace it later
+			if not lottmapgen.check_building(building.bbox, queued.pos) then 
+				lottmapgen.enqueue_building(queued.name, queued.pos)
+			else
+				-- place the building on generated nodes
+				lottmapgen.place_building(building, queued.pos)
+			end
 		end
-
-		
 	end
-
 end)
 
 -- fill of the botom nodes to avoid empty space.
 
-lottmapgen.fill_bellow = function(bbox, pos)
+lottmapgen.fill_bellow = function(fill)
 
 	local vm = minetest.get_voxel_manip()
 	local good = true
+
 	local ungenerated = false
 
-	local sub_size = 32
 	
-	local pos1 = {x = bbox.xmin+pos.x, y = bbox.ymin-sub_size+pos.y, z = bbox.zmin+pos.z}
-	local pos2 = {x = bbox.xmax+pos.x, y = bbox.ymin+pos.y, z = bbox.zmax+pos.z}
+	local pos1 = {x = fill.xmin, y = fill.y-fill_below_count, z = fill.zmin}
+	local pos2 = {x = fill.xmax, y = fill.y,                  z = fill.zmax}
 
 	local data ={}
 
@@ -161,47 +187,50 @@ lottmapgen.fill_bellow = function(bbox, pos)
 	local c_morrivwat = minetest.get_content_id("lottmapgen:black_river_source")
 
 	local mapgen_params = minetest.get_mapgen_params()
-	
-	while not ungenerated and good and pos1.y > mapgen_params.water_level-1000 do -- the test on pos1.y should not be met, but let's put some guaranty to avoid infinite loop
-		good = false
-		local emin, emax = vm:read_from_map(pos1, pos2)
-		local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
-		data = vm:get_data()
-		for x = pos1.x, pos2.x do
-			for z = pos1.z, pos2.z do
-				local top_index = area:index(x, pos2.y, z)
-				local top = data[top_index]
-				local replace_to = replace_node[top]
-				if replace_to then 
-					data[top_index] = replace_to
+
+	local emin, emax = vm:read_from_map(pos1, pos2)
+	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
+	data = vm:get_data()
+
+	local bottom_reached = false
+
+	for x = pos1.x, pos2.x do
+		for z = pos1.z, pos2.z do
+			local top_index = area:index(x, pos2.y, z)
+			local top = data[top_index]
+			local replace_to = replace_node[top]
+			if replace_to then 
+				data[top_index] = replace_to
+				if pos2.y > mapgen_params.water_level-1000 then 
 					for y = pos2.y-1, pos1.y, -1 do
 						local index = area:index(x, y, z)
 						local cur = data[index]
-						if cur  == c_air or cur == c_water or cur == c_river_water or cur == c_morwat or cur == c_morrivwat then 
+						if cur  == c_air or cur == c_water or cur == c_river_water 
+								or cur == c_morwat or cur == c_morrivwat then 
 							data[index] = replace_to
 						else 
 							if cur == c_ignore then
-								data[area:index(x, y+1, z)] = top
-								ungenerated = true
+								print("BUGGGG")
 							end
 							break
 						end
 						if y==pos1.y then 
 							data[index] = top
-							good = true
+							bottom_reached = true
 						end
 					end
 				end
 			end
 		end
-
-		vm:set_data(data)
-		vm:update_map()
-		vm:write_to_map()
-
-		pos2.y = pos1.y
-		pos1.y = pos2.y-sub_size
+	end		
 	
+	vm:set_data(data)
+	vm:update_map()
+	vm:write_to_map()
+
+	
+	if pos2.y > mapgen_params.water_level-1000 and bottom_reached then 
+		lottmapgen.enqueue_fill({xmin = fill.xmin, zmin = fill.zmin, xmax = fill.xmax, zmax = fill.zmax, y = fill.y-fill_below_count})
 	end
 end
 
