@@ -63,7 +63,6 @@ function lottmapgen.enqueue_building(name, pos)
 	lottmapgen.queue.first = first
     lottmapgen.queue[first] = {name = name, pos = pos}
 end
-lottmapgen.enqueue_building("Orc Fort", {x=-245, y=70, z=543})
 
 -- request to fill some node below buildings
 function lottmapgen.enqueue_fill(fill)
@@ -84,8 +83,6 @@ end
 
 -- check if all the blocks that intersect the building are genrated
 function lottmapgen.check_building(bbox, pos)
-
-
 	--mapgen chuncks generate 80 blocks at a time, so we only need to checks the limits of the bounding box and
 	-- each 80 inside nodes 
 	for z=bbox.zmin, bbox.zmax+80, 80 do
@@ -163,16 +160,9 @@ end)
 
 lottmapgen.fill_bellow = function(fill)
 
-	local vm = minetest.get_voxel_manip()
-	local good = true
-
-	local ungenerated = false
-
 	
 	local pos1 = {x = fill.xmin, y = fill.y-fill_below_count, z = fill.zmin}
 	local pos2 = {x = fill.xmax, y = fill.y,                  z = fill.zmax}
-
-	local data ={}
 
 	local replace_node = {}
 	replace_node[minetest.get_content_id("lottother:dirt")]=minetest.get_content_id("default:dirt")
@@ -188,9 +178,10 @@ lottmapgen.fill_bellow = function(fill)
 
 	local mapgen_params = minetest.get_mapgen_params()
 
+	local vm = minetest.get_voxel_manip()
 	local emin, emax = vm:read_from_map(pos1, pos2)
 	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
-	data = vm:get_data()
+	local data = vm:get_data()
 
 	local bottom_reached = false
 
@@ -209,9 +200,6 @@ lottmapgen.fill_bellow = function(fill)
 								or cur == c_morwat or cur == c_morrivwat then 
 							data[index] = replace_to
 						else 
-							if cur == c_ignore then
-								print("BUGGGG")
-							end
 							break
 						end
 						if y==pos1.y then 
