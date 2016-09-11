@@ -478,6 +478,9 @@ lottmobs.register_guard_craftitem = function(name, description, inventory_image)
                                             on_place = function(itemstack, placer, pointed_thing)
                                                     if pointed_thing.above then
                                                             local owner = placer:get_player_name()
+                                                            if not lottmobs.player_guards[owner] then
+                                                                    lottmobs.player_guards[owner] = {}
+                                                            end
                                                             local add_guard = function(game_name)
                                                                     local pos = pointed_thing.above
                                                                     pos.y = pos.y + 1
@@ -493,9 +496,6 @@ lottmobs.register_guard_craftitem = function(name, description, inventory_image)
                                                                     obj.order = "follow"
                                                                     obj.eat_timer = 0
                                                                     obj.food_level = 20
-                                                                    if not lottmobs.player_guards[owner] then
-                                                                            lottmobs.player_guards[owner] = {}
-                                                                    end
                                                                     return obj
                                                             end
                                                             lottmobs.name = function(name)
