@@ -342,7 +342,7 @@ minetest.register_abm({
 			lottpotion.swap_node(pos, "lottpotion:potion_brewer")
 			meta:set_string("formspec", formspec)
 			return
-		end	
+		end
 
 		local fuel = nil
 		local afterfuel
