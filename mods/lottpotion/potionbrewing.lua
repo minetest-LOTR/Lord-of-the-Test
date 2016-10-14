@@ -337,6 +337,13 @@ minetest.register_abm({
 			return
 		end
 
+		if not inv:room_for_item("dst", ItemStack(result.output)) then
+			meta:set_string("infotext", ("%s Out Of Heat"):format(machine_name))
+			lottpotion.swap_node(pos, "lottpotion:potion_brewer")
+			meta:set_string("formspec", formspec)
+			return
+		end	
+
 		local fuel = nil
 		local afterfuel
 		local fuellist = inv:get_list("fuel")
