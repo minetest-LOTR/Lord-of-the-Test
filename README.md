@@ -8,8 +8,14 @@ This is a game for Minetest that adds Lord of the Rings like elements into the g
 To install this game [download it](../../archive/master.zip), and extract the zip to <your minetest folder>/games/Lord-of-the-Test.
 If you use Linux, the folder which will contain the games folder be .minetest in your home directory. (You may need to use ctrl+h to show hidden files.) On Windows, it will be somewhere around the place you launch Minetest from...
 
-### The dev version of LOTT only works with the dev version of Minetest. If you want to use the stable version of Minetest, please download the [latest stable version](https://github.com/minetest-LOTR/Lord-of-the-Test/archive/v1.0.0.zip) of LOTT also! 
+### The dev version of LOTT only works with the dev version of Minetest. If you want to use the stable version of Minetest, please download the [latest stable version](https://github.com/minetest-LOTR/Lord-of-the-Test/archive/v1.0.0.zip) of LOTT also!
+
 (I highly recomend using the development version of both LOTT and Minetest!)
+
+#### Due to a [bug in Minetest](https://github.com/minetest/minetest/issues/4692), mod security must be disabled when playing the dev version of LOTT. To disable mod security, add the following line to your minetest.conf:
+	secure.enable_security = false
+**Alternitavely, you can go to the settings tab in the main menu, click on advanced settings, then on Server/Singleplayer, the on Security. Then double click Enable Mod Security to disable it**
+*Sorry about this!*
 
 If you use Arch Linux, you can install LOTT via the AUR. There is a [stable package](https://aur.archlinux.org/packages/minetest-lott/) and a [latest git package](https://aur.archlinux.org/packages/minetest-lott-git/).  
 MadTux (@agwilt) is the maintainer of these packages.
