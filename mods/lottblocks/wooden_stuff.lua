@@ -88,7 +88,7 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 		})
 	end
 	minetest.register_node("lottblocks:" .. name .. "_table", {
-		description = description .. "Table",
+		description = description .. " Table",
 		tiles = {texture},
 		drawtype = "nodebox",
 		sunlight_propagates = true,
@@ -111,7 +111,7 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 		groups = node_groups
 	})
 	minetest.register_node("lottblocks:" .. name .."_chair", {
-		description = description .. "Chair",
+		description = description .. " Chair",
 		tiles = {texture},
 		drawtype = "nodebox",
 		sunlight_propagates = true,

@@ -62,7 +62,7 @@ lottpotion = {
 							br = math.min(11, br)
 							br = math.max(0, br)
 							user:set_breath(br)
-							
+
 							if i==(sdata.time or 0) then
 								lottpotion_e.air = lottpotion_e.air - (sdata.time or 0)
 							end
@@ -119,8 +119,11 @@ lottpotion = {
 			for i=1, #def.types do
 				local sdata = def.types[i]
 				local item_def = {
-					description = name.." (Strength: "..tps[t]..sdata.type..")",
-					inventory_image = "lottpotion_bottle.png^lottpotion_"..(def.texture or sname)..".png^lottpotion_"..tps[t]..sdata.type..".png",
+					description = name .. "\nStrength: " .. tps[t]:gsub("^%l", string.upper)
+						.. " " .. sdata.type,
+					inventory_image = "lottpotion_bottle.png^lottpotion_"..
+						(def.texture or sname)..".png^lottpotion_"..
+						tps[t]..sdata.type..".png",
 					drawtype = "plantlike",
 					paramtype = "light",
 					walkable = false,
@@ -147,22 +150,28 @@ lottpotion = {
                     minetest.register_node(fname.."_"..tps[t]..sdata.type, item_def)
 				--potions.register_liquid(i..tps[t]..sname, name.." ("..tps[t].." "..i..")", item_def.on_use)
 				if minetest.get_modpath("lottthrowing")~=nil then
-					lottpotion.register_arrow(fname.."_"..tps[t]..sdata.type, i..tps[t]..sname, name.." ("..tps[t].." "..i..")", item_def.on_use,
-							item_def.description, item_def.inventory_image)
+					lottpotion.register_arrow(
+						fname.."_"..tps[t]..sdata.type,
+						i..tps[t]..sname,
+						name.." ("..tps[t].." "..i..")",
+						item_def.on_use,
+						item_def.description,
+						item_def.inventory_image
+					)
 				end
 			end
 		end
 	end,
 }
 dofile(minetest.get_modpath("lottpotion").."/arrows.lua")
-     
+
 lottpotion.register_potion("athelasbrew", "Athelas Brew", "lottpotion:athelasbrew", 100, {
 	effect = "fixhp",
 	types = {
 		{
 			type = 1,
                hp = 1,
-               time = 20, 
+               time = 20,
 			set = {},
 			effects = {
 			},
@@ -170,7 +179,7 @@ lottpotion.register_potion("athelasbrew", "Athelas Brew", "lottpotion:athelasbre
 		{
 			type = 2,
                hp = 2,
-               time = 50, 
+               time = 50,
 			set = {},
 			effects = {
 			},
@@ -178,14 +187,14 @@ lottpotion.register_potion("athelasbrew", "Athelas Brew", "lottpotion:athelasbre
 		{
 			type = 3,
                hp = 4,
-               time = 100, 
+               time = 100,
 			set = {},
 			effects = {
 			},
 		},
 	}
 })
-   
+
 lottpotion.register_potion("limpe", "Limpe", "lottpotion:limpe", 240, {
 	effect = "air",
 	types = {
@@ -283,7 +292,7 @@ lottpotion.register_potion("orcdraught", "Orc Draught", "lottpotion:orcdraught",
 		{
 			type = 1,
                hp = -1,
-               time = 20, 
+               time = 20,
 			set = {},
 			effects = {
 			},
@@ -291,7 +300,7 @@ lottpotion.register_potion("orcdraught", "Orc Draught", "lottpotion:orcdraught",
 		{
 			type = 2,
                hp = -1,
-               time = 50, 
+               time = 50,
 			set = {},
 			effects = {
 			},
@@ -299,7 +308,7 @@ lottpotion.register_potion("orcdraught", "Orc Draught", "lottpotion:orcdraught",
 		{
 			type = 3,
                hp = -1,
-               time = 100, 
+               time = 100,
 			set = {},
 			effects = {
 			},

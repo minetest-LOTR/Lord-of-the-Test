@@ -12,14 +12,16 @@ minetest.register_node("lottblocks:tree_vine", {
 	tiles = {"lottblocks_tree_vine_top.png", "lottblocks_tree_vine_top.png", "lottblocks_tree_vine.png", "lottblocks_tree_vine.png", "lottblocks_tree_vine.png", "lottblocks_tree_vine.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
+	sounds = default.node_sound_wood_defaults(),
 	groups = {choppy=2,snappy=2},
 })
 
 stairs.register_stair_and_slab("tree_vine", "lottblocks:tree_vine",
 		{choppy=2,snappy=2},
 		{"lottblocks_tree_vine.png"},
-		"tree_vine",
-		"tree_vine"
+		"Tree Vine Stair",
+		"Tree Vine Slab",
+		default.node_sound_wood_defaults()
 )
 
 -- Mossy tree
@@ -29,14 +31,16 @@ minetest.register_node("lottblocks:tree_mossy", {
 	tiles = {"lottblocks_tree_mossy_top.png", "lottblocks_tree_mossy_top.png", "lottblocks_tree_mossy.png", "lottblocks_tree_mossy.png", "lottblocks_tree_mossy.png", "lottblocks_tree_mossy.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
+	sounds = default.node_sound_wood_defaults(),
 	groups = {choppy=2},
 })
 
 stairs.register_stair_and_slab("tree_mossy", "lottblocks:tree_mossy",
 		{choppy=2},
 		{"lottblocks_tree_mossy.png"},
-		"tree_mossy",
-		"tree_mossy"
+		"Mossy Tree Stair",
+		"Mossy Tree Slab",
+		default.node_sound_wood_defaults()
 )
 
 -- Leafroof dark
@@ -54,8 +58,9 @@ minetest.register_node("lottblocks:leafroof_dark", {
 stairs.register_stair_and_slab("leafroof_dark", "lottblocks:leafroof_dark",
 		{oddly_breakable_by_hand=2,leaves=1},
 		{"lottblocks_leafroof.png"},
-		"leafroof_dark",
-		"leafroof_dark"
+		"Dark Leaf Roof Stair",
+		"Dark Leaf Root Slab",
+		default.node_sound_leaves_defaults()
 )
 
 
@@ -75,8 +80,9 @@ minetest.register_node("lottblocks:leafroof_mallorn", {
 stairs.register_stair_and_slab("leafroof_mallorn", "lottblocks:leafroof_mallorn",
 		{oddly_breakable_by_hand=2,leaves=1},
 		{"lottblocks_mallornroof.png"},
-		"leafroof_mallorn",
-		"leafroof_mallorn"
+		"Mallorn Leaf Roof Stair",
+		"Mallorn Leaf Roof Slab",
+		default.node_sound_leaves_defaults()
 )
 
 -- mallorn pillar
@@ -87,14 +93,16 @@ minetest.register_node("lottblocks:mallorn_pillar", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	is_ground_content = false,
+	sounds = default.node_sound_wood_defaults(),
 	groups = {snappy=2,choppy=2},
 })
 
 stairs.register_stair_and_slab("mallorn_pillar", "lottblocks:mallorn_pillar",
 		{snappy=2,choppy=2},
 		{"lottblocks_mallorn_pillar.png"},
-		"mallorn_pillar",
-		"mallorn_pillar"
+		"Mallorn Pillar Stair",
+		"Mallorn Pillar Slab",
+		default.node_sound_wood_defaults()
 )
 
 -- mallorn White
@@ -105,14 +113,16 @@ minetest.register_node("lottblocks:mallorn_white", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	is_ground_content = false,
+	sounds = default.node_sound_wood_defaults(),
 	groups = {snappy=2,choppy=2},
 })
 
 stairs.register_stair_and_slab("mallorn_white", "lottblocks:mallorn_white",
 		{snappy=2,choppy=2},
 		{"lottblocks_mallorn_white.png"},
-		"mallorn_white",
-		"mallorn_white"
+		"White Mallorn Stair",
+		"White Mallorn Slab",
+		default.node_sound_wood_defaults()
 )
 
 -- DWARFSTONE
@@ -123,14 +133,16 @@ minetest.register_node("lottblocks:dwarfstone_white", {
 	tiles = {"lottblocks_dwarfstone_white_top.png", "lottblocks_dwarfstone_white_top.png", "lottblocks_dwarfstone_white_side.png", "lottblocks_dwarfstone_white_side.png", "lottblocks_dwarfstone_white_side.png", "lottblocks_dwarfstone_white_side.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
+	sounds = default.node_sound_stone_defaults(),
 	groups = {cracky=3},
 })
 
 stairs.register_stair_and_slab("dwarfstone_white", "lottblocks:dwarfstone_white",
 		{cracky=2},
 		{"lottblocks_dwarfstone_white_top.png"},
-		"dwarfstone_white",
-		"dwarfstone_white"
+		"White Dwarf Stone Stair",
+		"White Dwarf Stone Slab",
+		default.node_sound_stone_defaults()
 )
 
 -- black
@@ -140,14 +152,16 @@ minetest.register_node("lottblocks:dwarfstone_black", {
 	tiles = {"lottblocks_dwarfstone_black_top.png", "lottblocks_dwarfstone_black_top.png", "lottblocks_dwarfstone_black_side.png", "lottblocks_dwarfstone_black_side.png", "lottblocks_dwarfstone_black_side.png", "lottblocks_dwarfstone_black_side.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
+	sounds = default.node_sound_stone_defaults(),
 	groups = {cracky=3},
 })
 
 stairs.register_stair_and_slab("dwarfstone_black", "lottblocks:dwarfstone_black",
 		{cracky=2},
 		{"lottblocks_dwarfstone_black_top.png"},
-		"dwarfstone_black",
-		"dwarfstone_black"
+		"Black Dwarf Stone Stair",
+		"Black Dwarf Stone Slab",
+		default.node_sound_stone_defaults()
 )
 
 -- stripe
@@ -157,6 +171,7 @@ minetest.register_node("lottblocks:dwarfstone_stripe", {
 	tiles = {"lottblocks_dwarfstone_stripe_top.png", "lottblocks_dwarfstone_stripe_bottom.png", "lottblocks_dwarfstone_stripe_l.png", "lottblocks_dwarfstone_stripe_l.png", "lottblocks_dwarfstone_stripe_r.png", "lottblocks_dwarfstone_stripe_r.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
+	sounds = default.node_sound_stone_defaults(),
 	groups = {cracky=3},
 })
 
@@ -347,6 +362,7 @@ minetest.register_node("lottblocks:dwarf_tomb_top", {
 		local other = vector.subtract(pos, dir)
 		minetest.remove_node(other)
 	end,
+	sounds = default.node_sound_stone_defaults(),
 })
 
 minetest.register_node("lottblocks:dwarf_tomb_bottom", {
@@ -373,5 +389,6 @@ minetest.register_node("lottblocks:dwarf_tomb_bottom", {
 			{0.0625, -0.0625, 0.375, -0.0625, 0, -0.1875}, -- NodeBox8
 			{0.25, -0.0625, 0.0625, -0.25, 0, -0.1875}, -- NodeBox8
 		}
-	}
+	},
+	sounds = default.node_sound_stone_defaults(),
 })
