@@ -49,6 +49,7 @@ zcg.add_craft = function(input, output, groups)
 	c.width = input.width
 	c.type = input.type
 	c.items = input.items
+	c.output = input.output
 	if c.items == nil then return end
 	for i, item in pairs(c.items) do
 		if item:sub(0,6) == "group:" then
@@ -62,7 +63,8 @@ zcg.add_craft = function(input, output, groups)
 					zcg.add_craft({
 						width = c.width,
 						type = c.type,
-						items = table_copy(c.items)
+						items = table_copy(c.items),
+						output = c.output
 					}, output, g2) -- it is needed to copy the table, else groups won't work right
 				end
 				return
@@ -155,7 +157,7 @@ zcg.formspec = function(pn)
 					formspec = formspec .. "label[0,2;Method: "..c.type.."]"
 				end
 				formspec = formspec .. "image[6,1;1,1;zcg_craft_arrow.png]"
-				formspec = formspec .. "item_image_button[7,1;1,1;"..zcg.users[pn].current_item..";;]"
+				formspec = formspec .. "item_image_button[7,1;1,1;"..c.output..";;]"
 			end
 		end
 	end

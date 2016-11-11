@@ -46,6 +46,7 @@ zcc.add_craft = function(input, output, groups)
 	c.width = input.width
 	c.type = input.type
 	c.items = input.items
+	c.output = input.output
      if minetest.get_item_group(output, "cook_crafts") > 0 or c.type == "cooking" then
 	if c.items == nil then return end
 	for i, item in pairs(c.items) do
@@ -60,7 +61,8 @@ zcc.add_craft = function(input, output, groups)
 					zcc.add_craft({
 						width = c.width,
 						type = c.type,
-						items = table_copy(c.items)
+						items = table_copy(c.items),
+						output = c.output
 					}, output, g2) -- it is needed to copy the table, else groups won't work right
 				end
 				return
@@ -147,7 +149,7 @@ zcc.formspec = function(pn)
 					formspec = formspec .. "label[0,2;Method: "..c.type.."]"
 				end
 				formspec = formspec .. "image[6,1;1,1;zcg_craft_arrow.png]"
-				formspec = formspec .. "item_image_button[7,1;1,1;"..zcc.users[pn].current_item..";;]"
+				formspec = formspec .. "item_image_button[7,1;1,1;"..c.output..";;]"
 			end
 		end
 	end
