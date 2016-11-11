@@ -279,6 +279,7 @@ minetest.register_node("lottother:air", {
      pointable = false,
 	groups = {not_in_creative_inventory=1,dig_immediate=3},
 	sounds = default.node_sound_glass_defaults(),
+	drop = "",
 })
 
 minetest.register_abm({

@@ -34,6 +34,7 @@ minetest.register_node("lottblocks:marble_brick", {
 	tiles = {"lottblocks_marble_brick.png"},
 	is_ground_content = false,
 	groups = {cracky=2},
+	sounds = default.node_sound_stone_defaults(),
 })
 stairs.register_stair_and_slab("marble_brick", "lottblocks:marble_brick",
 		{cracky=2},
