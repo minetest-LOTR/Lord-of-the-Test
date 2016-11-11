@@ -17,6 +17,9 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 			groups = groups_door,
 			tiles_bottom = {"lottblocks_door_" .. name .."_b.png", "lottblocks_edge_" .. name ..".png"},
 			tiles_top = {"lottblocks_door_" .. name .. "_a.png", "lottblocks_edge_" .. name ..".png"},
+			sounds = default.node_sound_wood_defaults(),
+			sound_open = "doors_door_open",
+			sound_close = "doors_door_close"
 		})
 		minetest.register_craft({
 			output = "lottblocks:door_" .. name,
@@ -35,8 +38,8 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 			tile_side = "door_trapdoor_side.png",
 			groups = node_groups,
 			sounds = default.node_sound_wood_defaults(),
-			sound_open = "door_door_open",
-			sound_close = "door_door_close"
+			sound_open = "doors_door_open",
+			sound_close = "doors_door_close"
 		})
 		minetest.register_craft({
 			output = "lottblocks:hatch_" .. name,

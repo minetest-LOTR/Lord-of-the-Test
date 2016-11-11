@@ -21,3 +21,9 @@ Textures created by Fernando Zapata (CC BY-SA 3.0):
   door_wood_b_r.png
 
 All other textures (created by PilzAdam): WTFPL
+
+Sounds:
+Opening-Sound created by CGEffex (CC BY 3.0), modified by BlockMen
+  door_open.ogg
+Closing-Sound created by bennstir (CC BY 3.0)
+  door_close.ogg
