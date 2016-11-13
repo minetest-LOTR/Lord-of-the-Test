@@ -129,6 +129,7 @@ local get_formspec = function(player,page)
 				.."button[2,0;2,0.5;bags;Bags]"
 				.."image[7,0;1,1;"..image.."]"
 				.."list[current_player;bag"..i.."contents;0,1;8,3;]"
+				.."listring[]"
                 .."background[5,5;1,1;gui_formbg.png;true]"
 		end
 	end

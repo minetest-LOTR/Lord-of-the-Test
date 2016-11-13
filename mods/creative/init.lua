@@ -88,7 +88,7 @@ creative_inventory.set_creative_formspec = function(player, start_i, pagenum)
             "label[4,2;Trash:]"..
             "list[detached:creative_trash;main;5,2;1,1;]"..
 			"listring[current_player;main]"..
-			"listring[current_player;craft]"..
+			"listring[detached:creative_trash;main]"..
 			"listring[current_player;main]"..
 			"listring[detached:creative;main]"..
 			"button[0,2.3;1,1;creative_prev;<]"..

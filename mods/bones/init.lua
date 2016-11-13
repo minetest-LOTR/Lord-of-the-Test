@@ -5,6 +5,7 @@ bones_formspec =
 	"size[8,9]"..
 	"list[current_name;main;0,0;8,4;]"..
 	"list[current_player;main;0,5;8,4;]"..
+	"listring[]"..
   	"background[-0.5,-0.65;9,10.35;gui_bonesbg.png]"..
   	"listcolors[#606060AA;#606060;#141318;#30434C;#FFF]"
 
@@ -30,7 +31,7 @@ minetest.register_node("bones:bones", {
 			{-0.25, -0.5, 0.375, 0.25, 0.125, 0.5}, -- NodeBox1
 			{-0.1875, 0.125, 0.375, 0.1875, 0.1875, 0.5}, -- NodeBox2
 			{-0.125, 0.1875, 0.375, 0.125, 0.25, 0.5}, -- NodeBox3
-			{-0.0625, 0.25, 0.3125, 0.0625, 0.3125, 0.5}, -- NodeBox4
+			{-0.0625, 0.25, 0.375, 0.0625, 0.3125, 0.5}, -- NodeBox4
 		}
 	},
 	paramtype2 = "facedir",
@@ -242,7 +243,7 @@ local function growgen(pointed_thing)
 	elseif n.name == "lottfarming:white_mushroom_2" then
 		minetest.set_node(pos, {name="lottfarming:white_mushroom_3"})
 	elseif n.name == "lottfarming:white_mushroom_3" then
-		minetest.set_node(pos, {name="lottfarming:white_mushroom_4"})                
+		minetest.set_node(pos, {name="lottfarming:white_mushroom_4"})
 	elseif n.name == "lottfarming:tomatoes_1" then
 		minetest.set_node(pos, {name="lottfarming:tomatoes_2"})
 	elseif n.name == "lottfarming:tomatoes_2" then

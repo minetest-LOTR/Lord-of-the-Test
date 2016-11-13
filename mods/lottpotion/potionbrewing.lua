@@ -89,13 +89,13 @@ local function register_recipe(typename, data)
 	else
 		data.output = ItemStack(data.output):to_string()
 	end
-	
+
 	local recipe = {time = data.time, input = {}, output = data.output}
 	local index = get_recipe_index(data.input)
 	for _, stack in ipairs(data.input) do
 		recipe.input[ItemStack(stack):get_name()] = ItemStack(stack):get_count()
 	end
-	
+
 	lottpotion.potion_recipes[typename].recipes[index] = recipe
 end
 
@@ -198,6 +198,8 @@ local formspec =
 	"list[current_name;src;1,2;2,1;]"..
      "label[6,1.5;Result:]"..
 	"list[current_name;dst;6,2;1,1;]"..
+	"listring[current_name;src]"..
+	"listring[current_player;main]"..
 	"list[current_player;main;0,5;8,4;]"
 
 minetest.register_node("lottpotion:potion_brewer", {
@@ -263,13 +265,13 @@ minetest.register_abm({
 			inv:set_size("src", 2)
 			inv:set_size("dst", 1)
 		end
-		
+
 		if inv:get_size("src") == 1 then -- Old furnace -> convert it
 			inv:set_size("src", 2)
 			inv:set_stack("src", 2, inv:get_stack("src2", 1))
 			inv:set_size("src2", 0)
 		end
-		
+
 		local recipe = nil
 
 		for i, name in pairs({
@@ -325,7 +327,7 @@ minetest.register_abm({
 					"list[current_player;main;0,5;8,4;]")
 			return
 		end
-          
+
 		local recipe = lottpotion.get_potion_recipe("potionbrew", inv:get_list("src"))
 
 		if not recipe then
