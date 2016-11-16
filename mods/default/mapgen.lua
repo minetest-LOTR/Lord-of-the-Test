@@ -1,14 +1,18 @@
 -- mods/default/mapgen.lua
 
-local mapgen = minetest.get_mapgen_params()
+local mapgen_name = minetest.get_mapgen_setting("mg_name")
 
-minetest.register_on_mapgen_init(function(params)
-	if mapgen.mgname == "singlenode" or mapgen.mgname == "v6" then
-		minetest.set_mapgen_params({
-			mgname = "v7",
-		})
-	end
-end)
+if mapgen_name == "singlenode" or mapgen_name == "v6" then
+	minetest.set_mapgen_setting("mg_name", "v7", true)
+end
+
+local flags = minetest.get_mapgen_setting("mgv7_spflags")
+local c1, c2 = flags:find("floatlands")
+
+if c1 and c2 and not flags:find("nofloatlands") then
+	minetest.set_mapgen_setting("mgv7_spflags",
+		flags:sub(1, c1-1) .. flags:sub(c2+1), true)
+end
 
 --
 -- Aliases for map generator outputs
@@ -41,7 +45,7 @@ minetest.register_alias("mapgen_stair_cobble", "stairs:stair_cobble")
 -- Ore generation
 --
 
-local wl = mapgen.water_level
+local wl = minetest.get_mapgen_setting("water_level")
 
 minetest.register_ore({
 	ore_type       = "scatter",

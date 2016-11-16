@@ -1,10 +1,10 @@
-local mapgen_params = minetest.get_mapgen_params()
+local water_level = minetest.get_mapgen_setting("water_level")
 
 minetest.set_gen_notify("dungeon")
 
 minetest.register_on_generated(function(minp, maxp, seed)
-	if minp.y < (mapgen_params.water_level-1250)
-	or minp.y > (mapgen_params.water_level-250) then
+	if minp.y < (water_level-1250)
+	or minp.y > (water_level-250) then
 		return
 	end
 

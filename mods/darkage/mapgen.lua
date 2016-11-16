@@ -133,7 +133,7 @@ local function generate_claylike(data, varea, name, minp, maxp, seed, chance, mi
 							end
 							if num_water_around >= 3 then
 								is_shallow = false
-							end	
+							end
 							if is_shallow then
 								for x1=-divlen,divlen do
 									for z1=-divlen,divlen do
@@ -153,8 +153,7 @@ local function generate_claylike(data, varea, name, minp, maxp, seed, chance, mi
 	end
 end
 
-local mgparams = minetest.get_mapgen_params()
-local seed = mgparams.seed
+local seed = minetest.get_mapgen_setting("seed")
 
 
 -- Generate desert stone with iron in derset.
@@ -228,7 +227,7 @@ minetest.register_ore({
 
 -- Generate strati
 local function generate_strati(minp, maxp, seed)
-	
+
 	local t1 = os.clock()
 
 	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
@@ -244,33 +243,33 @@ local function generate_strati(minp, maxp, seed)
 	generate_claylike(data, area, "darkage:silt", minp, maxp, seed+2, 4, -1, 1, 1)
 
 	-- TODO: Maybe realize the following stuff with register ore. somehow.
-	generate_stratus(data, area, "darkage:ors", 
+	generate_stratus(data, area, "darkage:ors",
 					c_stone,
 					{c_stone, c_air, c_water},
 					minp, maxp, seed+4, 4, 25, 7, 50, -200,  500)
 
 	generate_stratus(data, area, "darkage:shale",
-					c_stone, 
+					c_stone,
 					{c_stone, c_air},
 					minp, maxp, seed+5, 4, 23, 7, 50, -50,  20)
 
-	generate_stratus(data, area, "darkage:slate", 
-					c_stone, 
+	generate_stratus(data, area, "darkage:slate",
+					c_stone,
 					{c_stone, c_air},
 					minp, maxp, seed+6, 6, 23, 5, 50, -500, 0)
 
-	generate_stratus(data, area, "darkage:schist", 
-					c_stone, 
+	generate_stratus(data, area, "darkage:schist",
+					c_stone,
 					{c_stone, c_air},
 					minp, maxp, seed+7, 6, 19, 6, 50, -31000, -10)
 
-	generate_stratus(data, area, "darkage:basalt", 
-					c_stone, 
-					{c_stone, c_air}, 
+	generate_stratus(data, area, "darkage:basalt",
+					c_stone,
+					{c_stone, c_air},
 					minp, maxp, seed+8, 5, 20, 5, 20, -31000, -50)
 
-	generate_stratus(data, area, "darkage:gneiss", 
-					c_stone, 
+	generate_stratus(data, area, "darkage:gneiss",
+					c_stone,
 					{c_stone, c_air},
 					minp, maxp, seed+11, 4, 15, 5, 50, -31000, -250)
 

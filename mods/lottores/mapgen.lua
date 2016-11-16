@@ -1,5 +1,4 @@
-local mapgen_params = minetest.get_mapgen_params()
-local wl = mapgen_params.water_level
+local wl = minetest.get_mapgen_setting("water_level")
 
 minetest.register_ore({
 	ore_type       = "scatter",

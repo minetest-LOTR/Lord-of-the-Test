@@ -9,24 +9,24 @@ local fill_below_count = 16
 
 -- list of building, with filename and bounding box
 local lottmapgen_list = {
-	["Angmar Fort"] =    {build="angmarfort",   area_owner = "Orc Guard",     area_name = "Angmar Fort",   
+	["Angmar Fort"] =    {build="angmarfort",   area_owner = "Orc Guard",     area_name = "Angmar Fort",
 		center = {x=9, y=2, z=3} },
-	["Gondor Fort"] =    {build="gondorfort",   area_owner = "Gondor Guard",  area_name = "Gondor Castle", 
+	["Gondor Fort"] =    {build="gondorfort",   area_owner = "Gondor Guard",  area_name = "Gondor Castle",
 		center = {x=1, y=1, z=9} },
-	["Rohan Fort"] =     {build="rohanfort",    area_owner = "Rohan Guard",   area_name = "Rohan Fort",  
-		center = {x=1, y=1, z=9} },  
-	["Orc Fort"] =       {build="orcfort",      area_owner = "Orc Guard",     area_name = "Orc Fort", 
-		center = {x=15, y=2, z=1} },       
-	["Mallorn House"] =  {build="mallornhouse", area_owner = "Elven Guard",   area_name = "Elven House",   
-		center = {x=2, y=1, z=5} },   
-	["Lorien House"] =   {build="lorienhouse",  area_owner = "Elven Guard",   area_name = "Elven House",  
-		center = {x=2, y=1, z=5} }, 
-	["Mirkwood House"] = {build="mirkhouse",    area_owner = "Elven Guard",   area_name = "Elven House",  
-		center = {x=5, y=2, z=1} },  
-	["Hobbit Hole"] =    {build="hobbithole",   area_owner = "Hobbit Family", area_name = "Hobbit Hole",   
+	["Rohan Fort"] =     {build="rohanfort",    area_owner = "Rohan Guard",   area_name = "Rohan Fort",
+		center = {x=1, y=1, z=9} },
+	["Orc Fort"] =       {build="orcfort",      area_owner = "Orc Guard",     area_name = "Orc Fort",
+		center = {x=15, y=2, z=1} },
+	["Mallorn House"] =  {build="mallornhouse", area_owner = "Elven Guard",   area_name = "Elven House",
+		center = {x=2, y=1, z=5} },
+	["Lorien House"] =   {build="lorienhouse",  area_owner = "Elven Guard",   area_name = "Elven House",
+		center = {x=2, y=1, z=5} },
+	["Mirkwood House"] = {build="mirkhouse",    area_owner = "Elven Guard",   area_name = "Elven House",
+		center = {x=5, y=2, z=1} },
+	["Hobbit Hole"] =    {build="hobbithole",   area_owner = "Hobbit Family", area_name = "Hobbit Hole",
 		center = {x=13, y=3, z=24} },
-	["Dwarf House"] =    {build="dwarfhouse",   area_owner = "Dwarf Smith",   area_name = "Dwarf House", 
-		center = {x=16, y=1, z=3} },  
+	["Dwarf House"] =    {build="dwarfhouse",   area_owner = "Dwarf Smith",   area_name = "Dwarf House",
+		center = {x=16, y=1, z=3} },
 
 }
 
@@ -84,7 +84,7 @@ end
 -- check if all the blocks that intersect the building are genrated
 function lottmapgen.check_building(bbox, pos)
 	--mapgen chuncks generate 80 blocks at a time, so we only need to checks the limits of the bounding box and
-	-- each 80 inside nodes 
+	-- each 80 inside nodes
 	for z=bbox.zmin, bbox.zmax+80, 80 do
 		local cur_z = pos.z + math.min(z, bbox.zmax)
 		for y=bbox.ymin, bbox.ymax+80, 80 do
@@ -97,11 +97,11 @@ function lottmapgen.check_building(bbox, pos)
 			end
 		end
 	end
-		
+
 	return true
 end
 
-	
+
 function lottmapgen.check_fill(fill)
 	local bbox = {
 		xmin = fill.xmin, ymin = fill.y-fill_below_count, zmin = fill.zmin,
@@ -119,11 +119,11 @@ function lottmapgen.place_building(building, pos)
 	local pos1 = {x = pos.x + building.bbox.xmin, y = pos.y + building.bbox.ymin, z = pos.z + building.bbox.zmin}
 	local pos2 = {x = pos.x + building.bbox.xmax, y = pos.y + building.bbox.ymax, z = pos.z + building.bbox.zmax}
 	local count = worldedit.deserialize(p, value)
-	if areas_mod ~= nil and protect_houses == true then	
+	if areas_mod ~= nil and protect_houses == true then
                 areas:add(building.area_owner, building.area_name, pos1, pos2, nil)
                 areas:save()
 	end
-	
+
 	lottmapgen.enqueue_fill({xmin = pos1.x, zmin = pos1.z, xmax = pos2.x, zmax = pos2.z, y = pos1.y})
 end
 
@@ -135,8 +135,8 @@ minetest.register_globalstep(function(dtime)
 		local queued = lottmapgen.dequeue_building()
 		if not queued then return end
 
-		if queued.fill then 
-			if not lottmapgen.check_fill(queued.fill) then 
+		if queued.fill then
+			if not lottmapgen.check_fill(queued.fill) then
 				lottmapgen.enqueue_fill(queued.fill)
 			else
 				lottmapgen.fill_bellow(queued.fill)
@@ -146,7 +146,7 @@ minetest.register_globalstep(function(dtime)
 			local building = lottmapgen_list[queued.name];
 
 			-- not all the building will be placed, ask to replace it later
-			if not lottmapgen.check_building(building.bbox, queued.pos) then 
+			if not lottmapgen.check_building(building.bbox, queued.pos) then
 				lottmapgen.enqueue_building(queued.name, queued.pos)
 			else
 				-- place the building on generated nodes
@@ -160,23 +160,23 @@ end)
 
 lottmapgen.fill_bellow = function(fill)
 
-	
+
 	local pos1 = {x = fill.xmin, y = fill.y-fill_below_count, z = fill.zmin}
 	local pos2 = {x = fill.xmax, y = fill.y,                  z = fill.zmax}
 
 	local replace_node = {}
 	replace_node[minetest.get_content_id("lottother:dirt")]=minetest.get_content_id("default:dirt")
 	replace_node[minetest.get_content_id("lottother:snow")]=minetest.get_content_id("default:snowblock")
-	replace_node[minetest.get_content_id("lottother:mordor_stone")]=minetest.get_content_id("default:mordor_stone")	
+	replace_node[minetest.get_content_id("lottother:mordor_stone")]=minetest.get_content_id("default:mordor_stone")
 
-	local c_air = 	minetest.get_content_id("air")	
-	local c_ignore = minetest.get_content_id("ignore")	
+	local c_air = 	minetest.get_content_id("air")
+	local c_ignore = minetest.get_content_id("ignore")
 	local c_water = minetest.get_content_id("default:water_source")
 	local c_river_water = minetest.get_content_id("default:river_water_source")
 	local c_morwat = minetest.get_content_id("lottmapgen:blacksource")
 	local c_morrivwat = minetest.get_content_id("lottmapgen:black_river_source")
 
-	local mapgen_params = minetest.get_mapgen_params()
+	local water_level = minetest.get_mapgen_setting("water_level")
 
 	local vm = minetest.get_voxel_manip()
 	local emin, emax = vm:read_from_map(pos1, pos2)
@@ -190,19 +190,19 @@ lottmapgen.fill_bellow = function(fill)
 			local top_index = area:index(x, pos2.y, z)
 			local top = data[top_index]
 			local replace_to = replace_node[top]
-			if replace_to then 
+			if replace_to then
 				data[top_index] = replace_to
-				if pos2.y > mapgen_params.water_level-1000 then 
+				if pos2.y > water_level-1000 then
 					for y = pos2.y-1, pos1.y, -1 do
 						local index = area:index(x, y, z)
 						local cur = data[index]
-						if cur  == c_air or cur == c_water or cur == c_river_water 
-								or cur == c_morwat or cur == c_morrivwat then 
+						if cur  == c_air or cur == c_water or cur == c_river_water
+								or cur == c_morwat or cur == c_morrivwat then
 							data[index] = replace_to
-						else 
+						else
 							break
 						end
-						if y==pos1.y then 
+						if y==pos1.y then
 							data[index] = top
 							bottom_reached = true
 						end
@@ -210,14 +210,14 @@ lottmapgen.fill_bellow = function(fill)
 				end
 			end
 		end
-	end		
-	
+	end
+
 	vm:set_data(data)
 	vm:update_map()
 	vm:write_to_map()
 
-	
-	if pos2.y > mapgen_params.water_level-1000 and bottom_reached then 
+
+	if pos2.y > water_level-1000 and bottom_reached then
 		lottmapgen.enqueue_fill({xmin = fill.xmin, zmin = fill.zmin, xmax = fill.xmax, zmax = fill.zmax, y = fill.y-fill_below_count})
 	end
 end
