@@ -236,7 +236,7 @@ lottmobs.guard_eat = function(self, owner, name, dtime)
 end
 
 lottmobs.guard_die = function(self, pos)
-	if self.owner then
+	if self.owner and owner ~= "" then
 		lottmobs.player_guards[self.owner][self.game_name] = nil
 		lottmobs.save_guard_hunger()
 	end
