@@ -1,0 +1,60 @@
+# This file contains settings of minetest_game that can be changed in
+# minetest.conf
+
+#    In creative mode players are able to dig all kind of blocks nearly
+#    instantly, and have access to unlimited resources.
+#    Some of the functionality is only available if this setting is present
+#    at startup.
+creative_mode (Creative mode) bool false
+
+#    Flammable nodes will be ignited by nearby igniters. Spreading fire may
+#    cause severe destruction.
+disable_fire (Fire) bool false
+
+#    If enabled, steel tools, torches and cobblestone will be given to new
+#    players.
+give_initial_stuff (Give initial items) bool false
+
+#    The time in seconds after which the bones of a dead player can be looted
+#    by everyone.
+#    Setting this to 0 will disable sharing of bones completely.
+share_bones_time (Bone share time) int 1200 0
+
+#    Protects all automatically generated structures, so that players cannot
+#    damage, destroy or vandalize them.
+#    Requires the areas mod in order to work.
+protect_structures (Protect generated structures) bool false
+
+#    Causes the edges of biomes to be mixed with each other, which can create
+#    a more realistic feeling.
+biome_blend (Biome blend) bool false
+
+#    Makes trees drop down after being dug, which can be useful due to the
+#    massive size of the trees.
+#    This can cause extra lag, and can also be disconcerting to players used
+#    to normal behaviour.
+falling_trees (Falling trees) bool false
+
+#    If enabled, players will have to look watch their hunger levels.
+enable_stamina (Enable hunger) bool true
+
+#    If enabled, this will allow players to sprint, if they have enough hunger,
+#    at the expense of using up a bit more hunger.
+enable_sprint (Enable sprint) bool true
+
+#    If enabled, no hostile mobs will spawn. Not recommended, as it will take
+#    away a large part of the game's enjoyability!
+only_peaceful_mobs (No hostile mobs) bool false
+
+#    If enabled, blood particles will not appear when mobs are punched.
+mobs_disable_blood (Disable blood) bool false
+
+#    If enabled, mobs will not spawn in protected areas.
+mobs_spawn_protected (Mobs in protected areas) int 1 0 1
+
+#    If enabled, mobs fairly far away from the player will disappear.
+#    This means that areas will need to be repopulated with mobs when a player
+#    revisits them.
+#    This can, if there is some lag, result in mobs being removed when the
+#    player is fairly close to them, which can make things appear to be buggy!
+remove_far_mobs (Remove far mobs) bool false

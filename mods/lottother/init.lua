@@ -91,7 +91,7 @@ function lottother.find_pos_for_flame_around(pos)
 end
 
 function lottother.flame_should_extinguish(pos)
-	if minetest.setting_getbool("disable_lottother") then return true end
+	if minetest.setting_getbool("disable_fire") then return true end
 	local p0 = {x=pos.x-2, y=pos.y, z=pos.z-2}
 	local p1 = {x=pos.x+2, y=pos.y, z=pos.z+2}
 	local ps = minetest.find_nodes_in_area(p0, p1, {"group:puts_out_lottother"})

@@ -120,13 +120,10 @@ end
 
 -- Sprint settings and function
 local enable_sprint = minetest.setting_getbool("sprint") ~= false
-local enable_sprint_particles = minetest.setting_getbool("sprint_particles") ~= false
 local armor_mod = minetest.get_modpath("lottarmor")
 
 function set_sprinting(name, sprinting)
-
 	if stamina_players[name] then
-
 		local player = minetest.get_player_by_name(name)
 		local def = {}
 		if armor_mod and armor and armor.def then
@@ -138,27 +135,18 @@ function set_sprinting(name, sprinting)
 		def.gravity = def.gravity or 1
 
 		if sprinting == true then
-
 			player:set_physics_override({
 				speed = def.speed + SPRINT_SPEED,
 				jump = def.jump + SPRINT_JUMP,
 				gravity = def.gravity
 			})
-
---print ("Speed:", def.speed + SPRINT_SPEED, "Jump:", def.jump + SPRINT_JUMP, "Gravity:", def.gravity)
-
 		elseif sprinting == false then
-
 			player:set_physics_override({
 				speed = def.speed,
 				jump = def.jump,
 				gravity = def.gravity
 			})
-
---print ("Speed:", def.speed, "Jump:", def.jump, "Gravity:", def.gravity)
-
 		end
-
 		return true
 	end
 
@@ -185,16 +173,13 @@ local function stamina_globaltimer(dtime)
 				exhaust_player(player, STAMINA_EXHAUST_MOVE)
 			end
 
-			--- START sprint
 			if enable_sprint then
-
 				local name = player:get_player_name()
 
 				-- check if player can sprint (stamina must be over 6 points)
 				if controls.aux1 and controls.up
 				and not minetest.check_player_privs(player, {fast = true})
 				and stamina_players[name].level > 6 then
-
 					set_sprinting(name, true)
 
 					-- Lower the player's stamina when sprinting
@@ -204,8 +189,6 @@ local function stamina_globaltimer(dtime)
 					set_sprinting(name, false)
 				end
 			end
-			-- END sprint
-
 		end
 		action_timer = 0
 	end
