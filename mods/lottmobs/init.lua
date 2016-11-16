@@ -307,6 +307,7 @@ mobs:register_mob("lottmobs:rohan_guard", {
 	peaceful = true,
 	group_attack = true,
 	step = 1,
+	on_die = lottmobs.guard_die,
 })
 mobs:register_spawn("lottmobs:rohan_guard", {"lottmapgen:rohan_grass"}, 20, -1, 6000, 3, 31000)
 lottmobs.register_guard_craftitem("lottmobs:rohan_guard", "Rohan Guard", "lottmobs_rohan_guard_inv.png")
@@ -426,6 +427,7 @@ mobs:register_mob("lottmobs:gondor_guard", {
 	peaceful = true,
 	group_attack = true,
 	step = 1,
+	on_die = lottmobs.guard_die,
 })
 mobs:register_spawn("lottmobs:gondor_guard", {"lottmapgen:gondor_grass"}, 20, -1, 6000, 3, 31000)
 lottmobs.register_guard_craftitem("lottmobs:gondor_guard", "Gondor Guard", "lottmobs_gondor_guard_inv.png")
@@ -525,6 +527,7 @@ mobs:register_mob("lottmobs:ithilien_ranger", {
 	peaceful = true,
 	group_attack = true,
 	step = 1,
+	on_die = lottmobs.guard_die,
 })
 mobs:register_spawn("lottmobs:ithilien_ranger", {"lottmapgen:ithilien_grass"}, 20, -1, 6000, 3, 31000)
 lottmobs.register_guard_craftitem("lottmobs:ithilien_ranger", "Ithilien Ranger", "lottmobs_ithilien_ranger_inv.png")
@@ -636,6 +639,7 @@ mobs:register_mob("lottmobs:dunlending", {
 		attack = "default_punch2",
 	},
 	step = 1,
+	on_die = lottmobs.guard_die,
 })
 mobs:register_spawn("lottmobs:dunlending", {"lottmapgen:dunland_grass"}, 20, -1, 6000, 3, 31000)
 lottmobs.register_guard_craftitem("lottmobs:dunlending", "Dunlending", "lottmobs_dunlending_inv.png")
@@ -737,6 +741,7 @@ mobs:register_mob("lottmobs:orc", {
 	peaceful = true,
 	group_attack = true,
 	step = 1,
+	on_die = lottmobs.guard_die,
 })
 mobs:register_spawn("lottmobs:orc", {"lottmapgen:mordor_stone"}, 20, -1, 500, 3, 31000)
 mobs:register_spawn("lottmobs:orc", {"default:snowblock"}, 15, -1, 8000, 3, 31000)
@@ -841,6 +846,7 @@ mobs:register_mob("lottmobs:raiding_orc", {
 	peaceful = true,
 	group_attack = true,
 	step = 1,
+	on_die = lottmobs.guard_die,
 })
 mobs:register_spawn("lottmobs:raiding_orc", {"lottmapgen:ithilien_grass"}, 2, -1, 4000, 5, 31000)
 mobs:register_spawn("lottmobs:raiding_orc", {"lottmapgen:rohan_grass"}, 2, -1, 4000, 5, 31000)
@@ -879,7 +885,7 @@ mobs:register_mob("lottmobs:warg", {
 	lava_damage = 5,
 	light_damage = 0,
 	damage = 8,
-	attack_type = "dogfight", --Rather suitible name!
+	attack_type = "dogfight", --Rather suitable name!
 	animation = {
 		speed_normal = 15,
 		speed_run = 25,
@@ -998,6 +1004,7 @@ mobs:register_mob("lottmobs:uruk_hai", {
 	peaceful = true,
 	group_attack = true,
 	step = 1,
+	on_die = lottmobs.guard_die,
 })
 mobs:register_spawn("lottmobs:uruk_hai", {"lottmapgen:mordor_stone"}, 15, -1, 2000, 3, 31000)
 mobs:register_spawn("lottmobs:uruk_hai", {"lottmapgen:fangorn_grass"}, 2, -1, 2000, 3, 31000)

@@ -235,6 +235,13 @@ lottmobs.guard_eat = function(self, owner, name, dtime)
         end
 end
 
+lottmobs.guard_die = function(self, pos)
+	if self.owner then
+		lottmobs.player_guards[self.owner][self.game_name] = nil
+		lottmobs.save_guard_hunger()
+	end
+end
+
 lottmobs.do_custom_guard = function(self, dtime)
 	-- attack timer
 	self.timer = self.timer + dtime

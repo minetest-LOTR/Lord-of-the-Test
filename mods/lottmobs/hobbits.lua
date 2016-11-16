@@ -49,6 +49,7 @@ function lottmobs.register_hobbit(n, hpmin, hpmax, textures, wv, rv, damg, arm, 
                                   peaceful=true,
                                   group_attack=true,
                                   step=1,
+				  on_die = lottmobs.guard_die,
         })
         mobs:register_spawn("lottmobs:hobbit"..n, {"lottmapgen:shire_grass"}, 20, -1, 6000, 3, 31000)
         lottmobs.register_guard_craftitem("lottmobs:hobbit"..n, "Hobbit Guard", "lottmobs_hobbit_guard"..n.."_inv.png")

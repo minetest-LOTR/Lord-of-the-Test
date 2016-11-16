@@ -49,6 +49,7 @@ function lottmobs.register_dwarf(n, hpmin, hpmax, textures, wv, rv, damg, arm, d
     	peaceful = true,
     	group_attack = true,
     	step = 1,
+	on_die = lottmobs.guard_die,
     })
     mobs:register_spawn("lottmobs:dwarf" .. n, {"default:stone"}, 15, -1, 24000, 3, -10)
     mobs:register_spawn("lottmobs:dwarf" .. n, {"lottmapgen:ironhill_grass"}, 20, -1, 18000, 3, 31000)

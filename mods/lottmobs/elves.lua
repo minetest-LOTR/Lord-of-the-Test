@@ -48,6 +48,7 @@ function lottmobs.register_elf(n, hpmin, hpmax, textures, wv, rv, damg, arm, dro
 		peaceful = true,
 		group_attack = true,
 		step = 1,
+		on_die = lottmobs.guard_die,
 	})
 	mobs:register_spawn("lottmobs:elf" .. n, {"lottmapgen:lorien_grass"}, 20, 0, 18000, 3, 31000)
         lottmobs.register_guard_craftitem("lottmobs:elf"..n, "Elven Guard", "lottmobs_elven_guard"..n.."_inv.png")
