@@ -1,6 +1,8 @@
 # This file contains settings of minetest_game that can be changed in
 # minetest.conf
 
+[Gameplay]
+
 #    In creative mode players are able to dig all kind of blocks nearly
 #    instantly, and have access to unlimited resources.
 #    Some of the functionality is only available if this setting is present
@@ -11,15 +13,18 @@ creative_mode (Creative mode) bool false
 #    cause severe destruction.
 disable_fire (Fire) bool false
 
-#    If enabled, steel tools, torches and cobblestone will be given to new
-#    players.
-give_initial_stuff (Give initial items) bool false
-
 #    The time in seconds after which the bones of a dead player can be looted
 #    by everyone.
 #    Setting this to 0 will disable sharing of bones completely.
 share_bones_time (Bone share time) int 1200 0
 
+#    Makes trees drop down after being dug, which can be useful due to the
+#    massive size of the trees.
+#    This can cause extra lag, and can also be disconcerting to players used
+#    to normal behaviour.
+falling_trees (Falling trees) bool false
+
+[Mapgen]
 #    Protects all automatically generated structures, so that players cannot
 #    damage, destroy or vandalize them.
 #    Requires the areas mod in order to work.
@@ -29,12 +34,7 @@ protect_structures (Protect generated structures) bool false
 #    a more realistic feeling.
 biome_blend (Biome blend) bool false
 
-#    Makes trees drop down after being dug, which can be useful due to the
-#    massive size of the trees.
-#    This can cause extra lag, and can also be disconcerting to players used
-#    to normal behaviour.
-falling_trees (Falling trees) bool false
-
+[Hunger]
 #    If enabled, players will have to look watch their hunger levels.
 enable_stamina (Enable hunger) bool true
 
@@ -42,6 +42,7 @@ enable_stamina (Enable hunger) bool true
 #    at the expense of using up a bit more hunger.
 enable_sprint (Enable sprint) bool true
 
+[Mobs]
 #    If enabled, no hostile mobs will spawn. Not recommended, as it will take
 #    away a large part of the game's enjoyability!
 only_peaceful_mobs (No hostile mobs) bool false
@@ -50,7 +51,7 @@ only_peaceful_mobs (No hostile mobs) bool false
 mobs_disable_blood (Disable blood) bool false
 
 #    If enabled, mobs will not spawn in protected areas.
-mobs_spawn_protected (Mobs in protected areas) int 1 0 1
+mobs_spawn_protected (No mobs in protected areas) int 1 0 1
 
 #    If enabled, mobs fairly far away from the player will disappear.
 #    This means that areas will need to be repopulated with mobs when a player
