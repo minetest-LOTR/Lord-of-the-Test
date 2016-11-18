@@ -48,21 +48,21 @@ local npc_guard_attack = function(self)
                                 npc_race = obj.race
                         end
                 end
-                
+
                 if entity_type == "player" or entity_type == "npc" or entity_type == "monster" then
-                        
+
                         s = self.object:getpos()
                         p = player:getpos()
                         sp = s
-                        
+
                         -- aim higher to make looking up hills more realistic
                         p.y = p.y + 1
                         sp.y = sp.y + 1
-                        
+
                         dist = get_distance(p, s)
-                        
+
                         if dist < self.view_range then
-                                
+
                                 -- choose closest player to attack
                                 if line_of_sight_water(self, sp, p, 2) == true
                                 and dist < min_dist then
@@ -94,7 +94,7 @@ local npc_guard_attack = function(self)
                         end
                 end
         end
-        
+
         -- attack player
         if min_player then
                 do_attack(self, min_player)
@@ -124,7 +124,7 @@ local npc_attack = function(self)
 				player = obj.object
 				entity_type = obj.type
                                 npc_race = obj.race
-			end                                
+			end
                 end
 
                 if entity_type == "player" or entity_type == "npc" or entity_type == "monster" then
@@ -164,7 +164,7 @@ local npc_attack = function(self)
         end
         if min_player then
                 do_attack(self, min_player)
-        end        
+        end
 end
 
 local guard_foods = {
@@ -178,7 +178,7 @@ lottmobs.save_guard_hunger = function()
 	if file then
 		file:write(minetest.serialize(lottmobs.player_guards))
 		file:close()
-	end        
+	end
 end
 
 lottmobs.do_guard_hunger = function(dtime)
@@ -236,7 +236,7 @@ lottmobs.guard_eat = function(self, owner, name, dtime)
 end
 
 lottmobs.guard_die = function(self, pos)
-	if self.owner and owner ~= "" then
+	if self.owner and self.owner ~= "" then
 		lottmobs.player_guards[self.owner][self.game_name] = nil
 		lottmobs.save_guard_hunger()
 	end
@@ -290,7 +290,7 @@ lottmobs.do_custom_guard = function(self, dtime)
         else
                 npc_attack(self)
 	end
-        
+
 	mobs.follow_flop(self)
 	mobs.do_states(self, dtime)
         return false
@@ -316,7 +316,7 @@ local get_guard_formspec = function(self)
 	if self.blacklist == nil then
 		self.blacklist = {}
 	end
-        
+
         if self.order == "stand" then selected_idx = 2 end
         local formspec = "size[10,11]"..
                 "label[1,1;Name:\t"..self.game_name.."]"..
