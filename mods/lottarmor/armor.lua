@@ -466,6 +466,7 @@ minetest.register_on_joinplayer(function(player)
 		allow_move = function(inv, from_list, from_index, to_list, to_index, count, player)
 			return 0
 		end,
+		name,
 	})
 	if inv_mod == "inventory_plus" then
 		inventory_plus.register_button(player,"armor", "Armor")
@@ -478,7 +479,8 @@ minetest.register_on_joinplayer(function(player)
 	end
 
 	--Bags
-     local bags_inv = minetest.create_detached_inventory(player:get_player_name().."_bags",{
+	local name = player:get_player_name()
+     local bags_inv = minetest.create_detached_inventory(name.."_bags",{
 		on_put = function(inv, listname, index, stack, player)
 			player:get_inventory():set_stack(listname, index, stack)
 			player:get_inventory():set_size(listname.."contents", stack:get_definition().groups.bagslots)
@@ -503,6 +505,7 @@ minetest.register_on_joinplayer(function(player)
 		allow_move = function(inv, from_list, from_index, to_list, to_index, count, player)
 			return 0
 		end,
+		name,
 	})
 	for i=1,4 do
 		local bag = "bag"..i
