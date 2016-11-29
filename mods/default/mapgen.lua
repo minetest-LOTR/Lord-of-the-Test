@@ -7,11 +7,14 @@ if mapgen_name == "singlenode" or mapgen_name == "v6" then
 end
 
 local flags = minetest.get_mapgen_setting("mgv7_spflags")
-local c1, c2 = flags:find("floatlands")
 
-if c1 and c2 and not flags:find("nofloatlands") then
-	minetest.set_mapgen_setting("mgv7_spflags",
-		flags:sub(1, c1-1) .. flags:sub(c2+1), true)
+if flags ~= nil then
+	local c1, c2 = flags:find("floatlands")
+
+	if c1 and c2 and not flags:find("nofloatlands") then
+		minetest.set_mapgen_setting("mgv7_spflags",
+			flags:sub(1, c1-1) .. flags:sub(c2+1), true)
+	end
 end
 
 --
