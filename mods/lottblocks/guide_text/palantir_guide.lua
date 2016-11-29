@@ -1,5 +1,6 @@
 return "return {[\"page\"] = 1, [\"title\"] = \"On Palantiris\"," ..
 	"[\"page_max\"] = 6, [\"text_len\"] = 1152, [\"owner\"] = \"An Unknown Wise Sage\"," ..
+	"[\"size_x\"] = 9, [\"size_y\"] = 9," ..
 	"[\"text\"] = \"The Palantir is a wonderful device, allowing those who \\\n" ..
 	"use it, so long as its owner has given permission for \\\nthem to use it, " ..
 	"to travel vast distances in the blink of an \\\neye, to other palantiri, " ..

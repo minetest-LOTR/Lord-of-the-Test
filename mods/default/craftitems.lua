@@ -12,7 +12,13 @@ minetest.register_craftitem("default:paper", {
 })
 
 local lpp = 14 -- Lines per book's page
-function default.book_on_use(itemstack, user, background)
+function default.book_on_use(itemstack, user, background, x, y)
+	if not x then
+		x = 8
+	end
+	if not y then
+		y = 8
+	end
 	local player_name = user:get_player_name()
 	local data = minetest.deserialize(itemstack:get_metadata())
 	local title, text, owner = "", "", player_name
@@ -40,19 +46,19 @@ function default.book_on_use(itemstack, user, background)
 
 	local formspec
 	if owner == player_name then
-		formspec = "size[8,8]" ..
+		formspec = "size[" .. x .. "," .. y .. "]" ..
 			"background[8,8;1,1;" .. background .. ";true]"..
 			"field[0.5,1;7.5,0;title;Title:;" ..
 				minetest.formspec_escape(title) .. "]" ..
-			"textarea[0.5,1.5;7.5,7;text;Contents:;" ..
+			"textarea[0.5,1.5;" .. x - 0.5 .. "," .. y - 1 .. ";text;Contents:;" ..
 				minetest.formspec_escape(text) .. "]" ..
 			"button_exit[2.5,7.5;3,1;save;Save]"
 	else
-		formspec = "size[8,8]" ..
+		formspec = "size[" ..x .."," .. y .. "]" ..
 			"background[8,8;1,1;" .. background .. ";true]" ..
 			"label[0.5,0.5;by " .. owner .. "]" ..
 			"label[0.4,0;" .. minetest.colorize("yellow", minetest.formspec_escape(title)) .. "]" ..
-			"textarea[0.5,1.5;7.5,7;;" ..
+			"textarea[0.5,1.5;" .. x - 0.5 .. "," .. y - 1 .. ";;" ..
 			minetest.formspec_escape(string ~= "" and string or text) .. ";]" ..
 			"button[2.4,7.6;0.8,0.8;book_prev;<]" ..
 			"label[3.2,7.7;Page " .. page .. " of " .. page_max .. "]" ..
@@ -117,6 +123,9 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			end
 		end
 
+		local x = data.size_x or 8
+		local y = data.size_y or 8
+
 		local data_str = minetest.serialize(data)
 		stack:set_metadata(data_str)
 		--Hackyness!!
@@ -124,7 +133,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		if stack:get_name() == "lottblocks:palantir_guide" then
 			background = "gui_elfbg.png"
 		end
-		default.book_on_use(stack, player, background)
+		default.book_on_use(stack, player, background, x, y)
 	end
 
 	player:set_wielded_item(stack)

@@ -262,7 +262,7 @@ minetest.register_craftitem("lottblocks:palantir_guide", {
 	groups = {book = 1, not_in_creative_inventory = 1, forbidden = 1},
 	stack_max = 1,
 	on_use = function(itemstack, user)
-		default.book_on_use(itemstack, user, "gui_elfbg.png")
+		default.book_on_use(itemstack, user, "gui_elfbg.png", 9, 9)
 	end,
 })
 
