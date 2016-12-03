@@ -466,8 +466,7 @@ minetest.register_on_joinplayer(function(player)
 		allow_move = function(inv, from_list, from_index, to_list, to_index, count, player)
 			return 0
 		end,
-		name,
-	})
+	}, name)
 	if inv_mod == "inventory_plus" then
 		inventory_plus.register_button(player,"armor", "Armor")
 	end
@@ -505,8 +504,7 @@ minetest.register_on_joinplayer(function(player)
 		allow_move = function(inv, from_list, from_index, to_list, to_index, count, player)
 			return 0
 		end,
-		name,
-	})
+	}, name)
 	for i=1,4 do
 		local bag = "bag"..i
 		player_inv:set_size(bag, 1)
