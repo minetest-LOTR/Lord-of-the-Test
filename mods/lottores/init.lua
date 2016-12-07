@@ -55,63 +55,6 @@ minetest.register_node("lottores:mithril_ore", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("lottores:blue_gem_ore", {
-	description = "Blue Gem Ore",
-	tiles = {"default_stone.png^lottores_bluegem_ore.png"},
-	is_ground_content = true,
-	groups = {cracky=1},
-	drop = {
-		items = {
-			{
-				items = {'lottores:blue_gem'},
-				rarity = 5,
-			},
-			{
-				items = {''},
-			}
-		}
-	},
-	sounds = default.node_sound_stone_defaults(),
-})
-
-minetest.register_node("lottores:white_gem_ore", {
-	description = "White Gem Ore",
-	tiles = {"default_stone.png^lottores_whitegem_ore.png"},
-	is_ground_content = true,
-	groups = {cracky=1},
-	drop = {
-		items = {
-			{
-				items = {'lottores:white_gem'},
-				rarity = 5,
-			},
-			{
-				items = {''},
-			}
-		}
-	},
-	sounds = default.node_sound_stone_defaults(),
-})
-
-minetest.register_node("lottores:red_gem_ore", {
-	description = "Red Gem Ore",
-	tiles = {"default_stone.png^lottores_redgem_ore.png"},
-	is_ground_content = true,
-	groups = {cracky=1},
-	drop = {
-		items = {
-			{
-				items = {'lottores:red_gem'},
-				rarity = 5,
-			},
-			{
-				items = {''},
-			}
-		}
-	},
-	sounds = default.node_sound_stone_defaults(),
-})
-
 minetest.register_node("lottores:mineral_pearl", {
 	description = "Pearl Ore",
 	tiles = {"default_sand.png^lottores_mineral_pearl.png"},
@@ -214,21 +157,6 @@ minetest.register_craftitem("lottores:orc_steel_ingot", {
 	inventory_image = "default_steel_ingot.png^[colorize:#00000055",
 })
 
-minetest.register_craftitem("lottores:blue_gem", {
-	description = "Blue Gem",
-	inventory_image = "lottores_bluegem.png",
-})
-
-minetest.register_craftitem("lottores:red_gem", {
-	description = "Red Gem",
-	inventory_image = "lottores_redgem.png",
-})
-
-minetest.register_craftitem("lottores:white_gem", {
-	description = "White Gem",
-	inventory_image = "lottores_whitegem.png",
-})
-
 minetest.register_craftitem("lottores:pearl", {
 	description = "Pearl",
 	inventory_image = "lottores_pearl.png",
@@ -240,7 +168,7 @@ minetest.register_node("lottores:tilkal", {
 	description = "Tilkal",
 	tiles = {"lottores_tilkal.png"},
 	sounds = default.node_sound_defaults(),
-	groups = {forbidden=1, very_hard = 1},
+	groups = {forbidden=1, very_hard = 1, creative = 1},
 })
 
 minetest.register_node("lottores:marble", {

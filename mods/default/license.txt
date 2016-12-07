@@ -150,12 +150,18 @@ Neuromancer:
 BlockMen (CC BY-SA 3.0):
   default_sandstone.png
   default_book.png
+  gui_furnace_arrow_bg.png
+  gui_furnace_arrow_fg.png
 
 sofar (CC BY-SA 3.0):
   default_book_written.png, based on default_book.png
 
 kaeza (WTFPL):
   bubble.png
+
+Kalabasa (CC BY-SA 3.0):
+  default_furnace_fire_bg.png
+  default_furnace_fire_fg.png
 
 Glass breaking sounds (CC BY 3.0):
   1: http://www.freesound.org/people/cmusounddesign/sounds/71947/

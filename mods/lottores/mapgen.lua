@@ -123,39 +123,6 @@ minetest.register_ore({
 
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "lottores:blue_gem_ore",
-	wherein        = "default:stone",
-	clust_scarcity = 14*14*14,
-	clust_num_ores = 4,
-	clust_size     = 2,
-	y_min     = wl - 31000,
-	y_max     = wl - 256,
-})
-
-minetest.register_ore({
-	ore_type       = "scatter",
-	ore            = "lottores:red_gem_ore",
-	wherein        = "default:stone",
-	clust_scarcity = 14*14*14,
-	clust_num_ores = 4,
-	clust_size     = 2,
-	y_min     = wl - 31000,
-	y_max     = wl - 256,
-})
-
-minetest.register_ore({
-	ore_type       = "scatter",
-	ore            = "lottores:white_gem_ore",
-	wherein        = "default:stone",
-	clust_scarcity = 14*14*14,
-	clust_num_ores = 4,
-	clust_size     = 2,
-	y_min     = wl - 31000,
-	y_max     = wl - 256,
-})
-
-minetest.register_ore({
-	ore_type       = "scatter",
 	ore            = "lottores:mithril_ore",
 	wherein        = "default:stone",
 	clust_scarcity = 18*18*18,

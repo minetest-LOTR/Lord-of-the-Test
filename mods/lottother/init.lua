@@ -1,4 +1,7 @@
-dofile(minetest.get_modpath("lottother").."/rings.lua")
+dofile(minetest.get_modpath("lottother").."/rings/rings.lua")
+dofile(minetest.get_modpath("lottother").."/rings/gems.lua")
+dofile(minetest.get_modpath("lottother").."/rings/ringsilver.lua")
+dofile(minetest.get_modpath("lottother").."/rings/ringcraft.lua")
 dofile(minetest.get_modpath("lottother").."/mob_spawners.lua")
 dofile(minetest.get_modpath("lottother").."/credits.lua")
 

@@ -985,11 +985,13 @@ minetest.register_node("default:chest_locked", {
 	end,
 })
 
-function default.get_furnace_active_formspec(pos, percent)
+function default.get_furnace_active_formspec(pos, percent, item_percent)
 	local formspec =
 		"size[8,9]"..
-		"image[2,2;1,1;default_furnace_inv.png^[lowpart:"..
+		"image[2,2;1,1;default_furnace_fire_bg.png^[lowpart:"..
 		(100-percent)..":default_furnace_fire_fg.png]"..
+		"image[3.75,1.5;1,1;gui_furnace_arrow_bg.png^[lowpart:"..
+		(item_percent)..":gui_furnace_arrow_fg.png^[transformR270]"..
 		"list[current_name;fuel;2,3;1,1;]"..
 		"list[current_name;src;2,1;1,1;]"..
 		"list[current_name;dst;5,1;2,2;]"..
@@ -1003,7 +1005,8 @@ end
 
 default.furnace_inactive_formspec =
 	"size[8,9]"..
-	"image[2,2;1,1;default_furnace_inv.png]"..
+	"image[2,2;1,1;default_furnace_fire_bg.png]"..
+	"image[3.75,1.5;1,1;gui_furnace_arrow_bg.png^[transformR270]"..
 	"list[current_name;fuel;2,3;1,1;]"..
 	"list[current_name;src;2,1;1,1;]"..
 	"list[current_name;dst;5,1;2,2;]"..
@@ -1219,9 +1222,10 @@ minetest.register_abm({
 		if meta:get_float("fuel_time") < meta:get_float("fuel_totaltime") then
 			local percent = math.floor(meta:get_float("fuel_time") /
 					meta:get_float("fuel_totaltime") * 100)
+			local item_percent = math.floor(meta:get_float("src_time") / cooked.time * 100)
 			meta:set_string("infotext","Furnace active: "..percent.."%")
 			swap_node(pos,"default:furnace_active")
-			meta:set_string("formspec",default.get_furnace_active_formspec(pos, percent))
+			meta:set_string("formspec",default.get_furnace_active_formspec(pos, percent, item_percent))
 			return
 		end
 

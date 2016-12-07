@@ -2,3 +2,4 @@ default
 fire
 lottores
 lottplants
+lottblocks

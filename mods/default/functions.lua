@@ -442,3 +442,87 @@ minetest.register_on_punchplayer(function(player, hitter, time_from_last_punch, 
 		hitter:set_wielded_item(weapon)
 	end
 end)
+
+-- From PlizAdam's tnt mod.
+-- https://github.com/PilzAdam/TNT
+
+local destroy = function(pos, radius)
+	local nodename = minetest.get_node(pos).name
+	if nodename ~= "air" then
+		minetest.remove_node(pos)
+		if math.random(1, 1000) < radius then
+			minetest.set_node(pos, {name="default:lava_source"})
+		end
+		nodeupdate(pos)
+		if minetest.registered_nodes[nodename].groups.flammable ~= nil then
+			minetest.set_node(pos, {name="fire:basic_flame"})
+			return
+		end
+	end
+end
+
+default.explode = function(pos, time, radius, damage, node)
+	minetest.after(time, function(pos)
+		if node then
+			if minetest.get_node(pos).name ~= node then
+				return
+			end
+		end
+		minetest.sound_play("default_explode", {pos=pos, gain=1.5, max_hear_distance=2*64})
+		minetest.set_node(pos, {name="default:lava_source"})
+
+		local objects = minetest.env:get_objects_inside_radius(pos, radius * 2)
+		for _,obj in ipairs(objects) do
+			if obj:is_player() or (obj:get_luaentity() and obj:get_luaentity().name ~= "__builtin:item") then
+				local obj_p = obj:getpos()
+				local vec = {x=obj_p.x-pos.x, y=obj_p.y-pos.y, z=obj_p.z-pos.z}
+				local dist = (vec.x^2+vec.y^2+vec.z^2)^0.5
+				local damage = damage or (80*0.5^dist)*2
+				obj:punch(obj, 1.0, {
+					full_punch_interval=1.0,
+					damage_groups={fleshy=damage},
+				}, vec)
+			end
+		end
+
+		local pr = PseudoRandom(os.time())
+		for dx = -radius, radius do
+		for dy = radius, -radius, -1 do
+		for dz = -radius, radius do
+
+			pos.x = pos.x+dx
+			pos.y = pos.y+dy
+			pos.z = pos.z+dz
+
+			local r = vector.length(vector.new(dx, dy, dz))
+			local node =  minetest.get_node(pos)
+			if (radius * radius) / (r * r) >= (pr:next(80, 125) / 100)
+			and not minetest.is_protected(pos) then
+				destroy(pos, radius)
+			end
+
+			pos.x = pos.x-dx
+			pos.y = pos.y-dy
+			pos.z = pos.z-dz
+		end
+		end
+		end
+
+		minetest.add_particlespawner(
+			100,
+			0.1,
+			{x=pos.x-3, y=pos.y-3, z=pos.z-3},
+			{x=pos.x+3, y=pos.y+3, z=pos.z+3},
+			{x=-0, y=-0, z=-0},
+			{x=0, y=0, z=0},
+			{x=-0.5,y=5,z=-0.5},
+			{x=0.5,y=5,z=0.5},
+			0.1,
+			1,
+			8,
+			15,
+			false,
+			"tnt_smoke.png"
+		)
+	end, pos)
+end
