@@ -34,6 +34,11 @@ protect_structures (Protect generated structures) bool false
 #    a more realistic feeling.
 biome_blend (Biome blend) bool false
 
+#    Allows v6 to be used with LOTT. This needs to be a setting, as mapgen v6
+#    does not work perfectly with LOTT, and therefore, should only be used by
+#    users who don't mind some mapgen glitches...
+lott_v6 (Allow v6 with LOTT) bool false
+
 [Hunger]
 #    If enabled, players will have to look watch their hunger levels.
 enable_stamina (Enable hunger) bool true
