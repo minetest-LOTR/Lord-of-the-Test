@@ -111,9 +111,9 @@ minetest.register_abm(
 	interval = 1,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		if minetest.env:get_timeofday() > 0.2 and minetest.env:get_timeofday() < 0.8
+		if minetest.get_timeofday() > 0.2 and minetest.get_timeofday() < 0.8
 		then
-			minetest.env:set_node(pos, {name="lottores:ithildin_0"})
+			minetest.set_node(pos, {name="lottores:ithildin_0"})
 		end
 	end,
 })
@@ -123,9 +123,9 @@ minetest.register_abm(
 	interval = 1,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		if minetest.env:get_timeofday() < 0.2 or minetest.env:get_timeofday() > 0.8
+		if minetest.get_timeofday() < 0.2 or minetest.get_timeofday() > 0.8
 		then
-			minetest.env:set_node(pos, {name="lottores:ithildin_1"})
+			minetest.set_node(pos, {name="lottores:ithildin_1"})
 		end
 	end,
 })
@@ -135,9 +135,9 @@ minetest.register_abm(
 	interval = 1,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		if minetest.env:get_timeofday() > 0.2 and minetest.env:get_timeofday() < 0.8
+		if minetest.get_timeofday() > 0.2 and minetest.get_timeofday() < 0.8
 		then
-			minetest.env:set_node(pos, {name="lottores:ithildin_stone_0"})
+			minetest.set_node(pos, {name="lottores:ithildin_stone_0"})
 		end
 	end,
 })
@@ -147,9 +147,9 @@ minetest.register_abm(
 	interval = 1,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		if minetest.env:get_timeofday() < 0.2 or minetest.env:get_timeofday() > 0.8
+		if minetest.get_timeofday() < 0.2 or minetest.get_timeofday() > 0.8
 		then
-			minetest.env:set_node(pos, {name="lottores:ithildin_stone_1"})
+			minetest.set_node(pos, {name="lottores:ithildin_stone_1"})
 		end
 	end,
 })
@@ -159,9 +159,9 @@ minetest.register_abm(
 	interval = 1,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		if minetest.env:get_timeofday() > 0.2 and minetest.env:get_timeofday() < 0.8
+		if minetest.get_timeofday() > 0.2 and minetest.get_timeofday() < 0.8
 		then
-			minetest.env:set_node(pos, {name="lottores:ithildin_stonelamp_0"})
+			minetest.set_node(pos, {name="lottores:ithildin_stonelamp_0"})
 		end
 	end,
 })
@@ -171,9 +171,9 @@ minetest.register_abm(
 	interval = 1,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		if minetest.env:get_timeofday() < 0.2 or minetest.env:get_timeofday() > 0.8
+		if minetest.get_timeofday() < 0.2 or minetest.get_timeofday() > 0.8
 		then
-			minetest.env:set_node(pos, {name="lottores:ithildin_stonelamp_1"})
+			minetest.set_node(pos, {name="lottores:ithildin_stonelamp_1"})
 		end
 	end,
 })
@@ -183,9 +183,9 @@ minetest.register_abm(
 	interval = 1,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		if minetest.env:get_timeofday() > 0.2 and minetest.env:get_timeofday() < 0.8
+		if minetest.get_timeofday() > 0.2 and minetest.get_timeofday() < 0.8
 		then
-			minetest.env:set_node(pos, {name="lottores:ithildin_lamp_0"})
+			minetest.set_node(pos, {name="lottores:ithildin_lamp_0"})
 		end
 	end,
 })
@@ -195,9 +195,9 @@ minetest.register_abm(
 	interval = 1,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		if minetest.env:get_timeofday() < 0.2 or minetest.env:get_timeofday() > 0.8
+		if minetest.get_timeofday() < 0.2 or minetest.get_timeofday() > 0.8
 		then
-			minetest.env:set_node(pos, {name="lottores:ithildin_lamp_1"})
+			minetest.set_node(pos, {name="lottores:ithildin_lamp_1"})
 		end
 	end,
 })

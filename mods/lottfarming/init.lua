@@ -113,14 +113,14 @@ function farming:add_plant(full_grown, names, interval, chance)
 		chance = chance,
 		action = function(pos, node)
 			pos.y = pos.y-1
-			if minetest.env:get_node(pos).name ~= "farming:soil_wet" then
+			if minetest.get_node(pos).name ~= "farming:soil_wet" then
 				return
 			end
 			pos.y = pos.y+1
-			if not minetest.env:get_node_light(pos) then
+			if not minetest.get_node_light(pos) then
 				return
 			end
-			if minetest.env:get_node_light(pos) < 8 then
+			if minetest.get_node_light(pos) < 8 then
 				return
 			end
 			local step = nil
@@ -137,7 +137,7 @@ function farming:add_plant(full_grown, names, interval, chance)
 			if new_node.name == nil then
 				new_node.name = full_grown
 			end
-			minetest.env:set_node(pos, new_node)
+			minetest.set_node(pos, new_node)
 		end
 }	)
 end

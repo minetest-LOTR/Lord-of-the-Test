@@ -381,7 +381,7 @@ minetest.register_abm({
 			end
 			-- Remove node
 			minetest.remove_node(p0)
-			nodeupdate(p0)
+			minetest.check_for_falling(p0)
 		end
 	end
 })
@@ -453,7 +453,7 @@ local destroy = function(pos, radius)
 		if math.random(1, 1000) < radius then
 			minetest.set_node(pos, {name="default:lava_source"})
 		end
-		nodeupdate(pos)
+		minetest.check_for_falling(pos)
 		if minetest.registered_nodes[nodename].groups.flammable ~= nil then
 			minetest.set_node(pos, {name="fire:basic_flame"})
 			return
@@ -471,7 +471,7 @@ default.explode = function(pos, time, radius, damage, node)
 		minetest.sound_play("default_explode", {pos=pos, gain=1.5, max_hear_distance=2*64})
 		minetest.set_node(pos, {name="default:lava_source"})
 
-		local objects = minetest.env:get_objects_inside_radius(pos, radius * 2)
+		local objects = minetest.get_objects_inside_radius(pos, radius * 2)
 		for _,obj in ipairs(objects) do
 			if obj:is_player() or (obj:get_luaentity() and obj:get_luaentity().name ~= "__builtin:item") then
 				local obj_p = obj:getpos()

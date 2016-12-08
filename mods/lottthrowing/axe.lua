@@ -7,7 +7,7 @@ local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 			player:get_inventory():remove_item("main", player:get_wield_index())
 		end
 		local playerpos = player:getpos()
-		local obj = minetest.env:add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, axe_entity)
+		local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, axe_entity)
 		local dir = player:get_look_dir()
 		obj:setvelocity({x=dir.x*27, y=dir.y*30, z=dir.z*27})
 		obj:setacceleration({x=dir.x*-1, y=-5, z=dir.z*-1})
@@ -73,10 +73,10 @@ local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 	aep.on_step = function(self, dtime)
 		self.timer=self.timer+dtime
 		local pos = self.object:getpos()
-		local node = minetest.env:get_node(pos)
+		local node = minetest.get_node(pos)
 
 		if self.timer>0.2 then
-			local objs = minetest.env:get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
+			local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
 			for k, obj in pairs(objs) do
 				if obj:get_luaentity() ~= nil then
 					if obj:get_luaentity().name ~= axe_entity and obj:get_luaentity().name ~= "__builtin:item" then

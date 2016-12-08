@@ -202,7 +202,7 @@ minetest.register_node("lottpotion:brewer", {
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.35, 0.3}
 	},
 	on_construct = function(pos)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		meta:set_string("formspec", formspec)
 		meta:set_string("infotext", machine_name)
 		local inv = meta:get_inventory()

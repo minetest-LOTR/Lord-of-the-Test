@@ -36,7 +36,7 @@ for i in ipairs(lottblocks_list) do
 		},
 
 		after_place_node = function(pos, placer, itemstack)
-			local node = minetest.env:get_node(pos)
+			local node = minetest.get_node(pos)
 			local p = {x=pos.x, y=pos.y, z=pos.z}
 			local param2 = node.param2
 			node.name = "lottblocks:bed_top_"..colour
@@ -49,16 +49,16 @@ for i in ipairs(lottblocks_list) do
 			elseif param2 == 3 then
 				pos.x = pos.x-1
 			end
-			if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
-				minetest.env:set_node(pos, node)
+			if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
+				minetest.set_node(pos, node)
 			else
-				minetest.env:remove_node(p)
+				minetest.remove_node(p)
 				return true
 			end
 		end,
 
 		on_destruct = function(pos)
-			local node = minetest.env:get_node(pos)
+			local node = minetest.get_node(pos)
 			local param2 = node.param2
 			if param2 == 0 then
 				pos.z = pos.z+1
@@ -69,9 +69,9 @@ for i in ipairs(lottblocks_list) do
 			elseif param2 == 3 then
 				pos.x = pos.x-1
 			end
-			if( minetest.env:get_node({x=pos.x, y=pos.y, z=pos.z}).name == "lottblocks:bed_top_"..colour ) then
-				if( minetest.env:get_node({x=pos.x, y=pos.y, z=pos.z}).param2 == param2 ) then
-					minetest.env:remove_node(pos)
+			if( minetest.get_node({x=pos.x, y=pos.y, z=pos.z}).name == "lottblocks:bed_top_"..colour ) then
+				if( minetest.get_node({x=pos.x, y=pos.y, z=pos.z}).param2 == param2 ) then
+					minetest.remove_node(pos)
 				end
 			end
 		end

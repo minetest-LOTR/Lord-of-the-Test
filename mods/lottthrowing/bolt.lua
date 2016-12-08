@@ -18,7 +18,7 @@ minetest.register_node("lottthrowing:bolt_box", {
 			{7.5/17, -2.5/17, 2.5/17, 6.5/17, -1.5/17, 1.5/17},
 			{7.5/17, 2.5/17, -2.5/17, 6.5/17, 1.5/17, -1.5/17},
 			{6.5/17, -1.5/17, -1.5/17, 7.5/17, -2.5/17, -2.5/17},
-			
+
 			{7.5/17, 2.5/17, 2.5/17, 8.5/17, 3.5/17, 3.5/17},
 			{8.5/17, -3.5/17, 3.5/17, 7.5/17, -2.5/17, 2.5/17},
 			{8.5/17, 3.5/17, -3.5/17, 7.5/17, 2.5/17, -2.5/17},
@@ -42,10 +42,10 @@ local THROWING_BOLT_ENTITY={
 THROWING_BOLT_ENTITY.on_step = function(self, dtime)
 	self.timer=self.timer+dtime
 	local pos = self.object:getpos()
-	local node = minetest.env:get_node(pos)
+	local node = minetest.get_node(pos)
 
 	if self.timer>0.2 then
-		local objs = minetest.env:get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
+		local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
 		for k, obj in pairs(objs) do
 			if obj:get_luaentity() ~= nil then
 				if obj:get_luaentity().name ~= "lottthrowing:bolt_entity" and obj:get_luaentity().name ~= "__builtin:item" then
@@ -69,7 +69,7 @@ THROWING_BOLT_ENTITY.on_step = function(self, dtime)
 
 	if self.lastpos.x~=nil then
 		if node.name ~= "air" then
-			minetest.env:add_item(self.lastpos, 'lottthrowing:bolt')
+			minetest.add_item(self.lastpos, 'lottthrowing:bolt')
 			self.object:remove()
 		end
 	end

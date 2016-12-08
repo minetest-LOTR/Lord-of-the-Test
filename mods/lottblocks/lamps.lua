@@ -44,7 +44,7 @@ function lottblocks.register_lamp(material, description, inv_texture, post1_text
 		},
 		on_place = function(itemstack, placer, pointed_thing)
 	    	local pos = pointed_thing.above;
-	    	if(minetest.env:get_node({x=pos.x, y=pos.y+1, z=pos.z}).name ~= "air") or (minetest.env:get_node({x=pos.x, y=pos.y+2, z=pos.z}).name ~= "air") then
+	    	if(minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name ~= "air") or (minetest.get_node({x=pos.x, y=pos.y+2, z=pos.z}).name ~= "air") then
 	    		minetest.chat_send_player( placer:get_player_name(), 'Not enough space for lamppost to be placed' )
 	    		return;
 	    	end

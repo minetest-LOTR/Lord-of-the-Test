@@ -31,7 +31,7 @@ function lottmobs:register_horse(name, craftitem, horse)
 	if craftitem ~= nil then
 		function craftitem.on_place(itemstack, placer, pointed_thing)
 			if pointed_thing.above then
-				minetest.env:add_entity(pointed_thing.above, name)
+				minetest.add_entity(pointed_thing.above, name)
 				if not minetest.setting_getbool("creative_mode") then
 					itemstack:take_item()
 				end

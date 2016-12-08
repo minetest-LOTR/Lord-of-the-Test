@@ -87,7 +87,7 @@ local lottthrowing_shoot_arrow = function(itemstack, player)
 				text = "Reloading bow... (5 s)",
 				--offset = { x = -186, y = pos*20 },
 			})
-			local obj = minetest.env:add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, arrow[2])
+			local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, arrow[2])
 			local dir = player:get_look_dir()
 			obj:setvelocity({x=dir.x*19, y=dir.y*19, z=dir.z*19})
 			obj:setacceleration({x=dir.x*-3, y=-10, z=dir.z*-3})
@@ -132,7 +132,7 @@ local lottthrowing_shoot_bolt = function(itemstack, player)
 				text = "Reloading crossbow... (10 s)",
 				--offset = { x = -186, y = pos*20 },
 			})
-			local obj = minetest.env:add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, arrow[2])
+			local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, arrow[2])
 			local dir = player:get_look_dir()
 			obj:setvelocity({x=dir.x*25, y=dir.y*25, z=dir.z*25})
 			obj:setacceleration({x=dir.x*-1, y=-5, z=dir.z*-1})

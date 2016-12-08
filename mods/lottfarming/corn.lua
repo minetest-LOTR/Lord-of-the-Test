@@ -147,23 +147,23 @@ wherein = "air"
 		chance = chance,
 		action = function(pos, node)
 			pos.y = pos.y-1
-			if minetest.env:get_node(pos).name ~= "farming:soil_wet" then
+			if minetest.get_node(pos).name ~= "farming:soil_wet" then
 				return
 			end
 			pos.y = pos.y+1
-			if not minetest.env:get_node_light(pos) then
+			if not minetest.get_node_light(pos) then
 				return
 			end
-			if minetest.env:get_node_light(pos) < 8 then
+			if minetest.get_node_light(pos) < 8 then
 				return
 			end
 			pos.y=pos.y+1
-			if minetest.env:get_node(pos).name ~= wherein then
+			if minetest.get_node(pos).name ~= wherein then
 				return
 			end
 			pos.y=pos.y-1
 
-			minetest.env:set_node(pos, {name='lottfarming:corn_2'})
+			minetest.set_node(pos, {name='lottfarming:corn_2'})
 		end
 }	)
 	minetest.register_abm({
@@ -172,20 +172,20 @@ wherein = "air"
 		chance = chance,
 		action = function(pos, node)
 			pos.y = pos.y-1
-			if minetest.env:get_node(pos).name ~= "farming:soil_wet" then
+			if minetest.get_node(pos).name ~= "farming:soil_wet" then
 				return
 			end
 			pos.y = pos.y+1
-			if not minetest.env:get_node_light(pos) then
+			if not minetest.get_node_light(pos) then
 				return
 			end
-			if minetest.env:get_node_light(pos) < 8 then
+			if minetest.get_node_light(pos) < 8 then
 				return
 			end
 			pos.y=pos.y+1
-			minetest.env:set_node(pos, {name='lottfarming:corn_21'})
+			minetest.set_node(pos, {name='lottfarming:corn_21'})
 			pos.y=pos.y-1
-			minetest.env:set_node(pos, {name='lottfarming:corn_3'})
+			minetest.set_node(pos, {name='lottfarming:corn_3'})
 
 		end
 }	)
@@ -195,24 +195,24 @@ wherein = "air"
 		chance = chance,
 		action = function(pos, node)
 			pos.y = pos.y-1
-			if minetest.env:get_node(pos).name ~= "farming:soil_wet" then
+			if minetest.get_node(pos).name ~= "farming:soil_wet" then
 				return
 			end
 			pos.y = pos.y+1
-			if not minetest.env:get_node_light(pos) then
+			if not minetest.get_node_light(pos) then
 				return
 			end
-			if minetest.env:get_node_light(pos) < 8 then
+			if minetest.get_node_light(pos) < 8 then
 				return
 			end
 			pos.y=pos.y+1
 			pos.y=pos.y+1
-			minetest.env:set_node(pos, {name='lottfarming:corn_31'})
+			minetest.set_node(pos, {name='lottfarming:corn_31'})
 			pos.y=pos.y-1
 
-			minetest.env:set_node(pos, {name='lottfarming:corn_22'})
+			minetest.set_node(pos, {name='lottfarming:corn_22'})
 			pos.y=pos.y-1
-			minetest.env:set_node(pos, {name='lottfarming:corn_4'})
+			minetest.set_node(pos, {name='lottfarming:corn_4'})
 
 		end
 }	)
@@ -221,16 +221,16 @@ wherein = "air"
 		interval = interval,
 		chance = chance,
 		action = function(pos, node)
-			if not minetest.env:get_node_light(pos) then
+			if not minetest.get_node_light(pos) then
 				return
 			end
-			if minetest.env:get_node_light(pos) < 8 then
+			if minetest.get_node_light(pos) < 8 then
 				return
 			end
 			pos.y=pos.y+1
-			minetest.env:set_node(pos, {name='lottfarming:corn_32'})
+			minetest.set_node(pos, {name='lottfarming:corn_32'})
 			pos.y=pos.y-1
-			minetest.env:set_node(pos, {name='lottfarming:corn_23'})
+			minetest.set_node(pos, {name='lottfarming:corn_23'})
 
 		end
 }	)

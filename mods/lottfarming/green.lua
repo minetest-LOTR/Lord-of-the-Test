@@ -117,17 +117,17 @@ wherein = "air"
 		chance = chance,
 		action = function(pos, node)
 			pos.y = pos.y-1
-			if minetest.env:get_node(pos).name ~= "lottfarming:decay_tree" then
+			if minetest.get_node(pos).name ~= "lottfarming:decay_tree" then
 				return
 			end
 			pos.y = pos.y+1
-			if not minetest.env:get_node_light(pos) then
+			if not minetest.get_node_light(pos) then
 				return
 			end
-			if minetest.env:get_node_light(pos) > 8 then
+			if minetest.get_node_light(pos) > 8 then
 				return
 			end
-			minetest.env:set_node(pos, {name='lottfarming:green_mushroom_2'})
+			minetest.set_node(pos, {name='lottfarming:green_mushroom_2'})
 		end
 }	)
 	minetest.register_abm({
@@ -136,18 +136,18 @@ wherein = "air"
 		chance = 10,
 		action = function(pos, node)
 			pos.y = pos.y-1
-			if minetest.env:get_node(pos).name ~= "lottfarming:decay_tree" then
+			if minetest.get_node(pos).name ~= "lottfarming:decay_tree" then
 				return
 			end
 			pos.y = pos.y+1
-			if not minetest.env:get_node_light(pos) then
+			if not minetest.get_node_light(pos) then
 				return
 			end
-			if minetest.env:get_node_light(pos) > 8 then
+			if minetest.get_node_light(pos) > 8 then
 				return
 			end
 
-			minetest.env:set_node(pos, {name='lottfarming:green_mushroom_3'})
+			minetest.set_node(pos, {name='lottfarming:green_mushroom_3'})
 
 		end
 }	)
@@ -158,17 +158,17 @@ wherein = "air"
 		chance = chance,
 		action = function(pos, node)
 			pos.y = pos.y-1
-			if minetest.env:get_node(pos).name ~= "lottfarming:decay_tree" and minetest.env:get_node(pos).name ~= "default_tree" then
+			if minetest.get_node(pos).name ~= "lottfarming:decay_tree" and minetest.get_node(pos).name ~= "default_tree" then
 				return
 			end
 			pos.y = pos.y+1
-			if not minetest.env:get_node_light(pos) then
+			if not minetest.get_node_light(pos) then
 				return
 			end
-			if minetest.env:get_node_light(pos) > 8 then
+			if minetest.get_node_light(pos) > 8 then
 				return
 			end
-			minetest.env:set_node(pos, {name='lottfarming:green_mushroom_4'})
+			minetest.set_node(pos, {name='lottfarming:green_mushroom_4'})
 
 		end
 }	)
@@ -195,36 +195,36 @@ num = PseudoRandom(111)
 					pos.z = pos.z+1
 				end
 			end
-			if minetest.env:get_node(pos).name=="air" then
+			if minetest.get_node(pos).name=="air" then
 				pos.y = pos.y-1
-				name = minetest.env:get_node(pos).name
+				name = minetest.get_node(pos).name
 				if name=="default:tree" then								pos.y=pos.y+1
-					minetest.env:set_node(pos, {name='lottfarming:green_mushroom_3'})
+					minetest.set_node(pos, {name='lottfarming:green_mushroom_3'})
 				end
 				if name=="default:tree" then								pos.y=pos.y+1
-					minetest.env:set_node(pos, {name='lottfarming:green_mushroom_3'})
+					minetest.set_node(pos, {name='lottfarming:green_mushroom_3'})
 				end
 				if name=="air" then
 					pos.y=pos.y-1
-					name = minetest.env:get_node(pos).name
+					name = minetest.get_node(pos).name
 					if name=="default:tree" then								pos.y=pos.y+1
-							minetest.env:set_node(pos, {name='lottfarming:green_mushroom_3'})
+							minetest.set_node(pos, {name='lottfarming:green_mushroom_3'})
 					end
 					if name=="default:tree" then																		pos.y=pos.y+1
-						minetest.env:set_node(pos, {name='lottfarming:green_mushroom_3'})
+						minetest.set_node(pos, {name='lottfarming:green_mushroom_3'})
 					end
 				end
 
 			end
 			pos.y=pos.y+1
-			if minetest.env:get_node(pos).name=="air" then
+			if minetest.get_node(pos).name=="air" then
 				pos.y = pos.y-1
-				name = minetest.env:get_node(pos).name
+				name = minetest.get_node(pos).name
 				if name=="default:tree" then								pos.y=pos.y+1
-					minetest.env:set_node(pos, {name='lottfarming:green_mushroom_3'})
+					minetest.set_node(pos, {name='lottfarming:green_mushroom_3'})
 				end
 				if name=="default:tree" then								pos.y=pos.y+1
-					minetest.env:set_node(pos, {name='lottfarming:green_mushroom_3'})
+					minetest.set_node(pos, {name='lottfarming:green_mushroom_3'})
 				end
 			end
 

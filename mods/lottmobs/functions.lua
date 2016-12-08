@@ -494,7 +494,7 @@ lottmobs.register_guard_craftitem = function(name, description, inventory_image)
                                                                     if not minetest.setting_getbool("creative_mode") then
                                                                             itemstack:take_item()
                                                                     end
-                                                                    local obj = minetest.env:add_entity(pos, name):get_luaentity()
+                                                                    local obj = minetest.add_entity(pos, name):get_luaentity()
                                                                     obj.game_name = game_name
                                                                     obj.nametag = game_name
                                                                     update_tag(obj)

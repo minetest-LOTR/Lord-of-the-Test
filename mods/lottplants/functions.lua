@@ -501,14 +501,14 @@ function add_tree_branch_mirktree(pos)
 	for i = math.floor(math.random(2)), -math.floor(math.random(2)), -1 do
 		for k = math.floor(math.random(2)), -math.floor(math.random(2)), -1 do
 			local p = {x=pos.x+i, y=pos.y, z=pos.z+k}
-			local n = minetest.env:get_node(p)
+			local n = minetest.get_node(p)
 			if (n.name=="air") then
 				check_add_node(p, {name="lottplants:mirkleaf"})
 			end
 			local chance = math.abs(i+k)
 			if (chance < 1) then
 				p = {x=pos.x+i, y=pos.y+1, z=pos.z+k}
-				n = minetest.env:get_node(p)
+				n = minetest.get_node(p)
 				if (n.name=="air") then
 					check_add_node(p, {name="lottplants:mirkleaf"})
 				end
