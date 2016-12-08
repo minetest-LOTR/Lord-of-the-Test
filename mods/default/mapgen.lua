@@ -53,9 +53,18 @@ minetest.register_alias("mapgen_stone_with_coal", "default:stone_with_coal")
 minetest.register_alias("mapgen_stone_with_iron", "default:stone_with_iron")
 minetest.register_alias("mapgen_mese", "default:mese")
 minetest.register_alias("mapgen_sand", "default:stone")
+minetest.register_alias("mapgen_sandstone", "default:sandstone")
 minetest.register_alias("mapgen_desert_sand", "default:mapgen_stone")
-minetest.register_alias("mapgen_desert_stone", "default:stone")
+-- This is needed because we don't want desert stone in v6, in desert areas,
+-- and in other mapgens, it messes dungeon gen up. Mapgen madness!
+if mapgen_name == "v6" then
+	minetest.register_alias("mapgen_desert_stone", "default:stone")
+else
+	minetest.register_alias("mapgen_desert_stone", "default:desert_stone")
+end
 minetest.register_alias("mapgen_stair_cobble", "stairs:stair_cobble")
+minetest.register_alias("mapgen_sandstonebrick", "default:cobble")
+minetest.register_alias("mapgen_stair_sandstonebrick", "stairs:stair_cobble")
 
 --
 -- Ore generation
