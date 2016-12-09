@@ -133,19 +133,22 @@ function set_sprinting(name, sprinting)
 		def.speed = def.speed or 1
 		def.jump = def.jump or 1
 		def.gravity = def.gravity or 1
-
-		if sprinting == true then
-			player:set_physics_override({
-				speed = def.speed + SPRINT_SPEED,
-				jump = def.jump + SPRINT_JUMP,
-				gravity = def.gravity
-			})
-		elseif sprinting == false then
-			player:set_physics_override({
-				speed = def.speed,
-				jump = def.jump,
-				gravity = def.gravity
-			})
+		local potion = lottpotion.players[name]
+		if potion.speed == 1 and potion.jump == 1 and
+		potion.gravity == 1 and potion.air == 1 then
+			if sprinting == true then
+				player:set_physics_override({
+					speed = def.speed + SPRINT_SPEED,
+					jump = def.jump + SPRINT_JUMP,
+					gravity = def.gravity
+				})
+			elseif sprinting == false then
+				player:set_physics_override({
+					speed = def.speed,
+					jump = def.jump,
+					gravity = def.gravity
+				})
+			end
 		end
 		return true
 	end
