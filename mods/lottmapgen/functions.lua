@@ -774,6 +774,102 @@ function lottmapgen_mirktree(x, y, z, area, data)
 	end
 end
 
+function lottmapgen_elf_workshop(x, y, z, area, data, p2data)
+	local c_stonebrick = minetest.get_content_id("default:stonebrick")
+	local c_cracked_stonebrick = minetest.get_content_id("default:cracked_stonebrick")
+	local c_marblebrick = minetest.get_content_id("lottblocks:marble_brick")
+	local c_elftorch = minetest.get_content_id("lottblocks:elf_torch")
+	local c_furnace = minetest.get_content_id("lottmapgen:furnace_spawner")
+	local c_dual_furnace = minetest.get_content_id("lottmapgen:dual_furnace_spawner")
+	local c_ringsilver_furnace = minetest.get_content_id("lottmapgen:ringsilver_furnace_spawner")
+	local c_water = minetest.get_content_id("default:water_source")
+	local c_ringchest = minetest.get_content_id("lottmapgen:ring_chest_spawner")
+	local c_table = minetest.get_content_id("lottblocks:mallorn_table")
+	local c_chair = minetest.get_content_id("lottblocks:mallorn_chair")
+	local c_bedb = minetest.get_content_id("lottblocks:bed_bottom_blue")
+	local c_bedt = minetest.get_content_id("lottblocks:bed_top_blue")
+	local c_malpillar = minetest.get_content_id("lottblocks:mallorn_pillar")
+	local c_air = minetest.get_content_id("air")
+	for j = 0, 6 do
+		if j == 0 then
+			for i = 0, 7 do
+			for k = 0, 9 do
+				local vi = area:index(x + i, y + j, z + k)
+				if i == 1 and k == 6 then
+					data[vi] = c_water
+				else
+					data[vi] = c_marblebrick
+				end
+			end
+			end
+		elseif j == 6 then
+			for i = 0, 7 do
+			for k = 0, 9 do
+				local vi = area:index(x + i, y + j, z + k)
+				if math.random(1, 3) == 2 then
+					data[vi] = c_cracked_stonebrick
+				else
+					data[vi] = c_stonebrick
+				end
+			end
+			end
+		else
+			for i = 0, 7 do
+			for k = 0, 9 do
+				local vi = area:index(x + i, y + j, z + k)
+				if i == 0 or i == 7 or k == 0 or k == 9 then
+					if math.random(1, 3) == 2 then
+						data[vi] = c_cracked_stonebrick
+					else
+						data[vi] = c_stonebrick
+					end
+				elseif (i == 1 and k == 1) or (i == 6 and k == 1) or
+				(i == 1 and k == 8) or (i == 6 and k == 8) then
+					data[vi] = c_malpillar
+				elseif (i == 1 and j == 4 and k == 2) or
+				(i == 6 and j == 4 and k == 2) or
+				(i == 1 and j == 4 and k == 7) or
+				(i == 6 and j == 4 and k == 7) then
+					data[vi] = c_elftorch
+					if i == 6 then
+						p2data[vi] = 2
+					else
+						p2data[vi] = 3
+					end
+				elseif i == 1 and j == 1 and k == 2 then
+					data[vi] = c_furnace
+					p2data[vi] = 3
+				elseif i == 1 and j == 1 and (k == 3 or k == 4) then
+					data[vi] = c_dual_furnace
+					p2data[vi] = 3
+				elseif i == 1 and j == 1 and k == 5 then
+					data[vi] = c_ringsilver_furnace
+					p2data[vi] = 3
+				elseif i == 1 and j == 1 and k == 7 then
+					data[vi] = c_ringchest
+					p2data[vi] = 3
+				elseif i == 6 and j == 1 and k == 3 and math.random(1, 2) == 1 then
+					data[vi] = c_table
+				elseif i == 6 and j == 1 and (k == 2 or k == 4) and math.random(1, 3) == 1 then
+					data[vi] = c_chair
+					if k == 2 then
+						p2data[vi] = 2
+					end
+				elseif i == 5 and j == 1 and k == 8 and math.random(1,4) == 2 then
+					data[vi] = c_bedt
+					p2data[vi] = 1
+					vi = area:index(x + i - 1, y + j, z + k)
+					data[vi] = c_bedb
+					p2data[vi] = 1
+				else
+					data[vi] = c_air
+				end
+			end
+			end
+		end
+	end
+end
+
 function lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, HITET, HIHUT, HIRAN)
 	if n_temp < LOTET then
 		if n_humid < LOHUT then

@@ -256,16 +256,6 @@ minetest.register_node("lottblocks:palantir", {
 	groups = {forbidden = 1, very_hard = 1},
 })
 
-minetest.register_craftitem("lottblocks:palantir_guide", {
-	description = "Palantir Guidebook",
-	inventory_image = "default_book.png^[colorize:darkblue:100",
-	groups = {book = 1, not_in_creative_inventory = 1, forbidden = 1},
-	stack_max = 1,
-	on_use = function(itemstack, user)
-		default.book_on_use(itemstack, user, "gui_elfbg.png", 9, 9)
-	end,
-})
-
 minetest.register_craft({
 	output = "lottblocks:palantir",
 	recipe = {
@@ -274,20 +264,3 @@ minetest.register_craft({
 		{"default:obsidian", "lottores:tilkal", "default:obsidian"}
 	}
 })
-
-minetest.register_craft({
-	type = "shapeless",
-	output = "lottblocks:palantir_guide",
-	recipe = {"default:book", "lottblocks:palantir"},
-	replacements = {{"lottblocks:palantir", "lottblocks:palantir"}}
-})
-
-local palantir_guide_meta = dofile(minetest.get_modpath("lottblocks")
-	.. "/guide_text/palantir_guide.lua")
-
-minetest.register_on_craft(function(itemstack, player, old_craft_grid, craft_inv)
-	if itemstack:get_name() ~= "lottblocks:palantir_guide" then
-		return
-	end
-	itemstack:set_metadata(palantir_guide_meta)
-end)

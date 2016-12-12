@@ -38,6 +38,25 @@ minetest.register_node("lottother:white_gem_ore", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+minetest.register_node("lottother:purple_gem_ore", {
+	description = "Purple Gem Ore",
+	tiles = {"default_stone.png^lottother_purplegem_ore.png"},
+	is_ground_content = true,
+	groups = {gems=1, creative=1},
+	drop = {
+		items = {
+			{
+				items = {'lottother:stony_purple_gem'},
+				rarity = 5,
+			},
+			{
+				items = {''},
+			}
+		}
+	},
+	sounds = default.node_sound_stone_defaults(),
+})
+
 minetest.register_node("lottother:red_gem_ore", {
 	description = "Red Gem Ore",
 	tiles = {"default_stone.png^lottother_redgem_ore.png"},
@@ -85,7 +104,7 @@ minetest.register_ore({
 
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "lottother:white_gem_ore",
+	ore            = "lottother:purple_gem_ore",
 	wherein        = "default:stone",
 	clust_scarcity = 14*14*14,
 	clust_num_ores = 4,
@@ -94,39 +113,15 @@ minetest.register_ore({
 	y_max     = wl - 256,
 })
 
----TODO: Something for the dwarf ring...
-
-minetest.register_craftitem("lottother:purple_gem", {
-	description = "Purple Gem",
-	inventory_image = "lottother_purplegem.png",
-     groups = {forbidden=1},
-})
-
-minetest.register_craft({
-	type = "shapeless",
-	output = "lottother:purple_gem",
-	recipe = {"lottores:blue_gem", "lottores:red_gem"},
-})
-
-minetest.register_craftitem("lottother:purple_gem_ring", {
-	description = "Purple Gem Ring",
-	inventory_image = "lottother_purplegem_ring.png",
-     groups = {forbidden=1},
-})
-
-minetest.register_craftitem("lottother:purple_am_ring", {
-	description = "Almost Magic Ring",
-	inventory_image = "lottother_purplegem_am_ring.png",
-     groups = {forbidden=1},
-})
-
-minetest.register_craft({
-	output = "lottother:purple_am_ring",
-	recipe = {
-	{"lottores:rough_rock_lump", "lottores:rough_rock_lump", "lottores:rough_rock_lump"},
-	{"lottores:rough_rock_lump", "lottother:purple_gem_ring", "lottores:rough_rock_lump"},
-	{"lottores:rough_rock_lump", "lottores:rough_rock_lump", "lottores:rough_rock_lump"},
-	},
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "lottother:white_gem_ore",
+	wherein        = "default:stone",
+	clust_scarcity = 14*14*14,
+	clust_num_ores = 4,
+	clust_size     = 2,
+	y_min     = wl - 31000,
+	y_max     = wl - 256,
 })
 
 -------------------------------------------
@@ -143,6 +138,11 @@ minetest.register_craftitem("lottother:stony_blue_gem", {
 minetest.register_craftitem("lottother:stony_red_gem", {
 	description = "Stone Encrusted Red Gem",
 	inventory_image = "lottother_stony_redgem.png",
+})
+
+minetest.register_craftitem("lottother:stony_purple_gem", {
+	description = "Stone Encrusted Purple Gem",
+	inventory_image = "lottother_stony_purplegem.png",
 })
 
 minetest.register_craftitem("lottother:stony_white_gem", {
@@ -162,6 +162,11 @@ minetest.register_craftitem("lottother:uncut_blue_gem", {
 minetest.register_craftitem("lottother:uncut_red_gem", {
 	description = "Uncut Red Gem",
 	inventory_image = "lottother_uncut_redgem.png^[colorize:#898985:100",
+})
+
+minetest.register_craftitem("lottother:uncut_purple_gem", {
+	description = "Uncut Purple Gem",
+	inventory_image = "lottother_uncut_purplegem.png^[colorize:#898985:100",
 })
 
 minetest.register_craftitem("lottother:uncut_white_gem", {
@@ -187,6 +192,13 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "cooking",
+	output = "lottother:uncut_purple_gem",
+	recipe = "lottother:stony_purple_gem",
+	cooktime = 9,
+})
+
+minetest.register_craft({
+	type = "cooking",
 	output = "lottother:uncut_white_gem",
 	recipe = "lottother:stony_white_gem",
 	cooktime = 9,
@@ -202,6 +214,11 @@ minetest.register_craftitem("lottother:unpolished_blue_gem", {
 minetest.register_craftitem("lottother:unpolished_red_gem", {
 	description = "Unpolished Red Gem",
 	inventory_image = "lottother_redgem.png^[colorize:#898985:120",
+})
+
+minetest.register_craftitem("lottother:unpolished_purple_gem", {
+	description = "Unpolished Purple Gem",
+	inventory_image = "lottother_purplegem.png^[colorize:#898985:120",
 })
 
 minetest.register_craftitem("lottother:unpolished_white_gem", {
@@ -240,6 +257,12 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "shapeless",
+	output = "lottother:unpolished_purple_gem",
+	recipe = {"lottother:uncut_purple_gem", "lottother:chisel"},
+})
+
+minetest.register_craft({
+	type = "shapeless",
 	output = "lottother:unpolished_white_gem",
 	recipe = {"lottother:uncut_white_gem", "lottother:chisel"},
 })
@@ -247,6 +270,7 @@ minetest.register_craft({
 minetest.register_on_craft(function(itemstack, player, old_craft_grid, craft_inv)
 	if itemstack:get_name() == "lottother:unpolished_blue_gem"
 	or itemstack:get_name() == "lottother:unpolished_red_gem"
+	or itemstack:get_name() == "lottother:unpolished_purple_gem"
 	or itemstack:get_name() == "lottother:unpolished_white_gem" then
 		for i, stack in pairs(old_craft_grid) do
 			if stack:get_name() == "lottother:chisel" then
@@ -276,6 +300,11 @@ minetest.register_craftitem("lottother:red_gem", {
 	inventory_image = "lottother_redgem.png",
 })
 
+minetest.register_craftitem("lottother:purple_gem", {
+	description = "Purple Gem",
+	inventory_image = "lottother_purplegem.png",
+})
+
 minetest.register_craftitem("lottother:white_gem", {
 	description = "White Gem",
 	inventory_image = "lottother_whitegem.png",
@@ -302,6 +331,15 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = "lottother:purple_gem",
+	recipe = {
+		{"group:sand", "group:sand", "group:sand"},
+		{"group:sand", "lottother:unpolished_purple_gem", "group:sand"},
+		{"group:sand", "group:sand", "group:sand"},
+	},
+})
+
+minetest.register_craft({
 	output = "lottother:white_gem",
 	recipe = {
 		{"group:sand", "group:sand", "group:sand"},
@@ -313,6 +351,7 @@ minetest.register_craft({
 minetest.register_on_craft(function(itemstack, player, old_craft_grid, craft_inv)
 	if itemstack:get_name() == "lottother:blue_gem"
 	or itemstack:get_name() == "lottother:red_gem"
+	or itemstack:get_name() == "lottother:purple_gem"
 	or itemstack:get_name() == "lottother:white_gem" then
 		if math.random(3) > 1 then
 			itemstack:take_item()

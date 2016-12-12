@@ -120,6 +120,12 @@ minetest.register_craftitem("lottother:red_gem_ring", {
     groups = {forbidden=1},
 })
 
+minetest.register_craftitem("lottother:purple_gem_ring", {
+	description = "Purple Gem Ring",
+	inventory_image = "lottother_purplegem_ring.png",
+    groups = {forbidden=1},
+})
+
 minetest.register_craftitem("lottother:white_gem_ring", {
 	description = "White Gem Ring",
 	inventory_image = "lottother_whitegem_ring.png",
@@ -137,6 +143,15 @@ lottblocks.crafting.add_craft("lottother:blue_gem_ring", {
 
 lottblocks.crafting.add_craft("lottother:red_gem_ring", {
 	recipe = {"lottother:prepared_ring", "lottother:red_gem"},
+	type = "dualfurn",
+	time = 60,
+	func = function(pos, output, src_time)
+		return random_break(pos, 2, output, src_time)
+	end
+})
+
+lottblocks.crafting.add_craft("lottother:purple_gem_ring", {
+	recipe = {"lottother:prepared_ring", "lottother:purple_gem"},
 	type = "dualfurn",
 	time = 60,
 	func = function(pos, output, src_time)
@@ -173,6 +188,13 @@ minetest.register_craftitem("lottother:red_rr_ring", {
 	stack_max = 1,
 })
 
+minetest.register_craftitem("lottother:purple_rr_ring", {
+	description = "Rough Rock Purple Ring",
+	inventory_image = "lottother_purplegem_rr_ring.png",
+	groups = {forbidden=1, ring = 1},
+	stack_max = 1,
+})
+
 minetest.register_craftitem("lottother:white_rr_ring", {
 	description = "Rough Rock White Ring",
 	inventory_image = "lottother_whitegem_rr_ring.png",
@@ -194,6 +216,15 @@ minetest.register_craft({
 	recipe = {
 		{"lottores:rough_rock_lump", "lottores:rough_rock_lump", "lottores:rough_rock_lump"},
 		{"lottores:rough_rock_lump", "lottother:red_gem_ring", "lottores:rough_rock_lump"},
+		{"lottores:rough_rock_lump", "lottores:rough_rock_lump", "lottores:rough_rock_lump"},
+	},
+})
+
+minetest.register_craft({
+	output = "lottother:purple_rr_ring",
+	recipe = {
+		{"lottores:rough_rock_lump", "lottores:rough_rock_lump", "lottores:rough_rock_lump"},
+		{"lottores:rough_rock_lump", "lottother:purple_gem_ring", "lottores:rough_rock_lump"},
 		{"lottores:rough_rock_lump", "lottores:rough_rock_lump", "lottores:rough_rock_lump"},
 	},
 })
@@ -255,6 +286,8 @@ local function is_cookable(inv)
 			return true, "narya"
 		elseif inv:contains_item("ring", "lottother:white_rr_ring") then
 			return true, "nenya"
+		elseif inv:contains_item("ring", "lottother:purple_rr_ring") then
+			return true, "dwarf_ring"
 		end
 	end
 	return false

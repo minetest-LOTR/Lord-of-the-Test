@@ -54,6 +54,7 @@ local PLANT11 = 2000
 local PLANT12 = 5000
 local PLANT13 = 10000
 local PLANT14 = 100000
+local PLANT15 = 500000
 
 -- 2D noise for temperature
 
@@ -114,6 +115,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
 	local data = vm:get_data()
+	local p2data = vm:get_param2_data()
 
 	local c_air = minetest.get_content_id("air")
 	local c_ignore = minetest.get_content_id("ignore")
@@ -229,6 +231,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					if y > - 40 and y < -5 and biome == 11 then
 						if math.random(PLANT14) == 1 then
 							lottmapgen.enqueue_building("Dwarf House", {x=x, y=y, z=z}) -- data[vi] = c_dwahous
+						end
+					end
+					if y > - 100 and y < -50 and biome == 7 then
+						if math.random(PLANT15) == 1 then
+							lottmapgen_elf_workshop(x, y, z, area, data, p2data)
 						end
 					end
 					if not solid then -- if surface
@@ -516,6 +523,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 	end
 	vm:set_data(data)
+	vm:set_param2_data(p2data)
 	vm:set_lighting({day=0, night=0})
 	vm:calc_lighting()
 	vm:write_to_map(data)
