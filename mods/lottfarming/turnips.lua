@@ -2,12 +2,13 @@ minetest.register_craftitem("lottfarming:turnips_seed", {
 	description = "Turnip Seeds",
 	inventory_image = "lottfarming_turnips_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		return place_seed(itemstack, placer, pointed_thing, "lottfarming:turnips_1")
+		return place_seed(itemstack, placer, pointed_thing, "lottfarming:turnips_1", 40)
 	end,
 })
 
 minetest.register_node("lottfarming:turnips_1", {
 	paramtype = "light",
+	paramtype2 = "meshoptions",
 	walkable = false,
 	drawtype = "plantlike",
 	drop = "",
@@ -25,6 +26,7 @@ minetest.register_node("lottfarming:turnips_1", {
 
 minetest.register_node("lottfarming:turnips_2", {
 	paramtype = "light",
+	paramtype2 = "meshoptions",
 	walkable = false,
 	drawtype = "plantlike",
 	drop = "",
@@ -42,6 +44,7 @@ minetest.register_node("lottfarming:turnips_2", {
 
 minetest.register_node("lottfarming:turnips_3", {
 	paramtype = "light",
+	paramtype2 = "meshoptions",
 	walkable = false,
 	drawtype = "plantlike",
 	drop = "",
@@ -59,6 +62,7 @@ minetest.register_node("lottfarming:turnips_3", {
 
 minetest.register_node("lottfarming:turnips_4", {
 	paramtype = "light",
+	paramtype2 = "meshoptions",
 	walkable = false,
 	drawtype = "plantlike",
 	tiles = {"lottfarming_turnips_4.png"},
@@ -84,7 +88,7 @@ minetest.register_craftitem("lottfarming:turnips", {
 	on_use = minetest.item_eat(2),
 })
 
-farming:add_plant("lottfarming:turnips_4", {"lottfarming:turnips_1", "lottfarming:turnips_2", "lottfarming:turnips_3"}, 50, 20)
+farming:add_plant("lottfarming:turnips_4", {"lottfarming:turnips_1", "lottfarming:turnips_2", "lottfarming:turnips_3"}, 50, 20, 40)
 
 minetest.register_craft({
 	type = "cooking",

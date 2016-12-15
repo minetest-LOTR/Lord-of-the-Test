@@ -2,12 +2,13 @@ minetest.register_craftitem("lottfarming:potato_seed", {
 	description = "Potato Seeds",
 	inventory_image = "lottfarming_potato_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		return place_seed(itemstack, placer, pointed_thing, "lottfarming:potato_1")
+		return place_seed(itemstack, placer, pointed_thing, "lottfarming:potato_1", 40)
 	end,
 })
 
 minetest.register_node("lottfarming:potato_1", {
 	paramtype = "light",
+	paramtype2 = "meshoptions",
 	walkable = false,
 	drawtype = "plantlike",
 	drop = "",
@@ -25,6 +26,7 @@ minetest.register_node("lottfarming:potato_1", {
 
 minetest.register_node("lottfarming:potato_2", {
 	paramtype = "light",
+	paramtype2 = "meshoptions",
 	walkable = false,
 	drawtype = "plantlike",
 	drop = "",
@@ -42,6 +44,7 @@ minetest.register_node("lottfarming:potato_2", {
 
 minetest.register_node("lottfarming:potato_3", {
 	paramtype = "light",
+	paramtype2 = "meshoptions",
 	walkable = false,
 	drawtype = "plantlike",
 	tiles = {"lottfarming_potato_3.png"},
@@ -67,7 +70,7 @@ minetest.register_craftitem("lottfarming:potato", {
 	on_use = minetest.item_eat(1),
 })
 
-farming:add_plant("lottfarming:potato_3", {"lottfarming:potato_1", "lottfarming:potato_2"}, 50, 20)
+farming:add_plant("lottfarming:potato_3", {"lottfarming:potato_1", "lottfarming:potato_2"}, 50, 20, 40)
 
 minetest.register_craft({
 	type = "cooking",

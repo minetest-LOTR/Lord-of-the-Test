@@ -1,6 +1,6 @@
 farming = {}
 
-function place_seed(itemstack, placer, pointed_thing, plantname)
+function place_seed(itemstack, placer, pointed_thing, plantname, param2)
 	local pt = pointed_thing
 	if not pt then
 		return
@@ -25,14 +25,14 @@ function place_seed(itemstack, placer, pointed_thing, plantname)
 	if minetest.get_item_group(under.name, "soil") <= 1 then
 		return
 	end
-	minetest.add_node(pt.above, {name=plantname})
+	minetest.add_node(pt.above, {name=plantname, param2=param2})
 	if not minetest.setting_getbool("creative_mode") then
 		itemstack:take_item()
 	end
 	return itemstack
 end
 
-function place_spore(itemstack, placer, pointed_thing, plantname)
+function place_spore(itemstack, placer, pointed_thing, plantname, p2)
 	local pt = pointed_thing
 	if not pt then
 		return
@@ -57,7 +57,7 @@ function place_spore(itemstack, placer, pointed_thing, plantname)
 	if minetest.get_item_group(under.name, "fungi") <= 1 then
 		return
 	end
-	minetest.add_node(pt.above, {name=plantname})
+	minetest.add_node(pt.above, {name=plantname, param2 = p2})
 	if not minetest.setting_getbool("creative_mode") then
 		itemstack:take_item()
 	end
@@ -106,7 +106,7 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 	return itemstack
 end
 
-function farming:add_plant(full_grown, names, interval, chance)
+function farming:add_plant(full_grown, names, interval, chance, p2)
 	minetest.register_abm({
 		nodenames = names,
 		interval = interval,
@@ -133,7 +133,7 @@ function farming:add_plant(full_grown, names, interval, chance)
 			if step == nil then
 				return
 			end
-			local new_node = {name=names[step+1]}
+			local new_node = {name=names[step+1], param2=p2}
 			if new_node.name == nil then
 				new_node.name = full_grown
 			end

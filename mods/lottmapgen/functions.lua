@@ -1,6 +1,6 @@
 --Plants
 
-function lottmapgen_grass(data, vi)
+function lottmapgen_grass(data, vi, p2data)
 	local c_grass1 = minetest.get_content_id("default:grass_1")
 	local c_grass2 = minetest.get_content_id("default:grass_2")
 	local c_grass3 = minetest.get_content_id("default:grass_3")
@@ -18,9 +18,10 @@ function lottmapgen_grass(data, vi)
 	else
 		data[vi] = c_grass5
 	end
+	p2data[vi] = 40
 end
 
-function lottmapgen_lorien_grass(data, vi)
+function lottmapgen_lorien_grass(data, vi, p2data)
 	local c_lorgrass1 = minetest.get_content_id("lottplants:lorien_grass_1")
 	local c_lorgrass2 = minetest.get_content_id("lottplants:lorien_grass_2")
 	local c_lorgrass3 = minetest.get_content_id("lottplants:lorien_grass_3")
@@ -35,9 +36,10 @@ function lottmapgen_lorien_grass(data, vi)
 	else
 		data[vi] = c_lorgrass4
 	end
+	p2data[vi] = 40
 end
 
-function lottmapgen_farmingplants(data, vi)
+function lottmapgen_farmingplants(data, vi, p2data)
 	local c_plant1 = minetest.get_content_id("lottplants:pipeweed_wild")
 	local c_plant2 = minetest.get_content_id("lottplants:barley_wild")
 	local c_plant3 = minetest.get_content_id("lottplants:corn_wild")
@@ -50,26 +52,34 @@ function lottmapgen_farmingplants(data, vi)
 	local rand = math.random(9)
 	if rand == 1 then
 		data[vi] = c_plant1
+		p2data[vi] = 34
 	elseif rand == 2 then
 		data[vi] = c_plant2
+		p2data[vi] = 3
 	elseif rand == 3 then
 		data[vi] = c_plant3
+		p2data[vi] = 3
 	elseif rand == 4 then
 		data[vi] = c_plant4
+		p2data[vi] = 40
 	elseif rand == 5 then
 		data[vi] = c_plant5
+		p2data[vi] = 9
 	elseif rand == 6 then
 		data[vi] = c_plant6
+		p2data[vi] = 34
 	elseif rand == 7 then
 		data[vi] = c_plant7
+		p2data[vi] = 40
 	elseif rand == 8 then
 		data[vi] = c_plant8
+		p2data[vi] = 10
 	else
 		data[vi] = c_plant9
 	end
 end
 
-function lottmapgen_ithildinplants(data, vi)
+function lottmapgen_ithildinplants(data, vi, p2data)
 	local c_iplant1 = minetest.get_content_id("lottplants:asphodel")
 	local c_iplant2 = minetest.get_content_id("lottplants:anemones")
 	local c_iplant3 = minetest.get_content_id("lottplants:eglantive")
@@ -84,38 +94,44 @@ function lottmapgen_ithildinplants(data, vi)
 	else
 		data[vi] = c_iplant4
 	end
+	p2data[vi] = 40
 end
 
-function lottmapgen_lorienplants(data, vi)
+function lottmapgen_lorienplants(data, vi, p2data)
 	local c_lplant1 = minetest.get_content_id("lottplants:elanor")
 	local c_lplant2 = minetest.get_content_id("lottplants:lissuin")
 	local c_lplant3 = minetest.get_content_id("lottplants:niphredil")
 	local rand = math.random(3)
 	if rand == 1 then
 		data[vi] = c_lplant1
+		p2data[vi] = 10
 	elseif rand == 2 then
 		data[vi] = c_lplant2
+		p2data[vi] = 41
 	else
 		data[vi] = c_lplant3
+		p2data[vi] = 8
 	end
 end
 
 
-function lottmapgen_papyrus(x, y, z, area, data)
+function lottmapgen_papyrus(x, y, z, area, data, p2data)
 	local c_papyrus = minetest.get_content_id("default:papyrus")
 	local ph = math.random(0, 3)
 	for j = 0, ph do
 		local vip = area:index(x, y + j, z)
 		data[vip] = c_papyrus
+		p2data[vip] = 3
 	end
 end
 
-function lottmapgen_farmingrareplants(data, vi)
-     local c_rplant1 = minetest.get_content_id("lottplants:athelas")
+function lottmapgen_farmingrareplants(data, vi, p2data)
+	local c_rplant1 = minetest.get_content_id("lottplants:athelas")
 	local c_rplant2 = minetest.get_content_id("lottplants:melon_wild")
 	local rand = math.random(2)
 	if rand == 1 then
 		data[vi] = c_rplant1
+		p2data[vi] = 2
      else
 		data[vi] = c_rplant2
 	end

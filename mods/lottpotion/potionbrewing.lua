@@ -150,7 +150,7 @@ end
 
 local recipes = {
 --Base Potion
-	{"lottplants:seregon_fake",        "lottpotion:glass_bottle_water",         "lottpotion:glass_bottle_seregon"},
+	{"lottplants:seregon",        "lottpotion:glass_bottle_water",         "lottpotion:glass_bottle_seregon"},
      {"default:mese_crystal_fragment 1",        "lottpotion:glass_bottle_water",         "lottpotion:glass_bottle_mese"},
      {"lottores:geodes_crystal_1",        "lottpotion:glass_bottle_water",         "lottpotion:glass_bottle_geodes"},
 --Potions

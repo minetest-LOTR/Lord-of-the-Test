@@ -10,6 +10,8 @@ minetest.register_node("lottplants:barley_wild", {
 	wield_image = "lottfarming_barley_3.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	paramtype2 = "meshoptions",
+	place_param2 = 3,
 	waving = 1,
 	drop = {
 		max_items = 3,
@@ -25,7 +27,7 @@ minetest.register_node("lottplants:barley_wild", {
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+		fixed = { -0.3, -0.5, -0.3, 0.3, 0.3, 0.3 },
 	},
 })
 
@@ -39,6 +41,8 @@ minetest.register_node("lottplants:berries_wild", {
 	wield_image = "lottplants_berries_wild.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	paramtype2 = "meshoptions",
+	place_param2 = 34,
 	waving = 1,
 	drop = {
 		max_items = 3,
@@ -54,7 +58,7 @@ minetest.register_node("lottplants:berries_wild", {
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+		fixed = { -0.25, -0.5, -0.25, 0.25, 0.2, 0.25 },
 	},
 })
 
@@ -68,6 +72,8 @@ minetest.register_node("lottplants:corn_wild", {
 	wield_image = "lottplants_corn_wild.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	paramtype2 = "meshoptions",
+	place_param2 = 3,
 	waving = 1,
 	drop = {
 		max_items = 3,
@@ -83,7 +89,7 @@ minetest.register_node("lottplants:corn_wild", {
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+		fixed = { -0.4, -0.5, -0.4, 0.4, 0.3, 0.4 },
 	},
 })
 
@@ -137,6 +143,8 @@ minetest.register_node("lottplants:mushroom_wild", {
 	wield_image = "lottplants_mushroom_wild.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	paramtype2 = "meshoptions",
+	place_param2 = 9,
 	waving = 1,
 	drop = {
 		max_items = 5,
@@ -145,12 +153,12 @@ minetest.register_node("lottplants:mushroom_wild", {
 			{ items = {'lottfarming:red_mushroom'}, rarity = 5},
 			{ items = {'lottfarming:blue_mushroom'}, rarity = 10},
 			{ items = {'lottfarming:green_mushroom'}, rarity = 20},
-                        { items = {'lottfarming:white_mushroom'}, rarity = 20},
-                        { items = {'lottfarming:brown_mushroom_spore'}, rarity = 5},
-                        { items = {'lottfarming:red_mushroom_spore'}, rarity = 10},
-                        { items = {'lottfarming:blue_mushroom_spore'}, rarity = 20},
-                        { items = {'lottfarming:green_mushroom_spore'}, rarity = 20},
-                        { items = {'lottfarming:white_mushroom_spore'}, rarity = 20}
+			{ items = {'lottfarming:white_mushroom'}, rarity = 20},
+ 			{ items = {'lottfarming:brown_mushroom_spore'}, rarity = 5},
+			{ items = {'lottfarming:red_mushroom_spore'}, rarity = 10},
+			{ items = {'lottfarming:blue_mushroom_spore'}, rarity = 20},
+			{ items = {'lottfarming:green_mushroom_spore'}, rarity = 20},
+			{ items = {'lottfarming:white_mushroom_spore'}, rarity = 20}
 		}
 	},
 	walkable = false,
@@ -159,7 +167,7 @@ minetest.register_node("lottplants:mushroom_wild", {
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+		fixed = { -0.3, -0.5, -0.3, 0.3, 0.35, 0.3 },
 	},
 })
 
@@ -173,6 +181,8 @@ minetest.register_node("lottplants:pipeweed_wild", {
 	wield_image = "lottplants_pipeweed_wild.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	paramtype2 = "meshoptions",
+	place_param2 = 34,
 	waving = 1,
 	drop = {
 		max_items = 3,
@@ -188,7 +198,7 @@ minetest.register_node("lottplants:pipeweed_wild", {
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+		fixed = { -0.2, -0.5, -0.2, 0.2, 0.3, 0.2 },
 	},
 })
 
@@ -202,6 +212,8 @@ minetest.register_node("lottplants:potato_wild", {
 	wield_image = "lottplants_potato_wild.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	paramtype2 = "meshoptions",
+	place_param2 = 40,
 	waving = 1,
 	drop = {
 		max_items = 3,
@@ -217,7 +229,7 @@ minetest.register_node("lottplants:potato_wild", {
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+		fixed = { -0.2, -0.5, -0.2, 0.2, 0.2, 0.2 },
 	},
 })
 
@@ -231,6 +243,8 @@ minetest.register_node("lottplants:tomatoes_wild", {
 	wield_image = "lottplants_tomatoes_wild.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	paramtype2 = "meshoptions",
+	place_param2 = 10,
 	waving = 1,
 	drop = {
 		max_items = 3,
@@ -246,7 +260,7 @@ minetest.register_node("lottplants:tomatoes_wild", {
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+		fixed = { -0.35, -0.5, -0.35, 0.35, 0.25, 0.35 },
 	},
 })
 
@@ -260,6 +274,8 @@ minetest.register_node("lottplants:turnips_wild", {
 	wield_image = "lottplants_turnips_wild.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	paramtype2 = "meshoptions",
+	place_param2 = 40,
 	waving = 1,
 	drop = {
 		max_items = 3,
@@ -275,6 +291,6 @@ minetest.register_node("lottplants:turnips_wild", {
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+		fixed = { -0.2, -0.5, -0.2, 0.2, 0.2, 0.2 },
 	},
 })

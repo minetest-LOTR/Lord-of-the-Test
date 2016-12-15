@@ -11,34 +11,16 @@ minetest.register_node("lottplants:brambles_of_mordor", {
 	wield_image = "lottplants_brambles_of_mordor.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	paramtype2 = "meshoptions",
+	place_param2 = 42,
 	walkable = false,
 	waving = 1,
-	buildable_to = true,
-	drop = "lottplants:brambles_of_mordor_fake",
-	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_grey=1,not_in_creative_inventory=1},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
-	},
-})
-
-minetest.register_node("lottplants:brambles_of_mordor_fake", {
-	description = "Brambles Of Mordor",
-	drawtype = "plantlike",
-	tiles = { "lottplants_brambles_of_mordor.png" },
-	inventory_image = "lottplants_brambles_of_mordor.png",
-	wield_image = "lottplants_brambles_of_mordor.png",
-	sunlight_propagates = true,
-	paramtype = "light",
-	waving = 1,
-	walkable = false,
 	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_grey=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+		fixed = { -0.5, -0.5, -0.5, 0.5, -0.3, 0.5 },
 	},
 })
 
@@ -50,36 +32,21 @@ minetest.register_node("lottplants:pilinehtar", {
 	wield_image = "lottplants_pilinehtar.png",
 	sunlight_propagates = true,
 	paramtype = "light",
+	paramtype2 = "meshoptions",
+	place_param2 = 2,
 	walkable = false,
 	buildable_to = true,
 	waving = 1,
-	drop = "lottplants:pilinehtar_fake",
-	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_green=1,not_in_creative_inventory=1},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
-	},
-})
-
-minetest.register_node("lottplants:pilinehtar_fake", {
-	description = "Pilinehtar",
-	drawtype = "plantlike",
-	tiles = { "lottplants_pilinehtar.png" },
-	inventory_image = "lottplants_pilinehtar.png",
-	wield_image = "lottplants_pilinehtar.png",
-	sunlight_propagates = true,
-	paramtype = "light",
-	waving = 1,
-	walkable = false,
-	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_green=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+		fixed = { -0.3, -0.5, -0.3, 0.3, 0.27, 0.3 },
 	},
 })
+
+minetest.register_alias("lottplants:brambles_of_mordor_fake", "lottplants:brambles_of_mordor")
+minetest.register_alias("lottplants:pilinehtar_fake", "lottplants:pilinehtar")
 
 minetest.register_abm({
 	nodenames = {"group:flora"},

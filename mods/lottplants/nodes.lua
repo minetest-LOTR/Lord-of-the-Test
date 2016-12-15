@@ -791,6 +791,7 @@ minetest.register_node("lottplants:lorien_grass_1", {
 	inventory_image = "lottplants_lorien_grass_3.png",
 	wield_image = "lottplants_lorien_grass_3.png",
 	paramtype = "light",
+	paramtype2 = "meshoptions",
 	walkable = false,
 	waving = 1,
 	is_ground_content = true,
@@ -803,70 +804,34 @@ minetest.register_node("lottplants:lorien_grass_1", {
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		-- place a random grass node
-		local stack = ItemStack("lottplants:lorien_grass_"..math.random(1,5))
-		local ret = minetest.item_place(stack, placer, pointed_thing)
+		local stack = ItemStack("lottplants:lorien_grass_"..math.random(1,4))
+		local ret = minetest.item_place(stack, placer, pointed_thing, 40)
 		return ItemStack("lottplants:lorien_grass_1 "..itemstack:get_count()-(1-ret:get_count()))
 	end,
 })
 
-minetest.register_node("lottplants:lorien_grass_2", {
-	description = "Lorien Grass",
-	drawtype = "plantlike",
-	tiles = {"lottplants_lorien_grass_2.png"},
-	inventory_image = "lottplants_lorien_grass_2.png",
-	wield_image = "lottplants_lorien_grass_2.png",
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	waving = 1,
-	is_ground_content = true,
-	drop = "lottplants:lorien_grass_1",
-	groups = {snappy=3,flammable=3,flora=1,attached_node=1,not_in_creative_inventory=1},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
-})
-minetest.register_node("lottplants:lorien_grass_3", {
-	description = "Lorien Grass",
-	drawtype = "plantlike",
-	tiles = {"lottplants_lorien_grass_3.png"},
-	inventory_image = "lottplants_lorien_grass_3.png",
-	wield_image = "lottplants_lorien_grass_3.png",
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	is_ground_content = true,
-	waving = 1,
-	drop = "lottplants:lorien_grass_1",
-	groups = {snappy=3,flammable=3,flora=1,attached_node=1,not_in_creative_inventory=1},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
-})
-
-minetest.register_node("lottplants:lorien_grass_4", {
-	description = "Lorien Grass",
-	drawtype = "plantlike",
-	tiles = {"lottplants_lorien_grass_4.png"},
-	inventory_image = "lottplants_lorien_grass_4.png",
-	wield_image = "lottplants_lorien_grass_4.png",
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	is_ground_content = true,
-	waving = 1,
-	drop = "lottplants:lorien_grass_1",
-	groups = {snappy=3,flammable=3,flora=1,attached_node=1,not_in_creative_inventory=1},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
-})
+for i = 2, 4 do
+	minetest.register_node("lottplants:lorien_grass_" .. i, {
+		description = "Lorien Grass",
+		drawtype = "plantlike",
+		tiles = {"lottplants_lorien_grass_" .. i .. ".png"},
+		inventory_image = "lottplants_lorien_grass_" .. i .. ".png",
+		wield_image = "lottplants_lorien_grass_" .. i .. ".png",
+		paramtype = "light",
+		paramtype2 = "meshoptions",
+		walkable = false,
+		buildable_to = true,
+		waving = 1,
+		is_ground_content = true,
+		drop = "lottplants:lorien_grass_1",
+		groups = {snappy=3,flammable=3,flora=1,attached_node=1,not_in_creative_inventory=1},
+		sounds = default.node_sound_leaves_defaults(),
+		selection_box = {
+			type = "fixed",
+			fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
+		},
+	})
+end
 
 --Stairs & Slabs
 

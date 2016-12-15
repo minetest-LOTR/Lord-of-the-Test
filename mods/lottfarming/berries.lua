@@ -2,12 +2,13 @@ minetest.register_craftitem("lottfarming:berries_seed", {
 	description = "Berries Seeds",
 	inventory_image = "lottfarming_berries_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		return place_seed(itemstack, placer, pointed_thing, "lottfarming:berries_1")
+		return place_seed(itemstack, placer, pointed_thing, "lottfarming:berries_1", 34)
 	end,
 })
 
 minetest.register_node("lottfarming:berries_1", {
 	paramtype = "light",
+	paramtype2 = "meshoptions",
 	walkable = false,
 	drawtype = "plantlike",
 	drop = "",
@@ -25,6 +26,7 @@ minetest.register_node("lottfarming:berries_1", {
 
 minetest.register_node("lottfarming:berries_2", {
 	paramtype = "light",
+	paramtype2 = "meshoptions",
 	walkable = false,
 	drawtype = "plantlike",
 	drop = "",
@@ -42,6 +44,7 @@ minetest.register_node("lottfarming:berries_2", {
 
 minetest.register_node("lottfarming:berries_3", {
 	paramtype = "light",
+	paramtype2 = "meshoptions",
 	walkable = false,
 	drawtype = "plantlike",
 	drop = "",
@@ -59,6 +62,7 @@ minetest.register_node("lottfarming:berries_3", {
 
 minetest.register_node("lottfarming:berries_4", {
 	paramtype = "light",
+	paramtype2 = "meshoptions",
 	walkable = false,
 	drawtype = "plantlike",
 	tiles = {"lottfarming_berries_4.png"},
@@ -84,4 +88,4 @@ minetest.register_craftitem("lottfarming:berries", {
 	on_use = minetest.item_eat(1),
 })
 
-farming:add_plant("lottfarming:berries_4", {"lottfarming:berries_1", "lottfarming:berries_2", "lottfarming:berries_3"}, 50, 20)
+farming:add_plant("lottfarming:berries_4", {"lottfarming:berries_1", "lottfarming:berries_2", "lottfarming:berries_3"}, 50, 20, 34)
