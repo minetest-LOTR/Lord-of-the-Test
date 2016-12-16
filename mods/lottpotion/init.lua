@@ -4,6 +4,7 @@ dofile(minetest.get_modpath("lottpotion").."/cauldron.lua")
 
 lottpotion = {
 	players = {},
+	deaths = {},
 	effects = {
 		phys_override = function(sname, name, fname, time, sdata, flags)
 			local def = {
@@ -17,6 +18,8 @@ lottpotion = {
 					jump = 0,
 					gravity = 0,
 					air = 0,
+					hp = 0,
+					alive = 1,
 				},
 			}
 			return def
@@ -24,19 +27,18 @@ lottpotion = {
 		fixhp = function(sname, name, fname, time, sdata, flags)
 			local def = {
 				on_use = function(itemstack, user, pointed_thing)
-					for i=0, (sdata.time or 0) do
-						minetest.after(i, function()
-							local hp = user:get_hp()
-							if flags.inv==true then
-								hp = hp - (sdata.hp or 3)
-							else
-								hp = hp + (sdata.hp or 3)
-							end
-							hp = math.min(20, hp)
-							hp = math.max(0, hp)
-							user:set_hp(hp)
-						end)
+					local hp_change = sdata.hp or 3
+					if flags.inv == true then
+						hp_change = -hp_change
 					end
+					local h = lottpotion.players[user:get_player_name()].hp
+					lottpotion.players[user:get_player_name()].hp = h + hp_change
+					minetest.after(sdata.time, function()
+						if user ~= nil then
+							h = lottpotion.players[user:get_player_name()].hp
+							lottpotion.players[user:get_player_name()].hp = h - hp_change
+						end
+					end)
 					itemstack:take_item()
 					return itemstack
 				end,
@@ -49,25 +51,19 @@ lottpotion = {
 		air = function(sname, name, fname, time, sdata, flags)
 			local def = {
 				on_use = function(itemstack, user, pointed_thing)
-					local lottpotion_e = lottpotion.players[user:get_player_name()]
-					lottpotion_e.air = lottpotion_e.air + (sdata.time or 0)
-					for i=0, (sdata.time or 0) do
-						minetest.after(i, function()
-							local br = user:get_breath()
-							if flags.inv==true then
-								br = br - (sdata.br or 3)
-							else
-								br = br + (sdata.br or 3)
-							end
-							br = math.min(11, br)
-							br = math.max(0, br)
-							user:set_breath(br)
-
-							if i==(sdata.time or 0) then
-								lottpotion_e.air = lottpotion_e.air - (sdata.time or 0)
-							end
-						end)
+					local br_change = sdata.br or 3
+					if flags.inv == true then
+						br_change = -br_change
 					end
+					local b = lottpotion.players[user:get_player_name()].air
+					lottpotion.players[user:get_player_name()].air = br_change
+
+					minetest.after(sdata.time, function()
+						if user ~= nil then
+							b = lottpotion.players[user:get_player_name()].air
+							lottpotion.players[user:get_player_name()].air = b - br_change
+						end
+					end)
 					itemstack:take_item()
 					return itemstack
 				end,
@@ -94,11 +90,15 @@ lottpotion = {
 		end
 		lottpotion.addPrefs(playername, def.speed, def.jump, def.gravity)
 		lottpotion.refresh(playername)
+		local deaths = lottpotion.deaths or 0
 		minetest.chat_send_player(playername, "You are under the effects of the "..type.." potion.")
 		minetest.after(time, function()
-			lottpotion.addPrefs(playername, 0-def.speed, 0-def.jump, 0-def.gravity)
-			lottpotion.refresh(playername)
-			minetest.chat_send_player(playername, "The effects of the "..type.." potion have worn off.")
+			local new_deaths = lottpotion.deaths or 0
+			if new_deaths == deaths then
+				lottpotion.addPrefs(playername, 0-def.speed, 0-def.jump, 0-def.gravity)
+				lottpotion.refresh(playername)
+				minetest.chat_send_player(playername, "The effects of the "..type.." potion have worn off.")
+			end
 		end)
 	end,
 	addPrefs = function(playername, speed, jump, gravity)
@@ -164,6 +164,53 @@ lottpotion = {
 	end,
 }
 dofile(minetest.get_modpath("lottpotion").."/arrows.lua")
+
+local time = 0
+minetest.register_globalstep(function(dtime)
+	time = time + dtime
+	if time > 1 then
+		time = 0
+		for _, player in pairs(minetest.get_connected_players()) do
+			local name = player:get_player_name()
+			local hp_change = lottpotion.players[name].hp
+			if hp_change ~= 0 then
+				local hp = player:get_hp()
+				hp = hp + hp_change
+				hp = math.min(20, hp)
+				hp = math.max(0, hp)
+				player:set_hp(hp)
+			end
+			local br_change = lottpotion.players[name].air
+			if br_change ~= 0 then
+				local br = player:get_breath()
+				br = br + br_change
+				br = math.min(20, br)
+				br = math.max(0, br)
+				player:set_breath(br)
+			end
+			if lottpotion.players[name].alive ~= 1 then
+				lottpotion.players[name].alive = 1
+			end
+		end
+	end
+end)
+
+minetest.register_on_dieplayer(function(player)
+	local name = player:get_player_name()
+	lottpotion.players[name] = {
+		speed = 1,
+		jump = 1,
+		gravity = 1,
+		air = 0,
+		hp = 0,
+		alive = 0,
+	}
+	lottpotion.refresh(name)
+	if lottpotion.deaths[name] == nil then
+		lottpotion.deaths[name] = 1
+	end
+	lottpotion.deaths[name] = lottpotion.deaths[name] + 1
+end)
 
 lottpotion.register_potion("athelasbrew", "Athelas Brew", "lottpotion:athelasbrew", 100, {
 	effect = "fixhp",
@@ -352,7 +399,14 @@ minetest.register_on_joinplayer(function(player)
 		jump = 1,
 		gravity = 1,
 		air = 0,
+		hp = 0,
+		alive = 1,
 	}
+end)
+
+minetest.register_on_leaveplayer(function(player)
+	lottpotion.players[player:get_player_name()] = nil
+	lottpotinon.deaths[name] = nil
 end)
 
 minetest.register_chatcommand("effect", {
@@ -363,7 +417,9 @@ minetest.register_chatcommand("effect", {
 		local lottpotion_e = lottpotion.players[name]
 		if lottpotion_e~=nil then
 			for potion_name, val in pairs(lottpotion_e) do
-				minetest.chat_send_player(name, potion_name .. "=" .. val)
+				if potion_name ~= "alive" then
+					minetest.chat_send_player(name, potion_name .. "=" .. val)
+				end
 			end
 		end
 	end,
