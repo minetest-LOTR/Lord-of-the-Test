@@ -89,6 +89,16 @@ local np_random = {
 
 -- Stuff
 lottmapgen = {}
+
+local nobj_temp = nil
+local nobj_humid = nil
+local nobj_random = nil
+local nbuf_temp
+local nbuf_humid
+local nbuf_random
+local dbuf
+local p2dbuf
+
 local water_level = minetest.get_mapgen_setting("water_level")
 
 dofile(minetest.get_modpath("lottmapgen").."/nodes.lua")
@@ -114,8 +124,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 
 	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
-	local data = vm:get_data()
-	local p2data = vm:get_param2_data()
+	local data = vm:get_data(dbuf)
+	local p2data = vm:get_param2_data(p2dbuf)
 
 	local c_air = minetest.get_content_id("air")
 	local c_ignore = minetest.get_content_id("ignore")
@@ -166,16 +176,21 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local chulens = {x=sidelen, y=sidelen, z=sidelen}
 	local minposxz = {x=x0, y=z0}
 
-	local nvals_temp = minetest.get_perlin_map(np_temp, chulens):get2dMap_flat(minposxz)
-	local nvals_humid = minetest.get_perlin_map(np_humid, chulens):get2dMap_flat(minposxz)
-	local nvals_random = minetest.get_perlin_map(np_random, chulens):get2dMap_flat(minposxz)
+	nobj_temp = nobj_temp or minetest.get_perlin_map(np_temp, chulens)
+	nobj_humid = nobj_humid or minetest.get_perlin_map(np_humid, chulens)
+	nobj_random = nobj_random or minetest.get_perlin_map(np_random, chulens)
+
+	local nvals_temp = nobj_temp:get2dMap_flat(minposxz, nbuf_temp)
+	local nvals_humid = nobj_humid:get2dMap_flat(minposxz, nbuf_humid)
+	local nvals_random = nobj_random:get2dMap_flat(minposxz, nbuf_random)
+
 	local offset = math.random(5,20)
 	if biome_blend == true then
 		chulens = {x=sidelen+2*offset, y=sidelen+2*offset, z=sidelen+2*offset}
 		minposxz = {x=x0-offset, y=z0-offset }
-		nvals_temp = minetest.get_perlin_map(np_temp, chulens):get2dMap(minposxz)
-		nvals_humid = minetest.get_perlin_map(np_humid, chulens):get2dMap(minposxz)
-		nvals_random = minetest.get_perlin_map(np_random, chulens):get2dMap(minposxz)
+		nvals_temp = nobj_temp:get2dMap(minposxz)
+		nvals_humid = nobj_humid:get2dMap(minposxz)
+		nvals_random = nobj_random:get2dMap(minposxz)
 	end
 
 	local nixz = 1
@@ -232,7 +247,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						end
 					end
 					if y > - 40 and y < -5 and biome == 11 then
-						if math.random(PLANT14) == 1 then
+						if math.random(PLANT15) == 1 then
 							lottmapgen.enqueue_building("Dwarf House", {x=x, y=y, z=z}) -- data[vi] = c_dwahous
 						end
 					end
