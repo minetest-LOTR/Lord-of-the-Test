@@ -406,7 +406,7 @@ end)
 
 minetest.register_on_leaveplayer(function(player)
 	lottpotion.players[player:get_player_name()] = nil
-	lottpotinon.deaths[name] = nil
+	lottpotion.deaths[name] = nil
 end)
 
 minetest.register_chatcommand("effect", {
