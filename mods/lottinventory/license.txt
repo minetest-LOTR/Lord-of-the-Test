@@ -1,11 +1,22 @@
-Code: Zeg9, modified by fishyWET - LGPL v2.1
+Authors of source code:
+-----------------------
+(LOTT-specific-mod)
+Original Author(s):
+	Zeg9 (WTFPL)
+		https://github.com/Zeg9/minetest-zcg/
+	fishyWET (LGPL v2.1)
 
-Textures CC BY-SA 3.0:
+Authors of media files
+-----------------------
+fishyWET (CC BY-SA 3.0)
+	lottinventory_*
 
-fishyWET - lottinventory_*
+Zeg9 (WTFPL)
+	zcg_*.png
 
-Zeg9 - zcg_*
-
-Amaz - bags_*
-
-Flipsels - craft_formbg.png
+Amaz (CC BY-SA 3.0)
+	bags_medium.png
+	bags_small.png
+	
+Copyright (C) 2013-2014 Brett O'Donnell (BSD-3-Clause)
+	bags_large.png

@@ -1,12 +1,19 @@
-Code: Amaz - LGPL v2.1
+Authors of source code:
+-----------------------
+(LOTT-specific-mod)
+Original Author(s):
+	Amaz (LGPL v2.1)
+	lumidify (LGPL v2.1)
 
-Textures, CC BY-SA 3.0:
-Gabo -
-*_skin.png
-dwarf.png
-elf.png
-orc.png
-man.png
-hobbit.png
+Authors of media files
+-----------------------
+Gabo (CC BY-SA 3.0)
+	*_skin.png
+	dwarf.png
+	elf.png
+	orc.png
+	man.png
+	hobbit.png
 
-catninja - *_skinf.png
+catninja (CC BY-SA 3.0)
+	*_skinf.png

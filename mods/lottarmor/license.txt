@@ -1,11 +1,37 @@
-3D Armor - Visible Player Armor
-Default Item Textures (C) Cisoun - WTFPL
+Authors of source code:
+-----------------------
+(LOTT-specific-mod)
+Original Author(s):
+	Copyright (C) 2013 Stuart Jones (LGPL v2.1)
+		https://github.com/stujones11/minetest-3d_armor
+	Copyright (C) 2013-2014 Brett O'Donnell (BSD-3-Clause)
+		https://github.com/cornernote/minetest-bags
+LOTT Modifications By:
+	fishyWET (LGPL v2.1)
+	Amaz (LGPL v2.1)
+	Flipsels (LGPL v2.1)
 
-Original Armor Textures: Copyright (C) 2013 Ryan Jones - CC-BY-SA 3.0
 
-Source Code: Copyright (C) 2013 Stuart Jones
-Modified by Amaz and fishyWET
-
- LGPL v2.1
-
+Authors of media files
+-----------------------
+Copyright (C) 2013 Stuart Jones (LGPL v2.1)
+	lottarmor_character.b3d
+	lottarmor_character.blend
 Special credit to Jordach and MirceaKitsune for providing the default 3d character model.
+
+(C) Cisoun (WTFPL)
+	Default item textures
+
+Copyright (C) 2013 Ryan Jones (CC BY-SA 3.0)
+	Original armor textures / armor textures base template
+	
+Flipsels (CC BY-SA 3.0)
+	gui_formbg.png
+
+Copyright (C) 2013-2014 Brett O'Donnell (BSD-3-Clause)
+	bags.png
+
+RealBadAngel: (WTFPL)
+	lottarmor_trash.png
+	
+Otherwise: (CC BY-SA 3.0)

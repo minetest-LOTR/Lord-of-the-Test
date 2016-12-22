@@ -1,3 +1,25 @@
-rowboat.x, sailboat.x, all the textures, made by desanta, CC BY-SA 3.0.
+Authors of source code:
+-----------------------
+Original Author(s):
+	PlizAdam [boats] (LGPL v2.1)
+		https://github.com/PilzAdam/boats
+Modifications By:
+	deasanta [ds_sailboat / ds_rowboat] (WTFPL)
+		https://github.com/deasanta/minetest-deasanta
+	NeXt [ds_sailboat / ds_rowboat] (WTFPL)
+		https://github.com/deasanta/minetest-deasanta
+LOTT Modifications By:
+	Amaz (LGPL v2.1)
 
-Code: Originally by PlizAdam, modified by desanta, and tweaked by Amaz. LGPL v2.1
+
+Authors of media files
+-----------------------
+deasanta (WTFPL)
+	rowboat.b3d
+	sailboat.b3d
+
+	rowboat_inventory.png
+	rowboat_wield.png
+	sailboat.png
+	sailboat_inventory.png
+	sailboat_wield.png

@@ -1,64 +1,65 @@
 ![alt text](https://raw.githubusercontent.com/minetest-LOTT/Lord-of-the-Test/master/menu/header.png)
-## Lord of the Test: A Minetest subgame.
-### Version 1.0.0
+## Lord of the Test: a Minetest subgame.
+### Latest stable version: 1.0.0
 
-This is a game for Minetest that adds Lord of the Rings like elements into the game. It is currently in beta form which means that the main features are completed, however there will be some bugs here and there so please report them.
+This is a game for Minetest that adds [Lord of the Rings](https://en.wikipedia.org/wiki/The_Lord_of_the_Rings) elements into the game.
+
+### NOTE: The dev version of LOTT (anything that is not downloaded from the [release section](https://github.com/minetest-LOTR/Lord-of-the-Test/releases)) only works with the latest dev version of Minetest.
+If you want to use the stable version of Minetest, please download the [latest stable version](https://github.com/minetest-LOTR/Lord-of-the-Test/archive/v1.0.0.zip) of LOTT!
+(It is recommended to use the development version of both LOTT and Minetest, as much more features are in!)
+
+-----------------------------------------------------------------------------------------------
 
 #### Installation:
+
 To install this game [download it](../../archive/master.zip), and extract the zip to <your minetest folder>/games/Lord-of-the-Test.
-If you use Linux, the folder which will contain the games folder be .minetest in your home directory. (You may need to use ctrl+h to show hidden files.) On Windows, it will be somewhere around the place you launch Minetest from...
 
-### The dev version of LOTT only works with the dev version of Minetest. If you want to use the stable version of Minetest, please download the [latest stable version](https://github.com/minetest-LOTR/Lord-of-the-Test/archive/v1.0.0.zip) of LOTT also!
+On Linux, the folder which will contain the games folder be .minetest in your home directory. (You may need to use ctrl+h to show hidden files.)
 
-(I highly recomend using the development version of both LOTT and Minetest!)
+On Windows, the games folder will be located around the directory where minetest.exe is located, and can be accessed from the main directory where the minetest's data is located.
 
-If you use Arch Linux, you can install LOTT via the AUR. There is a [stable package](https://aur.archlinux.org/packages/minetest-lott/) and a [latest git package](https://aur.archlinux.org/packages/minetest-lott-git/).  
+If you require more assistance in this, please refer to [here](http://wiki.minetest.net/Subgame#Installing_subgames)
+
+
+If you use Arch Linux, you can install LOTT via the AUR. There is a [stable package](https://aur.archlinux.org/packages/minetest-lott/) and a [latest git package](https://aur.archlinux.org/packages/minetest-lott-git/).
 MadTux (@agwilt) is the maintainer of these packages.
+
+-----------------------------------------------------------------------------------------------
 
 #### License:
 
-Code of most mods: *LGPL v2.1*
+See the license.txt of each mod for information regarding authorship of each mod
 
-All textures: *CC BY-SA 3.0*
 
-*See LICENSE.txt for the full text of the licenses*
-*See the license.txt of each mod for more information on that mod.*
+If not otherwise stated in the license.txt;
+
+Code: *LGPL v2.1*
+
+Textures: *CC BY-SA 3.0*
 
 -----------------------------------------------------------------------------------------------
-Contributors:
 
+#### Contributors:
+
+A full list of contributers can be located here;
+
+[**List of Awesome Contributors**](https://github.com/minetest-LOTR/Lord-of-the-Test/graphs/contributors)
+
+Additional contributers;
+(That are not stated above due to them not pushing in their work directly to the respository)
+(In alphabetical order)
+
+- AspireMint
+- Gabo (@GaboXandre)
+- philipbenr (@philipbenr)
+- STHGOM / sparky
+- Thomas-S
+
+minetest-LOTR Members;
 - fishyWET (@fishyWET)
 - Amaz (@Amaz1)
-- Flipsels (@Flipsels)
-- catninja (@catninja-)
-- STHGOM
-- philipbenr (@philipbenr)
-- Gabo (@GaboXandre)
-- rickmcfarley (@rickmcfarley)
-- MadTux (@agwilt)
-- narrnika (@narrnika)
-- BadToad2000 (@BadToad2000)
 - Lumidify Productions (@lumidify)
 
-More Contributors wanted, just send a PM on the [Minetest Forum](https://forum.minetest.net/index.php) to Amaz or fishyWET, email amazlott [at] gmail [dot] com or join [#lordofthetest on freenode](http://webchat.freenode.net/?channels=#lordofthetest).
-
------------------------------------------------------------------------------------------------
-Credits:
-(People whom i modify their code/ use their textures to make this game possible)
-(Not in Any Order)
-Pilzadam (Troll Model, farming, mobs, Bed code & texture, throwing)
-Paramat (Trees, mapgen, pinetree textures.)
-Stu (Dwarf & Elf & Human model, Armor)
-Traxie21 (Potions)
-AMMOnym (Some of the mobs textures)
-Chinchow (Spawning Structures)
-BrandonReese(Sword wearing, chest contents)
-Zeg9 (craft guide)
-Blockmen (hud)
-ak399g (Ithildin)
-Dan Duncombe (Generating Structures, banners)
-Calinou (Inventory GUI)
-TenPlus1 (Screwdriver redo, mobs api)
-deasanta (Boats)
+If you are interested to join minetest-LOTR, send a PM on the [Minetest Forum](https://forum.minetest.net/index.php) to Amaz, email [amazlott [at] gmail [dot] com](mailto: amazlott@gmail.com) or join [#lordofthetest on freenode](http://webchat.freenode.net/?channels=#lordofthetest) and look for a minetest-LOTR member. Being a contributor beforehand will certainly help.
 
 -----------------------------------------------------------------------------------------------

@@ -1,4 +1,30 @@
-Code: paramat, modifed by fishyWET and Amaz - LGPL v2.1,
+Authors of source code:
+-----------------------
+(LOTT-specific-mod)
+Original Author(s):
+	paramat (WTFPL)
+		https://github.com/paramat/paragenv7
+LOTT Modifications By:
+	fishyWET (LGPL v2.1)
+	Amaz (LGPL v2.1)
+	Dyarr (LGPL v2.1)
+	gwtnz (LGPL v2.1)
 
-Textures: CC BY-SA 3.0
-philipbenr
+Authors of media files
+-----------------------
+fishyWET (CC BY-SA 3.0)
+	abandoned_fort.mts
+	abandoned_tower.mts
+	angmarfort.we
+	gondorfort.we
+	hobbithole.we
+	mallornhouse.we
+	mirkhouse.we
+	orcfort.we
+	rohanfort.we
+	
+fireuser (CC BY-SA 3.0)
+	lorienhouse.we
+	
+philipbenr (CC BY-SA 3.0)
+	Everything else

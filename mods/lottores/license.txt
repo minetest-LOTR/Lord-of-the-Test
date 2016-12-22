@@ -1,5 +1,10 @@
-Code: fishyWET - LGPL v2.1
+Authors of source code:
+-----------------------
+(LOTT-specific-mod)
+Original Author(s):
+	fishyWET (LGPL v2.1)
 
-Textures: CC BY-SA 3.0
-
-fishyWET
+Authors of media files
+-----------------------
+fishyWET (CC BY-SA 3.0)
+	Everything

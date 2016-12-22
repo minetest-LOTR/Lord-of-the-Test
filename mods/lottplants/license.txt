@@ -1,14 +1,20 @@
-Code: fishyWET - LGPL v2.1
+Authors of source code:
+-----------------------
+(LOTT-specific-mod)
+Original Author(s):
+	fishyWET (LGPL v2.1)
 
-Textures: CC BY-SA 3.0
 
- philipbenr -
-lottplants_*_wood.png
-lottplants_*leaves.png
-lottplants_mallorn*.png
-lottplants_birchtree*.png
+Authors of media files
+-----------------------
+philipbenr (CC BY-SA 3.0)
+	lottplants_*_wood.png
+	lottplants_*leaves.png
+	lottplants_mallorn*.png
+	lottplants_birchtree*.png
 
-pithy -
-lottplants_*tree_stair.png (Based on lottplants_*tree.png)
+pithy
+	lottplants_*tree_stair.png (Based on lottplants_*tree.png)
 
-fishyWET - The rest.
+fishyWET (CC BY-SA 3.0)
+	Everything else

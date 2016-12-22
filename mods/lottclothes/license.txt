@@ -1,8 +1,19 @@
-Code: Flipsels, modified by Amaz - LGPL v2.1
+Authors of source code:
+-----------------------
+(LOTT-specific-mod)
+Original Author(s):
+	Flipsels (LGPL v2.1)
+	Amaz (LGPL v2.1)
 
-Textures CC BY-SA 3.0:
-Amaz -
-lottclothes_cloak*
-lottclothes*_elven.png
+Authors of media files
+-----------------------
+Amaz (CC BY-SA 3.0)
+	lottclothes_cloak*
+	lottclothes*_elven.png
 
-Flipsels - Everything else.
+rickmcfarley (CC BY-SA 3.0)
+	lottclothes_felt_black.png
+	lottclothes_flax_black.png
+
+Flipsels (CC BY-SA 3.0)
+	Everything else

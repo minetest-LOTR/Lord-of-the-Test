@@ -1,5 +1,19 @@
-Code: fishyWET & Amaz - LGPL v2.1
+Authors of source code:
+-----------------------
+(LOTT-specific-mod)
+Original Author(s):
+	Amaz (LGPL v2.1)
+	fishyWET (LGPL v2.1)
 
-Textures:
-  lottother_chisel.png - cd2 (cdqwertz) - CC BY-SA 3.0
-  Everything else: fishyWET & Amaz - CC BY-SA 3.0
+
+Authors of media files
+-----------------------
+cd2 (cdqwertz) (CC BY-SA 3.0)
+  lottother_chisel.png
+
+fishyWET (CC BY-SA 3.0)
+	lottother_blue_flame*.png
+
+Amaz (CC BY-SA 3.0)
+	Everything else
+

@@ -1,3 +1,29 @@
-All the textures, made by Bad_Command_, CC BY-SA 3.0.
+Authors of source code:
+-----------------------
+Original Author(s):
+	PlizAdam (LGPL v2.1)
+		https://github.com/minetest/minetest_game
+LOTT Modifications By:
+	fishyWET (LGPL v2.1)
+	Amaz (LGPL v2.1)
 
-Code: Originally by PlizAdam, edited by fishyWET. LGPL v2.1
+Authors of media files
+-----------------------
+Bad_Command_ (CC BY-SA 3.0)
+
+fishyWET (CC BY-SA 3.0)
+	bones_bone.png
+	bones_bonedust.png
+	bones_scythe.png
+	bones_skeleton.png
+	bones_skeleton_bottom.png
+	bones_skeleton_front.png
+	bones_skeleton_rear.png
+	bones_skeleton_side.png
+	bones_skeleton_top.png
+	
+Amaz (CC BY-SA 3.0)
+	bones_writing.png
+	
+Flipsels (CC BY-SA 3.0)
+	gui_bonesbg.png
