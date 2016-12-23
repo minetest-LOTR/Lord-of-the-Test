@@ -8,6 +8,7 @@ local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 		end
 		local playerpos = player:getpos()
 		local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, axe_entity)
+		obj:get_luaentity().player = player or nil
 		local dir = player:get_look_dir()
 		obj:setvelocity({x=dir.x*27, y=dir.y*30, z=dir.z*27})
 		obj:setacceleration({x=dir.x*-1, y=-5, z=dir.z*-1})
@@ -68,6 +69,7 @@ local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 		textures = {"lottthrowing:" .. axe .. "_axe_box"},
 		lastpos = {},
 		collisionbox = {0,0,0,0,0,0},
+		player = nil,
 	}
 
 	aep.on_step = function(self, dtime)
@@ -80,7 +82,7 @@ local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 			for k, obj in pairs(objs) do
 				if obj:get_luaentity() ~= nil then
 					if obj:get_luaentity().name ~= axe_entity and obj:get_luaentity().name ~= "__builtin:item" then
-						obj:punch(self.object, 1.0, {
+						obj:punch(self.player, 1.0, {
 							full_punch_interval=1.0,
 							damage_groups={fleshy=damage},
 						}, nil)
@@ -90,7 +92,7 @@ local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 	                    end
 					end
 				else
-					obj:punch(self.object, 1.0, {
+					obj:punch(self.player, 1.0, {
 						full_punch_interval=1.0,
 						damage_groups={fleshy=damage},
 					}, nil)

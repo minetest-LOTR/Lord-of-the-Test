@@ -38,6 +38,7 @@ local THROWING_ARROW_ENTITY={
 	textures = {"lottthrowing:arrow_fire_blue_box"},
 	lastpos={},
 	collisionbox = {0,0,0,0,0,0},
+	player = nil,
 }
 
 THROWING_ARROW_ENTITY.on_step = function(self, dtime)
@@ -51,7 +52,7 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 			if obj:get_luaentity() ~= nil then
 				if obj:get_luaentity().name ~= "lottthrowing:arrow_fire_blue_entity" and obj:get_luaentity().name ~= "__builtin:item" then
 					local damage = 20
-					obj:punch(self.object, 1.0, {
+					obj:punch(self.player, 1.0, {
 						full_punch_interval=1.0,
 						damage_groups={fleshy=damage},
 					}, nil)
@@ -59,7 +60,7 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 				end
 			else
 				local damage = 20
-				obj:punch(self.object, 1.0, {
+				obj:punch(self.player, 1.0, {
 					full_punch_interval=1.0,
 					damage_groups={fleshy=damage},
 				}, nil)

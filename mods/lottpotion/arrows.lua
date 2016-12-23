@@ -25,10 +25,14 @@ lottpotion.register_arrow = function(potion_name, name, hname, potion_use_funct,
 			for k, obj in pairs(objs) do
 				if obj:get_luaentity() ~= nil then
 					if obj:get_luaentity().name ~= potion_name.."_arrow_entity" and obj:get_luaentity().name ~= "__builtin:item" then
+						local damage = 20
+						obj:punch(self.player, 1.0, {
+							full_punch_interval=1.0,
+							damage_groups={fleshy=damage},
+						}, nil)
 						self.object:remove()
 					end
 				else
-					local damage = 3
 					potion_use_funct({take_item = function()end}, obj)
 					self.object:remove()
 				end
