@@ -212,13 +212,18 @@ minetest.register_node("lottother:stone", {
 	description = "Stone Substitute",
 	tiles = {"default_stone.png"},
 	is_ground_content = true,
-	drop = 'default:stone',
+	drop = 'default:cobble',
 	groups = {cracky=3, stone=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_stone_defaults(),
 	on_construct = function(pos)
 		local found_air = 0
 		local y = 0
 		for h = 1, 50 do
+			if minetest.get_node({x = pos.x, y = pos.y + h, z = pos.z}).name == "air" then
+				found_air = found_air + 1
+			elseif minetest.get_node({x = pos.x, y = pos.y + h + 4, z = pos.z}).name == "default:water_source" then
+				return
+			end
 			for i = -1, 1 do
 			for j = -3, -1 do
 				local p = {x = pos.x + i, y = pos.y + h, z = pos.z + j}
@@ -232,9 +237,6 @@ minetest.register_node("lottother:stone", {
 					minetest.remove_node(p)
 				end
 			end
-			end
-			if minetest.get_node({x = pos.x, y = pos.y + h, z = pos.z}).name == "air" then
-				found_air = found_air + 1
 			end
 			if found_air > 3 then
 				y = h
