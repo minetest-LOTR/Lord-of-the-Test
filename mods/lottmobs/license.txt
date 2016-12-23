@@ -23,11 +23,13 @@ AspireMint (CC BY-SA 3.0)
 	shirepony_model.x
 	shireponyh1_model.x
 	spider_model.x
+	chicken_model.x
 	
 	lottmobs_ent.png
 	lottmobs_nazgul.png
 	lottmobs_shirepony*.png
 	lottmobs_spider*.png
+	lottmobs_chicken.png
 
 	
 Pavel_S / PilzAdam (WTFPL)
@@ -38,7 +40,6 @@ Pavel_S / PilzAdam (WTFPL)
 
 STHGOM (CC BY-SA 3.0)
 	balrog_model.b3d
-	warg.b3d
 	
 	lottmobs_balrog.png
 
@@ -49,11 +50,6 @@ krupnopavel (MIT)
 	
 	lottmobs_horse*.png
 	mobs_pumba.png
-
-JK Murray
-	chicken_model.x
-	
-	lottmobs_chicken.png
 
 ExeterDad
 	mobs_bunny.b3d
@@ -92,6 +88,11 @@ TenPlus1 (? - MIT)
 	mobs_chicken.ogg
 	
 fishyWET (CC BY-SA 3.0)
+	warg.b3d
+	warg_mount.b3d
+	
+	lottmobs_warg.png
+	lottmobs_warg_inv.png
 	lottmobs_darkball.png
 	lottmobs_dead_men.png
 	lottmobs_dunlending.png
@@ -117,7 +118,6 @@ Amaz (CC BY-SA 3.0)
 	lottmobs_ithilien_ranger*.png
 	lottmobs_rohan_guard_*.png
 	lottmobs_spiderpoison.png
-	lottmobs_warg.png
 	
 lumidify (CC BY-SA 3.0)
 	lottmobs_*_guard*.png

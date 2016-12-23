@@ -15,13 +15,15 @@ Authors of media files
 fishyWET (CC BY-SA 3.0)
 	abandoned_fort.mts
 	abandoned_tower.mts
-	angmarfort.we
 	gondorfort.we
 	hobbithole.we
 	mallornhouse.we
 	mirkhouse.we
 	orcfort.we
 	rohanfort.we
+
+Amaz (CC BY-SA 3.0)
+	angmarfort.we
 	
 fireuser (CC BY-SA 3.0)
 	lorienhouse.we

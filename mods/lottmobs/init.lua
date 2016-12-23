@@ -31,6 +31,7 @@ dofile(minetest.get_modpath("lottmobs").."/elves.lua")
 dofile(minetest.get_modpath("lottmobs").."/dwarves.lua")
 dofile(minetest.get_modpath("lottmobs").."/hobbits.lua")
 dofile(minetest.get_modpath("lottmobs").."/horse.lua")
+dofile(minetest.get_modpath("lottmobs").."/warg.lua")
 dofile(minetest.get_modpath("lottmobs").."/trader_goods.lua")
 dofile(minetest.get_modpath("lottmobs").."/trader.lua")
 dofile(minetest.get_modpath("lottmobs").."/special_mobs.lua")
@@ -41,8 +42,8 @@ dofile(minetest.get_modpath("lottmobs").."/animals.lua")
 
 mobs:register_mob("lottmobs:ent", {
 	type = "npc",
-        race = "ents",
-        hp_min = 50,
+	race = "ents",
+	hp_min = 50,
 	hp_max = 70,
 	collisionbox = {-0.5, 0, -0.5, 0.5, 5, 0.5},
 	textures = {
@@ -314,8 +315,8 @@ lottmobs.register_guard_craftitem("lottmobs:rohan_guard", "Rohan Guard", "lottmo
 
 mobs:register_mob("lottmobs:gondor_guard", {
 	type = "npc",
-        race = "GAMEman",
-        hp_min = 20,
+	race = "GAMEman",
+	hp_min = 20,
 	hp_max = 30,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	textures = {
@@ -851,64 +852,6 @@ mobs:register_mob("lottmobs:raiding_orc", {
 mobs:register_spawn("lottmobs:raiding_orc", {"lottmapgen:ithilien_grass"}, 2, -1, 4000, 5, 31000)
 mobs:register_spawn("lottmobs:raiding_orc", {"lottmapgen:rohan_grass"}, 2, -1, 4000, 5, 31000)
 mobs:register_spawn("lottmobs:raiding_orc", {"lottmapgen:gondor_grass"}, 2, -1, 4000, 5, 31000)
-
-mobs:register_mob("lottmobs:warg", {
-	type = "npc",
-        race = "GAMEorc",
-        hp_min = 25,
-	hp_max = 40,
-	collisionbox = {-0.7, -0.75, -0.7, 0.7, 1, 0.7},
-	visual_size = {x = 0.8, y = 0.8},
-	textures = {
-		{"lottmobs_warg.png"},
-	},
-	visual = "mesh",
-	mesh = "warg.b3d",
-	makes_footstep_sound = true,
-	walk_velocity = 2,
-	run_velocity = 5,
-	view_range = 16,
-	armor = 300,
-	drops = {
-		{name = "lottmobs:meat_raw",
-		chance = 5,
-		min = 3,
-		max = 10,},
-		{name = "lottclothes:felt_grey",
-		chance = 5,
-		min = 2,
-		max = 7,},
-	},
-	light_resistant = true,
-	drawtype = "front",
-	water_damage = 1,
-	lava_damage = 5,
-	light_damage = 0,
-	damage = 8,
-	attack_type = "dogfight", --Rather suitable name!
-	animation = {
-		speed_normal = 15,
-		speed_run = 25,
-		stand_start = 100,
-		stand_end = 260,
-		walk_start = 0,
-		walk_end = 40,
-		run_start = 40,
-		run_end = 100,
-		punch_start = 260,
-		punch_end = 290,
-	},
-        do_custom = lottmobs.do_custom_guard,
-	jump = true,
-	attacks_monsters = true,
-	peaceful = true,
-	group_attack = true,
-	step = 1,
-	sounds = {},
-})
-mobs:register_spawn("lottmobs:warg", {"lottmapgen:mordor_stone"}, 20, -1, 5000, 3, 31000)
-mobs:register_spawn("lottmobs:warg", {"default:snowblock"}, 15, -1, 7500, 3, 31000)
-mobs:register_spawn("lottmobs:warg", {"lottmapgen:angsnowblock"}, 20, -1, 5000, 5, 31000)
 
 mobs:register_mob("lottmobs:uruk_hai", {
 	type = "npc",

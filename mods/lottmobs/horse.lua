@@ -25,13 +25,13 @@ local function get_v(v)
 	return math.sqrt(v.x^2+v.z^2)
 end
 
-
 function lottmobs:register_horse(name, craftitem, horse)
 
 	if craftitem ~= nil then
 		function craftitem.on_place(itemstack, placer, pointed_thing)
 			if pointed_thing.above then
 				minetest.add_entity(pointed_thing.above, name)
+				
 				if not minetest.setting_getbool("creative_mode") then
 					itemstack:take_item()
 				end
@@ -74,6 +74,18 @@ function lottmobs:register_horse(name, craftitem, horse)
 					self.animation.speed_normal * 3, 0
 				)
 				self.animation.current = "walk"
+			end
+		elseif type == "punch" and self.animation.current ~= "punch"  then
+			if
+				self.animation.punch_start
+				and self.animation.punch_end
+				and self.animation.speed_normal
+			then
+				self.object:set_animation(
+					{x=self.animation.punch_start,y=self.animation.punch_end},
+					self.animation.speed_normal * 3, 0
+				)
+				self.animation.current = "punch"
 			end
 		end
 	end
@@ -123,10 +135,16 @@ function lottmobs:register_horse(name, craftitem, horse)
 			end
 		end
 
+		underattack = self.underattack or false
+
 		if self.v == 0 then
-			self.object:setvelocity({x=0,y=0,z=0})
-			self:set_animation("stand")
-			return
+			if underattack ~= true then
+				self.object:setvelocity({x=0,y=0,z=0})
+				self:set_animation("stand")
+				return
+			else
+				self:set_animation("punch")
+			end
 		else
 			self:set_animation("walk")
 		end
@@ -186,10 +204,24 @@ function lottmobs:register_horse(name, craftitem, horse)
 		if self.driver and clicker == self.driver then
 			self.driver = nil
 			clicker:set_detach()
+			default.player_attached[clicker:get_player_name()] = false
+			if self.offset == true then
+				clicker:set_eye_offset({x=0,y=0,z=0},{x=0,y=0,z=0})
+			end
 		elseif not self.driver then
 			self.driver = clicker
-			clicker:set_attach(self.object, "", {x=0,y=15,z=0}, {x=0,y=90,z=0})
+			attach_h = self.attach_h or 15
+			attach_r = self.attach_r or 90
+			clicker:set_attach(self.object, "", {x=0,y= attach_h ,z=0}, {x=0,y= attach_r ,z=0})
+			default.player_attached[clicker:get_player_name()] = true
 			self.object:setyaw(clicker:get_look_yaw())
+			self.ridername = clicker:get_player_name()
+			
+			if self.offset == true then
+				offset_h = self.offset_h or 0
+				offset_r = self.offset_r or 0
+				clicker:set_eye_offset({x=0,y= offset_h ,z=0},{x=0,y= offset_r ,z=0})
+			end
 		end
 	end
 
@@ -198,16 +230,77 @@ function lottmobs:register_horse(name, craftitem, horse)
 		if staticdata then
 			self.v = tonumber(staticdata)
 		end
+		
+		local hp = self.hp or 10
+		self.object:set_hp(hp)
 	end
 
 	function horse:get_staticdata()
 		return tostring(self.v)
 	end
-
+	
 	function horse:on_punch(puncher, time_from_last_punch, tool_capabilities, direction)
+		--print(rider:get_player_name())
+		local ridername = self.ridername
+		if ridername ~= nil then
+			rider = minetest.get_player_by_name(ridername)
+			print(rider:get_player_name())
+		end
+		
+		
 		if puncher and puncher:is_player() then
-			puncher:get_inventory():add_item("main", name)
+			if puncher:get_player_name() == ridername or ridername == nil then
+				puncher:get_inventory():add_item("main", name)
+				default.player_attached[puncher:get_player_name()] = false
+				puncher:set_detach()
+				self.object:remove()
+				if self.offset == true then
+					puncher:set_eye_offset({x=0,y=0,z=0},{x=0,y=0,z=0})
+				end
+			elseif self.aggressive == true then
+				local objs = minetest.get_objects_inside_radius(self.object:getpos(), 4)
+				local _,obj
+				for _,obj in ipairs(objs) do
+					if obj:is_player() and puncher:get_player_name() == obj:get_player_name() then
+						self.underattack = true
+						minetest.after(2, function()
+							self.underattack = false
+						end)
+						
+						puncher:punch(self.object, 1.0, {
+							full_punch_interval = 1.0,
+							damage_groups = {fleshy = self.dps}
+						}, nil)
+					end
+				end
+			end
+		else
+			if puncher and self.aggressive == true then
+				local objs = minetest.get_objects_inside_radius(self.object:getpos(), 4)
+				local _,obj
+				for _,obj in ipairs(objs) do
+					if puncher:get_luaentity() == obj:get_luaentity() then
+						self.underattack = true
+						minetest.after(2, function()
+							self.underattack = false
+						end)
+						
+						puncher:punch(self.object, 1.0, {
+							full_punch_interval = 1.0,
+							damage_groups = {fleshy = self.dps}
+						}, nil)
+					end
+				end
+			end
+		end
+			
+		if self.object:get_hp() <= 0 then
+			default.player_attached[ridername] = false
+			rider:set_detach()
 			self.object:remove()
+			if self.offset == true then
+				rider:set_eye_offset({x=0,y=0,z=0},{x=0,y=0,z=0})
+			end
 		end
 	end
 
@@ -233,6 +326,7 @@ lottmobs:register_horse("lottmobs:horseh1", {
 		stand_end = 50,
 		walk_start = 75,
 		walk_end = 98,
+		
 	},
 	max_speed = 7,
 	forward_boost = 2.33,
