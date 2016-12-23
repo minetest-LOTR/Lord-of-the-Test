@@ -1,18 +1,14 @@
 ![header](https://raw.githubusercontent.com/minetest-LOTT/Lord-of-the-Test/master/menu/header.png)
 ## Lord of the Test: A Minetest subgame.
-### Latest stable version: 1.0.0
+### Version: 1.1.0
 
 This is a game for Minetest that adds [Lord of the Rings](https://en.wikipedia.org/wiki/The_Lord_of_the_Rings) elements into the game.
-
-### NOTE: The dev version of LOTT (anything that is not downloaded from the [release section](https://github.com/minetest-LOTR/Lord-of-the-Test/releases)) only works with the latest dev version of Minetest.
-If you want to use the stable version of Minetest, please download the [latest stable version](https://github.com/minetest-LOTR/Lord-of-the-Test/archive/v1.0.0.zip) of LOTT!
-(It is recommended that you use the development version of both LOTT and Minetest, as many more features are in both of them!)
 
 -----------------------------------------------------------------------------------------------
 
 #### Installation:
 
-To install this game [download it](../../archive/master.zip), and extract the zip to <your minetest folder>/games/Lord-of-the-Test.
+To install this game [download it](../../archive/v1.1.0.zip), and extract the zip to <your minetest folder>/games/Lord-of-the-Test.
 
 On Linux, the folder which contains the games folder is .minetest in your home directory. (You may need to use ctrl+h to show hidden files.)
 
