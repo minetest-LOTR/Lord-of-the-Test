@@ -61,16 +61,16 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "darkage:cobble_with_plaster 2",
 	recipe = {
-		{"default:cobble", "darkage:chalk_powder"},
-		{"default:cobble", "darkage:chalk_powder"},
+		{"darkage:chalk_powder", "default:cobble"},
+		{"darkage:chalk_powder", "default:cobble"},
 	}
 })
 
 minetest.register_craft({
-	output = "darkage:cobble_with_plaster 2",
+	output = "darkage:stonebrick_with_plaster 2",
 	recipe = {
-		{"darkage:chalk_powder", "default:cobble"},
-		{"darkage:chalk_powder", "default:cobble"},
+		{"darkage:chalk_powder", "default:stonebrick"},
+		{"darkage:chalk_powder", "default:stonebrick"},
 	}
 })
 

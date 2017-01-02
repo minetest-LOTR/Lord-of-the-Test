@@ -168,32 +168,3 @@ minetest.register_craft({
 		{'lottfarming:melon_slice', 'lottfarming:melon_slice', 'lottfarming:melon_slice'},
 	}
 })
-
--- COOKING
-minetest.register_craft({
-	type = "cooking",
-	cooktime = 15,
-	output = "lottfarming:barley_cooked",
-	recipe = "lottfarming:barley"
-})
-
-minetest.register_craft({
-	type = "cooking",
-	cooktime = 15,
-	output = "lottfarming:pipeweed_cooked",
-	recipe = "lottfarming:pipeweed"
-})
-
-minetest.register_craft({
-	type = "cooking",
-	cooktime = 15,
-	output = "lottfarming:potato_cooked",
-	recipe = "lottfarming:potato"
-})
-
-minetest.register_craft({
-	type = "cooking",
-	cooktime = 15,
-	output = "lottfarming:turnips_cooked",
-	recipe = "lottfarming:turnips"
-})

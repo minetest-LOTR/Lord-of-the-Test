@@ -37,12 +37,31 @@ minetest.register_node("darkage:chalk", {
 })
 
 minetest.register_node("darkage:cobble_with_plaster", {
-	description = "Cobblestone With Plaster",
-	tiles = {"darkage_cobble_with_plaster_D.png", "darkage_cobble_with_plaster_B.png", "darkage_cobble_with_plaster_C.png",
-		"darkage_cobble_with_plaster_A.png", "default_cobble.png", "darkage_chalk.png"},
+	description = "Cobblestone with Plaster",
+	tiles = {
+		"default_cobble.png^(darkage_plaster.png^[transform1)",
+		"default_cobble.png^(darkage_plaster.png^[transform3)",
+		"default_cobble.png^darkage_plaster.png",
+		"default_cobble.png^(darkage_plaster.png^[transform2)",
+		"default_cobble.png",
+		"darkage_chalk.png"},
 	is_ground_content = false,
 	paramtype2 = "facedir",
-	drop = 'default:cobble',
+	groups = {cracky=3},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_node("darkage:stonebrick_with_plaster", {
+	description = "Stone Brick with Plaster",
+	tiles = {
+		"default_stone_brick.png^(darkage_plaster.png^[transform1)",
+		"default_stone_brick.png^(darkage_plaster.png^[transform3)",
+		"default_stone_brick.png^darkage_plaster.png",
+		"default_stone_brick.png^(darkage_plaster.png^[transform2)",
+		"default_stone_brick.png",
+		"darkage_chalk.png"},
+	is_ground_content = false,
+	paramtype2 = "facedir",
 	groups = {cracky=3},
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -302,5 +321,3 @@ minetest.register_node("darkage:rhyolitic_tuff_rubble", {
 	groups = {crumbly = 2, falling_node = 1},
 	sounds = default.node_sound_gravel_defaults(),
 })
-
-
