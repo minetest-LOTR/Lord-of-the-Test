@@ -1,4 +1,4 @@
-local get_formspec = function(player,page)
+function lottinventory.get_potion_formspec(player, page)
 	if page=="potions" then
 		return "size[8,5.5]"
                .."background[5,5;1,1;craft_formbg.png;true]"
@@ -191,51 +191,59 @@ local get_formspec = function(player,page)
 end
 
 minetest.register_on_player_receive_fields(function(player,formname,fields)
+	local pn = player:get_player_name()
 	if fields.potions then
-	     inventory_plus.set_inventory_formspec(player, get_formspec(player,"potions"))
+		minetest.show_formspec(pn, "potions",
+			lottinventory.get_potion_formspec(player, "potions"))
 	end
-     if fields.potions2 then
-	     inventory_plus.set_inventory_formspec(player, get_formspec(player,"potions2"))
+	if fields.potions2 then
+		minetest.show_formspec(pn, "potions",
+			lottinventory.get_potion_formspec(player, "potions2"))
 	end
-     if fields.potions3 then
-	     inventory_plus.set_inventory_formspec(player, get_formspec(player,"potions3"))
+	if fields.potions3 then
+		minetest.show_formspec(pn, "potions",
+			lottinventory.get_potion_formspec(player, "potions3"))
 	end
-     if fields.potions4 then
-	     inventory_plus.set_inventory_formspec(player, get_formspec(player,"potions4"))
+	if fields.potions4 then
+		minetest.show_formspec(pn, "potions",
+			lottinventory.get_potion_formspec(player, "potions4"))
 	end
-     if fields.potions5 then
-	     inventory_plus.set_inventory_formspec(player, get_formspec(player,"potions5"))
+	if fields.potions5 then
+		minetest.show_formspec(pn, "potions",
+			lottinventory.get_potion_formspec(player, "potions5"))
 	end
-     if fields.potions6 then
-	     inventory_plus.set_inventory_formspec(player, get_formspec(player,"potions6"))
+	if fields.potions6 then
+		minetest.show_formspec(pn, "potions",
+			lottinventory.get_potion_formspec(player, "potions6"))
 	end
-     if fields.potions7 then
-	     inventory_plus.set_inventory_formspec(player, get_formspec(player,"potions7"))
+	if fields.potions7 then
+		minetest.show_formspec(pn, "potions",
+			lottinventory.get_potion_formspec(player, "potions7"))
 	end
 end)
 
 minetest.register_tool("lottinventory:potions_book",{
-    description = "Book of Potions",
-    inventory_image = "lottinventory_potion_book.png",
-    wield_image = "",
-    wield_scale = {x=1,y=1,z=1},
-    stack_max = 1,
-    groups = {cook_crafts=1, book=1},
-    tool_capabilities = {
-        full_punch_interval = 1.0,
-        max_drop_level=0,
-        groupcaps={
-            fleshy={times={[2]=0.80, [3]=0.40}, maxlevel=1},
-            snappy={times={[2]=0.80, [3]=0.40}, maxlevel=1},
-            choppy={times={[3]=0.90}, maxlevel=0}
-        }
-    },
-    on_place = function(itemstack, player, pointed_thing)
-       inventory_plus.set_inventory_formspec(player, get_formspec(player,"potions"))
-       return itemstack; -- nothing consumed, nothing changed
-    end,
-    on_use = function(itemstack, player, pointed_thing)
-          inventory_plus.set_inventory_formspec(player, get_formspec(player,"potions"))
-          return itemstack; -- nothing consumed, nothing changed
-    end,
+	description = "Book of Potions",
+	inventory_image = "lottinventory_potion_book.png",
+	wield_image = "",
+	wield_scale = {x=1,y=1,z=1},
+	stack_max = 1,
+	groups = {cook_crafts=1, book=1},
+	tool_capabilities = {
+		full_punch_interval = 1.0,
+		max_drop_level=0,
+		groupcaps={
+			fleshy={times={[2]=0.80, [3]=0.40}, maxlevel=1},
+			snappy={times={[2]=0.80, [3]=0.40}, maxlevel=1},
+			choppy={times={[3]=0.90}, maxlevel=0}
+		}
+	},
+	on_place = function(itemstack, player, pointed_thing)
+		minetest.show_formspec(player:get_player_name(), "potions",
+			lottinventory.get_potion_formspec(player, "potions"))
+	end,
+	on_use = function(itemstack, player, pointed_thing)
+		minetest.show_formspec(player:get_player_name(), "potions",
+			lottinventory.get_potion_formspec(player, "potions"))
+	end,
 })

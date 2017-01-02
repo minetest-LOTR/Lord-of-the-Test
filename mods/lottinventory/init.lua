@@ -1,10 +1,7 @@
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/zcg.lua")
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/cooking.lua")
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/forbidden.lua")
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/protection.lua")
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/potions.lua")
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/brewing.lua")
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/master.lua")
+dofile(minetest.get_modpath("lottinventory") .. "/functions.lua")
+dofile(minetest.get_modpath("lottinventory") .. "/potions.lua")
+dofile(minetest.get_modpath("lottinventory") .. "/brewing.lua")
+dofile(minetest.get_modpath("lottinventory") .. "/guides.lua")
 
 --Inventory Plus
 inventory_plus = {}
