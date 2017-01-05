@@ -34,7 +34,6 @@ local row_boat = {
 	visual = "mesh",
 	mesh = "rowboat.b3d",
 	textures = {"default_wood.png"},
-
 	driver = nil,
 	v = 0,
 	stepcount = 0,
@@ -309,8 +308,8 @@ function sail_boat.on_step(self, dtime)
 		self.v = 0
 		return
 	end
-	if math.abs(self.v) > 4.5 then
-		self.v = 4.5 * get_sign(self.v)
+	if math.abs(self.v) > 7.5 then
+		self.v = 7.5 * get_sign(self.v)
 	end
 
 	local p = self.object:getpos()

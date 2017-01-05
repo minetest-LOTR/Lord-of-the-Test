@@ -18,7 +18,7 @@ local function is_owner(pos, name)
 end
 
 minetest.register_node("bones:bones", {
-	description = "Bones Block",
+	description = "Gravestone",
 	tiles = {"default_stone.png", "default_stone.png",
 		"default_stone.png", "default_stone.png",
 		"default_stone.png", "default_stone.png^bones_writing.png",
