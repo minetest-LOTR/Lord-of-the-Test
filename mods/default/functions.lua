@@ -242,7 +242,14 @@ minetest.register_abm({
 				height = height+1
 				pos.y = pos.y+1
 			end
-			if height < 4 then
+			local light_level = minetest.get_node_light(pos)
+			if not light_level then
+				return
+			end
+			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+
+			if light_level > 7 and height < 4 and
+			(math.random(1, c) == 1 or light_level >= 13) then
 				if minetest.get_node(pos).name == "air" then
 					minetest.set_node(pos, {name="default:cactus"})
 				end
@@ -270,7 +277,14 @@ minetest.register_abm({
 				height = height+1
 				pos.y = pos.y+1
 			end
-			if height < 4 then
+			local light_level = minetest.get_node_light(pos)
+			if not light_level then
+				return
+			end
+			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+
+			if light_level > 7 and height < 4 and
+			(math.random(1, c) == 1 or light_level >= 13) then
 				if minetest.get_node(pos).name == "air" then
 					minetest.set_node(pos, {name="default:papyrus", param2 = 3})
 				end

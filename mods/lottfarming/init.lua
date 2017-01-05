@@ -117,29 +117,30 @@ function farming:add_plant(full_grown, names, interval, chance, p2)
 				return
 			end
 			pos.y = pos.y+1
-			if not minetest.get_node_light(pos) then
+			local light_level = minetest.get_node_light(pos)
+			if not light_level then
 				return
 			end
-			if minetest.get_node_light(pos) < 8 then
-				return
-			end
-			local step = nil
-			for i,name in ipairs(names) do
-				if name == node.name then
-					step = i
-					break
+			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+			if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+				local step
+				for i,name in ipairs(names) do
+					if name == node.name then
+						step = i
+						break
+					end
 				end
+				if not step then
+					return
+				end
+				local new_node = {name=names[step+1], param2=p2}
+				if new_node.name == nil then
+					new_node.name = full_grown
+				end
+				minetest.set_node(pos, new_node)
 			end
-			if step == nil then
-				return
-			end
-			local new_node = {name=names[step+1], param2=p2}
-			if new_node.name == nil then
-				new_node.name = full_grown
-			end
-			minetest.set_node(pos, new_node)
 		end
-}	)
+})
 end
 
 -- ========= CORN =========

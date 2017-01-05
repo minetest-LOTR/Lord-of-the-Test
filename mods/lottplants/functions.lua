@@ -648,7 +648,14 @@ minetest.register_abm({
     action = function(pos, node, active_object_count, active_object_count_wider)
 		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) then
-			lottplants_aldertree(pos)
+			local light_level = minetest.get_node_light(pos)
+			if not light_level then
+				return
+			end
+			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+			if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+				lottplants_aldertree(pos)
+			end
 		end
     end,
 })
@@ -662,7 +669,14 @@ minetest.register_abm({
     action = function(pos, node, active_object_count, active_object_count_wider)
 		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) then
-			lottplants_appletree(pos)
+			local light_level = minetest.get_node_light(pos)
+			if not light_level then
+				return
+			end
+			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+			if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+				lottplants_appletree(pos)
+			end
 		end
     end,
 })
@@ -677,7 +691,14 @@ minetest.register_abm({
 		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 3, z = pos.z}) then
-			lottplants_birchtree(pos)
+			local light_level = minetest.get_node_light(pos)
+			if not light_level then
+				return
+			end
+			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+			if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+				lottplants_birchtree(pos)
+			end
 		end
     end,
 })
@@ -692,7 +713,14 @@ minetest.register_abm({
 		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 3, z = pos.z}) then
-			lottplants_beechtree(pos)
+			local light_level = minetest.get_node_light(pos)
+			if not light_level then
+				return
+			end
+			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+			if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+				lottplants_beechtree(pos)
+			end
 		end
     end,
 })
@@ -706,7 +734,14 @@ minetest.register_abm({
     action = function(pos, node, active_object_count, active_object_count_wider)
 		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) then
-			lottplants_culumaldatree(pos)
+			local light_level = minetest.get_node_light(pos)
+			if not light_level then
+				return
+			end
+			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+			if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+				lottplants_culumaldatree(pos)
+			end
 		end
     end,
 })
@@ -721,7 +756,14 @@ minetest.register_abm({
 		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 3, z = pos.z}) then
-			lottplants_elmtree(pos)
+			local light_level = minetest.get_node_light(pos)
+			if not light_level then
+				return
+			end
+			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+			if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+				lottplants_elmtree(pos)
+			end
 		end
     end,
 })
@@ -736,7 +778,14 @@ minetest.register_abm({
 		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 3, z = pos.z}) then
-			lottplants_firtree(pos)
+			local light_level = minetest.get_node_light(pos)
+			if not light_level then
+				return
+			end
+			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+			if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+				lottplants_firtree(pos)
+			end
 		end
     end,
 })
@@ -751,7 +800,14 @@ minetest.register_abm({
 		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 3, z = pos.z}) then
-			lottplants_lebethrontree(pos)
+			local light_level = minetest.get_node_light(pos)
+			if not light_level then
+				return
+			end
+			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+			if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+				lottplants_lebethrontree(pos)
+			end
 		end
     end,
 })
@@ -763,7 +819,14 @@ minetest.register_abm({
     interval = 67,
     chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
-		lottplants_young_mallorn(pos)
+		local light_level = minetest.get_node_light(pos)
+		if not light_level then
+			return
+		end
+		local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+		if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+			lottplants_young_mallorn(pos)
+		end
     end,
 })
 
@@ -778,7 +841,14 @@ minetest.register_abm({
 			if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
 			can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
 			can_grow({x = pos.x, y = pos.y - 3, z = pos.z}) then
-				lottplants_smallmallorntree(pos)
+				local light_level = minetest.get_node_light(pos)
+				if not light_level then
+					return
+				end
+				local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+				if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+					lottplants_smallmallorntree(pos)
+				end
 			end
 		end
     end,
@@ -793,7 +863,14 @@ minetest.register_abm({
 		local naa = minetest.get_node_or_nil({x = pos.x, y = pos.y + 2, z = pos.z})
 		if na.name == "lottplants:mallorntree" and naa.name == "lottplants:mallorntree" then
 			if large_roots(pos) ~= false then
-				lottplants_mallorntree(pos)
+				local light_level = minetest.get_node_light(pos)
+				if not light_level then
+					return
+				end
+				local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+				if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+					lottplants_mallorntree(pos)
+				end
 			end
 		end
 	end,
@@ -809,7 +886,14 @@ minetest.register_abm({
 		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 3, z = pos.z}) then
-			lottplants_pinetree(pos)
+			local light_level = minetest.get_node_light(pos)
+			if not light_level then
+				return
+			end
+			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+			if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+				lottplants_pinetree(pos)
+			end
 		end
     end,
 })
@@ -823,7 +907,14 @@ minetest.register_abm({
     action = function(pos, node, active_object_count, active_object_count_wider)
 		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) then
-			lottplants_plumtree(pos)
+			local light_level = minetest.get_node_light(pos)
+			if not light_level then
+				return
+			end
+			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+			if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+				lottplants_plumtree(pos)
+			end
 		end
     end,
 })
@@ -837,7 +928,15 @@ minetest.register_abm({
     action = function(pos, node, active_object_count, active_object_count_wider)
 		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) then
-			lottplants_rowantree(pos)
+			local light_level = minetest.get_node_light(pos)
+			if not light_level then
+				return
+			end
+			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+			print(light_level, c)
+			if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+				lottplants_rowantree(pos)
+			end
 		end
     end,
 })
@@ -851,7 +950,14 @@ minetest.register_abm({
     action = function(pos, node, active_object_count, active_object_count_wider)
 		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) then
-			lottplants_whitetree(pos)
+			local light_level = minetest.get_node_light(pos)
+			if not light_level then
+				return
+			end
+			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+			if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+				lottplants_whitetree(pos)
+			end
 		end
     end,
 })
@@ -865,7 +971,14 @@ minetest.register_abm({
     action = function(pos, node, active_object_count, active_object_count_wider)
 		if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
 		can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) then
-			lottplants_yavannamiretree(pos)
+			local light_level = minetest.get_node_light(pos)
+			if not light_level then
+				return
+			end
+			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+			if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+				lottplants_yavannamiretree(pos)
+			end
 		end
     end,
 })
@@ -878,12 +991,26 @@ minetest.register_abm({
     chance = 11,
     action = function(pos, node, active_object_count, active_object_count_wider)
 		if math.random(2) == 1 and large_roots(pos) then
-			lottplants_mirktree(pos)
+			local light_level = minetest.get_node_light(pos)
+			if not light_level then
+				return
+			end
+			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+			if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+				lottplants_mirktree(pos)
+			end
 		else
 			if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
 			can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
 			can_grow({x = pos.x, y = pos.y - 3, z = pos.z}) then
-				lottplants_smallmirktree(pos)
+				local light_level = minetest.get_node_light(pos)
+				if not light_level then
+					return
+				end
+				local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+				if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+					lottplants_smallmirktree(pos)
+				end
 			end
 		end
     end,

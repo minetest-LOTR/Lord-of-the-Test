@@ -160,19 +160,20 @@ minetest.register_abm({
 			return
 		end
 		pos.y = pos.y+1
-		if not minetest.get_node_light(pos) then
+		local light_level = minetest.get_node_light(pos)
+		if not light_level then
 			return
 		end
-		if minetest.get_node_light(pos) < 8 then
-			return
-		end
-		pos.y=pos.y+1
-		if minetest.get_node(pos).name ~= wherein then
-			return
-		end
-		pos.y=pos.y-1
+		local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+		if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+			pos.y=pos.y+1
+			if minetest.get_node(pos).name ~= wherein then
+				return
+			end
+			pos.y=pos.y-1
 
-		minetest.set_node(pos, {name='lottfarming:corn_2', param2 = 3})
+			minetest.set_node(pos, {name='lottfarming:corn_2', param2 = 3})
+		end
 	end
 })
 minetest.register_abm({
@@ -185,17 +186,17 @@ minetest.register_abm({
 			return
 		end
 		pos.y = pos.y+1
-		if not minetest.get_node_light(pos) then
+		local light_level = minetest.get_node_light(pos)
+		if not light_level then
 			return
 		end
-		if minetest.get_node_light(pos) < 8 then
-			return
+		local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+		if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+			pos.y=pos.y+1
+			minetest.set_node(pos, {name='lottfarming:corn_21', param2 = 3})
+			pos.y=pos.y-1
+			minetest.set_node(pos, {name='lottfarming:corn_3', param2 = 3})
 		end
-		pos.y=pos.y+1
-		minetest.set_node(pos, {name='lottfarming:corn_21', param2 = 3})
-		pos.y=pos.y-1
-		minetest.set_node(pos, {name='lottfarming:corn_3', param2 = 3})
-
 	end
 })
 minetest.register_abm({
@@ -208,21 +209,20 @@ minetest.register_abm({
 			return
 		end
 		pos.y = pos.y+1
-		if not minetest.get_node_light(pos) then
+		local light_level = minetest.get_node_light(pos)
+		if not light_level then
 			return
 		end
-		if minetest.get_node_light(pos) < 8 then
-			return
+		local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+		if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+			pos.y=pos.y+1
+			pos.y=pos.y+1
+			minetest.set_node(pos, {name='lottfarming:corn_31', param2 = 3})
+			pos.y=pos.y-1
+			minetest.set_node(pos, {name='lottfarming:corn_22', param2 = 3})
+			pos.y=pos.y-1
+			minetest.set_node(pos, {name='lottfarming:corn_4', param2 = 3})
 		end
-		pos.y=pos.y+1
-		pos.y=pos.y+1
-		minetest.set_node(pos, {name='lottfarming:corn_31', param2 = 3})
-		pos.y=pos.y-1
-
-		minetest.set_node(pos, {name='lottfarming:corn_22', param2 = 3})
-		pos.y=pos.y-1
-		minetest.set_node(pos, {name='lottfarming:corn_4', param2 = 3})
-
 	end
 })
 minetest.register_abm({
@@ -230,16 +230,16 @@ minetest.register_abm({
 	interval = interval,
 	chance = chance,
 	action = function(pos, node)
-		if not minetest.get_node_light(pos) then
+		local light_level = minetest.get_node_light(pos)
+		if not light_level then
 			return
 		end
-		if minetest.get_node_light(pos) < 8 then
-			return
+		local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
+		if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+			pos.y=pos.y+1
+			minetest.set_node(pos, {name='lottfarming:corn_32', param2 = 3})
+			pos.y=pos.y-1
+			minetest.set_node(pos, {name='lottfarming:corn_23', param2 = 3})
 		end
-		pos.y=pos.y+1
-		minetest.set_node(pos, {name='lottfarming:corn_32', param2 = 3})
-		pos.y=pos.y-1
-		minetest.set_node(pos, {name='lottfarming:corn_23', param2 = 3})
-
 	end
 })

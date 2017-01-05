@@ -349,8 +349,8 @@ end
 minetest.register_abm({
 	nodenames = {"group:wheat"},
 	neighbors = {"group:soil"},
-	interval = 90,
-	chance = 2,
+	interval = 60,
+	chance = 20,
 	action = function(pos, node)
 		-- return if already full grown
 		if minetest.get_item_group(node.name, "wheat") == 8 then
@@ -366,16 +366,16 @@ minetest.register_abm({
 		pos.y = pos.y+1
 
 		-- check light
-		if not minetest.get_node_light(pos) then
+		local light_level = minetest.get_node_light(pos)
+		if not light_level then
 			return
 		end
-		if minetest.get_node_light(pos) < 13 then
-			return
-		end
+		local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
 
-		-- grow
-		local height = minetest.get_item_group(node.name, "wheat") + 1
-		minetest.set_node(pos, {name="farming:wheat_"..height})
+		if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+			local height = minetest.get_item_group(node.name, "wheat") + 1
+			minetest.set_node(pos, {name="farming:wheat_" .. height})
+		end
 	end
 })
 
@@ -435,8 +435,8 @@ end
 minetest.register_abm({
 	nodenames = {"group:cotton"},
 	neighbors = {"group:soil"},
-	interval = 80,
-	chance = 2,
+	interval = 60,
+	chance = 20,
 	action = function(pos, node)
 		-- return if already full grown
 		if minetest.get_item_group(node.name, "cotton") == 8 then
@@ -452,16 +452,16 @@ minetest.register_abm({
 		pos.y = pos.y+1
 
 		-- check light
-		if not minetest.get_node_light(pos) then
+		local light_level = minetest.get_node_light(pos)
+		if not light_level then
 			return
 		end
-		if minetest.get_node_light(pos) < 13 then
-			return
-		end
+		local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
 
-		-- grow
-		local height = minetest.get_item_group(node.name, "cotton") + 1
-		minetest.set_node(pos, {name="farming:cotton_"..height})
+		if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
+			local height = minetest.get_item_group(node.name, "cotton") + 1
+			minetest.set_node(pos, {name="farming:cotton_"..height})
+		end
 	end
 })
 
