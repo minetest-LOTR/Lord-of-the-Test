@@ -100,7 +100,7 @@ return "return {[\"background\"] = \"gui_rohanbg.png\", " ..
 	"materials\\\nthemselves contribute to the changing of the\\\nproperties " ..
 	"of the rings.\\\n\\\nWhen this furnace has been built, it cannot simply" ..
 	"\\\nbe placed down. Under it, you must place a three\\\nby three square of " ..
-	"lava, and the furnace must rest\\\nin the middle of this, above the lava." ..
+	"lava, and the furnace must rest\\\nin the middle of this, directly above the lava." ..
 	"\\\n\\\nWhen the furnace has been placed, in it must be\\\nput the ring, " ..
 	"surrounded in rough rock, one block\\\nof mithril, one block of tilkal and " ..
 	"one block of\\\ngalvorn, along with plenty of fuel. It will take two\\\ndays " ..

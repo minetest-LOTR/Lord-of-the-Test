@@ -425,7 +425,7 @@ for _, status in pairs({"active", "inactive"}) do
 		groups.not_in_creative_inventory = 1
 	end
 	minetest.register_node("lottother:ring_furnace_" .. status, {
-		description = "Ringsilver Furnace",
+		description = "Ring Furnace",
 		tiles = {
 			"lottother_ring_furnace_side.png",
 			"lottother_ring_furnace_side.png",
