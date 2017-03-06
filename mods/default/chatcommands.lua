@@ -13,10 +13,11 @@ minetest.register_chatcommand("privs", {
 				key, value = nil
 			elseif i == 1 then
 				privs = privs .. key
+				i = i + 1
 			else
 				privs = privs .. ", " .. key
+				i = i + 1
 			end
-			i = i + 1
 		end
 		return true, "Privileges of " .. param .. ": " .. privs
 	end,
@@ -66,10 +67,11 @@ minetest.register_chatcommand("grant", {
 				key, value = nil
 			elseif i == 1 then
 				privs_string = privs_string .. key
+				i = i + 1
 			else
 				privs_string = privs_string .. ", " .. key
+				i = i + 1
 			end
-			i = i + 1
 		end
 		minetest.log("action", name..' granted ' .. privs_string .. ' privileges to '.. grant_name)
 		if grant_name ~= name then
@@ -122,10 +124,11 @@ minetest.register_chatcommand("grantme", {
 				key, value = nil
 			elseif i == 1 then
 				privs_string = privs_string .. key
+				i = i + 1
 			else
 				privs_string = privs_string .. ", " .. key
+				i = i + 1
 			end
-			i = i + 1
 		end
 		minetest.log("action", name ..' granted ' .. privs_string .. ' privileges to him/herself')
 		return true, "Privileges of " .. name .. ": " .. privs_string
@@ -177,10 +180,11 @@ minetest.register_chatcommand("revoke", {
 				key, value = nil
 			elseif i == 1 then
 				privs_string = privs_string .. key
+				i = i + 1
 			else
 				privs_string = privs_string .. ", " .. key
+				i = i + 1
 			end
-			i = i + 1
 		end
 		minetest.log("action", name..' revoked ('
 				.. privs_string
