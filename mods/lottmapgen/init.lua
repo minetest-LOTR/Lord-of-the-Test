@@ -223,7 +223,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				local fimadep = math.floor(6 - y / 512) + math.random(0, 1)
 				local vi = area:index(x, y, z)
 				local nodid = data[vi]
-				local viuu = area:index(x, y - 2, z)
+				local viuu = area:index(x, y - 1, z)
 				local nodiduu = data[viuu]
 				local via = area:index(x, y + 1, z)
 				local nodida = data[via]
@@ -290,6 +290,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 								elseif y <= sandmin then
 									data[vi] = c_stone
 								else -- above sandline
+									if open then
 									if biome == 1 then
 										if math.random(121) == 2 then
 											data[vi] = c_ice
@@ -323,7 +324,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 									elseif biome == 13 then
 										data[vi] = c_shiregrass
 									end
-								if open then -- if open to sky then flora
 									local y = surfy + 1
 									local vi = area:index(x, y, z)
 									if biome == 1 then
