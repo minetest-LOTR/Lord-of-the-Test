@@ -67,7 +67,7 @@ minetest.register_craft({
 	output = "lottblocks:hobbit_door",
 	recipe = {
 		{"lottplants:birchwood", "lottplants:birchwood"},
-		{"lottplants:birchwood", "lottplants:birchwood"},
+		{"lottplants:birchwood", "lottores:silver_ingot"},
 		{"lottplants:birchwood", "lottplants:birchwood"},
 	}
 })
@@ -76,7 +76,7 @@ minetest.register_craft({
 	output = "lottblocks:human_door",
 	recipe = {
 		{"lottplants:alderwood", "lottplants:alderwood"},
-		{"lottplants:alderwood", "lottplants:alderwood"},
+		{"lottplants:alderwood", "lottores:silver_ingot"},
 		{"lottplants:alderwood", "lottplants:alderwood"},
 	}
 })
@@ -85,7 +85,7 @@ minetest.register_craft({
 	output = "lottblocks:elven_door",
 	recipe = {
 		{"lottplants:mallornwood", "lottplants:mallornwood"},
-		{"lottplants:mallornwood", "lottplants:mallornwood"},
+		{"lottplants:mallornwood", "lottores:silver_ingot"},
 		{"lottplants:mallornwood", "lottplants:mallornwood"},
 	}
 })
@@ -94,7 +94,7 @@ minetest.register_craft({
 	output = "lottblocks:orc_door",
 	recipe = {
 		{"lottmapgen:mordor_stone", "lottmapgen:mordor_stone"},
-		{"lottmapgen:mordor_stone", "lottmapgen:mordor_stone"},
+		{"lottmapgen:mordor_stone", "lottores:silver_ingot"},
 		{"lottmapgen:mordor_stone", "lottmapgen:mordor_stone"},
 	}
 })
@@ -103,7 +103,7 @@ minetest.register_craft({
 	output = "lottblocks:dwarf_door",
 	recipe = {
 		{"default:stone", "default:stone"},
-		{"default:stone", "default:stone"},
+		{"default:stone", "lottores:silver_ingot"},
 		{"default:stone", "default:stone"},
 	}
 })
