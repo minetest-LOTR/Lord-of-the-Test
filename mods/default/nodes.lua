@@ -457,22 +457,6 @@ minetest.register_node("default:glass", {
 	sounds = default.node_sound_glass_defaults(),
 })
 
-minetest.register_node("default:fence_wood", {
-	description = "Wooden Fence",
-	drawtype = "fencelike",
-	tiles = {"default_wood.png"},
-	inventory_image = "default_fence.png",
-	wield_image = "default_fence.png",
-	paramtype = "light",
-	is_ground_content = false,
-	selection_box = {
-		type = "fixed",
-		fixed = {-1/7, -1/2, -1/7, 1/7, 1/2, 1/7},
-	},
-	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2},
-	sounds = default.node_sound_wood_defaults(),
-})
-
 minetest.register_node("default:rail", {
 	description = "Rail",
 	drawtype = "raillike",
@@ -488,57 +472,6 @@ minetest.register_node("default:rail", {
                 fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
 	},
 	groups = {bendy=2,dig_immediate=2,attached_node=1},
-})
-
-minetest.register_node("default:ladder", {
-	description = "Ladder",
-	drawtype = "nodebox",
-	tiles = {"default_ladder.png"},
-	inventory_image = "default_ladder_inv.png",
-	wield_image = "default_ladder_inv.png",
-	paramtype = "light",
-	paramtype2 = "facedir",
-	sunlight_propagates = true,
-	walkable = true,
-	climbable = true,
-	is_ground_content = false,
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.375, -0.5, 0.3125, -0.25, 0.5, 0.5}, -- NodeBox1
-			{0.25, -0.5, 0.3125, 0.375, 0.5, 0.5}, -- NodeBox2
-			{-0.25, -0.4375, 0.3125, 0.25, -0.3125, 0.5}, -- NodeBox3
-			{-0.25, -0.1875, 0.3125, 0.25, -0.0625, 0.5}, -- NodeBox5
-			{-0.25, 0.0625, 0.3125, 0.25, 0.1875, 0.5}, -- NodeBox6
-			{-0.25, 0.3125, 0.3125, 0.25, 0.4375, 0.5}, -- NodeBox7
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = {{-0.4375, -0.5, 0.3125, 0.4375, 0.5, 0.5}}
-	},
-	groups = {choppy=2,oddly_breakable_by_hand=3,flammable=2},
-	legacy_wallmounted = true,
-	sounds = default.node_sound_wood_defaults(),
-	after_place_node = function(pos, placer, itemstack, pointed_thing)
-		local dir = minetest.dir_to_facedir(placer:get_look_dir())
-		local npos = pos
-		if dir == 0 then
-			npos = {x = pos.x, y = pos.y, z = pos.z + 1}
-		elseif dir == 1 then
-			npos = {x = pos.x + 1, y = pos.y, z = pos.z}
-		elseif dir == 2 then
-			npos = {x = pos.x, y = pos.y, z = pos.z - 1}
-		elseif dir == 3 then
-			npos = {x = pos.x - 1, y = pos.y, z = pos.z}
-		end
-		if minetest.registered_nodes[minetest.get_node(npos).name]["walkable"] == false then
-			minetest.remove_node(pos)
-			return true
-		else
-			minetest.set_node(pos, {name = "default:ladder", param2 = dir})
-		end
-	end,
 })
 
 minetest.register_node("default:wood", {

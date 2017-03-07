@@ -159,13 +159,13 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if fields.creative_switchpalette then
 		local inv = minetest.get_inventory({type='player',name=name})
  		local items = {}
-		for i = 1, 24 do
+		for i = 8, 32 do
 			local stack = inv:get_stack("main", i)
-			items[i + 8] = {name = stack:get_name(), count = stack:get_count()}
+			items[i - 8] = {name = stack:get_name(), count = stack:get_count()}
 		end
-		for i = 25, 32 do
+		for i = 1, 8 do
 			local stack = inv:get_stack("main", i)
-			items[i - 24] = {name = stack:get_name(), count = stack:get_count()}
+			items[i + 24] = {name = stack:get_name(), count = stack:get_count()}
 		end
 		for i = 1, 32 do
 			if items[i].name and items[i].count then
