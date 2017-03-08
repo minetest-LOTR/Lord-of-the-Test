@@ -125,6 +125,15 @@ function lottmapgen_papyrus(x, y, z, area, data, p2data)
 	end
 end
 
+function lottmapgen_cactus(x, y, z, area, data)
+	local c_cactus = minetest.get_content_id("default:cactus")
+	local h = math.random(0, 4)
+	for j = -1, h do
+		local vic = area:index(x, y + j, z)
+		data[vic] = c_cactus
+	end
+end
+
 function lottmapgen_farmingrareplants(data, vi, p2data)
 	local c_rplant1 = minetest.get_content_id("lottplants:athelas")
 	local c_rplant2 = minetest.get_content_id("lottplants:melon_wild")
@@ -455,7 +464,7 @@ function lottmapgen_jungletree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_jungletree2(x, y, z, area, data)
+function lottmapgen_mirktree2(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:jungletree")
 	local c_leaves = minetest.get_content_id("lottplants:mirkleaf")
 	for j = -3, 7 do
@@ -790,6 +799,203 @@ function lottmapgen_mirktree(x, y, z, area, data)
 	end
 end
 
+function lottmapgen_jungletree(x, y, z, area, data, p2data)
+	local c_air = minetest.get_content_id("air")
+	local c_jungletree = minetest.get_content_id("default:jungletree")
+	local c_jungleleaf = minetest.get_content_id("lottmapgen:jungle_leaves")
+	local h = math.random(12, 15)
+	for j = -2, h do
+		if j >= h-5 and j <= h-2 then
+			for i = -3, 3 do
+			for k = -3, 3 do
+				if math.abs(i) + math.abs(k) ~= 6 then
+				if math.random(5) > 2 then
+					local vil = area:index(x + i, y + j, z + k)
+					if data[vil] == c_air then
+						data[vil] = c_jungleleaf
+						p2data[vil] = math.random(1,8)
+					end
+				end
+				end
+			end
+			end
+		elseif j == h-6 or j == h-1 then
+			for i = -2, 2 do
+			for k = -2, 2 do
+				if not (i == 0 and j == 0) then
+					if math.random(7) ~= 2 then
+						local vil = area:index(x + i, y + j, z + k)
+						if data[vil] == c_air then
+							data[vil] = c_jungleleaf
+							p2data[vil] = math.random(1,8)
+						end
+					end
+				end
+			end
+			end
+		elseif j == h then
+			for i = -1, 1 do
+			for k = -1, 1 do
+				if not (i == 0 and j == 0) then
+					if math.random(7) ~= 2 then
+						local vil = area:index(x + i, y + j, z + k)
+						if data[vil] == c_air then
+							data[vil] = c_jungleleaf
+							p2data[vil] = math.random(1,8)
+						end
+					end
+				end
+			end
+			end
+		end
+		local vit = area:index(x, y + j, z)
+		data[vit] = c_jungletree
+	end
+	local vil = area:index(x, y + h + 1, z)
+	data[vil] = c_jungleleaf
+	p2data[vil] = math.random(1,8)
+end
+
+function lottmapgen_bigjungletree(x, y, z, area, data, p2data)
+	local c_air = minetest.get_content_id("air")
+	local c_jungletree = minetest.get_content_id("default:jungletree")
+	local c_jungleleaf = minetest.get_content_id("lottmapgen:jungle_leaves")
+	local h = math.random(20, 27)
+	local lf = math.random(9, 14)
+	for j = -2, h do
+		if j >= h-5 and j <= h - 1 then
+			for i = -6, 7 do
+			for k = -6, 7 do
+				if math.abs(i) + math.abs(k) < 10 then
+					if math.random(5) > 2 then
+						local vil = area:index(x + i, y + j, z + k)
+						if data[vil] == c_air then
+							data[vil] = c_jungleleaf
+							p2data[vil] = math.random(1,8)
+						end
+					end
+				end
+			end
+			end
+			if j == h - 2 then
+				for i = -5, 6 do
+				for k = 0, 1 do
+					local vil = area:index(x + i, y + j, z + k)
+					data[vil] = c_jungletree
+					vil = area:index(x + k, y + j, z + i)
+					data[vil] = c_jungletree
+				end
+				end
+			elseif j == h - 4 then
+				for i = -3, 4 do
+					local vil = area:index(x + i, y + j, z + i)
+					data[vil] = c_jungletree
+					vil = area:index(x + 1 - i, y + j, z + i)
+					data[vil] = c_jungletree
+				end
+			end
+		elseif j == h - 6 then
+			for i = -4, 5 do
+			for k = -4, 5 do
+				if math.abs(i) + math.abs(k) < 8 then
+					if math.random(5) > 2 then
+						local vil = area:index(x + i, y + j, z + k)
+						if data[vil] == c_air then
+							data[vil] = c_jungleleaf
+							p2data[vil] = math.random(1,8)
+						end
+					end
+				end
+			end
+			end
+		elseif j == h then
+			for i = -5, 6 do
+			for k = -5, 6 do
+				if math.abs(i) + math.abs(k) < 7 then
+					if math.random(5) > 1 then
+						local vil = area:index(x + i, y + j, z + k)
+						if data[vil] == c_air then
+							data[vil] = c_jungleleaf
+							p2data[vil] = math.random(1,8)
+						end
+					end
+				end
+			end
+			end
+			for i = -2, 3 do
+			for k = -2, 3 do
+				if math.abs(i) + math.abs(k) < 7 then
+					if math.random(5) > 1 then
+						local vil = area:index(x + i, y + j + 1, z + k)
+						if data[vil] == c_air then
+							data[vil] = c_jungleleaf
+							p2data[vil] = math.random(1,8)
+						end
+					end
+				end
+			end
+			end
+		elseif j == h - lf then
+			for i = -2, 3 do
+			for k = -2, 3 do
+			for l = -1, 1 do
+				if math.abs(i) + math.abs(k) < 5 then
+					if math.random(5) > 2 then
+						local vil = area:index(x + i, y + j + l, z + k)
+						if data[vil] == c_air then
+							data[vil] = c_jungleleaf
+							p2data[vil] = math.random(1,8)
+						end
+					end
+				end
+			end
+			end
+			end
+		end
+		if j ~= h then
+			for i = 0, 1 do
+			for k = 0, 1 do
+				local vit = area:index(x + i, y + j, z + k)
+				data[vit] = c_jungletree
+			end
+			end
+		end
+	end
+end
+
+function lottmapgen_jungle_bush(x, y, z, area, data, p2data)
+	local c_air = minetest.get_content_id("air")
+	local c_jungletree = minetest.get_content_id("default:jungletree")
+	local c_jungleleaf = minetest.get_content_id("lottmapgen:jungle_leaves")
+	local vi = area:index(x, y, z)
+	data[vi] = c_jungletree
+	for i = -1, 1 do
+	for k = -1, 1 do
+		if math.random(6) >= 4 then
+			vi = area:index(x + i, y, z + k)
+			if data[vi] == c_air then
+				data[vi] = c_jungletree
+			end
+		end
+	end
+	end
+	for i = -3, 4 do
+	for j = 0, 1 do
+	for k = -4, 3 do
+		if math.abs(i) + math.abs(j) + math.abs(k) < 5 then
+			if math.random(5) > 2 then
+				vi = area:index(x + i, y + j, z + k)
+				if data[vi] == c_air then
+					data[vi] = c_jungleleaf
+					p2data[vi] = math.random(1,8)
+				end
+			end
+		end
+	end
+	end
+	end
+end
+
 function lottmapgen_elf_workshop(x, y, z, area, data, p2data)
 	local c_stonebrick = minetest.get_content_id("default:stonebrick")
 	local c_cracked_stonebrick = minetest.get_content_id("default:cracked_stonebrick")
@@ -886,7 +1092,17 @@ function lottmapgen_elf_workshop(x, y, z, area, data, p2data)
 	end
 end
 
-function lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, HITET, HIHUT, HIRAN)
+local HITET = 0.4 -- High temperature threshold
+local LOTET = -0.4 -- Low ..
+local ICETET = -0.8 -- Ice ..
+local HIHUT = 0.4 -- High humidity threshold
+local LOHUT = -0.4 -- Low ..
+local VLOHUT = -0.6
+local VHIHUT = 0.6
+local HIRAN = 0.4
+local LORAN = -0.4
+
+function lottmapgen_biomes(biome, n_temp, n_humid, n_ran)
 	if n_temp < LOTET then
 		if n_humid < LOHUT then
 			return 1 -- (Angmar)
@@ -896,8 +1112,12 @@ function lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, H
 			return 2 -- (Snowplains)
 		end
 	elseif n_temp > HITET then
-		if n_humid < LOHUT then
+		if n_humid < VLOHUT then
+			return 14 -- (Near Harad)
+		elseif n_humid < LOHUT then
 			return 7 -- (Lorien)
+		elseif n_humid > VHIHUT then
+			return 15 -- (Far Harad)
 		elseif n_humid > HIHUT then
 			return 9 -- (Fangorn)
 		elseif n_ran < LORAN then

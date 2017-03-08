@@ -142,6 +142,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_stone = minetest.get_content_id("default:stone")
 	local c_desertstone = minetest.get_content_id("default:desert_stone")
 	local c_sandstone = minetest.get_content_id("default:sandstone")
+	local c_silsandstone = minetest.get_content_id("default:silver_sandstone")
+	local c_dessandstone = minetest.get_content_id("default:desert_sandstone")
 	local c_stonecopper = minetest.get_content_id("default:stone_with_copper")
 	local c_stoneiron = minetest.get_content_id("default:stone_with_iron")
 	local c_stonecoal = minetest.get_content_id("default:stone_with_coal")
@@ -161,6 +163,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_mirkwoodgrass = minetest.get_content_id("lottmapgen:mirkwood_grass")
 	local c_rohangrass = minetest.get_content_id("lottmapgen:rohan_grass")
 	local c_shiregrass = minetest.get_content_id("lottmapgen:shire_grass")
+	local c_junglegrass = minetest.get_content_id("lottmapgen:jungle_grass")
 	local c_ironhillgrass = minetest.get_content_id("lottmapgen:ironhill_grass")
 	local c_salt = minetest.get_content_id("lottores:mineral_salt")
 	local c_pearl = minetest.get_content_id("lottores:mineral_pearl")
@@ -203,7 +206,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local biome = false
 
 			if biome_blend ~= true then
-				biome = lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, HITET, HIHUT, HIRAN)
+				biome = lottmapgen_biomes(biome, n_temp, n_humid, n_ran)
 			end
 
 			local sandy = (water_level+2) + math.random(-1, 1) -- sandline
@@ -218,7 +221,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					n_temp = nvals_temp[offsetpos.z][offsetpos.x] -- select biome
 					n_humid = nvals_humid[offsetpos.z][offsetpos.x]
 					n_ran = nvals_random[offsetpos.z][offsetpos.x]
-					biome = lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, HITET, HIHUT, HIRAN)
+					biome = lottmapgen_biomes(biome, n_temp, n_humid, n_ran)
 				end
 				local fimadep = math.floor(6 - y / 512) + math.random(0, 1)
 				local vi = area:index(x, y, z)
@@ -239,7 +242,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						elseif biome == 8 then
 							data[vi] = c_morstone
 						elseif biome == 5 then
-							data[vi] = c_sandstone
+							data[vi] = c_silsandstone
+						elseif biome == 14 then
+							data[vi] = c_dessandstone
 						elseif biome == 11 then
 							if math.random(3) == 1 then
 								data[vi] = c_stoneiron
@@ -323,6 +328,10 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										data[vi] = c_rohangrass
 									elseif biome == 13 then
 										data[vi] = c_shiregrass
+									elseif biome == 14 then
+										data[vi] = c_desertsand
+									elseif biome == 15 then
+										data[vi] = c_junglegrass
 									end
 									local y = surfy + 1
 									local vi = area:index(x, y, z)
@@ -459,7 +468,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										if math.random(TREE2) == 2 then
 											lottmapgen_mirktree(x, y, z, area, data)
 										elseif math.random(TREE2) == 3 then
-											lottmapgen_jungletree2(x, y, z, area, data)
+											lottmapgen_mirktree2(x, y, z, area, data)
 										elseif math.random(PLANT13) == 13 then
 											data[vi] = lottmapgen.enqueue_building("Mirkwood House", {x=x, y=y, z=z})
 										end
@@ -508,6 +517,20 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										elseif math.random(PLANT13) == 13 then
 											lottmapgen.enqueue_building("Hobbit Hole", {x=x, y=y, z=z})
 										end
+									elseif biome == 14 then
+										if math.random(PLANT6) == 2 then
+											data[vi] = c_dryshrub
+										elseif math.random(TREE8) == 2 then
+											lottmapgen_cactus(x, y, z, area, data)
+										end
+									elseif biome == 15 then
+										if math.random(TREE1) == 2 then
+											lottmapgen_jungletree(x, y, z, area, data, p2data)
+										elseif math.random(TREE3) == 4 then
+											lottmapgen_bigjungletree(x, y, z, area, data, p2data)
+										elseif math.random(TREE1) == 2 then
+											lottmapgen_jungle_bush(x, y, z, area, data, p2data)
+										end
 									end
 								end
 							end
@@ -515,12 +538,14 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					else -- underground
 						if nodiduu ~= c_air and nodiduu ~= c_water and surfy - y + 1 <= fimadep then
 							if y <= sandy and y >= sandmin then
-								if biome ~= 8 then
+								if biome ~= 8 and biome ~= 14 then
 									data[vi] = c_sand
 								end
 							elseif y > sandy and y >= surfy - 2 then
-								if biome ~= 8 then
+								if biome ~= 8 and biome ~= 14 then
 									data[vi] = c_dirt
+								elseif biome == 14 then
+									data[vi] = c_desertsand
 								end
 							end
 						end

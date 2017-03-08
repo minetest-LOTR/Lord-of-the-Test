@@ -1,0 +1,51 @@
+1. Forodwaith ᜘✘
+
+2. Angmar ✔
+
+3. Ettenmoors ᜘✘
+
+4. Arthedain ᜘✘
+
+5. Rhudaur ᜘✘
+
+6. Breeland ᜘✘
+
+7. Lindon ᜘✘
+
+8. Shire ✔
+
+9. Minhiriath ᜘✘
+
+10. Cardolan ᜘✘
+
+11. Enedwaith ᜘✘
+
+12. Eregion ᜘✘
+
+13. Dunland ✔
+
+14. Mirkwood ✔
+
+15. Lorien ✔
+
+16. Fangorn ✔
+
+17. Rohan ✔
+
+18. Gondor ✔
+
+19. Mordor ✔
+
+20. Misty Mountains ᜘✘
+
+21. Iron Hills ✔
+
+22. Wilderland ᜘✘
+
+23. Rhun ᜘✘
+
+24. Near Harad ✔
+
+25. Far Harad ·
+
+Ithilien, Trollshaws & Snowplains: Are sub-biomes which exist.

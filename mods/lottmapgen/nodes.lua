@@ -285,6 +285,49 @@ minetest.register_node("lottmapgen:ithilien_grass", {
 	}),
 })
 
+minetest.register_node("lottmapgen:jungle_grass", {
+	description = "Jungle Grass",
+	tiles = {"default_grass.png^[colorize:#1e1a13:150", "default_dirt.png",
+		{name = "default_dirt.png^(default_grass_side.png^[colorize:#1e1a13:150)", tileable_vertical = false}
+	},
+	is_ground_content = true,
+	groups = {crumbly=3, soil=1, lottmapgen_grass=1, not_in_creative_inventory=1},
+	drop = 'default:dirt',
+	sounds = default.node_sound_dirt_defaults({
+		footstep = {name="default_grass_footstep", gain=0.25},
+	}),
+})
+
+minetest.register_node("lottmapgen:jungle_leaves", {
+	description = "Jungle Leaves",
+	drawtype = "allfaces_optional",
+	tiles = {"lottmapgen_jungle_leaves.png"},
+	paramtype = "light",
+	--sunlight_propagates = true,
+	paramtype2 = "color",
+	palette = "lottmapgen_jungle_palette.png",
+	color = "#0a5800",
+	waving = 1,
+	is_ground_content = false,
+	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
+	drop = {
+		max_items = 1,
+		items = {
+			{
+				-- player will get sapling with 1/20 chance
+				items = {'default:junglesapling'},
+				rarity = 20,
+			},
+			{
+				-- player will get leaves only if he get no saplings,
+				-- this is because max_items is 1
+				items = {'default:jungleleaves'},
+			}
+		}
+	},
+	sounds = default.node_sound_leaves_defaults(),
+})
+
 minetest.register_node("lottmapgen:default_grass", {
 	tiles = {"default_grass.png", "default_dirt.png", {name = "default_dirt.png^default_grass_side.png", tileable_vertical = false}},
 	is_ground_content = true,

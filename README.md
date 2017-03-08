@@ -2,6 +2,14 @@
 ## Lord of the Test: A Minetest subgame.
 ### Version: 1.1.0
 
+**NOTE: THIS IS THE BIOMES BRANCH.**
+
+**This branch will have force pushes, and rebases, in order to keep it up to date with master**
+
+**The main purpose of this branch is to provide a base for comments on my work of adding new biomes, and ultimately for the addition of an "in-place" mapgen, that is, a mapgen which puts the biomes in the correct places!**
+
+**Use at your own risk! Expect many breakages and ugly borders between biomes!**
+
 This is a game for Minetest that adds [Lord of the Rings](https://en.wikipedia.org/wiki/The_Lord_of_the_Rings) elements into the game.
 
 -----------------------------------------------------------------------------------------------
