@@ -93,6 +93,10 @@ paramat (CC BY-SA 3.0):
   default_stone_brick.png, derived from a texture by Cisoun
   default_desert_stone_brick.png, derived from a texture by VanessaE
   default_sandstone_brick.png
+  default_sandstone_block.png
+  default_stone_block.png
+  default_desert_stone_block.png
+  default_silver_sand.png
 
 MirceaKitsune (WTFPL):
   character.x
@@ -156,8 +160,16 @@ BlockMen (CC BY-SA 3.0):
 sofar (CC BY-SA 3.0):
   default_book_written.png, based on default_book.png
 
-kaeza (WTFPL):
+kaeza (CC-BY-SA 3.0):
   bubble.png
+  default_desert_sandstone.png
+  default_desert_sandstone_brick.png
+  default_desert_sandstone_block.png
+
+GreenXenith (CC-BY-SA 3.0):
+  default_silver_sandstone.png
+  default_silver_sandstone_brick.png
+  default_silver_sandstone_block.png
 
 Kalabasa (CC BY-SA 3.0):
   default_furnace_fire_bg.png
