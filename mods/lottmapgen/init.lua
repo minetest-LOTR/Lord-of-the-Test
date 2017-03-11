@@ -89,6 +89,7 @@ local np_random = {
 
 -- Stuff
 lottmapgen = {}
+lottmapgen_biome = {}
 
 local nobj_temp = nil
 local nobj_humid = nil
@@ -99,11 +100,11 @@ local nbuf_random
 local dbuf
 local p2dbuf
 
-local water_level = minetest.get_mapgen_setting("water_level")
+local water_level = tonumber(minetest.get_mapgen_setting("water_level"))
 
 dofile(minetest.get_modpath("lottmapgen").."/nodes.lua")
 dofile(minetest.get_modpath("lottmapgen").."/functions.lua")
-
+dofile(minetest.get_modpath("lottmapgen").."/biomes.lua")
 dofile(minetest.get_modpath("lottmapgen").."/schematics.lua")
 
 -- On generated function
@@ -165,6 +166,12 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_shiregrass = minetest.get_content_id("lottmapgen:shire_grass")
 	local c_junglegrass = minetest.get_content_id("lottmapgen:jungle_grass")
 	local c_ironhillgrass = minetest.get_content_id("lottmapgen:ironhill_grass")
+	local c_rhungrass = minetest.get_content_id("lottmapgen:rhun_grass")
+	local c_ettenmoorgrass = minetest.get_content_id("lottmapgen:ettenmoors_grass")
+	local c_lindongrass = minetest.get_content_id("lottmapgen:lindon_grass")
+	local c_breelandgrass = minetest.get_content_id("lottmapgen:breeland_grass")
+	local c_eregiongrass = minetest.get_content_id("lottmapgen:eregion_grass")
+	local c_wildergrass = minetest.get_content_id("lottmapgen:wilderland_grass")
 	local c_salt = minetest.get_content_id("lottores:mineral_salt")
 	local c_pearl = minetest.get_content_id("lottores:mineral_pearl")
 	local c_angsnowblock = minetest.get_content_id("lottmapgen:angsnowblock")
@@ -178,35 +185,35 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local sidelen = x1 - x0 + 1
 	local chulens = {x=sidelen, y=sidelen, z=sidelen}
 	local minposxz = {x=x0, y=z0}
+	local border_amp = 64
 
 	nobj_temp = nobj_temp or minetest.get_perlin_map(np_temp, chulens)
 	nobj_humid = nobj_humid or minetest.get_perlin_map(np_humid, chulens)
 	nobj_random = nobj_random or minetest.get_perlin_map(np_random, chulens)
 
-	local nvals_temp = nobj_temp:get2dMap_flat(minposxz, nbuf_temp)
-	local nvals_humid = nobj_humid:get2dMap_flat(minposxz, nbuf_humid)
-	local nvals_random = nobj_random:get2dMap_flat(minposxz, nbuf_random)
+	local nvals_x = nobj_temp:get2dMap_flat(minposxz, nbuf_temp)
+	local nvals_z = nobj_humid:get2dMap_flat(minposxz, nbuf_humid)
 
 	local offset = math.random(5,20)
-	if biome_blend == true then
+	--[[if biome_blend == true then
 		chulens = {x=sidelen+2*offset, y=sidelen+2*offset, z=sidelen+2*offset}
 		minposxz = {x=x0-offset, y=z0-offset }
 		nvals_temp = nobj_temp:get2dMap(minposxz)
 		nvals_humid = nobj_humid:get2dMap(minposxz)
 		nvals_random = nobj_random:get2dMap(minposxz)
-	end
+	end]]
 
 	local nixz = 1
 	for z = z0, z1 do
 		for x = x0, x1 do -- for each column do
-			local n_temp = nvals_temp[nixz] -- select biome
-			local n_humid = nvals_humid[nixz]
-			local n_ran = nvals_random[nixz]
+			local n_x = x + nvals_x[nixz] * border_amp -- select biome
+			local n_z = z + nvals_z[nixz] * border_amp
 
 			local biome = false
 
 			if biome_blend ~= true then
-				biome = lottmapgen_biomes(biome, n_temp, n_humid, n_ran)
+				-- Needs math.floor to avoid decimals...!
+				biome = lottmapgen_biomes(math.floor(x), math.floor(z))
 			end
 
 			local sandy = (water_level+2) + math.random(-1, 1) -- sandline
@@ -216,13 +223,13 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local water = false -- water node above?
 			local surfy = y1 + 80 -- y of last surface detected
 			for y = y1, y0, -1 do -- working down each column for each node do
-				if biome_blend == true then
+				--[[if biome_blend == true then
 					local offsetpos = {x = (x-x0) + offset + math.random(-offset, offset) + 1, z = (z - z0) + offset + math.random(-offset, offset) + 1}
 					n_temp = nvals_temp[offsetpos.z][offsetpos.x] -- select biome
 					n_humid = nvals_humid[offsetpos.z][offsetpos.x]
 					n_ran = nvals_random[offsetpos.z][offsetpos.x]
 					biome = lottmapgen_biomes(biome, n_temp, n_humid, n_ran)
-				end
+				end]]
 				local fimadep = math.floor(6 - y / 512) + math.random(0, 1)
 				local vi = area:index(x, y, z)
 				local nodid = data[vi]
@@ -277,11 +284,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 									if open and water and y == (water_level-1) and biome > 4 and math.random(PAPCHA) == 2 then -- papyrus
 										lottmapgen_papyrus(x, (water_level+1), z, area, data, p2data)
 										data[vi] = c_dirt
-									elseif math.abs(n_temp) < 0.05 and y == (water_level-1) then -- clay
+									elseif math.abs(n_x) < 0.05 and y == (water_level-1) then -- clay
 										data[vi] = c_clay
-									elseif math.abs(n_temp) < 0.05 and y == (water_level-5) then -- salt
+									elseif math.abs(n_x) < 0.05 and y == (water_level-5) then -- salt
 										data[vi] = c_salt
-									elseif math.abs(n_temp) < 0.05 and y == (water_level-20) then -- pearl
+									elseif math.abs(n_x) < 0.05 and y == (water_level-20) then -- pearl
 										data[vi] = c_pearl
 									else
 										data[vi] = c_sand
@@ -296,18 +303,19 @@ minetest.register_on_generated(function(minp, maxp, seed)
 									data[vi] = c_stone
 								else -- above sandline
 									if open then
-									if biome == 1 then
-										if math.random(121) == 2 then
+									if biome and biome <= 25 then
+									--[[if biome == 1 then
+										--[[if math.random(121) == 2 then
 											data[vi] = c_ice
 										elseif math.random(25) == 2 then
 											data[vi] = c_frozenstone
 										else
 											data[vi] = c_angsnowblock
-										end
+										--end
 									elseif biome == 2 then
 										data[vi] = c_dirtsnow
 									elseif biome == 3 then
-										data[vi] = c_dirtsnow
+										data[vi] = c_desertstone
 									elseif biome == 4 then
 										data[vi] = c_dungrass
 									elseif biome == 5 then
@@ -332,8 +340,30 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										data[vi] = c_desertsand
 									elseif biome == 15 then
 										data[vi] = c_junglegrass
+									elseif biome == 16 then
+										data[vi] = c_rhungrass
+									elseif biome == 17 then
+										data[vi] = c_red
+									elseif biome == 18 then
+										data[vi] = c_yellow
+									elseif biome == 19 then
+										data[vi] = c_green
+									elseif biome == 20 then
+										data[vi] = c_blue
+									elseif biome == 21 then
+										data[vi] = c_pink
+									elseif biome == 22 then
+										data[vi] = c_orange
+									elseif biome == 23 then
+										data[vi] = c_violet
+									elseif biome == 24 then
+										data[vi] = c_grey
+									elseif biome == 25 then
+										data[vi] = c_cyan
+									end]]
+									lottmapgen_biome[biome].surface(data, vi)
 									end
-									local y = surfy + 1
+									--[[local y = surfy + 1
 									local vi = area:index(x, y, z)
 									if biome == 1 then
 										if math.random(PLANT3) == 2 then
@@ -531,7 +561,15 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										elseif math.random(TREE1) == 2 then
 											lottmapgen_jungle_bush(x, y, z, area, data, p2data)
 										end
-									end
+									elseif biome == 16 then
+										if math.random (PLANT3) == 4 then
+											lottmapgen_grass(data, vi, p2data)
+										elseif math.random(TREE9) == 1 then
+											lottmapgen_defaulttree(x, y, z, area, data)
+										elseif math.random(TREE10) == 1 then
+											lottmapgen_appletree(x, y, z, area, data)
+										end
+									end]]
 								end
 							end
 						end
@@ -563,9 +601,16 @@ minetest.register_on_generated(function(minp, maxp, seed)
 								data[vi] = c_morwat
 							end
 						end
-						if n_temp < ICETET and y >= water_level - math.floor((ICETET - n_temp) * 10) then --ice
+						if n_x < ICETET and y >= water_level - math.floor((ICETET - n_x) * 10) then --ice
 							data[vi] = c_ice
 						end
+					end
+				end
+				if biome == 1337 then -- If sea!!
+					if y > water_level then
+						data[vi] = c_air
+					else
+						data[vi] = c_water
 					end
 				end
 			end
@@ -574,10 +619,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	end
 	vm:set_data(data)
 	vm:set_param2_data(p2data)
-	vm:set_lighting({day=0, night=0})
+	--vm:set_lighting({day=0, night=0})
 	vm:calc_lighting()
 	vm:write_to_map(data)
 	local chugent = math.ceil((os.clock() - t1) * 1000)
+	--print(chugent)
 end)
 
 dofile(minetest.get_modpath("lottmapgen").."/deco.lua")

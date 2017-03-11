@@ -1092,52 +1092,127 @@ function lottmapgen_elf_workshop(x, y, z, area, data, p2data)
 	end
 end
 
-local HITET = 0.4 -- High temperature threshold
-local LOTET = -0.4 -- Low ..
-local ICETET = -0.8 -- Ice ..
-local HIHUT = 0.4 -- High humidity threshold
-local LOHUT = -0.4 -- Low ..
-local VLOHUT = -0.6
-local VHIHUT = 0.6
-local HIRAN = 0.4
-local LORAN = -0.4
+function lottmapgen.register_biome(id, table)
+	lottmapgen_biome[id] = table
+end
 
-function lottmapgen_biomes(biome, n_temp, n_humid, n_ran)
-	if n_temp < LOTET then
-		if n_humid < LOHUT then
-			return 1 -- (Angmar)
-		elseif n_humid > HIHUT then
-			return 3 -- (Trollshaws)
-		else
-			return 2 -- (Snowplains)
-		end
-	elseif n_temp > HITET then
-		if n_humid < VLOHUT then
-			return 14 -- (Near Harad)
-		elseif n_humid < LOHUT then
-			return 7 -- (Lorien)
-		elseif n_humid > VHIHUT then
-			return 15 -- (Far Harad)
-		elseif n_humid > HIHUT then
-			return 9 -- (Fangorn)
-		elseif n_ran < LORAN then
-			return 10 -- (Mirkwood)
-		elseif n_ran > HIRAN then
-			return 11 -- (Iron Hills)
-		else
-			return 4 -- (Dunlands)
-		end
+function lottmapgen_biomes(noisy_x, noisy_z)
+	if (noisy_x >= -495 and noisy_x <= 800
+	and noisy_z <= 800 and noisy_z >= 653)
+	or (noisy_x >= 64 and noisy_x <= 431
+	and noisy_z <= 652 and noisy_z >= 537) then
+		return 1
+	elseif noisy_x >= -251 and noisy_x <= -1
+	and noisy_z <= 652 and noisy_z >= 525 then
+		return 2
+	elseif noisy_x >= -153 and noisy_x <= -1
+	and noisy_z <= 524 and noisy_z >= 441 then
+		return 3
+	elseif (noisy_x >= -434 and noisy_x <= -252
+	and noisy_z <= 652 and noisy_z >= 431)
+	or (noisy_x >= -251 and noisy_x <= -154
+	and noisy_z <= 524 and noisy_z >= 431)
+	or (noisy_x >= -196 and noisy_x <= -154
+	and noisy_z <= 430 and noisy_z >= 349) then
+		return 4
+	elseif noisy_x >= -153 and noisy_x <= -1
+	and noisy_z <= 440 and noisy_z >= 302 then
+		return 5
+	elseif noisy_x >= -303 and noisy_x <= -197
+	and noisy_z <= 430 and noisy_z >= 349 then
+		return 6
+	elseif noisy_x >= -718 and noisy_x <= -435
+	and noisy_z <= 652 and noisy_z >= 136 then
+		return 7
+	elseif noisy_x >= -434 and noisy_x <= -304
+	and noisy_z <= 430 and noisy_z >= 294 then
+		return 8
+	elseif noisy_x >= -434 and noisy_x <= -304
+	and noisy_z <= 293 and noisy_z >= 28 then
+		return 9
+	elseif noisy_x >= -303 and noisy_x <= -154
+	and noisy_z <= 348 and noisy_z >= 161 then
+		return 10
+	elseif (noisy_x >= -303 and noisy_x <= -198
+	and noisy_z <= 160 and noisy_z >= 21)
+	or (noisy_x >= -303 and noisy_x <= -94
+	and noisy_z <= 20 and noisy_z >= -86) then
+		return 11
+	elseif (noisy_x >= -153 and noisy_x <= -53
+	and noisy_z <= 301 and noisy_z >= 161)
+	or (noisy_x >= -53 and noisy_x <= -19
+	and noisy_z <= 301 and noisy_z >= 224) then
+		return 12
+	elseif (noisy_x >= -197 and noisy_x <= -94
+	and noisy_z <= 160 and noisy_z >= 21)
+	or (noisy_x >= -93 and noisy_x <= -62
+	and noisy_z <= 160 and noisy_z >= 99) then
+		return 13
+	elseif noisy_x >= 130 and noisy_x <= 292
+	and noisy_z <= 536 and noisy_z >= 145 then
+		return 14
+	elseif noisy_x >= 24 and noisy_x <= 92
+	and noisy_z <= 214 and noisy_z >= 158 then
+		return 15
+	elseif noisy_x >= -18 and noisy_x <= 64
+	and noisy_z <= 140 and noisy_z >= 28 then
+		return 16
+	elseif (noisy_x >= -93 and noisy_x <= 65
+	and noisy_z <= 27 and noisy_z >= -86)
+	or (noisy_x >= 65 and noisy_x <= 169
+	and noisy_z <= 109 and noisy_z >= -86) then
+		return 17
+	elseif (noisy_x >= -315 and noisy_x <= -11
+	and noisy_z <= -87 and noisy_z >= -259)
+	or (noisy_x >= -10 and noisy_x <= 304
+	and noisy_z <= -87 and noisy_z >= -353) then
+		return 18
+	elseif noisy_x >= 305 and noisy_x <= 800
+	and noisy_z <= -18 and noisy_z >= -353 then
+		return 19
+	elseif (noisy_x >= 0 and noisy_x <= 63
+	and noisy_z <= 652 and noisy_z >= 302)
+	or (noisy_x >= -18 and noisy_x <= 63
+	and noisy_z <= 301 and noisy_z >= 225)
+	or (noisy_x >= -53 and noisy_x <= 18
+	and noisy_z <= 225 and noisy_z >= 141)
+	or (noisy_x >= -93 and noisy_x <= -19
+	and noisy_z <= 160 and noisy_z >= 28) then
+		return 20
+	elseif noisy_x >= 384 and noisy_x <= 657
+	and noisy_z <= 520 and noisy_z >= 445 then
+		return 21
+	elseif (noisy_x >= 493 and noisy_x <= 800
+	and noisy_z <= 652 and noisy_z >= 521)
+	or (noisy_x >= 658 and noisy_x <= 800
+	and noisy_z <= 520 and noisy_z >= 445)
+	or (noisy_x >= 493 and noisy_x <= 800
+	and noisy_z <= 444 and noisy_z >= -17) then
+		return 22
+	elseif noisy_x >= 56 and noisy_x <= 800
+	and noisy_z <= -354 and noisy_z >= -530 then
+		return 23
+	elseif noisy_x >= -100 and noisy_x <= 800
+	and noisy_z <= -531 and noisy_z >= -800 then
+		return 24
+	elseif (noisy_x >= 64 and noisy_x <= 129
+	and noisy_z <= 554 and noisy_z >= 225)
+	or (noisy_x >= 19 and noisy_x <= 129
+	and noisy_z <= 224 and noisy_z >= 141)
+	or (noisy_x >= 65 and noisy_x <= 169
+	and noisy_z <= 144 and noisy_z >= 110)
+	or (noisy_x >= 170 and noisy_x <= 304
+	and noisy_z <= 144 and noisy_z >= -86)
+	or (noisy_x >= 292 and noisy_x <= 492
+	and noisy_z <= 444 and noisy_z >= -17)
+	or (noisy_x >= 293 and noisy_x <= 383
+	and noisy_z <= 536 and noisy_z >= 444)
+	or (noisy_x >= 383 and noisy_x <= 431
+	and noisy_z <= 536 and noisy_z >= 521)
+	or (noisy_x >= 432 and noisy_x <= 492
+	and noisy_z <= 652 and noisy_z >= 521) then
+		return 25
 	else
-		if n_humid < LOHUT then
-			return 8 -- (Mordor)
-		elseif n_humid > HIHUT then
-			return 6 -- (Ithilien)
-		elseif n_ran < LORAN then
-			return 13 -- (Shire)
-		elseif n_ran > HIRAN then
-			return 12 -- (Rohan)
-		else
-			return 5 -- (Gondor)
-		end
+		return 1337 --sea!
 	end
 end
