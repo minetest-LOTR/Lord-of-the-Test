@@ -78,7 +78,15 @@ minetest.register_node("lottother:red_gem_ore", {
 
 -- Mapgen stuff
 
-local wl = minetest.get_mapgen_setting("water_level")
+local wl
+if minetest.get_mapgen_setting then
+	wl = minetest.get_mapgen_setting('water_level')
+else
+	local mg_params = minetest.get_mapgen_params()
+	if mg_params then
+		wl = mg_params.water_level
+	end
+end
 
 minetest.register_ore({
 	ore_type       = "scatter",

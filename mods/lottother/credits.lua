@@ -3,27 +3,36 @@ local blue = "#03159e"
 local red = "#9e0310"
 local purple = "#67039e"
 
+local colorize
+if minetest.colorize then
+    colorize = minetest.colorize
+else
+    colorize = function(color, msg)
+        return msg
+    end
+end
+
 local credits = "size[10,8]" ..
     "background[10,8;1,1;gui_formbg.png;true]" ..
-    "label[0.5,0.25;" .. minetest.colorize("black", "LOTT Credits:") .. "]" ..
-    "label[1,1;" .. minetest.colorize(green, "Main Developers:") .. "]" ..
-    "label[1.5,1.5;" .. minetest.colorize(green, "fishyWET") .. "]" ..
-    "label[1.5,2;" .. minetest.colorize(green, "Amaz") .. "]" ..
-    "label[1,3;" .. minetest.colorize(blue, "Other Developers:") .. "]" ..
-    "label[1.5,3.5;" .. minetest.colorize(blue, "catninja") .. "]" ..
-    "label[1.5,4;" .. minetest.colorize(blue, "Flipsels") .. "]" ..
-    "label[1.5,4.5;" .. minetest.colorize(blue, "MadTux") .. "]" ..
-    "label[1.5,5;" .. minetest.colorize(blue, "BadToad2000") .. "]" ..
-    "label[1.5,5.5;" .. minetest.colorize(blue, "lumidify") .. "]" ..
-    "label[1.5,6;" .. minetest.colorize(blue, "narrnika") .. "]" ..
-    "label[5,1;" .. minetest.colorize(red, "Model Makers:") .. "]" ..
-    "label[5.5,1.5;" .. minetest.colorize(red, "STHGOM") .. "]" ..
-    "label[5.5,2;" .. minetest.colorize(red, "AspireMint") .. "]" ..
-    "label[5,3;" .. minetest.colorize(purple, "Main Texture Makers:") .. "]" ..
-    "label[5.5,3.5;" .. minetest.colorize(purple, "philipbenr") .. "]" ..
-    "label[5.5,4;" .. minetest.colorize(purple, "Gabo") .. "]" ..
-    "label[5.5,4.5;" .. minetest.colorize(purple, "Many others!") .. "]" ..
-    "button[5.5,5.5;2,1;mods;" .. minetest.colorize("yellow", "More info!!") .. "]"
+    "label[0.5,0.25;" .. colorize("black", "LOTT Credits:") .. "]" ..
+    "label[1,1;" .. colorize(green, "Main Developers:") .. "]" ..
+    "label[1.5,1.5;" .. colorize(green, "fishyWET") .. "]" ..
+    "label[1.5,2;" .. colorize(green, "Amaz") .. "]" ..
+    "label[1,3;" .. colorize(blue, "Other Developers:") .. "]" ..
+    "label[1.5,3.5;" .. colorize(blue, "catninja") .. "]" ..
+    "label[1.5,4;" .. colorize(blue, "Flipsels") .. "]" ..
+    "label[1.5,4.5;" .. colorize(blue, "MadTux") .. "]" ..
+    "label[1.5,5;" .. colorize(blue, "BadToad2000") .. "]" ..
+    "label[1.5,5.5;" .. colorize(blue, "lumidify") .. "]" ..
+    "label[1.5,6;" .. colorize(blue, "narrnika") .. "]" ..
+    "label[5,1;" .. colorize(red, "Model Makers:") .. "]" ..
+    "label[5.5,1.5;" .. colorize(red, "STHGOM") .. "]" ..
+    "label[5.5,2;" .. colorize(red, "AspireMint") .. "]" ..
+    "label[5,3;" .. colorize(purple, "Main Texture Makers:") .. "]" ..
+    "label[5.5,3.5;" .. colorize(purple, "philipbenr") .. "]" ..
+    "label[5.5,4;" .. colorize(purple, "Gabo") .. "]" ..
+    "label[5.5,4.5;" .. colorize(purple, "Many others!") .. "]" ..
+    "button[5.5,5.5;2,1;mods;" .. colorize("yellow", "More info!!") .. "]"
 
 local purple2 = "#c804cc"
 local green2 = green
@@ -42,7 +51,7 @@ local mods = {
 
 local more_credits = "size[11,8]" ..
     "background[11,8;1,1;gui_formbg.png;true]" ..
-    "label[0.25,0.25;" .. minetest.colorize("gray", "Mod License Information:") .. "]"
+    "label[0.25,0.25;" .. colorize("gray", "Mod License Information:") .. "]"
 
 local colours = {
     "red",
@@ -64,7 +73,7 @@ for i,v in pairs(mods) do
     end
     more_credits = more_credits ..
         "button[".. distance .. "," .. count .. ";2,1;" ..
-        v .. ";" .. minetest.colorize(colours[count], v) .. "]"
+        v .. ";" .. colorize(colours[count], v) .. "]"
     if count >= #mods then
         count = 0
         distance = 0.5
@@ -91,7 +100,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
                 local form = "size[12,10]" ..
                     "background[10,8;1,1;gui_formbg.png;true]" ..
                     "label[0,-0.2;" ..
-                    minetest.colorize("black", "License of " .. v .. " mod:") .. "]" ..
+                    colorize("black", "License of " .. v .. " mod:") .. "]" ..
                     "button[10,1;2,1;back_to_mods;Back]" ..
                     "textlist[0,0.5;10,9;license;"
                 local file = io.open(minetest.get_modpath(v) .. "/license.txt")

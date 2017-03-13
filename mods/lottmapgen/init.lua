@@ -99,7 +99,15 @@ local nbuf_random
 local dbuf
 local p2dbuf
 
-local water_level = minetest.get_mapgen_setting("water_level")
+local water_level
+if minetest.get_mapgen_setting then
+	water_level = minetest.get_mapgen_setting('water_level')
+else
+	local mg_params = minetest.get_mapgen_params()
+	if mg_params then
+		water_level = mg_params.water_level
+	end
+end
 
 dofile(minetest.get_modpath("lottmapgen").."/nodes.lua")
 dofile(minetest.get_modpath("lottmapgen").."/functions.lua")
