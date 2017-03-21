@@ -207,16 +207,14 @@ minetest.register_node("lottblocks:palantir", {
 					allowed_races[race] = true
 				end
 			end
-			if not player_name == meta:get_string("owner") and
-			not minetest.check_player_privs(player_name, {palantiri = true}) then
+			if player_name ~= meta:get_string("owner") and
+			minetest.check_player_privs(player_name, {palantiri = true}) ~= true then
 				for _, race in pairs(races) do
 					if allowed_races[race[1]] == true then
 						can_tp = minetest.check_player_privs(player_name, {[race[2]] = true})
 						if can_tp == true then
 							break
 						end
-					else
-
 					end
 				end
 				local c = 0
@@ -235,7 +233,7 @@ minetest.register_node("lottblocks:palantir", {
 				end
 				local p = lottblocks.palantiri[meta:get_string("network")][fields.teleports]
 				sender:setpos({x = p.x, y = p.y + 1, z = p.z})
-			else
+			elseif can_tp == false then
 				if not fields.teleports == "Teleport to..." then
 					sender:setpos({
 						x = pos.x + math.random(-50, 50),
