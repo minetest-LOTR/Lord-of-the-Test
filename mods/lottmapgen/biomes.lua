@@ -2,124 +2,18 @@ function lottmapgen.register_biome(id, table)
 	lottmapgen_biome[id] = table
 end
 
+dofile(minetest.get_modpath("lottmapgen") .. "/biome_table.lua")
+
 function lottmapgen_biomes(noisy_x, noisy_z)
-	if (noisy_x >= -19840 and noisy_x <= 32040
-	and noisy_z <= 32040 and noisy_z >= 26080)
-	or (noisy_x >= 2520 and noisy_x <= 17280
-	and noisy_z <= 26120 and noisy_z >= 21440) then
-		return 1
-	elseif noisy_x >= -10080 and noisy_x <= 0
-	and noisy_z <= 26120 and noisy_z >= 20960 then
-		return 2
-	elseif noisy_x >= -6160 and noisy_x <= 0
-	and noisy_z <= 21000 and noisy_z >= 17600 then
-		return 3
-	elseif (noisy_x >= -17400 and noisy_x <= -10040
-	and noisy_z <= 26120 and noisy_z >= 17200)
-	or (noisy_x >= -10080 and noisy_x <= -6120
-	and noisy_z <= 21000 and noisy_z >= 17200)
-	or (noisy_x >= -7880 and noisy_x <= -6120
-	and noisy_z <= 17240 and noisy_z >= 13920) then
-		return 4
-	elseif noisy_x >= -6160 and noisy_x <= 0
-	and noisy_z <= 17640 and noisy_z >= 12040 then
-		return 5
-	elseif noisy_x >= -12160 and noisy_x <= -7840
-	and noisy_z <= 17240 and noisy_z >= 13920 then
-		return 6
-	elseif noisy_x >= -28760 and noisy_x <= -17360
-	and noisy_z <= 26120 and noisy_z >= 5400 then
-		return 7
-	elseif noisy_x >= -17400 and noisy_x <= -12120
-	and noisy_z <= 17240 and noisy_z >= 11720 then
-		return 8
-	elseif noisy_x >= -17400 and noisy_x <= -12120
-	and noisy_z <= 11760 and noisy_z >= 1080 then
-		return 9
-	elseif noisy_x >= -12160 and noisy_x <= -6120
-	and noisy_z <= 13960 and noisy_z >= 6400 then
-		return 10
-	elseif (noisy_x >= -12160 and noisy_x <= -7880
-	and noisy_z <= 6440 and noisy_z >= 800)
-	or (noisy_x >= -12160 and noisy_x <= -3720
-	and noisy_z <= 840 and noisy_z >= -3480) then
-		return 11
-	elseif (noisy_x >= -6160 and noisy_x <= -2080
-	and noisy_z <= 12080 and noisy_z >= 6400)
-	or (noisy_x >= -2160 and noisy_x <= -720
-	and noisy_z <= 12080 and noisy_z >= 8920) then
-		return 12
-	elseif (noisy_x >= -7920 and noisy_x <= -3720
-	and noisy_z <= 6440 and noisy_z >= 800)
-	or (noisy_x >= -3760 and noisy_x <= -2440
-	and noisy_z <= 6440 and noisy_z >= 3920) then
-		return 13
-	elseif noisy_x >= 5160 and noisy_x <= 11720
-	and noisy_z <= 21480 and noisy_z >= 5760 then
-		return 14
-	elseif noisy_x >= 1320 and noisy_x <= 3720
-	and noisy_z <= 8600 and noisy_z >= 6280 then
-		return 15
-	elseif noisy_x >= -760 and noisy_x <= 2600
-	and noisy_z <= 5640 and noisy_z >= 1080 then
-		return 16
-	elseif (noisy_x >= -3760 and noisy_x <= 2640
-	and noisy_z <= 1120 and noisy_z >= -3480)
-	or (noisy_x >= 2560 and noisy_x <= 6800
-	and noisy_z <= 4400 and noisy_z >= -3480) then
-		return 17
-	elseif (noisy_x >= -12640 and noisy_x <= -400
-	and noisy_z <= -3440 and noisy_z >= -10400)
-	or (noisy_x >= -440 and noisy_x <= 12200
-	and noisy_z <= -3440 and noisy_z >= -14160) then
-		return 18
-	elseif noisy_x >= 12160 and noisy_x <= 32040
-	and noisy_z <= -680 and noisy_z >= -14160 then
-		return 19
-	elseif (noisy_x >= -40 and noisy_x <= 2560
-	and noisy_z <= 26120 and noisy_z >= 12040)
-	or (noisy_x >= -760 and noisy_x <= 2560
-	and noisy_z <= 12080 and noisy_z >= 8960)
-	or (noisy_x >= -2160 and noisy_x <= 760
-	and noisy_z <= 9040 and noisy_z >= 5600)
-	or (noisy_x >= -3760 and noisy_x <= -720
-	and noisy_z <= 6440 and noisy_z >= 1080) then
-		return 20
-	elseif noisy_x >= 15320 and noisy_x <= 26320
-	and noisy_z <= 20840 and noisy_z >= 17760 then
-		return 21
-	elseif (noisy_x >= 19680 and noisy_x <= 32040
-	and noisy_z <= 26120 and noisy_z >= 20800)
-	or (noisy_x >= 26280 and noisy_x <= 32040
-	and noisy_z <= 20840 and noisy_z >= 17760)
-	or (noisy_x >= 19680 and noisy_x <= 32040
-	and noisy_z <= 17800 and noisy_z >= -720) then
-		return 22
-	elseif noisy_x >= 2200 and noisy_x <= 32040
-	and noisy_z <= -14120 and noisy_z >= -21240 then
-		return 23
-	elseif noisy_x >= -4040 and noisy_x <= 32040
-	and noisy_z <= -21200 and noisy_z >= -32040 then
-		return 24
-	elseif (noisy_x >= 2520 and noisy_x <= 5200
-	and noisy_z <= 22200 and noisy_z >= 8960)
-	or (noisy_x >= 720 and noisy_x <= 5200
-	and noisy_z <= 9000 and noisy_z >= 5600)
-	or (noisy_x >= 2560 and noisy_x <= 6800
-	and noisy_z <= 5800 and noisy_z >= 4360)
-	or (noisy_x >= 6760 and noisy_x <= 12200
-	and noisy_z <= 5800 and noisy_z >= -3480)
-	or (noisy_x >= 11640 and noisy_x <= 19720
-	and noisy_z <= 17800 and noisy_z >= -720)
-	or (noisy_x >= 11680 and noisy_x <= 15360
-	and noisy_z <= 21480 and noisy_z >= 17720)
-	or (noisy_x >= 15280 and noisy_x <= 17280
-	and noisy_z <= 21480 and noisy_z >= 20800)
-	or (noisy_x >= 17240 and noisy_x <= 19720
-	and noisy_z <= 26120 and noisy_z >= 20800) then
-		return 25
+	local t = os.time()
+	local small_x = math.floor(noisy_x / 160)
+	local small_z = math.floor(noisy_z / 160)
+	small_x = small_x + 200
+	small_z = (small_z - 200) * -1
+	if biomes[small_z] and biomes[small_z][small_x] then
+		return biomes[small_z][small_x]
 	else
-		return 1337 --sea!
+		return 99
 	end
 end
 
@@ -188,6 +82,7 @@ local c_melon = minetest.get_content_id("lottplants:melon_wild")
 local c_bomordor = minetest.get_content_id("lottplants:brambles_of_mordor")
 local c_pilinehtar = minetest.get_content_id("lottplants:pilinehtar")
 local c_mallos = minetest.get_content_id("lottplants:mallos")
+local c_silsandstone = minetest.get_content_id("default:silver_sandstone")
 
 lottmapgen.register_biome(1, {
 	name = "Forodwaith",
@@ -537,5 +432,19 @@ lottmapgen.register_biome(25, {
 	name = "Wilderland",
 	surface = function(data, vi)
 		data[vi] = c_wildergrass
+	end,
+})
+
+lottmapgen.register_biome(26, {
+	name = "Blue Mountains",
+	surface = function(data, vi)
+		data[vi] = c_ice
+	end,
+})
+
+lottmapgen.register_biome(27, {
+	name = "White Mountains",
+	surface = function(data, vi)
+		data[vi] = c_silsandstone
 	end,
 })

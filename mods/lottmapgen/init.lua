@@ -78,25 +78,14 @@ local np_humid = {
 	persist = 0.5
 }
 
-local np_random = {
-	offset = 0,
-	scale = 1,
-	spread = {x=512, y=512, z=512},
-	seed = 4510,
-	octaves = 3,
-	persist = 0.5
-}
-
 -- Stuff
 lottmapgen = {}
 lottmapgen_biome = {}
 
 local nobj_temp = nil
 local nobj_humid = nil
-local nobj_random = nil
 local nbuf_temp
 local nbuf_humid
-local nbuf_random
 local dbuf
 local p2dbuf
 
@@ -189,7 +178,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 
 	nobj_temp = nobj_temp or minetest.get_perlin_map(np_temp, chulens)
 	nobj_humid = nobj_humid or minetest.get_perlin_map(np_humid, chulens)
-	nobj_random = nobj_random or minetest.get_perlin_map(np_random, chulens)
 
 	local nvals_x = nobj_temp:get2dMap_flat(minposxz, nbuf_temp)
 	local nvals_z = nobj_humid:get2dMap_flat(minposxz, nbuf_humid)
@@ -238,7 +226,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				local nodiduu = data[viuu]
 				local via = area:index(x, y + 1, z)
 				local nodida = data[via]
-				if biome == 1337 then -- If sea!
+				if biome == 99 then -- If sea!
 					if y > water_level then
 						data[vi] = c_air
 					else
@@ -311,7 +299,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 								data[vi] = c_stone
 							else -- above sandline
 								if open then
-									if biome and biome <= 25 and lottmapgen_biome[biome] then
+									if biome and lottmapgen_biome[biome] then
 										if lottmapgen_biome[biome].surface then
 											lottmapgen_biome[biome].surface(data, vi)
 										end
