@@ -59,7 +59,7 @@ local fly_stuff = "button[1,4.75;2,0.5;fast;Fast]" ..
 	"button[5,4.75;2,0.5;noclip;Noclip]" ..
 	"button[2.5,5.5;3,0.5;fast_fly_noclip;Fast, Fly & Noclip]"
 
-chance = 0
+local chance = 0
 
 local function regen_chance()
 	chance = math.random(1, 6)
@@ -115,6 +115,7 @@ local function give_stuff_dwarf(player)
 		player:get_inventory():add_item('main', 'lottarmor:chestplate_gold')
 	end
 	player:get_inventory():add_item('main', 'lottinventory:crafts_book')
+	player:set_pos({x = 16000, y = 10, z = 7200})
 end
 
 local function give_stuff_elf(player)
@@ -167,6 +168,7 @@ local function give_stuff_elf(player)
 		player:get_inventory():add_item('main', 'lottinventory:potions_book')
 	end
 	player:get_inventory():add_item('main', 'lottinventory:crafts_book')
+	player:set_pos({x = 480, y = 10, z = -4000})
 end
 
 local function give_stuff_man(player)
@@ -216,6 +218,7 @@ local function give_stuff_man(player)
 		player:get_inventory():add_item('main', 'lottmobs:horsearah1')
 	end
 	player:get_inventory():add_item('main', 'lottinventory:crafts_book')
+	player:set_pos({x = 4480, y = 10, z = -15040})
 end
 
 local function give_stuff_orc(player)
@@ -243,6 +246,7 @@ local function give_stuff_orc(player)
 	player:get_inventory():add_item('main', 'lottblocks:orc_torch 50')
 	player:get_inventory():add_item('main', 'lottmobs:meat_raw 10')
 	player:get_inventory():add_item('main', 'lottinventory:crafts_book')
+	player:set_pos({x = 17600, y = 10, z = -17600})
 end
 
 local function give_stuff_hobbit(player)
@@ -282,6 +286,7 @@ local function give_stuff_hobbit(player)
 	end
 	player:get_inventory():add_item('main', 'lottinventory:crafts_book')
 	player:get_inventory():add_item('main', 'lottinventory:small')
+	player:set_pos({x = -15520, y = 10, z = 2400})
 end
 
 local function give_stuff_wizard(player)
@@ -322,6 +327,12 @@ minetest.register_on_newplayer(function(player)
 	local privs = minetest.get_player_privs(name)
 	if minetest.get_player_privs(name).GAMEwizard then
 		give_stuff_wizard(player)
+	else
+		for i = 1, 3 do
+			minetest.place_schematic({x = -7, y = 20000, z = -11},
+				minetest.get_modpath("lottclasses") .. "/schems/spawn_hall.mts")
+			player:set_pos({x = 0.5, y = 20005, z = 0.5})
+		end
 	end
 end)
 
