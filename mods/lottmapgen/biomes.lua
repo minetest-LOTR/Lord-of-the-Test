@@ -3,9 +3,9 @@ function lottmapgen.register_biome(id, table)
 end
 
 dofile(minetest.get_modpath("lottmapgen") .. "/biome_table.lua")
+dofile(minetest.get_modpath("lottmapgen") .. "/height.lua")
 
 function lottmapgen_biomes(noisy_x, noisy_z)
-	local t = os.time()
 	local small_x = math.floor(noisy_x / 160)
 	local small_z = math.floor(noisy_z / 160)
 	small_x = small_x + 200
@@ -14,6 +14,27 @@ function lottmapgen_biomes(noisy_x, noisy_z)
 		return biomes[small_z][small_x]
 	else
 		return 99
+	end
+end
+
+function lottmapgen_height(noisy_x, noisy_z)
+	local small_x = math.floor(noisy_x / 160)
+	local small_z = math.floor(noisy_z / 160)
+	local variation = small_x - (noisy_x / 160)
+	local difference = 0
+	small_x = small_x + 200
+	small_z = (small_z - 200) * -1
+	if height[small_z] and height[small_z][small_x] then
+		if height[small_z][small_x - 1] then
+			difference = height[small_z][small_x] - height[small_z][small_x - 1]
+		end
+		if height[small_z][small_x] == 5 then
+			return height[small_z][small_x]
+		else
+			return height[small_z][small_x]-- + math.ceil(variation * difference)
+		end
+	else
+		return 5
 	end
 end
 

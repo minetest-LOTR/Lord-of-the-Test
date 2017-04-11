@@ -3,9 +3,9 @@
 local mapgen_name = minetest.get_mapgen_setting("mg_name")
 local lott_v6 = minetest.setting_getbool("lott_v6") or false
 
-if mapgen_name == "singlenode" or (mapgen_name == "v6" and lott_v6 ~= true) then
-	minetest.set_mapgen_setting("mg_name", "v7", true)
-end
+--if mapgen_name == "singlenode" or (mapgen_name == "v6" and lott_v6 ~= true) then
+	minetest.set_mapgen_setting("mg_name", "singlenode", true)
+--end
 
 local flags = minetest.get_mapgen_setting("mgv7_spflags")
 
