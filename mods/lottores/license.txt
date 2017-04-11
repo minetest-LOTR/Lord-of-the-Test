@@ -6,5 +6,10 @@ Original Author(s):
 
 Authors of media files
 -----------------------
+rubberduck (CC0)
+	lottores_mithril_ore.png (Modified by Amaz)
+	lottores_tin_ore.png (Modified by Amaz)
+	lottores_silver_ore.png
+
 fishyWET (CC BY-SA 3.0)
-	Everything
+	Everything else

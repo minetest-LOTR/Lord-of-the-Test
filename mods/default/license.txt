@@ -83,7 +83,6 @@ Calinou (CC BY-SA 3.0):
   default_bronze_ingot.png
   default_copper_ingot.png
   default_copper_lump.png
-  default_mineral_copper.png
   default_sign.png, derived from default_sign_wall.png by Cisoun.
 
 paramat (CC BY-SA 3.0):
@@ -117,7 +116,6 @@ PilzAdam (WTFPL):
   default_mossycobble.png
   default_gold_ingot.png
   default_gold_lump.png
-  default_mineral_gold.png
   default_tool_meseaxe.png
   default_tool_meseshovel.png
   default_tool_mesesword.png
@@ -174,6 +172,12 @@ GreenXenith (CC-BY-SA 3.0):
 Kalabasa (CC BY-SA 3.0):
   default_furnace_fire_bg.png
   default_furnace_fire_fg.png
+
+rubberduck (CC0):
+  default_mineral_gold.png
+  default_mineral_copper.png
+  default_mineral_coal.png
+  default_mineral_iron.png
 
 Glass breaking sounds (CC BY 3.0):
   1: http://www.freesound.org/people/cmusounddesign/sounds/71947/
