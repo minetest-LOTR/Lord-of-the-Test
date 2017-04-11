@@ -109,25 +109,25 @@ minetest.register_craft({
 -- The basic gemed rings.
 
 minetest.register_craftitem("lottother:blue_gem_ring", {
-	description = "Blue Gem Ring.",
+	description = "Sapphire Ring.",
 	inventory_image = "lottother_bluegem_ring.png",
 	groups = {forbidden=1},
 })
 
 minetest.register_craftitem("lottother:red_gem_ring", {
-	description = "Red Gem Ring",
+	description = "Ruby Ring",
 	inventory_image = "lottother_redgem_ring.png",
     groups = {forbidden=1},
 })
 
 minetest.register_craftitem("lottother:purple_gem_ring", {
-	description = "Purple Gem Ring",
+	description = "Amethyst Ring",
 	inventory_image = "lottother_purplegem_ring.png",
     groups = {forbidden=1},
 })
 
 minetest.register_craftitem("lottother:white_gem_ring", {
-	description = "White Gem Ring",
+	description = "Adamant Ring",
 	inventory_image = "lottother_whitegem_ring.png",
     groups = {forbidden=1},
 })
@@ -175,28 +175,28 @@ lottblocks.crafting.add_craft("lottother:white_gem_ring", {
 -- First add a rough rock coating
 
 minetest.register_craftitem("lottother:blue_rr_ring", {
-	description = "Rough Rock Blue Ring",
+	description = "Coated Sapphire Ring",
 	inventory_image = "lottother_bluegem_rr_ring.png",
 	groups = {forbidden=1, ring = 1},
 	stack_max = 1,
 })
 
 minetest.register_craftitem("lottother:red_rr_ring", {
-	description = "Rough Rock Red Ring",
+	description = "Coated Ruby Ring",
 	inventory_image = "lottother_redgem_rr_ring.png",
 	groups = {forbidden=1, ring = 1},
 	stack_max = 1,
 })
 
 minetest.register_craftitem("lottother:purple_rr_ring", {
-	description = "Rough Rock Purple Ring",
+	description = "Coated Amethyst Ring",
 	inventory_image = "lottother_purplegem_rr_ring.png",
 	groups = {forbidden=1, ring = 1},
 	stack_max = 1,
 })
 
 minetest.register_craftitem("lottother:white_rr_ring", {
-	description = "Rough Rock White Ring",
+	description = "Coated Adamant Ring",
 	inventory_image = "lottother_whitegem_rr_ring.png",
 	groups = {forbidden=1, ring = 1},
 	stack_max = 1,

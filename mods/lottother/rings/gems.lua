@@ -1,7 +1,7 @@
 --The three basic gem ore definitions
 
 minetest.register_node("lottother:blue_gem_ore", {
-	description = "Blue Gem Ore",
+	description = "Sapphire Gem Ore",
 	tiles = {"default_stone.png^lottother_bluegem_ore.png"},
 	is_ground_content = true,
 	groups = {gems=1, creative=1},
@@ -20,7 +20,7 @@ minetest.register_node("lottother:blue_gem_ore", {
 })
 
 minetest.register_node("lottother:white_gem_ore", {
-	description = "White Gem Ore",
+	description = "Adamant Gem Ore",
 	tiles = {"default_stone.png^lottother_whitegem_ore.png"},
 	is_ground_content = true,
 	groups = {gems=1, creative=1},
@@ -39,7 +39,7 @@ minetest.register_node("lottother:white_gem_ore", {
 })
 
 minetest.register_node("lottother:purple_gem_ore", {
-	description = "Purple Gem Ore",
+	description = "Amethyst Gem Ore",
 	tiles = {"default_stone.png^lottother_purplegem_ore.png"},
 	is_ground_content = true,
 	groups = {gems=1, creative=1},
@@ -58,7 +58,7 @@ minetest.register_node("lottother:purple_gem_ore", {
 })
 
 minetest.register_node("lottother:red_gem_ore", {
-	description = "Red Gem Ore",
+	description = "Ruby Gem Ore",
 	tiles = {"default_stone.png^lottother_redgem_ore.png"},
 	is_ground_content = true,
 	groups = {gems=1, creative=1},
@@ -124,6 +124,37 @@ minetest.register_ore({
 	y_max     = wl - 256,
 })
 
+-- ABM for fancy particles :D
+
+minetest.register_abm({
+	label = "Gem Particles",
+	nodenames = {"lottother:blue_gem_ore", "lottother:red_gem_ore",
+		"lottother:purple_gem_ore", "lottother:white_gem_ore"},
+	neighbors = {"air"},
+	interval = 8,
+	chance = 1,
+	action = function(pos)
+		if minetest.get_node({x = pos.x, y = pos.y - 1, z = pos.z}).name == "air" then
+			minetest.add_particlespawner({
+				amount = 4,
+				time = 8,
+				minpos = {x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
+	        	maxpos = {x = pos.x + 1, y = pos.y, z = pos.z + 1},
+				minvel = {x = -0.5, y = -0.5, z = -0.5},
+		        maxvel = {x = 0.5, y = 0, z = 0.5},
+		        minacc = {x = -0.5, y = -0.5, z = -0.5},
+		        maxacc = {x = 0.5, y = 0, z = 0.5},
+				minexptime = 1,
+	        	maxexptime = 2,
+				minsize = 1,
+				maxsize = 2,
+				texture = "lottother_gem_particle.png",
+				glow = 4,
+			})
+		end
+	end,
+})
+
 -------------------------------------------
 -- The long process of readying the gems --
 -------------------------------------------
@@ -131,22 +162,22 @@ minetest.register_ore({
 -- The inital drop from the ore
 
 minetest.register_craftitem("lottother:stony_blue_gem", {
-	description = "Stone Encrusted Blue Gem",
+	description = "Stone Encrusted Sapphire Gem",
 	inventory_image = "lottother_stony_bluegem.png",
 })
 
 minetest.register_craftitem("lottother:stony_red_gem", {
-	description = "Stone Encrusted Red Gem",
+	description = "Stone Encrusted Ruby Gem",
 	inventory_image = "lottother_stony_redgem.png",
 })
 
 minetest.register_craftitem("lottother:stony_purple_gem", {
-	description = "Stone Encrusted Purple Gem",
+	description = "Stone Encrusted Amethyst Gem",
 	inventory_image = "lottother_stony_purplegem.png",
 })
 
 minetest.register_craftitem("lottother:stony_white_gem", {
-	description = "Stone Encrusted White Gem",
+	description = "Stone Encrusted Adamant Gem",
 	inventory_image = "lottother_stony_whitegem.png",
 })
 
@@ -155,22 +186,22 @@ minetest.register_craftitem("lottother:stony_white_gem", {
 -- cut, unpolished gems, without having to have separate textures for them!)
 
 minetest.register_craftitem("lottother:uncut_blue_gem", {
-	description = "Uncut Blue Gem",
-	inventory_image = "lottother_uncut_bluegem.png^[colorize:#898985:100",
+	description = "Uncut Sapphire Gem",
+	inventory_image = "lottother_uncut_bluegem.png^[colorize:#898985:150",
 })
 
 minetest.register_craftitem("lottother:uncut_red_gem", {
-	description = "Uncut Red Gem",
-	inventory_image = "lottother_uncut_redgem.png^[colorize:#898985:100",
+	description = "Uncut Ruby Gem",
+	inventory_image = "lottother_uncut_redgem.png^[colorize:#898985:150",
 })
 
 minetest.register_craftitem("lottother:uncut_purple_gem", {
-	description = "Uncut Purple Gem",
-	inventory_image = "lottother_uncut_purplegem.png^[colorize:#898985:100",
+	description = "Uncut Amethyst Gem",
+	inventory_image = "lottother_uncut_purplegem.png^[colorize:#898985:150",
 })
 
 minetest.register_craftitem("lottother:uncut_white_gem", {
-	description = "Uncut White Gem",
+	description = "Uncut Adamant Gem",
 	inventory_image = "lottother_uncut_whitegem.png^[colorize:#898985:100",
 })
 
@@ -207,23 +238,23 @@ minetest.register_craft({
 -- You then craft them with a chisel to get unpolished gems
 
 minetest.register_craftitem("lottother:unpolished_blue_gem", {
-	description = "Unpolished Blue Gem",
-	inventory_image = "lottother_bluegem.png^[colorize:#898985:120",
+	description = "Unpolished Sapphire Gem",
+	inventory_image = "lottother_bluegem.png^[colorize:#898985:170",
 })
 
 minetest.register_craftitem("lottother:unpolished_red_gem", {
-	description = "Unpolished Red Gem",
-	inventory_image = "lottother_redgem.png^[colorize:#898985:120",
+	description = "Unpolished Ruby Gem",
+	inventory_image = "lottother_redgem.png^[colorize:#898985:170",
 })
 
 minetest.register_craftitem("lottother:unpolished_purple_gem", {
-	description = "Unpolished Purple Gem",
-	inventory_image = "lottother_purplegem.png^[colorize:#898985:120",
+	description = "Unpolished Amethyst Gem",
+	inventory_image = "lottother_purplegem.png^[colorize:#898985:170",
 })
 
 minetest.register_craftitem("lottother:unpolished_white_gem", {
-	description = "Unpolished White Gem",
-	inventory_image = "lottother_whitegem.png^[colorize:#898985:120",
+	description = "Unpolished Adamant Gem",
+	inventory_image = "lottother_whitegem.png^[colorize:#898985:170",
 })
 
 minetest.register_tool("lottother:chisel", {
@@ -291,22 +322,22 @@ end)
 -- TODO: Make this more interesting than just crafting with sand.
 
 minetest.register_craftitem("lottother:blue_gem", {
-	description = "Blue Gem",
+	description = "Sapphire Gem",
 	inventory_image = "lottother_bluegem.png",
 })
 
 minetest.register_craftitem("lottother:red_gem", {
-	description = "Red Gem",
+	description = "Ruby Gem",
 	inventory_image = "lottother_redgem.png",
 })
 
 minetest.register_craftitem("lottother:purple_gem", {
-	description = "Purple Gem",
+	description = "Amethyst Gem",
 	inventory_image = "lottother_purplegem.png",
 })
 
 minetest.register_craftitem("lottother:white_gem", {
-	description = "White Gem",
+	description = "Adamant Gem",
 	inventory_image = "lottother_whitegem.png",
 })
 

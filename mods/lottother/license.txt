@@ -14,6 +14,17 @@ cd2 (cdqwertz) (CC BY-SA 3.0)
 fishyWET (CC BY-SA 3.0)
 	lottother_blue_flame*.png
 
-Amaz (CC BY-SA 3.0)
-	Everything else
+the_raven_262 (CC BY-SA 3.0)
+	lottother_bluegem*.png
+	lottother_purplegem*.png
+	lottother_redgem*.png
+	lottother_whitegem*.png
+	lottother_stony*.png
+	lottother_uncut*.png
 
+
+Amaz (CC BY-SA 3.0)
+	lottother_narya.png (Based on lottother_redgem.png by the_raven_262)
+	lottother_nenya_inv.png (Based on lottother_whitegem.png by the_raven_262)
+	lottother_vilya.png (Based on lottother_bluegem.png by the_raven_262)
+	Everything else
