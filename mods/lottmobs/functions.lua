@@ -240,6 +240,9 @@ lottmobs.guard_die = function(self, pos)
 		lottmobs.player_guards[self.owner][self.game_name] = nil
 		lottmobs.save_guard_hunger()
 	end
+	if self.attack and self.attack:is_player() then
+		lottachievements.kill(self.name, self.attack)
+	end
 end
 
 lottmobs.do_custom_guard = function(self, dtime)

@@ -1,0 +1,20 @@
+Authors of source code:
+-----------------------
+(LOTT-specific-mod, based on https://github.com/minetest-mods/awards)
+Original Author:
+	rubenwardy (LGPL v2.1)
+
+LOTT Modifications and Additions by:
+	Amaz (LGPL v2.1)
+
+Authors of media files
+-----------------------
+
+lottachievements_got_generic.ogg - CC0 - https://www.freesound.org/people/Kastenfrosch/sounds/162482/
+
+Bad_Command_ (CC BY-SA 3.0)
+	lottachievements_skull.png
+	lottachievements_crowned_skull.png (Modified by Amaz)
+
+rubenwardy (CC BY-SA 3.0)
+	Everything else

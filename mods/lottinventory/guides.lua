@@ -25,10 +25,16 @@ local guides = {
 for name, table in pairs(guides) do
 	lottinventory[name] = {users = {}, crafts = {}, itemlist = {}, need_load_all = true}
 	lottinventory.receive_fields(lottinventory[name], name, table[5])
+	local groups = {book = 1}
+	if name == "forbidden" then
+		groups.armor_use = 1
+	elseif name == "master" then
+		groups.forbidden = 1
+	end
 
 	minetest.register_tool("lottinventory:" .. name .. "_book",{
 	    description = name:gsub("^%l", string.upper) .. " Book",
-	    groups = {book=1},
+	    groups = groups,
 	    inventory_image = "lottinventory_" .. name .. "_book.png",
 	    wield_image = "",
 	    wield_scale = {x=1,y=1,z=1},

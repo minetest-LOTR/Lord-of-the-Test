@@ -387,6 +387,8 @@ minetest.register_on_craft(function(itemstack, player, old_craft_grid, craft_inv
 		if math.random(3) > 1 then
 			itemstack:take_item()
 			return itemstack
+		else
+			lottachievements.unlock(player:get_player_name(), "polisher")
 		end
 	end
 end)

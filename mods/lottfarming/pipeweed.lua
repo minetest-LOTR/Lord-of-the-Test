@@ -136,6 +136,7 @@ minetest.register_tool("lottfarming:pipe", {
     			vertical = false,
     			texture = "lottfarming_smoke_ring.png",
 			})
+			lottachievements.unlock(player:get_player_name(), "smoke_rings")
 		end
 	end
 end})

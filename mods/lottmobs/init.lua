@@ -132,7 +132,7 @@ mobs:register_mob("lottmobs:ent", {
 	peaceful = true,
 	group_attack = true,
 	step = 1,
-
+	on_die = lottmobs.guard_die,
 })
 mobs:register_spawn("lottmobs:ent", {"lottmapgen:fangorn_grass"}, 20, -1, 6000, 3, 31000)
 
@@ -1282,6 +1282,7 @@ mobs:register_mob("lottmobs:witch_king", {
 	peaceful = true,
 	group_attack = true,
 	step = 1,
+	on_die = lottmobs.guard_die,
 })
 mobs:register_spawn("lottmobs:witch_king", {"default:stone"}, 2, -1, 40000, 10, -1000)
 
@@ -1391,6 +1392,7 @@ mobs:register_mob("lottmobs:balrog", {
 	peaceful = true,
 	group_attack = true,
 	step = 1,
+	on_die = lottmobs.guard_die,
 })
 mobs:register_spawn("lottmobs:balrog", {"default:stone"}, 2, -1, 100000, 10, -10000)
 

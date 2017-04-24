@@ -258,9 +258,12 @@ end
 -- override core.do_item_eat() so we can redirect hp_change to stamina
 core.do_item_eat = function(hp_change, replace_with_item, itemstack, user, pointed_thing)
 	local old_itemstack = itemstack
+	local old_level = stamina_players[user:get_player_name()].level
 	itemstack = stamina.eat(hp_change, replace_with_item, itemstack, user, pointed_thing)
+	local level = stamina_players[user:get_player_name()].level
 	for _, callback in pairs(core.registered_on_item_eats) do
-		local result = callback(hp_change, replace_with_item, itemstack, user, pointed_thing, old_itemstack)
+		local result = callback(hp_change, replace_with_item, itemstack, user,
+				pointed_thing, old_itemstack, old_level, level)
 		if result then
 			return result
 		end

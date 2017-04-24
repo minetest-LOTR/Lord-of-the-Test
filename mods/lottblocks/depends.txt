@@ -3,3 +3,4 @@ doors
 lottplants
 default
 dye
+lottachievements

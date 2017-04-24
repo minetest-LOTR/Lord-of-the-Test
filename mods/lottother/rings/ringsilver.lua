@@ -89,6 +89,9 @@ minetest.register_craftitem("lottother:hot_ringsilver", {
 					if node == "default:water_source" and os.time() - tonumber(metadata) <= 13 then
 						minetest.add_item(pos, "lottother:ringsilver")
 					end
+					if dropper and dropper:get_player_name() then
+						lottachievements.unlock(dropper:get_player_name(), "ringsilver_crafter")
+					end
 				end
 			end
 		end)

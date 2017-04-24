@@ -342,6 +342,10 @@ local function furnace_node_timer(pos, elapsed)
 					local item = minetest.add_item({x=pos.x, y=pos.y+1, z=pos.z},
 						"lottother:" .. ring)
 					item:setvelocity({x=0, y=10, z=0})
+					local pn = meta:get_string("player_name")
+					if pn and pn ~= "" then
+						lottachievements.unlock(pn, "ring_smith")
+					end
 					default.explode(pos, 0, 14, 100)
 				else
 					default.explode(pos, 0, 5, 20)
@@ -459,8 +463,10 @@ for _, status in pairs({"active", "inactive"}) do
 			local timer = minetest.get_node_timer(pos)
 			timer:start(1.0)
 		end,
-		on_metadata_inventory_put = function(pos)
+		on_metadata_inventory_put = function(pos, _, _, _, player)
 			-- start timer function, it will sort out whether furnace can burn or not.
+			local meta = minetest.get_meta(pos)
+			meta:set_string("player_name", player:get_player_name())
 			local timer = minetest.get_node_timer(pos)
 			timer:start(1.0)
 		end,

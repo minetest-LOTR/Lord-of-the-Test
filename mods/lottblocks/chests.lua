@@ -14,6 +14,19 @@ minetest.register_craft({
 	}
 })
 
+local function lockpick(itemstack, pos, race, player)
+	if math.random(1, 4) ~= 3 then
+		itemstack:add_wear(65535/20)
+		minetest.chat_send_player(player, "Lockpick failed")
+	else
+		itemstack:add_wear(65535/18)
+		minetest.show_formspec(player,
+			"lottblocks:" .. race .. "_chest",
+			default.get_chest_formspec(pos, "gui_" .. race .. "bg.png"))
+		lottachievements.unlock(player, "thief")
+	end
+end
+
 minetest.register_node("lottblocks:hobbit_chest", {
         description = "Hobbit Chest",
         tiles = {"lottblocks_hobbit_chest_top.png", "lottblocks_hobbit_chest_top.png", "lottblocks_hobbit_chest_side.png",
@@ -37,15 +50,7 @@ minetest.register_node("lottblocks:hobbit_chest", {
 					player, "lottblocks:hobbit_chest", default.get_chest_formspec(pos, "gui_hobbitbg.png")
 				)
             elseif item == "lottblocks:lockpick" then
-                if math.random(1, 4) ~= 3 then
-                    itemstack:add_wear(65535/20)
-                    minetest.chat_send_player(player, "Lockpick failed")
-                else
-                    itemstack:add_wear(65535/18)
-                    minetest.show_formspec(
-    					player, "lottblocks:hobbit_chest", default.get_chest_formspec(pos, "gui_hobbitbg.png")
-    				)
-                end
+				lockpick(itemstack, pos, "hobbit", player)
 			else
 				minetest.chat_send_player(player, "Only Hobbits can open this kind of chest!")
 			end
@@ -87,15 +92,7 @@ minetest.register_node("lottblocks:gondor_chest", {
 					default.get_chest_formspec(pos, "gui_gondorbg.png")
 				)
             elseif item == "lottblocks:lockpick" then
-                if math.random(1, 4) ~= 3 then
-                    itemstack:add_wear(65535/20)
-                    minetest.chat_send_player(player, "Lockpick failed")
-                else
-                    itemstack:add_wear(65535/18)
-                    minetest.show_formspec(
-        				player, "lottblocks:gondor_chest", default.get_chest_formspec(pos, "gui_gondorbg.png")
-        			)
-                end
+                lockpick(itemstack, pos, "gondor", player)
 			else
 				minetest.chat_send_player(player, "Only Humans can open this kind of chest!")
 			end
@@ -137,15 +134,7 @@ minetest.register_node("lottblocks:rohan_chest", {
 					default.get_chest_formspec(pos, "gui_rohanbg.png")
 				)
             elseif item == "lottblocks:lockpick" then
-                if math.random(1, 4) ~= 3 then
-                    itemstack:add_wear(65535/20)
-                    minetest.chat_send_player(player, "Lockpick failed")
-                else
-                    itemstack:add_wear(65535/18)
-                    minetest.show_formspec(
-        				player, "lottblocks:rohan_chest", default.get_chest_formspec(pos, "gui_rohanbg.png")
-        			)
-                end
+                lockpick(itemstack, pos, "rohan", player)
 			else
 				minetest.chat_send_player(player, "Only Humans can open this kind of chest!")
 			end
@@ -187,15 +176,7 @@ minetest.register_node("lottblocks:elfloth_chest", {
 					default.get_chest_formspec(pos, "gui_elfbg.png")
 				)
             elseif item == "lottblocks:lockpick" then
-                if math.random(1, 4) ~= 3 then
-                    itemstack:add_wear(65535/20)
-                    minetest.chat_send_player(player, "Lockpick failed")
-                else
-                    itemstack:add_wear(65535/18)
-                    minetest.show_formspec(
-                        player, "lottblocks:elfloth_chest", default.get_chest_formspec(pos, "gui_elfbg.png")
-                    )
-                end
+                lockpick(itemstack, pos, "elf", player)
 			else
 				minetest.chat_send_player(player, "Only Elves can open this kind of chest!")
 			end
@@ -237,15 +218,7 @@ minetest.register_node("lottblocks:elfmirk_chest", {
 					default.get_chest_formspec(pos, "gui_elfbg.png")
 				)
             elseif item == "lottblocks:lockpick" then
-                if math.random(1, 4) ~= 3 then
-                    itemstack:add_wear(65535/20)
-                    minetest.chat_send_player(player, "Lockpick failed")
-                else
-                    itemstack:add_wear(65535/18)
-                    minetest.show_formspec(
-                        player, "lottblocks:elfmirk_chest", default.get_chest_formspec(pos, "gui_elfbg.png")
-                    )
-                end
+                lockpick(itemstack, pos, "elf", player)
 			else
 				minetest.chat_send_player(player, "Only Elves can open this kind of chest!")
 			end
@@ -287,15 +260,7 @@ minetest.register_node("lottblocks:mordor_chest", {
 					default.get_chest_formspec(pos, "gui_mordorbg.png")
 				)
             elseif item == "lottblocks:lockpick" then
-                if math.random(1, 4) ~= 3 then
-                    itemstack:add_wear(65535/20)
-                    minetest.chat_send_player(player, "Lockpick failed")
-                else
-                    itemstack:add_wear(65535/18)
-                    minetest.show_formspec(
-        				player, "lottblocks:mordor_chest", default.get_chest_formspec(pos, "gui_mordorbg.png")
-        			)
-                end
+                lockpick(itemstack, pos, "mordor", player)
 			else
 				minetest.chat_send_player(player, "Only Orcs can open this kind of chest!")
 			end
@@ -337,15 +302,7 @@ minetest.register_node("lottblocks:angmar_chest", {
 					default.get_chest_formspec(pos, "gui_angmarbg.png")
 				)
             elseif item == "lottblocks:lockpick" then
-                if math.random(1, 4) ~= 3 then
-                    itemstack:add_wear(65535/20)
-                    minetest.chat_send_player(player, "Lockpick failed")
-                else
-                    itemstack:add_wear(65535/18)
-                    minetest.show_formspec(
-        				player, "lottblocks:angmar_chest", default.get_chest_formspec(pos, "gui_angmarbg.png")
-        			)
-                end
+                lockpick(itemstack, pos, "angmar", player)
 			else
 				minetest.chat_send_player(player, "Only Orcs can open this kind of chest!")
 			end
@@ -388,15 +345,7 @@ minetest.register_node("lottblocks:dwarf_chest", {
 					default.get_chest_formspec(pos, "gui_dwarfbg.png")
 				)
             elseif item == "lottblocks:lockpick" then
-                if math.random(1, 4) ~= 3 then
-                    itemstack:add_wear(65535/20)
-                    minetest.chat_send_player(player, "Lockpick failed")
-                else
-                    itemstack:add_wear(65535/18)
-                    minetest.show_formspec(
-        				player, "lottblocks:dwarf_chest", default.get_chest_formspec(pos, "gui_dwarfbg.png")
-        			)
-                end
+                lockpick(itemstack, pos, "dwarf", player)
 			else
 				minetest.chat_send_player(player, "Only Dwarfs can open this kind of chest!")
 			end
