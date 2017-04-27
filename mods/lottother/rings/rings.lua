@@ -21,9 +21,10 @@ minetest.register_alias("lottother:ringsilver_ingot", "lottother:ringsilver")
 --FUNCTION = Sets your health to max every 10 seconds.
 
 minetest.register_craftitem("lottother:vilya", {
-	description = "Vilya",
+	description = minetest.colorize("skyblue", "Vilya\nElven Ring of Power") ..
+		minetest.get_background_escape_sequence("lightgoldenrodyellow"),
 	inventory_image = "lottother_vilya.png",
-     groups = {forbidden=1},
+	groups = {forbidden=1},
 })
 local time = 0
 minetest.register_globalstep(function(dtime)
@@ -42,9 +43,10 @@ end)
 --FUNCTION = Makes (good) mobs follow you.
 
 minetest.register_craftitem("lottother:narya", {
-	description = "Narya",
+	description = minetest.colorize("crimson", "Narya\nElven Ring of Power") ..
+		minetest.get_background_escape_sequence("lightgoldenrodyellow"),
 	inventory_image = "lottother_narya.png",
-     groups = {forbidden=1},
+	groups = {forbidden=1},
 })
 --In mob def:
 --follow = "lottother:narya",
@@ -52,7 +54,8 @@ minetest.register_craftitem("lottother:narya", {
 --FUNCTION = Same armor stats as a full set of mithril.
 
 minetest.register_tool("lottother:nenya", {
-	description = "Nenya",
+	description = minetest.colorize("silver", "Nenya\nElven Ring of Power") ..
+		minetest.get_background_escape_sequence("lightgoldenrodyellow"),
 	inventory_image = "lottother_nenya_inv.png",
 	groups = {armor_head=15, armor_torso=20, armor_legs=20, armor_feet=15, armor_shield=25,forbidden=1},
 	wear = 0,
@@ -63,9 +66,10 @@ minetest.register_tool("lottother:nenya", {
 --Dwarf Ring:
 
 minetest.register_craftitem("lottother:dwarf_ring", {
-	description = "Dwarf Ring",
+	description = minetest.colorize("darkviolet", "Dwarvern Ring of Power") ..
+		minetest.get_background_escape_sequence("lightgoldenrodyellow"),
 	inventory_image = "lottother_dwarf_ring.png",
-     groups = {forbidden=1},
+	groups = {forbidden=1},
 })
 
 --Dwarf ring crafts...
