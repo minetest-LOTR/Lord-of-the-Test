@@ -6,5 +6,8 @@ Original Author(s):
 
 Authors of media files
 -----------------------
+LordNeo (CC0)
+	lottweapons_balrog_whip.png (Source: https://opengameart.org/content/whip-64-x-64)
+
 Amaz (CC BY-SA 3.0)
 	Everything else

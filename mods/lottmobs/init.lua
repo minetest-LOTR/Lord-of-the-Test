@@ -1305,6 +1305,10 @@ mobs:register_mob("lottmobs:balrog", {
 	run_velocity = 3,
 	damage = 30,
 	drops = {
+		{name = "lottweapons:balrog_whip",
+		chance = 10,
+		min = 1,
+		max = 1,},
 		{name = "lottores:mithril_ingot",
 		chance = 10,
 		min = 1,
