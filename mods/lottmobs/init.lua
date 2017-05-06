@@ -1582,7 +1582,7 @@ mobs:register_arrow("lottmobs:darkball", {
                 local node1def = minetest.get_node(pos)
                 local n = node1def.name
 		for dx=-1,1 do
-			for dy=-2,1 do
+			for dy=-1,1 do
 				for dz=-1,1 do
 					local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
                                         local node2def = minetest.get_node(p)
