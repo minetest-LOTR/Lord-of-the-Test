@@ -16,6 +16,13 @@ minetest.register_node("lottblocks:banner_top", {
 	},
 })
 
+minetest.register_craft({
+	output = "lottblocks:banner_top",
+	recipe = {
+		{"default:stick", "default:stick", "default:stick"},
+	},
+})
+
 local banners = {
 	{"angmar",   "Angmar",   "red"},
 	{"dunland",  "Dunland",  "brown"},
