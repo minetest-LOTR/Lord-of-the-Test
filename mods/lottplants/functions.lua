@@ -837,7 +837,7 @@ minetest.register_abm({
     action = function(pos, node, active_object_count, active_object_count_wider)
 		local na = minetest.get_node_or_nil({x = pos.x, y = pos.y + 1, z = pos.z})
 		local naa = minetest.get_node_or_nil({x = pos.x, y = pos.y + 2, z = pos.z})
-		if na.name == "lottplants:mallorntree_young" and naa.name == "lottplants:mallorntree_young" then
+		if na and naa and na.name == "lottplants:mallorntree_young" and naa.name == "lottplants:mallorntree_young" then
 			if can_grow({x = pos.x, y = pos.y - 1, z = pos.z}) and
 			can_grow({x = pos.x, y = pos.y - 2, z = pos.z}) and
 			can_grow({x = pos.x, y = pos.y - 3, z = pos.z}) then
@@ -861,7 +861,7 @@ minetest.register_abm({
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		local na = minetest.get_node_or_nil({x = pos.x, y = pos.y + 1, z = pos.z})
 		local naa = minetest.get_node_or_nil({x = pos.x, y = pos.y + 2, z = pos.z})
-		if na.name == "lottplants:mallorntree" and naa.name == "lottplants:mallorntree" then
+		if na and naa and na.name == "lottplants:mallorntree" and naa.name == "lottplants:mallorntree" then
 			if large_roots(pos) ~= false then
 				local light_level = minetest.get_node_light(pos)
 				if not light_level then
