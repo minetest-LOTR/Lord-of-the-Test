@@ -29,7 +29,7 @@ local purple2 = "#c804cc"
 local green2 = green
 
 local mods = {
-    "boats", "bones", "bucket", "creative",
+    "boats", "bones", "bucket", "creative", "currency",
     "darkage", "default", "doors", "dye", "farming",
     "fire", "flowers", "lottarmor", "lottblocks",
     "lottclasses", "lottclothes", "lottfarming",
