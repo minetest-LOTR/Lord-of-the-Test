@@ -176,7 +176,15 @@ lottmapgen.fill_bellow = function(fill)
 	local c_morwat = minetest.get_content_id("lottmapgen:blacksource")
 	local c_morrivwat = minetest.get_content_id("lottmapgen:black_river_source")
 
-	local water_level = minetest.get_mapgen_setting("water_level")
+	local water_level
+	if minetest.get_mapgen_setting then
+		water_level = minetest.get_mapgen_setting('water_level')
+	else
+		local mg_params = minetest.get_mapgen_params()
+		if mg_params then
+			water_level = mg_params.water_level
+		end
+	end
 
 	local vm = minetest.get_voxel_manip()
 	local emin, emax = vm:read_from_map(pos1, pos2)

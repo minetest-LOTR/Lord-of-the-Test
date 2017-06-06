@@ -1,4 +1,12 @@
-local water_level = minetest.get_mapgen_setting("water_level")
+local water_level
+if minetest.get_mapgen_setting then
+	water_level = minetest.get_mapgen_setting('water_level')
+else
+	local mg_params = minetest.get_mapgen_params()
+	if mg_params then
+		water_level = mg_params.water_level
+	end
+end
 
 minetest.set_gen_notify("dungeon")
 

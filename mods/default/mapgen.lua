@@ -1,20 +1,48 @@
 -- mods/default/mapgen.lua
 
-local mapgen_name = minetest.get_mapgen_setting("mg_name")
+local mapgen_name
+if minetest.get_mapgen_setting then
+	mapgen_name = minetest.get_mapgen_setting('mg_name')
+else
+	local mg_params = minetest.get_mapgen_params()
+	if mg_params then
+		mapgen_name = mg_params.mgname
+	end
+end
 local lott_v6 = minetest.setting_getbool("lott_v6") or false
 
 if mapgen_name == "singlenode" or (mapgen_name == "v6" and lott_v6 ~= true) then
-	minetest.set_mapgen_setting("mg_name", "v7", true)
+	if minetest.set_mapgen_setting then
+		minetest.set_mapgen_setting("mg_name", "v7", true)
+	else
+		local mg_params = minetest.get_mapgen_params()
+		mg_params.mgname = "v7"
+		minetest.set_mapgen_params(mg_params)
+	end
 end
 
-local flags = minetest.get_mapgen_setting("mgv7_spflags")
+local flags
+if minetest.get_mapgen_setting then
+	flags = minetest.get_mapgen_setting('mgv7_spflags')
+else
+	local mg_params = minetest.get_mapgen_params()
+	if mg_params then
+		flags = mg_params.flags
+	end
+end
 
 if flags ~= nil then
 	local c1, c2 = flags:find("floatlands")
 
 	if c1 and c2 and not flags:find("nofloatlands") then
-		minetest.set_mapgen_setting("mgv7_spflags",
-			flags:sub(1, c1-1) .. flags:sub(c2+1), true)
+		if minetest.set_mapgen_setting then
+			minetest.set_mapgen_setting("mgv7_spflags",
+				flags:sub(1, c1-1) .. flags:sub(c2+1), true)
+		else
+			local mg_params = minetest.get_mapgen_params()
+			mg_params.flags = flags:sub(1, c1-1) .. flags:sub(c2+1)
+			minetest.set_mapgen_params(mg_params)
+		end
 	end
 end
 
@@ -70,7 +98,15 @@ minetest.register_alias("mapgen_stair_sandstonebrick", "stairs:stair_cobble")
 -- Ore generation
 --
 
-local wl = minetest.get_mapgen_setting("water_level")
+local wl
+if minetest.get_mapgen_setting then
+	wl = minetest.get_mapgen_setting('water_level')
+else
+	local mg_params = minetest.get_mapgen_params()
+	if mg_params then
+		wl = mg_params.water_level
+	end
+end
 
 minetest.register_ore({
 	ore_type       = "scatter",
