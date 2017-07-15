@@ -206,6 +206,7 @@ mobs:register_mob("lottmobs:spider", {
 		attack = "mobs_oerkki_attack",
 	},
 	step = 1,
+	on_die = lottmobs.guard_die,
 })
 mobs:register_spawn("lottmobs:spider", {"lottmapgen:mirkwood_grass"}, 20, -10, 6000, 3, 31000)
 
