@@ -20,21 +20,44 @@ end
 function lottmapgen_height(noisy_x, noisy_z)
 	local small_x = math.floor(noisy_x / 160)
 	local small_z = math.floor(noisy_z / 160)
-	local variation = small_x - (noisy_x / 160)
-	local difference = 0
+	local dx = math.abs(small_x - (noisy_x / 160))
+	local dz = math.abs(small_z - (noisy_z / 160))
 	small_x = small_x + 200
 	small_z = (small_z - 200) * -1
 	if height[small_z] and height[small_z][small_x] then
-		if height[small_z][small_x - 1] then
-			difference = height[small_z][small_x] - height[small_z][small_x - 1]
+		local noise = height[small_z][small_x] * 20
+		for nz = -1, 1 do
+		for nx = -1, 1 do
+			local h = height[small_z + nz][small_x + nx]
+			if h and h < height[small_z][small_x] then
+				local mult = 20
+				if nz == -1 and nx == -1 then
+					mult =  math.floor(dx*20 + 1/dz)
+				elseif nz == -1 and nx == 0 then
+					mult = math.floor(1/dz)
+				elseif nz == -1 and nx == 1 then
+					mult = math.floor(1/dx + 1/dz)
+				elseif nz == 0 and nx == -1 then
+					mult = math.floor(dx*20)
+				elseif nz == 0 and nx == 1 then
+					mult = math.floor(1/dx)
+				elseif nz == 1 and nx == -1 then
+					mult = math.floor(dx*20 + dz*20)
+				elseif nz == 1 and nx == 0 then
+					mult = math.floor(dz*20)
+				elseif nz == 1 and nx == 1 then
+					mult = math.floor(1/dx + dz*20)
+				end
+				local new_noise = (height[small_z][small_x] - 1) * 20 + mult
+				if new_noise < noise then
+					noise = new_noise
+				end
+			end
 		end
-		if height[small_z][small_x] == 5 then
-			return height[small_z][small_x]
-		else
-			return height[small_z][small_x]-- + math.ceil(variation * difference)
 		end
+		return noise
 	else
-		return 5
+		return 0
 	end
 end
 
@@ -162,6 +185,29 @@ lottmapgen.register_biome(6, {
 	name = "Breeland",
 	surface = function(data, vi)
 		data[vi] = c_breelandgrass
+	end,
+	deco = function(data, p2data, vi, area, x, y, z, noise_1)
+		if noise_1 < -0.15 and noise_1 > -0.3 then
+			if math.random(PLANT4) == 2 then
+				lottmapgen_default_flowers(data, vi, p2data)
+			elseif math.random(PLANT1) == 1 then
+				lottmapgen_grass(data, vi, p2data)
+			end
+		else
+			if math.random(TREE3) == 2 then
+				lottmapgen_short_birchtree(x, y, z, area, data)
+			elseif math.random(TREE5) == 3 then
+				lottmapgen_appletree2(x, y, z, area, data)
+			elseif math.random(TREE3) == 5 then
+				lottmapgen_defaulttree(x, y, z, area, data)
+			elseif math.random(TREE4) == 6 then
+				lottmapgen_short_elmtree(x, y, z, area, data)
+			elseif math.random(PLANT6) == 7 then
+				lottmapgen_default_flowers(data, vi, p2data)
+			elseif math.random(PLANT2) == 1 then
+				lottmapgen_grass(data, vi, p2data)
+			end
+		end
 	end,
 })
 

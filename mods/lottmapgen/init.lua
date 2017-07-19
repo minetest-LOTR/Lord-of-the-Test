@@ -87,6 +87,15 @@ local np_ter = {
 	persist = 0.5
 }
 
+local np_dec = {
+	offset = 0,
+	scale = 1,
+	spread = {x = 64, y = 64, z = 64},
+	seed = 345432,
+	octaves = 2,
+	persist = 0.5,
+}
+
 -- Stuff
 lottmapgen = {}
 lottmapgen_biome = {}
@@ -94,9 +103,11 @@ lottmapgen_biome = {}
 local nobj_temp = nil
 local nobj_humid = nil
 local nobj_ter = nil
+local nobj_dec = nil
 local nbuf_temp = {}
 local nbuf_humid = {}
 local nbuf_ter = {}
+local nbuf_dec = {}
 local dbuf = {}
 local p2dbuf = {}
 
@@ -190,10 +201,12 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	nobj_temp = nobj_temp or minetest.get_perlin_map(np_temp, chulens)
 	nobj_humid = nobj_humid or minetest.get_perlin_map(np_humid, chulens)
 	nobj_ter = nobj_ter or minetest.get_perlin_map(np_ter, chulens)
+	nobj_dec = nobj_dec or minetest.get_perlin_map(np_dec, chulens)
 
 	local nvals_x = nobj_temp:get2dMap_flat(minposxz, nbuf_temp)
 	local nvals_z = nobj_humid:get2dMap_flat(minposxz, nbuf_humid)
 	local nvals_ter = nobj_ter:get2dMap_flat(minposxz, nbuf_ter)
+	local nvals_dec = nobj_dec:get2dMap_flat(minposxz, nbuf_dec)
 
 	local offset = math.random(5,20)
 	--[[if biome_blend == true then
@@ -209,9 +222,10 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		for x = x0, x1 do -- for each column do
 			local n_x = x + math.floor(nvals_x[nixz] * border_amp) -- select biome
 			local n_z = z + math.floor(nvals_z[nixz] * border_amp)
-			local biome = lottmapgen_biomes(n_x, n_z)
-			local height = lottmapgen_height(n_x, n_z)
-			local stone_depth = math.floor((math.abs(nvals_ter[nixz]) + 1) * height)
+			local noise_1 = nvals_dec[nixz]
+			local biome = lottmapgen_biomes(n_x, n_z - 1)
+			local height = lottmapgen_height(n_x, n_z - 1)
+			local stone_depth = math.floor((nvals_ter[nixz] + 1) * height)
 
 			local sandy = (water_level+2) + math.random(-1, 1) -- sandline
 			local sandmin = (water_level-15) + math.random(-5, 0) -- lowest sand
@@ -231,17 +245,17 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					if y < 1 then
 						data[vi] = c_water
 					end
-				elseif y == 8 + stone_depth then
+				elseif y == stone_depth then
 					if biome and lottmapgen_biome[biome] then
 						if lottmapgen_biome[biome].surface then
 							lottmapgen_biome[biome].surface(data, vi)
 						end
 						vi = area:index(x, y + 1, z)
 						if lottmapgen_biome[biome].deco then
-							lottmapgen_biome[biome].deco(data, p2data, vi, area, x, y + 1, z)
+							lottmapgen_biome[biome].deco(data, p2data, vi, area, x, y + 1, z, noise_1)
 						end
 					end
-				elseif y <= 7 + stone_depth then
+				elseif y <= stone_depth then
 					data[vi] = c_stone
 				end
 				--[[if biome_blend == true then

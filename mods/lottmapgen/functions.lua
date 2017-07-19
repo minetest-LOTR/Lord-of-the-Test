@@ -146,6 +146,29 @@ function lottmapgen_farmingrareplants(data, vi, p2data)
 	end
 end
 
+function lottmapgen_default_flowers(data, vi, p2data)
+	local c_dandelionw = minetest.get_content_id("flowers:dandelion_white")
+	local c_dandeliony = minetest.get_content_id("flowers:dandelion_yellow")
+	local c_geranium = minetest.get_content_id("flowers:geranium")
+	local c_rose = minetest.get_content_id("flowers:rose")
+	local c_tulip = minetest.get_content_id("flowers:tulip")
+	local c_viola = minetest.get_content_id("flowers:viola")
+	local rand = math.random(6)
+	if rand == 1 then
+		data[vi] = c_dandelionw
+	elseif rand == 2 then
+		data[vi] = c_dandeliony
+	elseif rand == 3 then
+		data[vi] = c_geranium
+	elseif rand == 4 then
+		data[vi] = c_rose
+	elseif rand == 5 then
+		data[vi] = c_tulip
+	else
+		data[vi] = c_viola
+	end
+end
+
 function lottmapgen_burnedtree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	for j = -2, 4 do
@@ -162,6 +185,28 @@ function lottmapgen_appletree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_apple = minetest.get_content_id("default:apple")
 	local c_leaves = minetest.get_content_id("default:leaves")
+	for j = -2, 4 do
+		if j >= 1 then
+			for i = -2, 2 do
+			for k = -2, 2 do
+				local vil = area:index(x + i, y + j + 1, z + k)
+				if math.random(48) == 2 then
+					data[vil] = c_apple
+				elseif math.random(3) ~= 2 then
+					data[vil] = c_leaves
+				end
+			end
+			end
+		end
+		local vit = area:index(x, y + j, z)
+		data[vit] = c_tree
+	end
+end
+
+function lottmapgen_appletree2(x, y, z, area, data)
+	local c_tree = minetest.get_content_id("default:tree")
+	local c_apple = minetest.get_content_id("default:apple")
+	local c_leaves = minetest.get_content_id("lottplants:appleleaf")
 	for j = -2, 4 do
 		if j >= 1 then
 			for i = -2, 2 do
@@ -385,11 +430,49 @@ function lottmapgen_birchtree(x, y, z, area, data)
 	end
 end
 
+function lottmapgen_short_birchtree(x, y, z, area, data)
+	local c_birchtree = minetest.get_content_id("lottplants:birchtree")
+	local c_birchleaf = minetest.get_content_id("lottplants:birchleaf")
+	for j = -2, math.random(5, 7) do
+		if j >= 2 then
+			for i = -2, 2 do
+			for k = -2, 2 do
+				local vil = area:index(x + i, y + j + 1, z + k)
+				if math.random(3) ~= 2 then
+					data[vil] = c_birchleaf
+				end
+			end
+			end
+		end
+		local vit = area:index(x, y + j, z)
+		data[vit] = c_birchtree
+	end
+end
+
 function lottmapgen_elmtree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_elmleaf = minetest.get_content_id("lottplants:elmleaf")
 	for j = -5, 25 do
 		if j == 11 or j == 18 or j == 24 then
+			for i = -2, 2 do
+			for k = -2, 2 do
+				local vil = area:index(x + i, y + j + math.random(0, 1), z + k)
+				if math.random(5) ~= 2 then
+					data[vil] = c_elmleaf
+				end
+			end
+			end
+		end
+		local vit = area:index(x, y + j, z)
+		data[vit] = c_tree
+	end
+end
+
+function lottmapgen_short_elmtree(x, y, z, area, data)
+	local c_tree = minetest.get_content_id("default:tree")
+	local c_elmleaf = minetest.get_content_id("lottplants:elmleaf")
+	for j = -5, 9 do
+		if j >= 7 then
 			for i = -2, 2 do
 			for k = -2, 2 do
 				local vil = area:index(x + i, y + j + math.random(0, 1), z + k)
