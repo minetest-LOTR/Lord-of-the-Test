@@ -156,7 +156,8 @@ minetest.register_abm({
 	chance = chance,
 	action = function(pos, node)
 		pos.y = pos.y-1
-		if minetest.get_node(pos).name ~= "lottfarming:decay_tree" and minetest.get_node(pos).name ~= "default_tree" then
+		if minetest.get_node(pos).name ~= "lottfarming:decay_tree"
+		and minetest.get_node(pos).name ~= "default:tree" then
 			return
 		end
 		pos.y = pos.y+1
