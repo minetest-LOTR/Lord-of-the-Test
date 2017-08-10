@@ -51,15 +51,15 @@ local npc_guard_attack = function(self)
 
                 if entity_type == "player" or entity_type == "npc" or entity_type == "monster" then
 
-                        s = self.object:getpos()
-                        p = player:getpos()
-                        sp = s
+                        local s = self.object:getpos()
+                        local p = player:getpos()
+                        local sp = s
 
                         -- aim higher to make looking up hills more realistic
                         p.y = p.y + 1
                         sp.y = sp.y + 1
 
-                        dist = get_distance(p, s)
+                        local dist = get_distance(p, s)
 
                         if dist < self.view_range then
 
@@ -129,15 +129,15 @@ local npc_attack = function(self)
 
                 if entity_type == "player" or entity_type == "npc" or entity_type == "monster" then
 
-                        s = self.object:getpos()
-                        p = player:getpos()
-                        sp = s
+                        local s = self.object:getpos()
+                        local p = player:getpos()
+                        local sp = s
 
                         -- aim higher to make looking up hills more realistic
                         p.y = p.y + 1
                         sp.y = sp.y + 1
 
-                        dist = get_distance(p, s)
+                        local dist = get_distance(p, s)
 
                         if dist < self.view_range then
 

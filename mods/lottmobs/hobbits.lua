@@ -55,6 +55,21 @@ function lottmobs.register_hobbit(n, hpmin, hpmax, textures, wv, rv, damg, arm, 
         lottmobs.register_guard_craftitem("lottmobs:hobbit"..n, "Hobbit Guard", "lottmobs_hobbit_guard"..n.."_inv.png")
 end
 
+local drops = {
+	{name = "lottfarming:pipeweed_cooked",
+	chance = 5,
+	min = 1,
+	max = 5,},
+	{name = "lottfarming:pipe",
+	chance = 20,
+	min = 1,
+	max = 1,},
+	{name = "lottweapons:steel_dagger",
+	chance = 100,
+	min = 1,
+	max = 1,},
+}
+
 --Normal Hobbits
 local textures1 = {
     {"lottmobs_hobbit_1.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png"},
