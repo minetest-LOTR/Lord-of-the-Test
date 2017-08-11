@@ -101,7 +101,7 @@ minetest.register_abm({
 	interval = 9,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		minetest.set_node(pos, {name="lottblocks:hobbit_chest"})
+		minetest.set_node(pos, {name="lottblocks:hobbit_chest", param2 = node.param2})
 		local item_count = r(2, 13)
 		local items_available = {
 			[0] = "lottfarming:barley_seed 2",
@@ -150,7 +150,7 @@ minetest.register_abm({
 	interval = 9,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		minetest.set_node(pos, {name="lottblocks:gondor_chest"})
+		minetest.set_node(pos, {name="lottblocks:gondor_chest", param2 = node.param2})
 		local item_count = r(2,13)
 		local items_available = {
 			[0] = "lottores:marble 6",
@@ -199,7 +199,7 @@ minetest.register_abm({
 	interval = 9,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		minetest.set_node(pos, {name="lottblocks:rohan_chest"})
+		minetest.set_node(pos, {name="lottblocks:rohan_chest", param2 = node.param2})
 		local item_count = r(2,13)
 		local items_available = {
 			[0] = "lottores:lead_block",
@@ -252,7 +252,7 @@ minetest.register_abm({
 	interval = 9,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		minetest.set_node(pos, {name="lottblocks:elfloth_chest"})
+		minetest.set_node(pos, {name="lottblocks:elfloth_chest", param2 = node.param2})
 		local item_count = r(2,13)
 		local items_available = {
 			[0] = "lottores:mithril_ingot",
@@ -311,7 +311,7 @@ minetest.register_abm({
 	interval = 9,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		minetest.set_node(pos, {name="lottblocks:elfmirk_chest"})
+		minetest.set_node(pos, {name="lottblocks:elfmirk_chest", param2 = node.param2})
 		local item_count = r(2,13)
 		local items_available = {
 			[0] = "lottores:galvorn_ingot 3",
@@ -370,7 +370,7 @@ minetest.register_abm({
 	interval = 9,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		minetest.set_node(pos, {name="lottblocks:mordor_chest"})
+		minetest.set_node(pos, {name="lottblocks:mordor_chest", param2 = node.param2})
 		local item_count = r(2,13)
 		local items_available = {
 			[0] = "lottmapgen:mordor_stone 6",
@@ -421,7 +421,7 @@ minetest.register_abm({
 	interval = 9,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		minetest.set_node(pos, {name="lottblocks:angmar_chest"})
+		minetest.set_node(pos, {name="lottblocks:angmar_chest", param2 = node.param2})
 		local item_count = r(2, 13)
 		local items_available = {
 			[0] = "lottmapgen:angsnowblock 3",
@@ -473,7 +473,7 @@ minetest.register_abm({
 	interval = 9,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		minetest.set_node(pos, {name="lottblocks:dwarf_chest"})
+		minetest.set_node(pos, {name="lottblocks:dwarf_chest", param2 = node.param2})
 		local item_count = r(1,9)
 		local items_available = {
 			[0] = "lottpotion:beer " .. r(1,10),
@@ -529,8 +529,7 @@ minetest.register_abm({
 	interval = 9,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		p2 = minetest.get_node(pos).param2
-		minetest.set_node(pos, {name="lottblocks:elfloth_chest", param2 = p2})
+		minetest.set_node(pos, {name="lottblocks:elfloth_chest", param2 = node.param2})
 		local item_count = r(1,7)
 		local items_available = {
 			[0] = "default:gold_ingot " .. r(1, 10),
