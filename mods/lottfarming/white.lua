@@ -156,7 +156,8 @@ minetest.register_abm({
 	chance = chance,
 	action = function(pos, node)
 		pos.y = pos.y-1
-		if minetest.get_node(pos).name ~= "lottfarming:decay_tree" and minetest.get_node(pos).name ~= "default_tree" then
+		if minetest.get_node(pos).name ~= "lottfarming:decay_tree"
+		and minetest.get_node(pos).name ~= "default:tree" then
 			return
 		end
 		pos.y = pos.y+1
@@ -177,29 +178,11 @@ minetest.register_abm({
 	interval = 30,
 	chance = 10,
 	action = function(pos, node)
-		pos.x = pos.x-1
-		x = num:next(1, 3)
-		if x > 1 then
-			pos.x = pos.x+1
-			if x > 2 then
-				pos.x = pos.x+1
-			end
-		end
-		pos.z=pos.z-1
-		z = num:next(1, 3)
-		if z > 1 then
-			pos.z = pos.z+1
-			if z > 2 then
-				pos.z = pos.z+1
-			end
-		end
+		pos.x = pos.x + num:next(-1, 1)
+		pos.z = pos.z + num:next(-1, 1)
 		if minetest.get_node(pos).name=="air" then
 			pos.y = pos.y-1
 			name = minetest.get_node(pos).name
-			if name=="default:tree" then
-				pos.y=pos.y+1
-				minetest.set_node(pos, {name='lottfarming:white_mushroom_3', param2 = 9})
-			end
 			if name=="default:tree" then
 				pos.y=pos.y+1
 				minetest.set_node(pos, {name='lottfarming:white_mushroom_3', param2 = 9})
@@ -211,10 +194,6 @@ minetest.register_abm({
 					pos.y=pos.y+1
 					minetest.set_node(pos, {name='lottfarming:white_mushroom_3', param2 = 9})
 				end
-				if name=="default:tree" then
-					pos.y=pos.y+1
-					minetest.set_node(pos, {name='lottfarming:white_mushroom_3', param2 = 9})
-				end
 			end
 
 		end
@@ -222,10 +201,6 @@ minetest.register_abm({
 		if minetest.get_node(pos).name=="air" then
 			pos.y = pos.y-1
 			name = minetest.get_node(pos).name
-			if name=="default:tree" then
-				pos.y=pos.y+1
-				minetest.set_node(pos, {name='lottfarming:white_mushroom_3', param2 = 9})
-			end
 			if name=="default:tree" then
 				pos.y=pos.y+1
 				minetest.set_node(pos, {name='lottfarming:white_mushroom_3', param2 = 9})
