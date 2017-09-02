@@ -14,6 +14,20 @@ minetest.register_node("lottmapgen:fog", {
 	groups = {not_in_creative_inventory=0},
 })
 
+minetest.register_node("lottmapgen:tmp", {
+	description = "Tmp cave node",
+	drawtype = "airlike",
+	paramtype = "light",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	is_ground_content = false,
+	groups = {not_in_creative_inventory=0},
+})
+
 minetest.register_node("lottmapgen:angsnowblock", {
 	description = "Snow Block",
 	tiles = {"default_snow.png"},
@@ -432,6 +446,32 @@ minetest.register_node("lottmapgen:rhudaur_grass", {
 	description = "Rhudaur Grass",
 	tiles = {"default_grass.png^[colorize:#c83c01:75", "default_dirt.png",
 		{name =  "default_dirt.png^(default_grass_side.png^[colorize:#c83c01:75)", tileable_vertical = false}
+	},
+	is_ground_content = true,
+	groups = {crumbly=3, soil=1, lottmapgen_grass=1, not_in_creative_inventory=0},
+	drop = 'default:dirt',
+	sounds = default.node_sound_dirt_defaults({
+		footstep = {name="default_grass_footstep", gain=0.25},
+	}),
+})
+
+minetest.register_node("lottmapgen:blue_mountains_grass", {
+	description = "Blue Mountains Grass",
+	tiles = {"default_grass.png^[colorize:#8db7d3:75", "default_dirt.png",
+		{name =  "default_dirt.png^(default_grass_side.png^[colorize:#8db7d3:75)", tileable_vertical = false}
+	},
+	is_ground_content = true,
+	groups = {crumbly=3, soil=1, lottmapgen_grass=1, not_in_creative_inventory=0},
+	drop = 'default:dirt',
+	sounds = default.node_sound_dirt_defaults({
+		footstep = {name="default_grass_footstep", gain=0.25},
+	}),
+})
+
+minetest.register_node("lottmapgen:white_mountains_grass", {
+	description = "White Mountains Grass",
+	tiles = {"default_grass.png^[colorize:#acacac:30", "default_dirt.png",
+		{name =  "default_dirt.png^(default_grass_side.png^[colorize:#acacac:30)", tileable_vertical = false}
 	},
 	is_ground_content = true,
 	groups = {crumbly=3, soil=1, lottmapgen_grass=1, not_in_creative_inventory=0},

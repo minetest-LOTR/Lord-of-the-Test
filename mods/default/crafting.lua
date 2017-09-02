@@ -609,6 +609,12 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "cooking",
+	output = "default:blue_stone",
+	recipe = "default:blue_cobble",
+})
+
+minetest.register_craft({
+	type = "cooking",
 	output = "default:steel_ingot",
 	recipe = "default:iron_lump",
 })

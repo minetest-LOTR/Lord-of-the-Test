@@ -70,7 +70,7 @@ minetest.register_alias("mapgen_stair_sandstonebrick", "stairs:stair_cobble")
 -- Ore generation
 --
 
-local wl = minetest.get_mapgen_setting("water_level")
+local wl = tonumber(minetest.get_mapgen_setting("water_level"))
 
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -136,6 +136,18 @@ minetest.register_ore({
 	clust_size     = 6,
 	y_min     = wl - 31000,
 	y_max     = wl - 64,
+})
+
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "default:stone_with_iron",
+	wherein        = "default:stone",
+	clust_scarcity = 4*4*3,
+	clust_num_ores = 50,
+	clust_size     = 8,
+	y_min     = -50,
+	y_max     = 100,
+	biome = 21,
 })
 
 minetest.register_ore({

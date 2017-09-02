@@ -24,6 +24,27 @@ minetest.register_node("lottplants:brambles_of_mordor", {
 	},
 })
 
+minetest.register_node("lottplants:mountain_shrub", {
+	description = "Mountain Shrub",
+	drawtype = "plantlike",
+	tiles = {"lottplants_mountain_shrub.png"},
+	inventory_image = "lottplants_mountain_shrub.png",
+	wield_image = "lottplants_mountain_shrub.png",
+	sunlight_propagates = true,
+	paramtype = "light",
+	paramtype2 = "meshoptions",
+	place_param2 = 42,
+	walkable = false,
+	waving = 1,
+	buildable_to = true,
+	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_grey=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.5, -0.5, -0.5, 0.5, -0.3, 0.5 },
+	},
+})
+
 minetest.register_node("lottplants:pilinehtar", {
 	description = "Pilinehtar",
 	drawtype = "plantlike",

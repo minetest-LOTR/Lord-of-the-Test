@@ -23,6 +23,7 @@ local HIRAN = 0.4
 local LORAN = -0.4
 local PAPCHA = 3 -- Papyrus
 local DUGCHA = 5 -- Dune grass
+local TCAVE = 0.6
 local biome_blend = minetest.setting_getbool("biome_blend")
 
 --Rarity for Trees
@@ -87,27 +88,52 @@ local np_ter = {
 	persist = 0.5
 }
 
+local np_terflat = {
+	offset = 0,
+	scale = 1,
+	spread = {x=1024, y=1024, z=1024},
+	seed = 543213,
+	octaves = 1,
+	persist = 0.5
+}
+
 local np_dec = {
 	offset = 0,
 	scale = 1,
-	spread = {x = 64, y = 64, z = 64},
+	spread = {x = 92, y = 92, z = 92},
 	seed = 345432,
 	octaves = 2,
 	persist = 0.5,
 }
 
+local np_cave = {
+	offset = 0,
+	scale = 1,
+	spread = {x=40, y=18, z=40},
+	octaves = 2,
+	seed = -11842,
+	persist = 0.7,
+	flags = "eased",
+	eased = true,
+}
+
 -- Stuff
 lottmapgen = {}
 lottmapgen_biome = {}
+lottmapgen_ores = {}
 
 local nobj_temp = nil
 local nobj_humid = nil
 local nobj_ter = nil
+local nobj_terflat = nil
 local nobj_dec = nil
+local nobj_cave = nil
 local nbuf_temp = {}
 local nbuf_humid = {}
 local nbuf_ter = {}
+local nbuf_terflat = {}
 local nbuf_dec = {}
+local nbuf_cave = {}
 local dbuf = {}
 local p2dbuf = {}
 
@@ -138,9 +164,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
 	local data = vm:get_data(dbuf)
 	local p2data = vm:get_param2_data(p2dbuf)
+	local ores = lottmapgen_ores
 
 	local c_air = minetest.get_content_id("air")
 	local c_ignore = minetest.get_content_id("ignore")
+	local c_tmp = minetest.get_content_id("lottmapgen:tmp") -- For caves.
 	local c_sand = minetest.get_content_id("default:sand")
 	local c_desertsand = minetest.get_content_id("default:desert_sand")
 	local c_snowblock = minetest.get_content_id("default:snowblock")
@@ -162,6 +190,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_chalk = minetest.get_content_id("darkage:chalk")
 	local c_mapgen_stone = minetest.get_content_id("default:mapgen_stone")
 	local c_water = minetest.get_content_id("default:water_source")
+	local c_lava = minetest.get_content_id("default:lava_source")
 	local c_river_water = minetest.get_content_id("default:river_water_source")
 	local c_morwat = minetest.get_content_id("lottmapgen:blacksource")
 	local c_morrivwat = minetest.get_content_id("lottmapgen:black_river_source")
@@ -196,36 +225,64 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local sidelen = x1 - x0 + 1
 	local chulens = {x=sidelen, y=sidelen, z=sidelen}
 	local minposxz = {x=x0, y=z0}
+	local minposxyz = {x=x0, y=y0, z=z0}
 	local border_amp = 256
+	local mid_chunk = minp.y + (sidelen / 2)
 
 	nobj_temp = nobj_temp or minetest.get_perlin_map(np_temp, chulens)
 	nobj_humid = nobj_humid or minetest.get_perlin_map(np_humid, chulens)
 	nobj_ter = nobj_ter or minetest.get_perlin_map(np_ter, chulens)
+	nobj_terflat = nobj_terflat or minetest.get_perlin_map(np_terflat, chulens)
 	nobj_dec = nobj_dec or minetest.get_perlin_map(np_dec, chulens)
+	nobj_cave = nobj_cave or minetest.get_perlin_map(np_cave, chulens)
 
 	local nvals_x = nobj_temp:get2dMap_flat(minposxz, nbuf_temp)
 	local nvals_z = nobj_humid:get2dMap_flat(minposxz, nbuf_humid)
 	local nvals_ter = nobj_ter:get2dMap_flat(minposxz, nbuf_ter)
+	local nvals_terflat = nobj_terflat:get2dMap_flat(minposxz, nbuf_terflat)
 	local nvals_dec = nobj_dec:get2dMap_flat(minposxz, nbuf_dec)
+	local nvals_cave = nobj_cave:get3dMap_flat(minposxyz, nbuf_cave)
 
 	local offset = math.random(5,20)
-	--[[if biome_blend == true then
-		chulens = {x=sidelen+2*offset, y=sidelen+2*offset, z=sidelen+2*offset}
-		minposxz = {x=x0-offset, y=z0-offset }
-		nvals_temp = nobj_temp:get2dMap(minposxz)
-		nvals_humid = nobj_humid:get2dMap(minposxz)
-		nvals_random = nobj_random:get2dMap(minposxz)
-	end]]
 	local nixyz = 1
 	local nixz = 1
+
+	for i, v in ipairs(ores) do
+		if v.y_min <= maxp.y and v.y_max >= minp.y then
+			local chance = v.clust_scarcity
+			if chance >= 8*8 then
+				chance = v.clust_scarcity - ((v.y_max - mid_chunk) / 10)
+				chance = math.max(chance, v.clust_scarcity * 0.75)
+			end
+			v.current_chance = math.floor(chance)
+		end
+	end
+
 	for z = z0, z1 do
+		for y = y0, y1 do -- Caves
+			local vi = area:index(x0, y, z)
+			for x = x0, x1 do -- for each node do
+				local cave_d = 0.6
+				if y > 10 then
+					cave_d = 1.2
+				elseif y <= 10 and y >= -50 then
+					cave_d = y/100 + 1.1
+				end
+				if nvals_cave[nixyz] > cave_d then
+					data[vi] = c_tmp
+				end
+				vi = vi + 1
+				nixyz = nixyz + 1
+			end
+		end
 		for x = x0, x1 do -- for each column do
 			local n_x = x + math.floor(nvals_x[nixz] * border_amp) -- select biome
 			local n_z = z + math.floor(nvals_z[nixz] * border_amp)
 			local noise_1 = nvals_dec[nixz]
 			local biome = lottmapgen_biomes(n_x, n_z - 1)
 			local height = lottmapgen_height(n_x, n_z - 1)
-			local stone_depth = math.floor((nvals_ter[nixz] + 1) * height)
+			local stone_depth = math.floor(((nvals_ter[nixz] + 1) / ) *
+				(height * math.abs(math.abs(nvals_terflat[nixz]) - 1.01)))
 
 			local sandy = (water_level+2) + math.random(-1, 1) -- sandline
 			local sandmin = (water_level-15) + math.random(-5, 0) -- lowest sand
@@ -245,26 +302,76 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					if y < 1 then
 						data[vi] = c_water
 					end
-				elseif y == stone_depth then
+				elseif data[vi] == c_tmp then
+					data[vi] = c_air
+					if nvals_dec[nixz] > 0.5 and y < -154 then
+						data[vi] = c_lava
+					end
+				elseif y == stone_depth and y >= 0 then
 					if biome and lottmapgen_biome[biome] then
 						if lottmapgen_biome[biome].surface then
 							lottmapgen_biome[biome].surface(data, vi)
 						end
 						vi = area:index(x, y + 1, z)
 						if lottmapgen_biome[biome].deco then
-							lottmapgen_biome[biome].deco(data, p2data, vi, area, x, y + 1, z, noise_1)
+							lottmapgen_biome[biome].deco(data, p2data, vi, area, x, y + 1, z, noise_1, nvals_x[nixz])
 						end
 					end
-				elseif y <= stone_depth then
+				elseif y < stone_depth then
 					data[vi] = c_stone
+					if biome and lottmapgen_biome[biome] then
+						if lottmapgen_biome[biome].soil_depth and
+							y >= stone_depth - lottmapgen_biome[biome].soil_depth -
+							math.abs(nvals_ter[nixz] * 5) then
+							if lottmapgen_biome[biome].soil then
+								data[vi] = lottmapgen_biome[biome].soil
+							end
+						elseif lottmapgen_biome[biome].stone_depth and
+							y >= -lottmapgen_biome[biome].stone_depth - nvals_ter[nixz] * 10 then
+							if lottmapgen_biome[biome].stone_depth and lottmapgen_biome[biome].stone then
+								data[vi] = lottmapgen_biome[biome].stone
+							end
+						end
+					end
+					for i, v in ipairs(ores) do
+						if v.y_min <= y and v.y_max >= y and (not v.biome or v.biome == biome) then
+							local valid = (math.random(v.current_chance) == 1)
+							if valid and v.current_chance < 10 then
+								data[vi] = v.ore
+								break
+							end
+							if valid then
+								local size = v.clust_size
+								if size >= 3 then
+									size = size + math.random(2) - 2
+								end
+								if v.ore_type == "scatter" then
+									lottmapgen_generate_ores(data, area, {x=x, y=y, z=z}, v.ore, v.wherein, size)
+								elseif v.ore_type == "sheet" then
+									lottmapgen_generate_sheet(data, area, {x=x, y=y, z=z}, v.ore, v.wherein, size)
+								end
+								break
+							end
+						end
+					end
+				elseif y <= 0 then
+					if y == stone_depth then
+						data[vi] = c_stone
+						if biome and lottmapgen_biome[biome] then
+							if lottmapgen_biome[biome].beach then
+								data[vi] = lottmapgen_biome[biome].beach
+							end
+						end
+					else
+						data[vi] = c_water
+						if biome and lottmapgen_biome[biome] then
+							if lottmapgen_biome[biome].water then
+								data[vi] = lottmapgen_biome[biome].water
+							end
+						end
+					end
 				end
-				--[[if biome_blend == true then
-					local offsetpos = {x = (x-x0) + offset + math.random(-offset, offset) + 1, z = (z - z0) + offset + math.random(-offset, offset) + 1}
-					n_temp = nvals_temp[offsetpos.z][offsetpos.x] -- select biome
-					n_humid = nvals_humid[offsetpos.z][offsetpos.x]
-					n_ran = nvals_random[offsetpos.z][offsetpos.x]
-					biome = lottmapgen_biomes(biome, n_temp, n_humid, n_ran)
-				end]
+				--[[
 				if biome == 99 then -- If sea!
 					if y > water_level then
 						data[vi] = c_air
@@ -384,15 +491,15 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						end
 					end
 				end]]
-				nixyz = nixyz + 1
 			end
 		nixz = nixz + 1
 		end
 	end
 	vm:set_data(data)
 	vm:set_param2_data(p2data)
-	--vm:set_lighting({day=0, night=0})
+	vm:set_lighting({day=0, night=0})
 	vm:calc_lighting()
+	vm:update_liquids()
 	vm:write_to_map(data)
 	local chugent = math.ceil((os.clock() - t1) * 1000)
 	print(chugent)

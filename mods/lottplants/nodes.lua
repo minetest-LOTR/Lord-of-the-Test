@@ -180,6 +180,29 @@ minetest.register_node("lottplants:firleaf", {
 	sounds = default.node_sound_leaves_defaults(),
 })
 
+minetest.register_node("lottplants:hollyleaf", {
+	description = "Holly Leaf",
+	drawtype = "allfaces_optional",
+	visual_scale = 1.3,
+	tiles = {"lottplants_hollyleaf.png"},
+	paramtype = "light",
+	waving = 1,
+	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
+	drop = {
+		max_items = 1,
+		items = {
+			{
+				items = {'lottplants:firsapling'},
+				rarity = 20,
+			},
+			{
+				items = {'lottplants:hollyleaf'},
+			}
+		}
+	},
+	sounds = default.node_sound_leaves_defaults(),
+})
+
 minetest.register_node("lottplants:lebethronleaf", {
 	description = "Lebethron Leaf",
 	drawtype = "allfaces_optional",
@@ -462,6 +485,15 @@ minetest.register_node("lottplants:mallorntree_young", {
 	on_dig = function(pos, node, digger)
 		default.dig_tree(pos, node, "lottplants:mallorntree_young", digger, 10, 1)
 	end,
+})
+
+minetest.register_node("lottplants:frozentree", {
+	description = "Frozen Tree",
+	tiles = {"lottplants_frozentree_top.png", "lottplants_frozentree_top.png", "lottplants_frozentree.png"},
+	paramtype2 = "facedir",
+	groups = {cracky=2},
+	sounds = default.node_sound_glass_defaults(),
+	on_place = minetest.rotate_node,
 })
 
 -- SAPLINGS
@@ -833,6 +865,59 @@ for i = 2, 4 do
 	})
 end
 
+-- Tall Grass
+
+minetest.register_node("lottplants:tall_grass_bottom", {
+	description = "Tall Grass",
+	drawtype = "plantlike",
+	visual_scale = 1.15,
+	tiles = {"lottplants_tall_grass_bottom.png"},
+	inventory_image = "lottplants_tall_grass_bottom.png",
+	wield_image = "lottplants_tall_grass_bottom.png",
+	paramtype = "light",
+	paramtype2 = "meshoptions",
+	walkable = false,
+	is_ground_content = true,
+	buildable_to = true,
+	groups = {snappy=3,flammable=3,flora=1,attached_node=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0.7, 0.5},
+	},
+	on_construct = function(pos)
+		local npos = {x = pos.x, y = pos.y + 1, z = pos.z}
+		minetest.set_node(npos, {name = "lottplants:tall_grass_" .. math.random(1, 5)})
+	end,
+	on_destruct = function(pos)
+		local npos = {x = pos.x, y = pos.y + 1, z = pos.z}
+		local nname = minetest.get_node(npos).name
+		if nname:sub(1, 22) == "lottplants:tall_grass_" then
+			minetest.remove_node(npos)
+		end
+	end,
+})
+
+for i = 1, 5 do
+	minetest.register_node("lottplants:tall_grass_" .. i, {
+		description = "Tall Grass Top",
+		drawtype = "plantlike",
+		visual_scale = 1.15,
+		tiles = {"lottplants_tall_grass_" .. i .. ".png"},
+		inventory_image = "lottplants_tall_grass_" .. i .. ".png",
+		wield_image = "lottplants_tall_grass_" .. i .. ".png",
+		paramtype = "light",
+		paramtype2 = "meshoptions",
+		walkable = false,
+		is_ground_content = true,
+		buildable_to = true,
+		pointable = false,
+		groups = {snappy=3,flammable=3,flora=1,not_in_creative_inventory=1},
+		drop = "lottplants:tall_grass_bottom",
+		sounds = default.node_sound_leaves_defaults(),
+	})
+end
+
 --Stairs & Slabs
 
 stairs.register_stair_and_slab("birchwood", "lottplants:birchwood",
@@ -952,6 +1037,13 @@ minetest.register_craft({
 	recipe = {
 		{'lottplants:mallorntree_young'},
 	}
+})
+
+minetest.register_craft({
+	type = "cooking",
+	output = "lottplants:pinetree",
+	recipe = "lottplants:frozentree",
+	time = 7,
 })
 
 --Fireflies

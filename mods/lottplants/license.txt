@@ -13,6 +13,10 @@ philipbenr (CC BY-SA 3.0)
 	lottplants_mallorn*.png
 	lottplants_birchtree*.png
 
+kaeza (CC BY-SA 3.0)
+	lottplants_sunflower.png/.obj
+	lottplants_sunflower_inv.png
+
 pithy
 	lottplants_*tree_stair.png (Based on lottplants_*tree.png)
 

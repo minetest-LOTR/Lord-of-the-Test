@@ -10,6 +10,16 @@ minetest.register_node("default:stone", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+minetest.register_node("default:blue_stone", {
+	description = "Blue Stone",
+	tiles = {"default_blue_stone.png"},
+	is_ground_content = true,
+	groups = {cracky=3, stone=1},
+	drop = 'default:blue_cobble',
+	legacy_mineral = true,
+	sounds = default.node_sound_stone_defaults(),
+})
+
 minetest.register_node("default:desert_stone", {
     description = "Desert Stone",
     tiles = {"default_desert_stone.png"},
@@ -180,6 +190,17 @@ minetest.register_abm({
 minetest.register_node("default:gravel", {
 	description = "Gravel",
 	tiles = {"default_gravel.png"},
+	is_ground_content = true,
+	groups = {crumbly=2, falling_node=1},
+	sounds = default.node_sound_dirt_defaults({
+		footstep = {name="default_gravel_footstep", gain=0.5},
+		dug = {name="default_gravel_footstep", gain=1.0},
+	}),
+})
+
+minetest.register_node("default:dark_gravel", {
+	description = "Dark Gravel",
+	tiles = {"default_gravel_dark.png"},
 	is_ground_content = true,
 	groups = {crumbly=2, falling_node=1},
 	sounds = default.node_sound_dirt_defaults({
@@ -1293,6 +1314,14 @@ minetest.register_node("default:cobble", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+minetest.register_node("default:blue_cobble", {
+	description = "Blue Cobblestone",
+	tiles = {"default_blue_cobble.png"},
+	is_ground_content = true,
+	groups = {cracky=3, stone=2},
+	sounds = default.node_sound_stone_defaults(),
+})
+
 minetest.register_node("default:desert_cobble", {
     description = "Desert Cobble",
     tiles = {"default_desert_cobble.png"},
@@ -1489,13 +1518,64 @@ for i = 2, 5 do
 	})
 end
 
+minetest.register_node("default:dry_grass_1", {
+	description = "Dry Grass",
+	drawtype = "plantlike",
+	waving = 1,
+	tiles = {"default_dry_grass_1.png"},
+	inventory_image = "default_dry_grass_3.png",
+	wield_image = "default_dry_grass_3.png",
+	paramtype = "light",
+	sunlight_propagates = true,
+	walkable = false,
+	buildable_to = true,
+	groups = {snappy = 3, flammable = 3, flora = 1,
+		attached_node = 1, dry_grass = 1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-6 / 16, -0.5, -6 / 16, 6 / 16, -3 / 16, 6 / 16},
+	},
+
+	on_place = function(itemstack, placer, pointed_thing)
+		-- place a random dry grass node
+		local stack = ItemStack("default:dry_grass_" .. math.random(1, 5))
+		local ret = minetest.item_place(stack, placer, pointed_thing)
+		return ItemStack("default:dry_grass_1 " ..
+			itemstack:get_count() - (1 - ret:get_count()))
+	end,
+})
+
+for i = 2, 5 do
+	minetest.register_node("default:dry_grass_" .. i, {
+		description = "Dry Grass",
+		drawtype = "plantlike",
+		waving = 1,
+		tiles = {"default_dry_grass_" .. i .. ".png"},
+		inventory_image = "default_dry_grass_" .. i .. ".png",
+		wield_image = "default_dry_grass_" .. i .. ".png",
+		paramtype = "light",
+		sunlight_propagates = true,
+		walkable = false,
+		buildable_to = true,
+		groups = {snappy = 3, flammable = 3, flora = 1, attached_node = 1,
+			not_in_creative_inventory=1, dry_grass = 1},
+		drop = "default:dry_grass_1",
+		sounds = default.node_sound_leaves_defaults(),
+		selection_box = {
+			type = "fixed",
+			fixed = {-6 / 16, -0.5, -6 / 16, 6 / 16, -1 / 16, 6 / 16},
+		},
+	})
+end
+
 minetest.register_node("default:ice", {
 	description = "Ice",
 	tiles = {"default_ice.png"},
 	is_ground_content = true,
 	paramtype = "light",
 	freezemelt = "default:water_source",
-	groups = {cracky=3, melts=1},
+	groups = {cracky=3, melts=1, slippery=3},
 	sounds = default.node_sound_glass_defaults(),
 })
 
