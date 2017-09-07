@@ -536,6 +536,30 @@ function lottmapgen_short_birchtree(x, y, z, area, data)
 	end
 end
 
+
+function lottmapgen_birchbush(x, y, z, area, data)
+	local c_tree = minetest.get_content_id("lottplants:birchtree")
+	local c_leaves = minetest.get_content_id("lottplants:birchleaf")
+	for j = -1, 0 do
+		if j == 0 then
+			for i = -1, 1 do
+			for k = -1, 1 do
+					if math.abs(i) + math.abs(k) <= 1 then
+						local vil = area:index(x + i, y + j + 1, z + k)
+						data[vil] = c_leaves
+					end
+					vil = area:index(x + i, y + j, z + k)
+					data[vil] = c_leaves
+			end
+			end
+		end
+		local vit = area:index(x, y + j, z)
+		data[vit] = c_tree
+	end
+	local vi = area:index(x, y + 2, z)
+	data[vi] = c_leaves
+end
+
 function lottmapgen_elmtree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_elmleaf = minetest.get_content_id("lottplants:elmleaf")
@@ -1439,6 +1463,21 @@ function lottmapgen_elf_workshop(x, y, z, area, data, p2data)
 			end
 			end
 		end
+	end
+end
+
+function lottmapgen_place_mts(x, y, z, area, data, p2data, schem)
+	local c = 1
+	for k = 0, schem.z do
+	for j = 0, schem.y do
+	for i = 0, schem.x do
+		if schem.nodes[c] then
+			local vil = area:index(x + i, y + j, z + k)
+			data[vil] = schem.nodes[c]
+		end
+		c = c + 1
+	end
+	end
 	end
 end
 

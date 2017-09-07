@@ -65,6 +65,21 @@ local function regen_chance()
 	chance = math.random(1, 6)
 end
 
+local function spawn_player(pos, player)
+	player:set_pos(pos)
+	minetest.after(0.5, function()
+		local y = 10
+		for i = 5, 75 do
+			local n = minetest.get_node({x = pos.x, y = i, z = pos.z})
+			if n.name == "air" then
+				y = i
+				break
+			end
+		end
+		player:set_pos({x = pos.x, y = y, z = pos.z})
+	end)
+end
+
 local function give_stuff_dwarf(player)
 	regen_chance()
 	if chance == 1 then
@@ -115,7 +130,7 @@ local function give_stuff_dwarf(player)
 		player:get_inventory():add_item('main', 'lottarmor:chestplate_gold')
 	end
 	player:get_inventory():add_item('main', 'lottinventory:crafts_book')
-	player:set_pos({x = 16000, y = 10, z = 7200})
+	spawn_player({x = 16000, y = 10, z = 7200}, player)
 end
 
 local function give_stuff_elf(player)
@@ -168,7 +183,7 @@ local function give_stuff_elf(player)
 		player:get_inventory():add_item('main', 'lottinventory:potions_book')
 	end
 	player:get_inventory():add_item('main', 'lottinventory:crafts_book')
-	player:set_pos({x = 480, y = 10, z = -4000})
+	spawn_player({x = 480, y = 10, z = -4000}, player)
 end
 
 local function give_stuff_man(player)
@@ -218,7 +233,7 @@ local function give_stuff_man(player)
 		player:get_inventory():add_item('main', 'lottmobs:horsearah1')
 	end
 	player:get_inventory():add_item('main', 'lottinventory:crafts_book')
-	player:set_pos({x = 4480, y = 10, z = -15040})
+	spawn_player({x = 4480, y = 10, z = -15040}, player)
 end
 
 local function give_stuff_orc(player)
@@ -246,7 +261,7 @@ local function give_stuff_orc(player)
 	player:get_inventory():add_item('main', 'lottblocks:orc_torch 50')
 	player:get_inventory():add_item('main', 'lottmobs:meat_raw 10')
 	player:get_inventory():add_item('main', 'lottinventory:crafts_book')
-	player:set_pos({x = 17600, y = 10, z = -17600})
+	spawn_player({x = 17600, y = 10, z = -17600}, player)
 end
 
 local function give_stuff_hobbit(player)
@@ -286,7 +301,7 @@ local function give_stuff_hobbit(player)
 	end
 	player:get_inventory():add_item('main', 'lottinventory:crafts_book')
 	player:get_inventory():add_item('main', 'lottinventory:small')
-	player:set_pos({x = -15520, y = 10, z = 2400})
+	spawn_player({x = -15520, y = 10, z = 2400}, player)
 end
 
 local function give_stuff_wizard(player)

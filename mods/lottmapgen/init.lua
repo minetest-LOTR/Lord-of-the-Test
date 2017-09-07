@@ -121,6 +121,7 @@ local np_cave = {
 lottmapgen = {}
 lottmapgen_biome = {}
 lottmapgen_ores = {}
+lottmapgen_schematics = {}
 
 local nobj_temp = nil
 local nobj_humid = nil
@@ -143,6 +144,7 @@ dofile(minetest.get_modpath("lottmapgen").."/nodes.lua")
 dofile(minetest.get_modpath("lottmapgen").."/functions.lua")
 dofile(minetest.get_modpath("lottmapgen").."/biomes.lua")
 dofile(minetest.get_modpath("lottmapgen").."/schematics.lua")
+dofile(minetest.get_modpath("lottmapgen").."/schems.lua")
 
 -- On generated function
 minetest.register_on_generated(function(minp, maxp, seed)
@@ -281,7 +283,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local noise_1 = nvals_dec[nixz]
 			local biome = lottmapgen_biomes(n_x, n_z - 1)
 			local height = lottmapgen_height(n_x, n_z - 1)
-			local stone_depth = math.floor(((nvals_ter[nixz] + 1) / ) *
+			local stone_depth = math.floor(((nvals_ter[nixz] + 1)) *
 				(height * math.abs(math.abs(nvals_terflat[nixz]) - 1.01)))
 
 			local sandy = (water_level+2) + math.random(-1, 1) -- sandline
@@ -310,11 +312,12 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				elseif y == stone_depth and y >= 0 then
 					if biome and lottmapgen_biome[biome] then
 						if lottmapgen_biome[biome].surface then
-							lottmapgen_biome[biome].surface(data, vi)
+							lottmapgen_biome[biome].surface(data, vi, y)
 						end
 						vi = area:index(x, y + 1, z)
 						if lottmapgen_biome[biome].deco then
-							lottmapgen_biome[biome].deco(data, p2data, vi, area, x, y + 1, z, noise_1, nvals_x[nixz])
+							lottmapgen_biome[biome].deco(data, p2data, vi, area,
+								x, y + 1, z, noise_1, nvals_x[nixz])
 						end
 					end
 				elseif y < stone_depth then
@@ -322,8 +325,10 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					if biome and lottmapgen_biome[biome] then
 						if lottmapgen_biome[biome].soil_depth and
 							y >= stone_depth - lottmapgen_biome[biome].soil_depth -
-							math.abs(nvals_ter[nixz] * 5) then
-							if lottmapgen_biome[biome].soil then
+							math.abs(nvals_ter[nixz] * 5) and y >= -1 then
+							if lottmapgen_biome[biome].soilf then
+								lottmapgen_biome[biome].soilf(data, vi, y)
+							elseif lottmapgen_biome[biome].soil then
 								data[vi] = lottmapgen_biome[biome].soil
 							end
 						elseif lottmapgen_biome[biome].stone_depth and

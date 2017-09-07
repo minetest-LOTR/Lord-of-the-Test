@@ -105,6 +105,7 @@ local c_dirt = minetest.get_content_id("default:dirt")
 local c_gravel = minetest.get_content_id("default:gravel")
 local c_darkgravel = minetest.get_content_id("default:dark_gravel")
 local c_dirtsnow = minetest.get_content_id("default:dirt_with_snow")
+local c_dirtgrass = minetest.get_content_id("default:dirt_with_grass")
 local c_bluegrass = minetest.get_content_id("lottmapgen:blue_mountains_grass")
 local c_dungrass = minetest.get_content_id("lottmapgen:dunland_grass")
 local c_gondorgrass = minetest.get_content_id("lottmapgen:gondor_grass")
@@ -199,6 +200,9 @@ lottmapgen.register_biome(2, {
 			lottmapgen_firtree(x, y, z, area, data)
 		end
 	end,
+	soil = c_dirt,
+	soil_depth = 2,
+	beach = c_gravel,
 })
 
 lottmapgen.register_biome(3, {
@@ -322,6 +326,9 @@ lottmapgen.register_biome(6, {
 			end
 		end
 	end,
+	soil = c_dirt,
+	soil_depth = 3,
+	beach = c_sand,
 })
 
 lottmapgen.register_biome(7, {
@@ -491,6 +498,49 @@ lottmapgen.register_biome(11, {
 	surface = function(data, vi)
 		data[vi] = c_enedwaithgrass
 	end,
+	deco = function(data, p2data, vi, area, x, y, z, noise, noise2)
+		if noise2 > 0.25 then
+			if math.random(TREE3) == 2 then
+				lottmapgen_short_birchtree(x, y, z, area, data)
+			elseif math.random(TREE5) == 3 then
+				lottmapgen_birchtree(x, y, z, area, data)
+			elseif math.random(PLANT4) == 1 then
+				lottmapgen_grass(data, vi, p2data)
+			elseif math.random(PLANT7) == 4 then
+				lottmapgen_default_flowers(data, vi, p2data)
+			elseif math.random(TREE9) == 2 then
+				lottmapgen_elmtree(x, y, z, area, data)
+			end
+		elseif noise2 < -0.7 then
+			if math.random(PLANT6) == 1 then
+				lottmapgen_dry_grass(data, vi, p2data)
+			elseif math.random(TREE10) == 2 then
+				lottmapgen_defaultbush(x, y, z, area, data)
+			end
+		else
+			if math.random(PLANT5) == 2 then
+				lottmapgen_grass(data, vi, p2data)
+			elseif math.random(TREE10) == 1 then
+				lottmapgen_birchbush(x, y, z, area, data)
+			end
+			if noise > 0.7 then
+				if math.random(PLANT8) == 2 then
+					lottmapgen_default_flowers(data, vi, p2data)
+				end
+			elseif noise < -0.7 then
+				if math.random(PLANT9) == 1 then
+					lottmapgen_farmingplants(data, vi, p2data)
+				elseif math.random(PLANT7) == 2 then
+					lottmapgen_tall_grass(x, y, z, area, data)
+				end
+			end
+		end
+	end,
+	soil = c_dirt,
+	soil_depth = 1,
+	beach = c_silsand,
+	stone = c_silsandstone,
+	stone_depth = 12,
 })
 
 lottmapgen.register_biome(12, {
@@ -562,6 +612,9 @@ lottmapgen.register_biome(13, {
 			lottmapgen_grass(data, vi, p2data)
 		end
 	end,
+	soil = c_dirt,
+	soil_depth = 5,
+	beach = c_dirt,
 })
 
 lottmapgen.register_biome(14, {
@@ -579,6 +632,8 @@ lottmapgen.register_biome(14, {
 		end
 	end,
 	beach = c_sand,
+	soil = c_dirt,
+	soil_depth = 4,
 })
 
 lottmapgen.register_biome(15, {
@@ -605,6 +660,9 @@ lottmapgen.register_biome(15, {
 			end
 		end
 	end,
+	beach = c_silsand,
+	soil = c_dirt,
+	soil_depth = 2,
 })
 
 lottmapgen.register_biome(16, {
@@ -633,6 +691,9 @@ lottmapgen.register_biome(16, {
 			data[vi] = c_melon
 		end
 	end,
+	soil = c_dirt,
+	soil_depth = 6,
+	beach = c_dirt,
 })
 
 lottmapgen.register_biome(17, {
@@ -662,6 +723,11 @@ lottmapgen.register_biome(17, {
 			lottmapgen.enqueue_building("Rohan Fort", {x=x, y=y, z=z})
 		end
 	end,
+	soil = c_dirt,
+	soil_depth = 1
+	beach = c_desertsand,
+	stone = c_desertstone,
+	stone_depth = 55,
 })
 
 lottmapgen.register_biome(18, {
@@ -695,6 +761,11 @@ lottmapgen.register_biome(18, {
 			lottmapgen.enqueue_building("Gondor Fort", {x=x, y=y, z=z})
 		end
 	end,
+	soil = c_dirt,
+	soil_depth = 1,
+	beach = c_sand,
+	stone = c_sandstone,
+	stone_depth = 53,
 })
 
 lottmapgen.register_biome(19, {
@@ -719,12 +790,61 @@ lottmapgen.register_biome(19, {
 
 lottmapgen.register_biome(20, {
 	name = "Misty Mountains",
-	surface = function(data, vi)
-		data[vi] = c_snowblock
+	surface = function(data, vi, y)
+		if y > 45 then
+			data[vi] = c_snowblock
+		elseif y == 45 then
+			if math.random(2) == 1 then
+				data[vi] = c_snowblock
+			else
+				data[vi] = c_gravel
+			end
+		elseif y > 25 then
+			data[vi] = c_gravel
+		elseif y == 25 then
+			if math.random(2) == 1 then
+				data[vi] = c_dirtgrass
+			else
+				data[vi] = c_gravel
+			end
+		else
+			data[vi] = c_dirtgrass
+		end
 	end,
-	soil = c_snowblock,
+	deco = function(data, p2data, vi, area, x, y, z, noise, noise2)
+		if y > 45 then
+			if noise > 0.1 then
+				data[vi] = c_snow
+				p2data[vi] = math.random(100, 120)
+			end
+		elseif y < 25 then
+			if math.random(PLANT4) == 1 then
+				lottmapgen_grass(data, vi, p2data)
+			elseif math.random(TREE10) == 2  and y < 12 then
+				lottmapgen_defaulttree(x, y, z, area, data)
+			elseif math.random(TREE10) == 3 then
+				lottmapgen_defaultbush(x, y, z, area, data)
+			end
+			if noise < -0.5 then
+				if math.random(PLANT4) == 4 then
+					lottmapgen_default_flowers(data, vi, p2data)
+				end
+			end
+		end
+	end,
+	soilf = function(data, vi, y)
+		if y > 49 then
+			data[vi] = c_snowblock
+		elseif y > 20 then
+			data[vi] = c_gravel
+		else
+			data[vi] = c_dirt
+		end
+	end,
 	soil_depth = 4,
 	stone = c_frozenstone,
+	stone_depth = 0,
+	beach = c_darkgravel,
 })
 
 lottmapgen.register_biome(21, {
@@ -790,6 +910,8 @@ lottmapgen.register_biome(22, {
 	soil = c_dirt,
 	soil_depth = 4,
 	beach = c_sand,
+	stone = c_desertstone,
+	stone_depth = 15,
 })
 
 lottmapgen.register_biome(23, {
@@ -797,10 +919,11 @@ lottmapgen.register_biome(23, {
 	surface = function(data, vi)
 		data[vi] = c_desertsand
 	end,
-	deco = function(data, p2data, vi, area, x, y, z, noise, noise2)
+	deco = function(data, p2data, vi, area, x, y, z, noise, noise2, vm)
 		if noise2 < -0.8 then
-			if math.random(TREE7) == 2 then
-				lottmapgen_desert_pillar(x, y, z, area, data)
+			if math.random(TREE9) == 2 then
+				lottmapgen_place_mts(x, y - 3, z, area, data, p2data,
+					lottmapgen_schematics["desert_pillar" .. math.random(4)])
 			end
 		elseif noise2 < 0.8 then
 			if math.random(PLANT8) == 2 then
@@ -816,8 +939,10 @@ lottmapgen.register_biome(23, {
 			end
 		end
 	end,
+	soil = c_desertsand,
+	soil_depth = 3,
 	stone = c_dessandstone,
-	stone_depth = 43,
+	stone_depth = 83,
 	water = c_air,
 	beach = c_dessandstone,
 })

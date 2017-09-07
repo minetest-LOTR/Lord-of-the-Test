@@ -3,7 +3,7 @@ darkage = {}; -- Create darkage namespace
 local MODPATH = minetest.get_modpath("darkage")
 
 dofile(MODPATH.."/nodes.lua")
-dofile(MODPATH.."/mapgen.lua")
+--dofile(MODPATH.."/mapgen.lua")
 dofile(MODPATH.."/building.lua")
 dofile(MODPATH.."/furniture.lua")
 dofile(MODPATH.."/aliases.lua")
