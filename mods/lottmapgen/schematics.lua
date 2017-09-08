@@ -1,4 +1,4 @@
-lottmapgen = {}
+lottmapgen.buildings = {}
 
 local areas_mod = minetest.get_modpath("areas")
 local protect_houses = minetest.setting_getbool("protect_structures") or false
@@ -42,47 +42,47 @@ for i, v in pairs(lottmapgen_list) do
 end
 
 -- queue to store the buildings which are waiting to be built (queue structure from https://www.lua.org/pil/11.4.html)
-lottmapgen.queue = {first = 0, last = -1}
+lottmapgen.buildings.queue = {first = 0, last = -1}
 
 local file = io.open(minetest.get_worldpath().."/"..SAVEDIR.."/building_queue", "r")
 if file then
-	lottmapgen.queue = minetest.deserialize(file:read("*all"))
+	lottmapgen.buildings.queue = minetest.deserialize(file:read("*all"))
 	file:close()
 end
 
 minetest.register_on_shutdown(function()
 	local file = io.open(minetest.get_worldpath().."/"..SAVEDIR.."/building_queue", "w")
 	if (file) then
-		file:write(minetest.serialize(lottmapgen.queue))
+		file:write(minetest.serialize(lottmapgen.buildings.queue))
 		file:close()
 	end
 end)
 
-function lottmapgen.enqueue_building(name, pos)
-	local first = lottmapgen.queue.first - 1
-	lottmapgen.queue.first = first
-    lottmapgen.queue[first] = {name = name, pos = pos}
+function lottmapgen.buildings.enqueue_building(name, pos)
+	local first = lottmapgen.buildings.queue.first - 1
+	lottmapgen.buildings.queue.first = first
+    lottmapgen.buildings.queue[first] = {name = name, pos = pos}
 end
 
 -- request to fill some node below buildings
-function lottmapgen.enqueue_fill(fill)
-	local first = lottmapgen.queue.first - 1
-	lottmapgen.queue.first = first
-    lottmapgen.queue[first] = {fill=fill}
+function lottmapgen.buildings.enqueue_fill(fill)
+	local first = lottmapgen.buildings.queue.first - 1
+	lottmapgen.buildings.queue.first = first
+    lottmapgen.buildings.queue[first] = {fill=fill}
 end
 
 
-function lottmapgen.dequeue_building()
-	local last = lottmapgen.queue.last
-	if lottmapgen.queue.first > last then return nil end
-	local value = lottmapgen.queue[last]
-	lottmapgen.queue[last] = nil         -- to allow garbage collection
-	lottmapgen.queue.last = last - 1
+function lottmapgen.buildings.dequeue_building()
+	local last = lottmapgen.buildings.queue.last
+	if lottmapgen.buildings.queue.first > last then return nil end
+	local value = lottmapgen.buildings.queue[last]
+	lottmapgen.buildings.queue[last] = nil         -- to allow garbage collection
+	lottmapgen.buildings.queue.last = last - 1
 	return value
 end
 
 -- check if all the blocks that intersect the building are genrated
-function lottmapgen.check_building(bbox, pos)
+function lottmapgen.buildings.check_building(bbox, pos)
 	--mapgen chuncks generate 80 blocks at a time, so we only need to checks the limits of the bounding box and
 	-- each 80 inside nodes
 	for z=bbox.zmin, bbox.zmax+80, 80 do
@@ -102,15 +102,15 @@ function lottmapgen.check_building(bbox, pos)
 end
 
 
-function lottmapgen.check_fill(fill)
+function lottmapgen.buildings.check_fill(fill)
 	local bbox = {
 		xmin = fill.xmin, ymin = fill.y-fill_below_count, zmin = fill.zmin,
 		xmax = fill.xmax, ymax = fill.y,                  zmax = fill.zmax}
-	return lottmapgen.check_building(bbox, {x=0, y=0, z=0})
+	return lottmapgen.buildings.check_building(bbox, {x=0, y=0, z=0})
 end
 
 -- place building using worldedit
-function lottmapgen.place_building(building, pos)
+function lottmapgen.buildings.place_building(building, pos)
 	--print(building.build.." placed at "..pos.x..' '..pos.y..' '..pos.z)
 	local file = io.open(minetest.get_modpath("lottmapgen").."/schems/"..building.build..".we")
 	local value = file:read("*a")
@@ -124,7 +124,7 @@ function lottmapgen.place_building(building, pos)
                 areas:save()
 	end
 
-	lottmapgen.enqueue_fill({xmin = pos1.x, zmin = pos1.z, xmax = pos2.x, zmax = pos2.z, y = pos1.y})
+	lottmapgen.buildings.enqueue_fill({xmin = pos1.x, zmin = pos1.z, xmax = pos2.x, zmax = pos2.z, y = pos1.y})
 end
 
 
@@ -132,25 +132,25 @@ minetest.register_globalstep(function(dtime)
 
 	-- parse the next 50 building in the queue (while not empty)
 	for count= 1, 50 do
-		local queued = lottmapgen.dequeue_building()
+		local queued = lottmapgen.buildings.dequeue_building()
 		if not queued then return end
 
 		if queued.fill then
-			if not lottmapgen.check_fill(queued.fill) then
-				lottmapgen.enqueue_fill(queued.fill)
+			if not lottmapgen.buildings.check_fill(queued.fill) then
+				lottmapgen.buildings.enqueue_fill(queued.fill)
 			else
-				lottmapgen.fill_bellow(queued.fill)
+				lottmapgen.buildings.fill_bellow(queued.fill)
 			end
 		else
 
 			local building = lottmapgen_list[queued.name];
 
 			-- not all the building will be placed, ask to replace it later
-			if not lottmapgen.check_building(building.bbox, queued.pos) then
-				lottmapgen.enqueue_building(queued.name, queued.pos)
+			if not lottmapgen.buildings.check_building(building.bbox, queued.pos) then
+				lottmapgen.buildings.enqueue_building(queued.name, queued.pos)
 			else
 				-- place the building on generated nodes
-				lottmapgen.place_building(building, queued.pos)
+				lottmapgen.buildings.place_building(building, queued.pos)
 			end
 		end
 	end
@@ -158,7 +158,7 @@ end)
 
 -- fill of the botom nodes to avoid empty space.
 
-lottmapgen.fill_bellow = function(fill)
+lottmapgen.buildings.fill_bellow = function(fill)
 
 
 	local pos1 = {x = fill.xmin, y = fill.y-fill_below_count, z = fill.zmin}
@@ -218,7 +218,7 @@ lottmapgen.fill_bellow = function(fill)
 
 
 	if pos2.y > water_level-1000 and bottom_reached then
-		lottmapgen.enqueue_fill({xmin = fill.xmin, zmin = fill.zmin, xmax = fill.xmax, zmax = fill.zmax, y = fill.y-fill_below_count})
+		lottmapgen.buildings.enqueue_fill({xmin = fill.xmin, zmin = fill.zmin, xmax = fill.xmax, zmax = fill.zmax, y = fill.y-fill_below_count})
 	end
 end
 

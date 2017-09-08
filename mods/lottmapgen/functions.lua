@@ -1,24 +1,24 @@
 --Plants
 
-function lottmapgen_grass(data, vi, p2data)
+function lottmapgen.grass(data, vi, p2data)
 	local c_grass = minetest.get_content_id("default:grass_" ..math.random(5))
 	data[vi] = c_grass
 	p2data[vi] = 40
 end
 
-function lottmapgen_dry_grass(data, vi, p2data)
+function lottmapgen.dry_grass(data, vi, p2data)
 	local c_grass = minetest.get_content_id("default:dry_grass_" ..math.random(5))
 	data[vi] = c_grass
 	p2data[vi] = 40
 end
 
-function lottmapgen_lorien_grass(data, vi, p2data)
+function lottmapgen.lorien_grass(data, vi, p2data)
 	local c_lorgrass = minetest.get_content_id("lottplants:lorien_grass_" .. math.random(4))
 	data[vi] = c_lorgrass
 	p2data[vi] = 40
 end
 
-function lottmapgen_tall_grass(x, y, z, area, data, p2data)
+function lottmapgen.tall_grass(x, y, z, area, data, p2data)
 	local c_tallgrassb = minetest.get_content_id("lottplants:tall_grass_bottom")
 	local c_tallgrasst = minetest.get_content_id("lottplants:tall_grass_" .. math.random(5))
 	local vi = area:index(x, y, z)
@@ -27,7 +27,7 @@ function lottmapgen_tall_grass(x, y, z, area, data, p2data)
 	data[vi] = c_tallgrasst
 end
 
-function lottmapgen_farmingplants(data, vi, p2data)
+function lottmapgen.farming_plants(data, vi, p2data)
 	local c_plant1 = minetest.get_content_id("lottplants:pipeweed_wild")
 	local c_plant2 = minetest.get_content_id("lottplants:barley_wild")
 	local c_plant3 = minetest.get_content_id("lottplants:corn_wild")
@@ -67,7 +67,7 @@ function lottmapgen_farmingplants(data, vi, p2data)
 	end
 end
 
-function lottmapgen_ithildinplants(data, vi, p2data)
+function lottmapgen.ithildin_plants(data, vi, p2data)
 	local c_iplant1 = minetest.get_content_id("lottplants:asphodel")
 	local c_iplant2 = minetest.get_content_id("lottplants:anemones")
 	local c_iplant3 = minetest.get_content_id("lottplants:eglantive")
@@ -85,7 +85,7 @@ function lottmapgen_ithildinplants(data, vi, p2data)
 	p2data[vi] = 40
 end
 
-function lottmapgen_lorienplants(data, vi, p2data)
+function lottmapgen.lorien_plants(data, vi, p2data)
 	local c_lplant1 = minetest.get_content_id("lottplants:elanor")
 	local c_lplant2 = minetest.get_content_id("lottplants:lissuin")
 	local c_lplant3 = minetest.get_content_id("lottplants:niphredil")
@@ -103,7 +103,7 @@ function lottmapgen_lorienplants(data, vi, p2data)
 end
 
 
-function lottmapgen_papyrus(x, y, z, area, data, p2data)
+function lottmapgen.papyrus(x, y, z, area, data, p2data)
 	local c_papyrus = minetest.get_content_id("default:papyrus")
 	local ph = math.random(0, 3)
 	for j = 0, ph do
@@ -113,16 +113,16 @@ function lottmapgen_papyrus(x, y, z, area, data, p2data)
 	end
 end
 
-function lottmapgen_cactus(x, y, z, area, data)
+function lottmapgen.cactus(x, y, z, area, data)
 	local c_cactus = minetest.get_content_id("default:cactus")
-	local h = math.random(0, 4)
+	local h = math.random(1, 5)
 	for j = -1, h do
 		local vic = area:index(x, y + j, z)
 		data[vic] = c_cactus
 	end
 end
 
-function lottmapgen_farmingrareplants(data, vi, p2data)
+function lottmapgen.farming_plants_rare(data, vi, p2data)
 	local c_rplant1 = minetest.get_content_id("lottplants:athelas")
 	local c_rplant2 = minetest.get_content_id("lottplants:melon_wild")
 	local rand = math.random(2)
@@ -134,7 +134,7 @@ function lottmapgen_farmingrareplants(data, vi, p2data)
 	end
 end
 
-function lottmapgen_default_flowers(data, vi, p2data)
+function lottmapgen.default_flowers(data, vi, p2data)
 	local c_dandelionw = minetest.get_content_id("flowers:dandelion_white")
 	local c_dandeliony = minetest.get_content_id("flowers:dandelion_yellow")
 	local c_geranium = minetest.get_content_id("flowers:geranium")
@@ -157,7 +157,7 @@ function lottmapgen_default_flowers(data, vi, p2data)
 	end
 end
 
-function lottmapgen_burnedtree(x, y, z, area, data)
+function lottmapgen.burned_tree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	for j = -2, 4 do
 	for i = -2, 2 do
@@ -169,7 +169,7 @@ function lottmapgen_burnedtree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_deadtree(x, y, z, area, data)
+function lottmapgen.dead_tree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	for j = -1, math.random(4, 5) do
 		local vi = area:index(x, y + j, z)
@@ -177,7 +177,7 @@ function lottmapgen_deadtree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_frozentree(x, y, z, area, data, p2data)
+function lottmapgen.frozen_tree(x, y, z, area, data, p2data)
 	local c_frozentree = minetest.get_content_id("lottplants:frozentree")
 	local c_snow = minetest.get_content_id("default:snow")
 	local h = math.random(4, 6)
@@ -190,7 +190,7 @@ function lottmapgen_frozentree(x, y, z, area, data, p2data)
 	p2data[vi] = math.random(100, 200)
 end
 
-function lottmapgen_appletree(x, y, z, area, data)
+function lottmapgen.apple_tree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_apple = minetest.get_content_id("default:apple")
 	local c_leaves = minetest.get_content_id("default:leaves")
@@ -212,7 +212,7 @@ function lottmapgen_appletree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_appletree2(x, y, z, area, data)
+function lottmapgen.apple_tree2(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_apple = minetest.get_content_id("default:apple")
 	local c_leaves = minetest.get_content_id("lottplants:appleleaf")
@@ -234,7 +234,7 @@ function lottmapgen_appletree2(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_plumtree(x, y, z, area, data)
+function lottmapgen.plum_tree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_plum = minetest.get_content_id("lottplants:plum")
 	local c_plumleaf = minetest.get_content_id("lottplants:plumleaf")
@@ -256,7 +256,7 @@ function lottmapgen_plumtree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_rowantree(x, y, z, area, data)
+function lottmapgen.rowan_tree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_rowanberry = minetest.get_content_id("lottplants:rowanberry")
 	local c_rowanleaf = minetest.get_content_id("lottplants:rowanleaf")
@@ -278,7 +278,7 @@ function lottmapgen_rowantree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_rowanbush(x, y, z, area, data)
+function lottmapgen.rowan_bush(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_leaves = minetest.get_content_id("lottplants:rowanleaf")
 	local c_berry = minetest.get_content_id("lottplants:rowanberry")
@@ -310,7 +310,7 @@ function lottmapgen_rowanbush(x, y, z, area, data)
 	data[vi] = c_leaves
 end
 
-function lottmapgen_culumaldatree(x, y, z, area, data)
+function lottmapgen.culumalda_tree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_yellowflowers = minetest.get_content_id("lottplants:yellowflowers")
 	local c_culumaldaleaf = minetest.get_content_id("lottplants:culumaldaleaf")
@@ -332,7 +332,7 @@ function lottmapgen_culumaldatree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_yavannamiretree(x, y, z, area, data)
+function lottmapgen.yavannamire_tree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_yavannamirefruit = minetest.get_content_id("lottplants:yavannamirefruit")
 	local c_yavannamireleaf = minetest.get_content_id("lottplants:yavannamireleaf")
@@ -354,7 +354,7 @@ function lottmapgen_yavannamiretree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_defaulttree(x, y, z, area, data)
+function lottmapgen.default_tree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_leaves = minetest.get_content_id("default:leaves")
 	for j = -2, 4 do
@@ -375,7 +375,7 @@ function lottmapgen_defaulttree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_defaultbush(x, y, z, area, data)
+function lottmapgen.default_bush(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_leaves = minetest.get_content_id("default:leaves")
 	for j = -1, 0 do
@@ -398,7 +398,7 @@ function lottmapgen_defaultbush(x, y, z, area, data)
 	data[vi] = c_leaves
 end
 
-function lottmapgen_aldertree(x, y, z, area, data)
+function lottmapgen.alder_tree(x, y, z, area, data)
 	local c_aldertree = minetest.get_content_id("lottplants:aldertree")
 	local c_alderleaf = minetest.get_content_id("lottplants:alderleaf")
 	for j = -2, 4 do
@@ -419,7 +419,7 @@ function lottmapgen_aldertree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_lebethrontree(x, y, z, area, data)
+function lottmapgen.lebethron_tree(x, y, z, area, data)
 	local c_lebethrontree = minetest.get_content_id("lottplants:lebethrontree")
 	local c_lebethronleaf = minetest.get_content_id("lottplants:lebethronleaf")
 	for j = -2, 4 do
@@ -440,7 +440,7 @@ function lottmapgen_lebethrontree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_whitetree(x, y, z, area, data)
+function lottmapgen.white_tree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_whiteleaf = minetest.get_content_id("lottplants:whiteleaf")
 	local t = 6 + math.random(2) -- trunk height
@@ -475,7 +475,7 @@ function lottmapgen_whitetree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_whitebush(x, y, z, area, data)
+function lottmapgen.white_bush(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_leaves = minetest.get_content_id("lottplants:whiteleaf")
 	for j = -1, 1 do
@@ -498,7 +498,7 @@ function lottmapgen_whitebush(x, y, z, area, data)
 	data[vi] = c_leaves
 end
 
-function lottmapgen_birchtree(x, y, z, area, data)
+function lottmapgen.birch_tree(x, y, z, area, data)
 	local c_birchtree = minetest.get_content_id("lottplants:birchtree")
 	local c_birchleaf = minetest.get_content_id("lottplants:birchleaf")
 	for j = -5, 12 do
@@ -517,7 +517,7 @@ function lottmapgen_birchtree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_short_birchtree(x, y, z, area, data)
+function lottmapgen.short_birch_tree(x, y, z, area, data)
 	local c_birchtree = minetest.get_content_id("lottplants:birchtree")
 	local c_birchleaf = minetest.get_content_id("lottplants:birchleaf")
 	for j = -2, math.random(5, 7) do
@@ -537,7 +537,7 @@ function lottmapgen_short_birchtree(x, y, z, area, data)
 end
 
 
-function lottmapgen_birchbush(x, y, z, area, data)
+function lottmapgen.birch_bush(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("lottplants:birchtree")
 	local c_leaves = minetest.get_content_id("lottplants:birchleaf")
 	for j = -1, 0 do
@@ -560,7 +560,7 @@ function lottmapgen_birchbush(x, y, z, area, data)
 	data[vi] = c_leaves
 end
 
-function lottmapgen_elmtree(x, y, z, area, data)
+function lottmapgen.elm_tree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_elmleaf = minetest.get_content_id("lottplants:elmleaf")
 	for j = -5, 25 do
@@ -579,7 +579,7 @@ function lottmapgen_elmtree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_short_elmtree(x, y, z, area, data)
+function lottmapgen.short_elm_tree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_elmleaf = minetest.get_content_id("lottplants:elmleaf")
 	for j = -5, 9 do
@@ -598,7 +598,7 @@ function lottmapgen_short_elmtree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_mallornsmalltree(x, y, z, area, data)
+function lottmapgen.small_mallorn_tree(x, y, z, area, data)
 	local c_mallorntree = minetest.get_content_id("lottplants:mallorntree")
 	local c_mallornleaf = minetest.get_content_id("lottplants:mallornleaf")
 	for j = -5, 15 do
@@ -617,7 +617,7 @@ function lottmapgen_mallornsmalltree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_young_mallorn(x, y, z, area, data)
+function lottmapgen.young_mallorn_tree(x, y, z, area, data)
 	local c_youngmallorn = minetest.get_content_id("lottplants:mallorntree_young")
 	local c_mallornleaf = minetest.get_content_id("lottplants:mallornleaf")
 	local t = 6 + math.random(1) -- trunk height
@@ -639,7 +639,7 @@ function lottmapgen_young_mallorn(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_jungletree(x, y, z, area, data)
+function lottmapgen.jungle_tree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_leaves = minetest.get_content_id("default:leaves")
 	for j = -2, 5 do
@@ -658,7 +658,7 @@ function lottmapgen_jungletree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_mirktree2(x, y, z, area, data)
+function lottmapgen.mirk_tree2(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:jungletree")
 	local c_leaves = minetest.get_content_id("lottplants:mirkleaf")
 	for j = -3, 7 do
@@ -693,7 +693,7 @@ function lottmapgen_mirktree2(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_pinetree(x, y, z, area, data, snow)
+function lottmapgen.pine_tree(x, y, z, area, data, snow)
 	local c_pinetree = minetest.get_content_id("lottplants:pinetree")
 	local c_pineleaf = minetest.get_content_id("lottplants:pineleaf")
 	local c_snow = minetest.get_content_id("default:snow")
@@ -739,7 +739,7 @@ function lottmapgen_pinetree(x, y, z, area, data, snow)
 	data[vilaa] = c_snow
 end
 
-function lottmapgen_pinebush(x, y, z, area, data)
+function lottmapgen.pine_bush(x, y, z, area, data)
 	local c_pinetree = minetest.get_content_id("lottplants:pinetree")
 	local c_pineleaf = minetest.get_content_id("lottplants:pineleaf")
 	for j = -1, 0 do
@@ -762,7 +762,7 @@ function lottmapgen_pinebush(x, y, z, area, data)
 	data[vi] = c_pineleaf
 end
 
-function lottmapgen_firtree(x, y, z, area, data)
+function lottmapgen.fir_tree(x, y, z, area, data)
 	local c_pinetree = minetest.get_content_id("lottplants:pinetree")
 	local c_firleaf = minetest.get_content_id("lottplants:firleaf")
 	local c_snow = minetest.get_content_id("default:snow")
@@ -805,9 +805,7 @@ function lottmapgen_firtree(x, y, z, area, data)
 	data[vilaa] = c_snow
 end
 
-
-
-function lottmapgen_oaktree(x, y, z, area, data)
+function lottmapgen.oak_tree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_leaves = minetest.get_content_id("default:leaves")
 	for j = -4, 13 do
@@ -843,32 +841,7 @@ function lottmapgen_oaktree(x, y, z, area, data)
 	data[vila] = c_leaves
 end
 
-function lottmapgen_hollybush(x, y, z, area, data)
-	local c_hollyleaf = minetest.get_content_id("lottplants:hollyleaf")
-	local c_tree = minetest.get_content_id("default:tree")
-	for j = -1, 2 do
-		if j >= 0 then
-			for i = -1, 1 do
-			for k = -1, 1 do
-				local vi = area:index(x + i, y + j, z + k)
-				if j == 2 then
-					if math.abs(i) + math.abs(k) == 1 then
-						data[vi] = c_hollyleaf
-					end
-				else
-					data[vi] = c_hollyleaf
-				end
-			end
-			end
-		end
-		local vi = area:index(x, y + j, z)
-		data[vi] = c_tree
-	end
-	local vi = area:index(x, y + 3, z)
-	data[vi] = c_hollyleaf
-end
-
-function lottmapgen_hollytree(x, y, z, area, data)
+function lottmapgen.holly_tree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_hollyleaf = minetest.get_content_id("lottplants:hollyleaf")
 	for j = -1, 4 do
@@ -902,9 +875,34 @@ function lottmapgen_hollytree(x, y, z, area, data)
 	end
 end
 
+function lottmapgen.holly_bush(x, y, z, area, data)
+	local c_hollyleaf = minetest.get_content_id("lottplants:hollyleaf")
+	local c_tree = minetest.get_content_id("default:tree")
+	for j = -1, 2 do
+		if j >= 0 then
+			for i = -1, 1 do
+			for k = -1, 1 do
+				local vi = area:index(x + i, y + j, z + k)
+				if j == 2 then
+					if math.abs(i) + math.abs(k) == 1 then
+						data[vi] = c_hollyleaf
+					end
+				else
+					data[vi] = c_hollyleaf
+				end
+			end
+			end
+		end
+		local vi = area:index(x, y + j, z)
+		data[vi] = c_tree
+	end
+	local vi = area:index(x, y + 3, z)
+	data[vi] = c_hollyleaf
+end
+
 -- Trees Big
 
-function lottmapgen_mallorntree(x, y, z, area, data)
+function lottmapgen.mallorn_tree(x, y, z, area, data)
 	local c_maltree = minetest.get_content_id("lottplants:mallorntree")
 	local c_malleaf = minetest.get_content_id("lottplants:mallornleaf")
 	local top = math.random(25, 30)
@@ -983,7 +981,7 @@ function lottmapgen_mallorntree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_beechtree(x, y, z, area, data)
+function lottmapgen.beech_tree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_beechleaf = minetest.get_content_id("lottplants:beechleaf")
 	local t = 10 + math.random(3) -- trunk height
@@ -1031,7 +1029,7 @@ function lottmapgen_beechtree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_mirktree(x, y, z, area, data)
+function lottmapgen.mirk_tree(x, y, z, area, data)
 	local c_juntree = minetest.get_content_id("default:jungletree")
 	local c_junleaf = minetest.get_content_id("lottplants:mirkleaf")
 	local top = math.random(6, 8)
@@ -1078,7 +1076,7 @@ function lottmapgen_mirktree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen_jungletree(x, y, z, area, data, p2data)
+function lottmapgen.jungle_tree(x, y, z, area, data, p2data)
 	local c_air = minetest.get_content_id("air")
 	local c_jungletree = minetest.get_content_id("default:jungletree")
 	local c_jungleleaf = minetest.get_content_id("lottmapgen:jungle_leaves")
@@ -1135,7 +1133,7 @@ function lottmapgen_jungletree(x, y, z, area, data, p2data)
 	p2data[vil] = math.random(1,8)
 end
 
-function lottmapgen_bigjungletree(x, y, z, area, data, p2data)
+function lottmapgen.big_jungle_tree(x, y, z, area, data, p2data)
 	local c_air = minetest.get_content_id("air")
 	local c_jungletree = minetest.get_content_id("default:jungletree")
 	local c_jungleleaf = minetest.get_content_id("lottmapgen:jungle_leaves")
@@ -1242,7 +1240,7 @@ function lottmapgen_bigjungletree(x, y, z, area, data, p2data)
 	end
 end
 
-function lottmapgen_jungle_bush(x, y, z, area, data, p2data)
+function lottmapgen.jungle_bush(x, y, z, area, data, p2data)
 	local c_air = minetest.get_content_id("air")
 	local c_jungletree = minetest.get_content_id("default:jungletree")
 	local c_jungleleaf = minetest.get_content_id("lottmapgen:jungle_leaves")
@@ -1275,102 +1273,7 @@ function lottmapgen_jungle_bush(x, y, z, area, data, p2data)
 	end
 end
 
-function lottmapgen_desert_ruin(x, y, z, area, data)
-
-end
-
-function lottmapgen_desert_pillar(x, y, z, area, data)
-	local c_air = minetest.get_content_id("air")
-	local c_ignore = minetest.get_content_id("ignore")
-	local c_dessandstone = minetest.get_content_id("default:desert_stone")
-	for j = -2, math.random(10, 15) do
-		if j < 6 then
-			for i = -3, 3 do
-			for k = -3, 3 do
-				if math.random(math.abs(i) + math.abs(k) + 1) <= 3 then
-					local vi = area:index(x + i, y + j - 1, z + k)
-					if data[vi] ~= c_air and data[vi] ~= c_ignore then
-						vi = area:index(x + i, y + j, z + k)
-						data[vi] = c_dessandstone
-					end
-				end
-			end
-			end
-		elseif j < 12 then
-			for i = -2, 2 do
-			for k = -2, 2 do
-				if math.random(0, math.abs(i) + math.abs(k)) == 0 then
-					local vi = area:index(x + i, y + j - 1, z + k)
-					if data[vi] ~= c_air and data[vi] ~= c_ignore then
-						vi = area:index(x + i, y + j, z + k)
-						data[vi] = c_dessandstone
-					end
-				end
-			end
-			end
-		else
-			for i = -1, 1 do
-			for k = -1, 1 do
-				local vi = area:index(x + i, y + j - 1, z + k)
-				if data[vi] ~= c_air and data[vi] ~= c_ignore then
-					vi = area:index(x + i, y + j, z + k)
-					data[vi] = c_dessandstone
-				end
-			end
-			end
-		end
-	end
-
-	--[[local h1 = math.random(4,7)
-	local h2 = math.random(9, 14)
-	for j = -3, math.random(10, 17) do
-		if j < h1 then
-			for i = -2, 1 do
-			for k = -1, 2 do
-				if h2 == 12 then
-					if math.abs(i) + math.abs(k) ~= 4 then
-						local vi = area:index(x + i, y + j, z + k)
-						data[vi] = c_dessandstone
-					end
-				else
-					local vi = area:index(x + i, y + j, z + k)
-					data[vi] = c_dessandstone
-				end
-			end
-			end
-			if j == 0 then
-				for i = -4, 3 do
-				for k = -4, 3 do
-					if math.random(5) == 3 then
-						local vi = area:index(x + i, y + j - 2, z + k)
-						data[vi] = c_dessandstone
-						vi = area:index(x + i, y + j - 1, z + k)
-						data[vi] = c_dessandstone
-						vi = area:index(x + i, y + j, z + k)
-						data[vi] = c_dessandstone
-						if math.random(10) == 4 then
-							local vi = area:index(x + i, y + j + 1, z + k)
-							data[vi] = c_dessandstone
-						end
-					end
-				end
-				end
-			end
-		elseif j < h2 then
-			for i = -1, 0 do
-			for k = 0, 1 do
-				local vi = area:index(x + i, y + j, z + k)
-				data[vi] = c_dessandstone
-			end
-			end
-		else
-			local vi = area:index(x, y + j, z)
-			data[vi] = c_dessandstone
-		end
-	end]]
-end
-
-function lottmapgen_elf_workshop(x, y, z, area, data, p2data)
+function lottmapgen.elf_workshop(x, y, z, area, data, p2data)
 	local c_stonebrick = minetest.get_content_id("default:stonebrick")
 	local c_cracked_stonebrick = minetest.get_content_id("default:cracked_stonebrick")
 	local c_marblebrick = minetest.get_content_id("lottblocks:marble_brick")
@@ -1466,7 +1369,7 @@ function lottmapgen_elf_workshop(x, y, z, area, data, p2data)
 	end
 end
 
-function lottmapgen_place_mts(x, y, z, area, data, p2data, schem)
+function lottmapgen.place_mts(x, y, z, area, data, p2data, schem)
 	local c = 1
 	for k = 0, schem.z do
 	for j = 0, schem.y do
@@ -1502,11 +1405,11 @@ minetest.after(1, function()
 		tab.clust_scarcity = math.ceil(tab.clust_scarcity)
 		tab.wherein = -1
 		tab.ore = minetest.get_content_id(tab.ore)
-		table.insert(lottmapgen_ores, tab)
+		table.insert(lottmapgen.ores, tab)
 	end
 end)
 
-function lottmapgen_generate_ores(data, area, pos, node, wherein, size)
+function lottmapgen.generate_ores(data, area, pos, node, wherein, size)
 	local noise = math.random(5, 8) / 10
 	local len1 = size + math.random(-1, 1)
 	local len2 = size + math.random(-1, 1)
@@ -1537,7 +1440,7 @@ function lottmapgen_generate_ores(data, area, pos, node, wherein, size)
 	end
 end
 
-function lottmapgen_generate_sheet(data, area, pos, node, wherein, size)
+function lottmapgen.generate_sheet(data, area, pos, node, wherein, size)
 	local len1 = size + math.random(-1, 1)
 	local len2 = size + math.random(-1, 1)
 	local depth = size + math.random(-1, 1)

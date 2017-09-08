@@ -119,9 +119,9 @@ local np_cave = {
 
 -- Stuff
 lottmapgen = {}
-lottmapgen_biome = {}
-lottmapgen_ores = {}
-lottmapgen_schematics = {}
+lottmapgen.biome = {}
+lottmapgen.ores = {}
+lottmapgen.schematics = {}
 
 local nobj_temp = nil
 local nobj_humid = nil
@@ -166,7 +166,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
 	local data = vm:get_data(dbuf)
 	local p2data = vm:get_param2_data(p2dbuf)
-	local ores = lottmapgen_ores
+	local ores = lottmapgen.ores
 
 	local c_air = minetest.get_content_id("air")
 	local c_ignore = minetest.get_content_id("ignore")
@@ -281,8 +281,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local n_x = x + math.floor(nvals_x[nixz] * border_amp) -- select biome
 			local n_z = z + math.floor(nvals_z[nixz] * border_amp)
 			local noise_1 = nvals_dec[nixz]
-			local biome = lottmapgen_biomes(n_x, n_z - 1)
-			local height = lottmapgen_height(n_x, n_z - 1)
+			local biome = lottmapgen.biomes(n_x, n_z - 1)
+			local height = lottmapgen.height(n_x, n_z - 1)
 			local stone_depth = math.floor(((nvals_ter[nixz] + 1)) *
 				(height * math.abs(math.abs(nvals_terflat[nixz]) - 1.01)))
 
@@ -310,31 +310,31 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						data[vi] = c_lava
 					end
 				elseif y == stone_depth and y >= 0 then
-					if biome and lottmapgen_biome[biome] then
-						if lottmapgen_biome[biome].surface then
-							lottmapgen_biome[biome].surface(data, vi, y)
+					if biome and lottmapgen.biome[biome] then
+						if lottmapgen.biome[biome].surface then
+							lottmapgen.biome[biome].surface(data, vi, y)
 						end
 						vi = area:index(x, y + 1, z)
-						if lottmapgen_biome[biome].deco then
-							lottmapgen_biome[biome].deco(data, p2data, vi, area,
+						if lottmapgen.biome[biome].deco then
+							lottmapgen.biome[biome].deco(data, p2data, vi, area,
 								x, y + 1, z, noise_1, nvals_x[nixz])
 						end
 					end
 				elseif y < stone_depth then
 					data[vi] = c_stone
-					if biome and lottmapgen_biome[biome] then
-						if lottmapgen_biome[biome].soil_depth and
-							y >= stone_depth - lottmapgen_biome[biome].soil_depth -
+					if biome and lottmapgen.biome[biome] then
+						if lottmapgen.biome[biome].soil_depth and
+							y >= stone_depth - lottmapgen.biome[biome].soil_depth -
 							math.abs(nvals_ter[nixz] * 5) and y >= -1 then
-							if lottmapgen_biome[biome].soilf then
-								lottmapgen_biome[biome].soilf(data, vi, y)
-							elseif lottmapgen_biome[biome].soil then
-								data[vi] = lottmapgen_biome[biome].soil
+							if lottmapgen.biome[biome].soilf then
+								lottmapgen.biome[biome].soilf(data, vi, y)
+							elseif lottmapgen.biome[biome].soil then
+								data[vi] = lottmapgen.biome[biome].soil
 							end
-						elseif lottmapgen_biome[biome].stone_depth and
-							y >= -lottmapgen_biome[biome].stone_depth - nvals_ter[nixz] * 10 then
-							if lottmapgen_biome[biome].stone_depth and lottmapgen_biome[biome].stone then
-								data[vi] = lottmapgen_biome[biome].stone
+						elseif lottmapgen.biome[biome].stone_depth and
+							y >= -lottmapgen.biome[biome].stone_depth - nvals_ter[nixz] * 10 then
+							if lottmapgen.biome[biome].stone_depth and lottmapgen.biome[biome].stone then
+								data[vi] = lottmapgen.biome[biome].stone
 							end
 						end
 					end
@@ -351,9 +351,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 									size = size + math.random(2) - 2
 								end
 								if v.ore_type == "scatter" then
-									lottmapgen_generate_ores(data, area, {x=x, y=y, z=z}, v.ore, v.wherein, size)
+									lottmapgen.generate_ores(data, area, {x=x, y=y, z=z}, v.ore, v.wherein, size)
 								elseif v.ore_type == "sheet" then
-									lottmapgen_generate_sheet(data, area, {x=x, y=y, z=z}, v.ore, v.wherein, size)
+									lottmapgen.generate_sheet(data, area, {x=x, y=y, z=z}, v.ore, v.wherein, size)
 								end
 								break
 							end
@@ -362,16 +362,16 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				elseif y <= 0 then
 					if y == stone_depth then
 						data[vi] = c_stone
-						if biome and lottmapgen_biome[biome] then
-							if lottmapgen_biome[biome].beach then
-								data[vi] = lottmapgen_biome[biome].beach
+						if biome and lottmapgen.biome[biome] then
+							if lottmapgen.biome[biome].beach then
+								data[vi] = lottmapgen.biome[biome].beach
 							end
 						end
 					else
 						data[vi] = c_water
-						if biome and lottmapgen_biome[biome] then
-							if lottmapgen_biome[biome].water then
-								data[vi] = lottmapgen_biome[biome].water
+						if biome and lottmapgen.biome[biome] then
+							if lottmapgen.biome[biome].water then
+								data[vi] = lottmapgen.biome[biome].water
 							end
 						end
 					end
@@ -450,14 +450,14 @@ minetest.register_on_generated(function(minp, maxp, seed)
 								data[vi] = c_stone
 							else -- above sandline
 								if open then
-									if biome and lottmapgen_biome[biome] then
-										if lottmapgen_biome[biome].surface then
-											lottmapgen_biome[biome].surface(data, vi)
+									if biome and lottmapgen.biome[biome] then
+										if lottmapgen.biome[biome].surface then
+											lottmapgen.biome[biome].surface(data, vi)
 										end
 										local y = surfy + 1
 										local vi = area:index(x, y, z)
-										if lottmapgen_biome[biome].deco then
-											--lottmapgen_biome[biome].deco(data, p2data, vi, area, x, y, z)
+										if lottmapgen.biome[biome].deco then
+											--lottmapgen.biome[biome].deco(data, p2data, vi, area, x, y, z)
 										end
 									end
 								end

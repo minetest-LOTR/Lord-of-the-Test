@@ -23,15 +23,15 @@ for _, v in pairs(schems) do
 			s.nodes[i] = minetest.get_content_id(v.name)
 		end
 	end
-	lottmapgen_schematics[v] = s
+	lottmapgen.schematics[v] = s
 end
 
 minetest.after(3, function()
-print(dump(lottmapgen_schematics))
+print(dump(lottmapgen.schematics))
 end)
 ]]--
 
-lottmapgen_schematics = {
+lottmapgen.schematics = {
 	desert_pillar4 = {
 		y = 24,
 		x = 10,
