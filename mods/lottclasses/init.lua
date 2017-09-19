@@ -324,6 +324,10 @@ minetest.register_on_newplayer(function(player)
 		give_stuff_wizard(player)
 	end
 	
+	if minetest.setting_getbool("disable_immune_spawn") then
+		return
+	end
+	
 	if minetest.setting_getbool("enable_damage") then
 		for i = 1, 300 do
 			minetest.after(i, function()
