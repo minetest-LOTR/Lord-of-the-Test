@@ -155,6 +155,16 @@ function doors:register_door(name, def)
                         (def.races and lottclasses.player_race_in_table(player, def.races)) or
                         minetest.check_player_privs(pn, {GAMEwizard = true})
 	end
+	
+	local function check_can_dig(pos, player)
+		if not def.only_placer_can_open then
+			return true
+		end
+		local meta = minetest.get_meta(pos)
+		local pn = player:get_player_name()
+		return (def.only_placer_can_open and meta:get_string("doors_owner") == pn) or minetest.check_player_privs(pn, {GAMEwizard = true})
+	end
+	
         local tb_final_1 = nil
         if table.getn(tb) > 2 then
                 tb_final_1 = {tb[1], tb[2], tb[3], tb[4], tb[5], tb[6].."^[transformfx"}
@@ -188,7 +198,7 @@ function doors:register_door(name, def)
 			end
 		end,
 
-		can_dig = check_player_priv,
+		can_dig = check_can_dig,
 	})
         local tt_final_1 = nil
         if table.getn(tt) > 2 then
@@ -223,7 +233,7 @@ function doors:register_door(name, def)
 			end
 		end,
 
-		can_dig = check_player_priv,
+		can_dig = check_can_dig,
 	})
         local tb_final_2 = nil
         if table.getn(tb) > 2 then
@@ -258,7 +268,7 @@ function doors:register_door(name, def)
 			end
 		end,
 
-		can_dig = check_player_priv,
+		can_dig = check_can_dig,
 	})
         local tt_final_2 = nil
         if table.getn(tt) > 2 then
@@ -293,7 +303,7 @@ function doors:register_door(name, def)
 			end
 		end,
 
-		can_dig = check_player_priv,
+		can_dig = check_can_dig,
 	})
 end
 

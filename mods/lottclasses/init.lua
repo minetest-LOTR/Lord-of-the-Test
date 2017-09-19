@@ -323,6 +323,24 @@ minetest.register_on_newplayer(function(player)
 	if minetest.get_player_privs(name).GAMEwizard then
 		give_stuff_wizard(player)
 	end
+	
+	if minetest.setting_getbool("enable_damage") then
+		for i = 1, 300 do
+			minetest.after(i, function()
+				player:set_hp(20)
+				local name = player:get_player_name()
+			end)
+		end
+		minetest.after(5, function()
+			minetest.chat_send_player(name, minetest.colorize("red", "[NOTICE] You are NEARLY IMMUNE to damage for 5 MINUTES. Make use of this time to venture to a safe area!"))
+			minetest.chat_send_player(name, minetest.colorize("red", "[NOTICE] You are NEARLY IMMUNE to damage for 5 MINUTES. Make use of this time to venture to a safe area!"))
+		end)
+	
+		minetest.after(300, function()
+			minetest.chat_send_player(name, minetest.colorize("red", "[NOTICE] You are NO LONGER immune to damage!"))
+			minetest.chat_send_player(name, minetest.colorize("red", "[NOTICE] You are NO LONGER immune to damage!"))
+		end)
+	end
 end)
 
 minetest.register_on_joinplayer(function(player)
@@ -388,6 +406,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if fields.gender == "Male" then
 		if fields.dwarf then
 			player_race_stuff("dwarf", "dwarves", "male", give_stuff_dwarf, name, privs, player)
+			
 		elseif fields.elf then
 			player_race_stuff("elf", "elves", "male", give_stuff_elf, name, privs, player)
 		elseif fields.man then

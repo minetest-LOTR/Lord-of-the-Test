@@ -367,7 +367,7 @@ minetest.register_craft({
 	output = "lottblocks:hobbit_chest",
 	recipe = {
 		{"lottplants:birchwood", "lottplants:birchwood", "lottplants:birchwood"},
-		{"lottplants:birchwood", "", "lottplants:birchwood"},
+		{"lottplants:birchwood", "default:chest", "lottplants:birchwood"},
 		{"lottplants:birchwood", "lottplants:birchwood", "lottplants:birchwood"},
 	}
 })
@@ -376,7 +376,7 @@ minetest.register_craft({
 	output = "lottblocks:gondor_chest",
 	recipe = {
 		{"lottplants:alderwood", "lottplants:alderwood", "lottplants:alderwood"},
-		{"lottplants:alderwood", "", "lottplants:alderwood"},
+		{"lottplants:alderwood", "default:chest", "lottplants:alderwood"},
 		{"lottplants:alderwood", "lottplants:alderwood", "lottplants:alderwood"},
 	}
 })
@@ -385,7 +385,7 @@ minetest.register_craft({
 	output = "lottblocks:rohan_chest",
 	recipe = {
 		{"lottplants:lebethronwood", "lottplants:lebethronwood", "lottplants:lebethronwood"},
-		{"lottplants:lebethronwood", "", "lottplants:lebethronwood"},
+		{"lottplants:lebethronwood", "default:chest", "lottplants:lebethronwood"},
 		{"lottplants:lebethronwood", "lottplants:lebethronwood", "lottplants:lebethronwood"},
 	}
 })
@@ -394,7 +394,7 @@ minetest.register_craft({
 	output = "lottblocks:elfloth_chest",
 	recipe = {
 		{"lottplants:mallornwood", "lottplants:mallornwood", "lottplants:mallornwood"},
-		{"lottplants:mallornwood", "", "lottplants:mallornwood"},
+		{"lottplants:mallornwood", "default:chest", "lottplants:mallornwood"},
 		{"lottplants:mallornwood", "lottplants:mallornwood", "lottplants:mallornwood"},
 	}
 })
@@ -403,7 +403,7 @@ minetest.register_craft({
 	output = "lottblocks:elfmirk_chest",
 	recipe = {
 		{"default:junglewood", "default:junglewood", "default:junglewood"},
-		{"default:junglewood", "", "default:junglewood"},
+		{"default:junglewood", "default:chest", "default:junglewood"},
 		{"default:junglewood", "default:junglewood", "default:junglewood"},
 	}
 })
@@ -412,7 +412,7 @@ minetest.register_craft({
 	output = "lottblocks:mordor_chest",
 	recipe = {
 		{"lottmapgen:mordor_stone", "lottmapgen:mordor_stone", "lottmapgen:mordor_stone"},
-		{"lottmapgen:mordor_stone", "", "lottmapgen:mordor_stone"},
+		{"lottmapgen:mordor_stone", "default:chest", "lottmapgen:mordor_stone"},
 		{"lottmapgen:mordor_stone", "lottmapgen:mordor_stone", "lottmapgen:mordor_stone"},
 	}
 })
@@ -421,7 +421,7 @@ minetest.register_craft({
 	output = "lottblocks:angmar_chest",
 	recipe = {
 		{"lottplants:pinewood", "lottplants:pinewood", "lottplants:pinewood"},
-		{"lottplants:pinewood", "", "lottplants:pinewood"},
+		{"lottplants:pinewood", "default:chest", "lottplants:pinewood"},
 		{"lottplants:pinewood", "lottplants:pinewood", "lottplants:pinewood"},
 	}
 })
@@ -430,7 +430,7 @@ minetest.register_craft({
 	output = "lottblocks:dwarf_chest",
 	recipe = {
 		{"default:stone", "default:stone", "default:stone"},
-		{"default:stone", "", "default:stone"},
+		{"default:stone", "default:chest", "default:stone"},
 		{"default:stone", "default:stone", "default:stone"},
 	}
 })
