@@ -208,3 +208,4 @@ minetest.register_item("geomoria:gold_pile", {
     inventory_image = "gold.png",
     groups = {},
 })
+dofile(path .. "/fill_chest.lua")

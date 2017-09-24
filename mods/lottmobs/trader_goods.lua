@@ -3,20 +3,20 @@
 
 lottmobs.dwarf = {
 	items = {
-		{"lottthrowing:crossbow_silver 1", "default:gold_ingot 9", 15},
-		{"lottarmor:chestplate_mithril 1", "default:gold_ingot 75", 50},
-		{"default:steel_ingot 99", "default:gold_ingot 25", 12},
-		{"lottores:silversword 1", "default:gold_ingot 7", 10},
-		{"default:bronze_ingot 25", "default:gold_ingot 5", 15},
-		{"lottblocks:small_lamp_pine 6", "default:gold_ingot 2", 6},
-		{"lottblocks:dwarf_harp 1", "default:gold_ingot 15", 10},
-		{"lottweapons:mithril_dagger 1", "default:gold_ingot 15", 20},
+		{"lottthrowing:crossbow_silver 1", "geomoria:gold_pile 9", 15},
+		{"lottarmor:chestplate_mithril 1", "geomoria:gold_pile 75", 50},
+		{"default:steel_ingot 99", "geomoria:gold_pile 25", 12},
+		{"lottores:silversword 1", "geomoria:gold_pile 7", 10},
+		{"default:bronze_ingot 25", "geomoria:gold_pile 5", 15},
+		{"lottblocks:small_lamp_pine 6", "geomoria:gold_pile 2", 6},
+		{"lottblocks:dwarf_harp 1", "geomoria:gold_pile 15", 10},
+		{"lottweapons:mithril_dagger 1", "geomoria:gold_pile 15", 20},
 		{"lottores:mithrilsword 1", "default:gold_ingot 35", 30},
-		{"default:sword_steel 1", "default:gold_ingot 5", 10},
+		{"default:sword_steel 1", "geomoria:gold_pile 5", 10},
 		{"lottweapons:silver_battleaxe 1", "default:gold_ingot 10", 18},
-		{"lottblocks:dwarfstone_stripe 50", "default:gold_ingot 17", 12},
-		{"lottblocks:dwarfstone_black 99", "default:gold_ingot 33", 17},
-		{"default:stonebrick 99", "default:gold_ingot 25", 14},
+		{"lottblocks:dwarfstone_stripe 50", "geomoria:gold_pile 17", 12},
+		{"lottblocks:dwarfstone_black 99", "geomoria:gold_pile 33", 17},
+		{"default:stonebrick 99", "geomoria:gold_pile 25", 14},
 		{"lottblocks:dwarfstone_white 99", "default:gold_ingot 33", 17},
 	},
 	items_race = {
@@ -38,7 +38,9 @@ lottmobs.dwarf = {
 	},
 	names = {
 		"Azaghâl", "Balbrin", "Borin", "Farin", "Flói", "Frerin",
-		"Grór", "Lóni", "Náli", "Narvi", "Telchar", "Thion"
+		"Grór", "Lóni", "Náli", "Narvi", "Telchar", "Thion", "Thorin",
+		"Bifur", "Balin", "Bofur", "Bombur", "Dori", "Dwalin", "Nori",
+		"Ori", "Gimli", "Gamil"
 	},
 	messages = {
 		"We have many treasures, and for the right price we might be willing to part with them...",
@@ -47,6 +49,19 @@ lottmobs.dwarf = {
 		"Be careful when you enter our homes, a fall from the ladder could well prove deadly.",
 		"If you want to mine, do so. There's plenty of iron to go around!",
 		"If you venture deep underground, beware! The monsters there are very powerful, and kill the unprepared instantly.",
+		"Mines of Moria, where all our riches are! Mines of Moria, where our greed led to destruction.",
+		"We can’t bring a troll to the fire, but we can bring the fire to the troll.",
+		"Never turn down an ale, who knows if it may be your last...",
+		"Guard your life, guard your gold, guard your beard. In that order.",
+		"Wherever there are elves, there are lies.",
+		"The Humans have a saying. The nail that sticks out gets hammered. We have a saying too. Shoddy work! Not a single nail should be sticking out.",
+		"You can kill a dwarf, but you can never vanquish one.",
+		"It is easy to fool a goblin, but even easier to kill one.",
+		"The best place to hide something precious is in your beard.",
+		"Evil breeds in the guts of the lazy.",
+		"The stones will sing if you let them.",
+		"Drinking contests with humans are unbearable. They drink, they collapse, \nand we have to drag them back to their homes. The next day they never remember losing.",
+		"A spear is not a dwarven weapon, but it will kill all the same.",	
 	}
 }
 
@@ -87,7 +102,10 @@ lottmobs.elf = {
 	},
 	names = {
 		"Annael", "Anairë", "Curufin", "Erestor", "Gwindor", "Irimë",
-		"Oropher", "Maglor", "Quennar", "Rúmil", "Orgof", "Voronwë"
+		"Oropher", "Maglor", "Quennar", "Rúmil", "Orgof", "Voronwë",
+		"Hinnoron", "Malton", "Bornor", "Landaer", "Nardchanar",
+		"Delebon", "Gollorchanar", "Noron", "Preston", "Radhril",
+		"Mistriel", "Ganis", "Mithes", "Loboril"
 	},
 	messages = {
 		"Welcome to our lovely forest home, weary traveler. Refresh yourself here.",
@@ -96,6 +114,10 @@ lottmobs.elf = {
 		"Rest among us and prepare yourself, for war is imminent.",
 		"If you wish to buy goods from us, there are certain traders who wander our land.",
 		"Beware! Our society, and all societies, are on the edge of a knife blade - one false move and all will end, and Sauron will rule supreme.",
+		"Êl síla erin lû e-govaned vîn.",
+		"It is perilous to study too deeply the arts of the Enemy, for good or for ill. But such falls and betrayals, alas, have happened before.",
+		"Do not meddle in the affairs of Wizards, for they are subtle and quick to anger.",
+		"The praise of the praiseworthy is above all rewards.",
 	}
 }
 
