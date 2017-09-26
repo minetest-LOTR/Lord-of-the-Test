@@ -13,13 +13,16 @@ SAVEDIR = "LOTT"
 default = {}
 
 -- Load files
-dofile(minetest.get_modpath("default").."/chatcommands.lua")
-dofile(minetest.get_modpath("default").."/crafting.lua")
-dofile(minetest.get_modpath("default").."/craftitems.lua")
-dofile(minetest.get_modpath("default").."/functions.lua")
-dofile(minetest.get_modpath("default").."/legacy.lua")
-dofile(minetest.get_modpath("default").."/mapgen.lua")
-dofile(minetest.get_modpath("default").."/nodes.lua")
-dofile(minetest.get_modpath("default").."/player.lua")
-dofile(minetest.get_modpath("default").."/tools.lua")
-dofile(minetest.get_modpath("default").."/trees.lua")
+local default_path = minetest.get_modpath("default")
+
+dofile(default_path.."/chatcommands.lua")
+dofile(default_path.."/crafting.lua")
+dofile(default_path.."/craftitems.lua")
+dofile(default_path.."/functions.lua")
+dofile(default_path.."/legacy.lua")
+dofile(default_path.."/mapgen.lua")
+dofile(default_path.."/nodes.lua")
+dofile(default_path.."/player.lua")
+dofile(default_path.."/tools.lua")
+dofile(default_path.."/torch.lua")
+dofile(default_path.."/trees.lua")
