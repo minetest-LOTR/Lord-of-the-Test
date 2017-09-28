@@ -1,9 +1,0 @@
-default
-doors
-stairs
-booty?
-mobs_duane?
-fun_caves?
-mobs?
-mobs_goblins?
-squaresville?
