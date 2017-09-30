@@ -3,7 +3,7 @@ stamina = {}
 
 local stamina_players = {}
 
-STAMINA_TICK = 800		-- time in seconds after that 1 stamina point is taken
+STAMINA_TICK = 500		-- time in seconds after that 1 stamina point is taken
 STAMINA_TICK_MIN = 4		-- stamina ticks won't reduce stamina below this level
 STAMINA_HEALTH_TICK = 4		-- time in seconds after player gets healed/damaged
 STAMINA_MOVE_TICK = 0.5		-- time in seconds after the movement is checked
