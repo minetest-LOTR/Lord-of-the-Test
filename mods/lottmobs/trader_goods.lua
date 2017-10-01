@@ -61,7 +61,10 @@ lottmobs.dwarf = {
 		"Evil breeds in the guts of the lazy.",
 		"The stones will sing if you let them.",
 		"Drinking contests with humans are unbearable. They drink, they collapse, \nand we have to drag them back to their homes. The next day they never remember losing.",
-		"A spear is not a dwarven weapon, but it will kill all the same.",	
+		"A spear is not a dwarven weapon, but it will kill all the same.",
+		"Top and front should be clad in steel, for your back to a foe you shall Naught reveal!",
+		"Their word does not bend, wherever they wend, through Cavern, Hill or Dale!",
+		"Every dwarf must dig his own tunnel.",
 	}
 }
 
