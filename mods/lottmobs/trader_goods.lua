@@ -61,7 +61,7 @@ lottmobs.dwarf = {
 		"Evil breeds in the guts of the lazy.",
 		"The stones will sing if you let them.",
 		"Drinking contests with humans are unbearable. They drink, they collapse, \nand we have to drag them back to their homes. The next day they never remember losing.",
-		"A spear is not a dwarven weapon, but it will kill all the same.",
+		"A spear is not a dwarven weapon, but it will kill all the same.",	
 	}
 }
 
@@ -118,9 +118,6 @@ lottmobs.elf = {
 		"It is perilous to study too deeply the arts of the Enemy, for good or for ill. But such falls and betrayals, alas, have happened before.",
 		"Do not meddle in the affairs of Wizards, for they are subtle and quick to anger.",
 		"The praise of the praiseworthy is above all rewards.",
-		"Even the smallest person can change the course of the future.",
-		"Moonlight drowns out all but the brightest stars.",
-
 	}
 }
 
@@ -170,8 +167,6 @@ lottmobs.hobbit = {
 		"If you are thinking that you'll find adventures here, think again! Good day!",
 		"We hear tales of war, but they cannot be more than tales - like that of the Oliphaunt.",
 		"Food is meant to be enjoyed, not rushed. Don't just eat a little here and a little there, sit down for a proper meal sometimes...",
-		"For the time will soon come when Hobbits will shape the fortunes of all.",
-		"All's well that ends better.",
 	}
 }
 
@@ -232,5 +227,5 @@ lottmobs.orc = {
         messages = {
                 "DIE!!!", "Urrrrrrrrrrrrrghhhhhhhhhhhhhhhhhhh!!",
                 "Arrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr!", "KILL! KILL! KILL!"
-        }
+        },
 }
