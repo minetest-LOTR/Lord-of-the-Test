@@ -17,7 +17,7 @@ geomoria.max_z = 31000
 
 
 -- Dungeon overgeneration puts mossycobble in inappropriate places.
-minetest.sehttps://github.com/NewbProgrammer101/Lord-of-the-Test/tree/master/mods/geomoriat_mapgen_setting('mg_flags', "nodungeons", true)
+minetest.set_mapgen_setting('mg_flags', "nodungeons", true)
 
 geomoria.generate_ores = minetest.setting_getbool('geomoria_generate_ores')
 if geomoria.generate_ores == nil then
