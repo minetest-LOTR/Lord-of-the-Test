@@ -112,7 +112,7 @@ minetest.register_node("lottpotion:cauldron_one_third_full",{
 
 minetest.register_node("lottpotion:cauldron_empty",{
     drawtype="nodebox",
-		description= "Filled Cauldron",
+		description= "Cauldron",
     tiles = {"lottpotion_cauldron_side.png"},
     paramtype = "light",
 	paramtype2 = "facedir",
