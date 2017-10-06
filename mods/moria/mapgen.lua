@@ -55,7 +55,8 @@ local function generate(p_minp, p_maxp, seed)
       end
     end
 
-  if lottmapgen.biomes(11) then
+  if lottmapgen.lottmapgen_biomes(11) then
+    biomemap = minetest.get_mapgen_object("biomemap")
     geomorph()
   end
 
