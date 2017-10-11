@@ -4,7 +4,6 @@
 
 local lottmapgen_biomes = lottmapgen.lottmapgen_biomes(11)
 local get_biome_id = minetest.get_biome_id
-local get_biome_id("iron_hills") = lottmapgen_biomes
 local DEBUG
 local max_depth = -31000
 local geomoria_depth = geomoria.geomoria_depth
