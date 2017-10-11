@@ -59,7 +59,7 @@ local function generate(p_minp, p_maxp, seed)
 
   local biomemap = lottmapgen_biomes(11)
   local iron_hills = minetest.get_biome_id("iron_hills")
-  local biome == iron_hills
+  local biome = iron_hills
   if biome == iron_hills then
     geomorph()
   end
