@@ -2,9 +2,12 @@
 -- Copyright Duane Robertson (duane@duanerobertson.com), 2017
 -- Distributed under the LGPLv2.1 (https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html)
 
-
+local lottmapgen_biomes = lottmapgen.lottmapgen_biomes(11)
+if lottmapgen.lottmapgen_biomes(11) then
+  minetest.get_biome_id("iron_hills")
+end
 local DEBUG
-local max_depth = 31000
+local max_depth = -31000
 local geomoria_depth = geomoria.geomoria_depth
 local ground_nodes = geomoria.ground_nodes
 local math_random = math.random
@@ -55,11 +58,13 @@ local function generate(p_minp, p_maxp, seed)
       end
     end
 
-  if lottmapgen.lottmapgen_biomes(11) then
-    biomemap = minetest.get_mapgen_object("biomemap")
+  set biomemap = lottmapgen.lottmapgen_biomes(11)
+  set iron_hills = minetest.get_biome_id("iron_hills")
+  set biome == biomemap["-200", "222"]
+  if biome == iron_hills then
     geomorph()
   end
-
+    
     damage_noise = damage_noise_map:get2dMap_flat({x=minp.x, y=minp.z}, damage_noise)
     fissure_noise = fissure_noise_map:get3dMap_flat(minp, fissure_noise)
   end
