@@ -57,7 +57,7 @@ local function generate(p_minp, p_maxp, seed)
 
   local biomemap = lottmapgen.lottmapgen_biomes(11)
   local iron_hills = get_biome_id("iron_hills")
-  local biome = iron_hills
+  local biome = biomemap
   if biome == iron_hills then
     geomorph()
   end
