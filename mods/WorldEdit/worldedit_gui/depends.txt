@@ -1,0 +1,6 @@
+worldedit
+worldedit_commands
+unified_inventory?
+inventory_plus?
+sfinv?
+creative?
