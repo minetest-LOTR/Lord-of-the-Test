@@ -3,9 +3,6 @@
 -- Distributed under the LGPLv2.1 (https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html)
 
 local lottmapgen_biomes = lottmapgen.lottmapgen_biomes(11)
-if lottmapgen.lottmapgen_biomes(11) then
-  minetest.get_biome_id("iron_hills")
-end
 local DEBUG
 local max_depth = -31000
 local geomoria_depth = geomoria.geomoria_depth
@@ -58,7 +55,7 @@ local function generate(p_minp, p_maxp, seed)
       end
     end
 
-  local biomemap = lottmapgen.lottmapgen_biomes(11)
+  local biomemap = lottmapgen_biomes(11)
   local iron_hills = minetest.get_biome_id("iron_hills")
   local biome == biomemap["-200", "222"]
   if biome == iron_hills then
