@@ -118,6 +118,15 @@ lottmobs.elf = {
 		"It is perilous to study too deeply the arts of the Enemy, for good or for ill. But such falls and betrayals, alas, have happened before.",
 		"Do not meddle in the affairs of Wizards, for they are subtle and quick to anger.",
 		"The praise of the praiseworthy is above all rewards.",
+		"The old that is strong does not wither, deep roots are not reached by the frost.",
+		"I will not say 'do not weep,' for not all tears are an evil.",
+		"For even the very wise cannot see all ends.",
+		"Faithless is he who says farewell when the road darkens.",
+		"Aa' lasser en lle coia orn n' omenta gurtha.",
+		"Sweet water and light laughter till next we meet.",
+		"Aa' menealle nauva ar' malta.",
+		"May the wind fill your sails.",
+		"
 	}
 }
 
