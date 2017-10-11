@@ -13,7 +13,7 @@
 -- fog
 
 -- Parameters
-
+lottmapgen = {}
 local HITET = 0.4 -- High temperature threshold
 local LOTET = -0.4 -- Low ..
 local ICETET = -0.8 -- Ice ..
