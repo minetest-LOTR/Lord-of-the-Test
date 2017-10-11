@@ -3,7 +3,8 @@
 -- Distributed under the LGPLv2.1 (https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html)
 
 local lottmapgen_biomes = lottmapgen.lottmapgen_biomes(11)
-local lottmapgen_biomes[1] = minetest.get_biome_id("iron_hills")
+local get_biome_id = minetest.get_biome_id
+local get_biome_id("iron_hills") = lottmapgen_biomes
 local DEBUG
 local max_depth = -31000
 local geomoria_depth = geomoria.geomoria_depth
