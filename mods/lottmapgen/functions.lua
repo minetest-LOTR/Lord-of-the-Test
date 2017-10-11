@@ -886,7 +886,7 @@ function lottmapgen_elf_workshop(x, y, z, area, data, p2data)
 	end
 end
 
-local function lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, HITET, HIHUT, HIRAN)
+function lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, HITET, HIHUT, HIRAN)
 	if n_temp < LOTET then
 		if n_humid < LOHUT then
 			return 1 -- (Angmar)
