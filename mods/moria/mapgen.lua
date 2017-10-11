@@ -1,7 +1,6 @@
 -- Geomoria mapgen.lua
 -- Copyright Duane Robertson (duane@duanerobertson.com), 2017
 -- Distributed under the LGPLv2.1 (https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html)
-local lottmapgen = minetest.get_modpath("../../lottmapgen")
 
 local lottmapgen_biomes = lottmapgen.lottmapgen_biomes(11)
 local get_biome_id = minetest.get_biome_id
