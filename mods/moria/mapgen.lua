@@ -4,6 +4,7 @@
 
 local lottmapgen_biomes = lottmapgen.lottmapgen_biomes(11)
 local get_biome_id = minetest.get_biome_id
+local get_biome_id = "iron_hills"
 local DEBUG
 local max_depth = -31000
 local geomoria_depth = geomoria.geomoria_depth
@@ -58,7 +59,7 @@ local function generate(p_minp, p_maxp, seed)
 
   local biomemap = lottmapgen_biomes(11)
   local iron_hills = minetest.get_biome_id("iron_hills")
-  local biome == biomemap["-200", "222"]
+  local biome == iron_hills
   if biome == iron_hills then
     geomorph()
   end
