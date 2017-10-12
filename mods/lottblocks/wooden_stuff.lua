@@ -230,38 +230,7 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 			meta:set_int("n",20)
 			meta:set_int("y",0)
 		end,
-		on_timer = function (pos, elapsed)
-			local meta=minetest.get_meta(pos)
-			if meta:get_int("placed")==1 then
-				meta:set_int("n",0)
-				return
-			end
-			local n=meta:get_int("n")
-			meta:set_int("n",n-1)
-			if aliveai.def({x=pos.x+1,y=pos.y,z=pos.z},"buildable_to") then
-				local p,d=aliveai.xz_to_param2yaw(-1)
-				minetest.swap_node(pos, {name = "aliveai:chair", param2=p})
-				meta:set_int("y",d)
-			elseif aliveai.def({x=pos.x-1,y=pos.y,z=pos.z},"buildable_to") then
-				local p,d=aliveai.xz_to_param2yaw(1)
-				minetest.swap_node(pos, {name = "aliveai:chair", param2=p})
-				meta:set_int("y",d)
-			elseif aliveai.def({x=pos.x,y=pos.y,z=pos.z+1},"buildable_to") then
-				local p,d=aliveai.xz_to_param2yaw(0,-1)
-				minetest.swap_node(pos, {name = "aliveai:chair", param2=p})
-				meta:set_int("y",d)
-			elseif aliveai.def({x=pos.x,y=pos.y,z=pos.z-1},"buildable_to") then
-				local p,d=aliveai.xz_to_param2yaw(0,1)
-				minetest.swap_node(pos, {name = "aliveai:chair", param2=p})
-				meta:set_int("y",d)
-			end
-			if n<1 then
-				meta:set_int("n",0)
-				return
-			end
-			return true
-		end,
-			on_blast=function(pos)
+		on_blast=function(pos)
 			for _, player in ipairs(minetest.get_objects_inside_radius(pos,1)) do
 				if player:is_player() then
 				local name=player:get_player_name()
