@@ -126,7 +126,8 @@ lottmobs.elf = {
 		"Sweet water and light laughter till next we meet.",
 		"Aa' menealle nauva ar' malta.",
 		"May the wind fill your sails.",
-		"
+		"Do not scorn pity that is the gift of a gentle heart, Éowyn!",
+		"Someone else always has to carry on the story.",
 	}
 }
 
