@@ -246,7 +246,7 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 		after_place_node = function(pos, placer)
 			minetest.get_meta(pos):set_int("placed",1)
 		end
-	})
+	}})
 	minetest.register_craft({
 		output = "lottblocks:" .. name .. "_table",
 		recipe = {
