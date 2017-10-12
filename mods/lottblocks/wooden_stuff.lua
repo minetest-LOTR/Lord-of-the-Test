@@ -170,6 +170,7 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 			fixed={
 				{-0.3125, -0.5, -0.3125, 0.3125, -0.0625, 0.3125},
 				{-0.3125, -0.5, 0.1875, -0.1875, 0.5, 0.3125},
+			},
 		},
 		node_box = {
 			type = "fixed",
