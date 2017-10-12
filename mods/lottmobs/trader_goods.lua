@@ -175,6 +175,7 @@ lottmobs.hobbit = {
 		"If you are in need of any food, there are traders who wander around and they usually have a good stock.",
 		"If you are thinking that you'll find adventures here, think again! Good day!",
 		"We hear tales of war, but they cannot be more than tales - like that of the Oliphaunt.",
+		"Go not to the Elves for counsel, for they will say both no and yes.",
 		"Food is meant to be enjoyed, not rushed. Don't just eat a little here and a little there, sit down for a proper meal sometimes...",
 	}
 }
