@@ -170,13 +170,15 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 			fixed={
 				{-0.3125, -0.5, -0.3125, 0.3125, -0.0625, 0.3125},
 				{-0.3125, -0.5, 0.1875, -0.1875, 0.5, 0.3125},
-			}
+			},
 		},
 		node_box = {
 			type = "fixed",
 			fixed = {
 				{-0.3125, -0.5, 0.1875, -0.1875, 0.5, 0.3125},
 				{0.1875, -0.5, 0.1875, 0.3125, 0.5, 0.3125},
+				
+				{0.1875, -0.5, -0.3125, 0.3125, -0.0625, -0.1875},
 				{-0.3125, -0.5, -0.3125, -0.1875, -0.0625, -0.1875},
 				{-0.3125, -0.125, -0.3125, 0.3125, 0, 0.3125},
 				{-0.1875, 0.3125, 0.1875, 0.1875, 0.4375, 0.3125},
@@ -184,13 +186,13 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 				{0.23, -0.4375, -0.3125, 0.29, -0.375, 0.3125},
 				{-0.29, -0.4375, -0.3125, -0.23, -0.375, 0.3125},
 				{-0.29, -0.4375, -0.0315, 0.29, -0.375, 0.031},
-			}
+			},
 		},
 		selection_box = {
 			type = "fixed",
 			fixed = {-0.3125, -0.5, -0.3125, 0.3125, 0.5, 0.3125},
 		},
-		groups = {node_groups, oddly_breakable_by_hand = 2, flammable = 1},
+		groups = node_groups
 		on_rightclick = function(pos, node, player, itemstack, pointed_thing)
 			local v=player:get_player_velocity()
 			if v.x~=0 or v.y~=0 or v.z~=0 then return end
@@ -229,19 +231,6 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 			minetest.get_node_timer(pos):start(1)
 			meta:set_int("n",20)
 			meta:set_int("y",0)
-		end,
-		on_blast=function(pos)
-			for _, player in ipairs(minetest.get_objects_inside_radius(pos,1)) do
-				if player:is_player() then
-				local name=player:get_player_name()
-				player:set_physics_override(1, 1, 1)
-				minetest.after(0.3, function(player,name)
-					player:set_eye_offset({x=0,y=0,z=0}, {x=0,y=0,z=0})
-					default.player_attached[name]=false
-					default.player_set_animation(player, "stand",30)
-				end,player,name)
-				end
-			end
 		end,
 		after_place_node = function(pos, placer)
 			minetest.get_meta(pos):set_int("placed",1)
