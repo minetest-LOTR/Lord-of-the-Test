@@ -216,7 +216,7 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 					default.player_attached[name]=true
 					default.player_set_animation(player, "sit",30)
 				end,player,name)
-			end,
+			end
 		end,
 		can_dig = function(pos, player)
 			for _, ob in ipairs(minetest.get_objects_inside_radius(pos,1)) do
