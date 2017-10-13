@@ -206,7 +206,7 @@ for i in ipairs(lottblocks_list) do
 					}
 		},
 		on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-			lottblocks.beds.on_rightclick(pos, clicker)
+			lottblocks.on_rightclick(pos, clicker)
 			return itemstack
 		end,
 		after_place_node = function(pos, placer, itemstack)
