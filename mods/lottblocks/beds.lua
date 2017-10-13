@@ -22,7 +22,7 @@ local function get_look_yaw(pos)
 end
 minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
-	lay_down(player, nil, nil, false, true)
+	lottblocks.lay_down(player, nil, nil, false, true)
 	lottblocks.player[name] = nil
 	if check_in_beds() then
 		minetest.after(2, function()
@@ -39,7 +39,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		return
 	end
 	if fields.quit or fields.leave then
-		lay_down(player, nil, nil, false)
+		lottblocks.lay_down(player, nil, nil, false)
 		update_formspecs(false)
 	end
 
@@ -54,7 +54,7 @@ end)
 function lottblocks.kick_players()
 	for name, _ in pairs(lottblocks.player) do
 		local player = minetest.get_player_by_name(name)
-		lay_down(player, nil, nil, false)
+		lottblocks.lay_down(player, nil, nil, false)
 	end
 end
 local function is_night_skip_enabled()
@@ -87,7 +87,7 @@ local function update_formspecs(finished)
 		minetest.show_formspec(name, "beds_form", form_n)
 	end
 end
-local function lay_down(player, pos, bed_pos, state, skip)
+function lottblocks.lay_down(player, pos, bed_pos, state, skip)
 	local name = player:get_player_name()
 	local hud_flags = player:hud_get_flags()
 
@@ -161,7 +161,7 @@ function lottblocks.on_rightclick(pos, player)
 
 	if tod > 0.2 and tod < 0.805 then
 		if lottblocks.player[name] then
-			lay_down(player, nil, nil, false)
+			lottblocks.lay_down(player, nil, nil, false)
 		end
 		minetest.chat_send_player(name, "You can only sleep at night.")
 		return
@@ -169,9 +169,9 @@ function lottblocks.on_rightclick(pos, player)
 
 	-- move to bed
 	if not lottblocks.player[name] then
-		lay_down(player, ppos, pos)
+		lottblocks.lay_down(player, ppos, pos)
 	else
-		lay_down(player, nil, nil, false)
+		lottblocks.lay_down(player, nil, nil, false)
 	end
 
 	if not is_sp then
