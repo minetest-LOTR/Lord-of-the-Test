@@ -1,4 +1,23 @@
 local player_in_bed = 0
+local function update_formspecs(finished)
+	local ges = #minetest.get_connected_players()
+	local form_n
+	local is_majority = (ges / 2) < player_in_bed
+
+	if finished then
+		form_n = beds.formspec .. "label[2.7,11; Good morning.]"
+	else
+		form_n = lottblocks.beds.formspec .. "label[2.2,11;" .. tostring(player_in_bed) ..
+			" of " .. tostring(ges) .. " players are in bed]"
+		if is_majority and is_night_skip_enabled() then
+			form_n = form_n .. "button_exit[2,8;4,0.75;force;Force night skip]"
+		end
+	end
+
+	for name,_ in pairs(beds.player) do
+		minetest.show_formspec(name, "beds_form", form_n)
+	end
+end
 local function lay_down(player, pos, bed_pos, state, skip)
 	local name = player:get_player_name()
 	local hud_flags = player:hud_get_flags()
