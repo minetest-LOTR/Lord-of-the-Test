@@ -97,7 +97,7 @@ local function lay_down(player, pos, bed_pos, state, skip)
 
 	-- stand up
 	if state ~= nil and not state then
-		local p = lottblocks.beds.pos[name] or nil
+		local p = lottblocks.pos[name] or nil
 		if lottblocks.player[name] ~= nil then
 			lottblocks.player[name] = nil
 			player_in_bed = player_in_bed - 1
