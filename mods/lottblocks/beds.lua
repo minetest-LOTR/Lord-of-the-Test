@@ -1,10 +1,51 @@
 local player_in_bed = 0
+minetest.register_on_leaveplayer(function(player)
+	local name = player:get_player_name()
+	lay_down(player, nil, nil, false, true)
+	lottblocks.beds.player[name] = nil
+	if check_in_beds() then
+		minetest.after(2, function()
+			update_formspecs(is_night_skip_enabled())
+			if is_night_skip_enabled() then
+				lottblocks.beds.skip_night()
+				lottblocks.beds.kick_players()
+			end
+		end)
+	end
+end)
+minetest.register_on_player_receive_fields(function(player, formname, fields)
+	if formname ~= "beds_form" then
+		return
+	end
+	if fields.quit or fields.leave then
+		lay_down(player, nil, nil, false)
+		update_formspecs(false)
+	end
+
+	if fields.force then
+		update_formspecs(is_night_skip_enabled())
+		if is_night_skip_enabled() then
+			lottblocks.beds.skip_night()
+			lottblocks.beds.kick_players()
+		end
+	end
+end)
+function lottblocks.beds.kick_players()
+	for name, _ in pairs(beds.player) do
+		local player = minetest.get_player_by_name(name)
+		lay_down(player, nil, nil, false)
+	end
+end
 local function is_night_skip_enabled()
 	local enable_night_skip = minetest.settings:get_bool("enable_bed_night_skip")
 	if enable_night_skip == nil then
 		enable_night_skip = true
 	end
 	return enable_night_skip
+end
+
+function lottblocks.beds.skip_night()
+	minetest.set_timeofday(0.23)
 end
 local function update_formspecs(finished)
 	local ges = #minetest.get_connected_players()
@@ -35,9 +76,9 @@ local function lay_down(player, pos, bed_pos, state, skip)
 
 	-- stand up
 	if state ~= nil and not state then
-		local p = beds.pos[name] or nil
+		local p = lottblocks.beds.pos[name] or nil
 		if lottblocks.beds.player[name] ~= nil then
-			beds.player[name] = nil
+			lottblocks.beds.player[name] = nil
 			player_in_bed = player_in_bed - 1
 		end
 		-- skip here to prevent sending player specific changes (used for leaving players)
