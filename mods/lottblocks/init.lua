@@ -4,7 +4,7 @@ lottblocks.beds.pos = {}
 
 lottblocks.beds.formspec = "size[8,15;true]" ..
 	"bgcolor[#080808BB; true]" ..
-  "button_exit[2,12;4,0.75;leave;Leave Bed]"
+  	"button_exit[2,12;4,0.75;leave;Leave Bed]"
 
 local path = minetest.get_modpath("lottblocks")
 
