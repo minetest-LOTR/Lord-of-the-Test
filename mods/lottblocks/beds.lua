@@ -2,13 +2,13 @@ local player_in_bed = 0
 minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
 	lay_down(player, nil, nil, false, true)
-	lottblocks.beds.player[name] = nil
+	lottblocks.player[name] = nil
 	if check_in_beds() then
 		minetest.after(2, function()
 			update_formspecs(is_night_skip_enabled())
 			if is_night_skip_enabled() then
-				lottblocks.beds.skip_night()
-				lottblocks.beds.kick_players()
+				lottblocks.skip_night()
+				lottblocks.kick_players()
 			end
 		end)
 	end
@@ -25,12 +25,12 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if fields.force then
 		update_formspecs(is_night_skip_enabled())
 		if is_night_skip_enabled() then
-			lottblocks.beds.skip_night()
-			lottblocks.beds.kick_players()
+			lottblocks.skip_night()
+			lottblocks.kick_players()
 		end
 	end
 end)
-function lottblocks.beds.kick_players()
+function lottblocks.kick_players()
 	for name, _ in pairs(beds.player) do
 		local player = minetest.get_player_by_name(name)
 		lay_down(player, nil, nil, false)
@@ -44,7 +44,7 @@ local function is_night_skip_enabled()
 	return enable_night_skip
 end
 
-function lottblocks.beds.skip_night()
+function lottblocks.skip_night()
 	minetest.set_timeofday(0.23)
 end
 local function update_formspecs(finished)
@@ -53,9 +53,9 @@ local function update_formspecs(finished)
 	local is_majority = (ges / 2) < player_in_bed
 
 	if finished then
-		form_n = lottblocks.beds.formspec .. "label[2.7,11; Good morning.]"
+		form_n = lottblocks.formspec .. "label[2.7,11; Good morning.]"
 	else
-		form_n = lottblocks.beds.formspec .. "label[2.2,11;" .. tostring(player_in_bed) ..
+		form_n = lottblocks.formspec .. "label[2.2,11;" .. tostring(player_in_bed) ..
 			" of " .. tostring(ges) .. " players are in bed]"
 		if is_majority and is_night_skip_enabled() then
 			form_n = form_n .. "button_exit[2,8;4,0.75;force;Force night skip]"
@@ -77,8 +77,8 @@ local function lay_down(player, pos, bed_pos, state, skip)
 	-- stand up
 	if state ~= nil and not state then
 		local p = lottblocks.beds.pos[name] or nil
-		if lottblocks.beds.player[name] ~= nil then
-			lottblocks.beds.player[name] = nil
+		if lottblocks.player[name] ~= nil then
+			lottblocks.player[name] = nil
 			player_in_bed = player_in_bed - 1
 		end
 		-- skip here to prevent sending player specific changes (used for leaving players)
@@ -99,8 +99,8 @@ local function lay_down(player, pos, bed_pos, state, skip)
 
 	-- lay down
 	else
-		lottblocks.beds.player[name] = 1
-		lottblocks.beds.pos[name] = pos
+		lottblocks.player[name] = 1
+		lottblocks.pos[name] = pos
 		player_in_bed = player_in_bed + 1
 
 		-- physics, eye_offset, etc
@@ -119,7 +119,7 @@ local function lay_down(player, pos, bed_pos, state, skip)
 	player:hud_set_flags(hud_flags)
 end
 local function check_in_beds(players)
-	local in_bed = lottblocks.beds.player
+	local in_bed = lottblocks.player
 	if not players then
 		players = minetest.get_connected_players()
 	end
@@ -133,13 +133,13 @@ local function check_in_beds(players)
 
 	return #players > 0
 end
-function lottblocks.beds.on_rightclick(pos, player)
+function lottblocks.on_rightclick(pos, player)
 	local name = player:get_player_name()
 	local ppos = player:getpos()
 	local tod = minetest.get_timeofday()
 
 	if tod > 0.2 and tod < 0.805 then
-		if lottblocks.beds.player[name] then
+		if lottblocks.player[name] then
 			lay_down(player, nil, nil, false)
 		end
 		minetest.chat_send_player(name, "You can only sleep at night.")
@@ -147,7 +147,7 @@ function lottblocks.beds.on_rightclick(pos, player)
 	end
 
 	-- move to bed
-	if not lottblocks.beds.player[name] then
+	if not lottblocks.player[name] then
 		lay_down(player, ppos, pos)
 	else
 		lay_down(player, nil, nil, false)
@@ -164,8 +164,8 @@ function lottblocks.beds.on_rightclick(pos, player)
 				update_formspecs(is_night_skip_enabled())
 			end
 			if is_night_skip_enabled() then
-				lottblocks.beds.skip_night()
-				lottblocks.beds.kick_players()
+				lottblocks.skip_night()
+				lottblocks.kick_players()
 			end
 		end)
 	end
