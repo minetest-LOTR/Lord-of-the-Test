@@ -1,4 +1,25 @@
 local player_in_bed = 0
+local pi = math.pi
+local is_sp = minetest.is_singleplayer()
+local enable_respawn = minetest.settings:get_bool("enable_bed_respawn")
+if enable_respawn == nil then
+	enable_respawn = true
+end
+local function get_look_yaw(pos)
+	local rotation = minetest.get_node(pos).param2
+	if rotation > 3 then
+		rotation = rotation % 4 -- Mask colorfacedir values
+	end
+	if rotation == 1 then
+		return pi / 2, rotation
+	elseif rotation == 3 then
+		return -pi / 2, rotation
+	elseif rotation == 0 then
+		return pi, rotation
+	else
+		return 0, rotation
+	end
+end
 minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
 	lay_down(player, nil, nil, false, true)
