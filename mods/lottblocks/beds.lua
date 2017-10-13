@@ -52,7 +52,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 end)
 function lottblocks.kick_players()
-	for name, _ in pairs(beds.player) do
+	for name, _ in pairs(lottblocks.player) do
 		local player = minetest.get_player_by_name(name)
 		lay_down(player, nil, nil, false)
 	end
