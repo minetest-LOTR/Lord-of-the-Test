@@ -1,11 +1,18 @@
 local player_in_bed = 0
+local function is_night_skip_enabled()
+	local enable_night_skip = minetest.settings:get_bool("enable_bed_night_skip")
+	if enable_night_skip == nil then
+		enable_night_skip = true
+	end
+	return enable_night_skip
+end
 local function update_formspecs(finished)
 	local ges = #minetest.get_connected_players()
 	local form_n
 	local is_majority = (ges / 2) < player_in_bed
 
 	if finished then
-		form_n = beds.formspec .. "label[2.7,11; Good morning.]"
+		form_n = lottblocks.beds.formspec .. "label[2.7,11; Good morning.]"
 	else
 		form_n = lottblocks.beds.formspec .. "label[2.2,11;" .. tostring(player_in_bed) ..
 			" of " .. tostring(ges) .. " players are in bed]"
@@ -101,7 +108,6 @@ function lottblocks.beds.on_rightclick(pos, player)
 	-- move to bed
 	if not lottblocks.beds.player[name] then
 		lay_down(player, ppos, pos)
-		beds.set_spawns() -- save respawn positions when entering bed
 	else
 		lay_down(player, nil, nil, false)
 	end
@@ -159,7 +165,7 @@ for i in ipairs(lottblocks_list) do
 					}
 		},
 		on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-			beds.on_rightclick(pos, clicker)
+			lottblocks.beds.on_rightclick(pos, clicker)
 			return itemstack
 		end,
 		after_place_node = function(pos, placer, itemstack)
