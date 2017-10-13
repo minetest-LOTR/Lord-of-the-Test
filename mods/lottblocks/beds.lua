@@ -34,8 +34,9 @@ for i in ipairs(lottblocks_list) do
 						{-0.5, -0.5, -0.5, 0.5, 0.3125, 1.5},
 					}
 		},
-		on_rightclick = function(pos, node, player, itemstack, pointed_thing)
-			if beds and beds.on_rightclick then beds.on_rightclick(pos, player) end
+		on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+			beds.on_rightclick(pos, clicker)
+			return itemstack
 		end,
 		after_place_node = function(pos, placer, itemstack)
 			local node = minetest.get_node(pos)
