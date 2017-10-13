@@ -1,3 +1,4 @@
+-- Functions derived from beds mod in minetest_game default mod collection.
 local player_in_bed = 0
 local pi = math.pi
 local is_sp = minetest.is_singleplayer()
