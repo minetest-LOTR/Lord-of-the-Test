@@ -223,7 +223,10 @@ for i in ipairs(lottblocks_list) do
 		},
 		selection_box = {
 			type = "fixed",
-			fixed = def.selectionbox,
+	                fixed = {
+                                {-0.5, -0.5, -0.5, 0.5, 0.3125, 1.5},
+                        }
+
 		},
 		on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 			lottblocks.on_rightclick(pos, clicker)
