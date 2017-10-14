@@ -54,6 +54,7 @@ local function generate(p_minp, p_maxp, seed)
       end
     end
   
+  local index = (0 - minp.z) * zstride + (0 - minp.x) + 1
   local biomemap = lottmapgen.lottmapgen_biomes(11)
   local iron_hills = get_biome_id("iron_hills")
   local biome = biomemap[index]
