@@ -10,7 +10,6 @@ local max_depth = -31000
 local geomoria_depth = geomoria.geomoria_depth
 local ground_nodes = geomoria.ground_nodes
 local math_random = math.random
-local index = (z - minp.z) * zstride + (x - minp.x) + 1
 local zstride = maxp.x - minp.x
 local data = {}
 local p2data = {}
@@ -54,7 +53,7 @@ local function generate(p_minp, p_maxp, seed)
         return
       end
     end
-
+  
   local biomemap = lottmapgen.lottmapgen_biomes(11)
   local iron_hills = get_biome_id("iron_hills")
   local biome = biomemap[index]
