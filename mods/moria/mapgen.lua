@@ -14,7 +14,7 @@ local data = {}
 local p2data = {}
 local fissure_noise_map, damage_noise_map
 local fissure_noise, damage_noise = {}, {}
-
+local zstride = max_x - min_x
 
 local function generate(p_minp, p_maxp, seed)
   if not (p_minp and p_maxp and seed) then
