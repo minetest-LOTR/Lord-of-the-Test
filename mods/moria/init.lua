@@ -29,9 +29,7 @@ if geomoria.add_fissures == nil then
 end
 
 geomoria.cheap_lighting = minetest.setting_getbool('geomoria_cheap_lighting')
-if geomoria.cheap_lighting == nil then
-  geomoria.cheap_lighting = false
-end
+geomoria.cheap_lighting = true
 
 geomoria.damage_level = minetest.setting_getbool('geomoria_damage_level')
 geomoria.damage_level = (13 - (geomoria.damage_level or 5)) / 10
