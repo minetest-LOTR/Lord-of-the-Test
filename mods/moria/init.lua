@@ -15,6 +15,7 @@ geomoria.min_z = -31000
 geomoria.max_x = 31000
 geomoria.max_z = 31000
 
+local path = minetest.get_modpath
 
 -- Dungeon overgeneration puts mossycobble in inappropriate places.
 minetest.set_mapgen_setting('mg_flags', "nodungeons", true)
