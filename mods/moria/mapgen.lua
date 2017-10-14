@@ -1,19 +1,19 @@
 -- Geomoria mapgen.lua
 -- Copyright Duane Robertson (duane@duanerobertson.com), 2017
 -- Distributed under the LGPLv2.1 (https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html)
+-- Modified and redistributed by Jalus Bilieyich for integration with the LOTT subgame.
 
 local get_biome_id = minetest.get_biome_id
+local on_generated = minetest.on_generated
 local DEBUG
 local max_depth = -31000
 local geomoria_depth = geomoria.geomoria_depth
 local ground_nodes = geomoria.ground_nodes
 local math_random = math.random
-
-
+local index = (z - minp.z) * zstride + (x - minp.x) + 1
+local zstride = maxp.x - minp.x
 local data = {}
 local p2data = {}
-
-
 local fissure_noise_map, damage_noise_map
 local fissure_noise, damage_noise = {}, {}
 
@@ -57,7 +57,7 @@ local function generate(p_minp, p_maxp, seed)
 
   local biomemap = lottmapgen.lottmapgen_biomes(11)
   local iron_hills = get_biome_id("iron_hills")
-  local biome = biomemap
+  local biome = biomemap[index]
   if biome == iron_hills then
     geomorph()
   end
