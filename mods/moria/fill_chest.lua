@@ -10,5 +10,5 @@ end
 ADD_RCC({"default:pick_mese",		30,  1,  2})
 ADD_RCC({"geomoria:gold_pile",		100, 16, 1})
 ADD_RCC({"default:pick_stone",		80,  2,  1})
-ADD_RCC({"default:shovel_steel",	20,  2,  1})      
+ADD_RCC({"default:shovel_steel",	20,  2,  1})
 ADD_RCC({"default:shovel_stone",	50,  1,  1})
