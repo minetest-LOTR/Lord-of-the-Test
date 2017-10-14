@@ -10,7 +10,6 @@ local max_depth = -31000
 local geomoria_depth = geomoria.geomoria_depth
 local ground_nodes = geomoria.ground_nodes
 local math_random = math.random
-local zstride = maxp.x - minp.x
 local data = {}
 local p2data = {}
 local fissure_noise_map, damage_noise_map
