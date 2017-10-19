@@ -6,6 +6,9 @@ local enable_respawn = minetest.settings:get_bool("enable_bed_respawn")
 if enable_respawn == nil then
 	enable_respawn = true
 end
+local formspec = "size[8,15;true]" ..
+	"bgcolor[#080808BB; true]" ..
+	"button_exit[2,12;4,0.75;leave;Leave Bed]"
 local function get_look_yaw(pos)
 	local rotation = minetest.get_node(pos).param2
 	if rotation > 3 then
