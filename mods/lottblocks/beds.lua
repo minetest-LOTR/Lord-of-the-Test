@@ -155,7 +155,7 @@ local function check_in_beds(players)
 
 	return #players > 0
 end
-function lottblocks.on_rightclick(pos, player)
+local function bed_on_rightclick(pos, player)
 	local name = player:get_player_name()
 	local ppos = player:getpos()
 	local tod = minetest.get_timeofday()
@@ -229,7 +229,7 @@ for i in ipairs(lottblocks_list) do
 
 		},
 		on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-			lottblocks.on_rightclick(pos, clicker)
+			bed_on_rightclick(pos, clicker)
 			return itemstack
 		end,
 		after_place_node = function(pos, placer, itemstack)
