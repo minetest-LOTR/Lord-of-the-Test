@@ -187,7 +187,7 @@ function lottblocks.on_rightclick(pos, player)
 			end
 			if is_night_skip_enabled() then
 				lottblocks.skip_night()
-				lottblocks.kick_players()
+				bed_kick_players()
 			end
 		end)
 	end
