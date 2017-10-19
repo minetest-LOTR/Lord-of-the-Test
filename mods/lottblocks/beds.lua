@@ -30,7 +30,7 @@ minetest.register_on_leaveplayer(function(player)
 			update_formspecs(is_night_skip_enabled())
 			if is_night_skip_enabled() then
 				lottblocks.skip_night()
-				lottblocks.kick_players()
+				bed_kick_players()
 			end
 		end)
 	end
@@ -48,11 +48,11 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		update_formspecs(is_night_skip_enabled())
 		if is_night_skip_enabled() then
 			lottblocks.skip_night()
-			lottblocks.kick_players()
+			bed_kick_players()
 		end
 	end
 end)
-function lottblocks.kick_players()
+local function bed_kick_players()
 	for name, _ in pairs(lottblocks.player) do
 		local player = minetest.get_player_by_name(name)
 		lottblocks.lay_down(player, nil, nil, false)
@@ -84,7 +84,7 @@ local function update_formspecs(finished)
 		end
 	end
 
-	for name,_ in pairs(beds.player) do
+	for name,_ in pairs(lottblocks.player) do
 		minetest.show_formspec(name, "beds_form", form_n)
 	end
 end
