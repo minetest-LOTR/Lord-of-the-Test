@@ -921,3 +921,4 @@ function lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, H
 		end
 	end
 end
+

@@ -118,6 +118,16 @@ lottmobs.elf = {
 		"It is perilous to study too deeply the arts of the Enemy, for good or for ill. But such falls and betrayals, alas, have happened before.",
 		"Do not meddle in the affairs of Wizards, for they are subtle and quick to anger.",
 		"The praise of the praiseworthy is above all rewards.",
+		"The old that is strong does not wither, deep roots are not reached by the frost.",
+		"I will not say 'do not weep,' for not all tears are an evil.",
+		"For even the very wise cannot see all ends.",
+		"Faithless is he who says farewell when the road darkens.",
+		"Aa' lasser en lle coia orn n' omenta gurtha.",
+		"Sweet water and light laughter till next we meet.",
+		"Aa' menealle nauva ar' malta.",
+		"May the wind fill your sails.",
+		"Do not scorn pity that is the gift of a gentle heart, Éowyn!",
+		"Someone else always has to carry on the story.",
 	}
 }
 
@@ -166,6 +176,7 @@ lottmobs.hobbit = {
 		"If you are in need of any food, there are traders who wander around and they usually have a good stock.",
 		"If you are thinking that you'll find adventures here, think again! Good day!",
 		"We hear tales of war, but they cannot be more than tales - like that of the Oliphaunt.",
+		"Go not to the Elves for counsel, for they will say both no and yes.",
 		"Food is meant to be enjoyed, not rushed. Don't just eat a little here and a little there, sit down for a proper meal sometimes...",
 	}
 }

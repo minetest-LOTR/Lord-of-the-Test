@@ -17,11 +17,15 @@ Many commands also have shorter names that can be typed faster. For example, if 
 | `//s`      | `//set`            |
 | `//r`      | `//replace`        |
 | `//ri`     | `//replaceinverse` |
+| `//hcube`  | `//hollowcube`     |
 | `//hspr`   | `//hollowsphere`   |
 | `//spr`    | `//sphere`         |
 | `//hdo`    | `//hollowdome`     |
 | `//do`     | `//dome`           |
 | `//hcyl`   | `//hollowcylinder` |
+| `//cyl`    | `//cylinder`       |
+| `//hpyr`   | `//hollowpyramid`  |
+| `//pyr`    | `//pyramid`        |
 
 ### `//about`
 
@@ -98,6 +102,12 @@ Display the volume of the current WorldEdit region.
 
     //volume
 
+### `//deleteblocks`
+
+Delete the MapBlocks (16x16x16 units) that contain the selected region. This means that mapgen will be invoked for that area. As only whole MapBlocks get removed, the deleted area is usually larger than the selected one. Also, mapgen can trigger mechanisms like mud reflow or cavegen, which affects nodes (up to 112 nodes away) outside the MapBlock, so dont use this near buildings. Note that active entities are not part of a MapBlock and do not get deleted.
+
+    //deleteblocks
+
 ### `//set <node>`
 
 Set the current WorldEdit region to `<node>`.
@@ -106,6 +116,10 @@ Set the current WorldEdit region to `<node>`.
     //set cactus
     //set Blue Lightstone
     //set dirt with grass
+
+### `//param2 <param2>`
+
+Set the param2 value of all nodes in the current WorldEdit region to `<param2>`.
 
 ### `//mix <node1> ...`
 
@@ -133,6 +147,19 @@ Replace all nodes other than `<search node>` with `<replace node>` in the curren
     //replaceinverse flowers:flower_waterlily glass
     //replaceinverse dirt Bronze Block
     //replaceinverse mesecons:wire_00000000_off flowers:flower_tulip
+
+### `//hollowcube <width> <height> <length> <node>`
+
+Adds a hollow cube with its ground level centered at WorldEdit position 1 with dimensions `<width>` x `<height>` x `<length>`, composed of `<node>`.
+
+    //hollowcube 6 5 6 Diamond Block
+
+### `//cube <width> <height> <length> <node>`
+
+Adds a cube with its ground level centered at WorldEdit position 1 with dimensions `<width>` x `<height>` x `<length>`, composed of `<node>`.
+
+    //cube 6 5 6 Diamond Block
+    //cube 7 2 1 default:cobble
 
 ### `//hollowsphere <radius> <node>`
 
@@ -166,24 +193,45 @@ Add dome centered at WorldEdit position 1 with radius `<radius>`, composed of `<
     //dome -12 glass
     //dome 17 mesecons:wire_00000000_off
 
-### `//hollowcylinder x/y/z/? <length> <radius> <node>`
+### `//hollowcylinder x/y/z/? <length> <radius1> [radius2] <node>`
 
-Add hollow cylinder at WorldEdit position 1 along the x/y/z/? axis with length `<length>` and radius `<radius>`, composed of `<node>`.
+Add hollow cylinder at WorldEdit position 1 along the x/y/z/? axis with length `<length>`, base radius `<radius1>` (and top radius `[radius2]`), composed of `<node>`.
+
+Despite its name this command allows you to create cones (`radius2` = 0) as well as any shapes inbetween (0 < `radius2` < `radius1`).
+Swapping `radius1` and `radius2` will create the same object but upside-down.
 
     //hollowcylinder x +5 8 Bronze Block
     //hollowcylinder y 28 10 glass
     //hollowcylinder z -12 3 mesecons:wire_00000000_off
     //hollowcylinder ? 2 4 default:stone
 
-### `//cylinder x/y/z/? <length> <radius> <node>`
+    //hollowcylinder y 10 10 0 walls:cobble
+    //hollowcylinder x 6 0 5 Dirt
+    //hollowcylinder z 20 10 20 default:desert_stone
 
-Add cylinder at WorldEdit position 1 along the x/y/z/? axis with length `<length>` and radius `<radius>`, composed of `<node>`.
+### `//cylinder x/y/z/? <length> <radius1> [radius2] <node>`
+
+Add cylinder at WorldEdit position 1 along the x/y/z/? axis with length `<length>`, base radius `<radius1>` (and top radius `[radius2]`), composed of `<node>`.
+Can also create shapes other than cylinders, e.g. cones (see documentation above).
 
     //cylinder x +5 8 Bronze Block
     //cylinder y 28 10 glass
     //cylinder z -12 3 mesecons:wire_00000000_off
     //cylinder ? 2 4 default:stone
+
+    //cylinder y 10 10 0 walls:cobble
+    //cylinder x 6 0 5 Dirt
+    //cylinder z 20 10 20 default:desert_stone
     
+### `//hollowpyramid x/y/z? <height> <node>`
+
+Add hollow pyramid centered at WorldEdit position 1 along the x/y/z/? axis with height `<height>`, composed of `<node>`.
+
+    //hollowpyramid x 8 Diamond Block
+    //hollowpyramid y -5 glass
+    //hollowpyramid z 2 mesecons:wire_00000000_off
+    //hollowpyramid ? 12 mesecons:wire_00000000_off
+
 ### `//pyramid x/y/z? <height> <node>`
 
 Add pyramid centered at WorldEdit position 1 along the x/y/z/? axis with height `<height>`, composed of `<node>`.
@@ -285,6 +333,12 @@ Fixes the lighting in the current WorldEdit region.
 
     //fixlight
 
+### `//drain`
+
+Removes any fluid node within the current WorldEdit region.
+
+    //drain
+
 ### `//hide`
 
 Hide all nodes in the current WorldEdit region non-destructively.
@@ -374,3 +428,38 @@ This mode can be left with `//mtschemprob finish`. `//mtschemprob get` will disp
 Clears all objects within the WorldEdit region.
 
     //clearobjects
+    
+### `//shift x/y/z/?/up/down/left/right/front/back [+|-]<amount>`
+
+Shifts the selection area by `[+|-]<amount>` without touching its contents. The shifting axis can be absolute (`x/y/z`) or 
+relative (`up/down/left/right/front/back`). 
+
+		//shift left 5
+
+### `//expand [+|-]x/y/z/?/up/down/left/right/front/back <amount> [reverse-amount]`
+
+Expands the selection by `<amount>` in the selected absolute or relative axis. If specified, the selection can be expanded in the
+opposite direction over the same axis by `[reverse-amount]`.
+
+		//expand right 7 5
+		
+### `//contract [+|-]x/y/z/?/up/down/left/right/front/back <amount> [reverse-amount]`
+
+Contracts the selection by `<amount>` in the selected absolute or relative axis. If specified, the selection can be contracted in the
+opposite direction over the same axis by `[reverse-amount]`.
+
+		//expand right 7 5
+		
+### `//outset [hv] <amount>`
+
+Expands the selection in all directions by `<amount>`. If specified, the selection can be expanded horizontally in the x and z axes `[h]`
+or vertically in the y axis `[v]`.
+
+		//outset v 5
+		
+### `//inset [hv] <amount>`
+
+Contracts the selection in all directions by `<amount>`. If specified, the selection can be contracted horizontally in the x and z axes `[h]`
+or vertically in the y axis `[v]`.
+
+		//outset v 5

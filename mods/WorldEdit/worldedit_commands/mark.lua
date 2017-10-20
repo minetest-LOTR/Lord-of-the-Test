@@ -58,8 +58,19 @@ worldedit.mark_region = function(name)
 		end
 		worldedit.marker_region[name] = nil
 	end
+
 	if pos1 ~= nil and pos2 ~= nil then
 		local pos1, pos2 = worldedit.sort_pos(pos1, pos2)
+
+		local vec = vector.subtract(pos2, pos1)
+		local maxside = math.max(vec.x, math.max(vec.y, vec.z))
+		local limit = tonumber(minetest.setting_get("active_object_send_range_blocks")) * 16
+		if maxside > limit * 1.5 then
+			-- The client likely won't be able to see the plane markers as intended anyway,
+			-- thus don't place them and also don't load the area into memory
+			return
+		end
+
 		local thickness = 0.2
 		local sizex, sizey, sizez = (1 + pos2.x - pos1.x) / 2, (1 + pos2.y - pos1.y) / 2, (1 + pos2.z - pos1.z) / 2
 
@@ -72,24 +83,28 @@ worldedit.mark_region = function(name)
 		--XY plane markers
 		for _, z in ipairs({pos1.z - 0.5, pos2.z + 0.5}) do
 			local marker = minetest.add_entity({x=pos1.x + sizex - 0.5, y=pos1.y + sizey - 0.5, z=z}, "worldedit:region_cube")
-			marker:set_properties({
-				visual_size={x=sizex * 2, y=sizey * 2},
-				collisionbox = {-sizex, -sizey, -thickness, sizex, sizey, thickness},
-			})
-			marker:get_luaentity().player_name = name
-			table.insert(markers, marker)
+			if marker ~= nil then
+				marker:set_properties({
+					visual_size={x=sizex * 2, y=sizey * 2},
+					collisionbox = {-sizex, -sizey, -thickness, sizex, sizey, thickness},
+				})
+				marker:get_luaentity().player_name = name
+				table.insert(markers, marker)
+			end
 		end
 
 		--YZ plane markers
 		for _, x in ipairs({pos1.x - 0.5, pos2.x + 0.5}) do
 			local marker = minetest.add_entity({x=x, y=pos1.y + sizey - 0.5, z=pos1.z + sizez - 0.5}, "worldedit:region_cube")
-			marker:set_properties({
-				visual_size={x=sizez * 2, y=sizey * 2},
-				collisionbox = {-thickness, -sizey, -sizez, thickness, sizey, sizez},
-			})
-			marker:setyaw(math.pi / 2)
-			marker:get_luaentity().player_name = name
-			table.insert(markers, marker)
+			if marker ~= nil then
+				marker:set_properties({
+					visual_size={x=sizez * 2, y=sizey * 2},
+					collisionbox = {-thickness, -sizey, -sizez, thickness, sizey, sizez},
+				})
+				marker:setyaw(math.pi / 2)
+				marker:get_luaentity().player_name = name
+				table.insert(markers, marker)
+			end
 		end
 
 		worldedit.marker_region[name] = markers
@@ -153,7 +168,11 @@ minetest.register_entity(":worldedit:region_cube", {
 		end
 	end,
 	on_punch = function(self, hitter)
-		for _, entity in ipairs(worldedit.marker_region[self.player_name]) do
+		local markers = worldedit.marker_region[self.player_name]
+		if not markers then
+			return
+		end
+		for _, entity in ipairs(markers) do
 			entity:remove()
 		end
 		worldedit.marker_region[self.player_name] = nil

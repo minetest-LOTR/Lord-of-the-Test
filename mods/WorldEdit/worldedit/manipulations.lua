@@ -38,6 +38,29 @@ function worldedit.set(pos1, pos2, node_names)
 	return worldedit.volume(pos1, pos2)
 end
 
+--- Sets param2 of a region.
+-- @param pos1
+-- @param pos2
+-- @param param2 Value of param2 to set
+-- @return The number of nodes set.
+function worldedit.set_param2(pos1, pos2, param2)
+	pos1, pos2 = worldedit.sort_pos(pos1, pos2)
+
+	local manip, area = mh.init(pos1, pos2)
+	local param2_data = manip:get_param2_data()
+
+	-- Set param2 for every node
+	for i in area:iterp(pos1, pos2) do
+		param2_data[i] = param2
+	end
+
+	-- Update map
+	manip:set_param2_data(param2_data)
+	manip:write_to_map()
+	manip:update_map()
+
+	return worldedit.volume(pos1, pos2)
+end
 
 --- Replaces all instances of `search_node` with `replace_node` in a region.
 -- When `inverse` is `true`, replaces all instances that are NOT `search_node`.
@@ -90,7 +113,7 @@ function worldedit.stack2(pos1, pos2, direction, amount, finished)
 			translated.x = translated.x + direction.x
 			translated.y = translated.y + direction.y
 			translated.z = translated.z + direction.z
-			worldedit.copy2(pos1, pos2, translated, volume)
+			worldedit.copy2(pos1, pos2, translated)
 			minetest.after(0, next_one)
 		else
 			if finished then
@@ -164,6 +187,38 @@ function worldedit.copy(pos1, pos2, axis, amount)
 	return worldedit.volume(pos1, pos2)
 end
 
+--- Copies a region by offset vector `off`.
+-- @param pos1
+-- @param pos2
+-- @param off
+-- @return The number of nodes copied.
+function worldedit.copy2(pos1, pos2, off)
+	local pos1, pos2 = worldedit.sort_pos(pos1, pos2)
+
+	worldedit.keep_loaded(pos1, pos2)
+
+	local get_node, get_meta, set_node = minetest.get_node,
+			minetest.get_meta, minetest.set_node
+	local pos = {}
+	pos.x = pos2.x
+	while pos.x >= pos1.x do
+		pos.y = pos2.y
+		while pos.y >= pos1.y do
+			pos.z = pos2.z
+			while pos.z >= pos1.z do
+				local node = get_node(pos) -- Obtain current node
+				local meta = get_meta(pos):to_table() -- Get meta of current node
+				local newpos = vector.add(pos, off) -- Calculate new position
+				set_node(newpos, node) -- Copy node to new position
+				get_meta(newpos):from_table(meta) -- Set metadata of new node
+				pos.z = pos.z - 1
+			end
+			pos.y = pos.y - 1
+		end
+		pos.x = pos.x - 1
+	end
+	return worldedit.volume(pos1, pos2)
+end
 
 --- Moves a region along `axis` by `amount` nodes.
 -- @return The number of nodes moved.
@@ -543,14 +598,11 @@ end
 function worldedit.fixlight(pos1, pos2)
 	local pos1, pos2 = worldedit.sort_pos(pos1, pos2)
 
-	worldedit.keep_loaded(pos1, pos2)
+	local vmanip = minetest.get_voxel_manip(pos1, pos2)
+	vmanip:write_to_map()
+	vmanip:update_map() -- this updates the lighting
 
-	local nodes = minetest.find_nodes_in_area(pos1, pos2, "air")
-	local dig_node = minetest.dig_node
-	for _, pos in ipairs(nodes) do
-		dig_node(pos)
-	end
-	return #nodes
+	return worldedit.volume(pos1, pos2)
 end
 
 
