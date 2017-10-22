@@ -1,7 +1,6 @@
-return "return{{\"background\"} = \"gui_elfbg.png\", " ..
-	"{\"page\"} = 1, [\"title\" = \"A GILTHONIEL\", " ..
-	"[\"page_max\"] = 15, [\"text_len\"] = 2640, [\"owner\"] = \"Gildor Inglorion\", " ..
-	"[\"text\"] = \"Snow-white! Snow-white! O lady clear! " ..
+return "return {{\"background\"} = \"gui_elfbg.png\"," ..
+	"[\"title\"] = \"A GILTHONIEL\", [\"page_max\"] = 15," ..
+	"[\"text_len\"] = 2640, [\"owner\"] = \"Gildor Inglorion\", [\"text\"] = \"Snow-white! Snow-white! O lady clear! " ..
 	"\\\nQueen beyond the Western Sea! " ..
 	"\\\nO Light to us that wander here " ..
 	"\\\nAmid the world of woven trees! " ..
