@@ -24,20 +24,6 @@ local function get_look_yaw(pos)
 		return 0, rotation
 	end
 end
-minetest.register_on_leaveplayer(function(player)
-	local name = player:get_player_name()
-	lottblocks.lay_down(player, nil, nil, false, true)
-	lottblocks.player[name] = nil
-	if check_in_beds() then
-		minetest.after(2, function()
-			update_formspecs(is_night_skip_enabled())
-			if is_night_skip_enabled() then
-				lottblocks.skip_night()
-				bed_kick_players()
-			end
-		end)
-	end
-end)
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname ~= "beds_form" then
 		return
@@ -158,6 +144,20 @@ local function check_in_beds(players)
 
 	return #players > 0
 end
+minetest.register_on_leaveplayer(function(player)
+	local name = player:get_player_name()
+	lottblocks.lay_down(player, nil, nil, false, true)
+	lottblocks.player[name] = nil
+	if check_in_beds() then
+		minetest.after(2, function()
+			update_formspecs(is_night_skip_enabled())
+			if is_night_skip_enabled() then
+				lottblocks.skip_night()
+				bed_kick_players()
+			end
+		end)
+	end
+end)
 local function bed_on_rightclick(pos, player)
 	local name = player:get_player_name()
 	local ppos = player:getpos()
