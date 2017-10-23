@@ -113,7 +113,6 @@ function lottblocks.lay_down(player, pos, bed_pos, state, skip)
 		lottblocks.player[name] = 1
 		lottblocks.pos[name] = pos
 		player_in_bed = player_in_bed + 1
-
 		-- physics, eye_offset, etc
 		player:set_eye_offset({x = 0, y = -13, z = 0}, {x = 0, y = 0, z = 0})
 		local yaw, param2 = get_look_yaw(bed_pos)
@@ -126,7 +125,6 @@ function lottblocks.lay_down(player, pos, bed_pos, state, skip)
 		hud_flags.wielditem = false
 		default.player_set_animation(player, "lay" , 0)
 	end
-
 	player:hud_set_flags(hud_flags)
 end
 local function check_in_beds(players)
@@ -158,6 +156,7 @@ minetest.register_on_leaveplayer(function(player)
 		end)
 	end
 end)
+
 local function bed_on_rightclick(pos, player)
 	local name = player:get_player_name()
 	local ppos = player:getpos()
