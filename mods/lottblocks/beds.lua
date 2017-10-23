@@ -24,20 +24,6 @@ local function get_look_yaw(pos)
 		return 0, rotation
 	end
 end
-minetest.register_on_leaveplayer(function(player)
-	local name = player:get_player_name()
-	lottblocks.lay_down(player, nil, nil, false, true)
-	lottblocks.player[name] = nil
-	if check_in_beds() then
-		minetest.after(2, function()
-			update_formspecs(is_night_skip_enabled())
-			if is_night_skip_enabled() then
-				lottblocks.skip_night()
-				bed_kick_players()
-			end
-		end)
-	end
-end)
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname ~= "beds_form" then
 		return
@@ -127,7 +113,6 @@ function lottblocks.lay_down(player, pos, bed_pos, state, skip)
 		lottblocks.player[name] = 1
 		lottblocks.pos[name] = pos
 		player_in_bed = player_in_bed + 1
-
 		-- physics, eye_offset, etc
 		player:set_eye_offset({x = 0, y = -13, z = 0}, {x = 0, y = 0, z = 0})
 		local yaw, param2 = get_look_yaw(bed_pos)
@@ -140,7 +125,6 @@ function lottblocks.lay_down(player, pos, bed_pos, state, skip)
 		hud_flags.wielditem = false
 		default.player_set_animation(player, "lay" , 0)
 	end
-
 	player:hud_set_flags(hud_flags)
 end
 local function check_in_beds(players)
@@ -158,6 +142,21 @@ local function check_in_beds(players)
 
 	return #players > 0
 end
+minetest.register_on_leaveplayer(function(player)
+	local name = player:get_player_name()
+	lottblocks.lay_down(player, nil, nil, false, true)
+	lottblocks.player[name] = nil
+	if check_in_beds() then
+		minetest.after(2, function()
+			update_formspecs(is_night_skip_enabled())
+			if is_night_skip_enabled() then
+				lottblocks.skip_night()
+				bed_kick_players()
+			end
+		end)
+	end
+end)
+
 local function bed_on_rightclick(pos, player)
 	local name = player:get_player_name()
 	local ppos = player:getpos()
