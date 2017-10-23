@@ -115,6 +115,20 @@ minetest.register_craftitem("lottblocks:lore_scroll2", {
 	end,
 })
 
+local lore_poem3 = dofile(minetest.get_modpath("lottblocks")
+	.. "/guide_text/lore_poem3.lua")
+
+minetest.register_craftitem("lottblocks:lore_scroll3", {
+	description = "Scroll labeled LEKH",
+	inventory_image = "scroll.png",
+	groups = {book = 1, forbidden = 1},
+	stack_max = 1,
+	text = minetest.deserialize(lore_poem3),
+	on_use = function(itemstack, user)
+		guide_on_use(itemstack, user)
+	end,
+})
+
 minetest.register_craft({
 	type = "shapeless",
 	output = "lottblocks:palantir_guide",
