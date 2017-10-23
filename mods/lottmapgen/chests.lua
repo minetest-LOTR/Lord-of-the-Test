@@ -128,7 +128,8 @@ minetest.register_abm({
 			[21] = "lottweapons:copper_spear",
 			[22] = "lottweapons:tin_battleaxe",
 			[23] = "vessels:glass_bottle 3",
-			[24] = "farming:hoe_steel"
+			[24] = "farming:hoe_steel",
+			[25] = "lottblocks:lore_scroll3"
 		}
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
