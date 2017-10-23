@@ -348,7 +348,8 @@ minetest.register_abm({
 			[36] = "lottthrowing:bow_wood_lebethron",
 			[37] = "lottores:blue_gem",
 			[38] = "farming:hoe_bronze",
-			[39] = "lottblocks:elven_rope " .. r(10, 40)
+			[39] = "lottblocks:elven_rope", 
+			[40] = "lottblocks:lore_scroll1 1" .. r(10, 41)
 		}
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
