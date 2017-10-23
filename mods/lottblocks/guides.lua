@@ -101,6 +101,19 @@ minetest.register_craftitem("lottblocks:lore_scroll1", {
 	end,
 })
 
+local lore_poem2 = dofile(minetest.get_modpath("lottblocks")
+	.. "/guide_text/lore_poem2.lua")
+
+minetest.register_craftitem("lottblocks:lore_scroll2", {
+	description = "Scroll labeled RALMENLETH",
+	inventory_image = "scroll.png",
+	groups = {book = 1, forbidden = 1},
+	stack_max = 1,
+	text = minetest.deserialize(lore_poem2),
+	on_use = function(itemstack, user)
+		guide_on_use(itemstack, user)
+	end,
+})
 
 minetest.register_craft({
 	type = "shapeless",

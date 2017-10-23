@@ -177,7 +177,8 @@ minetest.register_abm({
 			[25] = "lottpotion:cider 10",
 			[26] = "lottpotion:wine 5",
 			[27] = "lottpotion:wine 2",
-			[29] = "lottthrowing:bow_wood_alder"
+			[29] = "lottthrowing:bow_wood_alder",
+			[30] = "lottblocks:lore_scroll2"
 		}
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
