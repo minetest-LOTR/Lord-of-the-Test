@@ -1,7 +1,0 @@
-default
-mobs
-lottclasses
-fire
-
-bones
-lottores

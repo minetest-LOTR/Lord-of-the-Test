@@ -1,4 +1,0 @@
-lottblocks_harp.ogg = Harp Chord G
-lottblocks_harp.1.ogg = Harp Chord D
-lottblocks_harp.2.ogg = Harp Chord Bm
-lottblocks_harp.3.ogg = Harp Chord Em

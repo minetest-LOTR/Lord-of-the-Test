@@ -1,4 +1,0 @@
-default
-flowers
-lottfarming
-stairs
