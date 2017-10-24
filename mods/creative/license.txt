@@ -1,0 +1,5 @@
+Authors of source code:
+-----------------------
+(LOTT-specific-mod)
+Original Author(s):
+	fishyWET (LGPL v2.1)

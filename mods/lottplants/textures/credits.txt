@@ -1,0 +1,42 @@
+CC BY-SA 3.0
+Copyright (C) 2014-2016 RHRhino
+Copyright (C) 2015-2016 Gambit
+Copyright (C) 2016 yyt16384
+Copyright (C) 2017 paramat
+	lottplants_dandelion_white.png
+	lottplants_dandelion_yellow.png
+	lottplants_geranium.png
+	lottplants_rose.png
+	lottplants_tulip.png
+	lottplants_violet.png
+Copyright (C) 2015 philipbenr
+	lottplants_mallorn_leaves.png
+	lottplants_mallorn_tree.png
+	lottplants_mallorn_tree_top.png
+	lottplants_mallorn_wood.png
+	
+Botania License
+Copyright (C) 2017 Vazkii
+(Taken from the Botania Minecraft mod: https://botaniamod.net/)
+	lottplants_elanor.png
+	lottplants_lissuin_short.png
+	lottplants_lissuin_tall_bottom.png
+	lottplants_lissuin_tall_top.png
+	lottplants_niphredil.png
+
+MIT
+Copyright (C) 2016 tenplus1
+(Taken from ethereal: https://github.com/tenplus1/ethereal)
+	lottplants_lorien_grass_*.png
+
+CC0
+Copyright (C) 2013 Cisoun
+	lottplants_jungle_tree.png (modified by Amaz)
+	lottplants_jungle_tree_top.png (modified by Amaz)
+	lottplants_oak_leaves.png
+	lottplants_oak_tree.png
+	lottplants_oak_tree_top.png
+Copyright (C) 2013 PlizAdam
+	lottplants_jungle_leaves.png
+	lottplants_jungle_wood.png
+	lottplants_wood.png

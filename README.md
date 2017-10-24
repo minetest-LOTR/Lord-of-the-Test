@@ -1,6 +1,8 @@
 ![header](https://raw.githubusercontent.com/minetest-LOTT/Lord-of-the-Test/master/menu/header.png)
 ## Lord of the Test: A Minetest subgame.
-### Version: 1.1.0
+### Version: 0.2.0-dev
+
+**WARNING: THIS IS A TOTAL REWRITE OF LOTT. Things will be *very* broken, and DO NOT use it with older maps, as they will break completely...**
 
 This is a game for Minetest that adds [Lord of the Rings](https://en.wikipedia.org/wiki/The_Lord_of_the_Rings) elements into the game.
 
