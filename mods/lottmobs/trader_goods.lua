@@ -227,7 +227,6 @@ lottmobs.human = {
 		"Don't listen to those who say that all this talk of war will come to nothing, for we are at war now.",
 		"We suffer raids from orcs, and other evil things, yet we do nothing! We must act, and act with force!",
 		"Life here is far from normal. We wish for peace, yet the only way we can get peace is through war...",
-		"We must revise our Commandments of Men to sufficiently get us through this war with the Orcs and trolls.",
 	}
 }
 lottmobs.orc = {
