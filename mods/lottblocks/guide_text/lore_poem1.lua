@@ -1,6 +1,6 @@
 return "return {[\"background\"] = \"gui_elfbg.png\"," ..
 	"[\"title\" = \"A GILTHONIEL\", [\"page_max\"] = 5," ..
-	"[\text_len\"] = 2333, [\"owner\"] = \"A Wise Elf\", [\"text\"] = \The Men of the West " ..
+	"[\text_len\"] = 2333, [\"owner\"] = \"A Wise Elf\", [\"text\"] = \"The Men of the West " ..
 	"\\\n  Endowed with unique quests,
 	"\\\nAwoke Secondborn
 	"\\\n  In the morn,
