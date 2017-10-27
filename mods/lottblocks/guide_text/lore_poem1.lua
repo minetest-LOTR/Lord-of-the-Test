@@ -13,7 +13,7 @@ return "return {[\"background\"] = \"gui_elfbg.png\"," ..
 	"\\\n\\\n  Elbereth! Gilthoniel! " ..
 	"\\\nQueen of the Stars. " ..
 	"\\\n  Elbereth! " ..
-	"\\\nSovereign of the Western Star, " ..
+	"\\\nSovereign of the Western Stars, " ..
 	"\\\nWith love of all things good, " ..
 	"\\\nGuardian of whom call her name. " ..
 	"\\\n  A! Elbereth Gilthoniel! " ..
