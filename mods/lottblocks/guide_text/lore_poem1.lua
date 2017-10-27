@@ -37,3 +37,4 @@ return "return {[\"background\"] = \"gui_elfbg.png\"," ..
 	"\\\nTremble we shall at the Song of thee. " ..
 	"\\\n  Gilthoniel O Elbereth! " ..
 	"\\\n\\\nFarewell and may Elbereth bring light to thee. " ..
+
