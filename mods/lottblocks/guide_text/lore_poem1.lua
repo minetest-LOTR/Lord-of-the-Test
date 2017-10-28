@@ -4,7 +4,7 @@ return "return {[\"background\"] = \"gui_elfbg.png\"," ..
 	"\\\n  Endowed with unique quests, " ..
 	"\\\nAwoke Secondborn " ..
 	"\\\n  In the morn, " ..
-	"\\\nWith their vests " ..
+	"\\\nWithin their vests " ..
 	"\\\n  Filled with blesses " ..
 	"\\\nOf Iluvatar the Creator " ..
 	"\\\n  O! Beloved and Sterling! " ..
