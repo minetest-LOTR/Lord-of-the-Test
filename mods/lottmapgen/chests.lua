@@ -290,8 +290,8 @@ minetest.register_abm({
 			[34]="lottthrowing:arrow_fire_blue",
 			[35]="lottthrowing:arrow_fire 3",
 			[36]="lottblocks:elf_torch 10",
-			[37]="lottores:white_gem", .. r(10, 41)
-			[38] = "lottblocks:elven_rope "
+			[37]="lottores:white_gem", 
+			[38] = "lottblocks:elven_rope " .. r(10, 40)
 		}
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
@@ -351,7 +351,7 @@ minetest.register_abm({
 			[37] = "lottores:blue_gem",
 			[38] = "farming:hoe_bronze",
 			[39] = "lottblocks:elven_rope", 
-			[40] = "lottblocks:lore_scroll1 1" .. r(10, 41)
+			[40] = "lottblocks:lore_scroll1" .. r(10, 41)
 		}
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
