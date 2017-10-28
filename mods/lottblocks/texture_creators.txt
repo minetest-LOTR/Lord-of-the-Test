@@ -1,0 +1,1 @@
+textures/scroll.png creator: Spudwalt http://crawl.chaosforge.org/User:Spudwalt
