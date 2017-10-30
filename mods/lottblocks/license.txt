@@ -12,6 +12,9 @@ Authors of media files
 Flipsels (CC BY-SA 3.0)
 	gui_*.png
 
+ontoclasm, sgrunt, quisquous (GPLv2)
+	scroll.png
+
 catninja (CC BY-SA 3.0)
 	lottblocks_tree_vine*.png
 	lottblocks_tree_mossy*.png
