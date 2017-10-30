@@ -12,7 +12,7 @@ Authors of media files
 Flipsels (CC BY-SA 3.0)
 	gui_*.png
 
-ontoclasm, sgrunt, quisquous (GPLv2)
+ontoclasm, sgrunt, quisquous (CC BY-SA 1.0)
 	scroll.png
 
 catninja (CC BY-SA 3.0)
