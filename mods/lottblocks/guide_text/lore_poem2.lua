@@ -21,7 +21,7 @@ return "return {[\"background\"] = \"gui_dwarfbg.png\"," ..
 	"\\\n\\\nAnd awoke Lord Durin to Moria, " ..
 	"\\\nTo Flames smothering him; for " ..
 	"\\\nThe Balrog has won, " ..
-	"\\\nAnd he failed to run. " ..
+	"\\\nAnd Durin failed to run. " ..
 	"\\\n\\\nAnd died Lord Durin to Moria, " ..
 	"\\\nWhere unforgotten lore " ..
 	"\\\nOf his Fate and Bane " ..
