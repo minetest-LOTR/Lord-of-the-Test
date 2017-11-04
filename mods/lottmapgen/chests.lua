@@ -290,7 +290,7 @@ minetest.register_abm({
 			[34]="lottthrowing:arrow_fire_blue",
 			[35]="lottthrowing:arrow_fire 3",
 			[36]="lottblocks:elf_torch 10",
-			[37]="lottores:white_gem", 
+			[37]="lottores:white_gem",
 			[38] = "lottblocks:elven_rope " .. r(10, 40)
 		}
 		local meta = minetest.get_meta(pos)
