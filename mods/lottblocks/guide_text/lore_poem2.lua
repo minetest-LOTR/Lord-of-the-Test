@@ -15,7 +15,7 @@ return "return {[\"background\"] = \"gui_dwarfbg.png\"," ..
 	"\\\nFor his greed delved too deep " ..
 	"\\\nInto the Mines steep, " ..
 	"\\\n\\\nAnd awoke Lord Durin to Moria, " ..
-	"\\\nTo the awakening of the Balrog of Moria, " ..
+	"\\\nTo awakening the Balrog of Moria, " ..
 	"\\\nTo his Bane filled with hate, " ..
 	"\\\nTo Dwarves set to militate. " ..
 	"\\\n\\\nAnd awoke Lord Durin to Moria, " ..
