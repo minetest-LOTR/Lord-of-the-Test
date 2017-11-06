@@ -20,7 +20,7 @@ return "return {[\"background\"] = \"gui_dwarfbg.png\"," ..
 	"\\\nTo Dwarves set to militate. " ..
 	"\\\n\\\nAnd awoke Lord Durin to Moria, " ..
 	"\\\nTo Flames smothering him; for " ..
-	"\\\nThe Balrog has won, " ..
+	"\\\nThe Balrog had won, " ..
 	"\\\nAnd Durin failed to run. " ..
 	"\\\n\\\nAnd died Lord Durin to Moria, " ..
 	"\\\nWhere unforgotten lore " ..
