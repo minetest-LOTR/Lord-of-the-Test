@@ -1,5 +1,5 @@
 return "return {[\"background\"] = \"gui_dwarfbg.png\"," ..
-	"[\"title\"] = \"Durin's Bane\", [\"page_max\"] = 3," ..
+	"[\"title\"] = \"Durin's Bane\", [\"page_max\"] = 1," ..
 	"[\"text_len\"] = 2400, [\"owner\"] = \"Unknown\", [\"text\"] = \"And awoke Lord Durin to Moria, " ..
 	"\\\nTo the Mines of Mithril ore, " ..
 	"\\\nEre Dwarves tirelessly plough, " ..
