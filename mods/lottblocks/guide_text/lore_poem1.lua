@@ -1,5 +1,5 @@
 return "return {[\"background\"] = \"gui_elfbg.png\"," ..
-	"[\"title\"] = \"A GILTHONIEL\", [\"page_max\"] = 1," ..
+	"[\"title\"] = \"A GILTHONIEL\", [\"page_max\"] = 4," ..
 	"[\"text_len\"] = 2333, [\"owner\"] = \"A Wise Elf\", [\"text\"] = \"The Men of the West " ..
 	"\\\n    Endowed with unique quests, " ..
 	"\\\nAwoke Secondborn " ..
