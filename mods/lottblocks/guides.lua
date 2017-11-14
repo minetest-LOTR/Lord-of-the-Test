@@ -86,7 +86,6 @@ minetest.register_craftitem("lottblocks:palantir_guide", {
 	end,
 })
 
-
 local lore_poem1 = dofile(minetest.get_modpath("lottblocks")
 	.. "/guide_text/lore_poem1.lua")
 
