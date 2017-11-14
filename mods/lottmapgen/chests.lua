@@ -112,7 +112,7 @@ minetest.register_abm({
 		minetest.set_node(pos, {name="default:chest", param2 = node.param2})
 		local item_count = r(2, 13)
 		local items_available = {
-			[0] = "lottblocks:lore_book 1",
+			[0] = "lottblocks:lore_book1 1",
 			[1] = "bones:bonedust 3",
 			[2] = "farming:bread 1",
 		}
