@@ -8,7 +8,7 @@ return "return {[\"background\"] = \"gui_dwarfbg.png\"," ..
 	"\\\nTo the Orcs' abhorrent roar, " ..
 	"\\\nIn plundering the upper floor, " ..
 	"\\\nIn deaths of countless Dwarves, " ..
-	"\\\nIn the drums calling for war. " ..
+	"\\\nIn drums calling for war. " ..
 	"\\\nDoom. Doom Doom. " ..
 	"\\\n\\\nAnd awoke Lord Durin to Moria, " ..
 	"\\\nWhere all was but Memoria, " ..
