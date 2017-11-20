@@ -1,3 +1,11 @@
+minetest.register_node("lottmapgen:chest_spawner", {
+	description = "CS",
+	tiles = {"lottother_air.png"},
+	drop = "",
+	drawtype = "airlike",
+	groups = {not_in_creative_inventory=1},
+})
+
 minetest.register_node("lottmapgen:hobbit_chest_spawner", {
 	description = "HCS",
 	tiles = {"lottother_air.png"},
@@ -95,6 +103,33 @@ minetest.register_node("lottmapgen:ring_chest_spawner", {
 })
 
 local r = math.random
+
+minetest.register_abm({
+	nodenames = {"lottmapgen:chest_spawner"},
+	interval = 9,
+	chance = 1,
+	action = function(pos, node, active_object_count, active_object_count_wider)
+		minetest.set_node(pos, {name="default:chest", param2 = node.param2})
+		local item_count = r(2, 13)
+		local items_available = {
+			[0] = "lottblocks:lore_book1 1",
+			[1] = "bones:bonedust 3",
+			[2] = "farming:bread 1",
+		}
+		local meta = minetest.get_meta(pos)
+		local inv = meta:get_inventory()
+		for i = 0, item_count do
+			local stack = r(0, 36)
+			local item = items_available[r(0, 36)]
+			if inv:get_stack("main", stack) ~= "" then
+				stack = stack + 1
+			end
+			if item ~= nil then
+				inv:set_stack("main", stack, item)
+			end
+		end
+	end,
+})
 
 minetest.register_abm({
 	nodenames = {"lottmapgen:hobbit_chest_spawner"},
