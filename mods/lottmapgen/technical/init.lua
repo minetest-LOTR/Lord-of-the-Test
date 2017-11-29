@@ -81,3 +81,21 @@ minetest.register_chatcommand("tpb", {
 		minetest.get_player_by_name(name):set_pos({x = x, y = 30, z = z})
 	end,
 })
+
+minetest.register_chatcommand("tp", {
+	params = "<biome>",
+	func = function(name, param)
+		param = string.lower(param)
+		local player = minetest.get_player_by_name(name)
+		if param == "lorien" or param == "l" then
+			player:set_pos({x = 475, y = 30, z = -4175})
+		elseif param == "iron hills" or param == "iron_hills" or param == "ih" then
+			player:set_pos({x = 18400, y = 30, z = 7500})
+		elseif param == "breeland" or param == "bree" or param == "b" then
+			player:set_pos({x = -11680, y = 30, z = 2400})
+		else
+			minetest.chat_send_player(name, "List of places to teleport to:\n" ..
+				minetest.colorize("orange", "lorien\t\tiron hills\t\tbreeland"))
+		end
+	end
+})
