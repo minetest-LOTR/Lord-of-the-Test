@@ -132,7 +132,7 @@ end)
 -- Default player appearance
 lottplayer.register_model("lottplayer_base_character.b3d", {
 	animation_speed = 30,
-	textures = {"man_skin1.png", "blank.png", "blank.png", "blank.png"},
+	textures = {"man_rhun.png", "blank.png", "blank.png", "blank.png"},
 	animations = {
 		stand     = {x = 0,   y = 79},
 		lay       = {x = 162, y = 166},
@@ -147,7 +147,7 @@ lottplayer.register_model("lottplayer_base_character.b3d", {
 
 lottplayer.register_model("lottplayer_dwarf_character.b3d", {
 	animation_speed = 30,
-	textures = {"man_skin1.png", "blank.png", "blank.png", "blank.png"},
+	textures = {"dwarf_misty_mountains.png", "blank.png", "blank.png", "blank.png"},
 	animations = {
 		stand     = {x = 0,   y = 79},
 		lay       = {x = 162, y = 166},

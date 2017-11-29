@@ -3,22 +3,43 @@ Copyright (C) 2014-2016 RHRhino
 Copyright (C) 2015-2016 Gambit
 Copyright (C) 2016 yyt16384
 Copyright (C) 2017 paramat
-	lottplants_dandelion_white.png
 	lottplants_dandelion_yellow.png
+	lottplants_dandelion_white.png
 	lottplants_geranium.png
 	lottplants_rose.png
 	lottplants_tulip.png
 	lottplants_violet.png
 Copyright (C) 2015 philipbenr
+	lottplants_birch_trunk.png
+	lottplants_birch_trunk_top.png
 	lottplants_mallorn_leaves.png
-	lottplants_mallorn_tree.png
-	lottplants_mallorn_tree_top.png
+	lottplants_mallorn_trunk.png
+	lottplants_mallorn_trunk_top.png
 	lottplants_mallorn_wood.png
-	
+Copyright (C) 2017 The ExtrabiomesXL Team
+(https://github.com/ExtrabiomesXL/ExtrabiomesXL)
+	lottplants_buttercup.png
+	lottplants_bluebell.png
+	lottplants_calla_black.png
+	lottplants_calla_white.png
+	lottplants_elm_trunk.png
+	lottplants_elm_trunk_top.png
+	lottplants_mountain_grass.png
+Copyright (C) 2017 tobyplowy
+(Taken from farlands: https://github.com/D00Med/farlands)
+	lottplants_petunia_blue.png
+	lottplants_petuina_pink.png
+	lottplants_petunia_white.png
+	lottplants_pine_needles.png
+	lottplants_pine_trunk.png
+	lottplants_pine_trunk_top.png
+	lottplants_pine_wood.png
+
 Botania License
 Copyright (C) 2017 Vazkii
 (Taken from the Botania Minecraft mod: https://botaniamod.net/)
 	lottplants_elanor.png
+	lottplants_encyclia.png
 	lottplants_lissuin_short.png
 	lottplants_lissuin_tall_bottom.png
 	lottplants_lissuin_tall_top.png
@@ -31,12 +52,16 @@ Copyright (C) 2016 tenplus1
 
 CC0
 Copyright (C) 2013 Cisoun
-	lottplants_jungle_tree.png (modified by Amaz)
-	lottplants_jungle_tree_top.png (modified by Amaz)
+	lottplants_jungle_trunk.png (modified by Amaz)
+	lottplants_jungle_trunk_top.png (modified by Amaz)
 	lottplants_oak_leaves.png
-	lottplants_oak_tree.png
-	lottplants_oak_tree_top.png
+	lottplants_oak_trunk.png
+	lottplants_oak_trunk_top.png
 Copyright (C) 2013 PlizAdam
 	lottplants_jungle_leaves.png
 	lottplants_jungle_wood.png
 	lottplants_wood.png
+Copyright (C) 2014 VanessaE
+	lottplants_grass_*.png
+
+Everything not mentioned here: CC BY-SA 3.0, Minetest: Third Age (Amaz & fishyWET)

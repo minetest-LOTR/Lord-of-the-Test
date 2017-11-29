@@ -1,5 +1,5 @@
 -- Function to make registering flowers easier!
-local function register_flower(name, def)	
+local function register_flower(name, def)
 	minetest.register_node("lottplants:" .. name, {
 		description = def.description or lott.str_to_desc(name),
 		drawtype = "plantlike",
@@ -81,4 +81,41 @@ register_flower("niphredil", {
 	groups = {white = 1, flower = 1, plant = 1, lorien = 1},
 })
 
+register_flower("bluebell", {
+	visual_scale = 0.75,
+	groups = {blue = 1, flower = 1, plant = 1},
+})
+
+register_flower("buttercup", {
+	visual_scale = 0.75,
+	groups = {yellow = 1, flower = 1, plant = 1},
+})
+
+register_flower("calla_black", {
+	visual_scale = 0.75,
+	groups = {black = 1, flower = 1, plant = 1},
+})
+
+register_flower("calla_white", {
+	visual_scale = 0.75,
+	groups = {white = 1, flower = 1, plant = 1},
+})
+
+register_flower("encyclia", {
+	groups = {black = 1, flower = 1, plant = 1},
+})
+
+-- Petuniae
+
+register_flower("petunia_white", {
+	groups = {white = 1, flower = 1, plant = 1},
+})
+
+register_flower("petunia_pink", {
+	groups = {pink = 1, flower = 1, plant = 1},
+})
+
+register_flower("petunia_blue", {
+	groups = {blue = 1, flower = 1, plant = 1},
+})
 

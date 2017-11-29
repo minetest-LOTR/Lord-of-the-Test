@@ -19,10 +19,10 @@ local np_humid = {
 local np_ter = {
 	offset = 0,
 	scale = 1,
-	spread = {x=128, y=128, z=128},
+	spread = {x=256, y=256, z=256},
 	seed = 543213,
-	octaves = 5,
-	persist = 0.6
+	octaves = 4,
+	persist = 0.7
 }
 
 local np_terflat = {
@@ -70,6 +70,7 @@ local nbuf_dec = {}
 local nbuf_cave = {}
 local dbuf = {}
 local p2dbuf = {}
+local heightmap = {}
 
 --[[
 dofile(minetest.get_modpath("lottmapgen").."/nodes.lua")
@@ -80,6 +81,14 @@ dofile(minetest.get_modpath("lottmapgen").."/schems.lua")
 ]]--
 
 local times = {}
+
+local get_mapgen_object = minetest.get_mapgen_object
+function minetest.get_mapgen_object(param)
+	if param == "heightmap" then
+		return heightmap
+	end
+	return get_mapgen_object(param)
+end
 
 -- On generated function
 minetest.register_on_generated(function(minp, maxp, seed)
@@ -99,7 +108,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
 	local data = vm:get_data(dbuf)
 	local p2data = vm:get_param2_data(p2dbuf)
-	local ores = lottmapgen.ores
 
 	local c_air = minetest.get_content_id("air")
 	local c_tmp = minetest.get_content_id("lottmapgen:tmp") -- For caves.
@@ -135,6 +143,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local offset = math.random(5,20)
 	local nixyz = 1
 	local nixz = 1
+	heightmap = {}
 
 	for z = z0, z1 do
 		for y = y0, y1 do -- Caves
@@ -178,12 +187,14 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					elseif y < 1 then
 						data[vi] = c_water
 					end
+					heightmap[nixz] = 0
 				elseif biome == 98 then
 					if y < underwater then
 						data[vi] = c_morstone
 					elseif y < 1 then
 						data[vi] = c_morwat
 					end
+					heightmap[nixz] = y
 				elseif data[vi] == c_tmp then
 					data[vi] = c_air
 					if nvals_dec[nixz] > 0.5 and y < -154 then
@@ -191,6 +202,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					end
 				elseif y == stone_depth and y >= 0 then
 					if biome and lottmapgen.biome[biome] then
+						heightmap[nixz] = y
 						if lottmapgen.biome[biome].surface then
 							lottmapgen.biome[biome].surface(data, vi, y)
 						end
@@ -202,6 +214,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					end
 				elseif y < stone_depth then
 					data[vi] = c_stone
+					if not heightmap[nixz] then
+						heightmap[nixz] = y
+					end
 					if biome and lottmapgen.biome[biome] then
 						if lottmapgen.biome[biome].soil_depth and
 							y >= stone_depth - lottmapgen.biome[biome].soil_depth -
@@ -247,7 +262,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:update_liquids()
 	vm:write_to_map(data)
 	local chugent = math.ceil((os.clock() - t1) * 1000)
-	minetest.chat_send_all(chugent)	
+	minetest.chat_send_all(chugent)
 	table.insert(times, chugent)
 end)
 
