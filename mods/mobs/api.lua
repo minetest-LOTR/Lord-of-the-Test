@@ -42,9 +42,6 @@ else
 end
 mobs.intllib = S
 
--- Invisibility mod
-local invisibility = invisibility or {}
-
 -- Load settings
 local damage_enabled = minetest.setting_getbool("enable_damage")
 local peaceful_only = minetest.setting_getbool("only_peaceful_mobs")
