@@ -67,3 +67,21 @@ minetest.register_node("lottplants:mountain_grass", {
 	},
 	groups = {green = 1, grass = 1, plant = 1}
 })
+
+-- Mountain Shrub
+minetest.register_node("lottplants:mountain_shrub", {
+	description = "Mountain Shrub",
+	drawtype = "plantlike",
+	tiles = {"lottplants_mountain_shrub.png"},
+	inventory_image = "lottplants_mountain_shrub.png",
+	paramtype = "light",
+	paramtype2 = "meshoptions",
+	buildable_to = true,
+	walkable = false,
+	waving = 1,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -0.3125, 0.5},
+	},
+	groups = {green = 1, grass = 1, plant = 1}
+})

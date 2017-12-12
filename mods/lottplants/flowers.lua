@@ -119,3 +119,38 @@ register_flower("petunia_blue", {
 	groups = {blue = 1, flower = 1, plant = 1},
 })
 
+-- Gerberae
+
+register_flower("gerbera_orange", {
+	groups = {orange = 1, flower = 1, plant = 1},
+})
+
+register_flower("gerbera_pink", {
+	groups = {pink = 1, flower = 1, plant = 1},
+})
+
+register_flower("gerbera_red", {
+	groups = {red = 1, flower = 1, plant = 1},
+})
+
+register_flower("gerbera_yellow", {
+	groups = {yellow = 1, flower = 1, plant = 1},
+})
+
+-- Mountain Flowers
+
+register_flower("parnassus", {
+	groups = {purple = 1, flower = 1, plant = 1},
+})
+
+register_flower("snow_glory", {
+	groups = {purple = 1, flower = 1, plant = 1},
+})
+
+register_flower("sericea", {
+	groups = {pink = 1, flower = 1, plant = 1},
+})
+
+register_flower("menelluin", {
+	groups = {blue = 1, flower = 1, plant = 1},
+})

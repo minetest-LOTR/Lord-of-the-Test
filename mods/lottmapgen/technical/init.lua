@@ -68,6 +68,42 @@ function lottmapgen.height(noisy_x, noisy_z)
 	end
 end
 
+local n_x = {
+	offset = 0,
+	scale = 1,
+	spread = {x=512, y=512, z=512},
+	seed = 9130,
+	octaves = 3,
+	persist = 0.
+}
+
+local n_z = {
+	offset = 0,
+	scale = 1,
+	spread = {x=512, y=512, z=512},
+	seed = -5500,
+	octaves = 3,
+	persist = 0.5
+}
+
+function lottmapgen.get_biome_at_pos(pos)
+	local t1 = os.clock()
+	local nx = math.floor(minetest.get_perlin(n_x):get2d({x=pos.x,y=pos.z}) * 128)
+	local nz = math.floor(minetest.get_perlin(n_z):get2d({x=pos.x,y=pos.z}) * 128)
+	local x = math.floor((pos.x + nx) / 160) + 200
+	local z = (math.floor((pos.z + (nz - 1)) / 160) - 200) * -1
+	if biomes[z] and biomes[z][x] then
+		local id = biomes[z][x]
+		local biome
+		if lottmapgen.biome[id] then
+			biome = lottmapgen.biome[id].name
+		else
+			biome = "Sea"
+		end
+		return id, biome
+	end
+	return nil
+end
 
 minetest.register_chatcommand("tpb", {
 	params = "<image coords>",
@@ -82,6 +118,13 @@ minetest.register_chatcommand("tpb", {
 	end,
 })
 
+minetest.register_chatcommand("bap", {
+	func = function(name)
+		local id, biome = lottmapgen.get_biome_at_pos(minetest.get_player_by_name(name):get_pos())
+		minetest.chat_send_player(name, biome .. "\n(id = " .. id .. ")")
+	end
+})
+
 minetest.register_chatcommand("tp", {
 	params = "<biome>",
 	func = function(name, param)
@@ -89,13 +132,19 @@ minetest.register_chatcommand("tp", {
 		local player = minetest.get_player_by_name(name)
 		if param == "lorien" or param == "l" then
 			player:set_pos({x = 475, y = 30, z = -4175})
+		elseif param == "lindon" or param == "li" then
+			player:set_pos({x = -25200, y = 30, z = 4700})
 		elseif param == "iron hills" or param == "iron_hills" or param == "ih" then
 			player:set_pos({x = 18400, y = 30, z = 7500})
 		elseif param == "breeland" or param == "bree" or param == "b" then
 			player:set_pos({x = -11680, y = 30, z = 2400})
+		elseif param == "eregion" or param == "e" then
+			player:set_pos({x = -2900, y = 30, z = -700})
+		elseif param == "blue mountains" or param == "blue_mountains" or param == "bm" then
+			player:set_pos({x = -24000, y = 60, z = 12000})
 		else
 			minetest.chat_send_player(name, "List of places to teleport to:\n" ..
-				minetest.colorize("orange", "lorien\t\tiron hills\t\tbreeland"))
+				minetest.colorize("orange", "lorien\t\tiron hills\t\tbreeland\t\teregion\t\tlindon\t\tblue mountains"))
 		end
 	end
 })

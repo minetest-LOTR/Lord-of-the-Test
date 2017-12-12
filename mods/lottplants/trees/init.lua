@@ -137,7 +137,33 @@ minetest.register_node("lottplants:elm_leaves", {
 	groups = {leaves = 1, plant = 1},
 })
 
+-- Holly
+
+minetest.register_node("lottplants:holly_trunk", {
+	description = "Holly Trunk",
+	tiles = {"lottplants_holly_trunk_top.png", "lottplants_holly_trunk_top.png", "lottplants_holly_trunk.png"},
+	paramtype2 = "facedir",
+	groups = {tree = 1, wood = 1, plant = 1, axe = 1},
+})
+
+minetest.register_node("lottplants:holly_planks", {
+	description = "Holly Planks",
+	tiles = {"lottplants_holly_planks.png"},
+	paramtype2 = "facedir",
+	groups = {wood = 1, axe = 1},
+})
+
+minetest.register_node("lottplants:holly_leaves", {
+	description = "Holly Leaves",
+	drawtype = "allfaces_optional",
+	tiles = {"lottplants_holly_leaves.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {leaves = 1, plant = 1},
+})
+
 -- Mallorn
+
 minetest.register_node("lottplants:mallorn_trunk", {
 	description = "Mallorn Trunk",
 	tiles = {"lottplants_mallorn_trunk_top.png", "lottplants_mallorn_trunk_top.png", "lottplants_mallorn_trunk.png"},
@@ -200,6 +226,31 @@ minetest.register_node("lottplants:pine_needles", {
 	description = "Pine Needles",
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_pine_needles.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {leaves = 1, plant = 1},
+})
+
+-- Rowan
+
+minetest.register_node("lottplants:rowan_trunk", {
+	description = "Rowan Trunk",
+	tiles = {"lottplants_rowan_trunk_top.png", "lottplants_rowan_trunk_top.png", "lottplants_rowan_trunk.png"},
+	paramtype2 = "facedir",
+	groups = {tree = 1, wood = 1, plant = 1, axe = 1},
+})
+
+minetest.register_node("lottplants:rowan_planks", {
+	description = "Rowan Planks",
+	tiles = {"lottplants_rowan_planks.png"},
+	paramtype2 = "facedir",
+	groups = {wood = 1, axe = 1},
+})
+
+minetest.register_node("lottplants:rowan_leaves", {
+	description = "Rowan Leaves",
+	drawtype = "allfaces_optional",
+	tiles = {"lottplants_rowan_leaves.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {leaves = 1, plant = 1},
