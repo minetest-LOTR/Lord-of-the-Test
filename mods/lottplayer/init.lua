@@ -3,6 +3,16 @@ lottplayer.textures = {}
 
 local modpath = minetest.get_modpath("lottplayer")
 dofile(modpath .. "/physics.lua")
+dofile(modpath .. "/controls.lua")
+
+minetest.register_privilege("immortal", {
+	description = "Not affected by most effects.",
+	give_to_singleplayer= false,
+})
+
+lottplayer.is_immortal = function(name)
+	return minetest.check_player_privs(name, {immortal = true})
+end
 
 -- Player stats and animations
 local player_model = {}
@@ -274,25 +284,7 @@ minetest.register_on_chat_message(function(name, message)
 	return true
 end)
 
-minetest.PLAYER_MAX_HP_DEFAULT = 30
-
-minetest.hud_replace_builtin("health", {
-	hud_elem_type = "statbar",
-	position = { x=0.01, y=0.96 },
-	text = "heart.png",
-	number = 30,
-	direction = 3,
-	size = { x=20, y=20 },
-})
-
-minetest.hud_replace_builtin("breath", {
-	hud_elem_type = "statbar",
-	position = { x=0.05, y=0.95 },
-	text = "bubble.png",
-	number = 30,
-	direction = 3,
-	size = { x=24, y=24 },
-})
+--minetest.PLAYER_MAX_HP_DEFAULT = 30
 
 local huds = {}
 local biomes = {}
@@ -327,3 +319,7 @@ minetest.register_globalstep(function(dtime)
 		end
 	end
 end)
+
+dofile(modpath .. "/systems/hp.lua")
+dofile(modpath .. "/systems/hunger.lua")
+dofile(modpath .. "/systems/stamina.lua")
