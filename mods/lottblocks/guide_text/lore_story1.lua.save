@@ -1,4 +1,0 @@
-return "return {[\"background\"] = \"gui_rohanbg.png\"," ..
-	"[\"title\"] = \"The Travels of Beloren\", [\"page_max\"] = 6," ..
-	"[\"text_len\"] = 2400, [\"owner\"] = \"Beloren Leren\", [\"text\"] = \"    15 Narvinyë, 3024" ..
-	"\\\n\\\n
