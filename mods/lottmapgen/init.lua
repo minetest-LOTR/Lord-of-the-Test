@@ -11,9 +11,9 @@
 
 -- TODO
 -- fog
+lottmapgen = {}
 
 -- Parameters
-lottmapgen = {}
 local HITET = 0.4 -- High temperature threshold
 local LOTET = -0.4 -- Low ..
 local ICETET = -0.8 -- Ice ..
@@ -557,3 +557,4 @@ end)
 
 dofile(minetest.get_modpath("lottmapgen").."/deco.lua")
 dofile(minetest.get_modpath("lottmapgen").."/chests.lua")
+dofile(minetest.get_modpath("lottmapgen").."/prison_cell_spawn.lua")
