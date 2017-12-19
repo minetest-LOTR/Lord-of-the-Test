@@ -127,7 +127,7 @@ function lottblocks.lay_down(player, pos, bed_pos, state, skip)
 	end
 	player:hud_set_flags(hud_flags)
 end
-local function check_in_beds(players)
+function lottblocks.check_in_beds(players)
 	local in_bed = lottblocks.player
 	if not players then
 		players = minetest.get_connected_players()
@@ -146,7 +146,7 @@ minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
 	lottblocks.lay_down(player, nil, nil, false, true)
 	lottblocks.player[name] = nil
-	if check_in_beds() then
+	if lottblocks.check_in_beds() then
 		minetest.after(2, function()
 			update_formspecs(is_night_skip_enabled())
 			if is_night_skip_enabled() then
@@ -182,7 +182,7 @@ local function bed_on_rightclick(pos, player)
 	end
 
 	-- skip the night and let all players stand up
-	if check_in_beds() then
+	if lottblocks.check_in_beds() then
 		minetest.after(2, function()
 			if not is_sp then
 				update_formspecs(is_night_skip_enabled())
