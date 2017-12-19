@@ -1,3 +1,11 @@
+minetest.register_node("lottmapgen:chest_spawner", {
+	description = "CS",
+	tiles = {"lottother_air.png"},
+	drop = "",
+	drawtype = "airlike",
+	groups = {not_in_creative_inventory=1},
+})
+
 minetest.register_node("lottmapgen:hobbit_chest_spawner", {
 	description = "HCS",
 	tiles = {"lottother_air.png"},
@@ -97,6 +105,33 @@ minetest.register_node("lottmapgen:ring_chest_spawner", {
 local r = math.random
 
 minetest.register_abm({
+	nodenames = {"lottmapgen:chest_spawner"},
+	interval = 9,
+	chance = 1,
+	action = function(pos, node, active_object_count, active_object_count_wider)
+		minetest.set_node(pos, {name="default:chest", param2 = node.param2})
+		local item_count = r(2, 13)
+		local items_available = {
+			[0] = "lottblocks:lore_book1 1",
+			[1] = "bones:bonedust 3",
+			[2] = "farming:bread 1",
+		}
+		local meta = minetest.get_meta(pos)
+		local inv = meta:get_inventory()
+		for i = 0, item_count do
+			local stack = r(0, 36)
+			local item = items_available[r(0, 36)]
+			if inv:get_stack("main", stack) ~= "" then
+				stack = stack + 1
+			end
+			if item ~= nil then
+				inv:set_stack("main", stack, item)
+			end
+		end
+	end,
+})
+
+minetest.register_abm({
 	nodenames = {"lottmapgen:hobbit_chest_spawner"},
 	interval = 9,
 	chance = 1,
@@ -128,7 +163,8 @@ minetest.register_abm({
 			[21] = "lottweapons:copper_spear",
 			[22] = "lottweapons:tin_battleaxe",
 			[23] = "vessels:glass_bottle 3",
-			[24] = "farming:hoe_steel"
+			[24] = "farming:hoe_steel",
+			[25] = "lottblocks:lore_scroll3"
 		}
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
@@ -177,7 +213,8 @@ minetest.register_abm({
 			[25] = "lottpotion:cider 10",
 			[26] = "lottpotion:wine 5",
 			[27] = "lottpotion:wine 2",
-			[29] = "lottthrowing:bow_wood_alder"
+			[29] = "lottthrowing:bow_wood_alder",
+			[30] = "lottblocks:lore_scroll2"
 		}
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
@@ -348,7 +385,8 @@ minetest.register_abm({
 			[36] = "lottthrowing:bow_wood_lebethron",
 			[37] = "lottores:blue_gem",
 			[38] = "farming:hoe_bronze",
-			[39] = "lottblocks:elven_rope " .. r(10, 40)
+			[39] = "lottblocks:lore_scroll1",
+			[40] = "lottblocks:elven_rope" .. r(10, 40)
 		}
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
