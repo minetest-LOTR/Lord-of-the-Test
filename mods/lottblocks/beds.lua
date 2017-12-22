@@ -30,11 +30,11 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 	if fields.quit or fields.leave then
 		lottblocks.lay_down(player, nil, nil, false)
-		update_formspecs(false)
+		lottblocks.update_formspecs(false)
 	end
 
 	if fields.force then
-		update_formspecs(is_night_skip_enabled())
+		lottblocks.update_formspecs(is_night_skip_enabled())
 		if is_night_skip_enabled() then
 			lottblocks.skip_night()
 			bed_kick_players()
@@ -58,7 +58,7 @@ end
 function lottblocks.skip_night()
 	minetest.set_timeofday(0.23)
 end
-local function update_formspecs(finished)
+function lottblocks.update_formspecs(finished)
 	local ges = #minetest.get_connected_players()
 	local form_n
 	local is_majority = (ges / 2) < player_in_bed
@@ -148,7 +148,7 @@ minetest.register_on_leaveplayer(function(player)
 	lottblocks.player[name] = nil
 	if check_in_beds() then
 		minetest.after(2, function()
-			update_formspecs(is_night_skip_enabled())
+			lottblocks.update_formspecs(is_night_skip_enabled())
 			if is_night_skip_enabled() then
 				lottblocks.skip_night()
 				bed_kick_players()
@@ -178,14 +178,14 @@ local function bed_on_rightclick(pos, player)
 	end
 
 	if not is_sp then
-		update_formspecs(false)
+		lottblocks.update_formspecs(false)
 	end
 
 	-- skip the night and let all players stand up
 	if check_in_beds() then
 		minetest.after(2, function()
 			if not is_sp then
-				update_formspecs(is_night_skip_enabled())
+				lottblocks.update_formspecs(is_night_skip_enabled())
 			end
 			if is_night_skip_enabled() then
 				lottblocks.skip_night()
