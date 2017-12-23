@@ -9,6 +9,52 @@ end
 local formspec = "size[8,15;true]" ..
 	"bgcolor[#080808BB; true]" ..
 	"button_exit[2,12;4,0.75;leave;Leave Bed]"
+local function bed_on_rightclick(pos, player)
+	local name = player:get_player_name()
+	local ppos = player:getpos()
+	local tod = minetest.get_timeofday()
+	if tod > 0.2 and tod < 0.805 then
+		if lottblocks.player[name] then
+			lottblocks.lay_down(player, nil, nil, false)
+		end
+		minetest.chat_send_player(name, "You can only sleep at night.")
+		return
+	end
+	-- move to bed
+	if not lottblocks.player[name] then
+		lottblocks.lay_down(player, ppos, pos)
+	else
+		lottblocks.lay_down(player, nil, nil, false)
+	end
+	if not is_sp then
+		lottblocks.update_formspecs(false)
+	end
+	-- skip the night and let all players stand up
+	if check_in_beds() then
+		minetest.after(2, function()
+			if not is_sp then
+				lottblocks.update_formspecs(is_night_skip_enabled())
+			end
+			if is_night_skip_enabled() then
+				lottblocks.skip_night()
+				bed_kick_players()
+			end
+		end)
+	end
+end
+local function check_in_beds(players)
+	local in_bed = lottblocks.player
+	if not players then
+		players = minetest.get_connected_players()
+	end
+	for n, player in ipairs(players) do
+		local name = player:get_player_name()
+		if not in_bed[name] then
+			return false
+		end
+	end
+	return #players > 0
+end
 local function get_look_yaw(pos)
 	local rotation = minetest.get_node(pos).param2
 	if rotation > 3 then
@@ -24,23 +70,6 @@ local function get_look_yaw(pos)
 		return 0, rotation
 	end
 end
-minetest.register_on_player_receive_fields(function(player, formname, fields)
-	if formname ~= "beds_form" then
-		return
-	end
-	if fields.quit or fields.leave then
-		lottblocks.lay_down(player, nil, nil, false)
-		lottblocks.update_formspecs(false)
-	end
-
-	if fields.force then
-		lottblocks.update_formspecs(is_night_skip_enabled())
-		if is_night_skip_enabled() then
-			lottblocks.skip_night()
-			bed_kick_players()
-		end
-	end
-end)
 local function bed_kick_players()
 	for name, _ in pairs(lottblocks.player) do
 		local player = minetest.get_player_by_name(name)
@@ -54,7 +83,22 @@ local function is_night_skip_enabled()
 	end
 	return enable_night_skip
 end
-
+minetest.register_on_player_receive_fields(function(player, formname, fields)
+	if formname ~= "beds_form" then
+		return
+	end
+	if fields.quit or fields.leave then
+		lottblocks.lay_down(player, nil, nil, false)
+		lottblocks.update_formspecs(false)
+	end
+	if fields.force then
+		lottblocks.update_formspecs(is_night_skip_enabled())
+		if is_night_skip_enabled() then
+			lottblocks.skip_night()
+			bed_kick_players()
+		end
+	end
+end)
 function lottblocks.skip_night()
 	minetest.set_timeofday(0.23)
 end
@@ -127,21 +171,6 @@ function lottblocks.lay_down(player, pos, bed_pos, state, skip)
 	end
 	player:hud_set_flags(hud_flags)
 end
-local function check_in_beds(players)
-	local in_bed = lottblocks.player
-	if not players then
-		players = minetest.get_connected_players()
-	end
-
-	for n, player in ipairs(players) do
-		local name = player:get_player_name()
-		if not in_bed[name] then
-			return false
-		end
-	end
-
-	return #players > 0
-end
 minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
 	lottblocks.lay_down(player, nil, nil, false, true)
@@ -157,43 +186,6 @@ minetest.register_on_leaveplayer(function(player)
 	end
 end)
 
-local function bed_on_rightclick(pos, player)
-	local name = player:get_player_name()
-	local ppos = player:getpos()
-	local tod = minetest.get_timeofday()
-
-	if tod > 0.2 and tod < 0.805 then
-		if lottblocks.player[name] then
-			lottblocks.lay_down(player, nil, nil, false)
-		end
-		minetest.chat_send_player(name, "You can only sleep at night.")
-		return
-	end
-
-	-- move to bed
-	if not lottblocks.player[name] then
-		lottblocks.lay_down(player, ppos, pos)
-	else
-		lottblocks.lay_down(player, nil, nil, false)
-	end
-
-	if not is_sp then
-		lottblocks.update_formspecs(false)
-	end
-
-	-- skip the night and let all players stand up
-	if check_in_beds() then
-		minetest.after(2, function()
-			if not is_sp then
-				lottblocks.update_formspecs(is_night_skip_enabled())
-			end
-			if is_night_skip_enabled() then
-				lottblocks.skip_night()
-				bed_kick_players()
-			end
-		end)
-	end
-end
 local lottblocks_list = {
 	{ "Red Bed", "red"},
 	{ "Blue Bed", "blue"},
