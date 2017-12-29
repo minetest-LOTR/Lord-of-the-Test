@@ -1,220 +1,232 @@
-Minetest 0.4 mod: default
-==========================
+License of source code
+----------------------
 
-License of source code:
------------------------
-Copyright (C) 2011-2012 celeron55, Perttu Ahola <celeron55@gmail.com>
+GNU Lesser General Public License, version 2.1
+Copyright (C) 2011-2016 celeron55, Perttu Ahola <celeron55@gmail.com>
+Copyright (C) 2011-2016 Various Minetest developers and contributors
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation; either version 2.1 of the License, or
-(at your option) any later version.
+This program is free software; you can redistribute it and/or modify it under the terms
+of the GNU Lesser General Public License as published by the Free Software Foundation;
+either version 2.1 of the License, or (at your option) any later version.
 
-http://www.gnu.org/licenses/lgpl-2.1.html
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Lesser General Public License for more details:
+https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
 
-License of media (textures and sounds)
---------------------------------------
+
+Licenses of media (textures, models and sounds)
+-----------------------------------------------
+
 Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
+Copyright (C) 2010-2016:
+  celeron55, Perttu Ahola <celeron55@gmail.com>
+  Cisoun
+  G4JC
+  VanessaE
+  RealBadAngel
+  Calinou
+  MirceaKitsune
+  Jordach
+  PilzAdam
+  jojoa1997
+  InfinityProject
+  Splizard
+  Zeg9
+  paramat
+  BlockMen
+  sofar
+  Neuromancer
+  Gambit
+  asl97
+  KevDoy
+  Mito551
+  GreenXenith
+  kaeza
+  kilbith
+
+You are free to:
+Share — copy and redistribute the material in any medium or format.
+Adapt — remix, transform, and build upon the material for any purpose, even commercially.
+The licensor cannot revoke these freedoms as long as you follow the license terms.
+
+Under the following terms:
+
+Attribution — You must give appropriate credit, provide a link to the license, and
+indicate if changes were made. You may do so in any reasonable manner, but not in any way
+that suggests the licensor endorses you or your use.
+
+ShareAlike — If you remix, transform, or build upon the material, you must distribute
+your contributions under the same license as the original.
+
+No additional restrictions — You may not apply legal terms or technological measures that
+legally restrict others from doing anything the license permits.
+
+Notices:
+
+You do not have to comply with the license for elements of the material in the public
+domain or where your use is permitted by an applicable exception or limitation.
+No warranties are given. The license may not give you all of the permissions necessary
+for your intended use. For example, other rights such as publicity, privacy, or moral
+rights may limit how you use the material.
+
+For more details:
 http://creativecommons.org/licenses/by-sa/3.0/
 
-Authors of media files
 -----------------------
-Everything not listed in here:
-Copyright (C) 2010-2012 celeron55, Perttu Ahola <celeron55@gmail.com>
 
-Cisoun's WTFPL texture pack:
-  default_chest_front.png
-  default_chest_lock.png
-  default_chest_side.png
-  default_chest_top.png
-  default_dirt.png
-  default_grass.png
-  default_grass_side.png
-  default_jungletree.png
-  default_jungletree_top.png
-  default_lava.png
-  default_leaves.png
-  default_sapling.png
-  default_sign_wall.png
-  default_stone.png
-  default_tool_mesepick.png
-  default_tool_steelpick.png
-  default_tool_steelshovel.png
-  default_tool_stonepick.png
-  default_tool_stoneshovel.png
-  default_tool_woodpick.png
-  default_tool_woodshovel.png
-  default_tree.png
-  default_tree_top.png
-  default_water.png
+Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+Copyright (C) 2017 TumeniNodes
 
-Originating from G4JC's Almost MC Texture Pack:
-  default_wood.png
-  default_torch.png
-  default_torch_on_ceiling.png
-  default_torch_on_floor.png
-  default_cobble.png
+You are free to:
+Share — copy and redistribute the material in any medium or format.
+Adapt — remix, transform, and build upon the material for any purpose, even commercially.
+The licensor cannot revoke these freedoms as long as you follow the license terms.
 
-VanessaE's animated torches (WTFPL):
-  default_torch_animated.png
-  default_torch_on_ceiling_animated.png
-  default_torch_on_floor_animated.png
-  default_torch_on_floor.png
+Under the following terms:
 
-RealBadAngel's animated water (WTFPL):
-  default_water_source_animated.png
-  default_water_flowing_animated.png
+Attribution — You must give appropriate credit, provide a link to the license, and
+indicate if changes were made. You may do so in any reasonable manner, but not in any way
+that suggests the licensor endorses you or your use.
 
-VanessaE (WTFPL):
-  default_nc_back.png
-  default_nc_front.png
-  default_nc_rb.png
-  default_nc_side.png
-  default_grass_*.png
-  default_desert_sand.png
-  default_desert_stone.png
-  default_sand.png
+ShareAlike — If you remix, transform, or build upon the material, you must distribute
+your contributions under the same license as the original.
 
-Calinou (CC BY-SA 3.0):
-  default_brick.png
-  default_clay_brick.png
-  default_papyrus.png
-  default_tool_steelsword.png
-  default_bronze_ingot.png
-  default_copper_ingot.png
-  default_copper_lump.png
-  default_sign.png, derived from default_sign_wall.png by Cisoun.
+No additional restrictions — You may not apply legal terms or technological measures that
+legally restrict others from doing anything the license permits.
 
-paramat (CC BY-SA 3.0):
-  default_river_water.png
-  default_river_water_source_animated.png
-  default_river_water_flowing_animated.png
-  default_stone_brick.png, derived from a texture by Cisoun
-  default_desert_stone_brick.png, derived from a texture by VanessaE
-  default_sandstone_brick.png
-  default_sandstone_block.png
-  default_stone_block.png
-  default_desert_stone_block.png
-  default_silver_sand.png
+Notices:
 
-MirceaKitsune (WTFPL):
-  character.x
+You do not have to comply with the license for elements of the material in the public
+domain or where your use is permitted by an applicable exception or limitation.
+No warranties are given. The license may not give you all of the permissions necessary
+for your intended use. For example, other rights such as publicity, privacy, or moral
+rights may limit how you use the material.
 
-Jordach (CC BY-SA 3.0):
-  character.png
+For more details:
+http://creativecommons.org/licenses/by-sa/4.0/
 
-pithy (CC BY-SA 3.0):
-  default_tree_stair.png
-  default_jungletree_stair.png
+-----------------------
 
-PilzAdam (WTFPL):
-  default_jungleleaves.png
-  default_junglesapling.png
-  default_junglewood.png
-  default_obsidian_glass.png
-  default_obsidian_shard.png
-  default_mossycobble.png
-  default_gold_ingot.png
-  default_gold_lump.png
-  default_tool_meseaxe.png
-  default_tool_meseshovel.png
-  default_tool_mesesword.png
-  default_tool_bronzeaxe.png
-  default_tool_bronzepick.png
-  default_tool_bronzeshovel.png
-  default_tool_bronzesword.png
-  default_snowball.png
+Attribution-ShareAlike 2.0 Generic (CC BY-SA 2.0)
+Copyright (C) 2014-2016 Neuromancer
 
-jojoa1997 (WTFPL):
-  default_obsidian.png
 
-Splizard (CC BY-SA 3.0):
-  default_snow.png
-  default_snow_side.png
-  default_ice.png
+You are free to:
+Share — copy and redistribute the material in any medium or format.
+Adapt — remix, transform, and build upon the material for any purpose, even commercially.
+The licensor cannot revoke these freedoms as long as you follow the license terms.
 
-Zeg9 (CC BY-SA 3.0):
-  default_coal_block.png
+Under the following terms:
 
-kilbith (CC BY-SA 3.0):
-  default_steel_block.png
-  default_copper_block.png
-  default_bronze_block.png
-  default_gold_block.png
+Attribution — You must give appropriate credit, provide a link to the license, and
+indicate if changes were made. You may do so in any reasonable manner, but not in any way
+that suggests the licensor endorses you or your use.
 
-Neuromancer:
-  (CC BY-SA 2.0)
-  default_cobble.png, based on texture by Brane praefect
-  default_mossycobble.png, based on texture by Brane praefect
-  (CC BY-SA 3.0)
-  default_dirt.png
+ShareAlike — If you remix, transform, or build upon the material, you must distribute
+your contributions under the same license as the original.
 
-BlockMen (CC BY-SA 3.0):
-  default_sandstone.png
-  default_book.png
-  gui_furnace_arrow_bg.png
-  gui_furnace_arrow_fg.png
+No additional restrictions — You may not apply legal terms or technological measures that
+legally restrict others from doing anything the license permits.
 
-sofar (CC BY-SA 3.0):
-  default_book_written.png, based on default_book.png
+Notices:
 
-kaeza (CC-BY-SA 3.0):
-  bubble.png
-  default_desert_sandstone.png
-  default_desert_sandstone_brick.png
-  default_desert_sandstone_block.png
+You do not have to comply with the license for elements of the material in the public
+domain or where your use is permitted by an applicable exception or limitation.
+No warranties are given. The license may not give you all of the permissions necessary
+for your intended use. For example, other rights such as publicity, privacy, or moral
+rights may limit how you use the material.
 
-GreenXenith (CC-BY-SA 3.0):
-  default_silver_sandstone.png
-  default_silver_sandstone_brick.png
-  default_silver_sandstone_block.png
+For more details:
+http://creativecommons.org/licenses/by-sa/2.0/
 
-Kalabasa (CC BY-SA 3.0):
-  default_furnace_fire_bg.png
-  default_furnace_fire_fg.png
+-----------------------
 
-rubberduck (CC0):
-  default_mineral_gold.png
-  default_mineral_copper.png
-  default_mineral_coal.png
-  default_mineral_iron.png
+Attribution 3.0 Unported (CC BY 3.0)
+Copyright (C) 2009 cmusounddesign
+Copyright (C) 2010 Tomlija
+Copyright (C) 2010 lsprice
+Copyright (C) 2014 sonictechtonic
+Copyright (C) 2015 yadronoff
+Copyright (C) 2007 HerbertBoland
+Copyright (C) 2006 AGFX
+Copyright (C) 2014 Motion_S: Samples are taken from file: http://freesound.org/people/Motion_S/sounds/221764/
+Copyright (C) 2015 n_audioman: Samples are taken from file: http://freesound.org/people/n_audioman/sounds/321841/
 
-Glass breaking sounds (CC BY 3.0):
-  1: http://www.freesound.org/people/cmusounddesign/sounds/71947/
-  2: http://www.freesound.org/people/Tomlija/sounds/97669/
-  3: http://www.freesound.org/people/lsprice/sounds/88808/
+You are free to:
+Share — copy and redistribute the material in any medium or format.
+Adapt — remix, transform, and build upon the material for any purpose, even commercially.
+The licensor cannot revoke these freedoms as long as you follow the license terms.
 
-Mito551 (sounds) (CC BY-SA 3.0):
-  default_dig_choppy.ogg
-  default_dig_cracky.ogg
-  default_dig_crumbly.1.ogg
-  default_dig_crumbly.2.ogg
-  default_dig_dig_immediate.ogg
-  default_dig_oddly_breakable_by_hand.ogg
-  default_dug_node.1.ogg
-  default_dug_node.2.ogg
-  default_grass_footstep.1.ogg
-  default_grass_footstep.2.ogg
-  default_grass_footstep.3.ogg
-  default_gravel_footstep.1.ogg
-  default_gravel_footstep.2.ogg
-  default_gravel_footstep.3.ogg
-  default_gravel_footstep.4.ogg
-  default_grass_footstep.1.ogg
-  default_place_node.1.ogg
-  default_place_node.2.ogg
-  default_place_node.3.ogg
-  default_place_node_hard.1.ogg
-  default_place_node_hard.2.ogg
-  default_snow_footstep.1.ogg
-  default_snow_footstep.2.ogg
-  default_hard_footstep.1.ogg
-  default_hard_footstep.2.ogg
-  default_hard_footstep.3.ogg
-  default_sand_footstep.1.ogg
-  default_sand_footstep.2.ogg
-  default_wood_footstep.1.ogg
-  default_wood_footstep.2.ogg
-  default_dirt_footstep.1.ogg
-  default_dirt_footstep.2.ogg
-  default_glass_footstep.ogg
+Under the following terms:
+
+Attribution — You must give appropriate credit, provide a link to the license, and
+indicate if changes were made. You may do so in any reasonable manner, but not in any way
+that suggests the licensor endorses you or your use.
+
+No additional restrictions — You may not apply legal terms or technological measures that
+legally restrict others from doing anything the license permits.
+
+Notices:
+
+You do not have to comply with the license for elements of the material in the public
+domain or where your use is permitted by an applicable exception or limitation.
+No warranties are given. The license may not give you all of the permissions necessary
+for your intended use. For example, other rights such as publicity, privacy, or moral
+rights may limit how you use the material.
+
+For more details:
+http://creativecommons.org/licenses/by/3.0/
+
+-----------------------
+
+CC0 1.0 Universal (CC0 1.0)
+
+Samples are taken from file: http://freesound.org/people/kiefspoon/sounds/144551/
+default_dirt_footstep.1.ogg
+default_dirt_footstep.2.ogg
+default_dirt_footstep.3.ogg
+default_dirt_footstep.4.ogg
+default_dirt_footstep.5.ogg
+
+Samples are taken from file: http://freesound.org/people/karlis.stigis/sounds/168712/
+default_glass_footstep.1.ogg
+default_glass_footstep.2.ogg
+default_glass_footstep.3.ogg
+default_glass_footstep.4.ogg
+default_glass_footstep.5.ogg
+
+Samples are taken from file: http://freesound.org/people/Yuval/sounds/206030/
+default_grass_footstep.1.ogg
+default_grass_footstep.2.ogg
+default_grass_footstep.3.ogg
+default_grass_footstep.4.ogg
+default_grass_footstep.5.ogg
+
+Samples are taken from file: http://freesound.org/people/squashy555/sounds/244248/
+default_gravel_footstep.1.ogg
+default_gravel_footstep.2.ogg
+default_gravel_footstep.3.ogg
+default_gravel_footstep.4.ogg
+default_gravel_footstep.5.ogg
+
+Samples are taken from file: http://freesound.org/people/Phil25/sounds/208101/
+default_metal_footstep.1.ogg
+default_metal_footstep.2.ogg
+default_metal_footstep.3.ogg
+default_metal_footstep.4.ogg
+default_metal_footstep.5.ogg
+
+Samples are taken from file: http://freesound.org/people/Ryding/sounds/94337/
+default_snow_footstep.1.ogg
+default_snow_footstep.2.ogg
+default_snow_footstep.3.ogg
+default_snow_footstep.4.ogg
+default_snow_footstep.5.ogg
+
+Samples are taken from file: http://freesound.org/people/taure/sounds/362777/
+default_wood_footstep.1.ogg
+default_wood_footstep.2.ogg
+default_wood_footstep.3.ogg
+default_wood_footstep.4.ogg
+default_wood_footstep.5.ogg
