@@ -58,7 +58,7 @@ local function base_map_formspec(player, pos, tab)
 				"image_button[" .. wx / 40 - 0.44 .. "," .. wz / 40 - 0.8 ..
 					";0.75,0.75;lottmisc_flag_" .. v.colour .. ".png;flag_" .. v.colour ..
 					";;true;false]" ..
-				"tooltip[flag_" .. v.colour .. ";" .. name .. "]"
+				"tooltip[flag_" .. v.colour .. ";" .. minetest.formspec_escape(name) .. "]"
 		end
 	end
 	if tab == 1 then
@@ -72,7 +72,7 @@ local function base_map_formspec(player, pos, tab)
 			local x = 1
 			for w_name, table in pairs(waypoints_table) do
 				panel = panel .. "label[10.5," .. 1.5 + x / 2.5 .. ";" ..
-					minetest.colorize("#" .. table.colour, w_name) .. "]"
+					minetest.formspec_escape(minetest.colorize("#" .. table.colour, w_name)) .. "]"
 				x = x + 1
 			end
 		end
@@ -146,9 +146,11 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		local label
 		local colours = ""
 		if waypoints[fields.waypoint_name] then
-			label = "Are you sure you want to delete waypoint \"" .. fields.waypoint_name .. "\"?"
+			label = "Are you sure you want to delete waypoint \"" ..
+				minetest.formspec_escape(fields.waypoint_name) .. "\"?"
 		elseif fields.waypoint_name ~= "" then
-			label = "Are you sure you want to add waypoint \"" .. fields.waypoint_name ..
+			label = "Are you sure you want to add waypoint \"" ..
+				minetest.formspec_escape(fields.waypoint_name) ..
 				"\"\nat x = " .. math.floor(pos.x) .. ", z = " .. math.floor(pos.z) .. "?"
 			colours = "dropdown[3,2;2;colour;Red,Orange,Yellow,Green," ..
 				"Blue,Purple,Pink,Brown,Black,White;1]"
