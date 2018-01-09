@@ -18,7 +18,7 @@ local wields = {}
 local c = 0
 minetest.register_globalstep(function(dtime)
 	c = c + dtime
-	if c > 4.5 then
+	if c > 2 then
 		c = 0
 		local t = minetest.get_us_time()
 		for _, player in pairs(minetest.get_connected_players()) do

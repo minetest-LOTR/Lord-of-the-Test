@@ -21,6 +21,16 @@ local player_anim = {}
 local player_sneak = {}
 lottplayer.player_attached = {}
 
+-- Standard animations.
+local animations = {
+	stand     = {x = 0,   y = 79},
+	lay       = {x = 162, y = 166},
+	walk      = {x = 168, y = 187},
+	mine      = {x = 189, y = 198},
+	walk_mine = {x = 200, y = 219},
+	sit       = {x = 81,  y = 160},
+}
+
 function lottplayer.get_animation(player)
 	local name = player:get_player_name()
 	return {
@@ -35,13 +45,8 @@ function lottplayer.set_animation(player, anim_name, speed)
 	if player_anim[name] == anim_name then
 		return
 	end
-	local model = player_model[name] and models[player_model[name]]
-	if not (model and model.animations[anim_name]) then
-		return
-	end
-	local anim = model.animations[anim_name]
 	player_anim[name] = anim_name
-	player:set_animation(anim, speed or model.animation_speed, 0)
+	player:set_animation(animations[anim_name], speed or 30, 0)
 end
 
 minetest.register_on_leaveplayer(function(player)
@@ -59,12 +64,10 @@ local player_attached = lottplayer.player_attached
 minetest.register_globalstep(function(dtime)
 	for _, player in pairs(minetest.get_connected_players()) do
 		local name = player:get_player_name()
-		local model_name = player_model[name]
-		local model = model_name and models[model_name]
-		if model and not player_attached[name] then
+		if not player_attached[name] then
 			local controls = player:get_player_control()
 			local walking = false
-			local animation_speed_mod = model.animation_speed or 30
+			local animation_speed_mod = 30
 
 			-- Determine if the player is walking
 			if controls.up or controls.down or controls.left or controls.right then
@@ -182,7 +185,7 @@ lottplayer.races = {
 	{"man_rohan", "human_character", 24, 1.625, false, cb_m,
 		"darkgoldenrod", {x = 900, y = 30, z = -12200}},
 	{"orc_angmar", "human_character", 28, 1.625, false, cb_m,
-		"darkslategrey", {x = -5100, y = 30, z = 10500}},
+		"darkslategrey", {x = -5000, y = 30, z = 10000}},
 	{"orc_misty_mountains", "human_character", 28, 1.625, false, cb_m,
 		"dimgrey", {x = 0, y = 30, z = 4000}},
 	{"orc_mordor", "human_character", 30, 1.625, false, cb_m,
@@ -257,7 +260,7 @@ minetest.register_on_respawnplayer(function(player)
 	if not race or race == "" then
 		return false
 	end
-	spawn_player(races[tonumber(race)][8], player)
+	spawn_player(lottplayer.races[tonumber(race)][8], player)
 	return true
 end)
 

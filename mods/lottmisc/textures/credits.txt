@@ -1,0 +1,18 @@
+This list shows which license each texture falls under, and its source.
+Every effort has been made to ensure its accuracy, but some things may
+have been misattributed, or missed altogether. If you see something like
+this, please let me know, so it can be fixed!
+
+CC BY-SA 3.0
+Copyright (C) 2018 Amaz
+	lottmisc_flag_*.png (Based on textures by Cisoun)
+	lottmisc_player_marker.png
+
+CC0
+	lottmisc_full_map.png
+	lottmisc_black.png
+
+LGPL v2.1
+Copyright (C) 2017 TeamTwilight
+https://github.com/TeamTwilight/twilightforest
+	lottmisc_map.png (Modified by Amaz)
