@@ -3,7 +3,7 @@ lottmisc = {}
 local function get_waypoints(player)
 	local waypoints_string = player:get_attribute("lottmisc:waypoints")
 	if not waypoints_string or waypoints_string == "" then
-		return
+		return {}
 	end
 	return minetest.deserialize(waypoints_string)
 end
@@ -12,10 +12,7 @@ function lottmisc.add_waypoint(player, pos, waypoint_name, colour)
 	local name = player:get_player_name()
 	local waypoints_string = player:get_attribute("lottmisc:waypoints")
 	local waypoints_number = tonumber(player:get_attribute("lottmisc:waypoints_number") or 0)
-	local waypoints = {}
-	if waypoints_string and waypoints_string ~= "" then
-		waypoints = minetest.deserialize(waypoints_string)
-	end
+	local waypoints = get_waypoints(player)
 	if waypoints_number >= 10 then
 		return false, "You can only have 10 waypoints at a time!"
 	end
@@ -34,9 +31,6 @@ end
 
 function lottmisc.delete_waypoint(player, waypoint_name)
 	local waypoints = get_waypoints(player)
-	if not waypoints then
-		return
-	end
 	local waypoints_number = player:get_attribute("lottmisc:waypoints_number") or 1
 	player:hud_remove(waypoints[waypoint_name].ref)
 	waypoints[waypoint_name] = nil
@@ -50,16 +44,14 @@ local function base_map_formspec(player, pos, tab)
 	local waypoints_table = get_waypoints(player)
 	local x = math.floor((pos.x) / 160) + 200
 	local z = (math.floor((pos.z) / 160) - 200) * -1
-	if waypoints_table then
-		for name, v in pairs(waypoints_table) do
-			local wx = math.floor((v.pos.x) / 160) + 200
-			local wz = (math.floor((v.pos.z) / 160) - 200) * -1
-			waypoints = waypoints ..
-				"image_button[" .. wx / 40 - 0.44 .. "," .. wz / 40 - 0.8 ..
-					";0.75,0.75;lottmisc_flag_" .. v.colour .. ".png;flag_" .. v.colour ..
-					";;true;false]" ..
-				"tooltip[flag_" .. v.colour .. ";" .. minetest.formspec_escape(name) .. "]"
-		end
+	for name, v in pairs(waypoints_table) do
+		local wx = math.floor((v.pos.x) / 160) + 200
+		local wz = (math.floor((v.pos.z) / 160) - 200) * -1
+		waypoints = waypoints ..
+			"image_button[" .. wx / 40 - 0.44 .. "," .. wz / 40 - 0.8 ..
+				";0.75,0.75;lottmisc_flag_" .. v.colour .. ".png;flag_" .. v.colour ..
+				";;true;false]" ..
+			"tooltip[flag_" .. v.colour .. ";" .. minetest.formspec_escape(name) .. "]"
 	end
 	if tab == 1 then
 		local _, biome = lottmapgen.get_biome_at_pos(pos)
@@ -68,13 +60,11 @@ local function base_map_formspec(player, pos, tab)
 				"label[10,3;Altitude: " .. math.floor(pos.y) .. "]" ..
 				"label[10,3.75;Current Biome: " .. biome .. "]"
 	elseif tab == 2 then
-		if waypoints_table then
-			local x = 1
-			for w_name, table in pairs(waypoints_table) do
-				panel = panel .. "label[10.5," .. 1.5 + x / 2.5 .. ";" ..
-					minetest.formspec_escape(minetest.colorize("#" .. table.colour, w_name)) .. "]"
-				x = x + 1
-			end
+		local x = 1
+		for w_name, table in pairs(waypoints_table) do
+			panel = panel .. "label[10.5," .. 1.5 + x / 2.5 .. ";" ..
+				minetest.formspec_escape(minetest.colorize("#" .. table.colour, w_name)) .. "]"
+			x = x + 1
 		end
 		panel = panel .. "button[10.5,7.5;4,1;add_delete_waypoint;Add/Delete Waypoint]" ..
 			"field[10.8,7;4,1;waypoint_name;;]" ..
@@ -93,9 +83,6 @@ end
 
 minetest.register_on_joinplayer(function(player)
 	local waypoints = get_waypoints(player)
-	if not waypoints then
-		return
-	end
 	for name, def in pairs(waypoints) do
 		local ref = player:hud_add({
 			hud_elem_type = "waypoint",
@@ -140,9 +127,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		minetest.show_formspec(player:get_player_name(), "lottmisc:map", formspec)
 	elseif fields.add_delete_waypoint then
 		local waypoints = get_waypoints(player)
-		if not waypoints then
-			return
-		end
 		local label
 		local colours = ""
 		if waypoints[fields.waypoint_name] then
@@ -171,13 +155,10 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		return
 	end
 	local name = player:get_player_name()
+	local pos = player:get_pos()
 	if fields.confirm then
 		local waypoint_name = player:get_attribute("lottmisc:tmp_waypoint_name")
 		local waypoints = get_waypoints(player)
-		if not waypoints then
-			return
-		end
-		local pos = player:get_pos()
 		if waypoints[waypoint_name] then
 			lottmisc.delete_waypoint(player, waypoint_name)
 			minetest.chat_send_player(name, "Deleted waypoint!")
