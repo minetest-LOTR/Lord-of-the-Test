@@ -4,8 +4,27 @@
 
 local modpath = minetest.get_modpath("lottmapgen") .. "/technical"
 
-local biomes = dofile(modpath .. "/biome_map.lua")
-local height = dofile(modpath .. "/height_map.lua")
+-- These two files are compressed as they take up way too much space
+-- if left raw (500 kb each). Their source can be found here:
+-- https://gist.github.com/Amaz1/e3ab2d2259cdc254ec74bee8139caa6e
+
+-- They were made by this code:
+-- local biome_table = dofile(modpath .. "/biome_map.lua")
+-- local file = io.open(modpath .. "/biomes.meta", "wb")
+-- file:write(minetest.compress(minetest.serialize(biome_table), "deflate"))
+-- file:close()
+
+local biome_file = io.open(modpath .. "/biomes.meta", "rb")
+local height_file = io.open(modpath .. "/height.meta", "rb")
+
+local biome_data = biome_file:read("*a")
+local height_data = height_file:read("*a")
+
+biome_file:close()
+height_file:close()
+
+local biomes = minetest.deserialize(minetest.decompress(biome_data))
+local height = minetest.deserialize(minetest.decompress(height_data))
 dofile(modpath .. "/functions.lua")
 
 function lottmapgen.register_biome(id, table)
@@ -87,7 +106,6 @@ local n_z = {
 }
 
 function lottmapgen.get_biome_at_pos(pos)
-	local t1 = os.clock()
 	local nx = math.floor(minetest.get_perlin(n_x):get2d({x=pos.x,y=pos.z}) * 128)
 	local nz = math.floor(minetest.get_perlin(n_z):get2d({x=pos.x,y=pos.z}) * 128)
 	local x = math.floor((pos.x + nx) / 160) + 200
