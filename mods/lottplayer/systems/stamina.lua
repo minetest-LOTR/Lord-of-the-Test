@@ -33,11 +33,11 @@ minetest.register_on_joinplayer(function(player)
 	end
 	local cursta = tonumber(player:get_attribute("lott:stamina"))
 	local maxsta = tonumber(player:get_attribute("lott:stamina_max"))
-	
+
 	lott_sta_players[name] = {}
 	lott_sta_players[name].level = 0
 	lott_sta_players[name].jump = 0
-	
+
 	lott_sta[name.."_sta_bg"] = player:hud_add({
 		hud_elem_type = "statbar",
 		position = LOTT_HUD_POS,
@@ -47,7 +47,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = { x = -220, y = -110 },
 		direction = 0,
 	})
-	
+
 	lott_sta[name.."_sta"] = player:hud_add({
 		hud_elem_type = "statbar",
 		position = LOTT_HUD_POS,
@@ -64,33 +64,33 @@ lottplayer.add_stamina = function(player, value)
 	if lottplayer.is_immortal(name) then
 		return
 	end
-	
+
 	local cursta = tonumber(player:get_attribute("lott:stamina"))
 	local maxsta = tonumber(player:get_attribute("lott:stamina_max"))
-	
+
 	if value == "max" then
 		player:set_attribute("lott:stamina", maxsta)
 		player:hud_change(lott_sta[name.."_sta"], "number", maxsta)
 		return
 	end
-	
+
 	if value == "none" then
 		player:set_attribute("lott:stamina", 0)
 		player:hud_change(lott_sta[name.."_sta"], "number", 0)
 		return
 	end
-	
+
 	local newsta = cursta + value
 	if newsta < 0 then
 		player:set_attribute("lott:stamina", 0)
 		player:hud_change(lott_sta[name.."_sta"], "number", 0)
 		return
 	end
-	
+
 	if newsta <= maxsta then
 		player:set_attribute("lott:stamina", newsta)
 		player:hud_change(lott_sta[name.."_sta"], "number", newsta)
-	
+
 	elseif newsta > maxsta then
 		player:set_attribute("lott:stamina", maxsta)
 		player:hud_change(lott_sta[name.."_sta"], "number", maxsta)
@@ -101,15 +101,15 @@ local timer = 0
 local regen_timer = 0
 minetest.register_globalstep(function(dtime)
 	timer = timer + dtime;
-	
+
 	if timer >= LOTT_STAMINA_REGEN_INT then
 		for _,player in ipairs(minetest.get_connected_players()) do
 			local name = player:get_player_name()
-			
+
 			if lottplayer.is_immortal(name) then
 				return
 			end
-			
+
 			local cursta = tonumber(player:get_attribute("lott:stamina"))
 			local curhun = tonumber(player:get_attribute("lott:hunger"))
 			if curhun >= 20 then
@@ -117,7 +117,7 @@ minetest.register_globalstep(function(dtime)
 			elseif curhun < 20 then
 				stamina_regen_amt = (curhun / 20) * LOTT_STAMINA_REGEN_AMT
 			end
-			
+
 			local amtsta = stamina_regen_amt * LOTT_STAMINA_MULTIPLIER
 			if lott_sta_players[name].level <= 0 then
 				lottplayer.add_stamina(player, amtsta)
@@ -131,14 +131,14 @@ local function prevent_sta_regen(player)
 	if not player or not player:is_player() then
 		return
 	end
-	
+
 	local name = player:get_player_name()
 	if lottplayer.is_immortal(name) then
 		return
 	end
-	
+
 	lott_sta_players[name].level = lott_sta_players[name].level + 1
-	
+
 	minetest.after(tonumber(player:get_attribute("lott:stamina_regen")), function()
 		if lott_sta_players[name].level ~= 0 then
 			lott_sta_players[name].level = lott_sta_players[name].level - 1
@@ -168,7 +168,7 @@ minetest.register_on_respawnplayer(function(player)
 	if lottplayer.is_immortal(name) then
 		return
 	end
-	
+
 	lott_sta_players[name].level = 0
 	lott_sta_players[name].jump = 0
 	lottplayer.add_stamina(player, "max")
@@ -181,15 +181,15 @@ end)
 local move_timer = 0
 minetest.register_globalstep(function(dtime)
 	move_timer = move_timer + dtime;
-	
+
 	if move_timer >= LOTT_STAMINA_MOVE_TIMER then
 		for _,player in ipairs(minetest.get_connected_players()) do
 			local name = player:get_player_name()
-			
+
 			if lottplayer.is_immortal(name) then
 				return
 			end
-			
+
 			--- check for controls
 			local controls = player:get_player_control()
 			if controls.jump then
@@ -200,16 +200,16 @@ minetest.register_globalstep(function(dtime)
 					lott_sta_players[name].jump = 0
 				end
 			end
-			
+
 			local cursta = tonumber(player:get_attribute("lott:stamina"))
 			local maxsta = tonumber(player:get_attribute("lott:stamina_max"))
-			
+
 			if controls.aux1 and controls.up and cursta > 0 then
 				-- sprinting particles -- taken from https://github.com/minetest-mods/stamina
 				local pos = player:getpos()
 				local node = minetest.get_node({
 				x = pos.x, y = pos.y - 1, z = pos.z})
-				
+
 				if node.name ~= "air" then
 					minetest.add_particlespawner({
 						amount = 5,
@@ -229,12 +229,12 @@ minetest.register_globalstep(function(dtime)
 						texture = "lottitems_dirt.png",
 					})
 				end
-				
+
 				if not minetest.check_player_privs(player, {fast = true}) then
 					-- sprint function
 				end
 			end
-				
+
 		end
 		move_timer = 0
 	end

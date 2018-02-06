@@ -112,6 +112,31 @@ minetest.register_node("lottplants:birch_leaves", {
 	groups = {leaves = 1, plant = 1},
 })
 
+-- Dark Oak
+
+minetest.register_node("lottplants:dark_oak_trunk", {
+	description = "Dark Oak Trunk",
+	tiles = {"lottplants_dark_oak_trunk_top.png", "lottplants_dark_oak_trunk_top.png", "lottplants_dark_oak_trunk.png"},
+	paramtype2 = "facedir",
+	groups = {tree = 1, wood = 1, plant = 1, axe = 1},
+})
+
+minetest.register_node("lottplants:dark_oak_planks", {
+	description = "Dark Oak Planks",
+	tiles = {"lottplants_dark_oak_planks.png"},
+	paramtype2 = "facedir",
+	groups = {wood = 1, axe = 1},
+})
+
+minetest.register_node("lottplants:dark_oak_leaves", {
+	description = "Dark Oak Leaves",
+	drawtype = "allfaces_optional",
+	tiles = {"lottplants_dark_oak_leaves.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {leaves = 1, plant = 1},
+})
+
 -- Elm
 
 minetest.register_node("lottplants:elm_trunk", {

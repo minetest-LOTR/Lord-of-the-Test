@@ -154,3 +154,30 @@ register_flower("sericea", {
 register_flower("menelluin", {
 	groups = {blue = 1, flower = 1, plant = 1},
 })
+
+-- Desert Flowers
+
+register_flower("desert_canaigre", {
+	groups = {brown = 1, flower = 1, harad = 1, plant = 1},
+})
+
+register_flower("desert_bigelow", {
+	groups = {purple = 1, flower = 1, harad = 1, plant = 1},
+})
+
+register_flower("desert_plume", {
+	groups = {pink = 1, flower = 1, harad = 1, plant = 1},
+})
+
+register_flower("desert_phacelia", {
+	groups = {purple = 1, flower = 1, harad = 1, plant = 1},
+})
+
+register_flower("desert_poppy", {
+	groups = {red = 1, flower = 1, harad = 1, plant = 1},
+})
+
+register_flower("desert_star", {
+	groups = {yellow = 1, flower = 1, harad = 1, plant = 1},
+})
+

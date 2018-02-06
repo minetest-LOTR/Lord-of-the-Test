@@ -35,6 +35,8 @@ Copyright (C) 2017 Natura
 	lottplants_holly_planks.png
 	lottplants_holly_trunk.png
 	lottplants_holly_trunk_top.png
+	lottplants_maple_trunk.png
+	lottplants_maple_trunk_top.png
 	lottplants_rowan_planks.png
 	lottplants_rowan_trunk.png
 	lottplants_rowan_trunk_top.png
@@ -56,6 +58,7 @@ Copyright (C) 2017 The ExtrabiomesXL Team
 	lottplants_snow_glory.png
 Copyright (C) 2017 tobyplowy
 (Taken from farlands: https://github.com/D00Med/farlands)
+	lottplants_dry_shrub.png
 	lottplants_parnassus.png
 	lottplants_petunia_blue.png
 	lottplants_petuina_pink.png
@@ -113,4 +116,10 @@ code from this project must be open source.
 	lottplants_beech_planks.png
 	lottplants_beech_trunk.png
 	lottplants_beech_trunk_top.png
+	lottplants_desert_bigelow.png
+	lottplants_desert_canaigre.png
+	lottplants_desert_phaceila.png
+	lottplants_desert_plume.png
+	lottplants_desert_poppy.png
+	lottplants_desert_star.png
 

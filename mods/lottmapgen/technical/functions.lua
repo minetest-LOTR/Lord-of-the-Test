@@ -121,8 +121,8 @@ function lottmapgen.papyrus(x, y, z, area, data, p2data)
 end
 
 function lottmapgen.cactus(x, y, z, area, data)
-	local c_cactus = minetest.get_content_id("default:cactus")
-	local h = math.random(1, 5)
+	local c_cactus = minetest.get_content_id("lottplants:cactus")
+	local h = math.random(1, 4)
 	for j = -1, h do
 		local vic = area:index(x, y + j, z)
 		data[vic] = c_cactus
@@ -177,6 +177,21 @@ local mountain_flowers = {
 function lottmapgen.mountain_flowers(data, vi, p2data)
 	local rand = math.random(#mountain_flowers)
 	local c_flower = minetest.get_content_id("lottplants:" .. mountain_flowers[rand])
+	data[vi] = c_flower
+end
+
+local desert_flowers = {
+	"desert_canaigre",
+	"desert_bigelow",
+	"desert_plume",
+	"desert_phacelia",
+	"desert_poppy",
+	"desert_star",
+}
+
+function lottmapgen.desert_flowers(data, vi, p2data)
+	local rand = math.random(#desert_flowers)
+	local c_flower = minetest.get_content_id("lottplants:" .. desert_flowers[rand])
 	data[vi] = c_flower
 end
 
@@ -739,27 +754,30 @@ function lottmapgen.jungle_tree(x, y, z, area, data)
 	end
 end
 
-function lottmapgen.mirk_tree2(x, y, z, area, data)
-	local c_tree = minetest.get_content_id("default:jungletree")
-	local c_leaves = minetest.get_content_id("lottplants:mirkleaf")
+function lottmapgen.large_oak_tree(x, y, z, area, data)
+	local c_tree = minetest.get_content_id("lottplants:dark_oak_trunk")
+	local c_leaves = minetest.get_content_id("lottplants:dark_oak_leaves")
 	for j = -3, 7 do
-		if j == 6 then
-			for i = -4, 4 do
-			for k = -4, 4 do
-				if math.random(20) ~= 10 then
+		if j == 5 or j == 6 or j == 7 then
+			for i = -(j - 2), j - 2 do
+			for k = -(j - 2), j - 2 do
+				if math.random(20) ~= 10 and
+				math.abs(i) + math.abs(k) < ((j - 2) * 2) - 2 then
 					local vil = area:index(x + i, y + j + math.random(1, 2), z + k)
 					data[vil] = c_leaves
 				end
 			end
 			end
-      for i = -1, 1 do
+		end
+		if j == 6 then
+			for i = -1, 1 do
 			for k = -1, 1 do
-          if math.abs(i) + math.abs(k) == 2 then
-            local vit = area:index(x + i, y + j, z + k)
-            data[vit] = c_tree
-          end
-      end
-      end
+				if math.abs(i) + math.abs(k) == 2 then
+					local vit = area:index(x + i, y + j, z + k)
+					data[vit] = c_tree
+				end
+			end
+			end
 		elseif j == 7 then
 			for i = -2, 2, 4 do
 			for k = -2, 2, 4 do
@@ -1354,6 +1372,43 @@ function lottmapgen.jungle_bush(x, y, z, area, data, p2data)
 	end
 end
 
+function lottmapgen.rock(x, y, z, area, data, stone, snow)
+	local c_stone = minetest.get_content_id("lottitems:stone")
+	if stone then
+		c_stone = minetest.get_content_id(stone)
+	end
+	local c_snow = minetest.get_content_id("lottitems:snow_layer")
+	local c_air = minetest.get_content_id("air")
+	local r = math.random(1, 3)
+	for i = -2, 2 do
+	for k = -2, 2 do
+	for j = 0, r do
+		if math.random(math.abs(i) + j + math.abs(k)) <= 1 then
+			local viu = area:index(x + i, y + j - 1, z + k)
+			if data[viu] ~= c_air and data[viu] ~= c_snow then
+				local vi = area:index(x + i, y + j, z + k)
+				data[vi] = c_stone
+				if j == 0 then
+					local viu = area:index(x + i, y + j - 1, z + k)
+					data[viu] = c_stone
+				end
+			end
+		end
+	end
+	if snow then
+		for j = r, 0, -1 do
+			local vi = area:index(x + i, y + j, z + k)
+			if data[vi] == c_stone then
+				local via = area:index(x + i, y + j + 1, z + k)
+				data[via] = c_snow
+				break
+			end
+		end
+	end
+	end
+	end
+end
+
 function lottmapgen.elf_workshop(x, y, z, area, data, p2data)
 	local c_stonebrick = minetest.get_content_id("default:stonebrick")
 	local c_cracked_stonebrick = minetest.get_content_id("default:cracked_stonebrick")
@@ -1450,17 +1505,3 @@ function lottmapgen.elf_workshop(x, y, z, area, data, p2data)
 	end
 end
 
-function lottmapgen.place_mts(x, y, z, area, data, p2data, schem)
-	local c = 1
-	for k = 0, schem.z do
-	for j = 0, schem.y do
-	for i = 0, schem.x do
-		if schem.nodes[c] then
-			local vil = area:index(x + i, y + j, z + k)
-			data[vil] = schem.nodes[c]
-		end
-		c = c + 1
-	end
-	end
-	end
-end

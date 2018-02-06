@@ -10,7 +10,7 @@ local grass_list = {
 	{"enedwaith", "#fc7702:40"},
 	{"eregion", "#777c75:90"},
 	{"dunland", "#35ba3c:50"},
-	{"mirkwood", "#331507:120"},
+	{"mirkwood", "#190a03:170"},
 	{"lorien", "#5bf7ea:75"},
 	{"fangorn", "#720e6f:30"},
 	{"rohan", "#af5301:95"},

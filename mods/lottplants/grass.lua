@@ -85,3 +85,20 @@ minetest.register_node("lottplants:mountain_shrub", {
 	},
 	groups = {green = 1, grass = 1, plant = 1}
 })
+
+minetest.register_node("lottplants:dry_shrub", {
+	description = "Dry Shrub",
+	drawtype = "plantlike",
+	tiles = {"lottplants_dry_shrub.png"},
+	inventory_image = "lottplants_dry_shrub.png",
+	paramtype = "light",
+	paramtype2 = "meshoptions",
+	buildable_to = true,
+	walkable = false,
+	waving = 1,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -0.3125, 0.5},
+	},
+	groups = {brown = 1, grass = 1, plant = 1}
+})

@@ -23,7 +23,7 @@ minetest.register_on_joinplayer(function(player)
 	if lottplayer.is_immortal(name) then
 		return
 	end
-	
+
 	if player:get_attribute("lott:hunger") == nil then
 		player:set_attribute("lott:hunger", LOTT_HUNGER)
 	end
@@ -32,14 +32,14 @@ minetest.register_on_joinplayer(function(player)
 	end
 	local curhun = tonumber(player:get_attribute("lott:hunger"))
 	local maxhun = tonumber(player:get_attribute("lott:hunger_max"))
-	
+
 	lott_hun_players[name] = {}
 	lott_hun_players[name].placed = 0
 	lott_hun_players[name].dug = 0
 	lott_hun_players[name].crafted = 0
 	lott_hun_players[name].eat = 0
 	lott_hun_players[name].eatitem = nil
-	
+
 	if maxhun <= 20 then
 		lott_hun[name.."_hun_bg"] = player:hud_add({
 			hud_elem_type = "statbar",
@@ -61,7 +61,7 @@ minetest.register_on_joinplayer(function(player)
 			direction = 0,
 		})
 	end
-	
+
 	if curhun <= 20 then
 		lott_hun[name.."_hun"] = player:hud_add({
 			hud_elem_type = "statbar",
@@ -72,7 +72,7 @@ minetest.register_on_joinplayer(function(player)
 			offset = { x = 46, y = -87 },
 			direction = 0,
 		})
-		
+
 	elseif curhun > 20 then
 		lott_hun[name.."_hun"] = player:hud_add({
 			hud_elem_type = "statbar",
@@ -83,7 +83,7 @@ minetest.register_on_joinplayer(function(player)
 			offset = { x = 46, y = -87 },
 			direction = 0,
 		})
-		
+
 		lott_hun[name.."_hun_2"] = player:hud_add({
 			hud_elem_type = "statbar",
 			position = LOTT_HUD_POS,
@@ -101,10 +101,10 @@ lottplayer.add_hunger = function(player, value)
 	if lottplayer.is_immortal(name) then
 		return
 	end
-	
+
 	local curhun = tonumber(player:get_attribute("lott:hunger"))
 	local maxhun = tonumber(player:get_attribute("lott:hunger_max"))
-	
+
 	if value == "max" then
 		player:set_attribute("lott:hunger", maxhun)
 		if maxhun <= 20 then
@@ -114,7 +114,7 @@ lottplayer.add_hunger = function(player, value)
 			player:set_attribute("lott:hunger", maxhun)
 			player:hud_change(lott_hun[name.."_hun"], "number", 20)
 			player:hud_remove(lott_hun[name.."_hun_2"])
-			
+
 			lott_hun[name.."_hun_2"] = player:hud_add({
 				hud_elem_type = "statbar",
 				position = LOTT_HUD_POS,
@@ -124,19 +124,19 @@ lottplayer.add_hunger = function(player, value)
 				offset = { x = 46, y = -87 },
 				direction = 0,
 			})
-			
+
 			player:hud_change(lott_hun[name.."_hun_2"], "number", maxhun - 20)
 		end
 		return
 	end
-	
+
 	if value == "none" then
 		player:set_attribute("lott:hunger", 0)
 		player:hud_remove(lott_hun[name.."_hun_2"])
 		player:hud_change(lott_hun[name.."_hun"], "number", 0)
 		return
 	end
-	
+
 	local newhun = curhun + value
 	if newhun < 0 then
 		player:set_attribute("lott:hunger", 0)
@@ -144,7 +144,7 @@ lottplayer.add_hunger = function(player, value)
 		player:hud_change(lott_hun[name.."_hun"], "number", 0)
 		return
 	end
-	
+
 	if maxhun <= 20 then
 		if newhun <= maxhun then
 			player:set_attribute("lott:hunger", newhun)
@@ -159,7 +159,7 @@ lottplayer.add_hunger = function(player, value)
 			player:set_attribute("lott:hunger", newhun)
 			player:hud_remove(lott_hun[name.."_hun_2"])
 			player:hud_change(lott_hun[name.."_hun"], "number", newhun)
-			
+
 		elseif newhun > 20 then
 			if newhun <= maxhun then
 				if curhun > 20 then
@@ -169,7 +169,7 @@ lottplayer.add_hunger = function(player, value)
 				elseif curhun <= 20 then
 					player:set_attribute("lott:hunger", newhun)
 					player:hud_change(lott_hun[name.."_hun"], "number", 20)
-					
+
 					lott_hun[name.."_hun_2"] = player:hud_add({
 						hud_elem_type = "statbar",
 						position = LOTT_HUD_POS,
@@ -188,7 +188,7 @@ lottplayer.add_hunger = function(player, value)
 				elseif curhun <= 20 then
 					player:set_attribute("lott:hunger", maxhun)
 					player:hud_change(lott_hun[name.."_hun"], "number", 20)
-					
+
 					lott_hun[name.."_hun_2"] = player:hud_add({
 						hud_elem_type = "statbar",
 						position = LOTT_HUD_POS,
@@ -225,34 +225,34 @@ function lottplayer.eat(hp_change, replace_with_item, itemstack, user, pointed_t
 	if not user then
 		return itemstack
 	end
-	
+
 	local name = user:get_player_name()
 	lott_hun_players[name].eat = os.clock()
 	lott_hun_players[name].eatparticles = os.clock()
 	lott_hun_players[name].eatitem = user:get_wielded_item():get_name()
 	print(user:get_attribute("lott:hunger"))
-	
+
 	if user:get_attribute("lott:hunger") == user:get_attribute("lott:hunger_max") then
 		return
 	end
-	
+
 	controls.register_on_hold(function(player, key, time)
 		if key == "LMB" and lott_hun_players[name].eatitem ~= nil then
 			if player:get_attribute("lott:hunger") == player:get_attribute("lott:hunger_max") then
 				return
 			end
-			
+
 			local wielditem = player:get_wielded_item()
 			local name = player:get_player_name()
 			if wielditem:get_name() == lott_hun_players[name].eatitem then
 				if os.clock() - lott_hun_players[name].eatparticles >= 1 then
 					lott_hun_players[name].eatparticles = os.clock()
 					minetest.sound_play("stamina_eat", {to_player = name, gain = 0.1})
-					
+
 					local pos = player:getpos()
 					pos.y = pos.y + 1.5
 					local dir = player:get_look_dir()
-					
+
 					minetest.add_particlespawner({
 						amount = 8,
 						time = 1.5,
@@ -269,7 +269,7 @@ function lottplayer.eat(hp_change, replace_with_item, itemstack, user, pointed_t
 						texture = minetest.registered_items[wielditem:get_name()].inventory_image,
 					})
 				end
-					
+
 				if os.clock() - lott_hun_players[name].eat >= hp_change then
 					print(user:get_attribute("lott:hunger"))
 					minetest.sound_play("stamina_eat", {to_player = name, gain = 0.1})
@@ -284,7 +284,7 @@ function lottplayer.eat(hp_change, replace_with_item, itemstack, user, pointed_t
 			end
 		end
 	end)
-	
+
 	controls.register_on_release(function(player, key, time)
 		if key == "LMB" then
 			lott_hun_players[name].eat = 0
@@ -305,14 +305,14 @@ function lottplayer.eat(hp_change, replace_with_item, itemstack, user, pointed_t
 			end
 		end
 	end
-	
+
 	return itemstack
 end
 
 local timer = 0
 minetest.register_globalstep(function(dtime)
 	timer = timer + dtime;
-	
+
 	if timer >= LOTT_HUNGER_INTERVAL then
 		for _,player in ipairs(minetest.get_connected_players()) do
 			local name = player:get_player_name()
@@ -330,14 +330,14 @@ minetest.register_on_placenode(function(pos, newnode, player, oldnode, itemstack
 	if not player or not player:is_player() then
 		return
 	end
-	
+
 	local name = player:get_player_name()
 	if lottplayer.is_immortal(name) then
 		return
 	end
-	
+
 	lott_hun_players[name].placed = lott_hun_players[name].placed + 1
-	
+
 	if lott_hun_players[name].placed >= LOTT_HUNGER_PLACED then
 		lott_hun_players[name].placed = 0
 		lottplayer.add_hunger(player, LOTT_HUNGER_PLACED_AMT)
@@ -348,14 +348,14 @@ minetest.register_on_dignode(function(pos, oldnode, player)
 	if not player or not player:is_player() then
 		return
 	end
-	
+
 	local name = player:get_player_name()
 	if lottplayer.is_immortal(name) then
 		return
 	end
-	
+
 	lott_hun_players[name].dug = lott_hun_players[name].dug + 1
-	
+
 	if lott_hun_players[name].dug >= LOTT_HUNGER_DUG then
 		lott_hun_players[name].dug = 0
 		lottplayer.add_hunger(player, LOTT_HUNGER_DUG_AMT)
@@ -366,14 +366,14 @@ minetest.register_on_craft(function(itemstack, player, old_craft_grid, craft_inv
 	if not player or not player:is_player() then
 		return
 	end
-	
+
 	local name = player:get_player_name()
 	if lottplayer.is_immortal(name) then
 		return
 	end
-	
+
 	lott_hun_players[name].crafted = lott_hun_players[name].crafted + 1
-	
+
 	if lott_hun_players[name].crafted >= LOTT_HUNGER_CRAFTED then
 		lott_hun_players[name].crafted = 0
 		lottplayer.add_hunger(player, LOTT_HUNGER_CRAFTED_AMT)
@@ -385,12 +385,12 @@ minetest.register_on_respawnplayer(function(player)
 	if lottplayer.is_immortal(name) then
 		return
 	end
-	
+
 	lott_hun_players[name].placed = 0
 	lott_hun_players[name].dug = 0
 	lott_hun_players[name].crafted = 0
 	lott_hun_players[name].eat = 0
 	lott_hun_players[name].eatitem = nil
-	
+
 	lottplayer.add_hunger(player, "max")
 end)

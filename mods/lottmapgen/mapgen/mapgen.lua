@@ -55,7 +55,7 @@ local np_cave = {
 }
 
 -- Stuff
-
+local modpath = minetest.get_modpath("lottmapgen")
 local nobj_temp = nil
 local nobj_humid = nil
 local nobj_ter = nil
@@ -114,6 +114,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_sand = minetest.get_content_id("lottitems:sand")
 	local c_stone = minetest.get_content_id("lottitems:stone")
 	local c_water = minetest.get_content_id("lottitems:water_source")
+	local c_lava = minetest.get_content_id("lottitems:lava_source")
 	local c_morwat = minetest.get_content_id("lottitems:mordor_water_source")
 
 	local c_morstone = minetest.get_content_id("lottitems:mordor_stone")
@@ -143,6 +144,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local offset = math.random(5,20)
 	local nixyz = 1
 	local nixz = 1
+	local schems = {}
 	heightmap = {}
 
 	for z = z0, z1 do
@@ -209,7 +211,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						vi = area:index(x, y + 1, z)
 						if lottmapgen.biome[biome].deco then
 							lottmapgen.biome[biome].deco(data, p2data, vi, area,
-								x, y + 1, z, noise_1, nvals_x[nixz])
+								x, y + 1, z, noise_1, nvals_x[nixz], schems)
 						end
 					end
 				elseif y < stone_depth then
@@ -256,7 +258,12 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	end
 	vm:set_data(data)
 	vm:set_param2_data(p2data)
-	minetest.generate_ores(vm)
+	for _, tab in pairs(schems) do
+		minetest.place_schematic_on_vmanip(vm, tab[2],
+			modpath .. "/schems/" .. tab[1], "random",
+			{air = "ignore"})
+	end
+	minetest.generate_ores(vm, minp, maxp)
 	vm:set_lighting({day=0, night=0})
 	vm:calc_lighting()
 	vm:update_liquids()
