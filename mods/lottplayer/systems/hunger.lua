@@ -39,7 +39,7 @@ minetest.register_on_joinplayer(function(player)
 	lott_hun_players[name].crafted = 0
 	lott_hun_players[name].eat = 0
 	lott_hun_players[name].eatitem = nil
-
+	minetest.after(0, function()
 	if maxhun <= 20 then
 		lott_hun[name.."_hun_bg"] = player:hud_add({
 			hud_elem_type = "statbar",
@@ -94,6 +94,7 @@ minetest.register_on_joinplayer(function(player)
 			direction = 0,
 		})
 	end
+	end)
 end)
 
 lottplayer.add_hunger = function(player, value)

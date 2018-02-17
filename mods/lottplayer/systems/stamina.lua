@@ -37,7 +37,7 @@ minetest.register_on_joinplayer(function(player)
 	lott_sta_players[name] = {}
 	lott_sta_players[name].level = 0
 	lott_sta_players[name].jump = 0
-
+	minetest.after(0, function()
 	lott_sta[name.."_sta_bg"] = player:hud_add({
 		hud_elem_type = "statbar",
 		position = LOTT_HUD_POS,
@@ -57,6 +57,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = { x = -220, y = -110 },
 		direction = 0,
 	})
+	end)
 end)
 
 lottplayer.add_stamina = function(player, value)

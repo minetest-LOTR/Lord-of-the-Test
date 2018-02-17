@@ -63,6 +63,31 @@ minetest.register_node("lottplants:apple_leaves", {
 	groups = {leaves = 1, plant = 1},
 })
 
+-- Ash
+
+minetest.register_node("lottplants:ash_trunk", {
+	description = "Ash Trunk",
+	tiles = {"lottplants_ash_trunk_top.png", "lottplants_ash_trunk_top.png", "lottplants_ash_trunk.png"},
+	paramtype2 = "facedir",
+	groups = {tree = 1, wood = 1, plant = 1, axe = 1},
+})
+
+minetest.register_node("lottplants:ash_planks", {
+	description = "Ash Planks",
+	tiles = {"lottplants_ash_planks.png"},
+	paramtype2 = "facedir",
+	groups = {wood = 1, axe = 1},
+})
+
+minetest.register_node("lottplants:ash_leaves", {
+	description = "Ash Leaves",
+	drawtype = "allfaces_optional",
+	tiles = {"lottplants_ash_leaves.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {leaves = 1, plant = 1},
+})
+
 -- Beech
 
 minetest.register_node("lottplants:beech_trunk", {
@@ -187,6 +212,32 @@ minetest.register_node("lottplants:holly_leaves", {
 	groups = {leaves = 1, plant = 1},
 })
 
+-- Maple
+
+minetest.register_node("lottplants:maple_trunk", {
+	description = "Maple Trunk",
+	tiles = {"lottplants_maple_trunk_top.png", "lottplants_maple_trunk_top.png", "lottplants_maple_trunk.png"},
+	paramtype2 = "facedir",
+	groups = {tree = 1, wood = 1, plant = 1, axe = 1},
+})
+--[[
+minetest.register_node("lottplants:maple_planks", {
+	description = "Maple Planks",
+	tiles = {"lottplants_maple_planks.png"},
+	paramtype2 = "facedir",
+	groups = {wood = 1, axe = 1},
+})
+]]
+minetest.register_node("lottplants:maple_leaves", {
+	description = "Maple Leaves",
+	drawtype = "allfaces_optional",
+	tiles = {"lottplants_maple_leaves.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {leaves = 1, plant = 1},
+})
+
+
 -- Mallorn
 
 minetest.register_node("lottplants:mallorn_trunk", {
@@ -255,6 +306,32 @@ minetest.register_node("lottplants:pine_needles", {
 	paramtype2 = "facedir",
 	groups = {leaves = 1, plant = 1},
 })
+
+-- Poplar
+
+minetest.register_node("lottplants:poplar_trunk", {
+	description = "Poplar Trunk",
+	tiles = {"lottplants_poplar_trunk_top.png", "lottplants_poplar_trunk_top.png", "lottplants_poplar_trunk.png"},
+	paramtype2 = "facedir",
+	groups = {tree = 1, wood = 1, plant = 1, axe = 1},
+})
+
+minetest.register_node("lottplants:poplar_planks", {
+	description = "Poplar Planks",
+	tiles = {"lottplants_poplar_planks.png"},
+	paramtype2 = "facedir",
+	groups = {wood = 1, axe = 1},
+})
+
+minetest.register_node("lottplants:poplar_leaves", {
+	description = "Poplar Leaves",
+	drawtype = "allfaces_optional",
+	tiles = {"lottplants_poplar_leaves.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {leaves = 1, plant = 1},
+})
+
 
 -- Rowan
 

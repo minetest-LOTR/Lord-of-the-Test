@@ -269,7 +269,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:update_liquids()
 	vm:write_to_map(data)
 	local chugent = math.ceil((os.clock() - t1) * 1000)
-	minetest.chat_send_all(chugent)
+	print(chugent)
 	table.insert(times, chugent)
 end)
 
@@ -279,5 +279,5 @@ minetest.register_on_shutdown(function()
 		t = t + v
 	end
 	t = t / #times
-	print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n" .. t)
+	print("Average Mapgen Time per chunk:   " .. t)
 end)

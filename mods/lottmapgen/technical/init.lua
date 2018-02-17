@@ -166,10 +166,14 @@ minetest.register_chatcommand("tp", {
 			player:set_pos({x = 28800, y = 30, z = -28800})
 		elseif param == "mirkwoord" or param == "mw" or param == "m" or param == "mirk" then
 			player:set_pos({x = 6400, y = 30, z = 4800})
+		elseif param == "dunland" or param == "d" then
+			player:set_pos({x = -11200, y = 30, z = -9600})
+		elseif param == "shire" or param == "s" then
+			player:set_pos({x = -15200, y = 30, z = 1600})
 		else
 			minetest.chat_send_player(name, "List of places to teleport to:\n" ..
-				minetest.colorize("orange", "lorien\t\tiron hills\t\tbreeland\t\teregion\t\tlindon" ..
-					"\t\tblue mountains\t\tettenmoors\t\tharad\t\tmirkwood"))
+				minetest.colorize("orange", "lorien    iron hills    breeland    eregion    lindon" ..
+					"    blue mountains    ettenmoors    harad    mirkwood    dunland    shire"))
 		end
 	end
 })

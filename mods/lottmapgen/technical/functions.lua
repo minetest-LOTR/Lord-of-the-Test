@@ -18,6 +18,12 @@ function lottmapgen.lorien_grass(data, vi, p2data)
 	p2data[vi] = 40
 end
 
+function lottmapgen.pine_grass(data, vi, p2data)
+	local c_pinegrass = minetest.get_content_id("lottplants:pine_grass_" .. math.random(3))
+	data[vi] = c_pinegrass
+	p2data[vi] = 40
+end
+
 function lottmapgen.tall_grass(x, y, z, area, data, p2data)
 	local c_tallgrassb = minetest.get_content_id("lottplants:tall_grass_bottom")
 	local c_tallgrasst = minetest.get_content_id("lottplants:tall_grass_" .. math.random(5))
@@ -142,6 +148,7 @@ function lottmapgen.farming_plants_rare(data, vi, p2data)
 end
 
 local basic_flowers = {
+	"chrysanthemum_green",
 	"dandelion_white",
 	"dandelion_yellow",
 	"geranium",
@@ -208,6 +215,55 @@ function lottmapgen.gerberae(data, vi, p2data)
 	data[vi] = c_flower
 end
 
+local shire_flowers = {
+	"iris_blue",
+	"iris_purple",
+	"buttercup",
+	"amaryllis_pink",
+	"amaryllis_red",
+	"amaryllis_white",
+	"lilly",
+}
+
+function lottmapgen.shire_flowers(data, vi, p2data)
+	local rand = math.random(#shire_flowers + 16)
+	if rand > #shire_flowers + 5 then
+		lottmapgen.basic_flowers(data, vi, p2data)
+	elseif rand > #shire_flowers then
+		lottmapgen.petuniae(data, vi, p2data)
+	else
+		local c_flower = minetest.get_content_id("lottplants:" .. shire_flowers[rand])
+		data[vi] = c_flower
+	end
+end
+
+
+function lottmapgen.generate_log(x, y, z, area, data, p2data, tree, length)
+	local c_tree = minetest.get_content_id(tree)
+	local c_dirt = minetest.get_content_id("lottitems:dirt")
+	local orent = math.random(1, 2)
+	for i = 0, length - 1 do
+		local vi
+		if orent == 1 then
+			vi = area:index(x, y, z + i)
+		else
+			vi = area:index(x + i, y, z)
+		end
+		data[vi] = c_tree
+		if orent == 1 then
+			p2data[vi] = 4
+		else
+			p2data[vi] = 12
+		end
+	end
+	if orent == 1 then
+		local vi = area:index(x, y - 1, z + 1)
+		data[vi] = c_dirt
+	else
+		local vi = area:index(x + 1, y - 1, z)
+		data[vi] = c_dirt
+	end
+end
 
 function lottmapgen.generate_bush(x, y, z, area, data, tree, leaves)
 	local c_tree = minetest.get_content_id(tree)
@@ -228,8 +284,10 @@ function lottmapgen.generate_bush(x, y, z, area, data, tree, leaves)
 		local vit = area:index(x, y + j, z)
 		data[vit] = c_tree
 	end
-	local vi = area:index(x, y + 2, z)
-	data[vi] = c_leaves
+	if math.random(4) ~= 1 then
+		local vi = area:index(x, y + 2, z)
+		data[vi] = c_leaves
+	end
 end
 
 function lottmapgen.generate_tree(x, y, z, area, data, tree, leaves, height)
@@ -251,6 +309,30 @@ function lottmapgen.generate_tree(x, y, z, area, data, tree, leaves, height)
 		local vit = area:index(x, y + j, z)
 		data[vit] = c_tree
 	end
+end
+
+function lottmapgen.generate_large_tree(x, y, z, area, data, tree, leaves, height)
+	local c_tree = minetest.get_content_id(tree)
+        local c_leaves = minetest.get_content_id(leaves)
+        for j = -2, height do
+                if j >= (height - 4) then
+                        local rad = j - height + 4
+                        for i = -rad, rad do
+                        for k = -rad, rad do
+                                if math.abs(i) + math.abs(k) < rad * 2 - 1 then
+                                        local vil = area:index(x + i, y + j + 1, z + k)
+                                        if math.random(48) == 2 then
+                                                data[vil] = c_leaves
+                                        elseif math.random(3) ~= 2 then
+                                                data[vil] = c_leaves
+                                        end
+                                end
+                        end
+                        end
+                end
+                local vit = area:index(x, y + j, z)
+                data[vit] = c_tree
+        end
 end
 
 function lottmapgen.burned_tree(x, y, z, area, data)
@@ -656,16 +738,16 @@ function lottmapgen.birch_bush(x, y, z, area, data)
 	data[vi] = c_leaves
 end
 
-function lottmapgen.elm_tree(x, y, z, area, data)
-	local c_tree = minetest.get_content_id("default:tree")
-	local c_elmleaf = minetest.get_content_id("lottplants:elmleaf")
-	for j = -5, 25 do
-		if j == 11 or j == 18 or j == 24 then
+function lottmapgen.poplar_tree(x, y, z, area, data)
+	local c_tree = minetest.get_content_id("lottplants:poplar_trunk")
+	local c_poplarleaf = minetest.get_content_id("lottplants:poplar_leaves")
+	for j = -3, 15 do
+		if j == 7 or j == 11 or j == 15 then
 			for i = -2, 2 do
 			for k = -2, 2 do
 				local vil = area:index(x + i, y + j + math.random(0, 1), z + k)
 				if math.random(5) ~= 2 then
-					data[vil] = c_elmleaf
+					data[vil] = c_poplarleaf
 				end
 			end
 			end

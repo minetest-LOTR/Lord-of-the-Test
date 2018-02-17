@@ -8,17 +8,27 @@ Copyright (C) 2014-2016 RHRhino
 Copyright (C) 2015-2016 Gambit
 Copyright (C) 2016 yyt16384
 Copyright (C) 2017 paramat
+	lottplants_chrysanthemum_green.png
 	lottplants_dandelion_yellow.png
 	lottplants_dandelion_white.png
 	lottplants_geranium.png
 	lottplants_rose.png
 	lottplants_tulip.png
+	lottplants_black_tulip.png
 	lottplants_violet.png
+Copyright (C) 2017 paramat
+	lottplants_pine_grass_*.png (Derived from textures by TumeniNodes)
 Copyright (C) 2013 Vanessa Ezekowitz
 	lottplants_apple_leaves.png
 	lottplants_apple_planks.png
 	lottplants_apple_trunk.png
 	lottplants_apple_trunk_top.png
+	lottplants_ash_leaves.png
+	lottplants_ash_trunk.png
+	lottplants_ash_trunk_top.png
+	lottplants_poplar_leaves.png
+	lottplants_poplar_trunk.png
+	lottplants_poplar_trunk_top.png
 Copyright (C) 2013 Gambit
 	lottplants_menelluin.png
 Copyright (C) 2015 philipbenr
@@ -35,6 +45,7 @@ Copyright (C) 2017 Natura
 	lottplants_holly_planks.png
 	lottplants_holly_trunk.png
 	lottplants_holly_trunk_top.png
+	lottplants_maple_leaves.png
 	lottplants_maple_trunk.png
 	lottplants_maple_trunk_top.png
 	lottplants_rowan_planks.png
@@ -42,6 +53,9 @@ Copyright (C) 2017 Natura
 	lottplants_rowan_trunk_top.png
 Copyright (C) 2017 The ExtrabiomesXL Team
 (https://github.com/ExtrabiomesXL/ExtrabiomesXL)
+	lottplants_amaryllis_pink.png
+	lottplants_amaryllis_red.png
+	lottplants_amaryllis_white.png
 	lottplants_bluebell.png
 	lottplants_buttercup.png
 	lottplants_calla_black.png
@@ -54,6 +68,9 @@ Copyright (C) 2017 The ExtrabiomesXL Team
 	lottplants_gerbera_pink.png
 	lottplants_gerbera_red.png
 	lottplants_gerbera_yellow.png
+	lottplants_iris_blue.png
+	lottplants_iris_purple.png
+	lottplants_lilly.png
 	lottplants_sericea.png
 	lottplants_snow_glory.png
 Copyright (C) 2017 tobyplowy
@@ -70,6 +87,12 @@ Copyright (C) 2017 tobyplowy
 Copyright (C) 2017 Raven262
 	lottplants_holly_leaves.png
 	lottplants_mountain_shrub.png
+
+LGPL v2.1
+Copyright (C) 2017 TeamTwilight
+https://github.com/TeamTwilight/twilightforest
+	lottplants_dark_oak_trunk.png
+	lottplants_dark_oak_trunk_top.png
 
 Botania License
 Copyright (C) 2017 Vazkii
@@ -100,6 +123,7 @@ Copyright (C) 2013 PlizAdam
 	lottplants_wood.png
 Copyright (C) 2014 VanessaE
 	lottplants_grass_*.png
+	lottplants_tall_grass_*.png (Modified by Amaz)
 
 Other
 Copyright (c) 2017 Brennan Ward

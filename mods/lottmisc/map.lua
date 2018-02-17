@@ -16,6 +16,9 @@ function lottmisc.add_waypoint(player, pos, waypoint_name, colour)
 	if waypoints_number >= 10 then
 		return false, "You can only have 10 waypoints at a time!"
 	end
+	for i, v in pairs(pos) do
+		pos[i] = math.floor(v)
+	end
 	local ref = player:hud_add({
 		hud_elem_type = "waypoint",
 		name = waypoint_name,
@@ -45,8 +48,8 @@ local function base_map_formspec(player, pos, tab)
 	local x = math.floor((pos.x) / 160) + 200
 	local z = (math.floor((pos.z) / 160) - 200) * -1
 	for name, v in pairs(waypoints_table) do
-		local wx = math.floor((v.pos.x) / 160) + 200
-		local wz = (math.floor((v.pos.z) / 160) - 200) * -1
+		local wx = (v.pos.x / 160) + 200
+		local wz = ((v.pos.z / 160) - 200) * -1
 		waypoints = waypoints ..
 			"image_button[" .. wx / 40 - 0.44 .. "," .. wz / 40 - 0.8 ..
 				";0.75,0.75;lottmisc_flag_" .. v.colour .. ".png;flag_" .. v.colour ..
@@ -91,6 +94,15 @@ minetest.register_on_joinplayer(function(player)
 			world_pos = def.pos,
 			number = tonumber("0x" .. def.colour),
 		})
+		--[[if ref == 0 then -- Hacky fix for a MT bug...
+			ref = player:hud_add({
+				hud_elem_type = "waypoint",
+				name = name,
+				text = "n",
+				world_pos = def.pos,
+				number = tonumber("0x" .. def.colour),
+			})
+		end]]
 		waypoints[name].ref = ref
 	end
 	player:set_attribute("lottmisc:waypoints", minetest.serialize(waypoints))

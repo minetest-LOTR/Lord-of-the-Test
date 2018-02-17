@@ -22,6 +22,10 @@ end
 
 -- Basic flowers
 
+register_flower("chrysanthemum_green", {
+	groups = {green = 1, flower = 1, plant = 1}
+})
+
 register_flower("dandelion_white", {
 	groups = {white = 1, flower = 1, plant = 1}
 })
@@ -40,6 +44,10 @@ register_flower("rose", {
 
 register_flower("tulip", {
 	groups = {orange = 1, flower = 1, plant = 1}
+})
+
+register_flower("tulip_black", {
+	groups = {black = 1, flower = 1, plant = 1}
 })
 
 register_flower("violet", {
@@ -81,6 +89,8 @@ register_flower("niphredil", {
 	groups = {white = 1, flower = 1, plant = 1, lorien = 1},
 })
 
+-- General
+
 register_flower("bluebell", {
 	visual_scale = 0.75,
 	groups = {blue = 1, flower = 1, plant = 1},
@@ -104,6 +114,31 @@ register_flower("calla_white", {
 register_flower("encyclia", {
 	groups = {black = 1, flower = 1, plant = 1},
 })
+
+register_flower("lilly", {
+	groups = {white = 1, flower = 1, plant = 1},
+})
+
+register_flower("iris_blue", {
+	groups = {blue = 1, flower = 1, plant = 1},
+})
+
+register_flower("iris_purple", {
+	groups = {purple = 1, flower = 1, plant = 1},
+})
+
+register_flower("amaryllis_pink", {
+	groups = {pink = 1, flower = 1, plant = 1},
+})
+
+register_flower("amaryllis_red", {
+	groups = {red = 1, flower = 1, plant = 1},
+})
+
+register_flower("amaryllis_white", {
+	groups = {white = 1, flower = 1, plant = 1},
+})
+
 
 -- Petuniae
 

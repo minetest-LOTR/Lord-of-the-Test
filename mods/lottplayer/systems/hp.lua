@@ -26,6 +26,16 @@ minetest.hud_replace_builtin("breath",	{
 	offset = { x = 46, y = -110 },
 })
 
+minetest.hud_replace_builtin("health",	{
+	hud_elem_type = "statbar",
+	position = LOTT_HUD_POS,
+	text = "blank.png",
+	number = 0,
+	direction = 0,
+	size = { x=LOTT_HUD_SIZE, y=LOTT_HUD_SIZE },
+	offset = { x = 46, y = -110 },
+})
+
 if not minetest.setting_getbool("enable_damage") then
 	return
 end
@@ -34,10 +44,10 @@ minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 	--player:set_properties({ hp_max = 24 })
 	--player:set_hp(24)
-	
+
 	local maxhp = tonumber(player:get_properties().hp_max)
 	local curhp = tonumber(player:get_hp())
-	
+	minetest.after(0, function()
 	if maxhp > 20 then
 		lott_hp[name.."_hp_bg"] = player:hud_add({
 			hud_elem_type = "statbar",
@@ -59,7 +69,7 @@ minetest.register_on_joinplayer(function(player)
 			direction = 0,
 		})
 	end
-	
+
 	if maxhp <= 20 then
 		lott_hp[name.."_hp"] = player:hud_add({
 			hud_elem_type = "statbar",
@@ -83,7 +93,7 @@ minetest.register_on_joinplayer(function(player)
 				offset = { x = -220, y = -87 },
 				direction = 0,
 			})
-			
+
 			lott_hp[name.."_hp_2"] = player:hud_add({
 				hud_elem_type = "statbar",
 				position = LOTT_HUD_POS,
@@ -105,13 +115,14 @@ minetest.register_on_joinplayer(function(player)
 			})
 		end
 	end
+	end)
 end)
 
 minetest.register_on_player_hpchange(function(player, hp_change)
 	local name = player:get_player_name()
 	local maxhp = tonumber(player:get_properties().hp_max)
 	local curhp = tonumber(player:get_hp() + hp_change)
-	
+
 	if maxhp <= 20 then
 		minetest.after(0.01, function()
 			player:hud_change(lott_hp[name.."_hp"], "number", player:get_hp())
@@ -120,7 +131,7 @@ minetest.register_on_player_hpchange(function(player, hp_change)
 		if player:get_hp() > 20 then
 			if curhp <= 20 then
 				player:hud_remove(lott_hp[name.."_hp_2"])
-			
+
 				minetest.after(0.01, function()
 					player:hud_change(lott_hp[name.."_hp"], "number", player:get_hp())
 				end)
@@ -129,7 +140,7 @@ minetest.register_on_player_hpchange(function(player, hp_change)
 					player:hud_change(lott_hp[name.."_hp_2"], "number", player:get_hp() - 20)
 				end)
 			end
-		
+
 		elseif player:get_hp() <= 20 then
 			if curhp >= 20 then
 				minetest.after(0.01, function()
