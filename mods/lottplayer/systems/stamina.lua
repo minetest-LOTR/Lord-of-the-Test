@@ -47,7 +47,9 @@ minetest.register_on_joinplayer(function(player)
 		offset = { x = -220, y = -110 },
 		direction = 0,
 	})
-
+	if lott_sta[name .. "_sta_bg"] == 0 then
+		minetest.chat_send_all("ID of Stamina BG = 0")
+	end
 	lott_sta[name.."_sta"] = player:hud_add({
 		hud_elem_type = "statbar",
 		position = LOTT_HUD_POS,
