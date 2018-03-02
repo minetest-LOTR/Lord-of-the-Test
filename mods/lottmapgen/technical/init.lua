@@ -31,13 +31,83 @@ function lottmapgen.register_biome(id, table)
 	lottmapgen.biome[id] = table
 end
 
+local grassp2 = 0
+
+local function gp2(value)
+	if grassp2 and grassp2 > value then
+		return
+	end
+	grassp2 = value
+end
+
 function lottmapgen.biomes(noisy_x, noisy_z)
 	local small_x = math.floor(noisy_x / 160)
 	local small_z = math.floor(noisy_z / 160)
+	local dx = math.abs(small_x - (noisy_x / 160))
+	local dz = math.abs(small_z - (noisy_z / 160))
 	small_x = small_x + 200
 	small_z = (small_z - 200) * -1
+	grassp2 = 0
 	if biomes[small_z] and biomes[small_z][small_x] then
-		return biomes[small_z][small_x]
+		local biome = biomes[small_z][small_x]
+		for nz = -1, 1 do
+		for nx = -1, 1 do
+			local b = biomes[small_z + nz][small_x +nx]
+			if b and b ~= biome then
+				if nz == -1 and nx == -1 then
+					if dx < 0.4 and dz > 0.6 then
+						local ndx = math.abs(dx - 1)
+						local dt = (ndx + 0.2) + (dz + 0.2) - 1.4
+						if dt < 0.6 then dt = 0.6 end
+						if dt > 1 then dt = 1 end
+						gp2(math.abs((dt * 160) - 96))
+					end
+				elseif nz == -1 and nx == 0 then
+					if dz > 0.6 then
+						gp2(math.abs((dz * 160) - 96))
+					end
+				elseif nz == -1 and nx == 1 then
+					if dx > 0.6 and dz > 0.6 then
+						local dt = ((dx + 0.2) + (dz + 0.2)) - 1.4
+						if dt < 0.6 then dt = 0.6 end
+						if dt > 1 then dt = 1 end
+						gp2(math.floor(math.abs((dt * 160) - 96)))
+					end
+				elseif nz == 0 and nx == -1 then
+					if dx < 0.4 then
+						gp2(math.abs((dx * 160) - 63))
+					end
+				elseif nz == 0 and nx == 1 then
+					if dx > 0.6 then
+						gp2(math.abs((dx * 160) - 96))
+					end
+				elseif nz == 1 and nx == -1 then
+					if dz < 0.4 and dx < 0.4 then
+						-- I have no idea how this works
+						-- It probably shouldn't, but it does.
+						local dt = (dz - 0.2) + (dx - 0.2) + 0.4
+						if dt < 0 then dt = 0 end
+						if dt > 0.4 then dt = 0.4 end
+						gp2(math.abs((dt * 160) - 63))
+					end
+				elseif nz == 1 and nx == 0 then
+					if dz < 0.4 then
+						gp2(math.abs((dz * 160) - 63))
+					end
+				elseif nz == 1 and nx == 1 then
+					if dx > 0.6 and dz < 0.4 then
+						local ndx = math.abs(dx - 1)
+						local dt = (ndx - 0.2) + (dz - 0.2) + 0.4
+						if dt < 0 then dt = 0 end
+						if dt > 0.4 then dt = 0.4 end
+						gp2(math.abs((dt * 160) - 63))
+					end
+				end
+			end
+		end
+		end
+		--print(grassp2)
+		return biome, grassp2
 	else
 		return 99
 	end
@@ -87,6 +157,24 @@ function lottmapgen.height(noisy_x, noisy_z)
 	end
 end
 
+local n_ter = {
+	offset = 0,
+	scale = 1,
+	spread = {x=256, y=256, z=256},
+	seed = 543213,
+	octaves = 4,
+	persist = 0.7
+}
+
+local n_terflat = {
+	offset = 0,
+	scale = 1,
+	spread = {x=1024, y=1024, z=1024},
+	seed = 543213,
+	octaves = 1,
+	persist = 0.5
+}
+
 local n_x = {
 	offset = 0,
 	scale = 1,
@@ -123,6 +211,24 @@ function lottmapgen.get_biome_at_pos(pos)
 	return nil
 end
 
+function lottmapgen.spawn_player(pos, player, rand)
+	if rand ~= false then
+		pos.x = pos.x + math.random(-100, 100)
+		pos.z = pos.z + math.random(-100, 100)
+	end
+	local nx = math.floor(minetest.get_perlin(n_x):get2d({x=pos.x,y=pos.z}) * 128) + pos.x
+	local nz = math.floor(minetest.get_perlin(n_z):get2d({x=pos.x,y=pos.z}) * 128) + pos.z
+	local height = lottmapgen.height(nx, nz)
+	local t = minetest.get_perlin(n_ter):get2d({x=pos.x,y=pos.z})
+	local tf = minetest.get_perlin(n_terflat):get2d({x=pos.x,y=pos.z})
+	local y = math.floor(((t + 1)) *
+		(height * math.abs(math.abs(tf / (height / 20)) - 1.01)))
+	if height == 0 then
+		y = 0
+	end
+	player:set_pos({x = pos.x, y = y + 2, z = pos.z})
+end
+
 minetest.register_chatcommand("tpb", {
 	params = "<image coords>",
 	func = function(name, param)
@@ -132,7 +238,8 @@ minetest.register_chatcommand("tpb", {
 		z = z * -1
 		z = z + 200
 		z = z * 160
-		minetest.get_player_by_name(name):set_pos({x = x, y = 30, z = z})
+		lottmapgen.spawn_player({x = x, y = 30, z = z},
+			minetest.get_player_by_name(name), false)
 	end,
 })
 
@@ -149,31 +256,34 @@ minetest.register_chatcommand("tp", {
 		param = string.lower(param)
 		local player = minetest.get_player_by_name(name)
 		if param == "lorien" or param == "l" then
-			player:set_pos({x = 475, y = 30, z = -4175})
+			lottmapgen.spawn_player({x = 475, y = 30, z = -4175}, player)
 		elseif param == "lindon" or param == "li" then
-			player:set_pos({x = -25200, y = 30, z = 4700})
+			lottmapgen.spawn_player({x = -25200, y = 30, z = 4700}, player)
 		elseif param == "iron hills" or param == "iron_hills" or param == "ih" then
-			player:set_pos({x = 18400, y = 30, z = 7500})
+			lottmapgen.spawn_player({x = 18400, y = 30, z = 7500}, player)
 		elseif param == "breeland" or param == "bree" or param == "b" then
-			player:set_pos({x = -11680, y = 30, z = 2400})
+			lottmapgen.spawn_player({x = -11680, y = 30, z = 2400}, player)
 		elseif param == "eregion" or param == "e" then
-			player:set_pos({x = -2900, y = 30, z = -700})
+			lottmapgen.spawn_player({x = -2900, y = 30, z = -700}, player)
 		elseif param == "blue mountains" or param == "blue_mountains" or param == "bm" then
-			player:set_pos({x = -24000, y = 60, z = 12000})
+			lottmapgen.spawn_player({x = -24000, y = 60, z = 12000}, player)
 		elseif param == "ettenmoors" or param == "em" or parm == "et" then
-			player:set_pos({x = -4800, y = 30, z = 8000})
+			lottmapgen.spawn_player({x = -4800, y = 30, z = 8000}, player)
 		elseif param == "harad" or param == "h" then
-			player:set_pos({x = 28800, y = 30, z = -28800})
+			lottmapgen.spawn_player({x = 28800, y = 30, z = -28800}, player)
 		elseif param == "mirkwoord" or param == "mw" or param == "m" or param == "mirk" then
-			player:set_pos({x = 6400, y = 30, z = 4800})
+			lottmapgen.spawn_player({x = 6400, y = 30, z = 4800}, player)
 		elseif param == "dunland" or param == "d" then
-			player:set_pos({x = -11200, y = 30, z = -9600})
+			lottmapgen.spawn_player({x = -11200, y = 30, z = -9600}, player)
 		elseif param == "shire" or param == "s" then
-			player:set_pos({x = -15200, y = 30, z = 1600})
+			lottmapgen.spawn_player({x = -15200, y = 30, z = 1600}, player)
+		elseif param == "fangorn" or param == "f" then
+			lottmapgen.spawn_player({x = -800, y = 30, z = -8000}, player)
 		else
 			minetest.chat_send_player(name, "List of places to teleport to:\n" ..
 				minetest.colorize("orange", "lorien    iron hills    breeland    eregion    lindon" ..
-					"    blue mountains    ettenmoors    harad    mirkwood    dunland    shire"))
+					"    blue mountains    ettenmoors    harad    mirkwood    dunland    shire" ..
+					"    fangorn"))
 		end
 	end
 })

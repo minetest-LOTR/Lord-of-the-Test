@@ -10,6 +10,10 @@ local function invcube(tiles)
 	if type(right) == "table" then
 		right = right.name
 	end
+	-- Deal with water
+	if type(tiles[1]) == "table" then
+		top, left, right = tiles[1].name
+	end
 	return minetest.inventorycube(top, left, right)
 end
 
@@ -48,6 +52,5 @@ minetest.register_globalstep(function(dtime)
 				player:set_properties({textures = textures})
 			end
 		end
-		--print("Took " .. minetest.get_us_time() - t  .. " us")
 	end
 end)

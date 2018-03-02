@@ -168,7 +168,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local n_x = x + math.floor(nvals_x[nixz] * border_amp) -- Biome edge noise.
 			local n_z = z + math.floor(nvals_z[nixz] * border_amp)
 			local noise_1 = nvals_dec[nixz]
-			local biome = lottmapgen.biomes(n_x, n_z - 1)
+			local biome, grassp2 = lottmapgen.biomes(n_x, n_z - 1)
 			local height = lottmapgen.height(n_x, n_z - 1)
 			local stone_depth = math.floor(((nvals_ter[nixz] + 1)) *
 				(height * math.abs(math.abs(nvals_terflat[nixz] / (height / 20)) - 1.01)))
@@ -207,6 +207,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						heightmap[nixz] = y
 						if lottmapgen.biome[biome].surface then
 							lottmapgen.biome[biome].surface(data, vi, y)
+							if grassp2 then
+								p2data[vi] = grassp2
+							end
 						end
 						vi = area:index(x, y + 1, z)
 						if lottmapgen.biome[biome].deco then
@@ -269,7 +272,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:update_liquids()
 	vm:write_to_map(data)
 	local chugent = math.ceil((os.clock() - t1) * 1000)
-	print(chugent)
+	--print(chugent)
 	table.insert(times, chugent)
 end)
 
@@ -279,5 +282,5 @@ minetest.register_on_shutdown(function()
 		t = t + v
 	end
 	t = t / #times
-	print("Average Mapgen Time per chunk:   " .. t)
+	print("Number of chunks: " .. #times .. "    Average Mapgen Time per chunk: " .. t)
 end)

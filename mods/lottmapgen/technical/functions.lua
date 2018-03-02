@@ -290,17 +290,46 @@ function lottmapgen.generate_bush(x, y, z, area, data, tree, leaves)
 	end
 end
 
-function lottmapgen.generate_tree(x, y, z, area, data, tree, leaves, height)
+function lottmapgen.generate_tree(x, y, z, area, data, tree, leaves, height, fruit)
 	local c_tree = minetest.get_content_id(tree)
 	local c_leaves = minetest.get_content_id(leaves)
+	local c_fruit = c_leaves
+	if fruit then
+		c_fruit = minetest.get_content_id(fruit)
+	end
+	local c_air = minetest.get_content_id("air")
+	local c_ignore = minetest.get_content_id("ignore")
 	for j = -2, height do
 		if j >= (height - 3) then
 			for i = -2, 2 do
 			for k = -2, 2 do
 				local vil = area:index(x + i, y + j + 1, z + k)
 				if math.random(48) == 2 then
-					data[vil] = c_leaves
+					if data[vil] == c_air or data[vil] ==  c_ignore then
+						data[vil] = c_fruit
+					end
 				elseif math.random(3) ~= 2 then
+					if data[vil] == c_air or data[vil] == c_ignore then
+						data[vil] = c_leaves
+					end
+				end
+			end
+			end
+		end
+		local vit = area:index(x, y + j, z)
+		data[vit] = c_tree
+	end
+end
+
+function lottmapgen.generate_tall_tree(x, y, z, area, data, tree, leaves)
+	local c_tree = minetest.get_content_id(tree)
+	local c_leaves = minetest.get_content_id(leaves)
+	for j = -3, 15 do
+		if j == 7 or j == 11 or j == 15 then
+			for i = -2, 2 do
+			for k = -2, 2 do
+				local vil = area:index(x + i, y + j + math.random(0, 1), z + k)
+				if math.random(5) ~= 2 then
 					data[vil] = c_leaves
 				end
 			end
@@ -694,26 +723,6 @@ function lottmapgen.birch_tree(x, y, z, area, data)
 		data[vit] = c_birchtree
 	end
 end
-
-function lottmapgen.short_birch_tree(x, y, z, area, data)
-	local c_birchtree = minetest.get_content_id("lottplants:birch_trunk")
-	local c_birchleaf = minetest.get_content_id("lottplants:birch_leaves")
-	for j = -2, math.random(5, 7) do
-		if j >= 2 then
-			for i = -2, 2 do
-			for k = -2, 2 do
-				local vil = area:index(x + i, y + j + 1, z + k)
-				if math.random(3) ~= 2 then
-					data[vil] = c_birchleaf
-				end
-			end
-			end
-		end
-		local vit = area:index(x, y + j, z)
-		data[vit] = c_birchtree
-	end
-end
-
 
 function lottmapgen.birch_bush(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("lottplants:birchtree")
@@ -1314,10 +1323,10 @@ function lottmapgen.jungle_tree(x, y, z, area, data, p2data)
 	p2data[vil] = math.random(1,8)
 end
 
-function lottmapgen.big_jungle_tree(x, y, z, area, data, p2data)
+function lottmapgen.great_oak_tree(x, y, z, area, data, p2data)
 	local c_air = minetest.get_content_id("air")
-	local c_jungletree = minetest.get_content_id("default:jungletree")
-	local c_jungleleaf = minetest.get_content_id("lottmapgen:jungle_leaves")
+	local c_jungletree = minetest.get_content_id("lottplants:oak_trunk")
+	local c_jungleleaf = minetest.get_content_id("lottplants:oak_leaves")
 	local h = math.random(20, 27)
 	local lf = math.random(9, 14)
 	for j = -2, h do
@@ -1327,10 +1336,7 @@ function lottmapgen.big_jungle_tree(x, y, z, area, data, p2data)
 				if math.abs(i) + math.abs(k) < 10 then
 					if math.random(5) > 2 then
 						local vil = area:index(x + i, y + j, z + k)
-						if data[vil] == c_air then
-							data[vil] = c_jungleleaf
-							p2data[vil] = math.random(1,8)
-						end
+						data[vil] = c_jungleleaf
 					end
 				end
 			end
@@ -1358,10 +1364,7 @@ function lottmapgen.big_jungle_tree(x, y, z, area, data, p2data)
 				if math.abs(i) + math.abs(k) < 8 then
 					if math.random(5) > 2 then
 						local vil = area:index(x + i, y + j, z + k)
-						if data[vil] == c_air then
-							data[vil] = c_jungleleaf
-							p2data[vil] = math.random(1,8)
-						end
+						data[vil] = c_jungleleaf
 					end
 				end
 			end
@@ -1372,10 +1375,7 @@ function lottmapgen.big_jungle_tree(x, y, z, area, data, p2data)
 				if math.abs(i) + math.abs(k) < 7 then
 					if math.random(5) > 1 then
 						local vil = area:index(x + i, y + j, z + k)
-						if data[vil] == c_air then
-							data[vil] = c_jungleleaf
-							p2data[vil] = math.random(1,8)
-						end
+						data[vil] = c_jungleleaf
 					end
 				end
 			end
@@ -1385,10 +1385,7 @@ function lottmapgen.big_jungle_tree(x, y, z, area, data, p2data)
 				if math.abs(i) + math.abs(k) < 7 then
 					if math.random(5) > 1 then
 						local vil = area:index(x + i, y + j + 1, z + k)
-						if data[vil] == c_air then
-							data[vil] = c_jungleleaf
-							p2data[vil] = math.random(1,8)
-						end
+						data[vil] = c_jungleleaf
 					end
 				end
 			end
@@ -1400,10 +1397,7 @@ function lottmapgen.big_jungle_tree(x, y, z, area, data, p2data)
 				if math.abs(i) + math.abs(k) < 5 then
 					if math.random(5) > 2 then
 						local vil = area:index(x + i, y + j + l, z + k)
-						if data[vil] == c_air then
-							data[vil] = c_jungleleaf
-							p2data[vil] = math.random(1,8)
-						end
+						data[vil] = c_jungleleaf
 					end
 				end
 			end

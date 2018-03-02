@@ -101,55 +101,6 @@ minetest.register_globalstep(function(dtime)
 	end
 end)
 
-local n_ter = {
-	offset = 0,
-	scale = 1,
-	spread = {x=256, y=256, z=256},
-	seed = 543213,
-	octaves = 4,
-	persist = 0.7
-}
-
-local n_terflat = {
-	offset = 0,
-	scale = 1,
-	spread = {x=1024, y=1024, z=1024},
-	seed = 543213,
-	octaves = 1,
-	persist = 0.5
-}
-
-local n_x = {
-	offset = 0,
-	scale = 1,
-	spread = {x=512, y=512, z=512},
-	seed = 9130,
-	octaves = 3,
-	persist = 0.
-}
-
-local n_z = {
-	offset = 0,
-	scale = 1,
-	spread = {x=512, y=512, z=512},
-	seed = -5500,
-	octaves = 3,
-	persist = 0.5
-}
-
-local function spawn_player(pos, player)
-	pos.x = pos.x + math.random(-100, 100)
-	pos.z = pos.z + math.random(-100, 100)
-	local nx = math.floor(minetest.get_perlin(n_x):get2d({x=pos.x,y=pos.z}) * 128) + pos.x
-	local nz = math.floor(minetest.get_perlin(n_z):get2d({x=pos.x,y=pos.z}) * 128) + pos.z
-	local height = lottmapgen.height(nx, nz)
-	local t = minetest.get_perlin(n_ter):get2d({x=pos.x,y=pos.z})
-	local tf = minetest.get_perlin(n_terflat):get2d({x=pos.x,y=pos.z})
-	local y = math.floor(((t + 1)) *
-		(height * math.abs(math.abs(tf / (height / 20)) - 1.01)))
-	player:set_pos({x = pos.x, y = y + 2, z = pos.z})
-end
-
 local cb_d = {-0.35, 0.0, -0.35, 0.35, 1.35, 0.35}
 local cb_h = {-0.25, 0.0, -0.25, 0.25, 1.05, 0.25}
 local cb_m = {-0.4, 0.0, -0.4, 0.4, 1.77, 0.4}
@@ -207,90 +158,6 @@ minetest.register_item(":", {
 		damage_groups = {fleshy=1},
 	}
 })
-
--- Set the player's apperance and charictaristics on join
-minetest.register_on_joinplayer(function(player)
-	player:set_attribute("lottplayer:clouds_changing", "false")
-	local first = false
-	if not player:get_attribute("race") or player:get_attribute("race") == "" then
-		local r = math.random(#lottplayer.races)
-		player:set_attribute("race", r)
-		first = true
-	end
-	local name = player:get_player_name()
-	local race = tonumber(player:get_attribute("race"))
-	lottplayer.player_attached[name] = false
-	lottplayer.textures[name] = {lottplayer.races[race][1] .. ".png",
-		"blank.png", "blank.png", "blank.png"},
-	player:set_properties({
-		physical = true,
-		collides_with_objects = true,
-		mesh = "lottplayer_" .. lottplayer.races[race][2] .. ".b3d",
-		textures = {lottplayer.races[race][1] .. ".png", "blank.png", "blank.png", "blank.png"},
-		visual = "mesh",
-		visual_size = {x = 1, y = 1},
-		hp_max = lottplayer.races[race][3],
-		eye_height = lottplayer.races[race][4],
-		can_zoom = lottplayer.races[race][5],
-		collisionbox = lottplayer.races[race][6],
-		nametag_color = lottplayer.races[race][7],
-	})
-	if first == true then
-		spawn_player(lottplayer.races[race][8], player)
-		player:set_hp(lottplayer.races[race][3])
-	end
-	player:set_local_animation(
-		{x = 0,   y = 79},
-		{x = 168, y = 187},
-		{x = 189, y = 198},
-		{x = 200, y = 219},
-		30
-	)
-	player:hud_set_hotbar_image("gui_hotbar.png")
-	player:hud_set_hotbar_selected_image("gui_hotbar_selected.png")
-end)
---[[
-minetest.after(3, function()
-	for i,v in pairs(races) do
-		minetest.chat_send_all(minetest.colorize(v[7], v[1]))
-	end
-end)]]
-
-minetest.register_on_respawnplayer(function(player)
-	local race = player:get_attribute("race")
-	if not race or race == "" then
-		return false
-	end
-	spawn_player(lottplayer.races[tonumber(race)][8], player)
-	return true
-end)
-
-function minetest.send_join_message(name)
-	if not minetest.is_singleplayer() then
-		minetest.chat_send_all("*** " .. name .. " entered Middle Earth.")
-	end
-end
-
-function minetest.send_leave_message(name, timed_out)
-	if not minetest.is_singleplayer() then
-		minetest.chat_send_all("*** " .. name .. " left Middle Earth.")
-	end
-end
-
-minetest.register_on_chat_message(function(name, message)
-	local player = minetest.get_player_by_name(name)
-	if not player then
-		return
-	end
-	local race = player:get_attribute("race")
-	if not race or race == "" then
-		return false
-	end
-	minetest.chat_send_all("<" .. minetest.colorize(lottplayer.races[tonumber(race)][7], name)
-		.. "> " .. message)
-	minetest.log("action", "CHAT: <" .. name .. "> " .. message)
-	return true
-end)
 
 --minetest.PLAYER_MAX_HP_DEFAULT = 30
 local function change_clouds(player, cloud_def)
@@ -398,6 +265,8 @@ minetest.register_globalstep(function(dtime)
 	end
 end)
 
+dofile(modpath .. "/race_texts.lua")
+dofile(modpath .. "/races.lua")
 dofile(modpath .. "/systems/hp.lua")
 dofile(modpath .. "/systems/hunger.lua")
 dofile(modpath .. "/systems/stamina.lua")
