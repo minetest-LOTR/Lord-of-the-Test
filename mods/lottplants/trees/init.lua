@@ -38,6 +38,31 @@ minetest.register_node("lottplants:oak_leaves", {
 	groups = {leaves = 1, plant = 1},
 })
 
+-- Alder
+
+minetest.register_node("lottplants:alder_trunk", {
+	description = "Alder Trunk",
+	tiles = {"lottplants_alder_trunk_top.png", "lottplants_alder_trunk_top.png", "lottplants_alder_trunk.png"},
+	paramtype2 = "facedir",
+	groups = {tree = 1, wood = 1, plant = 1, axe = 1},
+})
+
+minetest.register_node("lottplants:alder_planks", {
+	description = "Alder Planks",
+	tiles = {"lottplants_alder_planks.png"},
+	paramtype2 = "facedir",
+	groups = {wood = 1, axe = 1},
+})
+
+minetest.register_node("lottplants:alder_leaves", {
+	description = "Alder Leaves",
+	drawtype = "allfaces_optional",
+	tiles = {"lottplants_alder_leaves.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {leaves = 1, plant = 1},
+})
+
 -- Apple
 
 minetest.register_node("lottplants:apple_trunk", {
@@ -220,14 +245,14 @@ minetest.register_node("lottplants:maple_trunk", {
 	paramtype2 = "facedir",
 	groups = {tree = 1, wood = 1, plant = 1, axe = 1},
 })
---[[
+
 minetest.register_node("lottplants:maple_planks", {
 	description = "Maple Planks",
 	tiles = {"lottplants_maple_planks.png"},
 	paramtype2 = "facedir",
 	groups = {wood = 1, axe = 1},
 })
-]]
+
 minetest.register_node("lottplants:maple_leaves", {
 	description = "Maple Leaves",
 	drawtype = "allfaces_optional",

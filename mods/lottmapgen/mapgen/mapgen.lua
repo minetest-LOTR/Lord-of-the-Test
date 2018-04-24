@@ -54,6 +54,16 @@ local np_cave = {
 	eased = true,
 }
 
+local np_rav = {
+	offset = 0,
+	scale = 1,
+	spread = {x=30, y=160, z=140},
+	octaves = 3,
+	seed = 94927,
+	persist = 0.7,
+	flags = "eased",
+}
+
 -- Stuff
 local modpath = minetest.get_modpath("lottmapgen")
 local nobj_temp = nil
@@ -62,23 +72,17 @@ local nobj_ter = nil
 local nobj_terflat = nil
 local nobj_dec = nil
 local nobj_cave = nil
-local nbuf_temp = {}
-local nbuf_humid = {}
-local nbuf_ter = {}
-local nbuf_terflat = {}
-local nbuf_dec = {}
-local nbuf_cave = {}
-local dbuf = {}
-local p2dbuf = {}
+local nobj_rav = nil
+local nvals_x = {}
+local nvals_z = {}
+local nvals_ter = {}
+local nvals_terflat = {}
+local nvals_dec = {}
+local nvals_cave = {}
+local nvals_rav = {}
+local data = {}
+local p2data = {}
 local heightmap = {}
-
---[[
-dofile(minetest.get_modpath("lottmapgen").."/nodes.lua")
-dofile(minetest.get_modpath("lottmapgen").."/functions.lua")
-dofile(minetest.get_modpath("lottmapgen").."/biomes.lua")
-dofile(minetest.get_modpath("lottmapgen").."/schematics.lua")
-dofile(minetest.get_modpath("lottmapgen").."/schems.lua")
-]]--
 
 local times = {}
 
@@ -106,8 +110,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 
 	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
-	local data = vm:get_data(dbuf)
-	local p2data = vm:get_param2_data(p2dbuf)
+	vm:get_data(data)
+	vm:get_param2_data(p2data)
 
 	local c_air = minetest.get_content_id("air")
 	local c_tmp = minetest.get_content_id("lottmapgen:tmp") -- For caves.
@@ -133,18 +137,21 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	nobj_terflat = nobj_terflat or minetest.get_perlin_map(np_terflat, chulens)
 	nobj_dec = nobj_dec or minetest.get_perlin_map(np_dec, chulens)
 	nobj_cave = nobj_cave or minetest.get_perlin_map(np_cave, chulens)
+	nobj_rav = nobj_rav or minetest.get_perlin_map(np_rav, chulens)
 
-	local nvals_x = nobj_temp:get2dMap_flat(minposxz, nbuf_temp)
-	local nvals_z = nobj_humid:get2dMap_flat(minposxz, nbuf_humid)
-	local nvals_ter = nobj_ter:get2dMap_flat(minposxz, nbuf_ter)
-	local nvals_terflat = nobj_terflat:get2dMap_flat(minposxz, nbuf_terflat)
-	local nvals_dec = nobj_dec:get2dMap_flat(minposxz, nbuf_dec)
-	local nvals_cave = nobj_cave:get3dMap_flat(minposxyz, nbuf_cave)
+	nobj_temp:get2dMap_flat(minposxz, nvals_x)
+	nobj_humid:get2dMap_flat(minposxz, nvals_z)
+	nobj_ter:get2dMap_flat(minposxz, nvals_ter)
+	nobj_terflat:get2dMap_flat(minposxz, nvals_terflat)
+	nobj_dec:get2dMap_flat(minposxz, nvals_dec)
+	nobj_cave:get3dMap_flat(minposxyz, nvals_cave)
+	nobj_rav:get3dMap_flat(minposxyz, nvals_rav)
 
 	local offset = math.random(5,20)
 	local nixyz = 1
 	local nixz = 1
 	local schems = {}
+	local h
 	heightmap = {}
 
 	for z = z0, z1 do
@@ -158,6 +165,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					cave_d = y/100 + 1.1
 				end
 				if nvals_cave[nixyz] > cave_d then
+					data[vi] = c_tmp
+				elseif nvals_rav[nixyz] > 1.35 then
 					data[vi] = c_tmp
 				end
 				vi = vi + 1
@@ -211,8 +220,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 								p2data[vi] = grassp2
 							end
 						end
-						vi = area:index(x, y + 1, z)
 						if lottmapgen.biome[biome].deco then
+							vi = area:index(x, y + 1, z)
 							lottmapgen.biome[biome].deco(data, p2data, vi, area,
 								x, y + 1, z, noise_1, nvals_x[nixz], schems)
 						end
@@ -251,6 +260,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						if biome and lottmapgen.biome[biome] then
 							if lottmapgen.biome[biome].water then
 								data[vi] = lottmapgen.biome[biome].water
+							end
+							if y == 0 and lottmapgen.biome[biome].water_surface then
+								vi = area:index(x, y + 1, z)
+								lottmapgen.biome[biome].water_surface(data, p2data, vi, area,
+									x, y + 1, z, noise_1)
 							end
 						end
 					end

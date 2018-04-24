@@ -91,21 +91,21 @@ minetest.register_node("lottitems:obsidian", {
 minetest.register_node("lottitems:sand", {
 	description = "Sand",
 	tiles = {"lottitems_sand.png"},
-	groups = {sand = 1, shovel = 1},
+	groups = {sand = 1, shovel = 1, falling_node = 1, hand = 3},
 	is_ground_content = true,
 })
 
 minetest.register_node("lottitems:desert_sand", {
 	description = "Desert Sand",
 	tiles = {"lottitems_desert_sand.png"},
-	groups = {sand = 1, shovel = 1},
+	groups = {sand = 1, shovel = 1, falling_node = 1, hand = 3},
 	is_ground_content = true,
 })
 
 minetest.register_node("lottitems:silver_sand", {
 	description = "Silver Sand",
 	tiles = {"lottitems_silver_sand.png"},
-	groups = {sand = 1, shovel = 1},
+	groups = {sand = 1, shovel = 1, falling_node = 1, hand = 3},
 	is_ground_content = true,
 })
 
@@ -113,14 +113,14 @@ minetest.register_node("lottitems:silver_sand", {
 minetest.register_node("lottitems:gravel", {
 	description = "Gravel",
 	tiles = {"lottitems_gravel.png"},
-	groups = {gravel = 1, shovel = 2},
+	groups = {gravel = 1, shovel = 2, falling_node = 1, hand = 4},
 	is_ground_content = true,
 })
 
 minetest.register_node("lottitems:dark_gravel", {
 	description = "Dark Gravel",
 	tiles = {"lottitems_dark_gravel.png"},
-	groups = {gravel = 1, shovel = 2},
+	groups = {gravel = 1, shovel = 2, falling_node = 1, hand = 4},
 	is_ground_content = true,
 })
 
@@ -128,7 +128,7 @@ minetest.register_node("lottitems:dark_gravel", {
 minetest.register_node("lottitems:dirt", {
 	description = "Dirt",
 	tiles = {"lottitems_dirt.png"},
-	groups = {dirt = 1, shovel = 1},
+	groups = {dirt = 1, shovel = 1, hand = 3},
 	is_ground_content = true,
 })
 
@@ -137,7 +137,7 @@ minetest.register_node("lottitems:dirt", {
 minetest.register_node("lottitems:clay", {
 	description = "Clay block",
 	tiles = {"lottitems_clay.png"},
-	groups = {clay = 1, shovel = 1},
+	groups = {clay = 1, shovel = 1, hand = 3},
 	is_ground_content = true,
 })
 
@@ -146,7 +146,7 @@ minetest.register_node("lottitems:clay", {
 minetest.register_node("lottitems:snow", {
 	description = "Snow",
 	tiles = {"lottitems_snow.png"},
-	groups = {snow = 1, cold = 1, shovel = 1, slippery = 1},
+	groups = {snow = 1, cold = 1, shovel = 1, hand = 2, slippery = 1, falling_node = 1},
 	is_ground_content = true,
 })
 
@@ -162,7 +162,7 @@ minetest.register_node("lottitems:snow_layer", {
 	paramtype = "light",
 	paramtype2 = "leveled",
 	leveled = 16,
-	groups = {snow = 1, cold = 1, shovel = 1, slippery = 1},
+	groups = {snow = 1, cold = 1, shovel = 1, hand = 3, slippery = 1, falling_node = 1},
 	is_ground_content = true,
 })
 

@@ -267,7 +267,7 @@ minetest.register_chatcommand("tp", {
 			lottmapgen.spawn_player({x = -2900, y = 30, z = -700}, player)
 		elseif param == "blue mountains" or param == "blue_mountains" or param == "bm" then
 			lottmapgen.spawn_player({x = -24000, y = 60, z = 12000}, player)
-		elseif param == "ettenmoors" or param == "em" or parm == "et" then
+		elseif param == "ettenmoors" or param == "em" or param == "et" then
 			lottmapgen.spawn_player({x = -4800, y = 30, z = 8000}, player)
 		elseif param == "harad" or param == "h" then
 			lottmapgen.spawn_player({x = 28800, y = 30, z = -28800}, player)
@@ -279,11 +279,15 @@ minetest.register_chatcommand("tp", {
 			lottmapgen.spawn_player({x = -15200, y = 30, z = 1600}, player)
 		elseif param == "fangorn" or param == "f" then
 			lottmapgen.spawn_player({x = -800, y = 30, z = -8000}, player)
+		elseif param == "rohan" or param == "r" then
+			lottmapgen.spawn_player({x = 960, y = 30, z = -11200}, player)
+		elseif param == "angmar" or param == "a" then
+			lottmapgen.spawn_player({x = -5600, y = 30, z = 10400}, player)
 		else
 			minetest.chat_send_player(name, "List of places to teleport to:\n" ..
 				minetest.colorize("orange", "lorien    iron hills    breeland    eregion    lindon" ..
 					"    blue mountains    ettenmoors    harad    mirkwood    dunland    shire" ..
-					"    fangorn"))
+					"    fangorn    angmar    rohan"))
 		end
 	end
 })

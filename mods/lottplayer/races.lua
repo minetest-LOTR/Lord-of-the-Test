@@ -143,6 +143,8 @@ end)
 -- Set the player's apperance and charictaristics on join
 minetest.register_on_joinplayer(function(player)
 	player:set_attribute("lottplayer:clouds_changing", "false")
+	player:hud_set_hotbar_image("gui_hotbar.png")
+	player:hud_set_hotbar_selected_image("gui_hotbar_selected.png")
 	local race = player:get_attribute("race")
 	if not race or race == "" then
 		player:set_properties({

@@ -142,20 +142,82 @@ lottmapgen.register_biome(2, {
 	surface = function(data, vi)
 		data[vi] = c_snowy_grass
 	end,
-	deco = function(data, p2data, vi, area, x, y, z)
-		if math.random(PLANT3) == 2 then
-			data[vi] = c_dryshrub
-			p2data[vi] = 42
-		elseif math.random(TREE10) == 2 then
-			lottmapgen.beech_tree(x, y, z, area, data)
-		elseif math.random(TREE4) == 3 then
-			lottmapgen.pine_tree(x, y, z, area, data)
-		elseif math.random(TREE3) == 4 then
-			lottmapgen.fir_tree(x, y, z, area, data)
+	deco = function(data, p2data, vi, area, x, y, z, noise, noise2)
+		if noise2 < -0.15 then
+			if noise > 0.7 then
+				if math.random(TREE7) == 1 then
+					lottmapgen.pine_tree(x, y, z, area, data, true)
+				elseif math.random(TREE4) == 2 then
+					lottmapgen.rock(x, y, z, area, data, nil, true)
+				elseif math.random(PLANT7) == 3 then
+					lottmapgen.pine_grass(data, vi, p2data)
+				elseif data[vi] == c_air then
+					data[vi] = c_snow
+				end
+			else
+				if math.random(TREE3) == 3 then
+					lottmapgen.pine_tree(x, y, z, area, data, true)
+				elseif math.random(PLANT5) == 4 then
+					lottmapgen.pine_grass(data, vi, p2data)
+				elseif math.random(TREE8) == 5 then
+					lottmapgen.generate_bush(x, y, z, area, data,
+						"lottplants:pine_trunk",
+						"lottplants:pine_needles", true)
+				elseif math.random(TREE10) == 6 then
+					lottmapgen.rock(x, y, z, area, data, nil, true)
+				elseif data[vi] == c_air then
+					data[vi] = c_snow
+				end
+			end
+		elseif noise2 < 0.5 then
+			if math.random(TREE6) == 2 then
+				lottmapgen.generate_bush(x, y, z, area, data,
+					"lottplants:pine_trunk",
+					"lottplants:pine_needles", true)
+			elseif math.random(TREE9) == 3 then
+				lottmapgen.pine_tree(x, y, z, area, data, true)
+			elseif math.random(PLANT9) == 4 then
+				lottmapgen.pine_grass(data, vi, p2data)
+			elseif math.random(TREE8) == 5 then
+				lottmapgen.rock(x, y, z, area, data, nil, true)
+			elseif data[vi] == c_air then
+				data[vi] = c_snow
+			end
+		else
+			if math.random(TREE7) == 1 then
+				lottmapgen.rock(x, y, z, area, data, nil, true)
+			elseif math.random(TREE10) == 2 then
+				lottmapgen.generate_bush(x, y, z, area, data,
+					"lottplants:pine_trunk",
+					"lottplants:pine_needles", true)
+			elseif data[vi] == c_air then
+				data[vi] = c_snow
+			end
+		end
+	end,
+	water_surface = function(data, p2data, vi, area, x, y, z, noise)
+		noise = noise / 2 - 0.1
+		local viu = area:index(x, y - 1, z)
+		if noise < -0.3 then
+			-- Do nothing, water
+		elseif noise < -0.2 then
+			if math.random(5) == 1 then
+				data[viu] = c_ice
+			end
+		elseif noise < -0.1 then
+			if math.random(3) == 1 then
+				data[viu] = c_ice
+			end
+		elseif noise < 0 then
+			if math.random(2) == 1 then
+				data[viu] = c_ice
+			end
+		else
+			data[viu] = c_ice
 		end
 	end,
 	soil = c_dirt,
-	soil_depth = 2,
+	soil_depth = 1,
 	beach = c_gravel,
 })
 
@@ -210,6 +272,8 @@ lottmapgen.register_biome(3, {
 					lottmapgen.pine_tree(x, y, z, area, data, false)
 				elseif math.random(TREE5) == 4 then
 					lottmapgen.beech_tree(x, y, z, area, data)
+				elseif math.random(PLANT5) == 5 then
+					lottmapgen.pine_grass(data, vi, p2data)
 				end
 			end
 		end
@@ -234,34 +298,49 @@ lottmapgen.register_biome(4, {
 				end
 			else
 				if math.random(TREE3) == 2 then
-					lottmapgen.default_tree(x, y, z, area, data)
+					lottmapgen.generate_tree(x, y, z, area, data,
+						"lottplants:oak_trunk",
+						"lottplants:oak_leaves",
+						math.random(4, 5))
 				elseif math.random(TREE5) == 3 then
-					lottmapgen.oak_tree(x, y, z, area, data)
+					lottmapgen.generate_tall_tree(x, y, z, area, data,
+						"lottplants:oak_trunk",
+						"lottplants:oak_leaves")
 				elseif math.random(TREE7) == 4 then
-					lottmapgen.apple_tree(x, y, z, area, data)
+					lottmapgen.generate_tree(x, y, z, area, data,
+						"lottplants:oak_trunk",
+						"lottplants:oak_leaves",
+						math.random(4, 5),
+						"lottplants:apple")
 				elseif math.random(PLANT4) == 5 then
 					lottmapgen.grass(data, vi, p2data)
 				elseif math.random(PLANT8) == 6 then
 					lottmapgen.basic_flowers(data, vi, p2data)
 				end
 			end
-		elseif noise2 < -0.4 then
-			if math.random(TREE4) == 1 then
+		elseif noise2 < -0.6 then
+			if math.random(TREE3) == 1 then
 				lottmapgen.pine_tree(x, y, z, area, data, false)
 			elseif math.random(TREE6) == 2 then
-				lottmapgen.pine_bush(x, y, z, area, data)
+				lottmapgen.generate_bush(x, y, z, area, data,
+					"lottplants:pine_trunk",
+					"lottplants:pine_needles")
 			elseif math.random(PLANT5) == 5 then
 				lottmapgen.grass(data, vi, p2data)
+			elseif math.random(PLANT4) == 6 then
+				lottmapgen.pine_grass(data, vi, p2data)
 			end
 		else
 			if math.random(PLANT4) == 2 then
 				lottmapgen.grass(data, vi, p2data)
 			elseif math.random(TREE10) == 3 then
-				lottmapgen.default_bush(x, y, z, area, data)
+				lottmapgen.generate_bush(x, y, z, area, data,
+					"lottplants:oak_trunk",
+					"lottplants:oak_leaves")
 			end
 			if noise > 0.6 then
 				if math.random(PLANT9) == 2 then
-					lottmapgen.farming_plants(data, vi, p2data)
+					--lottmapgen.farming_plants(data, vi, p2data)
 				end
 			elseif noise < -0.65 then
 				if math.random(PLANT5) == 5 then
@@ -981,6 +1060,14 @@ lottmapgen.register_biome(15, {
 		end
 	end,
 	beach = c_silsand,
+	water_surface = function(data, p2data, vi, area, x, y, z, noise)
+		noise = math.abs(noise / 2) - 0.1
+		if noise > 0.075 then
+			if math.random(PLANT5) == 2 then
+				lottmapgen.waterlily(data, vi, p2data, math.random(4))
+			end
+		end
+	end,
 	soil = c_dirt,
 	soil_depth = 2,
 	clouds = {
@@ -1055,16 +1142,6 @@ lottmapgen.register_biome(16, {
 			lottmapgen.basic_flowers(data, vi, p2data)
 		elseif math.random(PLANT10) == 1 then
 			data[vi] = c_black_tulip
-		--elseif math.random(TREE5) == 4 then
-		--	lottmapgen.plum_tree(x, y, z, area, data)
-		--elseif math.random(TREE7) == 9 then
-		--	--lottmapgen.elm_tree(x, y, z, area, data)
-		--elseif math.random(TREE6) == 11 then
-		--	lottmapgen.oak_tree(x, y, z, area, data)
-		--elseif math.random(PLANT4) == 7 then
-		--	lottmapgen.farming_plants(data, vi, p2data)
-		--elseif math.random(PLANT9) == 8 then
-		--	data[vi] = c_melon
 		end
 	end,
 	soil = c_dirt,
@@ -1088,8 +1165,62 @@ lottmapgen.register_biome(17, {
 	surface = function(data, vi)
 		data[vi] = c_rohan_grass
 	end,
-	deco = function(data, p2data, vi, area, x, y, z)
-		if math.random(TREE7) == 2 then
+	deco = function(data, p2data, vi, area, x, y, z, noise, noise2)
+		if noise2 > 0.2 then
+			if math.random(PLANT2) == 2 then
+				lottmapgen.dry_grass(data, vi, p2data)
+			elseif noise > -0.3 then
+				if math.random(PLANT2) == 3 then
+					lottmapgen.tall_dry_grass(x, y, z, area, data, p2data)
+				end
+			end
+		elseif noise2 > -0.4 then
+			if math.random(PLANT4) == 2 then
+				lottmapgen.dry_grass(data, vi, p2data)
+			elseif math.random(PLANT6) == 3 then
+				lottmapgen.grass(data, vi, p2data)
+			elseif noise < -0.3 and noise > -0.4 then
+				if math.random(TREE4) == 4 then
+					lottmapgen.generate_tall_tree(x, y, z, area, data,
+						"lottplants:poplar_trunk", "lottplants:poplar_leaves")
+				end
+			end
+		else
+			if math.random(PLANT4) == 4 then
+				lottmapgen.grass(data, vi, p2data)
+			elseif math.random(PLANT9) == 5 then
+				lottmapgen.basic_flowers(data, vi, p2data)
+			elseif math.random(PLANT7) == 6 then
+				lottmapgen.dry_grass(data, vi, p2data)
+			elseif noise > 0.55 then
+				if math.random(TREE4) == 2 then
+					lottmapgen.generate_tree(x, y, z, area, data,
+						"lottplants:oak_trunk",
+						"lottplants:oak_leaves", math.random(4, 5))
+				elseif math.random(TREE9) == 3 then
+					lottmapgen.generate_log(x, y, z, area, data, p2data,
+						"lottplants:oak_trunk", math.random(2, 3))
+				end
+			elseif noise < -0.4 then
+				if math.random(TREE3) == 3 then
+					lottmapgen.generate_tree(x, y, z, area, data,
+						"lottplants:alder_trunk",
+						"lottplants:alder_leaves", math.random(5, 6))
+				elseif math.random(TREE5) == 4 then
+					lottmapgen.generate_bush(x, y, z, area, data,
+						"lottplants:alder_trunk",
+						"lottplants:alder_leaves")
+				elseif math.random(TREE7) == 2 then
+					lottmapgen.generate_tree(x, y, z, area, data,
+						"lottplants:oak_trunk",
+						"lottplants:oak_leaves", math.random(4, 5))
+				elseif math.random(TREE9) == 5 then
+					lottmapgen.generate_log(x, y, z, area, data, p2data,
+						"lottplants:alder_trunk", math.random(2, 4))
+				end
+			end
+		end
+		--[[if math.random(TREE7) == 2 then
 			lottmapgen.default_tree(x, y, z, area, data)
 		elseif math.random(TREE7) == 3 then
 			lottmapgen.apple_tree(x, y, z, area, data)
@@ -1108,7 +1239,7 @@ lottmapgen.register_biome(17, {
 			p2data[vi] = 2
 		elseif math.random(PLANT13) == 13 then
 			lottmapgen.buildings.enqueue_building("Rohan Fort", {x=x, y=y, z=z})
-		end
+		end]]
 	end,
 	soil = c_dirt,
 	soil_depth = 1,
@@ -1357,6 +1488,14 @@ lottmapgen.register_biome(21, {
 	soil = c_dirt,
 	soil_depth = 2,
 	beach = c_dirt,
+	water_surface = function(data, p2data, vi, area, x, y, z, noise)
+		noise = math.abs(noise / 2) - 0.1
+		if noise > 0.05 then
+			if math.random(PLANT5) == 2 then
+				lottmapgen.waterlily(data, vi, p2data, math.random(2))
+			end
+		end
+	end,
 	clouds = {
 		density = 0.55,
 		thickness = 50,
@@ -1466,7 +1605,7 @@ lottmapgen.register_biome(23, {
 				lottmapgen.cactus(x, y, z, area, data)
 			elseif math.random(PLANT11) == 6 then
 				lottmapgen.desert_flowers(data, vi, p2data)
-			elseif noise > 0.6 then
+			elseif noise > 0.75 then
 				if math.random(PLANT8) == 3 then
 					lottmapgen.desert_flowers(data, vi, p2data)
 				end

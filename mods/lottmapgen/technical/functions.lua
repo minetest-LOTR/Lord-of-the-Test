@@ -7,7 +7,7 @@ function lottmapgen.grass(data, vi, p2data)
 end
 
 function lottmapgen.dry_grass(data, vi, p2data)
-	local c_grass = minetest.get_content_id("default:dry_grass_" ..math.random(5))
+	local c_grass = minetest.get_content_id("lottplants:dry_grass_" ..math.random(5))
 	data[vi] = c_grass
 	p2data[vi] = 40
 end
@@ -27,6 +27,15 @@ end
 function lottmapgen.tall_grass(x, y, z, area, data, p2data)
 	local c_tallgrassb = minetest.get_content_id("lottplants:tall_grass_bottom")
 	local c_tallgrasst = minetest.get_content_id("lottplants:tall_grass_" .. math.random(5))
+	local vi = area:index(x, y, z)
+	data[vi] = c_tallgrassb
+	vi = area:index(x, y + 1, z)
+	data[vi] = c_tallgrasst
+end
+
+function lottmapgen.tall_dry_grass(x, y, z, area, data, p2data)
+	local c_tallgrassb = minetest.get_content_id("lottplants:tall_dry_grass_bottom")
+	local c_tallgrasst = minetest.get_content_id("lottplants:tall_dry_grass_" .. math.random(5))
 	local vi = area:index(x, y, z)
 	data[vi] = c_tallgrassb
 	vi = area:index(x, y + 1, z)
@@ -237,6 +246,12 @@ function lottmapgen.shire_flowers(data, vi, p2data)
 	end
 end
 
+function lottmapgen.waterlily(data, vi, p2data, n)
+	local p2 = math.random(0, 3)
+	local c_waterlily = minetest.get_content_id("lottplants:waterlily_" .. n)
+	data[vi] = c_waterlily
+	p2data[vi] = p2
+end
 
 function lottmapgen.generate_log(x, y, z, area, data, p2data, tree, length)
 	local c_tree = minetest.get_content_id(tree)
@@ -265,19 +280,31 @@ function lottmapgen.generate_log(x, y, z, area, data, p2data, tree, length)
 	end
 end
 
-function lottmapgen.generate_bush(x, y, z, area, data, tree, leaves)
+function lottmapgen.generate_bush(x, y, z, area, data, tree, leaves, snow)
 	local c_tree = minetest.get_content_id(tree)
 	local c_leaves = minetest.get_content_id(leaves)
+	local c_air = minetest.get_content_id("air")
+	local c_snow = minetest.get_content_id("lottitems:snow_layer")
 	for j = -1, 0 do
 		if j == 0 then
 			for i = -1, 1 do
 			for k = -1, 1 do
-					if math.abs(i) + math.abs(k) <= 1 then
-						local vil = area:index(x + i, y + j + 1, z + k)
-						data[vil] = c_leaves
-					end
-					local vil = area:index(x + i, y + j, z + k)
+				if math.abs(i) + math.abs(k) <= 1 then
+					local vil = area:index(x + i, y + j + 1, z + k)
 					data[vil] = c_leaves
+					if snow then
+						vil = area:index(x + i, y + j + 2, z + k)
+						data[vil] = c_snow
+					end
+				end
+				local vil = area:index(x + i, y + j, z + k)
+				data[vil] = c_leaves
+				if snow then
+					vil = area:index(x + i, y + j + 1, z + k)
+					if data[vil] == c_air then
+						data[vil] = c_snow
+					end
+				end
 			end
 			end
 		end
@@ -287,6 +314,13 @@ function lottmapgen.generate_bush(x, y, z, area, data, tree, leaves)
 	if math.random(4) ~= 1 then
 		local vi = area:index(x, y + 2, z)
 		data[vi] = c_leaves
+		if snow then
+			vi = area:index(x, y + 3, z)
+			data[vi] = c_snow
+		end
+	elseif snow then
+		local vi = area:index(x, y + 2, z)
+		data[vi] = c_snow
 	end
 end
 
@@ -1459,7 +1493,8 @@ function lottmapgen.rock(x, y, z, area, data, stone, snow)
 	for i = -2, 2 do
 	for k = -2, 2 do
 	for j = 0, r do
-		if math.random(math.abs(i) + j + math.abs(k)) <= 1 then
+		if i + k + j == 0 or
+			math.random(math.abs(i) + j + math.abs(k)) <= 1 then
 			local viu = area:index(x + i, y + j - 1, z + k)
 			if data[viu] ~= c_air and data[viu] ~= c_snow then
 				local vi = area:index(x + i, y + j, z + k)

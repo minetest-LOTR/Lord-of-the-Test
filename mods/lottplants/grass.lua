@@ -13,7 +13,7 @@ local function register_grass(name, heights, def)
 			type = "fixed",
 			fixed = {-0.5, -0.5, -0.5, 0.5, -0.3125, 0.5},
 		},
-		groups = def.groups or {green = 1, grass = 1, plant = 1}
+		groups = def.groups or {green = 1, grass = 1, hand = 2, plant = 1}
 	})
 
 	if def.groups then
@@ -35,7 +35,7 @@ local function register_grass(name, heights, def)
 				type = "fixed",
 				fixed = {-0.5, -0.5, -0.5, 0.5, -0.3125, 0.5},
 			},
-			groups = def.groups or {green = 1, grass = 1, plant = 1, hidden = 1}
+			groups = def.groups or {green = 1, grass = 1, plant = 1, hand = 2, hidden = 1}
 		})
 	end
 end
@@ -44,10 +44,14 @@ end
 
 register_grass("grass", 5, {})
 
+-- Dry Grass
+
+register_grass("dry_grass", 5, {})
+
 -- Lorien Grass
 
 register_grass("lorien_grass", 3, {
-	groups = {green = 1, grass = 1, plant = 1, lorien = 1}
+	groups = {green = 1, grass = 1, plant = 1, hand = 2, lorien = 1}
 })
 
 -- Pine Grass
@@ -68,7 +72,7 @@ minetest.register_node("lottplants:mountain_grass", {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, -0.3125, 0.5},
 	},
-	groups = {green = 1, grass = 1, plant = 1}
+	groups = {green = 1, grass = 1, hand = 2, plant = 1}
 })
 
 -- Mountain Shrub
@@ -104,52 +108,61 @@ minetest.register_node("lottplants:dry_shrub", {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, -0.3125, 0.5},
 	},
-	groups = {brown = 1, grass = 1, plant = 1}
+	groups = {brown = 1, grass = 1, plant = 1, hand = 2}
 })
 
 -- Tall Grass
-minetest.register_node("lottplants:tall_grass_bottom", {
-	description = "Tall Grass",
-	drawtype = "plantlike",
-	visual_scale = 1.15,
-	tiles = {"lottplants_tall_grass_bottom.png"},
-	inventory_image = "lottplants_tall_grass_bottom.png",
-	paramtype = "light",
-	paramtype2 = "meshoptions",
-	buildable_to = true,
-	walkable = false,
-	groups = {green = 1, grass = 1, plant = 1},
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, 0.7, 0.5},
-	},
-	on_construct = function(pos)
-		local posa = {x = pos.x, y = pos.y + 1, z = pos.z}
-		minetest.set_node(posa, {name = "lottplants:tall_grass_" .. math.random(1, 5)})
-	end,
-	on_destruct = function(pos)
-		local posa = {x = pos.x, y = pos.y + 1, z = pos.z}
-		local name = minetest.get_node(posa).name
-		if name:sub(1, 22) == "lottplants:tall_grass_" then
-			minetest.remove_node(posa)
-		end
-	end,
-})
+local tall_grasses = {
+	"grass",
+	"dry_grass",
+}
 
-for i = 1, 5 do
-	minetest.register_node("lottplants:tall_grass_" .. i, {
-		description = "Tall Grass Top",
+for _, name in pairs(tall_grasses) do
+	minetest.register_node("lottplants:tall_" .. name .. "_bottom", {
+		description = "Tall " .. lott.str_to_desc(name),
 		drawtype = "plantlike",
 		visual_scale = 1.15,
-		tiles = {"lottplants_tall_grass_" .. i .. ".png"},
-		inventory_image = "lottplants_tall_grass_" .. i .. ".png",
-		wield_image = "lottplants_tall_grass_" .. i .. ".png",
+		tiles = {"lottplants_tall_" .. name .. "_bottom.png"},
+		inventory_image = "lottplants_tall_" .. name .. "_bottom.png",
 		paramtype = "light",
 		paramtype2 = "meshoptions",
 		buildable_to = true,
 		walkable = false,
-		pointable = false,
-		groups = {green = 1, grass = 1, plant = 1},
-		drop = "lottplants:tall_grass_bottom",
+		groups = {green = 1, grass = 1, plant = 1, hand = 2},
+		selection_box = {
+			type = "fixed",
+			fixed = {-0.5, -0.5, -0.5, 0.5, 0.7, 0.5},
+		},
+		on_construct = function(pos)
+			local posa = {x = pos.x, y = pos.y + 1, z = pos.z}
+			minetest.set_node(posa, {name = "lottplants:tall_" .. name .. "_" .. math.random(1, 5)})
+		end,
+		on_destruct = function(pos)
+			local posa = {x = pos.x, y = pos.y + 1, z = pos.z}
+			local nodename = minetest.get_node(posa).name
+			local num = "lottplants:tall_" .. name .. "_"
+			if nodename:sub(1, #num) == "lottplants:tall_" .. name .. "_" then
+				minetest.remove_node(posa)
+			end
+		end,
 	})
+
+	for i = 1, 5 do
+		minetest.register_node("lottplants:tall_" .. name .. "_" .. i, {
+			description = "Tall " .. lott.str_to_desc(name) .. " Top",
+			drawtype = "plantlike",
+			visual_scale = 1.15,
+			tiles = {"lottplants_tall_" .. name .. "_" .. i .. ".png"},
+			inventory_image = "lottplants_tall_" .. name .. "_" .. i .. ".png",
+			wield_image = "lottplants_tall_" .. name .. "_" .. i .. ".png",
+			paramtype = "light",
+			paramtype2 = "meshoptions",
+			buildable_to = true,
+			walkable = false,
+			pointable = false,
+			groups = {green = 1, grass = 1, plant = 1},
+			drop = "lottplants:tall_" .. name .. "_bottom",
+		})
+	end
 end
+

@@ -191,7 +191,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 end)
 
 if minetest.setting_getbool("creative_mode") then
-	local digtime = 0.5
+	local digtime = 0.15
 	minetest.register_item(":", {
 		type = "none",
 		wield_image = "wieldhand.png",
@@ -201,12 +201,7 @@ if minetest.setting_getbool("creative_mode") then
 			full_punch_interval = 0.5,
 			max_drop_level = 3,
 			groupcaps = {
-				crumbly = {times={[1]=digtime, [2]=digtime, [3]=digtime}, uses=0, maxlevel=3},
-				cracky = {times={[1]=digtime, [2]=digtime, [3]=digtime}, uses=0, maxlevel=3},
-				snappy = {times={[1]=digtime, [2]=digtime, [3]=digtime}, uses=0, maxlevel=3},
-				choppy = {times={[1]=digtime, [2]=digtime, [3]=digtime}, uses=0, maxlevel=3},
-				oddly_breakable_by_hand = {times={[1]=digtime, [2]=digtime, [3]=digtime}, uses=0, maxlevel=3},
-				creative = {times={[1]=digtime, [2]=digtime, [3]=digtime}, uses=0, maxlevel=3},
+				hand = {times={[1]=digtime, [2]=digtime, [3]=digtime, [4]=digtime}, uses=0, maxlevel=0},
 			},
 			damage_groups = {fleshy = 10},
 		}

@@ -1,6 +1,6 @@
 local grass_list = {
 	{"base", "#69af32"},
-	--{"snowy", "#000:0"},
+	{"snowy", "#a4c577"},
 	{"ettenmoors", "#84af86"},
 	{"arthedain", "#347c24"},
 	{"breeland", "#438e00"},
@@ -32,7 +32,8 @@ for _, tab in pairs(grass_list) do
 		color = tab[2],
 		paramtype2 = "color",
 		palette = "lottitems_palette_" .. tab[1] .. ".png",
-		groups = {[tab[1]] = 1, shovel = 1, grass = 1},
+		groups = {[tab[1]] = 1, shovel = 1, grass = 1, hand = 3},
+		drop = "lottitems:dirt",
 		is_ground_content = true,
 	})
 end
