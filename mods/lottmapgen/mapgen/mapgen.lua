@@ -120,6 +120,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_water = minetest.get_content_id("lottitems:water_source")
 	local c_lava = minetest.get_content_id("lottitems:lava_source")
 	local c_morwat = minetest.get_content_id("lottitems:mordor_water_source")
+	local c_stone_brick = minetest.get_content_id("lottitems:stone_brick")
 
 	local c_morstone = minetest.get_content_id("lottitems:mordor_stone")
 	local c_salt = minetest.get_content_id("lottores:mineral_salt")
@@ -153,6 +154,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local schems = {}
 	local h
 	heightmap = {}
+	-- Dungeon Params
+	local dungeon_wall
 
 	for z = z0, z1 do
 		for y = y0, y1 do -- Caves
@@ -166,7 +169,10 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				end
 				if nvals_cave[nixyz] > cave_d then
 					data[vi] = c_tmp
-				elseif nvals_rav[nixyz] > 1.35 then
+					if nvals_cave[nixyz] > 1.2 and y < -100 then
+						data[vi] = c_lava
+					end
+				elseif nvals_rav[nixyz] > 1.45 then
 					data[vi] = c_tmp
 				end
 				vi = vi + 1
@@ -181,11 +187,12 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local height = lottmapgen.height(n_x, n_z - 1)
 			local stone_depth = math.floor(((nvals_ter[nixz] + 1)) *
 				(height * math.abs(math.abs(nvals_terflat[nixz] / (height / 20)) - 1.01)))
+			dungeon_wall = lottmapgen.biome[biome].dungeon_wall or c_stone_brick
 			local underwater = -math.floor(math.abs(noise_1) * 5) - 7
 			for y = y1, y0, -1 do -- working down each column for each node do
 				local fimadep = math.floor(6 - y / 512) + math.random(0, 1)
 				local vi = area:index(x, y, z)
-				local nodid = data[vi]
+				local nodeid = data[vi]
 				local viuu = area:index(x, y - 1, z)
 				local nodiduu = data[viuu]
 				local via = area:index(x, y + 1, z)
@@ -206,10 +213,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						data[vi] = c_morwat
 					end
 					heightmap[nixz] = y
-				elseif data[vi] == c_tmp then
-					data[vi] = c_air
-					if nvals_dec[nixz] > 0.5 and y < -154 then
-						data[vi] = c_lava
+				elseif nodeid == c_tmp or nodeid == c_lava then
+					if nodeid == c_tmp then
+						data[vi] = c_air
 					end
 				elseif y == stone_depth and y >= 0 then
 					if biome and lottmapgen.biome[biome] then
@@ -273,14 +279,29 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		nixz = nixz + 1
 		end
 	end
+	lottmapgen.generate_dungeon(vm, area, data, emin, dungeon_wall)
 	vm:set_data(data)
 	vm:set_param2_data(p2data)
+	minetest.generate_ores(vm, minp, maxp)
 	for _, tab in pairs(schems) do
 		minetest.place_schematic_on_vmanip(vm, tab[2],
 			modpath .. "/schems/" .. tab[1], "random",
-			{air = "ignore"})
+			{["lottitems:ignore"] = "ignore"})
+		if tab[3] ~= nil then
+			for nx = tab[2].x, tab[2].x + tab[3][1] - 1 do
+			for nz = tab[2].z, tab[2].z + tab[3][2] - 1 do
+			for y = 1, 16 do
+				local p = {x = nx, y = tab[2].y - y, z = nz}
+				if vm:get_node_at(p).name ~= tab[3][3] then
+					vm:set_node_at(p, {name = tab[3][4]})
+				else
+					break
+				end
+			end
+		end
+		end
+		end
 	end
-	minetest.generate_ores(vm, minp, maxp)
 	vm:set_lighting({day=0, night=0})
 	vm:calc_lighting()
 	vm:update_liquids()
@@ -289,6 +310,124 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	--print(chugent)
 	table.insert(times, chugent)
 end)
+
+minetest.register_ore({
+	ore_type = "blob",
+	ore = "lottitems:dirt",
+	wherein = {"lottitems:stone", "lottitems:red_stone", "lottitems:sandstone",
+		"lottitems:blue_stone"},
+	clust_scarcity = 25 * 25 * 25,
+	clust_size = 5,
+	y_min = -31000,
+	y_max = 100,
+	noise_threshold = 0.0,
+	noise_params = {
+		offset = 0.5,
+		scale = 0.2,
+		spread = {x = 5, y = 5, z = 5},
+		seed = 32423,
+		octaves = 1,
+		persist = 0,
+	},
+})
+
+minetest.register_ore({
+	ore_type = "blob",
+	ore = "lottitems:gravel",
+	wherein = {"lottitems:stone", "lottitems:red_stone", "lottitems:sandstone",
+		"lottitems:blue_stone"},
+	clust_scarcity = 25 * 25 * 25,
+	clust_size = 5,
+	y_min = -31000,
+	y_max = 100,
+	noise_threshold = 0.0,
+	noise_params = {
+		offset = 0.5,
+		scale = 0.2,
+		spread = {x = 5, y = 5, z = 5},
+		seed = 53765,
+		octaves = 1,
+		persist = 0,
+	},
+})
+
+minetest.register_ore({
+	ore_type = "blob",
+	ore = "lottitems:dark_gravel",
+	wherein = {"lottitems:stone", "lottitems:red_stone", "lottitems:sandstone",
+		"lottitems:blue_stone"},
+	clust_scarcity = 25 * 25 * 25,
+	clust_size = 5,
+	y_min = -31000,
+	y_max = 100,
+	noise_threshold = 0.0,
+	noise_params = {
+		offset = 0.5,
+		scale = 0.2,
+		spread = {x = 5, y = 5, z = 5},
+		seed = 91322,
+		octaves = 1,
+		persist = 0,
+	},
+})
+
+minetest.register_ore({
+	ore_type = "blob",
+	ore = "lottitems:sand",
+	wherein = {"lottitems:stone", "lottitems:red_stone", "lottitems:sandstone",
+		"lottitems:blue_stone"},
+	clust_scarcity = 25 * 25 * 25,
+	clust_size = 5,
+	y_min = -31000,
+	y_max = 15,
+	noise_threshold = 0.0,
+	noise_params = {
+		offset = 0.5,
+		scale = 0.2,
+		spread = {x = 5, y = 5, z = 5},
+		seed = 12389,
+		octaves = 1,
+		persist = 0,
+	},
+})
+
+minetest.register_ore({
+	ore_type = "blob",
+	ore = "lottitems:desert_sand",
+	wherein = {"lottitems:desert_sandstone"},
+	clust_scarcity = 15 * 15 * 15,
+	clust_size = 5,
+	y_min = -31000,
+	y_max = 15,
+	noise_threshold = 0.0,
+	noise_params = {
+		offset = 0.5,
+		scale = 0.2,
+		spread = {x = 5, y = 5, z = 5},
+		seed = 37835,
+		octaves = 1,
+		persist = 0,
+	},
+})
+
+minetest.register_ore({
+	ore_type = "blob",
+	ore = "lottitems:gravel",
+	wherein = {"lottitems:desert_sandstone"},
+	clust_scarcity = 15 * 15 * 15,
+	clust_size = 5,
+	y_min = -31000,
+	y_max = 15,
+	noise_threshold = 0.0,
+	noise_params = {
+		offset = 0.5,
+		scale = 0.2,
+		spread = {x = 5, y = 5, z = 5},
+		seed = 37835,
+		octaves = 1,
+		persist = 0,
+	},
+})
 
 minetest.register_on_shutdown(function()
 	local t = 0

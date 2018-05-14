@@ -137,6 +137,7 @@ minetest.register_node("lottplants:beech_leaves", {
 	paramtype2 = "facedir",
 	groups = {leaves = 1, plant = 1},
 })
+
 -- Birch
 
 minetest.register_node("lottplants:birch_trunk", {
@@ -157,6 +158,31 @@ minetest.register_node("lottplants:birch_leaves", {
 	description = "Birch Leaves",
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_birch_leaves.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {leaves = 1, plant = 1},
+})
+
+-- Cedar
+
+minetest.register_node("lottplants:cedar_trunk", {
+	description = "Cedar Trunk",
+	tiles = {"lottplants_cedar_trunk_top.png", "lottplants_cedar_trunk_top.png", "lottplants_cedar_trunk.png"},
+	paramtype2 = "facedir",
+	groups = {tree = 1, wood = 1, plant = 1, axe = 1},
+})
+
+minetest.register_node("lottplants:cedar_planks", {
+	description = "Cedar Planks",
+	tiles = {"lottplants_cedar_planks.png"},
+	paramtype2 = "facedir",
+	groups = {wood = 1, axe = 1},
+})
+
+minetest.register_node("lottplants:cedar_leaves", {
+	description = "Cedar Leaves",
+	drawtype = "allfaces_optional",
+	tiles = {"lottplants_cedar_leaves.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {leaves = 1, plant = 1},

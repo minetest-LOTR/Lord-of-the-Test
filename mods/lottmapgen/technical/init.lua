@@ -26,6 +26,7 @@ height_file:close()
 local biomes = minetest.deserialize(minetest.decompress(biome_data))
 local height = minetest.deserialize(minetest.decompress(height_data))
 dofile(modpath .. "/functions.lua")
+dofile(modpath .. "/dungeons.lua")
 
 function lottmapgen.register_biome(id, table)
 	lottmapgen.biome[id] = table

@@ -1,0 +1,18 @@
+Docs and reminders:
+
+To add a schematic to a biome (e.g. a house).
+Ensure that the table schems is being passed to the deco function.
+	deco = function(data, p2data, vi, area, x, y, z, noise, noise2, schems)
+Insert a table into schems:
+	table.insert(schems, {"house.mts", {x = x, y = y-1, z = z}, {12, 10, "lottitems:dirt", "lottitems:dirt"}})
+
+The format of the table inserted is as follows:
+	{name of schem (in schems folder), 
+	position (only the y value should need changing, to change where it appears),
+	details for "filling in" under the schematic, so that it isn't floated, only needs to be present if this is desired.
+		This has the following format:
+			x length,
+			z length,
+			name of node that it should stop at (e.g. when it finds dirt),
+			name of node to fill with.
+

@@ -216,3 +216,28 @@ register_flower("desert_star", {
 	groups = {yellow = 1, flower = 1, harad = 1, hand = 2, plant = 1},
 })
 
+-- Special flowers
+-- Sunflower
+-- Code & model by kazea, https://forum.minetest.net/viewtopic.php?t=10448
+
+local box = {
+	type="fixed",
+	fixed = { { -0.2, -0.5, -0.2, 0.2, 0.5, 0.2 } },
+}
+
+minetest.register_node("lottplants:sunflower", {
+	description = "Sunflower",
+	drawtype = "mesh",
+	visual_scale = 1.25,
+	paramtype = "light",
+	paramtype2 = "facedir",
+	inventory_image = "lottplants_sunflower_inv.png",
+	mesh = "lottplants_sunflower.obj",
+	tiles = {"lottplants_sunflower.png"},
+	walkable = false,
+	buildable_to = true,
+	groups = {dig_immediate=3, oddly_breakable_by_hand=1, flora=1},
+	selection_box = box,
+	collision_box = box,
+})
+
