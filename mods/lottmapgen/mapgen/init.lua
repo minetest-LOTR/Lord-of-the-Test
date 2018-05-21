@@ -3,5 +3,5 @@
 
 local modpath = minetest.get_modpath("lottmapgen") .. "/mapgen"
 
-dofile(modpath .. "/biomes.lua")
+dofile(modpath .. "/biomes/init.lua")
 dofile(modpath .. "/mapgen.lua")

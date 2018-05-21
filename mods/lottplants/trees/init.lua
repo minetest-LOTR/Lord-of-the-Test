@@ -13,6 +13,22 @@ Young trunk nbs:
 	{-0.1875, -0.5, -0.125, 0.1875, 0.5, 0.125},
 ]]--
 
+local leaves_litter_box = {
+	{-0.5, -0.5, -0.5, 0.5, -0.375, 0.5}
+}
+
+minetest.register_node("lottplants:oak_leaves_litter", {
+	description = "Oak Leaves Litter",
+	drawtype = "nodebox",
+	tiles = {"lottplants_oak_leaves.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = leaves_litter_box,
+	},
+	groups = {leaves = 1, plant = 1},
+})
 
 -- Oak
 minetest.register_node("lottplants:oak_trunk", {
@@ -407,4 +423,14 @@ minetest.register_node("lottplants:rowan_leaves", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {leaves = 1, plant = 1},
+})
+
+-- TODO: Drop berries
+minetest.register_node("lottplants:rowan_berries", {
+	description = "Rowan Berries",
+	drawtype = "allfaces_optional",
+	tiles = {"lottplants_rowan_leaves.png^lottplants_rowan_berries.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {leaves = 1, plant = 1, food = 1, red = 1},
 })

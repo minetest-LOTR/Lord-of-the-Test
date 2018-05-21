@@ -187,7 +187,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local height = lottmapgen.height(n_x, n_z - 1)
 			local stone_depth = math.floor(((nvals_ter[nixz] + 1)) *
 				(height * math.abs(math.abs(nvals_terflat[nixz] / (height / 20)) - 1.01)))
-			dungeon_wall = lottmapgen.biome[biome].dungeon_wall or c_stone_brick
+			if lottmapgen.biome[biome] and lottmapgen.biome[biome].dungeon_wall then
+				dungeon_wall = lottmapgen.biome[biome].dungeon_wall
+			else
+				dungeon_wall = c_stone_brick
+			end
 			local underwater = -math.floor(math.abs(noise_1) * 5) - 7
 			for y = y1, y0, -1 do -- working down each column for each node do
 				local fimadep = math.floor(6 - y / 512) + math.random(0, 1)
