@@ -324,25 +324,28 @@ minetest.register_on_newplayer(function(player)
 		give_stuff_wizard(player)
 	end
 	
+	-- Starter mob immunity to counter unfavourable spawns
 	if minetest.setting_getbool("disable_immune_spawn") then
 		return
 	end
 	
 	if minetest.setting_getbool("enable_damage") then
+		
+		player:set_attribute("lott:immunity", 300)
+		
+		minetest.after(5, function()
+			minetest.chat_send_player(name, minetest.colorize("green", "Starter mob immunity granted for 5 minutes! Travel to a safe area!"))
+		end)
+		
 		for i = 1, 300 do
 			minetest.after(i, function()
-				player:set_hp(20)
-				local name = player:get_player_name()
+				player:set_attribute("lott:immunity", tonumber(player:get_attribute("lott:immunity")) - 1)
 			end)
 		end
-		minetest.after(5, function()
-			minetest.chat_send_player(name, minetest.colorize("red", "[NOTICE] You are NEARLY IMMUNE to damage for 5 MINUTES. Make use of this time to venture to a safe area!"))
-			minetest.chat_send_player(name, minetest.colorize("red", "[NOTICE] You are NEARLY IMMUNE to damage for 5 MINUTES. Make use of this time to venture to a safe area!"))
-		end)
 	
-		minetest.after(300, function()
-			minetest.chat_send_player(name, minetest.colorize("red", "[NOTICE] You are NO LONGER immune to damage!"))
-			minetest.chat_send_player(name, minetest.colorize("red", "[NOTICE] You are NO LONGER immune to damage!"))
+		minetest.after(301, function()
+			player:set_attribute("lott:immunity", nil)
+			minetest.chat_send_player(name, minetest.colorize("orange", "Your starter mob immunity has expired!"))
 		end)
 	end
 end)
@@ -383,6 +386,35 @@ minetest.register_on_joinplayer(function(player)
 			else
 				minetest.show_formspec(name, "race_selector", race_chooser)
 			end
+		end)
+	end
+	
+	-- Resume starter mob immunity
+	if player:get_attribute("lott:immunity") ~= nil then
+		if not tonumber(player:get_attribute("lott:immunity")) then
+			return
+		end
+		if tonumber(player:get_attribute("lott:immunity")) >= 300 then
+			return
+		end
+	
+		minetest.chat_send_player(name, minetest.colorize("green", "Your starter mob immunity has resumed!"))
+		minetest.chat_send_player(name, minetest.colorize("green", "You still have "..tonumber(player:get_attribute("lott:immunity")) / 60 .." minutes left!"))
+	
+		for i = 1, tonumber(player:get_attribute("lott:immunity")) do
+			if not tonumber(player:get_attribute("lott:immunity")) then
+				player:set_attribute("lott:immunity", nil)
+				return
+			end
+			minetest.after(i, function()
+				player:set_attribute("lott:immunity", tonumber(player:get_attribute("lott:immunity")) - 1)
+			end)
+		end
+	
+		minetest.after(player:get_attribute("lott:immunity")+1, function()
+			player:set_attribute("lott:immunity", nil)
+		
+			minetest.chat_send_player(name, minetest.colorize("orange", "Your starter mob immunity has expired!"))
 		end)
 	end
 end)

@@ -247,6 +247,10 @@ armor.set_player_armor = function(self, player)
 		armor_groups.fleshy = 100 - armor_level
 	end
 	player:set_armor_groups(armor_groups)
+	if player:get_attribute("lott:immunity") ~= nil then
+		player:set_armor_groups({fleshy = 1})
+	else player:set_armor_groups(armor_groups)
+	end
 	player:set_physics_override(physics_o)
 	self.textures[name].armor = armor_texture
 	self.textures[name].preview = preview

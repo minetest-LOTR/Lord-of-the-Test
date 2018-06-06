@@ -18,6 +18,13 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = 'lottclothes:feltthread 2',
+	recipe = {
+		{'lottclothes:boots_dwarf'},
+	}
+})
+
 -- cloak
 minetest.register_tool("lottclothes:cloak_wizard_grey", {
 	description = "Grey Wizard Cloak",
@@ -34,6 +41,13 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = 'lottclothes:feltthread 6',
+	recipe = {
+		{'lottclothes:cloak_wizard_grey'},
+	}
+})
+
 -- hood
 minetest.register_tool("lottclothes:hood_wizard_blue", {
 	description = "Blue Wizard Hood",
@@ -47,6 +61,13 @@ minetest.register_craft({
 	recipe = {
 		{"lottclothes:felt_blue", "lottclothes:felt_blue", "lottclothes:felt_blue"},
 		{"lottclothes:felt_blue", "", "lottclothes:felt_blue"}
+	}
+})
+
+minetest.register_craft({
+	output = 'lottclothes:feltthread 5',
+	recipe = {
+		{'lottclothes:hood_wizard_blue'},
 	}
 })
 
@@ -67,7 +88,12 @@ minetest.register_craft({
 	}
 })
 
-
+minetest.register_craft({
+	output = 'lottclothes:feltthread 8',
+	recipe = {
+		{'lottclothes:robe_wizard_grey'},
+	}
+})
 
 
 
@@ -91,6 +117,13 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = 'lottclothes:feltthread 5',
+	recipe = {
+		{'lottclothes:hood_wizard_white'},
+	}
+})
+
 -- robe
 minetest.register_tool("lottclothes:robe_wizard_white", {
 	description = "White Wizard Robe",
@@ -105,6 +138,13 @@ minetest.register_craft({
 		{"lottclothes:felt_white", "", "lottclothes:felt_white"},
 		{"lottclothes:felt_white", "lottclothes:felt_white", "lottclothes:felt_white"},
 		{"lottclothes:felt_white", "lottclothes:felt_white", "lottclothes:felt_white"}
+	}
+})
+
+minetest.register_craft({
+	output = 'lottclothes:feltthread 8',
+	recipe = {
+		{'lottclothes:robe_wizard_white'},
 	}
 })
 
@@ -125,6 +165,13 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = 'lottclothes:feltthread 7',
+	recipe = {
+		{'lottclothes:trousers_wizard_white'},
+	}
+})
+
 -- cloak
 minetest.register_tool("lottclothes:cloak_wizard_white", {
 	description = "White Wizard Cloak",
@@ -139,5 +186,12 @@ minetest.register_craft({
 		{"lottclothes:felt_white", "lottclothes:felt_white"},
 		{"lottclothes:felt_white", "lottclothes:felt_white"},
 		{"lottclothes:felt_white", "lottclothes:felt_white"}
+	}
+})
+
+minetest.register_craft({
+	output = 'lottclothes:feltthread 6',
+	recipe = {
+		{'lottclothes:cloak_wizard_white'},
 	}
 })

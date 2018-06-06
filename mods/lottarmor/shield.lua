@@ -74,9 +74,6 @@ local craft_ingreds = {
 	mithril = "lottores:mithril_ingot",
 }
 
-
-
-
 for k, v in pairs(craft_ingreds) do
 	minetest.register_craft({
 		output = "lottarmor:shield_"..k,
@@ -85,6 +82,13 @@ for k, v in pairs(craft_ingreds) do
 			{v, v, v},
 			{"", v, ""},
 		},
+	})
+	
+	minetest.register_craft({
+		type = "cooking",
+		cooktime = 30,
+		output = v.." 4",
+		recipe = "lottarmor:shield_"..k,
 	})
 end
 

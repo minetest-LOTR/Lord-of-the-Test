@@ -55,6 +55,15 @@ minetest.register_node("lottores:mithril_ore", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+minetest.register_node("lottores:orc_ore", {
+	description = "Ore Iron Ore",
+	tiles = {"lottmapgen_mordor_stone.png^default_mineral_iron.png^[colorize:#00000055"},
+	is_ground_content = true,
+	groups = {cracky=2},
+	drop = "lottores:orc_lump",
+	sounds = default.node_sound_stone_defaults(),
+})
+
 minetest.register_node("lottores:mineral_pearl", {
 	description = "Pearl Ore",
 	tiles = {"default_sand.png^lottores_mineral_pearl.png"},
@@ -150,6 +159,11 @@ minetest.register_craftitem("lottores:tilkal_ingot", {
 	description = "Tilkal Ingot",
 	inventory_image = "lottores_tilkal_ingot.png",
     groups = {forbidden=1},
+})
+
+minetest.register_craftitem("lottores:orc_lump", {
+	description = "Orc Iron Lump",
+	inventory_image = "default_iron_lump.png^[colorize:#00000055",
 })
 
 minetest.register_craftitem("lottores:orc_steel_ingot", {

@@ -20,6 +20,13 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = 'lottclothes:feltthread 3',
+	recipe = {
+		{'lottclothes:cap_chetwood'},
+	}
+})
+
 -- jacket (torso)
 minetest.register_tool("lottclothes:jacket_chetwood", {
 	description = "Chetwood Jacket",
@@ -34,6 +41,13 @@ minetest.register_craft({
 		{"lottclothes:felt_green", "", "lottclothes:felt_green"},
 		{"lottores:tin_ingot", "lottclothes:felt_green", "lottores:tin_ingot"},
 		{"lottores:tin_ingot", "lottclothes:felt_green", "lottores:tin_ingot"}
+	}
+})
+
+minetest.register_craft({
+	output = 'lottclothes:feltthread 4',
+	recipe = {
+		{'lottclothes:jacket_chetwood'},
 	}
 })
 
@@ -54,6 +68,13 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = 'lottclothes:feltthread 3',
+	recipe = {
+		{'lottclothes:pants_chetwood'},
+	}
+})
+
 -- boots (feet)
 minetest.register_tool("lottclothes:boots_chetwood", {
 	description = "Chetwood Boots",
@@ -67,5 +88,12 @@ minetest.register_craft({
 	recipe = {
 		{"lottclothes:felt_brown", "", "lottclothes:felt_brown"},
 		{"lottores:tin_ingot", "", "lottores:tin_ingot"}
+	}
+})
+
+minetest.register_craft({
+	output = 'lottclothes:feltthread 2',
+	recipe = {
+		{'lottclothes:boots_chetwood'},
 	}
 })

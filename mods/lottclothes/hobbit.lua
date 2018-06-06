@@ -34,6 +34,13 @@ for color, fabric in pairs(fabric_colors) do
 			{fabric, fabric, fabric}
 		}
 	})
+	
+	minetest.register_craft({
+		output = 'lottclothes:flaxthread 8',
+		recipe = {
+			{'lottclothes:shirt_hobbit_'..color},
+		}
+	})
 
 	-- shorts(legs)
 	minetest.register_tool("lottclothes:shorts_hobbit_"..color, {
@@ -51,6 +58,13 @@ for color, fabric in pairs(fabric_colors) do
 			{"lottclothes:flax_white","" , "lottclothes:flax_white"}
 		}
 	})
+	
+	minetest.register_craft({
+		output = 'lottclothes:flaxthread 7',
+		recipe = {
+			{'lottclothes:shorts_hobbit_'..color},
+		}
+	})
 
 	-- shoes(feet)
 	minetest.register_tool("lottclothes:shoes_hobbit_"..color, {
@@ -65,6 +79,13 @@ for color, fabric in pairs(fabric_colors) do
 		recipe = {
 			{fabric, "", fabric},
 			{"lottclothes:flax_black","" , "lottclothes:flax_black"}
+		}
+	})
+	
+	minetest.register_craft({
+		output = 'lottclothes:flaxthread 4',
+		recipe = {
+			{'lottclothes:shoes_hobbit_'..color},
 		}
 	})
 
@@ -84,5 +105,11 @@ for color, fabric in pairs(fabric_colors) do
 			{fabric, fabric}
 		}
 	})
-
+	
+	minetest.register_craft({
+		output = 'lottclothes:flaxthread 6',
+		recipe = {
+			{'lottclothes:cloak_hobbit_'..color},
+		}
+	})
 end

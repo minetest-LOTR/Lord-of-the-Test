@@ -20,6 +20,13 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = 'lottclothes:feltthread 5',
+	recipe = {
+		{'lottclothes:cap_midgewater'},
+	}
+})
+
 -- jacket (torso)
 minetest.register_tool("lottclothes:jacket_midgewater", {
 	description = "Midgewater Jacket",
@@ -34,6 +41,13 @@ minetest.register_craft({
 		{"lottclothes:felt_green", "", "lottclothes:felt_green"},
 		{"lottclothes:felt_green", "lottclothes:felt_green", "lottclothes:felt_green"},
 		{"lottclothes:felt_green", "lottclothes:felt_green", "lottclothes:felt_green"}
+	}
+})
+
+minetest.register_craft({
+	output = 'lottclothes:feltthread 8',
+	recipe = {
+		{'lottclothes:jacket_midgewater'},
 	}
 })
 
@@ -54,6 +68,13 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = 'lottclothes:feltthread 7',
+	recipe = {
+		{'lottclothes:pants_midgewater'},
+	}
+})
+
 -- boots (feet)
 minetest.register_tool("lottclothes:boots_midgewater", {
 	description = "Midgewater Boots",
@@ -67,5 +88,12 @@ minetest.register_craft({
 	recipe = {
 		{"lottclothes:flax_brown", "", "lottclothes:flax_brown"},
 		{"group:wood", "", "group:wood"}
+	}
+})
+
+minetest.register_craft({
+	output = 'lottclothes:flaxthread 2',
+	recipe = {
+		{'lottclothes:boots_midgewater'},
 	}
 })

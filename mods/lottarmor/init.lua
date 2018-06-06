@@ -290,6 +290,14 @@ for k, v in pairs(craft_ingreds) do
 			{"", "", ""},
 		},
 	})
+	
+	minetest.register_craft({
+		type = "cooking",
+		cooktime = 30,
+		output = v.." 2",
+		recipe = "lottarmor:helmet_"..k,
+	})
+	
 	minetest.register_craft({
 		output = "lottarmor:chestplate_"..k,
 		recipe = {
@@ -298,6 +306,14 @@ for k, v in pairs(craft_ingreds) do
 			{v, v, v},
 		},
 	})
+	
+	minetest.register_craft({
+		type = "cooking",
+		cooktime = 30,
+		output = v.." 5",
+		recipe = "lottarmor:chestplate_"..k,
+	})
+	
 	minetest.register_craft({
 		output = "lottarmor:leggings_"..k,
 		recipe = {
@@ -306,11 +322,26 @@ for k, v in pairs(craft_ingreds) do
 			{v, "", v},
 		},
 	})
+	
+	minetest.register_craft({
+		type = "cooking",
+		cooktime = 30,
+		output = v.." 3",
+		recipe = "lottarmor:leggings_"..k,
+	})
+	
 	minetest.register_craft({
 		output = "lottarmor:boots_"..k,
 		recipe = {
 			{v, "", v},
 			{v, "", v},
 		},
+	})
+	
+	minetest.register_craft({
+		type = "cooking",
+		cooktime = 30,
+		output = v.." 1",
+		recipe = "lottarmor:boots_"..k,
 	})
 end

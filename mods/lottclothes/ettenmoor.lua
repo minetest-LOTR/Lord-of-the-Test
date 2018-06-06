@@ -22,6 +22,13 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = 'lottclothes:feltthread 5',
+	recipe = {
+		{'lottclothes:hood_ettenmoor'},
+	}
+})
+
 -- robe (torso (yeah limitations suck))
 minetest.register_tool("lottclothes:robe_ettenmoor", {
 	description = "Ettenmoor Robe",
@@ -39,6 +46,13 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = 'lottclothes:feltthread 7',
+	recipe = {
+		{'lottclothes:robe_ettenmoor'},
+	}
+})
+
 -- trousers (legs)
 minetest.register_tool("lottclothes:trousers_ettenmoor", {
 	description = "Ettenmoor Trousers",
@@ -53,5 +67,12 @@ minetest.register_craft({
 		{"lottclothes:felt_grey", "lottclothes:felt_grey", "lottclothes:felt_grey"},
 		{"lottclothes:felt_grey", "" , "lottclothes:felt_grey"},
 		{"lottclothes:felt_grey", "" , "lottclothes:felt_grey"}
+	}
+})
+
+minetest.register_craft({
+	output = 'lottclothes:feltthread 7',
+	recipe = {
+		{'lottclothes:trousers_ettenmoor'},
 	}
 })

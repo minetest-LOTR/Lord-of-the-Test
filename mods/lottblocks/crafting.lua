@@ -280,3 +280,39 @@ lottblocks.crafting.add_craft("default:bronze_ingot", {
 	recipe = {"lottores:tin_ingot", "default:copper_ingot"},
 	type = "dualfurn"
 })
+
+lottblocks.crafting.add_craft("lottores:orc_steel_ingot", {
+	recipe = {"lottores:lead_ingot", "default:steel_ingot"},
+	type = "dualfurn",
+	time = 5,
+})
+
+lottblocks.crafting.add_craft("lottores:galvorn_ingot", {
+	recipe = {"lottores:lead_ingot", "default:mese_crystal"},
+	type = "dualfurn",
+	time = 60,
+})
+
+lottblocks.crafting.add_craft("lottores:ithildin_1", {
+	recipe = {"lottores:mithril_ingot", "lottores:geodes_crystal_1"},
+	type = "dualfurn",
+	time = 5,
+})
+
+lottblocks.crafting.add_craft("lottores:ithildin_stone_1", {
+	recipe = {"lottores:ithildin_1", "group:stone"},
+	type = "dualfurn",
+	time = 5,
+})
+
+lottblocks.crafting.add_craft("lottores:ithildin_lamp_1", {
+	recipe = {"lottores:mithril_ingot", "lottblocks:elf_torch"},
+	type = "dualfurn",
+	time = 5,
+})
+
+lottblocks.crafting.add_craft("lottores:ithildin_stonelamp_1", {
+	recipe = {"lottores:ithildin_lamp_1", "group:stone"},
+	type = "dualfurn",
+	time = 5,
+})

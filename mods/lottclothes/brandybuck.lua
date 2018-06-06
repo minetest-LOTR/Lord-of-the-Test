@@ -21,6 +21,13 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = 'lottclothes:flaxthread 8',
+	recipe = {
+		{'lottclothes:shirt_brandybuck'},
+	}
+})
+
 -- trousers (legs)
 minetest.register_tool("lottclothes:trousers_brandybuck", {
 	description = "Brandybuck Trousers",
@@ -29,12 +36,20 @@ minetest.register_tool("lottclothes:trousers_brandybuck", {
 	wear = 0
 })
 
+
 minetest.register_craft({
 	output = "lottclothes:trousers_brandybuck",
 	recipe = {
 		{"lottclothes:flax_brown", "lottclothes:flax_brown", "lottclothes:flax_brown"},
 		{"lottclothes:flax_brown", "" , "lottclothes:flax_brown"},
 		{"lottclothes:flax_brown", "" , "lottclothes:flax_brown"}
+	}
+})
+
+minetest.register_craft({
+	output = 'lottclothes:flaxthread 7',
+	recipe = {
+		{'lottclothes:trousers_brandybuck'},
 	}
 })
 
@@ -51,5 +66,12 @@ minetest.register_craft({
 	recipe = {
 		{"lottclothes:flax_blue", "", "lottclothes:flax_blue"},
 		{"default:copper_ingot", "", "default:copper_ingot"}
+	}
+})
+
+minetest.register_craft({
+	output = 'lottclothes:flaxthread 2',
+	recipe = {
+		{'lottclothes:shoes_brandybuck'},
 	}
 })

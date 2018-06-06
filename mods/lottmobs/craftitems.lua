@@ -27,10 +27,24 @@ minetest.register_craftitem("lottmobs:dirty_shirt", {
     stack_max = 1,
 })
 
+minetest.register_craft({
+	output = 'lottclothes:flaxthread 8',
+	recipe = {
+		{'lottmobs:dirty_shirt'},
+	}
+})
+
 minetest.register_craftitem("lottmobs:dirty_trousers", {
     description = "Dirty Trousers",
     inventory_image = "lottclothes_inv_pants_midgewater.png^[colorize:#935d3675",
     stack_max = 1,
+})
+
+minetest.register_craft({
+	output = 'lottclothes:flaxthread 7',
+	recipe = {
+		{'lottmobs:dirty_trousers'},
+	}
 })
 
 minetest.register_craft({

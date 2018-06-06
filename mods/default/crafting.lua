@@ -46,149 +46,76 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
-	output = 'default:pick_wood',
-	recipe = {
-		{'group:wood', 'group:wood', 'group:wood'},
-		{'', 'group:stick', ''},
-		{'', 'group:stick', ''},
-	}
-})
+local materials = {
+	{"wood", "group:wood"},
+	{"stone", "group:stone", "default:stone"},
+	{"steel", "default:steel_ingot"},
+	{"bronze", "default:bronze_ingot"},
+}
 
-minetest.register_craft({
-	output = 'default:pick_stone',
-	recipe = {
-		{'group:stone', 'group:stone', 'group:stone'},
-		{'', 'group:stick', ''},
-		{'', 'group:stick', ''},
-	}
-})
+for i in ipairs(materials) do
+	local name = materials[i][1]
+	local craft = materials[i][2]
+	local subcraft = materials[i][3] or craft
+	
+	minetest.register_craft({
+		output = 'default:pick_'..name,
+		recipe = {
+			{craft, craft, craft},
+			{'', 'group:stick', ''},
+			{'', 'group:stick', ''},
+		}
+	})
+	
+	minetest.register_craft({
+		type = "cooking",
+		cooktime = 30,
+		output = craft,
+		recipe = "default:pick_"..name,
+	})
+	
+	minetest.register_craft({
+		output = 'default:shovel_'..name,
+		recipe = {
+			{craft},
+			{'group:stick'},
+			{'group:stick'},
+		}
+	})
+	
+	minetest.register_craft({
+		output = 'default:axe_'..name,
+		recipe = {
+			{craft, craft},
+			{craft, 'group:stick'},
+			{'', 'group:stick'},
+		}
+	})
+	
+	minetest.register_craft({
+		type = "cooking",
+		cooktime = 30,
+		output = craft,
+		recipe = "default:axe_"..name,
+	})
 
-minetest.register_craft({
-	output = 'default:pick_steel',
-	recipe = {
-		{'default:steel_ingot', 'default:steel_ingot', 'default:steel_ingot'},
-		{'', 'group:stick', ''},
-		{'', 'group:stick', ''},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:pick_bronze',
-	recipe = {
-		{'default:bronze_ingot', 'default:bronze_ingot', 'default:bronze_ingot'},
-		{'', 'group:stick', ''},
-		{'', 'group:stick', ''},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:shovel_wood',
-	recipe = {
-		{'group:wood'},
-		{'group:stick'},
-		{'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:shovel_stone',
-	recipe = {
-		{'group:stone'},
-		{'group:stick'},
-		{'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:shovel_steel',
-	recipe = {
-		{'default:steel_ingot'},
-		{'group:stick'},
-		{'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:shovel_bronze',
-	recipe = {
-		{'default:bronze_ingot'},
-		{'group:stick'},
-		{'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:axe_wood',
-	recipe = {
-		{'group:wood', 'group:wood'},
-		{'group:wood', 'group:stick'},
-		{'', 'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:axe_stone',
-	recipe = {
-		{'group:stone', 'group:stone'},
-		{'group:stone', 'group:stick'},
-		{'', 'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:axe_steel',
-	recipe = {
-		{'default:steel_ingot', 'default:steel_ingot'},
-		{'default:steel_ingot', 'group:stick'},
-		{'', 'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:axe_bronze',
-	recipe = {
-		{'default:bronze_ingot', 'default:bronze_ingot'},
-		{'default:bronze_ingot', 'group:stick'},
-		{'', 'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:sword_wood',
-	recipe = {
-		{'group:wood'},
-		{'group:wood'},
-		{'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:sword_stone',
-	recipe = {
-		{'group:stone'},
-		{'group:stone'},
-		{'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:sword_steel',
-	recipe = {
-		{'default:steel_ingot'},
-		{'default:steel_ingot'},
-		{'group:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'default:sword_bronze',
-	recipe = {
-		{'default:bronze_ingot'},
-		{'default:bronze_ingot'},
-		{'group:stick'},
-	}
-})
+	minetest.register_craft({
+		output = 'default:sword_'..name,
+		recipe = {
+			{craft},
+			{craft},
+			{'group:stick'},
+		}
+	})
+	
+	minetest.register_craft({
+		type = "cooking",
+		cooktime = 30,
+		output = craft,
+		recipe = "default:sword_"..name,
+	})
+end
+	
 
 minetest.register_craft({
 	output = 'default:rail 15',
