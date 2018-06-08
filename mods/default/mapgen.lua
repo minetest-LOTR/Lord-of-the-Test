@@ -138,6 +138,7 @@ minetest.register_ore({
 	y_max     = wl - 64,
 })
 
+--[[
 minetest.register_ore({
 	ore_type       = "scatter",
 	ore            = "default:stone_with_mese",
@@ -170,6 +171,7 @@ minetest.register_ore({
 	y_min     = wl - 31000,
 	y_max     = wl- 1024,
 })
+]]
 
 minetest.register_ore({
 	ore_type       = "scatter",

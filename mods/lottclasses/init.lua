@@ -317,6 +317,10 @@ local function give_stuff_wizard(player)
 	player:get_inventory():add_item('main', 'lottinventory:master_book')
 end
 
+local immune_spawn_amt = tonumber(minetest.settings:get("immune_spawn")) or 300
+minetest.settings:set("immune_spawn", immune_spawn_amt)
+local immune_amt = tonumber(minetest.settings:get("immune_spawn"))
+
 minetest.register_on_newplayer(function(player)
 	local name = player:get_player_name()
 	local privs = minetest.get_player_privs(name)
@@ -331,21 +335,23 @@ minetest.register_on_newplayer(function(player)
 	
 	if minetest.setting_getbool("enable_damage") then
 		
-		player:set_attribute("lott:immunity", 300)
+		player:set_attribute("lott:immunity", immune_amt)
+		armor:set_player_armor(player)
 		
 		minetest.after(5, function()
-			minetest.chat_send_player(name, minetest.colorize("green", "Starter mob immunity granted for 5 minutes! Travel to a safe area!"))
+			minetest.chat_send_player(name, minetest.colorize("green", "Starter mob immunity granted for "..immune_amt/ 60 .." minutes! Travel to a safe area!"))
 		end)
 		
-		for i = 1, 300 do
+		for i = 1, immune_amt do
 			minetest.after(i, function()
 				player:set_attribute("lott:immunity", tonumber(player:get_attribute("lott:immunity")) - 1)
 			end)
 		end
 	
-		minetest.after(301, function()
+		minetest.after(immune_amt+1, function()
 			player:set_attribute("lott:immunity", nil)
 			minetest.chat_send_player(name, minetest.colorize("orange", "Your starter mob immunity has expired!"))
+			armor:set_player_armor(player)
 		end)
 	end
 end)
@@ -392,9 +398,10 @@ minetest.register_on_joinplayer(function(player)
 	-- Resume starter mob immunity
 	if player:get_attribute("lott:immunity") ~= nil then
 		if not tonumber(player:get_attribute("lott:immunity")) then
+			player:set_attribute("lott:immunity", nil)
 			return
 		end
-		if tonumber(player:get_attribute("lott:immunity")) >= 300 then
+		if tonumber(player:get_attribute("lott:immunity")) >= immune_amt then
 			return
 		end
 	
@@ -413,6 +420,7 @@ minetest.register_on_joinplayer(function(player)
 	
 		minetest.after(player:get_attribute("lott:immunity")+1, function()
 			player:set_attribute("lott:immunity", nil)
+			armor:set_player_armor(player)
 		
 			minetest.chat_send_player(name, minetest.colorize("orange", "Your starter mob immunity has expired!"))
 		end)

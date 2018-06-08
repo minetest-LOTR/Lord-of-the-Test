@@ -145,6 +145,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_stonecopper = minetest.get_content_id("default:stone_with_copper")
 	local c_stoneiron = minetest.get_content_id("default:stone_with_iron")
 	local c_stonecoal = minetest.get_content_id("default:stone_with_coal")
+	local c_mese = minetest.get_content_id("default:mese")
 	local c_chalk = minetest.get_content_id("darkage:chalk")
 	local c_mapgen_stone = minetest.get_content_id("default:mapgen_stone")
 	local c_water = minetest.get_content_id("default:water_source")
@@ -241,7 +242,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						elseif biome == 5 then
 							data[vi] = c_sandstone
 						elseif biome == 11 then
-							if math.random(3) == 1 then
+							if math.random(10) == 1 then
 								data[vi] = c_stoneiron
 							end
 						end
@@ -254,6 +255,25 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					if y > - 100 and y < -50 and biome == 7 then
 						if math.random(PLANT15) == 1 then
 							lottmapgen_elf_workshop(x, y, z, area, data, p2data)
+						end
+					end
+					if y > -100 and y < -5 then
+						if biome == 11 or biome == 1 then
+							if math.random(100000) == 1 then
+								lottmapgen_mithrilore(x, y, z, area, data)
+							end
+						end
+						if biome == 10 or biome == 7 then
+							if math.random(100000) == 1 then
+								lottmapgen_meseore(x, y, z, area, data)
+							elseif math.random(10000000) == 1 then
+								data[vi] = c_mese
+							end
+						end
+						if biome == 8 then
+							if math.random(100) == 1 then
+								lottmapgen_orcore(x, y, z, area, data)
+							end
 						end
 					end
 					if not solid then -- if surface

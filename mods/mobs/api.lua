@@ -14,7 +14,7 @@
         -- line 2260 - add "race" field to mobs
         -- line 2011 - add "and lottclasses.lua_ent_same_race_or_ally(obj, self.race)" so that only
            NPCs from the same race help when group_attack is set to true
-
+		-- line 1894 - prevent wear to narya ring
 ]]--
 
 mobs = {}
@@ -1889,9 +1889,9 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 
 	if weapon:get_definition()
 	and weapon:get_definition().tool_capabilities then
-
 		weapon:add_wear(floor((punch_interval / 75) * 9000))
 		hitter:set_wielded_item(weapon)
+		if hitter:get_wielded_item():get_name() == "lottother:narya" then weapon:set_wear(0) hitter:set_wielded_item(weapon) end
 	end
 
 	-- weapon sounds

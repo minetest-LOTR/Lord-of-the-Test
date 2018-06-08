@@ -886,6 +886,57 @@ function lottmapgen_elf_workshop(x, y, z, area, data, p2data)
 	end
 end
 
+function lottmapgen_mithrilore(x, y, z, area, data)
+	local c_ore = minetest.get_content_id("lottores:mithril_ore")
+	local c_stone = minetest.get_content_id("default:stone")
+	for j = -1, 0 do
+	for i = -1, 0 do
+	for k = -1, 0 do
+		local vil = area:index(x + i, y + j, z + k)
+		if math.random(3) == 1 then
+			data[vil] = c_stone
+		else
+			data[vil] = c_ore
+		end
+	end
+	end
+	end
+end
+
+function lottmapgen_meseore(x, y, z, area, data)
+	local c_ore = minetest.get_content_id("default:stone_with_mese")
+	local c_stone = minetest.get_content_id("default:stone")
+	for j = -1, 0 do
+	for i = -1, 0 do
+	for k = -1, 0 do
+		local vil = area:index(x + i, y + j, z + k)
+		if math.random(3) == 1 then
+			data[vil] = c_stone
+		else
+			data[vil] = c_ore
+		end
+	end
+	end
+	end
+end
+
+function lottmapgen_orcore(x, y, z, area, data)
+	local c_ore = minetest.get_content_id("lottores:orc_ore")
+	local c_stone = minetest.get_content_id("default:stone")
+	for j = -1, 0 do
+	for i = -1, 0 do
+	for k = -1, 0 do
+		local vil = area:index(x + i, y + j, z + k)
+		if math.random(10) == 1 then
+			data[vil] = c_stone
+		else
+			data[vil] = c_ore
+		end
+	end
+	end
+	end
+end
+
 function lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, HITET, HIHUT, HIRAN)
 	if n_temp < LOTET then
 		if n_humid < LOHUT then

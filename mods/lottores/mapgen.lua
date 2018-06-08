@@ -121,6 +121,7 @@ minetest.register_ore({
 	y_max     = wl - 301,
 })
 
+--[[
 minetest.register_ore({
 	ore_type       = "scatter",
 	ore            = "lottores:mithril_ore",
@@ -141,4 +142,4 @@ minetest.register_ore({
 	clust_size     = 3,
 	y_min     = wl - 31000,
 	y_max     = wl - 256,
-})
+})]]
