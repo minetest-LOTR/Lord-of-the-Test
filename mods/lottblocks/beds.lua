@@ -24,20 +24,7 @@ local function get_look_yaw(pos)
 		return 0, rotation
 	end
 end
-minetest.register_on_leaveplayer(function(player)
-	local name = player:get_player_name()
-	lottblocks.lay_down(player, nil, nil, false, true)
-	lottblocks.player[name] = nil
-	if check_in_beds() then
-		minetest.after(2, function()
-			update_formspecs(is_night_skip_enabled())
-			if is_night_skip_enabled() then
-				lottblocks.skip_night()
-				bed_kick_players()
-			end
-		end)
-	end
-end)
+
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname ~= "beds_form" then
 		return
@@ -55,12 +42,14 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		end
 	end
 end)
+
 local function bed_kick_players()
 	for name, _ in pairs(lottblocks.player) do
 		local player = minetest.get_player_by_name(name)
 		lottblocks.lay_down(player, nil, nil, false)
 	end
 end
+
 local function is_night_skip_enabled()
 	local enable_night_skip = minetest.settings:get_bool("enable_bed_night_skip")
 	if enable_night_skip == nil then
@@ -72,6 +61,7 @@ end
 function lottblocks.skip_night()
 	minetest.set_timeofday(0.23)
 end
+
 local function update_formspecs(finished)
 	local ges = #minetest.get_connected_players()
 	local form_n
@@ -91,6 +81,7 @@ local function update_formspecs(finished)
 		minetest.show_formspec(name, "beds_form", form_n)
 	end
 end
+
 function lottblocks.lay_down(player, pos, bed_pos, state, skip)
 	local name = player:get_player_name()
 	local hud_flags = player:hud_get_flags()
@@ -143,6 +134,7 @@ function lottblocks.lay_down(player, pos, bed_pos, state, skip)
 
 	player:hud_set_flags(hud_flags)
 end
+
 local function check_in_beds(players)
 	local in_bed = lottblocks.player
 	if not players then
@@ -158,6 +150,7 @@ local function check_in_beds(players)
 
 	return #players > 0
 end
+
 local function bed_on_rightclick(pos, player)
 	local name = player:get_player_name()
 	local ppos = player:getpos()
@@ -195,6 +188,7 @@ local function bed_on_rightclick(pos, player)
 		end)
 	end
 end
+
 local lottblocks_list = {
 	{ "Red Bed", "red"},
 	{ "Blue Bed", "blue"},
@@ -312,6 +306,21 @@ for i in ipairs(lottblocks_list) do
 		}
 	})
 end
+
+minetest.register_on_leaveplayer(function(player)
+	local name = player:get_player_name()
+	lottblocks.lay_down(player, nil, nil, false, true)
+	lottblocks.player[name] = nil
+	if check_in_beds() then
+		minetest.after(2, function()
+			update_formspecs(is_night_skip_enabled())
+			if is_night_skip_enabled() then
+				lottblocks.skip_night()
+				bed_kick_players()
+			end
+		end)
+	end
+end)
 
 minetest.register_alias("lottblocks:bed_bottom", "lottblocks:bed_bottom_blue")
 minetest.register_alias("lottblocks:bed_top", "lottblocks:bed_top_blue")

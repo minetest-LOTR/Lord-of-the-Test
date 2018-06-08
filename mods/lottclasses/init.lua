@@ -339,11 +339,14 @@ minetest.register_on_newplayer(function(player)
 		armor:set_player_armor(player)
 		
 		minetest.after(5, function()
+			if player == nil then return end
 			minetest.chat_send_player(name, minetest.colorize("green", "Starter mob immunity granted for "..immune_amt/ 60 .." minutes! Travel to a safe area!"))
 		end)
 		
 		for i = 1, immune_amt do
 			minetest.after(i, function()
+				if player == nil then return end
+				if not player:get_attribute("lott:immunity") then return end
 				player:set_attribute("lott:immunity", tonumber(player:get_attribute("lott:immunity")) - 1)
 			end)
 		end
@@ -414,11 +417,14 @@ minetest.register_on_joinplayer(function(player)
 				return
 			end
 			minetest.after(i, function()
+				if player == nil then return end
+				if not player:get_attribute("lott:immunity") then return end
 				player:set_attribute("lott:immunity", tonumber(player:get_attribute("lott:immunity")) - 1)
 			end)
 		end
-	
+		
 		minetest.after(player:get_attribute("lott:immunity")+1, function()
+			if player == nil then return end
 			player:set_attribute("lott:immunity", nil)
 			armor:set_player_armor(player)
 		
