@@ -11,6 +11,9 @@ SAVEDIR = "LOTT"
 
 -- Definitions made by this mod that other mods can use too
 default = {}
+default.gui_bg     = ""
+default.gui_bg_img = "background[5,5;1,1;gui_formbg.png;true]"
+default.gui_slots  = "listcolors[#606060AA;#606060;#141318;#30434C;#FFF]"
 
 -- Load files
 dofile(minetest.get_modpath("default").."/chatcommands.lua")
