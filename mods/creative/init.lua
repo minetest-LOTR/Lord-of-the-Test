@@ -11,7 +11,7 @@ local trash = minetest.create_detached_inventory("creative_trash", {
 	-- Allow the stack to be placed and remove it in on_put()
 	-- This allows the creative inventory to restore the stack
 	allow_put = function(inv, listname, index, stack, player)
-		if minetest.setting_getbool("creative_mode") then
+		if minetest.settings:get_bool("creative_mode") then
 			return stack:get_count()
 		else
 			return 0
@@ -29,7 +29,7 @@ local function new_inv(player)
 	creative.players[name] = {filter = "",  old_filter = "not_done", size = 0, start_i = 1}
 	local inv = minetest.create_detached_inventory("creative_" .. name, {
 		allow_move = function(inv, from_list, from_index, to_list, to_index, count, player)
-			if minetest.setting_getbool("creative_mode") then
+			if minetest.settings:get_bool("creative_mode") then
  				return count
  			else
  				return 0
@@ -39,7 +39,7 @@ local function new_inv(player)
  			return 0
  		end,
  		allow_take = function(inv, listname, index, stack, player)
- 			if minetest.setting_getbool("creative_mode") then
+			if minetest.settings:get_bool("creative_mode") then
  				return -1
  			else
  				return 0
@@ -111,13 +111,13 @@ creative.set_creative_formspec = function(player)
 end
 
 minetest.register_on_joinplayer(function(player)
-	if minetest.setting_getbool("creative_mode") then
+	if minetest.settings:get_bool("creative_mode") then
 		new_inv(player)
 	end
 end)
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
-	if not minetest.setting_getbool("creative_mode") then
+	if not minetest.settings:get_bool("creative_mode") then
 		return
 	end
 	if fields.creative_tabs then
@@ -190,7 +190,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 end)
 
-if minetest.setting_getbool("creative_mode") then
+if minetest.settings:get_bool("creative_mode") then
 	local digtime = 0.15
 	minetest.register_item(":", {
 		type = "none",

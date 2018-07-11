@@ -13,7 +13,7 @@ local LOTT_STAMINA_MOVE_TIMER = 0.5 -- rate of globalstep function that checks f
 local LOTT_STAMINA_JUMP = 5 -- approx. amount of continuous jumps before reducing stamina
 local LOTT_STAMINA_JUMP_AMT = -1 -- amount of stamina reduced when jumping
 
-if not minetest.setting_getbool("enable_damage") then
+if not minetest.settings:get_bool("enable_damage") then
 	return
 end
 

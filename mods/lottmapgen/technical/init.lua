@@ -25,8 +25,6 @@ height_file:close()
 
 local biomes = minetest.deserialize(minetest.decompress(biome_data))
 local height = minetest.deserialize(minetest.decompress(height_data))
-dofile(modpath .. "/functions.lua")
-dofile(modpath .. "/dungeons.lua")
 
 function lottmapgen.register_biome(id, table)
 	lottmapgen.biome[id] = table
@@ -195,8 +193,8 @@ local n_z = {
 }
 
 function lottmapgen.get_biome_at_pos(pos)
-	local nx = math.floor(minetest.get_perlin(n_x):get2d({x=pos.x,y=pos.z}) * 128)
-	local nz = math.floor(minetest.get_perlin(n_z):get2d({x=pos.x,y=pos.z}) * 128)
+	local nx = math.floor(minetest.get_perlin(n_x):get_2d({x=pos.x,y=pos.z}) * 128)
+	local nz = math.floor(minetest.get_perlin(n_z):get_2d({x=pos.x,y=pos.z}) * 128)
 	local x = math.floor((pos.x + nx) / 160) + 200
 	local z = (math.floor((pos.z + (nz - 1)) / 160) - 200) * -1
 	if biomes[z] and biomes[z][x] then
@@ -212,21 +210,26 @@ function lottmapgen.get_biome_at_pos(pos)
 	return nil
 end
 
-function lottmapgen.spawn_player(pos, player, rand)
-	if rand ~= false then
-		pos.x = pos.x + math.random(-100, 100)
-		pos.z = pos.z + math.random(-100, 100)
-	end
-	local nx = math.floor(minetest.get_perlin(n_x):get2d({x=pos.x,y=pos.z}) * 128) + pos.x
-	local nz = math.floor(minetest.get_perlin(n_z):get2d({x=pos.x,y=pos.z}) * 128) + pos.z
+function lottmapgen.get_y_at_pos(pos)
+	local nx = math.floor(minetest.get_perlin(n_x):get_2d({x=pos.x,y=pos.z}) * 128) + pos.x
+	local nz = math.floor(minetest.get_perlin(n_z):get_2d({x=pos.x,y=pos.z}) * 128) + pos.z
 	local height = lottmapgen.height(nx, nz)
-	local t = minetest.get_perlin(n_ter):get2d({x=pos.x,y=pos.z})
-	local tf = minetest.get_perlin(n_terflat):get2d({x=pos.x,y=pos.z})
+	local t = minetest.get_perlin(n_ter):get_2d({x=pos.x,y=pos.z})
+	local tf = minetest.get_perlin(n_terflat):get_2d({x=pos.x,y=pos.z})
 	local y = math.floor(((t + 1)) *
 		(height * math.abs(math.abs(tf / (height / 20)) - 1.01)))
 	if height == 0 then
 		y = 0
 	end
+	return y
+end
+
+function lottmapgen.spawn_player(pos, player, rand)
+	if rand ~= false then
+		pos.x = pos.x + math.random(-100, 100)
+		pos.z = pos.z + math.random(-100, 100)
+	end
+	local y = lottmapgen.get_y_at_pos(pos)
 	player:set_pos({x = pos.x, y = y + 2, z = pos.z})
 end
 
@@ -242,13 +245,6 @@ minetest.register_chatcommand("tpb", {
 		lottmapgen.spawn_player({x = x, y = 30, z = z},
 			minetest.get_player_by_name(name), false)
 	end,
-})
-
-minetest.register_chatcommand("bap", {
-	func = function(name)
-		local id, biome = lottmapgen.get_biome_at_pos(minetest.get_player_by_name(name):get_pos())
-		minetest.chat_send_player(name, biome .. "\n(id = " .. id .. ")")
-	end
 })
 
 minetest.register_chatcommand("tp", {
@@ -292,3 +288,8 @@ minetest.register_chatcommand("tp", {
 		end
 	end
 })
+
+dofile(modpath .. "/functions.lua")
+dofile(modpath .. "/dungeons.lua")
+dofile(modpath .. "/village_schems.lua")
+dofile(modpath .. "/villages.lua")

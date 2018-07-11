@@ -36,7 +36,7 @@ minetest.hud_replace_builtin("health",	{
 	offset = { x = 46, y = -110 },
 })
 
-if not minetest.setting_getbool("enable_damage") then
+if not minetest.settings:get_bool("enable_damage") then
 	return
 end
 

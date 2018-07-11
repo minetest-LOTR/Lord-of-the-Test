@@ -64,8 +64,9 @@ local np_rav = {
 	flags = "eased",
 }
 
--- Stuff
+-- Noise and voxelmanip data variables/buffers
 local modpath = minetest.get_modpath("lottmapgen")
+
 local nobj_temp = nil
 local nobj_humid = nil
 local nobj_ter = nil
@@ -73,6 +74,7 @@ local nobj_terflat = nil
 local nobj_dec = nil
 local nobj_cave = nil
 local nobj_rav = nil
+
 local nvals_x = {}
 local nvals_z = {}
 local nvals_ter = {}
@@ -80,6 +82,7 @@ local nvals_terflat = {}
 local nvals_dec = {}
 local nvals_cave = {}
 local nvals_rav = {}
+
 local data = {}
 local p2data = {}
 local heightmap = {}
@@ -140,17 +143,17 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	nobj_cave = nobj_cave or minetest.get_perlin_map(np_cave, chulens)
 	nobj_rav = nobj_rav or minetest.get_perlin_map(np_rav, chulens)
 
-	nobj_temp:get2dMap_flat(minposxz, nvals_x)
-	nobj_humid:get2dMap_flat(minposxz, nvals_z)
-	nobj_ter:get2dMap_flat(minposxz, nvals_ter)
-	nobj_terflat:get2dMap_flat(minposxz, nvals_terflat)
-	nobj_dec:get2dMap_flat(minposxz, nvals_dec)
-	nobj_cave:get3dMap_flat(minposxyz, nvals_cave)
-	nobj_rav:get3dMap_flat(minposxyz, nvals_rav)
+	nobj_temp:get_2d_map_flat(minposxz, nvals_x)
+	nobj_humid:get_2d_map_flat(minposxz, nvals_z)
+	nobj_ter:get_2d_map_flat(minposxz, nvals_ter)
+	nobj_terflat:get_2d_map_flat(minposxz, nvals_terflat)
+	nobj_dec:get_2d_map_flat(minposxz, nvals_dec)
+	nobj_cave:get_3d_map_flat(minposxyz, nvals_cave)
+	nobj_rav:get_3d_map_flat(minposxyz, nvals_rav)
 
 	local offset = math.random(5,20)
-	local nixyz = 1
-	local nixz = 1
+	local nixyz = 1 -- 3d noise index
+	local nixz = 1 -- 2d noise index
 	local schems = {}
 	local h
 	heightmap = {}
@@ -222,6 +225,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						data[vi] = c_air
 					end
 				elseif y == stone_depth and y >= 0 then
+					-- Biome Surface
 					if biome and lottmapgen.biome[biome] then
 						heightmap[nixz] = y
 						if lottmapgen.biome[biome].surface then
@@ -280,7 +284,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					end
 				end
 			end
-		nixz = nixz + 1
+			nixz = nixz + 1
 		end
 	end
 	lottmapgen.generate_dungeon(vm, area, data, emin, dungeon_wall)
@@ -306,10 +310,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 		end
 	end
+	--lottmapgen.generate_villages(minp, maxp, emin, emax, vm, area, data)
 	vm:set_lighting({day=0, night=0})
 	vm:calc_lighting()
 	vm:update_liquids()
-	vm:write_to_map(data)
+	vm:write_to_map()
 	local chugent = math.ceil((os.clock() - t1) * 1000)
 	--print(chugent)
 	table.insert(times, chugent)

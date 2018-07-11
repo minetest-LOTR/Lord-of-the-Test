@@ -14,7 +14,7 @@ local LOTT_HUNGER_DUG_AMT = -1 -- amount of hunger reduced when digging blocks
 local LOTT_HUNGER_CRAFTED = 99 -- amount of blocks crafted before reducing hunger
 local LOTT_HUNGER_CRAFTED_AMT = -1 -- amount of hunger reduced when crafting blocks
 
-if not minetest.setting_getbool("enable_damage") then
+if not minetest.settings:get_bool("enable_damage") then
 	return
 end
 
