@@ -20,19 +20,26 @@ lottmapgen.register_biome(1, {
 			data[vi] = c_dryshrub
 		elseif math.random(TREE5) == 3 then
 			 if noise < -0.85 then
-				lottmapgen.frozen_tree(x, y, z, area, data, p2data)
+				lottmapgen.generate_tree(x, y, z, area, data, p2data,
+					"lottitems:stone",
+					"air", math.random(4, 6))
 			end
-		elseif noise < 0.6 then
-			if math.random(TREE1) == 1 then
+		elseif noise > 0.8 then
+			data[vi] = c_snow
+			p2data[vi] = math.random(20, 50)
+		elseif noise > 0.4 then
+			if math.random(TREE2) == 1 then
 				lottmapgen.rock(x, y, z, area, data, "lottitems:snow", true)
+			elseif math.random(TREE4) == 1 then
+				lottmapgen.rock(x, y, z, area, data, "lottitems:stone", true)
 			end
 		elseif noise > 0.1 and noise < 0.25 then
 			data[vi] = c_snow
 			p2data[vi] = math.random(10, 25)
-		elseif noise > 0.75 then
-			data[vi] = c_snow
-			p2data[vi] = math.random(20, 50)
 		else
+			if math.random(TREE9) == 1 then
+				lottmapgen.rock(x, y, z, area, data, "lottitems:stone", true)
+			end
 			data[vi] = c_snow
 			p2data[vi] = math.random(40, 55)
 		end

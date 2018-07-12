@@ -571,7 +571,7 @@ function lottmapgen.rowan_bush(x, y, z, area, data)
 						data[vil] = c_leaves
 					end
 				end
-				vil = area:index(x + i, y + j, z + k)
+				local vil = area:index(x + i, y + j, z + k)
 				if math.random(22) == 2 then
 					data[vil] = c_berry
 				else
@@ -676,23 +676,65 @@ function lottmapgen.default_bush(x, y, z, area, data)
 end
 
 function lottmapgen.alder_tree(x, y, z, area, data)
-	local c_aldertree = minetest.get_content_id("lottplants:aldertree")
-	local c_alderleaf = minetest.get_content_id("lottplants:alderleaf")
-	for j = -2, 4 do
-		if j >= 1 then
+	local c_aldertrunk = minetest.get_content_id("lottplants:alder_trunk")
+	local c_alderleaves = minetest.get_content_id("lottplants:alder_leaves")
+	for j = -2, 7 do
+		if j == 3 then
+			for i = -1, 1 do
+			for k = -1, 1 do
+				if math.abs(i + k) == 1 then
+					if math.random(6) ~= 2 then
+						local vil = area:index(x + i, y + j, z + k)
+						data[vil] = c_alderleaves
+					end
+				end
+			end
+			end
+		elseif j == 4 or j == 5 or j == 7 then
 			for i = -2, 2 do
 			for k = -2, 2 do
-				local vil = area:index(x + i, y + j + 1, z + k)
-				if math.random(48) == 2 then
-					data[vil] = c_alderleaf
-				elseif math.random(3) ~= 2 then
-					data[vil] = c_alderleaf
+				if math.abs(i) + math.abs(k) < 4 or j >= 7 then
+					if math.random(6) ~= 2 then
+						local vil = area:index(x + i, y + j, z + k)
+						data[vil] = c_alderleaves
+					end
+				end
+			end
+			end
+		elseif j == 6 then
+			for i = -3, 3 do
+			for k = -3, 3 do
+				if math.abs(i) + math.abs(k) < 6 then
+					if math.random(6) ~= 2 then
+						local vil = area:index(x + i, y + j, z + k)
+						data[vil] = c_alderleaves
+					end
 				end
 			end
 			end
 		end
-		local vit = area:index(x, y + j, z)
-		data[vit] = c_aldertree
+		if j <= 3 then
+			local vit = area:index(x, y + j, z)
+			data[vit] = c_aldertrunk
+		elseif j <= 5 then
+			for i = -1, 1, 2 do
+			for k = -1, 1, 2 do
+				--if math.abs(i + k) == 1 then
+					local vit = area:index(x + i, y + j, z + k)
+					data[vit] = c_aldertrunk
+				--end
+			end
+			end
+		elseif j == 6 then
+			for i = -2, 2, 4 do
+			for k = -2, 2, 4 do
+				--if math.abs(i + k) == 1 then
+					local vit = area:index(x + i, y + j, z + k)
+					data[vit] = c_aldertrunk
+				--end
+			end
+			end
+		end
 	end
 end
 

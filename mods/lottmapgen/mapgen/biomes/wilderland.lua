@@ -40,7 +40,7 @@ lottmapgen.register_biome(25, {
 			if math.random(PLANT3) == 4 then
 				lottmapgen.grass(data, vi, p2data)
 			elseif math.random(PLANT8) == 2 then
-				lottmapgen.farming_plants(data, vi, p2data)
+				--lottmapgen.farming_plants(data, vi, p2data)
 			end
 		elseif noise1 > 0.7 then
 			if math.random(PLANT3) == 4 then
@@ -48,31 +48,58 @@ lottmapgen.register_biome(25, {
 			elseif math.random(PLANT7) == 2 then
 				lottmapgen.basic_flowers(data, vi, p2data)
 			elseif math.random(TREE7) == 3 then
-				lottmapgen.default_bush(x, y, z, area, data)
+				lottmapgen.generate_bush(x, y, z, area, data,
+					"lottplants:oak_trunk",
+					"lottplants:oak_leaves")
 			end
-		elseif noise2 < -0.6 then
+		elseif noise2 < -0.4 then
+			-- TODO: Increase density, add logs
 			if math.random(PLANT5) == 1 then
 				lottmapgen.grass(data, vi, p2data)
-			elseif math.random(TREE6) == 2 then
-				lottmapgen.default_tree(x, y, z, area, data)
-			elseif math.random(TREE5) == 3 then
+			elseif math.random(TREE3) == 2 then
+				lottmapgen.generate_tree(x, y, z, area, data,
+					"lottplants:oak_trunk",
+					"lottplants:oak_leaves",
+					math.random(4, 5))
+			elseif math.random(TREE4) == 3 then
 				lottmapgen.rowan_tree(x, y, z, area, data)
-			elseif math.random(TREE7) == 4 then
+			elseif math.random(TREE4) == 4 then
 				lottmapgen.alder_tree(x, y, z, area, data)
-			elseif math.random(TREE8) == 5 then
-				lottmapgen.apple_tree(x, y, z, area, data)
+			elseif math.random(TREE7) == 5 then
+				lottmapgen.generate_tree(x, y, z, area, data,
+					"lottplants:apple_trunk",
+					"lottplants:apple_leaves",
+					math.random(4, 5),
+					"lottplants:apple")
 			elseif math.random(TREE7) == 6 then
-				lottmapgen.culumalda_tree(x, y, z, area, data)
+				--lottmapgen.culumalda_tree(x, y, z, area, data)
+			elseif math.random(TREE8) == 7 then
+				lottmapgen.generate_log(x, y, z, area, data, p2data,
+					"lottplants:oak_trunk",
+					math.random(2, 4))
+			elseif math.random(TREE8) == 8 then
+				lottmapgen.generate_log(x, y, z, area, data, p2data,
+					"lottplants:rowan_trunk",
+					math.random(2, 4))
+			elseif math.random(TREE9) == 8 then
+				lottmapgen.generate_log(x, y, z, area, data, p2data,
+					"lottplants:alder_trunk",
+					math.random(2, 4))
 			end
 		else
 			if math.random(TREE10) == 6 then
-				lottmapgen.default_bush(x, y, z, area, data)
+				lottmapgen.generate_bush(x, y, z, area, data,
+					"lottplants:oak_trunk",
+					"lottplants:oak_leaves")
 			elseif math.random(15000) == 5 then
 				lottmapgen.rowan_bush(x, y, z, area, data)
 			elseif math.random(25000) == 4 then
 				lottmapgen.rowan_tree(x, y, z, area, data)
 			elseif math.random(25000) == 3 then
-				lottmapgen.default_tree(x, y, z, area, data)
+				lottmapgen.generate_tree(x, y, z, area, data,
+					"lottplants:oak_trunk",
+					"lottplants:oak_leaves",
+					math.random(4, 5))
 			elseif math.random(PLANT10) == 2 then
 				lottmapgen.basic_flowers(data, vi, p2data)
 			elseif math.random(PLANT3) == 1 then
