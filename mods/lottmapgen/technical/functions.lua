@@ -760,37 +760,79 @@ function lottmapgen.lebethron_tree(x, y, z, area, data)
 end
 
 function lottmapgen.white_tree(x, y, z, area, data)
-	local c_tree = minetest.get_content_id("default:tree")
-	local c_whiteleaf = minetest.get_content_id("lottplants:whiteleaf")
-	local t = 6 + math.random(2) -- trunk height
+	local c_white_tree = minetest.get_content_id("lottplants:white_tree_trunk")
+	local c_white_leaves = minetest.get_content_id("lottplants:white_tree_leaves")
+	local t = 20 + math.random(-2, 2) -- trunk height
 	for j = -2, t do
-		if j == t or j == t - 2 or j == t - 4 then
-			for i = -3, 3 do
-			for k = -3, 3 do
-				local vil = area:index(x + i, y + j + math.random(0, 1), z + k)
-				if math.random(48) == 2 then
-					data[vil] = c_whiteleaf
-				elseif math.random(3) ~= 2 then
-					data[vil] = c_whiteleaf
+		-- Leaves
+		if j < t - 13 then
+			-- Do nothing
+		elseif j <= t - 10 then
+			for i = -2, 3 do
+			for k = -2, 3 do
+				if math.abs(i) + math.abs(k) < 5 then
+					if math.random(4) ~= 2 then
+						local vil = area:index(x + i, y + j, z + k)
+						data[vil] = c_white_leaves
+					end
 				end
 			end
 			end
-		end
-		if j == t - 1 then
+		elseif j <= t - 7 then
+			for i = -2, 3 do
+			for k = -2, 3 do
+				if math.abs(i) + math.abs(k) < 4 then
+					if math.random(4) ~= 2 then
+						local vil = area:index(x + i, y + j, z + k)
+						data[vil] = c_white_leaves
+					end
+				end
+			end
+			end
+		elseif j <= t - 4 then
 			for i = -2, 2 do
 			for k = -2, 2 do
-				if i == -1 and k == 0 or i == 1 and k == 0
-				or k == 1 and i == 0 or k == -1 and i == 0
-				or i == -2 and k == 0 or i == 2 and k == 0
-				or k == 2 and i == 0 or k == -2 and i == 0 then
-					local vil = area:index(x + i, y + j + 1, z + k)
-					data[vil] = c_tree
+				if math.abs(i) + math.abs(k) < 4 then
+					if math.random(4) ~= 2 then
+						local vil = area:index(x + i, y + j, z + k)
+						data[vil] = c_white_leaves
+					end
+				end
+			end
+			end
+		else
+			for i = -2, 2 do
+			for k = -2, 2 do
+				if math.abs(i) + math.abs(k) < 3 then
+					if math.random(4) ~= 2 then
+						local vil = area:index(x + i, y + j, z + k)
+						data[vil] = c_white_leaves
+					end
 				end
 			end
 			end
 		end
-		local vit = area:index(x, y + j, z)
-		data[vit] = c_tree
+		local vil = area:index(x, y + t + 1, z)
+		data[vil] = c_white_leaves
+		-- Trunk
+		if j <= t - 7 then
+			for i = 0, 1 do
+			for k = 0, 1 do
+				if j <= t - 10 or i + k < 2 then
+					local vil = area:index(x + i, y + j, z + k)
+					data[vil] = c_white_tree
+				end
+			end
+			end
+		elseif j <= t - 4 then
+			for i = 0, 1 do
+				local vil = area:index(x + i, y + j, z)
+				data[vil] = c_white_tree
+			end
+		else
+			local vil = area:index(x, y + j, z)
+			data[vil] = c_white_tree
+		end
 	end
 end
 

@@ -434,3 +434,54 @@ minetest.register_node("lottplants:rowan_berries", {
 	paramtype2 = "facedir",
 	groups = {leaves = 1, plant = 1, food = 1, red = 1},
 })
+
+-- White Tree
+minetest.register_node("lottplants:white_tree_trunk", {
+	description = "White Tree Trunk",
+	tiles = {
+		"lottplants_white_tree_trunk_top.png",
+		"lottplants_white_tree_trunk_top.png",
+		"lottplants_white_tree_trunk.png"
+	},
+	paramtype2 = "facedir",
+	groups = {tree = 1, wood = 1, plant = 1, axe = 4}
+})
+
+minetest.register_node("lottplants:young_white_tree_trunk", {
+	description = "Young White Tree Trunk",
+	drawtype = "nodebox",
+	tiles = {
+		"lottplants_white_tree_trunk_top.png",
+		"lottplants_white_tree_trunk_top.png",
+		"lottplants_white_tree_trunk.png"
+	},
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.125, -0.5, -0.125, 0.125, 0.5, 0.125}, -- NodeBox1
+			{-0.0625, -0.5, -0.1875, 0.0625, 0.5, -0.125}, -- NodeBox2
+			{0.125, -0.5, -0.0625, 0.1875, 0.5, 0.0625}, -- NodeBox3
+			{-0.0625, -0.5, 0.125, 0.0625, 0.5, 0.1875}, -- NodeBox4
+			{-0.1875, -0.5, -0.0625, -0.125, 0.5, 0.0625}, -- NodeBox5
+		},
+	},
+	paramtype2 = "facedir",
+	groups = {tree = 1, wood = 1, plant = 1, axe = 4}
+})
+
+minetest.register_node("lottplants:white_tree_planks", {
+	description = "White Tree Planks",
+	tiles = {"lottplants_white_tree_planks.png"},
+	paramtype2 = "facedir",
+	groups = {wood = 1, axe = 1},
+})
+
+minetest.register_node("lottplants:white_tree_leaves", {
+	description = "White Tree Leaves",
+	drawtype = "allfaces_optional",
+	tiles = {"lottplants_white_tree_leaves.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {leaves = 1, plant = 1},
+})

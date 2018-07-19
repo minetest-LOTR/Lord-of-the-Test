@@ -89,6 +89,12 @@ register_flower("niphredil", {
 	groups = {white = 1, flower = 1, hand = 2, plant = 1, lorien = 1},
 })
 
+-- Gondor
+
+register_flower("mallos", {
+	groups = {yellow = 1, flower = 1, hand = 2, plant = 1, gondor = 1}
+})
+
 -- General
 
 register_flower("bluebell", {

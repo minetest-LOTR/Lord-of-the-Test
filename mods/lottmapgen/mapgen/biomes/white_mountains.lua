@@ -4,6 +4,7 @@ local c_silsand = minetest.get_content_id("lottitems:silver_sand")
 local c_snowblock = minetest.get_content_id("lottitems:snow")
 local c_gravel = minetest.get_content_id("lottitems:gravel")
 local c_dryshrub = minetest.get_content_id("lottplants:dry_shrub")
+local c_mallos = minetest.get_content_id("lottplants:mallos")
 
 lottmapgen.register_biome(27, {
 	name = "White Mountains",
@@ -41,9 +42,20 @@ lottmapgen.register_biome(27, {
 	deco = function(data, p2data, vi, area, x, y, z, noise)
 		if y < 30 then
 			if math.random(TREE7) == 4 then
-				lottmapgen.default_tree(x, y, z, area, data)
-			elseif math.random(TREE9) == 6 then
-				lottmapgen.apple_tree(x, y, z, area, data)
+				lottmapgen.generate_tree(x, y, z, area, data,
+					"lottplants:oak_trunk",
+					"lottplants:oak_leaves",
+					math.random(4, 6))
+			elseif math.random(TREE6) == 5 then
+				lottmapgen.generate_bush(x, y, z, area, data,
+					"lottplants:oak_trunk",
+					"lottplants:oak_leaves")
+			elseif math.random(TREE10) == 6 then
+				lottmapgen.generate_tree(x, y, z, area, data,
+					"lottplants:apple_trunk",
+					"lottplants:apple_leaves",
+					math.random(5, 6),
+					"lottplants:apple")
 			elseif math.random(PLANT3) == 3 then
 				lottmapgen.grass(data, vi, p2data)
 			elseif math.random(PLANT7) == 2 then
@@ -53,21 +65,21 @@ lottmapgen.register_biome(27, {
 				p2data[vi] = 42
 			elseif math.random(PLANT10) == 1 then
 				lottmapgen.farming_plants(data, vi, p2data)
-			elseif math.random(45000) == 39 then
-				lottmapgen.white_bush(x, y, z, area, data)
+			elseif math.random(640000) == 39 then
+				lottmapgen.white_tree(x, y, z, area, data)
 			end
 		elseif y > 99 then
-			data[viu] = c_snowblock
+			data[area:index(x, y - 1, z)] = c_snowblock
 		elseif y > 70 and noise > 0.65 then
-			data[viu] = c_snowblock
+			data[area:index(x, y - 1, z)] = c_snowblock
 		elseif math.random(TREE9) == 1 then
-			lottmapgen.default_bush(x, y, z, area, data)
+			lottmapgen.generate_bush(x, y, z, area, data,
+				"lottplants:oak_trunk",
+				"lottplants:oak_leaves")
 		elseif y > 40 and noise < -0.55 then
-			data[viu] = c_gravel
+			data[area:index(x, y - 1, z)] = c_gravel
 		elseif math.random(PLANT8) == 2 then
 			data[vi] = c_dryshrub
-		elseif math.random(45000) == 39 then
-			lottmapgen.white_bush(x, y, z, area, data)
 		end
 	end,
 	stone_depth = 45,

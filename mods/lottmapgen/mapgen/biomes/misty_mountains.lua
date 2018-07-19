@@ -32,17 +32,24 @@ lottmapgen.register_biome(20, {
 	end,
 	deco = function(data, p2data, vi, area, x, y, z, noise, noise2)
 		if y > 45 then
-			if noise > 0.1 then
+			if math.random(TREE7) == 3 then
+				lottmapgen.rock(x, y, z, area, data, "lottitems:stone", true)
+			elseif noise > 0.1 then
 				data[vi] = c_snow
 				p2data[vi] = math.random(20, 35)
 			end
-		elseif y < 25 then
+		elseif y < 18 then
 			if math.random(PLANT4) == 1 then
 				lottmapgen.grass(data, vi, p2data)
-			elseif math.random(TREE10) == 2  and y < 12 then
-				lottmapgen.default_tree(x, y, z, area, data)
-			elseif math.random(TREE10) == 3 then
-				lottmapgen.default_bush(x, y, z, area, data)
+			elseif math.random(TREE9) == 2 and y < 12 then
+				lottmapgen.generate_tree(x, y, z, area, data,
+					"lottplants:oak_trunk",
+					"lottplants:oak_leaves",
+					math.random(3, 4))
+			elseif math.random(TREE7) == 3 then
+				lottmapgen.generate_bush(x, y, z, area, data,
+					"lottplants:oak_trunk",
+					"lottplants:oak_leaves")
 			end
 			if noise < -0.5 then
 				if math.random(PLANT4) == 4 then
