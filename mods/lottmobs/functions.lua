@@ -129,7 +129,7 @@ local npc_attack = function(self)
 
                 if entity_type == "player" or entity_type == "npc" or entity_type == "monster" then
 
-                        local s = self.object:getpos()
+                        local s = self.object:get_pos()
                         local p = player:getpos()
                         local sp = s
 
@@ -264,7 +264,7 @@ lottmobs.do_custom_guard = function(self, dtime)
 	end
 
 	-- node replace check (cow eats grass etc.)
-        local pos = self.object:getpos()
+        local pos = self.object:get_pos()
 	replace(self, pos)
 
 	-- mob plays random sound at times

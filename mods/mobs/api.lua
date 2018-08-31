@@ -535,7 +535,7 @@ do_jump = function(self)
 	end
 
 	-- where is front
-	local yaw = self.object:getyaw()
+	local yaw = self.object:get_yaw()
 	local dir_x = -sin(yaw) * (self.collisionbox[4] + 0.5)
 	local dir_z = cos(yaw) * (self.collisionbox[4] + 0.5)
 
@@ -1399,7 +1399,7 @@ mobs.do_states = function(self, dtime)
 
 		-- calculate distance from mob and enemy
 		local s = self.object:getpos()
-		local p = self.attack:getpos() or s
+		local p = self.attack:get_pos() or s
 		local dist = get_distance(p, s)
 
 		-- stop attacking if player or out of range
@@ -1627,7 +1627,7 @@ mobs.do_states = function(self, dtime)
 				-- jump attack
 				if (self.jump
 				and get_velocity(self) <= 0.5
-				and self.object:getvelocity().y == 0)
+				and self.object:get_velocity().y == 0)
 				or (self.object:getvelocity().y == 0
 				and self.jump_chance > 0) then
 
@@ -1779,7 +1779,7 @@ local falling = function(self, pos)
 	end
 
 	-- floating in water (or falling)
-	local v = self.object:getvelocity()
+	local v = self.object:get_velocity()
 
 	-- going up then apply gravity
 	if v.y > 0.1 then
@@ -1812,9 +1812,9 @@ local falling = function(self, pos)
 
 		-- fall damage
 		if self.fall_damage == 1
-		and self.object:getvelocity().y == 0 then
+		and self.object:get_velocity().y == 0 then
 
-			local d = self.old_y - self.object:getpos().y
+			local d = self.old_y - self.object:get_pos().y
 
 			if d > 5 then
 
@@ -1827,7 +1827,7 @@ local falling = function(self, pos)
 				end
 			end
 
-			self.old_y = self.object:getpos().y
+			self.old_y = self.object:get_pos().y
 		end
 	end
 end
@@ -2117,8 +2117,8 @@ end
 
 local mob_step = function(self, dtime)
 
-	local pos = self.object:getpos()
-	local yaw = self.object:getyaw() or 0
+	local pos = self.object:get_pos()
+	local yaw = self.object:get_yaw() or 0
 
 	-- when lifetimer expires remove mob (except npc and tamed)
 	if self.type ~= "npc"
