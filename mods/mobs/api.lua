@@ -99,7 +99,7 @@ end
 
 set_velocity = function(self, v)
 
-	local yaw = self.object:getyaw() + self.rotate or 0
+	local yaw = self.object:get_yaw() + self.rotate or 0
 
 	self.object:setvelocity({
 		x = sin(yaw) * -v,
@@ -110,7 +110,7 @@ end
 
 get_velocity = function(self)
 
-	local v = self.object:getvelocity()
+	local v = self.object:get_velocity()
 
 	return (v.x * v.x + v.z * v.z) ^ 0.5
 end
@@ -1103,7 +1103,7 @@ mobs.follow_flop = function(self)
 
 		for n = 1, #players do
 
-			if get_distance(players[n]:getpos(), s) < self.view_range
+			if get_distance(players[n]:get_pos(), s) < self.view_range
 			and not invisibility[ players[n]:get_player_name() ] then
 
 				self.following = players[n]
@@ -1784,7 +1784,7 @@ local falling = function(self, pos)
 	-- going up then apply gravity
 	if v.y > 0.1 then
 
-		self.object:setacceleration({
+		self.object:set_acceleration({
 			x = 0,
 			y = self.fall_speed,
 			z = 0
@@ -1804,7 +1804,7 @@ local falling = function(self, pos)
 		end
 	else
 		-- fall downwards
-		self.object:setacceleration({
+		self.object:set_acceleration({
 			x = 0,
 			y = self.fall_speed,
 			z = 0
