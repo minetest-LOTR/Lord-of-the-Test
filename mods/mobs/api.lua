@@ -103,7 +103,7 @@ set_velocity = function(self, v)
 
 	self.object:setvelocity({
 		x = sin(yaw) * -v,
-		y = self.object:getvelocity().y,
+		y = self.object:get_velocity().y,
 		z = cos(yaw) * v
 	})
 end
@@ -455,7 +455,7 @@ do_env_damage = function(self)
 		update_tag(self)
 	end
 
-	local pos = self.object:getpos()
+	local pos = self.object:get_pos()
 
 	self.time_of_day = minetest.get_timeofday()
 
@@ -1098,7 +1098,7 @@ mobs.follow_flop = function(self)
 	and self.state ~= "attack"
 	and self.state ~= "runaway" then
 
-		local s = self.object:getpos()
+		local s = self.object:get_pos()
 		local players = minetest.get_connected_players()
 
 		for n = 1, #players do
@@ -1281,7 +1281,7 @@ mobs.do_states = function(self, dtime)
 				yaw = (random(0, 360) - 180) / 180 * pi
 			end
 
-			self.object:setyaw(yaw)
+			self.object:set_yaw(yaw)
 		end
 
 		set_velocity(self, 0)
@@ -1303,7 +1303,7 @@ mobs.do_states = function(self, dtime)
 
 	elseif self.state == "walk" then
 
-		local s = self.object:getpos()
+		local s = self.object:get_pos()
 		local lp = nil
 
 		-- is there something I need to avoid?
@@ -1398,7 +1398,7 @@ mobs.do_states = function(self, dtime)
 	elseif self.state == "attack" then
 
 		-- calculate distance from mob and enemy
-		local s = self.object:getpos()
+		local s = self.object:get_pos()
 		local p = self.attack:get_pos() or s
 		local dist = get_distance(p, s)
 
