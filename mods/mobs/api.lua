@@ -101,7 +101,7 @@ set_velocity = function(self, v)
 
 	local yaw = self.object:get_yaw() + self.rotate or 0
 
-	self.object:setvelocity({
+	self.object:set_velocity({
 		x = sin(yaw) * -v,
 		y = self.object:get_velocity().y,
 		z = cos(yaw) * v
@@ -1353,7 +1353,7 @@ mobs.do_states = function(self, dtime)
 		if temp_is_cliff == false
 		and self.jump
 		and get_velocity(self) <= 0.5
-		and self.object:getvelocity().y == 0 then
+		and self.object:get_velocity().y == 0 then
 
 			do_jump(self)
 		end
@@ -1796,7 +1796,7 @@ local falling = function(self, pos)
 
 		if self.floats == 1 then
 
-			self.object:setacceleration({
+			self.object:set_acceleration({
 				x = 0,
 				y = -self.fall_speed / (math.max(1, v.y) ^ 2),
 				z = 0
