@@ -521,7 +521,7 @@ do_jump = function(self)
 		return
 	end
 
-	local pos = self.object:getpos()
+	local pos = self.object:get_pos()
 
 	-- what is mob standing on?
 	pos.y = pos.y + self.collisionbox[2] - 0.2
@@ -1343,7 +1343,7 @@ mobs.do_states = function(self, dtime)
 
 			local yaw = (random(0, 360) - 180) / 180 * pi
 
-			self.object:setyaw(yaw)
+			self.object:set_yaw(yaw)
 		end
 
 		-- stand for great fall in front
