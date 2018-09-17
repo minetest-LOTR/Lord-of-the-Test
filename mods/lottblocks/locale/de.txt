@@ -1,0 +1,7 @@
+### chests.lua
+Lockpick = Dietrich
+Lockpick failed = Schloss knacken fehlgeschlagen
+Hobbit Chest = Halblingstruhe
+Only Hobbits can open this kind of chest! = Nur Halblinge können diese Art von Truhe öffnen!
+Only Humans can open this kind of chest! = Nur Menschen können diese Art von Truhe öffnen!
+Gondorian Chest = Gondor'sche Truhe

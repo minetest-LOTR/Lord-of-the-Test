@@ -1,0 +1,7 @@
+### chests.lua
+Lockpick =
+Lockpick failed =
+Hobbit Chest =
+Only Hobbits can open this kind of chest! =
+Only Humans can open this kind of chest! =
+Gondorian Chest =
