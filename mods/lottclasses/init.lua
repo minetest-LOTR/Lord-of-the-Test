@@ -462,7 +462,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname ~= "race_selector" then return end
 	local name = player:get_player_name()
 	local privs = minetest.get_player_privs(name)
-	if fields.gender == "Male" then
+	if fields.gender == S("Male") then
 		if fields.dwarf then
 			player_race_stuff("dwarf", "dwarves", "male", give_stuff_dwarf, name, privs, player)
 			
@@ -475,7 +475,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		elseif fields.hobbit then
 			player_race_stuff("hobbit", "hobbits", "male", give_stuff_hobbit, name, privs, player)
 		end
-	elseif fields.gender == "Female" then
+	elseif fields.gender == S("Female") then
 		if fields.dwarf then
 			player_race_stuff("dwarf", "dwarves", "female", give_stuff_dwarf, name, privs, player)
 		elseif fields.elf then
