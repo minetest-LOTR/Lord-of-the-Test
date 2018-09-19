@@ -562,7 +562,7 @@ do_jump = function(self)
 
 		v.y = self.jump_height + 1
 
-		self.object:setvelocity(v)
+		self.object:set_velocity(v)
 
 		if self.sounds.jump then
 
@@ -1405,7 +1405,7 @@ mobs.do_states = function(self, dtime)
 		-- stop attacking if player or out of range
 		if dist > self.view_range
 		or not self.attack
-		or not self.attack:getpos()
+		or not self.attack:get_pos()
 		or self.attack:get_hp() <= 0
 		or (self.attack:is_player() and invisibility[ self.attack:get_player_name() ]) then
 
@@ -1612,7 +1612,7 @@ mobs.do_states = function(self, dtime)
 				yaw = yaw + pi
 			end
 
-			self.object:setyaw(yaw)
+			self.object:set_yaw(yaw)
 
 			-- move towards enemy if beyond mob reach
 			if dist > self.reach then
@@ -1628,7 +1628,7 @@ mobs.do_states = function(self, dtime)
 				if (self.jump
 				and get_velocity(self) <= 0.5
 				and self.object:get_velocity().y == 0)
-				or (self.object:getvelocity().y == 0
+				or (self.object:get_velocity().y == 0
 				and self.jump_chance > 0) then
 
 					do_jump(self)
