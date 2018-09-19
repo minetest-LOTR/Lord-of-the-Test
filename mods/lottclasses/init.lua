@@ -464,28 +464,28 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	local privs = minetest.get_player_privs(name)
 	if fields.gender == S("Male") then
 		if fields.dwarf then
-			player_race_stuff("dwarf", "dwarves", "male", give_stuff_dwarf, name, privs, player)
+			player_race_stuff("dwarf", S("dwarves"), "male", give_stuff_dwarf, name, privs, player)
 			
 		elseif fields.elf then
-			player_race_stuff("elf", "elves", "male", give_stuff_elf, name, privs, player)
+			player_race_stuff("elf", S("elves"), "male", give_stuff_elf, name, privs, player)
 		elseif fields.man then
-			player_race_stuff("man", "men", "male", give_stuff_man, name, privs, player)
+			player_race_stuff("man", S("men"), "male", give_stuff_man, name, privs, player)
 		elseif fields.orc then
-			player_race_stuff("orc", "orcs", "male", give_stuff_orc, name, privs, player)
+			player_race_stuff("orc", S("orcs"), "male", give_stuff_orc, name, privs, player)
 		elseif fields.hobbit then
-			player_race_stuff("hobbit", "hobbits", "male", give_stuff_hobbit, name, privs, player)
+			player_race_stuff("hobbit", S("hobbits"), "male", give_stuff_hobbit, name, privs, player)
 		end
 	elseif fields.gender == S("Female") then
 		if fields.dwarf then
-			player_race_stuff("dwarf", "dwarves", "female", give_stuff_dwarf, name, privs, player)
+			player_race_stuff("dwarf", S("dwarves"), "female", give_stuff_dwarf, name, privs, player)
 		elseif fields.elf then
-			player_race_stuff("elf", "elves", "female", give_stuff_elf, name, privs, player)
+			player_race_stuff("elf", S("elves"), "female", give_stuff_elf, name, privs, player)
 		elseif fields.man then
-			player_race_stuff("man", "men", "female", give_stuff_man, name, privs, player)
+			player_race_stuff("man", S("men"), "female", give_stuff_man, name, privs, player)
 		elseif fields.orc then
-			player_race_stuff("orc", "orcs", "female", give_stuff_orc, name, privs, player)
+			player_race_stuff("orc", S("orcs"), "female", give_stuff_orc, name, privs, player)
 		elseif fields.hobbit then
-			player_race_stuff("hobbit", "hobbits", "female", give_stuff_hobbit, name, privs, player)
+			player_race_stuff("hobbit", S("hobbits"), "female", give_stuff_hobbit, name, privs, player)
 		end
 	end
 	if fields.fast then
