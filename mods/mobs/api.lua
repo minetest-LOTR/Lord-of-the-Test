@@ -558,7 +558,7 @@ do_jump = function(self)
 	and not nod.name:find("gate"))
 	or self.walk_chance == 0 then
 
-		local v = self.object:getvelocity()
+		local v = self.object:get_velocity()
 
 		v.y = self.jump_height + 1
 
@@ -1248,7 +1248,7 @@ mobs.do_states = function(self, dtime)
 		if random(1, 4) == 1 then
 
 			local lp = nil
-			local s = self.object:getpos()
+			local s = self.object:get_pos()
 
 			if self.type == "npc" then
 
@@ -1923,7 +1923,7 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 		self.object:settexturemod("^[colorize:#c9900070")
 
 		core.after(0.3, function()
-			self.object:settexturemod("")
+			self.object:set_texture_mod("")
 		end)
 	end)
 
@@ -2102,7 +2102,7 @@ local mob_activate = function(self, staticdata, dtime_s, def)
 	self.object:set_armor_groups({immortal = 1, fleshy = self.armor})
 	self.old_y = self.object:getpos().y
 	self.old_health = self.health
-	self.object:setyaw((random(0, 360) - 180) / 180 * pi)
+	self.object:set_yaw((random(0, 360) - 180) / 180 * pi)
 	self.sounds.distance = self.sounds.distance or 10
 	self.textures = textures
 	self.mesh = mesh
