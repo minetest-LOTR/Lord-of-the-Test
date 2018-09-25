@@ -133,7 +133,7 @@ lottmobs.elf = {
 		S("Faithless is he who says farewell when the road darkens."),
 		"Aa' lasser en lle coia orn n' omenta gurtha.",
 		S("Sweet water and light laughter till next we meet."),
-		S("Aa' menealle nauva ar' malta."),
+		"Aa' menealle nauva ar' malta.",
 		S("May the wind fill your sails."),
 		S("Do not scorn pity that is the gift of a gentle heart, Éowyn!"),
 		S("Someone else always has to carry on the story."),
