@@ -123,7 +123,7 @@ lottmobs.elf = {
 		S("Rest among us and prepare yourself, for war is imminent."),
 		S("If you wish to buy goods from us, there are certain traders who wander our land."),
 		S("Beware! Our society, and all societies, are on the edge of a knife blade - one false move and all will end, and Sauron will rule supreme."),
-		S("Êl síla erin lû e-govaned vîn."),
+		"Êl síla erin lû e-govaned vîn.",
 		S("It is perilous to study too deeply the arts of the Enemy, for good or for ill. But such falls and betrayals, alas, have happened before."),
 		S("Do not meddle in the affairs of Wizards, for they are subtle and quick to anger."),
 		S("The praise of the praiseworthy is above all rewards."),
