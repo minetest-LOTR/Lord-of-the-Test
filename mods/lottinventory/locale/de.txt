@@ -1,0 +1,6 @@
+### guides.lua
+Craft Book = Handwerksbuch
+Cooking Book = Kochbuch
+Protection Book = Rüstungsbuch
+Forbidden Book = verbotenes Buch
+Master Book = Meisterbuch

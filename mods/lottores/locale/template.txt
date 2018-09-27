@@ -1,25 +1,25 @@
 ### tools.lua
-Copper Axe 
-Copper Pickaxe 
-Copper Shovel 
-Copper Sword 
-Galvorn Axe 
-Galvorn Pickaxe 
-Galvorn Shovel 
-Galvorn Sword 
-Gold Axe 
-Gold Pickaxe 
-Gold Shovel 
-Gold Sword 
-Mithril Axe 
-Mithril Pickaxe 
-Mithril Shovel 
-Mithril Sword 
-Silver Axe 
-Silver Pickaxe 
-Silver Shovel 
-Silver Sword 
-Tin Axe 
-Tin Pickaxe 
-Tin Shovel 
-Tin Sword 
+Copper Axe =
+Copper Pickaxe =
+Copper Shovel =
+Copper Sword =
+Galvorn Axe =
+Galvorn Pickaxe =
+Galvorn Shovel =
+Galvorn Sword =
+Gold Axe =
+Gold Pickaxe =
+Gold Shovel =
+Gold Sword =
+Mithril Axe =
+Mithril Pickaxe =
+Mithril Shovel =
+Mithril Sword =
+Silver Axe =
+Silver Pickaxe =
+Silver Shovel =
+Silver Sword =
+Tin Axe =
+Tin Pickaxe =
+Tin Shovel =
+Tin Sword =

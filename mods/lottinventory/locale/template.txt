@@ -1,0 +1,6 @@
+### guides.lua
+Craft Book =
+Cooking Book =
+Protection Book =
+Forbidden Book =
+Master Book =
