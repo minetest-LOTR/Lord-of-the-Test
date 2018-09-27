@@ -1,3 +1,4 @@
+### trader_goods.lua
 Ah, what a lovely land we have, so peaceful, so beautiful. =
 Are you willing to fight with us? We have much to lose, but much to gain also! We must rally together. =
 Arrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr! =
@@ -51,3 +52,9 @@ We suffer raids from orcs, and other evil things, yet we do nothing! We must act
 What are you doing here? What do you want from us? =
 Wherever there are elves, there are lies. =
 You can kill a dwarf, but you can never vanquish one. =
+
+### horse.lua
+Black Horse =
+Brown Horse =
+Shire Pony =
+White Horse =

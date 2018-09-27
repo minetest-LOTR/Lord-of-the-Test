@@ -1,3 +1,4 @@
+### trader_goods.lua
 Ah, what a lovely land we have, so peaceful, so beautiful. = Ah, welch herrliches Land wir haben, so friedlich, so schön.
 Are you willing to fight with us? We have much to lose, but much to gain also! We must rally together. = Bist Du willens, mit uns zu kämpfen? Wir haben viel zu verlieren, aber auch viel zu gewinnen! Wir müssen uns zusammenscharen.
 Arrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr! =
@@ -51,3 +52,9 @@ We suffer raids from orcs, and other evil things, yet we do nothing! We must act
 What are you doing here? What do you want from us? = Was tust Du hier? Was willst Du von uns?
 Wherever there are elves, there are lies. = Überall, wo Elfen sind, dort sind auch Lügen.
 You can kill a dwarf, but you can never vanquish one. = Du kannst einen Zwerg töten, aber Du kannst niemals einen bezwingen.
+
+### horse.lua
+Black Horse = Schwarzes Pferd
+Brown Horse = Braunes Pferd
+Shire Pony = Auenlandpony
+White Horse = Weißes Pferd
