@@ -6,3 +6,4 @@ worldedit
 lottother
 bucket
 areas?
+intllib?

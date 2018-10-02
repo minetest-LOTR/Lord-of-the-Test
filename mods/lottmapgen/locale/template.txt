@@ -1,0 +1,16 @@
+### nodes.lua
+Fog =
+Snow Block =
+Frozen Stone =
+Mordor Stone =
+Ice =
+Black Water Source =
+Black River Source =
+Dunland Grass =
+Iron Hills Grass =
+Gondor Grass =
+Lorien Grass =
+? Grass =
+Mirkwood Grass =
+Shire Grass =
+Ithilien Grass =
