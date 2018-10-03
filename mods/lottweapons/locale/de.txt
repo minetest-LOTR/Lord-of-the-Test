@@ -39,3 +39,7 @@ Training Battleaxe = Trainingsstreitaxt
 Training Dagger = Trainingsdolch
 Training Spear = Trainingsspeer
 Training Warhammer = Trainingskriegshammer
+
+### special.lua
+Elven Sword = Elfenschwert
+Orcish Sword = Orkschwert

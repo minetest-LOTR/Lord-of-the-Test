@@ -39,3 +39,7 @@ Training Battleaxe =
 Training Dagger =
 Training Spear =
 Training Warhammer =
+
+### special.lua
+Elven Sword =
+Orcish Sword =
