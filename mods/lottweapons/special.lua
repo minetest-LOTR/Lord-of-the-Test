@@ -1,3 +1,12 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 minetest.register_tool("lottweapons:elven_sword", {
 	description = S("Elven Sword"),
 	inventory_image = "lottweapons_elven_sword.png",
