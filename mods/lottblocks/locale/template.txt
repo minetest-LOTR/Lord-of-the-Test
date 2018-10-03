@@ -14,3 +14,19 @@ Only Dwarfs can open this kind of chest! =
 Only Elves can open this kind of chest! =
 Only Orcs can open this kind of chest! =
 Rohirrim Chest =
+
+### decoration.lua
+Black Dwarf Stone =
+Dark Leaf Roof =
+Dwarf Tomb =
+Dwarf Tomb Bottom =
+Mallorn Leaf Roof =
+Mallorn Pillar =
+Marble Brick =
+Orc Brick =
+Snowy Cobblestone =
+Stripe Dwarf Stone =
+Tree With Moss =
+Tree With Vines =
+White Dwarf Stone =
+White Mallorn =

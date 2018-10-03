@@ -8,7 +8,7 @@
 -- Vine tree
 
 minetest.register_node("lottblocks:tree_vine", {
-	description = "Tree With Vines",
+	description = S("Tree With Vines"),
 	tiles = {"lottblocks_tree_vine_top.png", "lottblocks_tree_vine_top.png", "lottblocks_tree_vine.png", "lottblocks_tree_vine.png", "lottblocks_tree_vine.png", "lottblocks_tree_vine.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
@@ -27,7 +27,7 @@ stairs.register_stair_and_slab("tree_vine", "lottblocks:tree_vine",
 -- Mossy tree
 
 minetest.register_node("lottblocks:tree_mossy", {
-	description = "Tree With Moss",
+	description = S("Tree With Moss"),
 	tiles = {"lottblocks_tree_mossy_top.png", "lottblocks_tree_mossy_top.png", "lottblocks_tree_mossy.png", "lottblocks_tree_mossy.png", "lottblocks_tree_mossy.png", "lottblocks_tree_mossy.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
@@ -46,7 +46,7 @@ stairs.register_stair_and_slab("tree_mossy", "lottblocks:tree_mossy",
 -- Leafroof dark
 
 minetest.register_node("lottblocks:leafroof_dark", {
-	description = "Dark Leaf Roof",
+	description = S("Dark Leaf Roof"),
 	tiles = {"lottblocks_leafroof.png"},
 	paramtype = "light",
 	drawtype = "allfaces_optional",
@@ -68,7 +68,7 @@ stairs.register_stair_and_slab("leafroof_dark", "lottblocks:leafroof_dark",
 -- Leafroof mallorn
 
 minetest.register_node("lottblocks:leafroof_mallorn", {
-	description = "Mallorn Leaf Roof",
+	description = S("Mallorn Leaf Roof"),
 	tiles = {"lottblocks_mallornroof.png"},
 	paramtype = "light",
 	drawtype = "allfaces_optional",
@@ -88,7 +88,7 @@ stairs.register_stair_and_slab("leafroof_mallorn", "lottblocks:leafroof_mallorn"
 -- mallorn pillar
 
 minetest.register_node("lottblocks:mallorn_pillar", {
-	description = "Mallorn Pillar",
+	description = S("Mallorn Pillar"),
 	tiles = {"lottblocks_mallorn_pillar.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -108,7 +108,7 @@ stairs.register_stair_and_slab("mallorn_pillar", "lottblocks:mallorn_pillar",
 -- mallorn White
 
 minetest.register_node("lottblocks:mallorn_white", {
-	description = "White Mallorn",
+	description = S("White Mallorn"),
 	tiles = {"lottblocks_mallorn_white.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -129,7 +129,7 @@ stairs.register_stair_and_slab("mallorn_white", "lottblocks:mallorn_white",
 -- white
 
 minetest.register_node("lottblocks:dwarfstone_white", {
-	description = "White Dwarf Stone",
+	description = S("White Dwarf Stone"),
 	tiles = {"lottblocks_dwarfstone_white_top.png", "lottblocks_dwarfstone_white_top.png", "lottblocks_dwarfstone_white_side.png", "lottblocks_dwarfstone_white_side.png", "lottblocks_dwarfstone_white_side.png", "lottblocks_dwarfstone_white_side.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
@@ -148,7 +148,7 @@ stairs.register_stair_and_slab("dwarfstone_white", "lottblocks:dwarfstone_white"
 -- black
 
 minetest.register_node("lottblocks:dwarfstone_black", {
-	description = "Black Dwarf Stone",
+	description = S("Black Dwarf Stone"),
 	tiles = {"lottblocks_dwarfstone_black_top.png", "lottblocks_dwarfstone_black_top.png", "lottblocks_dwarfstone_black_side.png", "lottblocks_dwarfstone_black_side.png", "lottblocks_dwarfstone_black_side.png", "lottblocks_dwarfstone_black_side.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
@@ -167,7 +167,7 @@ stairs.register_stair_and_slab("dwarfstone_black", "lottblocks:dwarfstone_black"
 -- stripe
 
 minetest.register_node("lottblocks:dwarfstone_stripe", {
-	description = "Stripe Dwarf Stone",
+	description = S("Stripe Dwarf Stone"),
 	tiles = {"lottblocks_dwarfstone_stripe_top.png", "lottblocks_dwarfstone_stripe_bottom.png", "lottblocks_dwarfstone_stripe_l.png", "lottblocks_dwarfstone_stripe_l.png", "lottblocks_dwarfstone_stripe_r.png", "lottblocks_dwarfstone_stripe_r.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
@@ -278,7 +278,7 @@ minetest.register_craft({
 
 -- Dwarf Tombs, by Amaz.
 minetest.register_node("lottblocks:dwarf_tomb_top", {
-	description = "Dwarf Tomb",
+	description = S("Dwarf Tomb"),
 	drawtype = "nodebox",
 	tiles = {
 		"lottblocks_dh_top.png", "default_stone.png",
@@ -366,7 +366,7 @@ minetest.register_node("lottblocks:dwarf_tomb_top", {
 })
 
 minetest.register_node("lottblocks:dwarf_tomb_bottom", {
-	description = "Dwarf Tomb Bottom",
+	description = S("Dwarf Tomb Bottom"),
 	tiles = {
 		"lottblocks_db_top.png", "default_stone.png",
 		"lottblocks_db_side2.png", "lottblocks_db_side1.png",
@@ -394,13 +394,13 @@ minetest.register_node("lottblocks:dwarf_tomb_bottom", {
 })
 
 minetest.register_node("lottblocks:snowycobble", {
-	description = "Snowy Cobblestone",
+	description = S("Snowy Cobblestone"),
 	tiles = {"lottblocks_snowycobble.png"},
 	is_ground_content = false,
 	groups = {cracky=3},
 })
 minetest.register_node("lottblocks:orc_brick", {
-	description = "Orc Brick",
+	description = S("Orc Brick"),
 	tiles = {"lottblocks_orc_brick.png"},
 	is_ground_content = false,
 	groups = {cracky=2},
@@ -412,7 +412,7 @@ stairs.register_stair_and_slab("orc_brick", "lottblocks:orc_brick",
 		"Orc Brick"
 )
 minetest.register_node("lottblocks:marble_brick", {
-	description = "Marble Brick",
+	description = S("Marble Brick"),
 	tiles = {"lottblocks_marble_brick.png"},
 	is_ground_content = false,
 	groups = {cracky=2},

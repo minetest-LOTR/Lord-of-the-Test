@@ -14,3 +14,19 @@ Only Dwarfs can open this kind of chest! = Nur Zwerge können diese Art von Truh
 Only Elves can open this kind of chest! = Nur Elfen können diese Art von Truhe öffnen!
 Only Orcs can open this kind of chest! = Nur Orks können diese Art von Truhe öffnen!
 Rohirrim Chest = Truhe aus Rohan
+
+### decoration.lua
+Black Dwarf Stone = Schwarzer Zwergenstein
+Dark Leaf Roof = Dunkles Blätterdach
+Dwarf Tomb = Zwergengrab
+Dwarf Tomb Bottom = Zwergengrabboden
+Mallorn Leaf Roof = Mallornblätterdach
+Mallorn Pillar = Mallornsäule
+Marble Brick = Marmorstein
+Orc Brick = Orkziegel
+Snowy Cobblestone = Verschneiter Pflasterstein
+Stripe Dwarf Stone = Gestreifter Zwergenstein
+Tree With Moss = Baum mit Moos
+Tree With Vines = Baum mit Ranken
+White Dwarf Stone = Weißer Zwergenstein
+White Mallorn = Weißes Mallorn
