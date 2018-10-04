@@ -30,3 +30,9 @@ Tree With Moss =
 Tree With Vines =
 White Dwarf Stone =
 White Mallorn =
+
+### lamps.lua
+Elf Torch =
+Mithril Stonelamp =
+Orc Torch =
+

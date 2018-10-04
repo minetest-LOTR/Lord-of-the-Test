@@ -30,3 +30,9 @@ Tree With Moss = Baum mit Moos
 Tree With Vines = Baum mit Ranken
 White Dwarf Stone = Weißer Zwergenstein
 White Mallorn = Weißes Mallorn
+
+### lamps.lua
+Elf Torch = Elfenfackel
+Mithril Stonelamp = Mithrilsteinlampe
+Orc Torch = Orkfackel
+
