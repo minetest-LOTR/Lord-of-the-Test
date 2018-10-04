@@ -1,0 +1,4 @@
+### orc_food.lua
+Orc Food = Orkmahlzeit
+Orc medicine = Orkarznei
+
