@@ -1,16 +1,25 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 minetest.register_craftitem("lottmobs:meat", {
-	description = "Cooked Meat",
+	description = S("Cooked Meat"),
 	inventory_image = "lottmobs_meat.png",
 	on_use = minetest.item_eat(4),
 })
 
 minetest.register_craftitem("lottmobs:meat_raw", {
-	description = "Raw Meat",
+	description = S("Raw Meat"),
 	inventory_image = "lottmobs_meat_raw.png",
 })
 
 minetest.register_craftitem("lottmobs:spiderpoison", {
-	description = "Spider Poison",
+	description = S("Spider Poison"),
 	inventory_image = "lottmobs_spiderpoison.png",
 	on_use = minetest.item_eat(-15)
 })
@@ -22,7 +31,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("lottmobs:dirty_shirt", {
-    description = "Dirty Jacket",
+    description = S("Dirty Jacket"),
     inventory_image = "lottclothes_inv_jacket_midgewater.png^[colorize:#935d3675",
     stack_max = 1,
 })
@@ -35,7 +44,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("lottmobs:dirty_trousers", {
-    description = "Dirty Trousers",
+    description = S("Dirty Trousers"),
     inventory_image = "lottclothes_inv_pants_midgewater.png^[colorize:#935d3675",
     stack_max = 1,
 })

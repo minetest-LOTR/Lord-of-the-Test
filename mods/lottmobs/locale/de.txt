@@ -58,3 +58,11 @@ Black Horse = Schwarzes Pferd
 Brown Horse = Braunes Pferd
 Shire Pony = Auenlandpony
 White Horse = Weißes Pferd
+
+### craftitems.lua
+Cooked Meat = gekochtes Fleisch
+Dirty Jacket = schmutzige Jacke
+Dirty Trousers = schmutzige Hose
+Raw Meat = rohes Fleisch
+Spider Poison = Spinnengift
+
