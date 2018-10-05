@@ -58,3 +58,11 @@ Black Horse =
 Brown Horse =
 Shire Pony =
 White Horse =
+
+### craftitems.lua
+Cooked Meat =
+Dirty Jacket =
+Dirty Trousers =
+Raw Meat =
+Spider Poison =
+
