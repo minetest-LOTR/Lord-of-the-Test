@@ -1,0 +1,19 @@
+### api.lua
+Achievement Unlocked: = Errungenschaft freigeschaltet:
+Achievement Unlocked! = Errungenschaft freigeschaltet!
+Achievement Unlocked: %s = Errungenschaft freigeschaltet: %s
+(completed) = (fertiggestellt)
+Error: No lottachievements available. = Fehler: lottachievements nicht verfügbar.
+(Hidden Achievement) = (Versteckte Errungenschaft)
+(Secret Achievement) = (Geheime Errungenschaft)
+Secret Achievement Unlocked: = Geheime Errungenschaft freigeschaltet:
+Secret Achievement Unlocked! = Geheime Errungenschaft freigeschaltet!
+Secret Achievement Unlocked: %s = Geheime Errungenschaft freigeschaltet: %s
+%s: %s = %s: %s
+%s’s lottachievements: = lottachievements von %s
+To see this achievement, complete \" = Um diese Errungenschaft zu sehen, vervollständige \"
+To see this achievement you need to complete more achievements! = Um diese Errungenschaft zu sehen, musst du mehr Errungenschaften fertigstellen!
+Unlock this achievement to find out what it is. = Schalte diese Errungenschaft frei, um zu sehen, was sie ist.
+You have not unlocked any lottachievements. = Du hast bisher keine lottachievements freigeschaltet.
+You've disabled lottachievements. Type /lottachievements enable to reenable. = lottachievements ist deaktiviert. Gib /lottachievements ein, um es wieder zu aktivieren.
+

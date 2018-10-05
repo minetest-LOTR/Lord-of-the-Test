@@ -1,0 +1,19 @@
+### api.lua
+Achievement Unlocked: =
+Achievement Unlocked! =
+Achievement Unlocked: %s =
+(completed) =
+Error: No lottachievements available. =
+(Hidden Achievement) =
+(Secret Achievement) =
+Secret Achievement Unlocked: =
+Secret Achievement Unlocked! =
+Secret Achievement Unlocked: %s =
+%s: %s =
+%s’s lottachievements: =
+To see this achievement, complete \" =
+To see this achievement you need to complete more achievements! =
+Unlock this achievement to find out what it is. =
+You have not unlocked any lottachievements. =
+You've disabled lottachievements. Type /lottachievements enable to reenable. =
+
