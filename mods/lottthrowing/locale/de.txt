@@ -1,0 +1,14 @@
+### init.lua
+Alder Wood Bow = Erlenholzbogen
+Birch Wood Bow = Birkenholzbogen
+Galvorn Crossbow = Galvornholzbogen
+Gold Crossbow = Goldarmbrust
+Lebethron Wood Bow = Lebethronholzbogen
+Mallorn Bow = Mallornbogen
+Mithril Crossbow = Mithrilarmbrust
+Normal Wood Bow = normaler Holzbogen
+Silver Crossbow = Silberarmbrust
+Steel Crossbow = Stahlarmbrust
+Tin Crossbow = Zinnarmbrust
+Wooden Crossbow = hölzerne Armbrust
+
