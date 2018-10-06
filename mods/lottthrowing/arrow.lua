@@ -1,3 +1,12 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 minetest.register_craftitem("lottthrowing:arrow", {
 	description = S("Arrow"),
 	inventory_image = "lottthrowing_arrow.png",
