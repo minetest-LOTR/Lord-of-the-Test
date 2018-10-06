@@ -2,3 +2,9 @@
 Orc Food = Orkmahlzeit
 Orc medicine = Orkarznei
 
+### pipeweed.lua
+Cooked Pipeweed = gekochtes Pfeifenkraut
+Pipe = Pfeife
+Pipeweed = Pfeifenkraut
+Pipeweed Seeds = Pfeifenkrautsamen
+
