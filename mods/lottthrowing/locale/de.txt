@@ -12,3 +12,6 @@ Steel Crossbow = Stahlarmbrust
 Tin Crossbow = Zinnarmbrust
 Wooden Crossbow = hölzerne Armbrust
 
+### arrow.lua
+Arrow = Pfeil
+
