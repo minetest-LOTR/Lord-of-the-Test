@@ -14,3 +14,8 @@ Tomato =
 Tomato Seeds =
 Tomato Soup =
 
+### potato.lua
+Cooked Potato =
+Potato =
+Potato Seeds =
+

@@ -14,3 +14,8 @@ Tomato = Tomate
 Tomato Seeds = Tomatensamen
 Tomato Soup = Tomatensuppe
 
+### potato.lua
+Cooked Potato = gekochte Kartoffel
+Potato = Kartoffel
+Potato Seeds = Kartoffelsamen
+
