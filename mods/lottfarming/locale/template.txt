@@ -8,3 +8,9 @@ Pipe =
 Pipeweed =
 Pipeweed Seeds =
 
+### tomatoes.lua
+Cooked Tomato =
+Tomato =
+Tomato Seeds =
+Tomato Soup =
+

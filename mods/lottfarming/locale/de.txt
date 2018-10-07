@@ -8,3 +8,9 @@ Pipe = Pfeife
 Pipeweed = Pfeifenkraut
 Pipeweed Seeds = Pfeifenkrautsamen
 
+### tomatoes.lua
+Cooked Tomato = gekochte Tomate
+Tomato = Tomate
+Tomato Seeds = Tomatensamen
+Tomato Soup = Tomatensuppe
+
