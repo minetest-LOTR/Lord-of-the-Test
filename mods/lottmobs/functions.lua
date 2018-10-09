@@ -110,7 +110,7 @@ local npc_attack = function(self)
 	end
         local player, entity_type, obj, min_player, npc_race = nil, nil, nil, nil, nil
         local min_dist = self.view_range + 1
-        local objs = minetest.get_objects_inside_radius(self.object:getpos(), self.view_range)
+        local objs = minetest.get_objects_inside_radius(self.object:get_pos(), self.view_range)
         for n = 1, #objs do
                 if invisibility[ objs[n]:get_player_name() ] then
                         entity_type = ""
@@ -129,8 +129,8 @@ local npc_attack = function(self)
 
                 if entity_type == "player" or entity_type == "npc" or entity_type == "monster" then
 
-                        local s = self.object:getpos()
-                        local p = player:getpos()
+                        local s = self.object:get_pos()
+                        local p = player:get_pos()
                         local sp = s
 
                         -- aim higher to make looking up hills more realistic
@@ -264,7 +264,7 @@ lottmobs.do_custom_guard = function(self, dtime)
 	end
 
 	-- node replace check (cow eats grass etc.)
-        local pos = self.object:getpos()
+        local pos = self.object:get_pos()
 	replace(self, pos)
 
 	-- mob plays random sound at times

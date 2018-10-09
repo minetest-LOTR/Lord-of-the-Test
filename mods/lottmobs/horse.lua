@@ -95,7 +95,7 @@ function lottmobs:register_horse(name, craftitem, horse)
 		p.y = p.y - 0.1
 		local on_ground = is_ground(p)
 
-		self.v = get_v(self.object:getvelocity())*get_sign(self.v)
+		self.v = get_v(self.object:get_velocity())*get_sign(self.v)
 
 		-- driver controls
 		if self.driver then
