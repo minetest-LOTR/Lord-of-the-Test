@@ -4,3 +4,12 @@ Cooking Book = Kochbuch
 Protection Book = Rüstungsbuch
 Forbidden Book = verbotenes Buch
 Master Book = Meisterbuch
+
+### brewing.lua
+Ale = Ale
+Beer = Bier
+Book of Brewing = Buch des Brauens
+Cider = Apfelwein
+Exit = Verlassen
+Mead = Met
+

@@ -4,3 +4,12 @@ Cooking Book =
 Protection Book =
 Forbidden Book =
 Master Book =
+
+### brewing.lua
+Ale =
+Beer =
+Book of Brewing =
+Cider =
+Exit =
+Mead =
+
