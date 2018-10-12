@@ -13,3 +13,8 @@ Cider =
 Exit =
 Mead =
 
+### init.lua
+Large Bag =
+Medium Bag =
+Small Bag =
+

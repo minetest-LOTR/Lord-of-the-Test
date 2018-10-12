@@ -13,3 +13,8 @@ Cider = Apfelwein
 Exit = Verlassen
 Mead = Met
 
+### init.lua
+Large Bag = große Tasche
+Medium Bag = mittlere Tasche
+Small Bag = kleine Tasche
+
