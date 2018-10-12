@@ -99,18 +99,18 @@ end
 
 set_velocity = function(self, v)
 
-	local yaw = self.object:getyaw() + self.rotate or 0
+	local yaw = self.object:get_yaw() + self.rotate or 0
 
-	self.object:setvelocity({
+	self.object:set_velocity({
 		x = sin(yaw) * -v,
-		y = self.object:getvelocity().y,
+		y = self.object:get_velocity().y,
 		z = cos(yaw) * v
 	})
 end
 
 get_velocity = function(self)
 
-	local v = self.object:getvelocity()
+	local v = self.object:get_velocity()
 
 	return (v.x * v.x + v.z * v.z) ^ 0.5
 end
@@ -455,7 +455,7 @@ do_env_damage = function(self)
 		update_tag(self)
 	end
 
-	local pos = self.object:getpos()
+	local pos = self.object:get_pos()
 
 	self.time_of_day = minetest.get_timeofday()
 
@@ -521,7 +521,7 @@ do_jump = function(self)
 		return
 	end
 
-	local pos = self.object:getpos()
+	local pos = self.object:get_pos()
 
 	-- what is mob standing on?
 	pos.y = pos.y + self.collisionbox[2] - 0.2
@@ -535,7 +535,7 @@ do_jump = function(self)
 	end
 
 	-- where is front
-	local yaw = self.object:getyaw()
+	local yaw = self.object:get_yaw()
 	local dir_x = -sin(yaw) * (self.collisionbox[4] + 0.5)
 	local dir_z = cos(yaw) * (self.collisionbox[4] + 0.5)
 
@@ -558,11 +558,11 @@ do_jump = function(self)
 	and not nod.name:find("gate"))
 	or self.walk_chance == 0 then
 
-		local v = self.object:getvelocity()
+		local v = self.object:get_velocity()
 
 		v.y = self.jump_height + 1
 
-		self.object:setvelocity(v)
+		self.object:set_velocity(v)
 
 		if self.sounds.jump then
 
@@ -1060,7 +1060,7 @@ local npc_attack = function(self)
 		return
 	end
 
-	local s = self.object:getpos()
+	local s = self.object:get_pos()
 	local min_dist = self.view_range + 1
 	local obj, min_player = nil, nil
 	local objs = minetest.get_objects_inside_radius(s, self.view_range)
@@ -1098,12 +1098,12 @@ mobs.follow_flop = function(self)
 	and self.state ~= "attack"
 	and self.state ~= "runaway" then
 
-		local s = self.object:getpos()
+		local s = self.object:get_pos()
 		local players = minetest.get_connected_players()
 
 		for n = 1, #players do
 
-			if get_distance(players[n]:getpos(), s) < self.view_range
+			if get_distance(players[n]:get_pos(), s) < self.view_range
 			and not invisibility[ players[n]:get_player_name() ] then
 
 				self.following = players[n]
@@ -1248,7 +1248,7 @@ mobs.do_states = function(self, dtime)
 		if random(1, 4) == 1 then
 
 			local lp = nil
-			local s = self.object:getpos()
+			local s = self.object:get_pos()
 
 			if self.type == "npc" then
 
@@ -1281,7 +1281,7 @@ mobs.do_states = function(self, dtime)
 				yaw = (random(0, 360) - 180) / 180 * pi
 			end
 
-			self.object:setyaw(yaw)
+			self.object:set_yaw(yaw)
 		end
 
 		set_velocity(self, 0)
@@ -1303,7 +1303,7 @@ mobs.do_states = function(self, dtime)
 
 	elseif self.state == "walk" then
 
-		local s = self.object:getpos()
+		local s = self.object:get_pos()
 		local lp = nil
 
 		-- is there something I need to avoid?
@@ -1343,7 +1343,7 @@ mobs.do_states = function(self, dtime)
 
 			local yaw = (random(0, 360) - 180) / 180 * pi
 
-			self.object:setyaw(yaw)
+			self.object:set_yaw(yaw)
 		end
 
 		-- stand for great fall in front
@@ -1353,7 +1353,7 @@ mobs.do_states = function(self, dtime)
 		if temp_is_cliff == false
 		and self.jump
 		and get_velocity(self) <= 0.5
-		and self.object:getvelocity().y == 0 then
+		and self.object:get_velocity().y == 0 then
 
 			do_jump(self)
 		end
@@ -1398,14 +1398,14 @@ mobs.do_states = function(self, dtime)
 	elseif self.state == "attack" then
 
 		-- calculate distance from mob and enemy
-		local s = self.object:getpos()
-		local p = self.attack:getpos() or s
+		local s = self.object:get_pos()
+		local p = self.attack:get_pos() or s
 		local dist = get_distance(p, s)
 
 		-- stop attacking if player or out of range
 		if dist > self.view_range
 		or not self.attack
-		or not self.attack:getpos()
+		or not self.attack:get_pos()
 		or self.attack:get_hp() <= 0
 		or (self.attack:is_player() and invisibility[ self.attack:get_player_name() ]) then
 
@@ -1612,7 +1612,7 @@ mobs.do_states = function(self, dtime)
 				yaw = yaw + pi
 			end
 
-			self.object:setyaw(yaw)
+			self.object:set_yaw(yaw)
 
 			-- move towards enemy if beyond mob reach
 			if dist > self.reach then
@@ -1627,8 +1627,8 @@ mobs.do_states = function(self, dtime)
 				-- jump attack
 				if (self.jump
 				and get_velocity(self) <= 0.5
-				and self.object:getvelocity().y == 0)
-				or (self.object:getvelocity().y == 0
+				and self.object:get_velocity().y == 0)
+				or (self.object:get_velocity().y == 0
 				and self.jump_chance > 0) then
 
 					do_jump(self)
@@ -1779,12 +1779,12 @@ local falling = function(self, pos)
 	end
 
 	-- floating in water (or falling)
-	local v = self.object:getvelocity()
+	local v = self.object:get_velocity()
 
 	-- going up then apply gravity
 	if v.y > 0.1 then
 
-		self.object:setacceleration({
+		self.object:set_acceleration({
 			x = 0,
 			y = self.fall_speed,
 			z = 0
@@ -1796,7 +1796,7 @@ local falling = function(self, pos)
 
 		if self.floats == 1 then
 
-			self.object:setacceleration({
+			self.object:set_acceleration({
 				x = 0,
 				y = -self.fall_speed / (math.max(1, v.y) ^ 2),
 				z = 0
@@ -1804,7 +1804,7 @@ local falling = function(self, pos)
 		end
 	else
 		-- fall downwards
-		self.object:setacceleration({
+		self.object:set_acceleration({
 			x = 0,
 			y = self.fall_speed,
 			z = 0
@@ -1812,9 +1812,9 @@ local falling = function(self, pos)
 
 		-- fall damage
 		if self.fall_damage == 1
-		and self.object:getvelocity().y == 0 then
+		and self.object:get_velocity().y == 0 then
 
-			local d = self.old_y - self.object:getpos().y
+			local d = self.old_y - self.object:get_pos().y
 
 			if d > 5 then
 
@@ -1827,7 +1827,7 @@ local falling = function(self, pos)
 				end
 			end
 
-			self.old_y = self.object:getpos().y
+			self.old_y = self.object:get_pos().y
 		end
 	end
 end
@@ -1923,7 +1923,7 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 		self.object:settexturemod("^[colorize:#c9900070")
 
 		core.after(0.3, function()
-			self.object:settexturemod("")
+			self.object:set_texture_mod("")
 		end)
 	end)
 
@@ -2102,7 +2102,7 @@ local mob_activate = function(self, staticdata, dtime_s, def)
 	self.object:set_armor_groups({immortal = 1, fleshy = self.armor})
 	self.old_y = self.object:getpos().y
 	self.old_health = self.health
-	self.object:setyaw((random(0, 360) - 180) / 180 * pi)
+	self.object:set_yaw((random(0, 360) - 180) / 180 * pi)
 	self.sounds.distance = self.sounds.distance or 10
 	self.textures = textures
 	self.mesh = mesh
@@ -2117,8 +2117,8 @@ end
 
 local mob_step = function(self, dtime)
 
-	local pos = self.object:getpos()
-	local yaw = self.object:getyaw() or 0
+	local pos = self.object:get_pos()
+	local yaw = self.object:get_yaw() or 0
 
 	-- when lifetimer expires remove mob (except npc and tamed)
 	if self.type ~= "npc"
