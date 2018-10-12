@@ -12,6 +12,7 @@ Book of Brewing =
 Cider =
 Exit =
 Mead =
+Wine =
 
 ### init.lua
 Large Bag =

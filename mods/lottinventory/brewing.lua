@@ -16,7 +16,7 @@ function lottinventory.get_brewing_formspec(player, page)
                .."image_button[7,1;1,1;zcg_next.png;brews2;;false;false;zcg_next_press.png]"
                .."image[6,1;1,1;zcg_previous_inactive.png]"
                --First
-               .."label[1,2.2; Wine]"
+               .."label[1,2.2; " .. S("Wine") .. "]"
                .."item_image_button[4,2;1,1;lottpotion:drinking_glass_water;zcg:vessels:glass_water;]"
                .."item_image_button[5,2;1,1;lottfarming:berries;zcg:berries;5]"
                .."image[6,1;1,1;zcg_craft_arrow.png]"

@@ -12,6 +12,7 @@ Book of Brewing = Buch des Brauens
 Cider = Apfelwein
 Exit = Verlassen
 Mead = Met
+Wine = Wein
 
 ### init.lua
 Large Bag = große Tasche
