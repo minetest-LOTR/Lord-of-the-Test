@@ -1,0 +1,8 @@
+### init.lua
+Bone = Knochen
+Bone Dust = Knochenstaub
+Bone Scythe = Knochensense
+Gravestone = Grabstein
+Skeleton = Skelett
+Skeleton Head = Schädel
+

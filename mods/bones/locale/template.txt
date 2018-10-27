@@ -1,0 +1,8 @@
+### init.lua
+Bone =
+Bone Dust =
+Bone Scythe =
+Gravestone =
+Skeleton =
+Skeleton Head =
+
