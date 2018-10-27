@@ -46,3 +46,8 @@ Yavannamire Leaf = Yavannamirblatt
 Yavannamire Sapling = Yavannamirbäumchen
 Yellow Flowers on Culumalda Leaf = gelbe Blüten auf einem Culumaldablatt
 Young Mallorn Trunk = junger Mallornstamm
+
+### init.lua
+Brambles Of Mordor = Dornen von Mordor
+Honey = Honig
+
