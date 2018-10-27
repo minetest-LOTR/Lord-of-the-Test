@@ -5,6 +5,11 @@ local modpath = minetest.get_modpath("lottplayer")
 dofile(modpath .. "/physics.lua")
 dofile(modpath .. "/controls.lua")
 
+dofile(modpath .. "/inv/inventory.lua")
+dofile(modpath .. "/inv/inventory_left.lua")
+dofile(modpath .. "/inv/list.lua")
+dofile(modpath .. "/inv/helpers.lua")
+
 minetest.register_privilege("immortal", {
 	description = "Not affected by most effects.",
 	give_to_singleplayer= false,

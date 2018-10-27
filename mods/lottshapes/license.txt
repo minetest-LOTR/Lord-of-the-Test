@@ -1,0 +1,30 @@
+Authors of source code:
+-----------------------
+General License: neinwhal (LGPL 2.1)
+
+Nodebox Code: (parts of shapes.lua)
+	https://github.com/minetest/minetest_game/tree/master/mods/stairs
+	Various Minetest developers and contributors (LGPL 2.1)
+	
+	https://github.com/minetest-mods/moreblocks/tree/master/stairsplus
+	Hugo Locurcio [Calinou] (zlib)
+	Various moreblocks developers and contributors (zlib)
+	
+Circular Saw Code: (circular_saw.lua)
+	https://github.com/minetest-mods/moreblocks
+	Hugo Locurcio (zlib)
+	Various moreblocks developers and contributors (zlib)
+
+Authors of media files
+-----------------------
+General License: CC-BY-SA 3.0
+	
+Hugo Locurcio [Calinou] (CC BY-SA 3.0)
+	circular_saw_*
+
+Various Minetest developers and contributors (CC BY-SA 3.0)
+Modification by neinwhal
+	shapes_*
+
+neinwhal (CC-BY-SA 3.0)
+	Everything else
