@@ -1,4 +1,4 @@
-local invisibility = invisibility or {}
+local invisibility = (rawget(_G, "invisibility") and invisibility) or {}
 local damage_enabled = minetest.setting_getbool("enable_damage")
 
 local get_distance = function(a, b)
