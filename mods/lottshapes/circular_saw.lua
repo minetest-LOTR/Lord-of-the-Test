@@ -219,10 +219,7 @@ function circular_saw.on_receive_fields(pos, formname, fields, sender)
 		lottplayer.inv(sender))
 		
 	if fields.quit then
-		if minetest.settings:get_bool("creative_mode") then
-			creative.update_formspec(sender, creative.page(sender))
-		else lottplayer.inv_update_force(sender, lottplayer.inv_size("4x4")..lottplayer.inv_left(sender))
-		end
+		lottplayer.inv_quit(sender)
 	end
 end
 

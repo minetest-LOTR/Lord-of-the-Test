@@ -111,6 +111,13 @@ lottplayer.inv_left_update = function(player, fields)
 	end
 end
 
+lottplayer.inv_quit = function(sender)
+	if minetest.settings:get_bool("creative_mode") then
+		creative.update_formspec(sender, creative.page(sender))
+	else lottplayer.inv_update_force(sender, lottplayer.inv_size("4x4")..lottplayer.inv_left(sender))
+	end
+end
+
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	lottplayer.inv_update(player, fields, lottplayer.inv_left(player))
 	lottplayer.inv_left_update(player, fields)

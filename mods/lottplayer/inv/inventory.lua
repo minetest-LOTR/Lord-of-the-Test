@@ -11,10 +11,7 @@ on_receive_fields -- required to update the inventories
 		lottplayer.inv(player))
 		
 	if fields.quit then -- required so that the switchable inventories is updated, because nodemeta receive fields doesnt update global receive fields
-		if minetest.settings:get_bool("creative_mode") then
-			creative.update_formspec(sender, creative.page(sender))
-		else lottplayer.inv_update_force(sender, lottplayer.inv_size("4x4")..lottplayer.inv_left(sender))
-		end
+		lottplayer.inv_quit(player)
 	end
 	
 on_rightclick -- required because on_construct doesn't have a player value that lottplayer.inv needs, so rightclick will be the one that is constructing the inventory instead
