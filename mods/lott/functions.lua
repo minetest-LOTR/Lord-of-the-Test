@@ -13,7 +13,3 @@ function lott.swap_node(pos, name)
 	node.name = name
 	minetest.swap_node(pos, node)
 end
-
-minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack, pointed_thing)
-    minetest.rotate_node(itemstack, placer, pointed_thing)
-end)
