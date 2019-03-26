@@ -10,34 +10,124 @@ lottmapgen.register_biome(18, {
 	surface = function(data, vi)
 		data[vi] = c_gondor_grass
 	end,
-	deco = function(data, p2data, vi, area, x, y, z)
-		if math.random(TREE7) == 2 then
-			lottmapgen.default_tree(x, y, z, area, data)
-		elseif math.random(TREE8) == 6 then
-			lottmapgen.alder_tree(x, y, z, area, data)
-		elseif math.random(TREE9) == 3 then
-			lottmapgen.apple_tree(x, y, z, area, data)
-		elseif math.random(TREE8) == 4 then
-			lottmapgen.plum_tree(x, y, z, area, data)
-		elseif math.random(TREE10) == 9 then
-			--lottmapgen.elm_tree(x, y, z, area, data)
-		elseif math.random(PLANT13) == 10 then
-			lottmapgen.white_tree(x, y, z, area, data)
-		elseif math.random(TREE10) == 12 then
-			lottmapgen.lebethron_tree(x, y, z, area, data)
-		elseif math.random(PLANT3) == 5 then
-			lottmapgen.grass(data, vi, p2data)
-		elseif math.random(PLANT8) == 7 then
-			lottmapgen.farming_plants(data, vi, p2data)
-		elseif math.random(PLANT13) == 8 then
-			lottmapgen.farming_plants_rare(data, vi, p2data)
-		elseif math.random(PLANT10) == 11 then
-			lottmapgen.ithildin_plants(data, vi, p2data)
-		elseif math.random(PLANT6) == 2 then
-			data[vi] = c_mallos
-			p2data[vi] = 42
-		elseif math.random(PLANT13) == 13 then
-			lottmapgen.buildings.enqueue_building("Gondor Fort", {x=x, y=y, z=z})
+	deco = function(data, p2data, vi, area, x, y, z, noise1, noise2)
+		if noise2 > 0.4 then
+			if noise1 > -0.35 then
+				if math.random(TREE3) == 1 then
+					lottmapgen.generate_tree(x, y, z, area, data,
+						"lottplants:oak_trunk",
+						"lottplants:oak_leaves",
+						math.random(4, 5))
+				elseif math.random(TREE7) == 2 then
+					lottmapgen.generate_tree(x, y, z, area, data,
+						"lottplants:apple_trunk",
+						"lottplants:apple_leaves",
+						math.random(4, 6),
+						"lottplants:apple")
+				elseif math.random(TREE4) == 3 then
+					lottmapgen.alder_tree(x, y, z, area, data)
+				elseif math.random(TREE4) == 6 then
+					lottmapgen.generate_tree(x, y, z, area, data,
+						"lottplants:elm_trunk",
+						"lottplants:elm_leaves",
+						math.random(7, 9))
+				elseif math.random(640000) == 39 then
+					lottmapgen.white_tree(x, y, z, area, data)
+				elseif math.random(PLANT4) == 4 then
+					lottmapgen.grass(data, vi, p2data)
+				elseif math.random(PLANT10) == 5 then
+					lottmapgen.basic_flowers(data, vi, p2data)
+				elseif math.random(TREE8) == 7 then
+					lottmapgen.generate_log(x, y, z, area, data, p2data,
+						"lottplants:oak_trunk",
+						math.random(2, 4))
+				elseif math.random(TREE9) == 8 then
+					lottmapgen.generate_log(x, y, z, area, data, p2data,
+						"lottplants:alder_trunk",
+						math.random(3, 4))
+				elseif math.random(TREE9) == 9 then
+					lottmapgen.generate_log(x, y, z, area, data, p2data,
+						"lottplants:elm_trunk",
+						math.random(3, 4))
+				end
+			else
+				if math.random(PLANT2) == 1 then
+					lottmapgen.grass(data, vi, p2data)
+				elseif math.random(PLANT7) == 2 then
+					lottmapgen.basic_flowers(data, vi, p2data)
+				elseif math.random(TREE10) == 7 then
+					lottmapgen.generate_log(x, y, z, area, data, p2data,
+						"lottplants:oak_trunk",
+						math.random(2, 4))
+				elseif math.random(TREE10) == 8 then
+					lottmapgen.generate_log(x, y, z, area, data, p2data,
+						"lottplants:alder_trunk",
+						math.random(3, 4))
+				elseif math.random(TREE10) == 9 then
+					lottmapgen.generate_log(x, y, z, area, data, p2data,
+						"lottplants:elm_trunk",
+						math.random(3, 4))
+				end
+			end
+		elseif noise2 < -0 and noise2 > -0.4 then
+			if noise1 < 0.6 and noise1 > 0.5 then
+				if math.random(TREE4) == 1 then
+					lottmapgen.generate_tall_tree(x, y, z, area, data,
+						"lottplants:elm_trunk",
+						"lottplants:elm_leaves")
+				elseif math.random(TREE5) == 2 then
+					lottmapgen.generate_tree(x, y, z, area, data,
+						"lottplants:elm_trunk",
+						"lottplants:elm_leaves",
+						math.random(7, 9))
+				elseif math.random(PLANT4) == 3 then
+					lottmapgen.grass(data, vi, p2data)
+				elseif math.random(PLANT7) == 4 then
+					lottmapgen.tall_grass(x, y, z, area, data)
+				end
+			else
+				if math.random(TREE6) == 1 then
+					lottmapgen.generate_bush(x, y, z, area, data,
+						"lottplants:oak_trunk",
+						"lottplants:oak_leaves")
+				elseif math.random(PLANT9) == 2 then
+					lottmapgen.basic_flowers(data, vi, p2data)
+				elseif math.random(PLANT3) == 2 then
+					lottmapgen.grass(data, vi, p2data)
+				elseif math.random(PLANT5) == 4 then
+					lottmapgen.tall_grass(x, y, z, area, data)
+				end
+			end
+		elseif noise2 > -0.6 then
+			if math.random(TREE6) == 1 then
+				lottmapgen.generate_bush(x, y, z, area, data,
+					"lottplants:oak_trunk",
+					"lottplants:oak_leaves")
+			elseif math.random(PLANT9) == 2 then
+				lottmapgen.basic_flowers(data, vi, p2data)
+			elseif math.random(PLANT3) == 2 then
+				lottmapgen.grass(data, vi, p2data)
+			elseif math.random(PLANT5) == 4 then
+				lottmapgen.tall_grass(x, y, z, area, data)
+			elseif math.random(PLANT11) == 5 then
+				data[vi] = c_mallos
+			end
+		else
+			if math.random(PLANT3) == 1 then
+				lottmapgen.tall_grass(x, y, z, area, data)
+			elseif math.random(PLANT2) == 2 then
+				lottmapgen.grass(data, vi, p2data)
+			elseif math.random(PLANT9) == 3 then
+				lottmapgen.basic_flowers(data, vi, p2data)
+			elseif math.random(PLANT11) == 4 then
+				data[vi] = c_mallos
+			elseif math.random(TREE10) == 5 then
+				lottmapgen.alder_tree(x, y, z, area, data)
+			elseif math.random(TREE9) == 4 then
+				lottmapgen.generate_bush(x, y, z, area, data,
+					"lottplants:alder_trunk",
+					"lottplants:alder_leaves")
+			end
 		end
 	end,
 	soil = c_dirt,

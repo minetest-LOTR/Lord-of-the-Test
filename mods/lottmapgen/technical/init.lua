@@ -280,11 +280,33 @@ minetest.register_chatcommand("tp", {
 			lottmapgen.spawn_player({x = 960, y = 30, z = -11200}, player)
 		elseif param == "angmar" or param == "a" then
 			lottmapgen.spawn_player({x = -5600, y = 30, z = 10400}, player)
+		elseif param == "forodwaith" or param == "for" or param == "fw" then
+			lottmapgen.spawn_player({x = 0, y = 30, z = 16000}, player)
+		elseif param == "arthedain" or param == "art" or param == "ad" then
+			lottmapgen.spawn_player({x = -13000, y = 30, z = 8000}, player)
+		elseif param == "minhiriath" or param == "min" then
+			lottmapgen.spawn_player({x = -7000, y = 30, z = 1600}, player)
+		elseif param == "enedwaith" or param == "ened" or param == "ew" then
+			lottmapgen.spawn_player({x = -15000, y = 30, z = -5000}, player)
+		elseif param == "misty mountains" or param == "mms" or param == "mm" then
+			lottmapgen.spawn_player({x = 0, y = 30, z = 0}, player)
+		elseif param == "rhun" then
+			lottmapgen.spawn_player({x = 28000, y = 30, z = 0}, player)
+		elseif param == "wilderland" or param == "w" or param == "wl" then
+			lottmapgen.spawn_player({x = 12000, y = 30, z = -8000}, player)
+		elseif param == "white mountains" or param == "wm" or param == "wms" then
+			lottmapgen.spawn_player({x = -2500, y = 30, z = -15000}, player)
+		elseif param == "gondor" or param == "g" then
+			lottmapgen.spawn_player({x = 8000, y = 30, z = -20000}, player)
+		elseif param == "mordor" or param == "m" then
+			lottmapgen.spawn_player({x = 16000, y = 30, z = -17600}, player)
 		else
 			minetest.chat_send_player(name, "List of places to teleport to:\n" ..
 				minetest.colorize("orange", "lorien    iron hills    breeland    eregion    lindon" ..
 					"    blue mountains    ettenmoors    harad    mirkwood    dunland    shire" ..
-					"    fangorn    angmar    rohan"))
+					"    fangorn    angmar    rohan    forodwaith    arthedain    minhiriath" ..
+					"    enedwaith    misty mountains    rhun    wilderland    white mountains" ..
+					"    gondor    mordor"))
 		end
 	end
 })

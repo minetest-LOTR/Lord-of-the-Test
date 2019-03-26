@@ -20,7 +20,7 @@ lottmapgen.register_biome(1, {
 			data[vi] = c_dryshrub
 		elseif math.random(TREE5) == 3 then
 			 if noise < -0.85 then
-				lottmapgen.generate_tree(x, y, z, area, data, p2data,
+				lottmapgen.generate_tree(x, y, z, area, data,
 					"lottitems:stone",
 					"air", math.random(4, 6))
 			end
