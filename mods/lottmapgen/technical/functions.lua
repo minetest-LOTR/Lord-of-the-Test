@@ -454,6 +454,34 @@ function lottmapgen.apple_tree(x, y, z, area, data)
 	end
 end
 
+function lottmapgen.leaf_litter(x, y, z, area, data)
+	local c_leaf_litter = minetest.get_content_id("lottitems:grass_with_leaf_litter")
+	data[area:index(x, y - 1, z)] = c_leaf_litter
+	if math.random(2) == 1 then
+		data[area:index(x - 1, y - 1, z)] = c_leaf_litter
+	end
+	if math.random(2) == 2 then
+		data[area:index(x - 1, y - 1, z - 1)] = c_leaf_litter
+	end
+	if math.random(4) == 3 then
+		data[area:index(x, y - 1, z - 1)] = c_leaf_litter
+	end
+end
+
+function lottmapgen.perma_dirt(x, y, z, area, data)
+	local c_permadirt = minetest.get_content_id("lottitems:perma_dirt")
+	data[area:index(x, y - 1, z)] = c_permadirt
+	if math.random(2) == 1 then
+		data[area:index(x - 1, y - 1, z)] = c_permadirt
+	end
+	if math.random(2) == 2 then
+		data[area:index(x - 1, y - 1, z - 1)] = c_permadirt
+	end
+	if math.random(4) == 3 then
+		data[area:index(x, y - 1, z - 1)] = c_permadirt
+	end
+end
+
 function lottmapgen.apple_tree2(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("lottplants:apple_trunk")
 	local c_apple = minetest.get_content_id("default:apple")
