@@ -39,6 +39,10 @@ lottmapgen.register_biome(14, {
 				lottmapgen.grass(data, vi, p2data)
 			elseif math.random(PLANT13) == 13 then
 				--data[vi] = lottmapgen.buildings.enqueue_building("Mirkwood House", {x=x, y=y, z=z})
+			elseif math.random(PLANT4) == 9 then
+				lottmapgen.leaf_litter(x, y, z, area, data)
+			elseif math.random(PLANT5) == 8 then
+				lottmapgen.perma_dirt(x, y, z, area, data)
 			end
 		end
 	end,

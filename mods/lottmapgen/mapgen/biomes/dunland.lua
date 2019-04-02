@@ -30,6 +30,10 @@ lottmapgen.register_biome(13, {
 				lottmapgen.apple_tree2(x, y, z, area, data)
 			elseif math.random (PLANT5) == 4 then
 				lottmapgen.grass(data, vi, p2data)
+			elseif math.random(PLANT6) == 9 then
+				lottmapgen.leaf_litter(x, y, z, area, data)
+			elseif math.random(PLANT7) == 8 then
+				lottmapgen.perma_dirt(x, y, z, area, data)
 			end
 		elseif noise2 > -0.3 then
 			if math.random(TREE6) == 2 then

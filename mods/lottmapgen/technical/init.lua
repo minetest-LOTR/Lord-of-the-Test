@@ -268,7 +268,7 @@ minetest.register_chatcommand("tp", {
 			lottmapgen.spawn_player({x = -4800, y = 30, z = 8000}, player)
 		elseif param == "harad" or param == "h" then
 			lottmapgen.spawn_player({x = 28800, y = 30, z = -28800}, player)
-		elseif param == "mirkwoord" or param == "mw" or param == "m" or param == "mirk" then
+		elseif param == "mirkwoord" or param == "mw" or param == "mirk" then
 			lottmapgen.spawn_player({x = 6400, y = 30, z = 4800}, player)
 		elseif param == "dunland" or param == "d" then
 			lottmapgen.spawn_player({x = -11200, y = 30, z = -9600}, player)

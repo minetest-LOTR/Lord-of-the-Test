@@ -52,6 +52,10 @@ lottmapgen.register_biome(8, {
 				lottmapgen.shire_flowers(data, vi, p2data)
 			elseif math.random(PLANT8) == 11 then
 				lottmapgen.basic_flowers(data, vi, p2data)
+			elseif math.random(PLANT7) == 9 then
+				lottmapgen.leaf_litter(x, y, z, area, data)
+			elseif math.random(PLANT8) == 8 then
+				lottmapgen.perma_dirt(x, y, z, area, data)
 			end
 		elseif noise2 > -0.15 then -- Sparse trees
 			if math.random(TREE9) == 1 then

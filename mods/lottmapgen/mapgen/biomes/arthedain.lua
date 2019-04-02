@@ -46,6 +46,10 @@ lottmapgen.register_biome(4, {
 					lottmapgen.grass(data, vi, p2data)
 				elseif math.random(PLANT8) == 6 then
 					lottmapgen.basic_flowers(data, vi, p2data)
+				elseif math.random(PLANT5) == 9 then
+					lottmapgen.leaf_litter(x, y, z, area, data)
+				elseif math.random(PLANT6) == 8 then
+					lottmapgen.perma_dirt(x, y, z, area, data)
 				end
 			end
 		elseif noise2 < -0.6 then
@@ -59,6 +63,10 @@ lottmapgen.register_biome(4, {
 				lottmapgen.grass(data, vi, p2data)
 			elseif math.random(PLANT4) == 6 then
 				lottmapgen.pine_grass(data, vi, p2data)
+			elseif math.random(PLANT7) == 9 then
+				lottmapgen.leaf_litter(x, y, z, area, data)
+			elseif math.random(PLANT8) == 8 then
+				lottmapgen.perma_dirt(x, y, z, area, data)
 			end
 		else
 			if math.random(PLANT4) == 2 then

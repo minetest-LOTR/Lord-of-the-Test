@@ -12,7 +12,7 @@ lottmapgen.register_biome(21, {
 	deco = function(data, p2data, vi, area, x, y, z, noise)
 		if noise > -0.1 then
 			if math.random(TREE3) == 3 then
-				if y > 55 then
+				if y > 60 then
 					lottmapgen.pine_tree(x, y, z, area, data, true)
 				else
 					lottmapgen.pine_tree(x, y, z, area, data, false)
@@ -41,6 +41,10 @@ lottmapgen.register_biome(21, {
 				lottmapgen.petuniae(data, vi, p2data)
 			elseif math.random(TREE10) == 2 and y < 35 then
 				lottmapgen.beech_tree(x, y, z, area, data)
+			elseif math.random(PLANT6) == 9 then
+				lottmapgen.leaf_litter(x, y, z, area, data)
+			elseif math.random(PLANT8) == 8 then
+				lottmapgen.perma_dirt(x, y, z, area, data)
 			end
 		elseif noise > -0.5 then
 			if math.random(PLANT4) == 5 and y < 87 then

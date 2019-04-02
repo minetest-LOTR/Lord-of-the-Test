@@ -58,6 +58,10 @@ lottmapgen.register_biome(3, {
 					lottmapgen.beech_tree(x, y, z, area, data)
 				elseif math.random(PLANT5) == 5 then
 					lottmapgen.pine_grass(data, vi, p2data)
+				elseif math.random(PLANT5) == 9 then
+					lottmapgen.leaf_litter(x, y, z, area, data)
+				elseif math.random(PLANT7) == 8 then
+					lottmapgen.perma_dirt(x, y, z, area, data)
 				end
 			end
 		end

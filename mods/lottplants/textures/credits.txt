@@ -36,6 +36,7 @@ Copyright (C) 2015 philipbenr
 	lottplants_birch_planks.png
 	lottplants_birch_trunk.png
 	lottplants_birch_trunk_top.png
+	lottplants_brambles_of_mordor.png
 	lottplants_mallorn_leaves.png
 	lottplants_mallorn_planks.png
 	lottplants_mallorn_trunk.png

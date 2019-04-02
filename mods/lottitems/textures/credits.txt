@@ -1,0 +1,3 @@
+npx (CC BY-SA 3.0):
+  default_rainforest_litter.png
+  default_rainforest_litter_side.png

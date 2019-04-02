@@ -28,6 +28,10 @@ lottmapgen.register_biome(7, {
 					elseif math.random(PLANT9) == 1 then
 						data[vi] = c_menelluin
 						p2data[vi] = 10
+					elseif math.random(PLANT7) == 9 then
+						lottmapgen.leaf_litter(x, y, z, area, data)
+					elseif math.random(PLANT8) == 8 then
+						lottmapgen.perma_dirt(x, y, z, area, data)
 					end
 				elseif noise < -0.65 then
 					if math.random(PLANT4) == 1 then
@@ -103,6 +107,10 @@ lottmapgen.register_biome(7, {
 					lottmapgen.petuniae(data, vi, p2data)
 				elseif math.random(PLANT8) == 5 then
 					lottmapgen.basic_flowers(data, vi, p2data)
+				elseif math.random(PLANT6) == 9 then
+					lottmapgen.leaf_litter(x, y, z, area, data)
+				elseif math.random(PLANT8) == 8 then
+					lottmapgen.perma_dirt(x, y, z, area, data)
 				end
 			end
 		elseif y > 63 then

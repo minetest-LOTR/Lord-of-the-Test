@@ -49,6 +49,10 @@ lottmapgen.register_biome(18, {
 					lottmapgen.generate_log(x, y, z, area, data, p2data,
 						"lottplants:elm_trunk",
 						math.random(3, 4))
+				elseif math.random(PLANT5) == 9 then
+					lottmapgen.leaf_litter(x, y, z, area, data)
+				elseif math.random(PLANT6) == 8 then
+					lottmapgen.perma_dirt(x, y, z, area, data)
 				end
 			else
 				if math.random(PLANT2) == 1 then

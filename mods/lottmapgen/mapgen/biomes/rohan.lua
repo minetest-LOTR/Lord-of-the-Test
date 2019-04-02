@@ -40,13 +40,17 @@ lottmapgen.register_biome(17, {
 			elseif math.random(PLANT7) == 6 then
 				lottmapgen.dry_grass(data, vi, p2data)
 			elseif noise > 0.55 then
-				if math.random(TREE4) == 2 then
+				if math.random(TREE3) == 2 then
 					lottmapgen.generate_tree(x, y, z, area, data,
 						"lottplants:oak_trunk",
 						"lottplants:oak_leaves", math.random(4, 5))
 				elseif math.random(TREE9) == 3 then
 					lottmapgen.generate_log(x, y, z, area, data, p2data,
 						"lottplants:oak_trunk", math.random(2, 3))
+				elseif math.random(PLANT7) == 9 then
+					lottmapgen.leaf_litter(x, y, z, area, data)
+				elseif math.random(PLANT8) == 8 then
+					lottmapgen.perma_dirt(x, y, z, area, data)
 				end
 			elseif noise < -0.4 then
 				if math.random(TREE3) == 3 then
@@ -64,29 +68,13 @@ lottmapgen.register_biome(17, {
 				elseif math.random(TREE9) == 5 then
 					lottmapgen.generate_log(x, y, z, area, data, p2data,
 						"lottplants:alder_trunk", math.random(2, 4))
+				elseif math.random(PLANT7) == 9 then
+					lottmapgen.leaf_litter(x, y, z, area, data)
+				elseif math.random(PLANT8) == 8 then
+					lottmapgen.perma_dirt(x, y, z, area, data)
 				end
 			end
 		end
-		--[[if math.random(TREE7) == 2 then
-			lottmapgen.default_tree(x, y, z, area, data)
-		elseif math.random(TREE7) == 3 then
-			lottmapgen.apple_tree(x, y, z, area, data)
-		elseif math.random(TREE8) == 4 then
-			lottmapgen.plum_tree(x, y, z, area, data)
-		elseif math.random(TREE10) == 9 then
-			--lottmapgen.elm_tree(x, y, z, area, data)
-		elseif math.random(PLANT2) == 5 then
-			lottmapgen.grass(data, vi, p2data)
-		elseif math.random(PLANT8) == 6 then
-			lottmapgen.farming_plants(data, vi, p2data)
-		elseif math.random(PLANT13) == 7 then
-			data[vi] = c_melon
-		elseif math.random(PLANT6) == 2 then
-			data[vi] = c_pilinehtar
-			p2data[vi] = 2
-		elseif math.random(PLANT13) == 13 then
-			lottmapgen.buildings.enqueue_building("Rohan Fort", {x=x, y=y, z=z})
-		end]]
 	end,
 	soil = c_dirt,
 	soil_depth = 1,

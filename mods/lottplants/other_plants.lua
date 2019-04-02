@@ -4,6 +4,25 @@ minetest.register_node("lottplants:cactus", {
 	groups = {axe = 2, plant = 1, green = 1},
 })
 
+minetest.register_node("lottplants:brambles_of_mordor", {
+	description = "Brambles Of Mordor",
+	drawtype = "plantlike",
+	tiles = { "lottplants_brambles_of_mordor.png" },
+	inventory_image = "lottplants_brambles_of_mordor.png",
+	sunlight_propagates = true,
+	paramtype = "light",
+	paramtype2 = "meshoptions",
+	place_param2 = 42,
+	walkable = false,
+	waving = 1,
+	buildable_to = true,
+	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_grey=1},
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.5, -0.5, -0.5, 0.5, -0.3, 0.5 },
+	},
+})
+
 local function waterlily_place(itemstack, placer, pointed_thing, i)
 	local pos = pointed_thing.above
 	local node = minetest.get_node(pointed_thing.under)

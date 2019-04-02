@@ -128,12 +128,20 @@ minetest.register_node("lottitems:dark_gravel", {
 minetest.register_node("lottitems:dirt", {
 	description = "Dirt",
 	tiles = {"lottitems_dirt.png"},
-	groups = {dirt = 1, shovel = 1, hand = 3},
+	groups = {dirt = 1, shovel = 1, hand = 3, soil_quality = 2},
+	is_ground_content = true,
+})
+
+-- Permadirt - doesn't turn into grass, used for mapgen
+minetest.register_node("lottitems:perma_dirt", {
+	description = "Permanent Dirt",
+	tiles = {"lottitems_dirt.png"},
+	groups = {dirt = 1, shovel = 1, hand = 3, soil_quality = 1},
+	drop = "lottitems:dirt",
 	is_ground_content = true,
 })
 
 -- Clay
-
 minetest.register_node("lottitems:clay", {
 	description = "Clay block",
 	tiles = {"lottitems_clay.png"},

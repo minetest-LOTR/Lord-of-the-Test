@@ -6,7 +6,7 @@ local c_sunflower = minetest.get_content_id("lottplants:sunflower")
 
 lottmapgen.register_biome(22, {
 	name = "Rhun",
-	surface = function(data, vi)
+	surface = function(data, vi, _, noise)
 		data[vi] = c_rhun_grass
 	end,
 	deco = function(data, p2data, vi, area, x, y, z, noise, noise2)
@@ -42,6 +42,10 @@ lottmapgen.register_biome(22, {
 				lottmapgen.basic_flowers(data, vi, p2data)
 			elseif math.random(PLANT5) == 5 then
 				lottmapgen.tall_grass(x, y, z, area, data)
+			elseif math.random(PLANT6) == 9 then
+				lottmapgen.leaf_litter(x, y, z, area, data)
+			elseif math.random(PLANT7) == 8 then
+				lottmapgen.perma_dirt(x, y, z, area, data)
 			end
 		else
 			if noise > 0.75 then
@@ -66,10 +70,6 @@ lottmapgen.register_biome(22, {
 					data[vi] = c_sunflower
 				elseif math.random(PLANT8) == 3 then
 					lottmapgen.basic_flowers(data, vi, p2data)
-				elseif math.random(TREE9	) == 4 then
-					lottmapgen.generate_tall_tree(x, y, z, area, data,
-						"lottplants:cedar_trunk",
-						"lottplants:cedar_leaves")
 				end
 			else
 				if math.random(PLANT3) == 2 then
@@ -82,6 +82,10 @@ lottmapgen.register_biome(22, {
 					if math.random(PLANT5) == 1 then
 						lottmapgen.basic_flowers(data, vi, p2data)
 					end
+				elseif math.random(TREE9) == 4 then
+					lottmapgen.generate_tall_tree(x, y, z, area, data,
+						"lottplants:cedar_trunk",
+						"lottplants:cedar_leaves")
 				end
 			end
 		end
