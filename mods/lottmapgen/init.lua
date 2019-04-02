@@ -101,6 +101,18 @@ local p2dbuf
 
 local water_level = minetest.get_mapgen_setting("water_level")
 
+local function rangelim(d, min, max)
+	if d < min then
+		return min
+	else
+		if d > max then
+			return max
+		else
+			return d
+		end
+	end
+end
+
 dofile(minetest.get_modpath("lottmapgen").."/nodes.lua")
 dofile(minetest.get_modpath("lottmapgen").."/functions.lua")
 
@@ -216,6 +228,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			for y = y1, y0, -1 do -- working down each column for each node do
 				if biome_blend == true then
 					local offsetpos = {x = (x-x0) + offset + math.random(-offset, offset) + 1, z = (z - z0) + offset + math.random(-offset, offset) + 1}
+					offsetpos.x = rangelim(offsetpos.x, 1, 80)
+					offsetpos.z = rangelim(offsetpos.z, 1, 80)
 					n_temp = nvals_temp[offsetpos.z][offsetpos.x] -- select biome
 					n_humid = nvals_humid[offsetpos.z][offsetpos.x]
 					n_ran = nvals_random[offsetpos.z][offsetpos.x]
@@ -573,6 +587,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:calc_lighting()
 	vm:write_to_map(data)
 	local chugent = math.ceil((os.clock() - t1) * 1000)
+	print(chugent)
 end)
 
 dofile(minetest.get_modpath("lottmapgen").."/deco.lua")
