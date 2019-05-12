@@ -5,9 +5,8 @@ local LOTT_STAMINA = 20 -- default stamina
 local LOTT_STAMINA_MAX = 20 -- default max stamina
 local LOTT_STAMINA_REGEN = 2 -- default time before stamina starts regaining
 
-local LOTT_STAMINA_REGEN_AMT = 1 -- stamina regen rate / amount
-local LOTT_STAMINA_REGEN_INT = 2 -- stamina regen rate / interval
-local LOTT_STAMINA_MULTIPLIER = 1 -- stamina multiplier / amount * multiplier
+local LOTT_STAMINA_REGEN_AMT = 0.5 -- stamina regen rate / amount
+local LOTT_STAMINA_REGEN_INT = 1 -- stamina regen rate / interval
 local LOTT_STAMINA_MOVE_TIMER = 0.5 -- rate of globalstep function that checks for movement
 
 local LOTT_STAMINA_JUMP = 5 -- approx. amount of continuous jumps before reducing stamina
@@ -25,12 +24,13 @@ minetest.register_on_joinplayer(function(player)
 	if player:get_attribute("lott:stamina_max") == nil then
 		player:set_attribute("lott:stamina_max", LOTT_STAMINA_MAX)
 	end
-	if player:get_attribute("lott:stamina_multi") == nil then
-		player:set_attribute("lott:stamina_multi", LOTT_STAMINA_MULTIPLIER)
-	end
 	if player:get_attribute("lott:stamina_regen") == nil then
 		player:set_attribute("lott:stamina_regen", LOTT_STAMINA_REGEN)
 	end
+	if player:get_attribute("lott:stamina_regen_amt") == nil then
+		player:set_attribute("lott:stamina_regen_amt", LOTT_STAMINA_REGEN_AMT)
+	end
+	
 	local cursta = tonumber(player:get_attribute("lott:stamina"))
 	local maxsta = tonumber(player:get_attribute("lott:stamina_max"))
 
@@ -116,12 +116,12 @@ minetest.register_globalstep(function(dtime)
 			local cursta = tonumber(player:get_attribute("lott:stamina"))
 			local curhun = tonumber(player:get_attribute("lott:hunger"))
 			if curhun >= 20 then
-				stamina_regen_amt = LOTT_STAMINA_REGEN_AMT
+				stamina_regen_amt = player:get_attribute("lott:stamina_regen_amt")
 			elseif curhun < 20 then
-				stamina_regen_amt = (curhun / 20) * LOTT_STAMINA_REGEN_AMT
+				stamina_regen_amt = (curhun / 20) * player:get_attribute("lott:stamina_regen_amt")
 			end
 
-			local amtsta = stamina_regen_amt * LOTT_STAMINA_MULTIPLIER
+			local amtsta = stamina_regen_amt
 			if lott_sta_players[name].level <= 0 then
 				lottplayer.add_stamina(player, amtsta)
 			end
