@@ -55,17 +55,20 @@ lottplayer.nav_buttons_force =
 	"image_button[7.775,-1.10;1,1;icon_arrow_mini.png;lottplayer_inv_up_force;;true;false;icon_arrow_mini.png^\\[brighten]"..	"image_button[7.775,3.80;1,1;icon_arrow_mini_d.png;lottplayer_inv_down_force;;true;false;icon_arrow_mini_d.png^\\[brighten]"
 
 lottplayer.inv_survival =
-	"list[current_player;main;6.24,-0.15;4,4;]"
+	"list[current_player;main;6.24,-0.15;4,4;]"..
+	"listring[current_player;main]"
 	
 lottplayer.inv_crafting =
 	"list[current_player;craft;6.74,-0.15;3,3;]"..
-	"list[current_player;craftpreview;7.74,2.85;1,1;]"
+	"list[current_player;craftpreview;7.74,2.85;1,1;]"..
+	"listring[current_player;craft]"
 
 lottplayer.inv_armour =
 	"image[7.35,0.1;2,4;character_preview.png]"..
 	"list[current_player;main;6.24,-0.15;1,4;]"..
 	"list[current_player;main;9.24,-0.15;1,4;]"..
-	"list[current_player;main;8.24,1.85;1,1;4]"
+	"list[current_player;main;8.24,1.85;1,1;4]"..
+	"listring[current_player;main]"
 	
 	
 	
