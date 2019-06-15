@@ -25,41 +25,12 @@ local function get_look_yaw(pos)
 	end
 end
 
-minetest.register_on_player_receive_fields(function(player, formname, fields)
-	if formname ~= "beds_form" then
-		return
-	end
-	if fields.quit or fields.leave then
-		lottblocks.lay_down(player, nil, nil, false)
-		update_formspecs(false)
-	end
-
-	if fields.force then
-		update_formspecs(is_night_skip_enabled())
-		if is_night_skip_enabled() then
-			lottblocks.skip_night()
-			bed_kick_players()
-		end
-	end
-end)
-
-local function bed_kick_players()
-	for name, _ in pairs(lottblocks.player) do
-		local player = minetest.get_player_by_name(name)
-		lottblocks.lay_down(player, nil, nil, false)
-	end
-end
-
 local function is_night_skip_enabled()
 	local enable_night_skip = minetest.settings:get_bool("enable_bed_night_skip")
 	if enable_night_skip == nil then
 		enable_night_skip = true
 	end
 	return enable_night_skip
-end
-
-function lottblocks.skip_night()
-	minetest.set_timeofday(0.23)
 end
 
 local function update_formspecs(finished)
@@ -80,6 +51,35 @@ local function update_formspecs(finished)
 	for name,_ in pairs(lottblocks.player) do
 		minetest.show_formspec(name, "beds_form", form_n)
 	end
+end
+
+local function bed_kick_players()
+	for name, _ in pairs(lottblocks.player) do
+		local player = minetest.get_player_by_name(name)
+		lottblocks.lay_down(player, nil, nil, false)
+	end
+end
+
+minetest.register_on_player_receive_fields(function(player, formname, fields)
+	if formname ~= "beds_form" then
+		return
+	end
+	if fields.quit or fields.leave then
+		lottblocks.lay_down(player, nil, nil, false)
+		update_formspecs(false)
+	end
+
+	if fields.force then
+		update_formspecs(is_night_skip_enabled())
+		if is_night_skip_enabled() then
+			lottblocks.skip_night()
+			bed_kick_players()
+		end
+	end
+end)
+
+function lottblocks.skip_night()
+	minetest.set_timeofday(0.23)
 end
 
 function lottblocks.lay_down(player, pos, bed_pos, state, skip)
