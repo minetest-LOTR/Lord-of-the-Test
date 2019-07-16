@@ -69,7 +69,6 @@ function lottmapgen.generate_pools(x0, y0, z0, x1, y1, z1, vm, area, data)
 	if y0 < -32 then
 		return
 	end
-	local t1 = os.clock()
 	local c_air = minetest.get_content_id("air")
 	local c_ignore = minetest.get_content_id("ignore")
 	local c_watsour = minetest.get_content_id("lottitems:water_source")
@@ -225,6 +224,4 @@ function lottmapgen.generate_pools(x0, y0, z0, x1, y1, z1, vm, area, data)
 		end
 	end
 	end
-	local chugent = math.ceil((os.clock() - t1) * 1000)
-	print ("[highlandpools] time "..chugent.." ms")
 end
