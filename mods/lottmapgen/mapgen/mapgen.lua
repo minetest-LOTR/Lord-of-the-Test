@@ -287,6 +287,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			nixz = nixz + 1
 		end
 	end
+	lottmapgen.generate_pools(x0, y0, z0, x1, y1, z1, vm, area, data)
 	lottmapgen.generate_dungeon(vm, area, data, emin, dungeon_wall)
 	vm:set_data(data)
 	vm:set_param2_data(p2data)

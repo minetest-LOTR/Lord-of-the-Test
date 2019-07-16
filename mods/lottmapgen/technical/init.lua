@@ -313,5 +313,6 @@ minetest.register_chatcommand("tp", {
 
 dofile(modpath .. "/functions.lua")
 dofile(modpath .. "/dungeons.lua")
+dofile(modpath .. "/pools.lua")
 dofile(modpath .. "/village_schems.lua")
 dofile(modpath .. "/villages.lua")

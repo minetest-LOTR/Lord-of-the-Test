@@ -170,6 +170,7 @@ minetest.register_node("lottitems:snow_layer", {
 	paramtype = "light",
 	paramtype2 = "leveled",
 	leveled = 16,
+	walkable = false,
 	groups = {snow = 1, cold = 1, shovel = 1, hand = 3, slippery = 1, falling_node = 1},
 	is_ground_content = true,
 })
