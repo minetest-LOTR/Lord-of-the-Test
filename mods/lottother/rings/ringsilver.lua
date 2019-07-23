@@ -75,7 +75,7 @@ end
 minetest.register_craftitem("lottother:hot_ringsilver", {
 	description = "Hot Ringsilver",
 	inventory_image = "lottother_hot_ringsilver.png",
-    groups = {forbidden=1},
+    groups = {forbidden=1, not_in_creative_inventory=1},
 	stack_max = 1,
 	on_drop = function(itemstack, dropper, pos)
 		local metadata = itemstack:get_metadata()
@@ -86,7 +86,8 @@ minetest.register_craftitem("lottother:hot_ringsilver", {
 				if pos ~= nil then
 					local node = minetest.get_node(pos).name
 					ent:remove()
-					if node == "default:water_source" and os.time() - tonumber(metadata) <= 13 then
+					if node == "default:water_source" and
+					tonumber(metadata) and os.time() - tonumber(metadata) <= 13 then
 						minetest.add_item(pos, "lottother:ringsilver")
 					end
 					if dropper and dropper:get_player_name() then
