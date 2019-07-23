@@ -63,8 +63,8 @@ function multiskin:update_player_visuals(player)
 		default.player_set_textures(player, {
 			multiskin[name].skin,
 			multiskin[name].armor,
-			multiskin[name].clothing,
 			multiskin[name].wielditem,
+			multiskin[name].clothing,
 		})
 	end
 end

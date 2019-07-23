@@ -210,7 +210,7 @@ function lottmobs:register_horse(name, craftitem, horse)
 			end
 		elseif not self.driver then
 			self.driver = clicker
-			attach_h = self.attach_h or 15
+			attach_h = self.attach_h or 5
 			attach_r = self.attach_r or 90
 			clicker:set_attach(self.object, "", {x=0,y= attach_h ,z=0}, {x=0,y= attach_r ,z=0})
 			default.player_attached[clicker:get_player_name()] = true
