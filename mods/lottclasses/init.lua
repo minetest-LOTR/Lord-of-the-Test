@@ -3,6 +3,7 @@ lottclasses = {}
 minetest.register_privilege("GAMEwizard", {
 	description = "A wizard player",
 	give_to_singleplayer = false,
+	give_to_admin = true,
 })
 
 minetest.register_privilege("GAMEmale", {
