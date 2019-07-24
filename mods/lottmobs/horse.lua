@@ -240,11 +240,9 @@ function lottmobs:register_horse(name, craftitem, horse)
 	end
 	
 	function horse:on_punch(puncher, time_from_last_punch, tool_capabilities, direction)
-		--print(rider:get_player_name())
 		local ridername = self.ridername
 		if ridername ~= nil then
 			rider = minetest.get_player_by_name(ridername)
-			print(rider:get_player_name())
 		end
 		
 		

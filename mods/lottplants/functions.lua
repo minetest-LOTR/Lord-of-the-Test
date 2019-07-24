@@ -933,7 +933,7 @@ minetest.register_abm({
 				return
 			end
 			local c = math.ceil(2 * (light_level - 13) ^ 2 + 1)
-			print(light_level, c)
+			--print(light_level, c)
 			if light_level > 7 and (math.random(1, c) == 1 or light_level >= 13) then
 				lottplants_rowantree(pos)
 			end
