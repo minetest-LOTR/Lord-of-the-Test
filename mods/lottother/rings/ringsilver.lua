@@ -44,7 +44,7 @@ lottblocks.crafting.add_craft("lottother:goldsilver", {
 -- Very fancy!!!
 
 -- We have to copy minetest.item_drop in order to get it to return the entity...
-local function item_drop(itemstack, dropper, pos)
+function lottother.item_drop(itemstack, dropper, pos)
 	if dropper and dropper:is_player() then
 		local v = dropper:get_look_dir()
 		local p = {x=pos.x, y=pos.y+1.2, z=pos.z}
@@ -79,7 +79,7 @@ minetest.register_craftitem("lottother:hot_ringsilver", {
 	stack_max = 1,
 	on_drop = function(itemstack, dropper, pos)
 		local metadata = itemstack:get_metadata()
-		local ent = item_drop(itemstack, dropper, pos)
+		local ent = lottother.item_drop(itemstack, dropper, pos)
 		minetest.after(3, function()
 			if ent ~= nil and metadata ~= nil then
 				local pos = ent:getpos()

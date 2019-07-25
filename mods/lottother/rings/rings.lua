@@ -20,6 +20,51 @@ minetest.register_privilege("purity", {
 	give_to_singleplayer = false,
 })
 
+local function ring_drop(itemstack, dropper, pos)
+	local ent = lottother.item_drop(itemstack, dropper, pos)
+	minetest.after(5, function()
+		if ent ~= nil then
+			local pos = ent:getpos()
+			if pos ~= nil then
+				local node = minetest.get_node(pos).name
+				if node == "default:lava_source" then
+					ent:set_velocity({x=0, y=15, z=0})
+					ent:set_properties({automatic_rotate = 30, pointable = false})
+					minetest.add_particlespawner({
+						amount = 500,
+						time = 5,
+						minvel = {x=-3, y=3, z=-3},
+						maxvel = {x=3, y=7, z=3},
+						minacc = {x=-2, y=1, z=-2},
+						maxacc = {x=2, y=5, z=2},
+						minexptime = 1,
+						maxexptime = 4,
+						attached = ent,
+						glow = 14,
+						texture = "fire_basic_flame.png",
+					})
+					if dropper then
+						dropper:override_day_night_ratio(0)
+					end
+					minetest.after(5, function()
+						if ent then
+							ent:remove()
+							default.explode(pos, 0, 5, 10)
+							default.explode(pos, 3, 20, 20)
+							default.explode(pos, 10, 40, 40)
+						end
+						minetest.after(20, function()
+							if dropper then
+								dropper:override_day_night_ratio(nil)
+							end
+						end)
+					end)
+				end
+			end
+		end
+	end)
+end
+
 --ELF RINGS
 --FUNCTION = Fast health regeneration + Breathing underwater + Flight / Emits blue particles
 
@@ -29,6 +74,9 @@ minetest.register_craftitem("lottother:vilya", {
 	inventory_image = "lottother_vilya.png",
 	stack_max = 1,
 	groups = {forbidden=1},
+	on_drop = function(itemstack, dropper, pos)
+		ring_drop(itemstack, dropper, pos)
+	end,
 })
 
 --FUNCTION = Makes (good) mobs follow you + deadly attack + Invisibility
@@ -47,6 +95,9 @@ minetest.register_craftitem("lottother:narya", {
 		},
 		damage_groups = {fleshy=50},
 	},
+	on_drop = function(itemstack, dropper, pos)
+		ring_drop(itemstack, dropper, pos)
+	end,
 })
 --In mob def:
 --follow = "lottother:narya",
@@ -59,6 +110,9 @@ minetest.register_craftitem("lottother:nenya", {
 	inventory_image = "lottother_nenya_inv.png",
 	stack_max = 1,
 	groups = {forbidden=1},
+	on_drop = function(itemstack, dropper, pos)
+		ring_drop(itemstack, dropper, pos)
+	end,
 })
 
 local time = 0
@@ -75,55 +129,51 @@ minetest.register_globalstep(function(dtime)
 			if lottother.corrupt == nil then
 				lottother.corrupt = {}
 			end
-			
 			if lottother.corrupt[name] == nil or not tonumber(lottother.corrupt[name]) then
 				lottother.corrupt[name] = 0
 			end
 			
 			-- corruption effect
 			if wield == "lottother:nenya" or wield == "lottother:vilya" or wield == "lottother:narya" or wield == "lottother:dwarf_ring" then
-				
 				lottother.corrupt[name] = lottother.corrupt[name] + 1
 				local corruption = tonumber(lottother.corrupt[name])
-				
 				if corruption > 29 and minetest.get_player_privs(name).GAMEwizard == nil and minetest.get_player_privs(name).purity == nil then
-				if corruption == 30 then
-					lottother.corrupt[name.."_1"] = player:hud_add({
-						hud_elem_type = "image",
-						position = {x=0.5, y=0.5},
-						scale = {x=-100, y=-100},
-						text = "lottother_corruption.png",
-						offset = {x=0, y=0},
-					})
-				elseif corruption == 60 then
-					lottother.corrupt[name.."_2"] = player:hud_add({
-						hud_elem_type = "image",
-						position = {x=0.5, y=0.5},
-						scale = {x=-100, y=-100},
-						text = "lottother_corruption.png",
-						offset = {x=0, y=0},
-					})
-				elseif corruption == 90 then
-					lottother.corrupt[name.."_3"] = player:hud_add({
-						hud_elem_type = "image",
-						position = {x=0.5, y=0.5},
-						scale = {x=-100, y=-100},
-						text = "lottother_corruption.png",
-						offset = {x=0, y=0},
-					})
-				elseif corruption == 120 then
-					lottother.corrupt[name.."_4"] = player:hud_add({
-						hud_elem_type = "image",
-						position = {x=0.5, y=0.5},
-						scale = {x=-100, y=-100},
-						text = "lottother_corruption_eye.png",
-						offset = {x=0, y=0},
-					})
-				elseif corruption > 135 then
-					player:set_hp(player:get_hp()-0.5)
+					if corruption == 30 then
+						lottother.corrupt[name.."_1"] = player:hud_add({
+							hud_elem_type = "image",
+							position = {x=0.5, y=0.5},
+							scale = {x=-100, y=-100},
+							text = "lottother_corruption.png",
+							offset = {x=0, y=0},
+						})
+					elseif corruption == 60 then
+						lottother.corrupt[name.."_2"] = player:hud_add({
+							hud_elem_type = "image",
+							position = {x=0.5, y=0.5},
+							scale = {x=-100, y=-100},
+							text = "lottother_corruption.png",
+							offset = {x=0, y=0},
+						})
+					elseif corruption == 90 then
+						lottother.corrupt[name.."_3"] = player:hud_add({
+							hud_elem_type = "image",
+							position = {x=0.5, y=0.5},
+							scale = {x=-100, y=-100},
+							text = "lottother_corruption.png",
+							offset = {x=0, y=0},
+						})
+					elseif corruption == 120 then
+						lottother.corrupt[name.."_4"] = player:hud_add({
+							hud_elem_type = "image",
+							position = {x=0.5, y=0.5},
+							scale = {x=-100, y=-100},
+							text = "lottother_corruption_eye.png",
+							offset = {x=0, y=0},
+						})
+					elseif corruption > 135 then
+						player:set_hp(player:get_hp()-0.5)
+					end
 				end
-				end
-				
 			elseif tonumber(lottother.corrupt[name]) > 0 then
 				lottother.corrupt[name] = lottother.corrupt[name] - 1
 				local corruption = tonumber(lottother.corrupt[name])
@@ -225,8 +275,7 @@ minetest.register_globalstep(function(dtime)
 		time2 = 0
 		for _, player in ipairs(minetest.get_connected_players()) do
 			local name = player:get_player_name()
-			local pos = player:getpos()
-		
+			local pos = player:getpos()		
 			-- nenya ring particles
 			if player:get_inventory():get_stack("main", player:get_wield_index()):get_name() == "lottother:nenya" then
 				minetest.add_particlespawner({
@@ -245,7 +294,7 @@ minetest.register_globalstep(function(dtime)
 					vertical = false,
 					collisiondetection = false,
 					texture = "lottother_orb_white.png",
-					glow = 12
+					glow = 12,
 				})
 			-- vilya ring particles
 			elseif player:get_inventory():get_stack("main", player:get_wield_index()):get_name() == "lottother:vilya" then
@@ -265,7 +314,7 @@ minetest.register_globalstep(function(dtime)
 					vertical = false,
 					collisiondetection = false,
 					texture = "lottother_orb_blue.png",
-					glow = 12
+					glow = 12,
 				})
 			-- dwarven ring particles
 			elseif player:get_inventory():get_stack("main", player:get_wield_index()):get_name() == "lottother:dwarf_ring" then
@@ -285,7 +334,7 @@ minetest.register_globalstep(function(dtime)
 					vertical = false,
 					collisiondetection = false,
 					texture = "lottother_orb_purple.png",
-					glow = 12
+					glow = 12,
 				})
 			end
 		end
@@ -322,20 +371,19 @@ minetest.register_craftitem("lottother:dwarf_ring", {
 	inventory_image = "lottother_dwarf_ring.png",
 	stack_max = 1,
 	groups = {forbidden=1},
-	
 	on_use = function(itemstack, user, pointed_thing)
 		local name = user:get_player_name()
 		if pointed_thing.type == "node" then
 			local pos = pointed_thing.under
-			
-			if minetest.is_protected(pos, name) then return end
+			if minetest.is_protected(pos, name) then
+				return
+			end
 			local nn = minetest.get_node(pos).name
 			for i in ipairs(dwarf_ring_multiply) do
 				local name = dwarf_ring_multiply[i][1]
 				local drop = dwarf_ring_multiply[i][2]
 				local mind = dwarf_ring_multiply[i][3]
 				local maxd = dwarf_ring_multiply[i][4]
-				
 				if nn == name then
 					minetest.dig_node(pos)
 					minetest.add_particlespawner({
@@ -355,9 +403,12 @@ minetest.register_craftitem("lottother:dwarf_ring", {
 						collisiondetection = true,
 						texture = "smoke_puff.png",
 					})
-					minetest.add_item(pos, drop.." "..math.random(mind, maxd))
+					minetest.add_item(pos, drop .. " " .. math.random(mind, maxd))
 				end
 			end
 		end
-	end
+	end,
+	on_drop = function(itemstack, dropper, pos)
+		ring_drop(itemstack, dropper, pos)
+	end,
 })

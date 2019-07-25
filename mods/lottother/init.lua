@@ -1,3 +1,4 @@
+lottother = {}
 dofile(minetest.get_modpath("lottother").."/rings/rings.lua")
 dofile(minetest.get_modpath("lottother").."/rings/gems.lua")
 dofile(minetest.get_modpath("lottother").."/rings/ringsilver.lua")
@@ -29,7 +30,6 @@ minetest.register_node("lottother:blue_flame", {
 	end,
 })
 
-lottother = {}
 lottother.D = 6
 lottother.sounds = {}
 
