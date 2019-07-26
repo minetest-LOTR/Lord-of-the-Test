@@ -81,7 +81,7 @@ lottmobs.elf = {
 		{"lottplants:niphredil 12", "default:gold_ingot 3", 14},
 		{"lottblocks:mallorn_pillar 30", "default:gold_ingot 7", 4},
 		{"lottplants:mallornsapling 3", "default:gold_ingot 2", 17},
-		{"lottplants:mallornwood 99", "default:gold_ingot 10", 5},
+		{"default:goldblock " .. math.random(8, 10), "lottores:pearl 9", 25},
 	},
 	items_race = {
 		{"lottplants:mallorntree 10", "default:gold_ingot 4", 5},
@@ -98,7 +98,7 @@ lottmobs.elf = {
 		{"lottplants:niphredil 12", "default:gold_ingot 3", 14},
 		{"lottblocks:mallorn_pillar 30", "default:gold_ingot 6", 4},
 		{"lottplants:mallornsapling 3", "default:gold_ingot 2", 17},
-		{"lottplants:mallornwood 99", "default:gold_ingot 8", 5},
+		{"default:goldblock " .. math.random(8, 10), "lottores:pearl 9", 25},
 	},
 	names = {
 		"Annael", "Anairë", "Curufin", "Erestor", "Gwindor", "Irimë",
@@ -138,7 +138,6 @@ lottmobs.hobbit = {
 		{"lottpotion:beer " .. math.random(5, 15), "default:gold_ingot 7", 8},
 		{"lottpotion:cider " .. math.random(10, 20), "default:gold_ingot 11", 13},
 		{"lottpotion:wine " .. math.random(5, 10), "default:gold_ingot 18", 14},
-		{"lottfarming:tomatoes " .. math.random(20, 30), "default:gold_ingot 23", 25},
 		{"lottfarming:potato " .. math.random(25, 35), "default:gold_ingot 10", 22},
 		{"lottfarming:brown_mushroom ".. math.random(40, 45), "default:gold_ingot 40", 25},
 		{"lottfarming:corn_seed 12", "default:gold_ingot 30", 25},
@@ -148,6 +147,7 @@ lottmobs.hobbit = {
 		{"lottfarming:berries " .. math.random(15, 20), "default:gold_ingot 7", 4},
 		{"lottplants:firsapling 2", "default:gold_ingot 2", 17},
 		{"default:apple " .. math.random(5, 20), "default:gold_ingot 10", 5},
+		{"default:goldblock " .. math.random(9, 12), "lottores:pearl 9", 25},
 	},
 	items_race = {
 		{"lottfarming:pipe 1", "default:gold_ingot 2", 5},
@@ -155,7 +155,6 @@ lottmobs.hobbit = {
 		{"lottpotion:beer " .. math.random(5, 15), "default:gold_ingot 5", 8},
 		{"lottpotion:cider " .. math.random(10, 20), "default:gold_ingot 9", 13},
 		{"lottpotion:wine " .. math.random(5, 10), "default:gold_ingot 16", 14},
-		{"lottfarming:tomatoes " .. math.random(20, 30), "default:gold_ingot 20", 25},
 		{"lottfarming:potato " .. math.random(25, 35), "default:gold_ingot 7", 22},
 		{"lottfarming:brown_mushroom ".. math.random(40, 45), "default:gold_ingot 35", 25},
 		{"lottfarming:corn_seed 12", "default:gold_ingot 27", 25},
@@ -165,6 +164,7 @@ lottmobs.hobbit = {
 		{"lottfarming:berries " .. math.random(15, 20), "default:gold_ingot 6", 4},
 		{"lottplants:firsapling 2", "default:gold_ingot 2", 17},
 		{"default:apple " .. math.random(5, 20), "default:gold_ingot 8", 5},
+		{"default:goldblock " .. math.random(9, 12), "lottores:pearl 9", 25},
 	},
 	names = {
 		"Adalgrim", "Bodo", "Cotman", "Doderic", "Falco", "Gormadoc",
