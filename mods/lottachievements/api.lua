@@ -370,8 +370,11 @@ function lottachievements.getFormspec(name, to, sid)
 							minetest.formspec_escape(minetest.colorize("black", S("(Secret Achievement)"))).."]"..
 							"image[1,0;3,3;lottachievements_unknown.png]"
 			if def and def.description then
-				formspec = formspec	.. "textarea[0.25,3.25;4.8,1.7;;"..
-					minetest.formspec_escape(minetest.colorize("black", S("Unlock this achievement to find out what it is.")))..";]"
+				local text = minetest.colorize("black",
+						minetest.wrap_text(S("Unlock this achievement to" ..
+							" find out what it is."), 25))
+				formspec = formspec	.. "label[0.15,3.25;"..
+					minetest.formspec_escape(text).."]"
 			end
 		elseif def and def.requires and not item.got and not completed[def.requires] then
 			formspec = formspec .. "label[0.56,2.75;"..
@@ -380,14 +383,17 @@ function lottachievements.getFormspec(name, to, sid)
 			if def and def.description and lottachievements.def[def.requires] then
 				if lottachievements.def[def.requires].requires and
 				not completed[lottachievements.def[def.requires].requires] then
-					formspec = formspec	.. "textarea[0.25,3.25;4.8,2;;"..
-						minetest.formspec_escape(minetest.colorize("black",
-						S("To see this achievement you need to complete more achievements!"))) .. ";]"
+					local text = minetest.colorize("black",
+						minetest.wrap_text(S("To see this achievement you" ..
+							"need to complete more achievements!"), 25))
+					formspec = formspec	.. "label[0.15,3.25;"..
+						minetest.formspec_escape(text) .. "]"
 				else
-					formspec = formspec	.. "textarea[0.25,3.25;4.8,2;;"..
-						minetest.formspec_escape(minetest.colorize("black",
-						S("To see this achievement, complete \"")
-						 .. lottachievements.def[def.requires].title .. "\""))..";]"
+					local text = minetest.colorize("black",
+						minetest.wrap_text(S("To see this achievement, complete \"")
+						 .. lottachievements.def[def.requires].title .. "\"", 25))
+					formspec = formspec	.. "label[0.15,3.25;" ..
+						minetest.formspec_escape(text) .. "]"
 				end
 			end
 		else
@@ -400,8 +406,8 @@ function lottachievements.getFormspec(name, to, sid)
 				status = minetest.colorize("green", S("(completed)"))
 			end
 
-			formspec = formspec .. "textarea[0.5,2.7;4.8,1.45;;" ..
-				minetest.formspec_escape(minetest.colorize("black", title)) .. "\n" .. status .. ";]"
+			formspec = formspec .. "label[0.15,2.7;" ..
+				minetest.formspec_escape(minetest.colorize("black", title)) .. "\n" .. status .. "]"
 
 			if def and def.icon then
 				formspec = formspec .. "image[1,0;3,3;" .. def.icon .. "]"
@@ -418,21 +424,21 @@ function lottachievements.getFormspec(name, to, sid)
 				if perc > 1 then
 					perc = 1
 				end
-				formspec = formspec .. "background[0,4.675;" .. barwidth ..",0.425;lottachievements_progress_gray.png;false]"
-				formspec = formspec .. "background[0,4.675;" .. (barwidth * perc) ..",0.425;lottachievements_progress_green.png;false]"
+				formspec = formspec .. "background[0,5.675;" .. barwidth ..",0.425;lottachievements_progress_gray.png;false]"
+				formspec = formspec .. "background[0,5.675;" .. (barwidth * perc) ..",0.425;lottachievements_progress_green.png;false]"
 				if label then
-					formspec = formspec .. "label[1.75,4.63;" .. minetest.formspec_escape(label) .. "]"
+					formspec = formspec .. "label[1.75,5.6;" .. minetest.formspec_escape(label) .. "]"
 				end
 			end
 			if def and def.description then
-				formspec = formspec	.. "textarea[0.25,3.75;4.8,1.7;;"..
-					minetest.formspec_escape(minetest.colorize("black", def.description))..";]"
+				local text = minetest.colorize("black", minetest.wrap_text(def.description, 25))
+				formspec = formspec	.. "label[0.15,3.75;" .. text .."]"
 			end
 		end
 	end
 
 	-- Create list box
-	formspec = formspec .. "textlist[4.75,0;6,5;lottachievements;"
+	formspec = formspec .. "textlist[4.75,0;6,6;lottachievements;"
 	local first = true
 	for _,award in pairs(listoflottachievements) do
 		local def = lottachievements.def[award.name]
@@ -501,7 +507,7 @@ function lottachievements.show_to(name, to, sid, text)
 		end
 		-- Show formspec to user
 		minetest.show_formspec(to,"lottachievements:lottachievements",
-			"size[11,5]" ..
+			"size[11,6]" ..
 			"background[5,5;1,1;gui_formbg.png;true]" ..
 			lottachievements.getFormspec(name, to, sid))
 	end
