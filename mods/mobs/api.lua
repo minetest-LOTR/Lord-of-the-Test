@@ -2336,6 +2336,7 @@ minetest.register_entity(name, {
 	dogshoot_count = 0,
 	dogshoot_count_max = def.dogshoot_count_max or 5,
 	id = 0,
+	glow = def.glow or 0,
 	game_name = "mob",
 
 	on_blast = def.on_blast or do_tnt,

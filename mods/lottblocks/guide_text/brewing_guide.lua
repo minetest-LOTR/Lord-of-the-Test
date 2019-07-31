@@ -1,11 +1,11 @@
 return "return {[\"background\"] = \"gui_brewerbg.png\", [\"title\"] = \"Making Brews\", [\"owner\"] = \"A Hobbit Brewer\"," ..
 	"[\"text\"] = \"" ..
 	"\\\nBeer, wine, mead, cider, ale!"..
-	"\\\nRefreshing beverages which fill your tummies and empties your mind!"..
+	"\\\nRefreshing beverages which fill your tummies and empty your mind!"..
 	"\\\nHere I will teach you how brew your own beverages!"..
 	"\\\n "..
 	"\\\nGetting Essentials"..
-	"\\\n---------------------------------------------------------------------" ..
+	"\\\n--------------------------------------------------------------------" ..
 	"\\\nFirstly, you need a brewing barrel for the brewing process."..
 	"\\\nCraft one like this;"..
 	"\\\nW = Wood / S = Steel Ingot / N = Nothing"..
@@ -26,9 +26,9 @@ return "return {[\"background\"] = \"gui_brewerbg.png\", [\"title\"] = \"Making 
 	"\\\nTo make one, simply put a Cooking Book to the right of the Brewing Barrel."..
 	"\\\n "..
 	"\\\nBrewing Process"..
-	"\\\n---------------------------------------------------------------------" ..
+	"\\\n--------------------------------------------------------------------" ..
 	"\\\nWith the brewer, cauldron and book of brewing, you are ready to become a brewer!"..
-	"\\\nPlace down your cauldorn, brewer and grab your book of brewing."..
+	"\\\nPlace down your cauldorn and brewer, and grab your book of brewing."..
 	"\\\nPlace a bucket of water onto the cauldron to fill it up with water."..
 	"\\\nAfter which you have to craft some drinking glasses."..
 	"\\\nPunch the drinking drink on the cauldron to get some water-filled drinking glasses."..

@@ -4,50 +4,50 @@ return "return {[\"background\"] = \"gui_rohanbg.png\", [\"title\"] = \"Concerni
 	"\\\nThese gems require a complex process, fraught with the risk of them breaking, before they can be added to the ring." ..
 	"\\\n " ..
 	"\\\nGEMS TYPES" ..
-	"\\\n---------------------------------------------------------------------" ..
-	"\\\nThere exists 4 different gems which contain vastly different great powers." ..
-	"\\\nThe gems itself of course have these powers embedded deeply within, and you need to craft a ring to tap into it." ..
+	"\\\n--------------------------------------------------------------------" ..
+	"\\\n4 different types of gems exists, each of which possesses a vastly different great powers." ..
+	"\\\nWhile the gems themselves have these powers embedded deeply within them, you must craft a ring in order to tap into them." ..
 	"\\\n " ..
-	"\\\nThe purple gem, valued by the dwarven smiths, have been said to have the power to multiply ores. Legends foretold of Durin the Third, who was able to harness this power. By wielding the ring and punching any ore, he could multiply them." ..
+	"\\\nThe purple gem, much valued by the Dwarven smiths, has been said to have the power of multiplying ores. Legends whisper that Durin the Third was able to harness this power. By wielding a ring with this kind of gem and punching any ore, he could multiply the resulting quantity." ..
 	"\\\n " ..
-	"\\\nThe white gem, hardest of all the gems, emulate a strong sense of protection around its owner when held. Granting protection for its owner against anyone that tries to do harm against him." ..
+	"\\\nThe white gem, hardest of all the gems, emits a strong sense of protection around its owner when held, granting protection to its owner against anyone who tries to work evil against him." ..
 	"\\\n " ..
-	"\\\nThe red gem emits a strong fire-like glow. It strengthens its owner, making any normal punch with it deadly to the strongest of beings. People who have been able to harness its full power has also mysteriously disappeared..." ..
+	"\\\nThe red gem gives off a strong, fire-like glow. It strengthens its owner, making any normal attack with it deadly to even the strongest of beings. People who have been able to harness its full power have also mysteriously disappeared..." ..
 	"\\\n " ..
-	"\\\nThe blue gem, purest of the all the gems, greatly enhance the physical state of anyone who is able to harness its power. Elven lords who have been able to harness its power, have been said to be the fairest, and of the most vigorous." ..
-	"\\\nWielders of this gem have been able to persevere in the most extreme of environment. Tales have been told of one wielder, who used it to live underwater." ..
-	"\\\nRumours also told of it granting the godly power of flight." ..
+	"\\\nThe blue gem, purest of the all the gems, greatly enhances the physical state of anyone who is able to harness its power. Elven lords who have succeeded in harnessing its power, have been said to be the fairest, and the most vigorous of their race." ..
+	"\\\nWielders of this gem have been able to persevere in the most extreme environments. Tales have been told of one wielder, who used it to live underwater." ..
+	"\\\nRumours also told of it granting the incredible power of flight." ..
 	"\\\n " ..
-	"\\\nOf course, all these powers are mostly speculation and rumours." ..
-	"\\\nI, myself, have not manage to properly craft a perfect ring that could properly harness a gem's full power yet." ..
+	"\\\nOf course, all of these powers are mostly speculation and rumour." ..
+	"\\\nAs for myself, I have not managed to craft a perfect ring which could properly harness the full power of any gem yet." ..
 	"\\\n " ..
 	"\\\nMINING GEMS" ..
-	"\\\n---------------------------------------------------------------------" ..
-	"\\\nMost of these gems are encased in a hard casing that a normal pickaxe wouldn't be able to obtain them without destroying the gem as a whole." ..
-	"\\\nOnly a mithril pickaxe is strong enough to dig them out, but it is too strong in the process. To try to adsorb a bit of the brutal force, apply three rough rock to the top of the pickaxe." ..
-	"\\\nEven with this pickaxe, it is still rare to obtain a gem from the ore. " ..
+	"\\\n--------------------------------------------------------------------" ..
+	"\\\nMost of these gems are encased in a hard casing that a normal pickaxe would not be able to obtain them without destroying the gem altogether." ..
+	"\\\nOnly a mithril pickaxe is strong enough to dig them out, but it is too brutal in the process. To try to adsorb a bit of the brutal force, apply three rough rock to the top of the pickaxe." ..
+	"\\\nEven with this pickaxe, it is still likely that the gem will shatter while it is being extracted. " ..
 	"\\\n " ..
-	"\\\nWhen you have obtained several gems, and you must have several, for you will not complete the process without breaking some, you can begin on the next stages of preparing the gem." ..
+	"\\\nWhen you have obtained several gems, and you do need several, since you will not complete the process without breaking some, you can begin on the next stages of preparing the gem." ..
 	"\\\n " ..
 	"\\\nGEM PREPARATION" ..
-	"\\\n---------------------------------------------------------------------" ..
-	"\\\nThe gem which you receive from the ore will be encrusted in stone, which needs to be removed." ..
-	"\\\nThis can be done by smelting the gem in a normal furnace, which will return an uncut gem." ..
+	"\\\n--------------------------------------------------------------------" ..
+	"\\\nThe gem which you receive from the ore will still be encrusted in stone, which must to be removed." ..
+	"\\\nThis can be done by smelting the gem in a normal furnace, which will melt the stone, leaving you with an uncut gem." ..
 	"\\\n " ..
-	"\\\nThis new gem must be cut, with a chisel, in order to shape it for the ring. This is a simple enough task, but the gems all too often does not survive it, and the chisel can only withstand a few uses." ..
-	"\\\nTo make the chisel, a stick must be place in the bottom left corner of the grid, and then, an ingot of steel must be placed in the middle." ..
-	"\\\nTo the right and above that, an ingot of mithril must be placed, and this will form a chisel." ..
+	"\\\nThis new gem must be cut with a chisel, in order to shape it for the ring. This sounds like a simple enough task, but due to clumsy hands, or a weak structure, gems are often broken in this step, and rendered useless." ..
+	"\\\nTo make the chisel, a stick must be placed in the bottom left corner of the grid, and then, an ingot of steel must be placed in the middle." ..
+	"\\\nTo the right and above that, an ingot of mithril must be placed, and this will form a chisel able to cut gems of such power." ..
 	"\\\nThis should then be crafted with an uncut gem, and if your hand is steady, and the structure of the gem sound, the gem will be successfully cut." ..
 	"\\\n " ..
-	"\\\nBut even then the process is not complete, and there remains one final step. The gem must be polished, and this can be done by surrounding it with sand. This can expose more flaws, leading to the gem falling apart. But, if everything is successful, then you will have a gem which is ready to be combined with the ring." ..
+	"\\\nBut even then the process is not complete, and there remains one final step. The gem must be polished, and this can be done by surrounding it with sand. This can expose more flaws, leading to the gem crumbling into dust. But, if everything is successful, you will have a gem which is ready to be combined with the ring." ..
 	"\\\n " ..
 	"\\\nCONCLUSION" ..
-	"\\\n----------------------------------------------------------------------" ..
-	"\\\nThe gems contain godly powers that could be tapped into via the rings." ..
-	"\\\nThe process is hard, to properly tap into the powers, both the ring and the gem must be of perfect quality." ..
-	"\\\nAfterwhich, the wielder must unravel how to activate those powers." ..
-	"\\\nThere's no guide for the later process, because even I haven't been able to do so. But the properties and rumours of the gems might provide some clues." ..
-	"\\\nI wish you better luck in your ventures." ..
+	"\\\n---------------------------------------------------------------------" ..
+	"\\\nThe gems contain wonderful powers which can be tapped into by means of the rings." ..
+	"\\\nThe process is hard, since to properly tap into the powers, both the ring and the gem must be of perfect quality." ..
+	"\\\nAfter which, the wielder must unravel how to activate those powers." ..
+	"\\\nThere exists no guide for the later process, as even I have not been able to do so. But the properties and rumours of the gems might provide some clues." ..
+	"\\\nI wish you the best of luck in your ventures." ..
 	"\\\n " ..
 	"\\\n " ..
 	"\\\n " ..
@@ -59,15 +59,15 @@ return "return {[\"background\"] = \"gui_rohanbg.png\", [\"title\"] = \"Concerni
 	"\\\n " ..
 	"\\\n " ..
 	"\\\nDear Reader." ..
-	"\\\nI'm writing this down here because I fear I have no time." ..
+	"\\\nI write this down here because I fear I have no time." ..
 	"\\\nIt was all a lie. Annatar is a lie." ..
-	"\\\nHe has deceived us! It was Sauron in disguise!" ..
-	"\\\nThe rings of power, apart from gifting its wielder great power, it corrupts their mind and make them serve him..." ..
-	"\\\nThe rings we have crafted thankfully aren't fully under his influence." ..
-	"\\\nBut do not wield them for too long, for they can slowly corrupt your mind..." ..
+	"\\\nHe deceived us! He was Sauron in disguise!" ..
+	"\\\nThe rings of power, apart from granting to the one wielding them great power, corrupt their mind and make them serve him..." ..
+	"\\\nThankfully, the rings we have crafted are not fully under his influence." ..
+	"\\\nBut do not wield them for too long, as they can still slowly corrupt your mind..." ..
 	"\\\n " ..
-	"\\\nThe scouts have reported sightings of huge armies of foul orcs coming towards us.." ..
-	"\\\nSauron wants this knowledge destroyed.." ..
-	"\\\nI will hide this book somewhere hidden, in the event we do not survive." ..
-	"\\\nThere's so much more for me to share, but alas, I have no time." ..
+	"\\\nThe scouts have reported sightings of huge armies of foul orcs coming towards us." ..
+	"\\\nSauron wants this knowledge destroyed." ..
+	"\\\nI will hide this book in a hidden place, in case we do not survive." ..
+	"\\\nThere are so many more things for me to share with you, but alas, I have no time." ..
 	"\\\nI bid you farewell and I hope you will use this knowledge wisely.\"}"
