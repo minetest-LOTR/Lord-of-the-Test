@@ -16,8 +16,7 @@ return "return {[\"background\"] = \"gui_hobbitbg.png\", [\"title\"] = \"Delicio
 	"\\\nNext, you need some fertiliser for the mushroom to grow healthily."..
 	"\\\nThe special ingredient is the bones of the dead! Wonderful!"..
 	"\\\nBones and decaying flesh will work nicely."..
-	"\\\nBut if you can't locate that you can grind up the remains of an old gravestone too."..
-	"\\\nAnd put it into a glass container to store it."..
+	"\\\nBut if you can't locate that you can grind up the remains of an old gravestone too. nAnd put it into a glass container to store it."..
 	"\\\n "..
 	"\\\nThe following craft recipe should help:"..
 	"\\\nGL = Glass / GR = Gravestone / NT = Nothing"..
@@ -47,4 +46,4 @@ return "return {[\"background\"] = \"gui_hobbitbg.png\", [\"title\"] = \"Delicio
 	"\\\nIf you have three of the same type of mushroom and a bowl, you can squash them into a cream of mushroom soup. Yummy!"..
 	"\\\n "..
 	"\\\nThis concludes all you need to know about farming mushrooms."..
-	"\\\nEnjoy the fruits of your labour!\"}"
+	"\\\nEnjoy the mushrooms of your labour!\"}"

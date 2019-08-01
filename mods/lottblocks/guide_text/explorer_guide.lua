@@ -21,25 +21,25 @@ return "return {[\"background\"] = \"gui_gondorbg.png\", [\"title\"] = \"Safe La
 	"\\\nThe Shire"..
 	"\\\n--------------------------------------------------------------------" ..
 	"\\\nThe peaceful sanctuary of the Hobbits."..
-	"\\\nBeing located in the centre and protected by lands all around it, the Shire itself has been mostly peaceful, apart from a few rowdy Hobbits causing a slight commotion once in a while, after imbibing a few too many pints of their wonderful ale."..
-	"\\\nHobbits primarily inhabit the lands and you will find plenty of rich fauna and flora."..
+	"\\\nBeing located in the centre and protected by the surrounding lands, the Shire itself has been mostly peaceful, apart from a few rowdy Hobbits causing a slight commotion once in a while, after imbibing a few too many pints of their wonderful ale."..
+	"\\\nHobbits primarily inhabit the lands, of which you will find plenty of rich fauna and flora."..
 	"\\\nIt's a great place for a holiday and for any new explorers to start!"..
 	"\\\nBright green grass is present in this region."..
 	"\\\nAnd occasionally you can find a few Hobbit holes where Hobbits are usually more than glad to have a guest!"..
-	"\\\nAvoid the ones with 'No Admittance' signs though, as older and grumpy Hobbits live there."..
+	"\\\nAvoid the ones with 'No Admittance' signs though, as old and grumpy Hobbits live there."..
 	"\\\n"..
 	"\\\nLothlórien"..
 	"\\\n--------------------------------------------------------------------" ..
 	"\\\nThis land is also referred to as 'Lorien' sometimes."..
 	"\\\nThe land of the fair Elves."..
-	"\\\nAs a land protected by the Elves, it seems to be mostly peaceful."..
+	"\\\nProtected by the Elves, it seems to be mostly peaceful."..
 	"\\\nBut recently in these dark times, Lorien has been seeing stray orcs venture into the borders of the region."..
 	"\\\nDon't worry too much though, the Elves are quick to make simple work out of them."..
 	"\\\nDark turquoise grass is present in this region."..
 	"\\\nYou will definitely spot the beautiful tall mallorn trees, with their golden leaves."..
 	"\\\nBright and stunning flowers decorate the region, some of which may even have magical properties."..
 	"\\\nBlessed by the Elves, you might also find magical materials in the region."..
-	"\\\nThere's rumours of old Elven forges, containing great treasures, buried deep now."..
+	"\\\nThere's rumours of old Elven forges, containing great treasures, buried deep down."..
 	"\\\nThe mallorn trees are sometimes fitted with grand Elven treehouses, a most magnificent sight."..
 	"\\\nProbably the most magical and beautiful place I have visited thus far, and definitely worth a visit!"..
 	"\\\n"..
@@ -50,5 +50,5 @@ return "return {[\"background\"] = \"gui_gondorbg.png\", [\"title\"] = \"Safe La
 	"\\\nHidden underground and with hidden entrances, Dwarven home aren't the easiest to find. But the Dwarves are friendly, as long as you make clear you aren't here to cause trouble."..
 	"\\\nI have heard some rumours from the local Dwarves that the elusive mithril can be found here."..
 	"\\\nNormal green grass is present in this region."..
-	"\\\nOne of the most notable features is perhaps the pine trees, still filled with snow from recent snowfall, due to the altitude, which decorate this region."..
+	"\\\nOne of the most notable features is perhaps the pine trees, still filled with snow from recent snowfalls, due to the altitude, which decorate this region."..
 	"\\\nElse, it can be easily identified from the stone cliffs or caves that are filled with veins of iron ore.\"}"

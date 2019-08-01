@@ -7,9 +7,9 @@ return "return {[\"background\"] = \"gui_dwarfbg.png\", [\"title\"] = \"Finding 
 	"\\\n"..
 	"\\\nPearls"..
 	"\\\n---------------------------------------------------------------------" ..
-	"\\\nPearls are a rare and precious shiny gem found in riverbeds.They are used mainly for decorations."..
+	"\\\nPearls are a rare and precious shiny gem found in riverbeds. They are used mainly for decorations."..
 	"\\\nElven and Hobbit traders have been known to pay a hefty price to get some of these."..
-	"\\\nThey are found only in riverbeds, at 20 metres below sea level, embedded into the sand."..
+	"\\\nThey are found in riverbeds, at only 20 metres below sea level, embedded into the sand."..
 	"\\\nThese can be difficult to spot, as they blend into the sand of the riverbed well."..
 	"\\\n"..
 	"\\\nLead"..
@@ -35,5 +35,5 @@ return "return {[\"background\"] = \"gui_dwarfbg.png\", [\"title\"] = \"Finding 
 	"\\\n---------------------------------------------------------------------" ..
 	"\\\nOne of the most rare, precious metals."..
 	"\\\nUsed as currency in general, especially for trading."..
-	"\\\nOtherwise, gold can be used for making strong and durable tools, as it is a strong metal in itself."..
+	"\\\nOtherwise, gold can be used for making strong and durable tools."..
 	"\\\nIf one is lucky, it can be located in small quantities 64 metres below sea level, and in moderate quantities 256 metres below sea level.\"}"

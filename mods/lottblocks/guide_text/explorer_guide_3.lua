@@ -29,11 +29,11 @@ return "return {[\"background\"] = \"gui_gondorbg.png\", [\"title\"] = \"Dangero
 	"\\\n--------------------------------------------------------------------" ..
 	"\\\nThe deep, dark Mirkwood forest. A dangerous place for anyone to wander about."..
 	"\\\nGiant spiders, larger than the size of men, nest in this region. Poisoning and eating anyone dumb enough to venture too deep into the dark forest."..
+	"\\\nTheir potent poison that is quite sought after, can be collected with a glass bottle."..
 	"\\\nOvergrown trees cover the land, leaving most of the forest in darkness."..
 	"\\\nDark green grass is present in this region."..
 	"\\\nRarely, you might stumble upon a Mirkwood Elven hut, the old inhabitants of this forest before the spider infestation."..
-	"\\\nMirkwood Elves are a cautious but friendly people, preferring to live in seclusion."..
-	"\\\nI recommend against any explorer venturing here, I was lucky to come out unscathed."..
+	"\\\nMirkwood Elves are a cautious but friendly people, preferring to live in seclusion. They are a strong, wise and resistent race, and might be willing to offer great advice and assistance if you get them to trust you enough.."..
 	"\\\n "..
 	"\\\nAngmar"..
 	"\\\n--------------------------------------------------------------------" ..
@@ -63,14 +63,14 @@ return "return {[\"background\"] = \"gui_gondorbg.png\", [\"title\"] = \"Dangero
 	"\\\nThe occasional Half-Troll, a vicious creature, ventures here during the dark, most likely in search of prey."..
 	"\\\nBut night is when this land is truly dangerous."..
 	"\\\nAs the region is named, Trollshaws, this region is the home of the Trolls, gigantic, evil creatures with skin as hard as stone."..
-	"\\\nTrolls fear daylight but during the night, they ravage the area."..
+	"\\\nTrolls fear daylight but with the cover of the night, they ravage the area."..
 	"\\\n"..
 	"\\\nMordor"..
 	"\\\n--------------------------------------------------------------------" ..
-	"\\\nThis is the evil land of the Dark Lord, Sauron."..
+	"\\\nEvil land of the Dark Lord, Sauron."..
 	"\\\nAs a result of the constant volcanic eruptions, the land is burned black."..
 	"\\\nOnly dead fauna and flora can be found here."..
 	"\\\nAll sorts of vile and foul creatures live here, from Orcs to Uruk Hai to Trolls."..
-	"\\\nBlack tower fortresses dot the landscape, inhabited by Orcs, who guard the lands."..
+	"\\\nBlack tower fortresses dot the landscape, inhabited by Orcs, which keeps a constant watch of these lands."..
 	"\\\nOne does not simply walk into Mordor."..
-	"\\\nUnless, you have an army to defend you, I do not suggest entering here.\"}"
+	"\\\nVenturing here for anyone who is underprepared and/or underequipped is strongly not suggested.\"}"

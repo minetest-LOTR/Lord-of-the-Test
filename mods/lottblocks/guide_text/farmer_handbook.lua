@@ -18,9 +18,9 @@ return "return {[\"background\"] = \"gui_hobbitbg.png\", [\"title\"] = \"Hobbits
 	"\\\nYou need the crops to have direct exposure to the sun to grow healthily."..
 	"\\\n "..
 	"\\\nNext, you need some seeds."..
-	"\\\nSeeds aren't too hard to find. There's a variety of them."..
-	"\\\nTo find some, simply venture around some grasslands or forests."..
-	"\\\nYou will find wild variety of food, grab some and they should drop some seeds for you, or you may need to place some in your crafting grid."..
+	"\\\nSeeds aren't too hard to find. There's a huge variety of them."..
+	"\\\nTo find some, simply venture around some local grasslands or forests."..
+	"\\\nYou will find wild variety of growing wild foods, grab some and they should drop some seeds for you. Otherwise, crafting them will yield some seeds too."..
 	"\\\n "..
 	"\\\nWith the land, water, sunlight and seeds, you are ready to start your first farm!"..
 	"\\\n "..
@@ -61,17 +61,17 @@ return "return {[\"background\"] = \"gui_hobbitbg.png\", [\"title\"] = \"Hobbits
 	"\\\nThere are some special crops that are used for specific purposes, which sadly can't be eaten."..
 	"\\\n"..
 	"\\\nCotton is used to craft wool and string for clothes and such."..
-	"\\\nAthelas is used as a herb to brew potions. Specifics of this, you will be better of consulting one of the men from Gondor."..
+	"\\\nAthelas is used as a herb to brew potions."..
 	"\\\nPipeweed is used for smoking. We will look at this some more in the next section."..
 	"\\\n "..
 	"\\\nAll about Pipeweed"..
 	"\\\n--------------------------------------------------------------------" ..
-	"\\\nPipeweed, with it's sweet and fragrant blossoms. Smoking some in a pipe will leave a sweet taste in your mouth."..
+	"\\\nPipeweed, with its sweet and fragrant blossoms. Smoking some in a pipe will leave a sweet taste in your mouth."..
 	"\\\nIt's been known to enhance your health too! Some of the oldest hobbits smoke them on a regular basis."..
 	"\\\n "..
 	"\\\nFarming pipeweed is very similar to other crops."..
 	"\\\nWild pipeweed can only be found in Shire."..
-	"\\\nBright green plants with lovely yellow blossoms. They aren't hard to find."..
+	"\\\nBright green plants with lovely yellow blossoms, which are easily spotted."..
 	"\\\n "..
 	"\\\nOnce you have some pipeweed, simply cook it up."..
 	"\\\nCraft a pipe next, with the following recipe;"..

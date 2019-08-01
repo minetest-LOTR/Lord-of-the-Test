@@ -64,7 +64,7 @@ return "return {[\"background\"] = \"gui_rohanbg.png\", [\"title\"] = \"Concerni
 	"\\\nHe deceived us! He was Sauron in disguise!" ..
 	"\\\nThe rings of power, apart from granting to the one wielding them great power, corrupt their mind and make them serve him..." ..
 	"\\\nThankfully, the rings we have crafted are not fully under his influence." ..
-	"\\\nBut do not wield them for too long, as they can still slowly corrupt your mind..." ..
+	"\\\nBut do not wield them for too long, as they can still slowly decay your mind..." ..
 	"\\\n " ..
 	"\\\nThe scouts have reported sightings of huge armies of foul orcs coming towards us." ..
 	"\\\nSauron wants this knowledge destroyed." ..

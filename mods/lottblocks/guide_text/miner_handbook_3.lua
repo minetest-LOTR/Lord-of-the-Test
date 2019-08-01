@@ -15,7 +15,7 @@ return "return {[\"background\"] = \"gui_dwarfbg.png\", [\"title\"] = \"Finding 
 	"\\\n"..
 	"\\\nMithril"..
 	"\\\n--------------------------------------------------------------------" ..
-	"\\\nThis is the most noble, the rarest and the strongest of all metals. It is extremely valuable, and as you well know, well loved by our race.."..
+	"\\\nThis is the most noble, the rarest and the strongest of all metals. It is extremely valuable, and a well-loved materials by Dwarven smithes, for its high strength yet low malleability."..
 	"\\\nIt can be found only in the deepest depths of Middle Earth and in some secluded mountainous areas."..
 	"\\\nTools, weapons and armour made from mithril are the strongest and most durable known in this world."..
 	"\\\nMithril occurs in mountainous areas, such as Angmar and the Iron Hills, as well as very deep underground and is extremely rare."..

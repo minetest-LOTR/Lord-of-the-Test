@@ -13,7 +13,7 @@ return "return {[\"background\"] = \"gui_dwarfbg.png\", [\"title\"] = \"Finding 
 	"\\\n"..
 	"\\\nLimestone"..
 	"\\\n--------------------------------------------------------------------" ..
-	"\\\nWhen it is fired in a furnace, limestone become a rigid, white and shiny stone called marble."..
+	"\\\nWhen fired in a furnace, limestone become a rigid, white and shiny stone called marble."..
 	"\\\nIt has been used to built the most magnificent and stunning cities."..
 	"\\\nSeveral great cities of Gondor including the grand Minas Tirith were built from this."..
 	"\\\nIt is found in large quantities anywhere under 10 metres below sea level."..
@@ -51,4 +51,4 @@ return "return {[\"background\"] = \"gui_dwarfbg.png\", [\"title\"] = \"Finding 
 	"\\\n--------------------------------------------------------------------" ..
 	"\\\nUsed for preserving food and making it tastier."..
 	"\\\nIt can also be eaten by itself."..
-	"\\\nIt is found only in riverbeds, at 5 metres below sealevel, embedded into dirt.\"}"
+	"\\\nIt is found in riverbeds, at only 5 metres below sealevel, embedded into dirt.\"}"

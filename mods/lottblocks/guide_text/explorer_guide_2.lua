@@ -23,7 +23,7 @@ return "return {[\"background\"] = \"gui_gondorbg.png\", [\"title\"] = \"Guarded
 	"\\\nAt nighttime, raiding orcs will venture into the region, make sure to be on your guard."..
 	"\\\nAt first glance it might look similar to the Shire."..
 	"\\\nBut the grass is much darker here and no hobbits wander this land."..
-	"\\\nMost notable feature is perhaps the culumalda trees, red trees with yellow blossoms that are unique here and decorate the region."..
+	"\\\nMost notable feature is the culumalda tree, red trees with yellow blossoms that are unique here and decorate the region."..
 	"\\\n "..
 	"\\\nGondor"..
 	"\\\n--------------------------------------------------------------------" ..
@@ -33,7 +33,7 @@ return "return {[\"background\"] = \"gui_gondorbg.png\", [\"title\"] = \"Guarded
 	"\\\nGondorian soldiers patrol around the region, hoping to deter any orc from roaming in their lands."..
 	"\\\nBut when the night turns, groups of raiding orcs venture into the region. Watch your back and make sure to stay near the patrols of Gondorian soldiers."..
 	"\\\nNormal green grass is found in this region."..
-	"\\\nIt's easy to identify from the scarcity of fauna as compared to other regions, a result of mass deforestation by the men. But if you are lucky, you might find a fabled white tree..."..
+	"\\\nIt's easy to identify from the scarcity of fauna as compared to other regions, a result of past mass deforestation by the men. But if you are lucky, you might find a fabled white tree..."..
 	"\\\n "..
 	"\\\nRohan"..
 	"\\\n--------------------------------------------------------------------" ..
@@ -48,11 +48,11 @@ return "return {[\"background\"] = \"gui_gondorbg.png\", [\"title\"] = \"Guarded
 	"\\\nFangorn"..
 	"\\\n--------------------------------------------------------------------" ..
 	"\\\nFangorn is what's left of the great forest that used to extend throughout the whole continent of Middle Earth."..
-	"\\\nBut the mass deforestation by its various inhabitants saw the great forest dwindle into its current state, Fangorn."..
+	"\\\nThe mass deforestation by its various inhabitants saw the great forest dwindle into its current state, Fangorn."..
 	"\\\nDon't get me wrong though. Fangorn is still a massive forest, with fauna of all sorts and kind."..
 	"\\\nTall elm trees sprout out of the forest canopy."..
 	"\\\nRowan trees, brown trees with distinctive red berries, that used to be found throughout Middle-Earth, can only be found here now."..
 	"\\\nAs you venture across the forest, you might spot trees moving."..
 	"\\\nNo, you haven't had too many pints of Hobbitish ale, but ancient tree guardians, 'Ents', protect this ancient, great forest."..
 	"\\\nAs long as you don't bother either them or the trees, the Ents are likely to leave you alone, just don't approach too close."..
-	"\\\nUnder the cover of night, Uruk Hai with their black armour, forces of Saruman, venture into the land, to gather wood for their furnaces to power their war machines. Make sure to avoid them if you don't want to get caught in the middle of their sharp orc blades.\"}"
+	"\\\nUnder the cover of night, Uruk Hai with their wicked black armour, forces of Saruman, venture into the land, to gather wood for their furnaces to power their war machines. Make sure to avoid them if you don't want to get caught in the middle of their sharp orc blades.\"}"

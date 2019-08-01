@@ -1,15 +1,15 @@
 return "return {[\"background\"] = \"gui_brewerbg.png\", [\"title\"] = \"Making Potions\", [\"owner\"] = \"An Elven Potion Brewer\"," ..
 	"[\"text\"] = \"" ..
-	"\\\nPotion brewing is a hard and delicate process the require time to master and finding the rarest of ingredients."..
-	"\\\nBut the result of which might be very rewarding.."..
-	"\\\nBrews are capable of making the drinker perform extraordinary feats, both physical and metal, after he drinks them."..
+	"\\\nPotion brewing is a hard and delicate process that require time to master and the rarest of ingredients."..
+	"\\\nBut the result of which might be very rewarding..."..
+	"\\\nBrews are capable of making the drinker perform extraordinary feats, both physical and metal, when consumed."..
 	"\\\n"..
 	"\\\nPotion Brewing Process"..
 	"\\\n--------------------------------------------------------------------" ..
 	"\\\nTo start off, you first need a cauldron and a potion brewer."..
 	"\\\nI will not elaborate overly on their recipies, because you will be able to find them in your Craft Book, on pages 17 and 19."..
 	"\\\n"..
-	"\\\nAfter which, you need a Book of Potions. You can get that by putting a Cooking Book beside a Potion Brewer."..
+	"\\\nAfter which, you need a Book of Potions. You can get that by putting a Cooking Book to the right of the Potion Brewer."..
 	"\\\n"..
 	"\\\nPlace the cauldron and fill the cauldron with water by rightclicking it with a bucket of water."..
 	"\\\nCraft a glass bottle and punch it on cauldron to get a glass bottle filled with water."..

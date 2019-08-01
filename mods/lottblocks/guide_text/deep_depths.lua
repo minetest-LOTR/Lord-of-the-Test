@@ -2,17 +2,17 @@ return "return {[\"background\"] = \"gui_bonesbg.png\", [\"title\"] = \"Lost in 
 	"[\"text\"] = \"" ..
 	"\\\nDear reader," ..
 	"\\\nBy the time you have read this, I will have perished."..
-	"\\\nBut I hope I can provide some help so the same fate does not overtake you."..
+	"\\\nBut I hope that the information provided here ensure the same fate does not overtake you."..
 	"\\\n "..
 	"\\\nI have dug too deep..."..
-	"\\\nAnd there are foul creatures here that never glimpse the light of day"..
+	"\\\nAnd there are foul creatures here that never glimpse the light of day."..
 	"\\\n "..
-	"\\\nGhosts hunt ancient ruins."..
+	"\\\nFallen warriors hunt the buried ancient dungeons."..
 	"\\\nThey emit an unmistakable ghostly green glow."..
 	"\\\nAvoid them at all cost. Normal weapons are unable to damage them."..
 	"\\\nThey fear only daylight, and at this depth, it's safe to say you are not going to get any."..
 	"\\\n "..
-	"\\\nFoul cloaked figures roam in the darkness of most caves. Servants of Sauron"..
+	"\\\nFoul cloaked figures roam in the darkness of most caves. Servants of Sauron..."..
 	"\\\nThese figures are able to harness the deadly power of fire, firing these energised balls of death at your path."..
 	"\\\n "..
 	"\\\nDeeper down, even fouler servants of Sauron lurk."..
