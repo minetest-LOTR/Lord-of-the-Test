@@ -51,7 +51,8 @@ function lottmobs.register_dwarf(n, hpmin, hpmax, textures, wv, rv, damg, arm, d
     	step = 1,
 	on_die = lottmobs.guard_die,
     })
-    mobs:register_spawn("lottmobs:dwarf" .. n, {"default:stone"}, 15, -1, 24000, 3, -10)
+    mobs:register_spawn("lottmobs:dwarf" .. n, {"default:stone_with_iron"}, 15, -1, 24000, 3, -10)
+    mobs:register_spawn("lottmobs:dwarf" .. n, {"default:stone_with_coal"}, 15, -1, 24000, 3, -10)
     mobs:register_spawn("lottmobs:dwarf" .. n, {"lottmapgen:ironhill_grass"}, 20, -1, 18000, 3, 31000)
     lottmobs.register_guard_craftitem("lottmobs:dwarf"..n, "Dwarf Guard", "lottmobs_dwarf_guard"..n.."_inv.png")
 end
