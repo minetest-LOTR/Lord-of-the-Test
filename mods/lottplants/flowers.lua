@@ -72,7 +72,7 @@ register_flower("lissuin_tall_bottom", {
 		type = "fixed",
 		fixed = {-0.1, -0.1, -0.1, 0.1, 0.1, 0.1},
 	},
-	groups = {orange = 1, flower = 1, hand = 2, plant = 1, lorien = 1, hidden = 1},
+	groups = {orange = 1, flower = 1, hand = 2, plant = 1, lorien = 1, not_in_creative_inventory = 1},
 })
 
 register_flower("lissuin_tall_top", {

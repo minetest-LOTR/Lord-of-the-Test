@@ -156,7 +156,8 @@ minetest.register_item(":", {
 		full_punch_interval = 0.9,
 		max_drop_level = 0,
 		groupcaps = {
-			hand = {times={[1]=0, [2]=0.25, [3]=0.5}, uses=0, maxlevel=0},
+			hand = {times = {[1] = 0, [2] = 0.25, [3] = 0.5}, uses = 0, maxlevel = 0},
+			axe = {times = {[1] = 3}, uses = 0, maxlevel = 0},
 		},
 		damage_groups = {fleshy=1},
 	}

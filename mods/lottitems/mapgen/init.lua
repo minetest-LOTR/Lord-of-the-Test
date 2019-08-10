@@ -7,6 +7,6 @@ dofile(modpath .. "/ores.lua")
 minetest.register_node("lottitems:ignore", {
 	description = "You Hacker You (LOTT Ignore)",
 	tiles = {"ignore.png"},
-	groups = {hidden = 1},
+	groups = {not_in_creative_inventory = 1},
 	drop = "",
 })

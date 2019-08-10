@@ -34,7 +34,7 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed_thing)
 			if not node or not node.name then
 				return
 			end
-			
+
 			if minetest.registered_items[node.name].groups.not_in_creative_inventory ~= 1 then
 				puncher:set_wielded_item(node)
 			end
@@ -53,7 +53,12 @@ if minetest.settings:get_bool("creative_mode") then
 			full_punch_interval = 0.5,
 			max_drop_level = 3,
 			groupcaps = {
-				hand = {times={[1]=digtime, [2]=digtime, [3]=digtime, [4]=digtime}, uses=0, maxlevel=0},
+				hand = {times = {[1] = digtime, [2] = digtime, [3] = digtime, [4] = digtime},
+					uses = 0, maxlevel = 0},
+				axe = {times = {[1] = digtime, [2] = digtime, [3] = digtime, [4] = digtime},
+					uses = 0, maxlevel = 0},
+				pickaxe = {times = {[1] = digtime, [2] = digtime, [3] = digtime, [4] = digtime},
+					uses = 0, maxlevel = 0},
 			},
 			damage_groups = {fleshy = 10},
 		}

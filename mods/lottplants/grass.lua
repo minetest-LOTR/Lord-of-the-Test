@@ -17,7 +17,7 @@ local function register_grass(name, heights, def)
 	})
 
 	if def.groups then
-		def.groups["hidden"] = 1
+		def.groups["not_in_creative_inventory"] = 1
 	end
 	for i = 1, heights - 1 do
 		minetest.register_node("lottplants:" .. name .. "_" .. i, {
@@ -35,7 +35,7 @@ local function register_grass(name, heights, def)
 				type = "fixed",
 				fixed = {-0.5, -0.5, -0.5, 0.5, -0.3125, 0.5},
 			},
-			groups = def.groups or {green = 1, grass = 1, plant = 1, hand = 2, hidden = 1}
+			groups = def.groups or {green = 1, grass = 1, plant = 1, hand = 2, not_in_creative_inventory = 1}
 		})
 	end
 end

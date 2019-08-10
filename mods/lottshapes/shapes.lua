@@ -39,25 +39,35 @@ end
 
 local function connects_dir(pos, name, dir)
 	local aside = vector.add(pos, minetest.facedir_to_dir(dir))
-	if is_pane(aside) then return true end
+	if is_pane(aside) then
+		return true
+	end
 
 	local connects_to = minetest.registered_nodes[name].connects_to
-	if not connects_to then return false end
+	if not connects_to then
+		return false
+	end
 
 	local list = minetest.find_nodes_in_area(aside, aside, connects_to)
-	if #list > 0 then return true end
-	
+	if #list > 0 then
+		return true
+	end
+
 	return false
 end
 
 local function swap(pos, node, name, param2)
-	if node.name == name and node.param2 == param2 then return end
+	if node.name == name and node.param2 == param2 then
+		return
+	end
 	minetest.set_node(pos, {name = name, param2 = param2})
 end
 
 local function update_pane(pos)
-	if not is_pane(pos) then return end
-	
+	if not is_pane(pos) then
+		return
+	end
+
 	local node = minetest.get_node(pos)
 	local name = node.name
 	if name:sub(-5) == "_flat" then
@@ -116,7 +126,7 @@ function lottshapes:register_shapes(name, def)
 	local r_group = table.copy(itemmeta.groups)
 	r_group.not_in_creative_inventory = 2
 	local stexture = def.texture or string.match(minetest.serialize(itemmeta.tiles), '{"(.*)"}')
-	
+
 	-- Registering nodebox shapes
 	for i in ipairs(nodebox_list) do
 		local tdesc = nodebox_list[i][1]
@@ -124,11 +134,11 @@ function lottshapes:register_shapes(name, def)
 		local tnobo = nodebox_list[i][3]
 		local tcraf = nodebox_list[i][4]
 		local tsunl = nodebox_list[i][5]
-		
+
 		if itemmeta.sunlight_propagates == true then
 			tsunl = true
 		end
-	
+
 		if is_disabled(disabled, tname) then
 			minetest.register_node(":lottshapes:"..sname.."_"..tname, {
 				description = itemmeta.description.." "..tdesc,
@@ -147,21 +157,21 @@ function lottshapes:register_shapes(name, def)
 				},
 				on_place = minetest.rotate_node
 			})
-			
+
 			minetest.register_craft({
 				output = 'lottshapes:'..sname..'_cube '..tcraf,
 				recipe = {{'lottshapes:'..sname..'_'..tname}}
 			})
 		end
 	end
-	
+
 	-- Registering model-based shapes
 	for i in ipairs(model_list) do
 		local tdesc = model_list[i][1]
 		local tname = model_list[i][2]
 		local tmodl = model_list[i][3]
 		local tcraf = model_list[i][4]
-		
+
 		if is_disabled(disabled, tname) then
 			minetest.register_node(":lottshapes:"..sname.."_"..tname, {
 				description = itemmeta.description.." "..tdesc,
@@ -177,21 +187,21 @@ function lottshapes:register_shapes(name, def)
 				sounds = itemmeta.sounds,
 				on_place = minetest.rotate_node
 			})
-			
+
 			minetest.register_craft({
 				output = 'lottshapes:'..sname..'_cube '..tcraf,
 				recipe = {{'lottshapes:'..sname..'_'..tname}}
 			})
 		end
 	end
-	
+
 	-- Registering fences
 	if is_disabled(disabled, "fence") then
 		local f_group = table.copy(itemmeta.groups)
 		f_group.not_in_creative_inventory = 1
 		f_group.fence = 1
 		local fence_texture = "lottshapes_fence_overlay.png^" .. stexture .. "^lottshapes_fence_overlay.png^[makealpha:255,126,126"
-		
+
 		minetest.register_node(":lottshapes:"..sname.."_fence", {
 			description = itemmeta.description.." Fence",
 			drawtype = "nodebox",
@@ -220,20 +230,20 @@ function lottshapes:register_shapes(name, def)
 			},
 			connects_to = {"group:fence", "group:wood", "group:tree"},
 		})
-		
+
 		minetest.register_craft({
 			output = 'lottshapes:'..sname..'_cube',
 			recipe = {{'lottshapes:'..sname..'_fence'}}
 		})
 	end
-	
+
 	-- Registering walls
 	if is_disabled(disabled, "wall") then
 		local w_group = table.copy(itemmeta.groups)
 		w_group.not_in_creative_inventory = 1
 		w_group.wall = 1
 		local wall_texture = "lottshapes_wall_overlay.png^" .. stexture .. "^lottshapes_wall_overlay.png^[makealpha:255,126,126"
-		
+
 		minetest.register_node(":lottshapes:"..sname.."_wall", {
 			description = itemmeta.description.." Wall",
 			drawtype = "nodebox",
@@ -257,19 +267,19 @@ function lottshapes:register_shapes(name, def)
 			},
 			connects_to = {"group:wall", "group:stone"},
 		})
-		
+
 		minetest.register_craft({
 			output = 'lottshapes:'..sname..'_cube 2',
 			recipe = {{'lottshapes:'..sname..'_wall'}}
 		})
 	end
-	
+
 	-- Registering panes
 	if is_disabled(disabled, "pane") then
 		local p_group = table.copy(itemmeta.groups)
 		p_group.not_in_creative_inventory = 1
 		p_group.pane = 1
-	
+
 		minetest.register_node(":lottshapes:"..sname.."_pane_flat", {
 			description = itemmeta.description.." Pane" or "Pane",
 			drawtype = "nodebox",
@@ -289,7 +299,7 @@ function lottshapes:register_shapes(name, def)
 			},
 			connect_sides = { "left", "right" },
 		})
-		
+
 		minetest.register_node(":lottshapes:"..sname.."_pane", {
 			description = itemmeta.description.. " Pane" or "Pane",
 			drawtype = "nodebox",
@@ -310,7 +320,7 @@ function lottshapes:register_shapes(name, def)
 			},
 			connects_to = {"group:pane", "group:stone", "group:glass", "group:wood", "group:tree"},
 		})
-		
+
 		minetest.register_craft({
 			output = 'lottshapes:'..sname..'_cube',
 			recipe = {{'lottshapes:'..sname..'_pane_flat'}}
