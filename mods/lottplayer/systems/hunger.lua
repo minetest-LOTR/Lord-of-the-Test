@@ -20,18 +20,19 @@ end
 
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
+	local meta = player:get_meta()
 	if lottplayer.is_immortal(name) then
 		return
 	end
-
-	if player:get_attribute("lott:hunger") == nil then
-		player:set_attribute("lott:hunger", LOTT_HUNGER)
+	
+	if meta:get_string("lott:hunger") == "" then
+		meta:set_string("lott:hunger", LOTT_HUNGER)
 	end
-	if player:get_attribute("lott:hunger_max") == nil then
-		player:set_attribute("lott:hunger_max", LOTT_HUNGER_MAX)
+	if meta:get_string("lott:hunger_max") == "" then
+		meta:set_string("lott:hunger_max", LOTT_HUNGER_MAX)
 	end
-	local curhun = tonumber(player:get_attribute("lott:hunger"))
-	local maxhun = tonumber(player:get_attribute("lott:hunger_max"))
+	local curhun = tonumber(meta:get_string("lott:hunger"))
+	local maxhun = tonumber(meta:get_string("lott:hunger_max"))
 
 	lott_hun_players[name] = {}
 	lott_hun_players[name].placed = 0
@@ -99,20 +100,21 @@ end)
 
 lottplayer.add_hunger = function(player, value)
 	local name = player:get_player_name()
+	local meta = player:get_meta()
 	if lottplayer.is_immortal(name) then
 		return
 	end
 
-	local curhun = tonumber(player:get_attribute("lott:hunger"))
-	local maxhun = tonumber(player:get_attribute("lott:hunger_max"))
+	local curhun = tonumber(meta:get_string("lott:hunger"))
+	local maxhun = tonumber(meta:get_string("lott:hunger_max"))
 
 	if value == "max" then
-		player:set_attribute("lott:hunger", maxhun)
+		meta:set_string("lott:hunger", maxhun)
 		if maxhun <= 20 then
-			player:set_attribute("lott:hunger", maxhun)
+			meta:set_string("lott:hunger", maxhun)
 			player:hud_change(lott_hun[name.."_hun"], "number", maxhun)
 		elseif maxhun > 20 then
-			player:set_attribute("lott:hunger", maxhun)
+			meta:set_string("lott:hunger", maxhun)
 			player:hud_change(lott_hun[name.."_hun"], "number", 20)
 			player:hud_remove(lott_hun[name.."_hun_2"])
 
@@ -132,7 +134,7 @@ lottplayer.add_hunger = function(player, value)
 	end
 
 	if value == "none" then
-		player:set_attribute("lott:hunger", 0)
+		meta:set_string("lott:hunger", 0)
 		player:hud_remove(lott_hun[name.."_hun_2"])
 		player:hud_change(lott_hun[name.."_hun"], "number", 0)
 		return
@@ -140,7 +142,7 @@ lottplayer.add_hunger = function(player, value)
 
 	local newhun = curhun + value
 	if newhun < 0 then
-		player:set_attribute("lott:hunger", 0)
+		meta:set_string("lott:hunger", 0)
 		player:hud_remove(lott_hun[name.."_hun_2"])
 		player:hud_change(lott_hun[name.."_hun"], "number", 0)
 		return
@@ -148,27 +150,27 @@ lottplayer.add_hunger = function(player, value)
 
 	if maxhun <= 20 then
 		if newhun <= maxhun then
-			player:set_attribute("lott:hunger", newhun)
+			meta:set_string("lott:hunger", newhun)
 			player:hud_change(lott_hun[name.."_hun"], "number", newhun)
 		elseif newhun > maxhun then
-			player:set_attribute("lott:hunger", maxhun)
+			meta:set_string("lott:hunger", maxhun)
 			player:hud_change(lott_hun[name.."_hun"], "number", maxhun)
 		end
 
 	elseif maxhun > 20 then
 		if newhun <= 20 then
-			player:set_attribute("lott:hunger", newhun)
+			meta:set_string("lott:hunger", newhun)
 			player:hud_remove(lott_hun[name.."_hun_2"])
 			player:hud_change(lott_hun[name.."_hun"], "number", newhun)
 
 		elseif newhun > 20 then
 			if newhun <= maxhun then
 				if curhun > 20 then
-					player:set_attribute("lott:hunger", newhun)
+					meta:set_string("lott:hunger", newhun)
 					player:hud_change(lott_hun[name.."_hun"], "number", 20)
 					player:hud_change(lott_hun[name.."_hun_2"], "number", newhun - 20)
 				elseif curhun <= 20 then
-					player:set_attribute("lott:hunger", newhun)
+					meta:set_string("lott:hunger", newhun)
 					player:hud_change(lott_hun[name.."_hun"], "number", 20)
 
 					lott_hun[name.."_hun_2"] = player:hud_add({
@@ -183,11 +185,11 @@ lottplayer.add_hunger = function(player, value)
 				end
 			elseif newhun > maxhun then
 				if curhun > 20 then
-					player:set_attribute("lott:hunger", maxhun)
+					meta:set_string("lott:hunger", maxhun)
 					player:hud_change(lott_hun[name.."_hun"], "number", 20)
 					player:hud_change(lott_hun[name.."_hun_2"], "number", maxhun - 20)
 				elseif curhun <= 20 then
-					player:set_attribute("lott:hunger", maxhun)
+					meta:set_string("lott:hunger", maxhun)
 					player:hud_change(lott_hun[name.."_hun"], "number", 20)
 
 					lott_hun[name.."_hun_2"] = player:hud_add({
@@ -228,18 +230,18 @@ function lottplayer.eat(hp_change, replace_with_item, itemstack, user, pointed_t
 	end
 
 	local name = user:get_player_name()
+	local meta = user:get_meta()
 	lott_hun_players[name].eat = os.clock()
 	lott_hun_players[name].eatparticles = os.clock()
 	lott_hun_players[name].eatitem = user:get_wielded_item():get_name()
-	print(user:get_attribute("lott:hunger"))
 
-	if user:get_attribute("lott:hunger") == user:get_attribute("lott:hunger_max") then
+	if meta:get_string("lott:hunger") == meta:get_string("lott:hunger_max") then
 		return
 	end
 
 	controls.register_on_hold(function(player, key, time)
 		if key == "LMB" and lott_hun_players[name].eatitem ~= nil then
-			if player:get_attribute("lott:hunger") == player:get_attribute("lott:hunger_max") then
+			if meta:get_string("lott:hunger") == meta:get_string("lott:hunger_max") then
 				return
 			end
 
@@ -272,7 +274,6 @@ function lottplayer.eat(hp_change, replace_with_item, itemstack, user, pointed_t
 				end
 
 				if os.clock() - lott_hun_players[name].eat >= hp_change then
-					print(user:get_attribute("lott:hunger"))
 					minetest.sound_play("stamina_eat", {to_player = name, gain = 0.1})
 					lott_hun_players[name].eat = 0
 					lott_hun_players[name].eatparticles = 0

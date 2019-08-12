@@ -5,7 +5,7 @@ local LOTT_STAMINA = 20 -- default stamina
 local LOTT_STAMINA_MAX = 20 -- default max stamina
 local LOTT_STAMINA_REGEN = 2 -- default time before stamina starts regaining
 
-local LOTT_STAMINA_REGEN_AMT = 0.5 -- stamina regen rate / amount
+local LOTT_STAMINA_REGEN_AMT = 1 -- stamina regen rate / amount
 local LOTT_STAMINA_REGEN_INT = 1 -- stamina regen rate / interval
 local LOTT_STAMINA_MOVE_TIMER = 0.5 -- rate of globalstep function that checks for movement
 
@@ -18,21 +18,22 @@ end
 
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
-	if player:get_attribute("lott:stamina") == nil then
-		player:set_attribute("lott:stamina", LOTT_STAMINA)
+	local meta = player:get_meta()
+	if meta:get_string("lott:stamina") == "" then
+		meta:set_string("lott:stamina", LOTT_STAMINA)
 	end
-	if player:get_attribute("lott:stamina_max") == nil then
-		player:set_attribute("lott:stamina_max", LOTT_STAMINA_MAX)
+	if meta:get_string("lott:stamina_max") == "" then
+		meta:set_string("lott:stamina_max", LOTT_STAMINA_MAX)
 	end
-	if player:get_attribute("lott:stamina_regen") == nil then
-		player:set_attribute("lott:stamina_regen", LOTT_STAMINA_REGEN)
+	if meta:get_string("lott:stamina_regen") == "" then
+		meta:set_string("lott:stamina_regen", LOTT_STAMINA_REGEN)
 	end
-	if player:get_attribute("lott:stamina_regen_amt") == nil then
-		player:set_attribute("lott:stamina_regen_amt", LOTT_STAMINA_REGEN_AMT)
+	if meta:get_string("lott:stamina_regen_amt") == "" then
+		meta:set_string("lott:stamina_regen_amt", LOTT_STAMINA_REGEN_AMT)
 	end
 	
-	local cursta = tonumber(player:get_attribute("lott:stamina"))
-	local maxsta = tonumber(player:get_attribute("lott:stamina_max"))
+	local cursta = tonumber(meta:get_string("lott:stamina"))
+	local maxsta = tonumber(meta:get_string("lott:stamina_max"))
 
 	lott_sta_players[name] = {}
 	lott_sta_players[name].level = 0
@@ -64,38 +65,39 @@ end)
 
 lottplayer.add_stamina = function(player, value)
 	local name = player:get_player_name()
+	local meta = player:get_meta()
 	if lottplayer.is_immortal(name) then
 		return
 	end
 
-	local cursta = tonumber(player:get_attribute("lott:stamina"))
-	local maxsta = tonumber(player:get_attribute("lott:stamina_max"))
+	local cursta = tonumber(meta:get_string("lott:stamina"))
+	local maxsta = tonumber(meta:get_string("lott:stamina_max"))
 
 	if value == "max" then
-		player:set_attribute("lott:stamina", maxsta)
+		meta:set_string("lott:stamina", maxsta)
 		player:hud_change(lott_sta[name.."_sta"], "number", maxsta)
 		return
 	end
 
 	if value == "none" then
-		player:set_attribute("lott:stamina", 0)
+		meta:set_string("lott:stamina", 0)
 		player:hud_change(lott_sta[name.."_sta"], "number", 0)
 		return
 	end
 
 	local newsta = cursta + value
 	if newsta < 0 then
-		player:set_attribute("lott:stamina", 0)
+		meta:set_string("lott:stamina", 0)
 		player:hud_change(lott_sta[name.."_sta"], "number", 0)
 		return
 	end
 
 	if newsta <= maxsta then
-		player:set_attribute("lott:stamina", newsta)
+		meta:set_string("lott:stamina", newsta)
 		player:hud_change(lott_sta[name.."_sta"], "number", newsta)
 
 	elseif newsta > maxsta then
-		player:set_attribute("lott:stamina", maxsta)
+		meta:set_string("lott:stamina", maxsta)
 		player:hud_change(lott_sta[name.."_sta"], "number", maxsta)
 	end
 end
@@ -108,17 +110,18 @@ minetest.register_globalstep(function(dtime)
 	if timer >= LOTT_STAMINA_REGEN_INT then
 		for _,player in ipairs(minetest.get_connected_players()) do
 			local name = player:get_player_name()
+			local meta = player:get_meta()
 
 			if lottplayer.is_immortal(name) then
 				return
 			end
 
-			local cursta = tonumber(player:get_attribute("lott:stamina"))
-			local curhun = tonumber(player:get_attribute("lott:hunger"))
+			local cursta = tonumber(meta:get_string("lott:stamina"))
+			local curhun = tonumber(meta:get_string("lott:hunger"))
 			if curhun >= 20 then
-				stamina_regen_amt = player:get_attribute("lott:stamina_regen_amt")
+				stamina_regen_amt = meta:get_string("lott:stamina_regen_amt")
 			elseif curhun < 20 then
-				stamina_regen_amt = (curhun / 20) * player:get_attribute("lott:stamina_regen_amt")
+				stamina_regen_amt = (curhun / 20) * meta:get_string("lott:stamina_regen_amt")
 			end
 
 			local amtsta = stamina_regen_amt
@@ -139,10 +142,11 @@ local function prevent_sta_regen(player)
 	if lottplayer.is_immortal(name) then
 		return
 	end
-
+	
+	local meta = player:get_meta()
 	lott_sta_players[name].level = lott_sta_players[name].level + 1
 
-	minetest.after(tonumber(player:get_attribute("lott:stamina_regen")), function()
+	minetest.after(tonumber(meta:get_string("lott:stamina_regen")), function()
 		if lott_sta_players[name].level ~= 0 then
 			lott_sta_players[name].level = lott_sta_players[name].level - 1
 		end
@@ -188,6 +192,7 @@ minetest.register_globalstep(function(dtime)
 	if move_timer >= LOTT_STAMINA_MOVE_TIMER then
 		for _,player in ipairs(minetest.get_connected_players()) do
 			local name = player:get_player_name()
+			local meta = player:get_meta()
 
 			if lottplayer.is_immortal(name) then
 				return
@@ -204,8 +209,8 @@ minetest.register_globalstep(function(dtime)
 				end
 			end
 
-			local cursta = tonumber(player:get_attribute("lott:stamina"))
-			local maxsta = tonumber(player:get_attribute("lott:stamina_max"))
+			local cursta = tonumber(meta:get_string("lott:stamina"))
+			local maxsta = tonumber(meta:get_string("lott:stamina_max"))
 
 			if controls.aux1 and controls.up and cursta > 0 then
 				-- sprinting particles -- taken from https://github.com/minetest-mods/stamina
