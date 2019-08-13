@@ -42,11 +42,9 @@ end
 
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
-	--player:set_properties({ hp_max = 24 })
-	--player:set_hp(24)
-
 	local maxhp = tonumber(player:get_properties().hp_max)
 	local curhp = tonumber(player:get_hp())
+	
 	minetest.after(0, function()
 	if maxhp > 20 then
 		lott_hp[name.."_hp_bg"] = player:hud_add({
@@ -129,6 +127,18 @@ minetest.register_on_player_hpchange(function(player, hp_change)
 		end)
 	elseif maxhp > 20 then
 		if player:get_hp() > 20 then
+			if lott_hp[name.."_hp_2"] == nil then
+				lott_hp[name.."_hp_2"] = player:hud_add({
+					hud_elem_type = "statbar",
+					position = LOTT_HUD_POS,
+					text = "heart_2.png",
+					number = curhp - 20,
+					size = { x=LOTT_HUD_SIZE, y=LOTT_HUD_SIZE },
+					offset = { x = -220, y = -87 },
+					direction = 0,
+				})
+			end
+		
 			if curhp <= 20 then
 				player:hud_remove(lott_hp[name.."_hp_2"])
 
@@ -149,7 +159,7 @@ minetest.register_on_player_hpchange(function(player, hp_change)
 						hud_elem_type = "statbar",
 						position = LOTT_HUD_POS,
 						text = "heart_2.png",
-						number = player:get_hp() - 20,
+						number = curhp - 20,
 						size = { x=LOTT_HUD_SIZE, y=LOTT_HUD_SIZE },
 						offset = { x = -220, y = -87 },
 						direction = 0,

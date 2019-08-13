@@ -10,7 +10,7 @@ Licensed under the zlib license. See LICENSE.md for more information.
 circular_saw = {}
 
 local circular_saw_formspec =
-	lottplayer.inv_size("4x6")..
+	lottinv.inv_size("4x6")..
 		
 	"list[detached:creative_trash;main;-0.2,-0.15;1,1;]" ..
 	"image[-0.13,-0.05;0.8,0.8;icon_trash.png]" ..
@@ -213,13 +213,13 @@ function circular_saw.on_receive_fields(pos, formname, fields, sender)
 		circular_saw:update_inventory(pos, 0)
 	end
 	
-	lottplayer.inv_update(sender, fields)
+	lottinv.inv_update(sender, fields)
 	meta:set_string("formspec",
 		circular_saw_formspec..
-		lottplayer.inv(sender))
+		lottinv.inv(sender))
 		
 	if fields.quit then
-		lottplayer.inv_quit(sender)
+		lottinv.inv_quit(sender)
 	end
 end
 
@@ -413,7 +413,7 @@ function circular_saw.on_rightclick(pos, node, clicker, itemstack, pointed_thing
 	local meta = minetest.get_meta(pos)
 	meta:set_string("formspec",
 		circular_saw_formspec..
-		lottplayer.inv(clicker))
+		lottinv.inv(clicker))
 end
 
 minetest.register_node("lottshapes:circular_saw",  {

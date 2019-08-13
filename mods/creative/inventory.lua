@@ -124,8 +124,8 @@ creative.update_formspec = function(player, pagename)
 	end
 
 	player:set_inventory_formspec(
-		lottplayer.inv_size("4x6")..
-		lottplayer.inv(player)..
+		lottinv.inv_size("4x6")..
+		lottinv.inv(player)..
 
 		"list[detached:creative_trash;main;2.8,4.85;1,1;]" ..
 		"image[2.86,4.95;0.8,0.8;icon_trash.png]" ..

@@ -1,3 +1,9 @@
+lottarmour = {}
+
+local modpath = minetest.get_modpath("lottarmour")
+dofile(modpath .. "/inventory.lua")
+dofile(modpath .. "/armour.lua")
+
 -- An inventorycube function that generates from a tiles table!
 local function invcube(tiles)
 	local top = tiles[1]
@@ -36,18 +42,18 @@ minetest.register_globalstep(function(dtime)
 			if wields[name] ~= item_name then
 				wields[name] = item_name
 				if not item or item_name == "" then
-					textures[4] = "blank.png"
+					textures[5] = "blank.png"
 				elseif item.wield_image ~= "" then
-					textures[4] = item.wield_image
+					textures[5] = item.wield_image
 				elseif item.inventory_image ~= "" then
-					textures[4] = item.inventory_image
+					textures[5] = item.inventory_image
 				elseif item.tiles then
 					if type(item.tiles) ~= "table" then
 						return
 					end
-					textures[4] = invcube(item.tiles)
+					textures[5] = invcube(item.tiles)
 				else
-					textures[4] = "blank.png"
+					textures[5] = "blank.png"
 				end
 				player:set_properties({textures = textures})
 			end
