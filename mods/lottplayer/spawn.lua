@@ -56,7 +56,7 @@ end)
 for i, v in pairs(lottplayer.races) do
 	minetest.register_node("lottplayer:" .. v[1], {
 		description = lott.str_to_desc(v[1]),
-		tiles = {"lottplayer_" .. v[1] .. ".png", "blank.png", "blank.png", "blank.png"},
+		tiles = {"blank.png", "blank.png", "blank.png", "lottplayer_" .. v[1] .. ".png", "blank.png", "blank.png", "blank.png"},
 		drawtype = "mesh",
 		paramtype = "light",
 		collision_box = {
@@ -67,8 +67,8 @@ for i, v in pairs(lottplayer.races) do
 			type = "fixed",
 			fixed = v[6],
 		},
-		mesh = "lottplayer_" .. v[2] .. ".b3d",
-		visual_scale = 0.1,
+		mesh = "character.b3d",
+		visual_scale = v[2],
 		on_rightclick = function(pos, node, clicker)
 			local hud = clicker:get_attribute("lottplayer:race_hud")
 			if hud and hud ~= "" and tonumber(hud) then
