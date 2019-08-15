@@ -99,15 +99,6 @@ lottplayer.update_effect = function(player)
 	end
 end
 
-minetest.register_chatcommand("h", {
-	func = function(name, param)
-		local player = minetest.get_player_by_name(name)
-		print(lottplayer.hud_time[name.."_"..param])
-		print(lottplayer.hud_bg[name.."_"..param])
-		print(lottplayer.hud_img[name.."_"..param])
-	end,
-})
-
 lottplayer.add_effect = function(player, ename, etime, edesc, eimg)
 	if lottplayer.player_exists(player) then return end
 	

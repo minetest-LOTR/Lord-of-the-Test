@@ -322,6 +322,7 @@ function lottplayer.set_player_props(race, player)
 		visual_size = lottplayer.races[race][9],
 		is_visible = true,
 	})
+	
 end
 
 -- Set the player's appearance and characteristics on join
@@ -352,13 +353,5 @@ minetest.register_chatcommand("race", {
 		player:set_attribute("race", race)
 		lottplayer.set_player_props(race, player)
 		player:set_hp(lottplayer.races[race][3])
-	end,
-})
-
-minetest.register_chatcommand("g", {
-	func = function(name, param)
-		local player = minetest.get_player_by_name(name)
-		print("HPMAX:>>>"..player:get_properties().hp_max)
-		print("HP:>>>>>>"..player:get_hp())
 	end,
 })

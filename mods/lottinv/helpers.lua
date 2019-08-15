@@ -122,7 +122,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	lottinv.inv_update(player, fields, lottinv.inv_left(player))
 	lottinv.inv_left_update(player, fields)
 end)
---
 
 minetest.register_on_joinplayer(function(player)
 	local meta = player:get_meta()

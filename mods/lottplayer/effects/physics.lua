@@ -66,6 +66,11 @@ lottplayer.get_full_physics = function(player, etype)
 	return total_effects
 end
 
+lottplayer.set_physics = function(player, etype)
+	local enew = lottplayer.get_full_physics(player, etype)
+	player:set_physics_override({[etype]=enew})
+end
+
 -- Persistent Physics
 lottplayer.persist_physics = function(player, etype, amt)
 	local meta = player:get_meta()
@@ -79,11 +84,11 @@ lottplayer.persist_physics = function(player, etype, amt)
 		pdata[etype] = tonumber(pnew)
 		meta:set_string("lottplayer:persist_physics", minetest.serialize(pdata)) -- store new persistent data
 		
-		local enew = lottplayer.get_full_physics(player, etype)
-		player:set_physics_override({[etype]=enew}) -- set new speed
+		lottplayer.set_physics(player, etype)
 	elseif etype == "sneak" or etype == "sneak_glitch" then
 		pdata[etype] = amt -- new sneak = boolean
 		meta:set_string("lottplayer:persist_physics", minetest.serialize(pdata)) -- store new persistent data
+		
 		player:set_physics_override({[etype]=amt})
 	end
 end
@@ -115,8 +120,7 @@ lottplayer.temp_physics = function(player, etype, amt, etime, override)
 		tdata[etype.."_time"] = tonumber(etime)
 		meta:set_string("lottplayer:temp_physics", minetest.serialize(tdata)) -- store new temporary data
 		
-		local enew = lottplayer.get_full_physics(player, etype)
-		player:set_physics_override({[etype]=enew}) -- set new speed
+		lottplayer.set_physics(player, etype)
 		
 		for i = 1,etime do
 			minetest.after(i, function()
@@ -133,8 +137,7 @@ lottplayer.temp_physics = function(player, etype, amt, etime, override)
 						tdata[etype] = 0
 						meta:set_string("lottplayer:temp_physics", minetest.serialize(tdata))
 						
-						local enew = lottplayer.get_full_physics(player, etype)
-						player:set_physics_override({[etype]=enew})
+						lottplayer.set_physics(player, etype)
 					end
 				else return
 				end
@@ -171,7 +174,8 @@ lottplayer.temp_physics = function(player, etype, amt, etime, override)
 	end
 end
 
-lottplayer.addit_physics = function(player, ename, etype, amt, etime, egroup, resumeid)
+-- additive physics
+lottplayer.physics = function(player, ename, etype, amt, etime, egroup, resumeid)
 	if lottplayer.player_exists(player) then return end
 	
 	local meta = player:get_meta()
@@ -181,15 +185,18 @@ lottplayer.addit_physics = function(player, ename, etype, amt, etime, egroup, re
 	local adata = minetest.deserialize(meta:get_string("lottplayer:addit_physics")) -- addit data
 	local id = resumeid or math.random(1,999)
 	
-	if etype == "speed" or etype == "jump" or etype == "gravity" then
+	if etype == "speed" or etype == "jump" or etype == "gravity" or etype == "sneak" or etype == "sneak_glitch" then
 		--store data
 		if resumeid == nil then
 			table.insert(adata, {ename=ename, etype=etype, amt=amt, etime=etime, egroup=egroup, id=id})
 			meta:set_string("lottplayer:addit_physics", minetest.serialize(adata))
 		end
 		
-		local enew = lottplayer.get_full_physics(player, etype)
-		player:set_physics_override({[etype]=enew})
+		if etype == "sneak" or etype == "sneak_glitch" then
+			
+		else
+			lottplayer.set_physics(player, etype)
+		end
 		
 		if etime == nil then
 			return
@@ -223,15 +230,16 @@ lottplayer.addit_physics = function(player, ename, etype, amt, etime, egroup, re
 					table.remove(adata, index)
 					meta:set_string("lottplayer:addit_physics", minetest.serialize(adata))
 					
-					local enew = lottplayer.get_full_physics(player, etype)
-					player:set_physics_override({[etype]=enew})
+					lottplayer.set_physics(player, etype)
 				end
 			end
 		end)
 	end
+	
+	return resumeid
 end
 
-lottplayer.clear_physics = function(player, ecat, etype, egroup)
+lottplayer.reset_physics = function(player, ecat, etype)
 	local meta = player:get_meta()
 	local bdata = minetest.deserialize(meta:get_string("lottplayer:base_physics"))
 	local pdata = minetest.deserialize(meta:get_string("lottplayer:persist_physics"))
@@ -265,6 +273,20 @@ lottplayer.clear_physics = function(player, ecat, etype, egroup)
 	end
 end
 
+lottplayer.clear_physics = function(player, ename, id)
+	local meta = player:get_meta()
+	local adata = minetest.deserialize(meta:get_string("lottplayer:addit_physics"))
+	for index,row in ipairs(adata) do
+		if id == nil then
+			id = row.id
+		end
+		if ename == row.ename and id == row.id then
+			table.remove(adata, index)
+			meta:set_string("lottplayer:addit_physics", minetest.serialize(adata))
+		end
+	end
+end
+
 minetest.register_on_joinplayer(function(player)
 	lottplayer.empty_physics(player)
 	local meta = player:get_meta()
@@ -293,35 +315,6 @@ minetest.register_on_joinplayer(function(player)
 	
 	-- resume additive physics
 	for index,row in ipairs(adata) do
-		lottplayer.addit_physics(player, row.ename, row.etype, row.amt, row.etime, row.egroup, row.id)
+		lottplayer.physics(player, row.ename, row.etype, row.amt, row.etime, row.egroup, row.id)
 	end
-	
-	-- ================== TESTING AREA ========================
-	--local meta = player:get_meta()
-	--lottplayer.clear_physics(player, "all")
-	
-	
-	--lottplayer.addit_physics(player, "lottplayer:test", "speed", 2, 20)
-	--[[minetest.after(5, function()
-		lottplayer.addit_physics(player, "lottplayer:test2", "speed", 5, 10)
-	end)
-	minetest.after(10, function()
-		lottplayer.addit_physics(player, "lottplayer:test3", "jump", 3, 10)
-	end)
-	minetest.after(15, function()
-		lottplayer.addit_physics(player, "lottplayer:test4", "speed", 5, 10)
-	end)]]
-	
-	--lottplayer.persist_physics(player, "speed", 9)
-	
-	
-	--local foo = {}
-	--table.insert(foo, {hi = 5, ty = 5})
-	--table.insert(foo, {hi = 3, ty = 2})
-	--print(minetest.serialize(foo))
-	
-	--table.remove(foo, 2)
-	--print(minetest.serialize(foo))
-	-- ========================================================
-
 end)

@@ -23,7 +23,7 @@ minetest.hud_replace_builtin("breath",	{
 	number = 20,
 	direction = 0,
 	size = { x=LOTT_HUD_SIZE, y=LOTT_HUD_SIZE },
-	offset = { x = 46, y = -110 },
+	offset = { x = 46, y = -123 },
 })
 
 minetest.hud_replace_builtin("health",	{
@@ -33,7 +33,7 @@ minetest.hud_replace_builtin("health",	{
 	number = 0,
 	direction = 0,
 	size = { x=LOTT_HUD_SIZE, y=LOTT_HUD_SIZE },
-	offset = { x = 46, y = -110 },
+	offset = { x = 46, y = -123 },
 })
 
 if not minetest.settings:get_bool("enable_damage") then
@@ -98,7 +98,7 @@ minetest.register_on_joinplayer(function(player)
 				text = "heart_2.png",
 				number = curhp - 20,
 				size = { x=LOTT_HUD_SIZE, y=LOTT_HUD_SIZE },
-				offset = { x = -220, y = -87 },
+				offset = { x = -220, y = -102 },
 				direction = 0,
 			})
 		elseif curhp <= 20 then
@@ -134,7 +134,7 @@ minetest.register_on_player_hpchange(function(player, hp_change)
 					text = "heart_2.png",
 					number = curhp - 20,
 					size = { x=LOTT_HUD_SIZE, y=LOTT_HUD_SIZE },
-					offset = { x = -220, y = -87 },
+					offset = { x = -220, y = -102 },
 					direction = 0,
 				})
 			end
@@ -161,7 +161,7 @@ minetest.register_on_player_hpchange(function(player, hp_change)
 						text = "heart_2.png",
 						number = curhp - 20,
 						size = { x=LOTT_HUD_SIZE, y=LOTT_HUD_SIZE },
-						offset = { x = -220, y = -87 },
+						offset = { x = -220, y = -102 },
 						direction = 0,
 					})
 				end)

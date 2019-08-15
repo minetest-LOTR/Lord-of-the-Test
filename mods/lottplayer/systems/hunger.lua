@@ -91,7 +91,7 @@ minetest.register_on_joinplayer(function(player)
 			text = "hunger_2.png",
 			number = curhun - 20,
 			size = { x=LOTT_HUD_SIZE, y=LOTT_HUD_SIZE },
-			offset = { x = 46, y = -87 },
+			offset = { x = 46, y = -102 },
 			direction = 0,
 		})
 	end
@@ -124,7 +124,7 @@ lottplayer.add_hunger = function(player, value)
 				text = "hunger_2.png",
 				number = maxhun - 20,
 				size = { x=LOTT_HUD_SIZE, y=LOTT_HUD_SIZE },
-				offset = { x = 46, y = -87 },
+				offset = { x = 46, y = -102 },
 				direction = 0,
 			})
 
@@ -179,7 +179,7 @@ lottplayer.add_hunger = function(player, value)
 						text = "hunger_2.png",
 						number = newhun - 20,
 						size = { x=LOTT_HUD_SIZE, y=LOTT_HUD_SIZE },
-						offset = { x = 46, y = -87 },
+						offset = { x = 46, y = -102 },
 						direction = 0,
 					})
 				end
@@ -198,7 +198,7 @@ lottplayer.add_hunger = function(player, value)
 						text = "hunger_2.png",
 						number = maxhun - 20,
 						size = { x=LOTT_HUD_SIZE, y=LOTT_HUD_SIZE },
-						offset = { x = 46, y = -87 },
+						offset = { x = 46, y = -102 },
 						direction = 0,
 					})
 				end

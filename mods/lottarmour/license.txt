@@ -1,0 +1,15 @@
+> Sounds
+shield.ogg > CTCollab (CC-BY-3.0)
+https://freesound.org/people/CTCollab/sounds/223628/
+
+shield_disarm.ogg > LiamG_SFX (CC-BY-NC 3.0)
+https://freesound.org/people/LiamG_SFX/sounds/322148/
+
+tool_breaks.*.ogg > From minetest_game default_tool_breaks.* > sofar (CC-BY-3.0)
+http://www.freesound.org/people/HerbertBoland/sounds/33206/
+
+> Textures
+
+armour_*_wood.png
+Modified by neinwhal
+From minetest-3d-armor > davidthecreator (CC-BY-SA 3.0)

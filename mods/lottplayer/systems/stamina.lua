@@ -45,7 +45,7 @@ minetest.register_on_joinplayer(function(player)
 		text = "bg.png",
 		number = maxsta,
 		size = { x=LOTT_HUD_SIZE, y=LOTT_HUD_SIZE },
-		offset = { x = -220, y = -110 },
+		offset = { x = -220, y = -123 },
 		direction = 0,
 	})
 	if lott_sta[name .. "_sta_bg"] == 0 then
@@ -57,7 +57,7 @@ minetest.register_on_joinplayer(function(player)
 		text = "stamina.png",
 		number = cursta,
 		size = { x=LOTT_HUD_SIZE, y=LOTT_HUD_SIZE },
-		offset = { x = -220, y = -110 },
+		offset = { x = -220, y = -123 },
 		direction = 0,
 	})
 	end)
