@@ -181,6 +181,11 @@ http://creativecommons.org/licenses/by/3.0/
 -----------------------
 
 CC0 1.0 Universal (CC0 1.0)
+TumeniNodes (CC0 1.0)
+default_explode.ogg
+renamed, edited, and converted to .ogg from Explosion2.wav
+by steveygos93 (CC0 1.0)
+<https://freesound.org/s/80401/>
 
 Samples are taken from file: http://freesound.org/people/kiefspoon/sounds/144551/
 default_dirt_footstep.1.ogg
