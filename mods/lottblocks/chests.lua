@@ -45,7 +45,8 @@ minetest.register_node("lottblocks:hobbit_chest", {
 		on_rightclick = function(pos, node, clicker, itemstack)
 			local player = clicker:get_player_name()
             local item = itemstack:get_name()
-			if minetest.check_player_privs(player, {GAMEhobbit=true}) then
+			if minetest.check_player_privs(player, {GAMEhobbit=true})
+			or minetest.check_player_privs(player, {GAMEwizard=true}) then
 				minetest.show_formspec(
 					player, "lottblocks:hobbit_chest", default.get_chest_formspec(pos, "gui_hobbitbg.png")
 				)
@@ -85,7 +86,8 @@ minetest.register_node("lottblocks:gondor_chest", {
 		on_rightclick = function(pos, node, clicker, itemstack)
 			local player = clicker:get_player_name()
             local item = itemstack:get_name()
-			if minetest.check_player_privs(player, {GAMEman=true}) then
+			if minetest.check_player_privs(player, {GAMEman=true})
+			or minetest.check_player_privs(player, {GAMEwizard=true}) then
 				minetest.show_formspec(
 					player,
 					"lottblocks:gondor_chest",
@@ -127,7 +129,8 @@ minetest.register_node("lottblocks:rohan_chest", {
 		on_rightclick = function(pos, node, clicker, itemstack)
 			local player = clicker:get_player_name()
             local item = itemstack:get_name()
-			if minetest.check_player_privs(player, {GAMEman=true}) then
+			if minetest.check_player_privs(player, {GAMEman=true})
+			or minetest.check_player_privs(player, {GAMEwizard=true}) then
 				minetest.show_formspec(
 					player,
 					"lottblocks:rohan_chest",
@@ -169,7 +172,8 @@ minetest.register_node("lottblocks:elfloth_chest", {
 		on_rightclick = function(pos, node, clicker, itemstack)
 			local player = clicker:get_player_name()
             local item = itemstack:get_name()
-			if minetest.check_player_privs(player, {GAMEelf=true}) then
+			if minetest.check_player_privs(player, {GAMEelf=true})
+			or minetest.check_player_privs(player, {GAMEwizard=true}) then
 				minetest.show_formspec(
 					player,
 					"lottblocks:elfloth_chest",
@@ -211,7 +215,8 @@ minetest.register_node("lottblocks:elfmirk_chest", {
 		on_rightclick = function(pos, node, clicker, itemstack)
 			local player = clicker:get_player_name()
             local item = itemstack:get_name()
-			if minetest.check_player_privs(player, {GAMEelf=true}) then
+			if minetest.check_player_privs(player, {GAMEelf=true})
+			or minetest.check_player_privs(player, {GAMEwizard=true}) then
 				minetest.show_formspec(
 					player,
 					"lottblocks:elfmirk_chest",
@@ -253,7 +258,8 @@ minetest.register_node("lottblocks:mordor_chest", {
 		on_rightclick = function(pos, node, clicker, itemstack)
 			local player = clicker:get_player_name()
             local item = itemstack:get_name()
-			if minetest.check_player_privs(player, {GAMEorc=true}) then
+			if minetest.check_player_privs(player, {GAMEorc=true})
+			or minetest.check_player_privs(player, {GAMEwizard=true}) then
 				minetest.show_formspec(
 					player,
 					"lottblocks:mordor_chest",
@@ -295,7 +301,8 @@ minetest.register_node("lottblocks:angmar_chest", {
 		on_rightclick = function(pos, node, clicker, itemstack)
 			local player = clicker:get_player_name()
             local item = itemstack:get_name()
-			if minetest.check_player_privs(player, {GAMEorc=true}) then
+			if minetest.check_player_privs(player, {GAMEorc=true})
+			or minetest.check_player_privs(player, {GAMEwizard=true}) then
 				minetest.show_formspec(
 					player,
 					"lottblocks:angmar_chest",
@@ -338,7 +345,8 @@ minetest.register_node("lottblocks:dwarf_chest", {
 		on_rightclick = function(pos, node, clicker, itemstack)
 			local player = clicker:get_player_name()
             local item = itemstack:get_name()
-			if minetest.check_player_privs(player, {GAMEdwarf=true}) then
+			if minetest.check_player_privs(player, {GAMEdwarf=true})
+			or minetest.check_player_privs(player, {GAMEwizard=true}) then
 				minetest.show_formspec(
 					player,
 					"lottblocks:dwarf_chest",
