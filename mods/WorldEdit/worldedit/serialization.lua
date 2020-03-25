@@ -153,7 +153,7 @@ local function load_schematic(value)
 			})
 		end
 	elseif version == 4 or version == 5 then -- Nested table format
-		if not jit then
+		if not (rawget(_G, "jit") and jit) then
 			-- This is broken for larger tables in the current version of LuaJIT
 			nodes = minetest.deserialize(content)
 		else

@@ -15,7 +15,7 @@ elseif minetest.get_modpath("wardrobe") then
 end
 
 function multiskin:init(player)
-	default.player_set_model(player, "lottarmor_character.b3d")
+	default.player_set_model(player, "lottarmor_player_character.b3d")
 	local name = player:get_player_name()
 	multiskin[name] = {
 		skin = MULTISKIN_DEFAULT_SKIN,
@@ -102,7 +102,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 end)
 
-default.player_register_model("lottarmor_character.b3d", {
+default.player_register_model("lottarmor_player_character.b3d", {
 	animation_speed = 30,
 	textures = {
 		MULTISKIN_DEFAULT_SKIN,

@@ -128,7 +128,13 @@ minetest.register_abm({
 			[21] = "lottweapons:copper_spear",
 			[22] = "lottweapons:tin_battleaxe",
 			[23] = "vessels:glass_bottle 3",
-			[24] = "farming:hoe_steel"
+			[24] = "farming:hoe_steel",
+			[25] = "lottblocks:farmer_handbook",
+			[26] = "lottblocks:farmer_handbook_2",
+			[27] = "lottblocks:brewing_guide",
+			[28] = "lottblocks:explorer_guide",
+			[29] = "lottblocks:explorer_guide_2",
+			[30] = "lottblocks:explorer_guide_3"
 		}
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
@@ -177,7 +183,13 @@ minetest.register_abm({
 			[25] = "lottpotion:cider 10",
 			[26] = "lottpotion:wine 5",
 			[27] = "lottpotion:wine 2",
-			[29] = "lottthrowing:bow_wood_alder"
+			[29] = "lottthrowing:bow_wood_alder",
+			[30] = "lottblocks:explorer_guide",
+			[31] = "lottblocks:explorer_guide_2",
+			[32] = "lottblocks:explorer_guide_3",
+			[33] = "lottblocks:farmer_handbook",
+			[34] = "lottblocks:farmer_handbook_2",
+			[35] = "lottblocks:brewing_guide"
 		}
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
@@ -230,7 +242,10 @@ minetest.register_abm({
 			[30]="lottmobs:horsepegh1",
 			[31]="lottmobs:horsepegh1",
 			[32]="lottthrowing:crossbow_tin",
-			[33]="lottthrowing:bolt 5"
+			[33]="lottthrowing:bolt 5",
+			[34] = "lottblocks:explorer_guide",
+			[35] = "lottblocks:explorer_guide_2",
+			[36] = "lottblocks:explorer_guide_3"
 		}
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
@@ -289,7 +304,11 @@ minetest.register_abm({
 			[35]="lottthrowing:arrow_fire 3",
 			[36]="lottblocks:elf_torch 10",
 			[37]="lottores:white_gem",
-			[38] = "lottblocks:elven_rope " .. r(10, 40)
+			[38]="lottblocks:elven_rope " .. r(10, 40),
+			[39]="lottblocks:brewing_guide_2",
+			[40] = "lottblocks:explorer_guide",
+			[41] = "lottblocks:explorer_guide_2",
+			[42] = "lottblocks:explorer_guide_3"
 		}
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
@@ -348,7 +367,8 @@ minetest.register_abm({
 			[36] = "lottthrowing:bow_wood_lebethron",
 			[37] = "lottores:blue_gem",
 			[38] = "farming:hoe_bronze",
-			[39] = "lottblocks:elven_rope " .. r(10, 40)
+			[39] = "lottblocks:elven_rope " .. r(10, 40),
+			[40]="lottblocks:brewing_guide_2"
 		}
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
@@ -451,7 +471,8 @@ minetest.register_abm({
 			[25] = "lottmobs:horsepegh1",
 			[26] = "bones:bones",
 			[27] = "lottfarming:orc_food 4",
-			[28] = "lottfarming:orc_medicine 2"
+			[28] = "lottfarming:orc_medicine 2",
+			[28] = "lottblocks:deep_depths"
 		}
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
@@ -507,7 +528,11 @@ minetest.register_abm({
 			[28] = "lottblocks:dwarfstone_black " .. r(10, 20),
 			[29] = "lottblocks:dwarfstone_white " .. r(10, 20),
 			[30] = "lottmobs:meat " .. r(1, 7),
-			[31] = "farming:bread " .. r(2, 10)
+			[31] = "farming:bread " .. r(2, 10),
+			[32] = "lottblocks:deep_depths",
+			[33] = "lottblocks:miner_handbook",
+			[34] = "lottblocks:miner_handbook_2",
+			[35] = "lottblocks:miner_handbook_3"
 		}
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
@@ -558,7 +583,8 @@ minetest.register_abm({
 			[23] = "lottother:prepared_ring",
 			[24] = "lottother:ring_furnace_inactive",
 			[25] = "lottother:ringsilver_furnace_inactive",
-			[26] = "lottfarming:corn " .. r(2, 10)
+			[26] = "lottfarming:corn " .. r(2, 10),
+			[27] = "lottblocks:ring_guide_2"
 		}
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()

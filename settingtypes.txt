@@ -24,6 +24,11 @@ share_bones_time (Bone share time) int 1200 0
 #    to normal behaviour.
 falling_trees (Falling trees) bool false
 
+#    Gives certain items to players when they choose a race, to ease the
+#    start of the game. The items give are customised according to the race
+#    which the player chooses.
+lott_give_initial_stuff (Give initial things) bool true
+
 [Mapgen]
 #    Protects all automatically generated structures, so that players cannot
 #    damage, destroy or vandalize them.

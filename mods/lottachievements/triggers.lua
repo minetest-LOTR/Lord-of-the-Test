@@ -514,7 +514,6 @@ function lottachievements.kill(name, player)
 		-- For various types of mobs with multiple variations
 		-- (e.g. The 3 different types of dwarves in armour, lottmobs:dwarf, lottmobs:dwarf1...)
 		name = string.sub(name, 1, -2)
-		print(name)
 	end
 
 	if not lottachievements.increment_item_counter(data, "kill", name) then

@@ -218,7 +218,7 @@ function lottmobs:register_horse(name, craftitem, horse)
 			end
 		elseif not self.driver then
 			self.driver = clicker
-			attach_h = self.attach_h or 15
+			attach_h = self.attach_h or 5
 			attach_r = self.attach_r or 90
 			clicker:set_attach(self.object, "", {x=0,y= attach_h ,z=0}, {x=0,y= attach_r ,z=0})
 			default.player_attached[clicker:get_player_name()] = true
@@ -248,11 +248,9 @@ function lottmobs:register_horse(name, craftitem, horse)
 	end
 	
 	function horse:on_punch(puncher, time_from_last_punch, tool_capabilities, direction)
-		--print(rider:get_player_name())
 		local ridername = self.ridername
 		if ridername ~= nil then
 			rider = minetest.get_player_by_name(ridername)
-			print(rider:get_player_name())
 		end
 		
 		

@@ -458,25 +458,9 @@ minetest.register_on_punchplayer(function(player, hitter, time_from_last_punch, 
 	end
 end)
 
--- From PlizAdam's tnt mod.
--- https://github.com/PilzAdam/TNT
 
-local destroy = function(pos, radius)
-	local nodename = minetest.get_node(pos).name
-	if nodename ~= "air" then
-		minetest.remove_node(pos)
-		if math.random(1, 1000) < radius then
-			minetest.set_node(pos, {name="default:lava_source"})
-		end
-		minetest.check_for_falling(pos)
-		if minetest.registered_nodes[nodename].groups.flammable ~= nil then
-			minetest.set_node(pos, {name="fire:basic_flame"})
-			return
-		end
-	end
-end
-
-default.explode = function(pos, time, radius, damage, node)
+local dbuf = {}
+function default.explode(pos, time, radius, damage, node)
 	minetest.after(time, function(pos)
 		if node then
 			if minetest.get_node(pos).name ~= node then
@@ -484,7 +468,6 @@ default.explode = function(pos, time, radius, damage, node)
 			end
 		end
 		minetest.sound_play("default_explode", {pos=pos, gain=1.5, max_hear_distance=2*64})
-		minetest.set_node(pos, {name="default:lava_source"})
 
 		local objects = minetest.get_objects_inside_radius(pos, radius * 2)
 		for _,obj in ipairs(objects) do
@@ -500,27 +483,36 @@ default.explode = function(pos, time, radius, damage, node)
 			end
 		end
 
-		local pr = PseudoRandom(os.time())
-		for dx = -radius, radius do
-		for dy = radius, -radius, -1 do
-		for dz = -radius, radius do
-
-			pos.x = pos.x+dx
-			pos.y = pos.y+dy
-			pos.z = pos.z+dz
-
-			local r = vector.length(vector.new(dx, dy, dz))
-			local node =  minetest.get_node(pos)
-			if (radius * radius) / (r * r) >= (pr:next(80, 125) / 100)
-			and not minetest.is_protected(pos) then
-				destroy(pos, radius)
+		local posf = vector.floor(pos)
+		local pos_min = vector.add(posf, -(radius + 10))
+		local pos_max = vector.add(posf, radius + 10)
+		if not minetest.is_area_protected(pos_min, pos_max, "", 7) then
+			local x, y, z = posf.x, posf.y, posf.z
+			local c_air = minetest.get_content_id("air")
+			local c_fire = minetest.get_content_id("fire:basic_flame")
+			local vm = minetest.get_voxel_manip()
+			local emin, emax = vm:read_from_map(pos_min, pos_max)
+			local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
+			local data = vm:get_data(dbuf)
+			local pr = PseudoRandom(os.time())
+			for dx = -radius, radius do
+			for dy = radius, -radius, -1 do
+			for dz = -radius, radius do
+				local vi = area:index(x + dx, y + dy, z + dz)
+				local r = vector.length(vector.new(dx, dy, dz))
+				if (radius * radius) / (r * r) >= (pr:next(80, 125) / 100) then
+					if math.random(30) == 1 then
+						data[vi] = c_fire
+					else
+						data[vi] = c_air
+					end
+				end
 			end
-
-			pos.x = pos.x-dx
-			pos.y = pos.y-dy
-			pos.z = pos.z-dz
-		end
-		end
+			end
+			end
+			vm:set_data(data)
+			vm:update_liquids()
+			vm:write_to_map(true)
 		end
 
 		minetest.add_particlespawner(

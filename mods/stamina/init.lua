@@ -28,24 +28,16 @@ SPRINT_JUMP = 0.1 		-- how much higher player can jump if satiated
 SPRINT_DRAIN = 0.35 		-- how fast to drain satation while sprinting (0-1)
 
 local function stamina_read(player)
-	local inv = player:get_inventory()
-	if not inv then
-		return nil
+	local meta = player:get_meta()
+	if meta:get_int("stamina:stamina") == 0 then
+		meta:set_int("stamina:stamina", 21) --Offset by 1
 	end
-
-	-- itemstack storage is offest by 1 to make the math work
-	local v = inv:get_stack("stamina", 1):get_count()
-	if v == 0 then
-		v = 21
-		inv:set_stack("stamina", 1, ItemStack({name = ":", count = v}))
-	end
-
-	return v - 1
+	return meta:get_int("stamina:stamina") - 1
 end
 
 local function stamina_save(player)
-	local inv = player:get_inventory()
-	if not inv then
+	local meta = player:get_meta()
+	if not meta then
 		return nil
 	end
 	local name = player:get_player_name()
@@ -53,7 +45,7 @@ local function stamina_save(player)
 
 	level = math.max(level, 0)
 
-	inv:set_stack("stamina", 1, ItemStack({name = ":", count = level + 1}))
+	meta:set_int("stamina:stamina", level + 1) --Offset by 1
 	return true
 end
 
@@ -258,6 +250,9 @@ end
 -- override core.do_item_eat() so we can redirect hp_change to stamina
 core.do_item_eat = function(hp_change, replace_with_item, itemstack, user, pointed_thing)
 	local old_itemstack = itemstack
+	if not stamina_players[user:get_player_name()] then
+		return
+	end
 	local old_level = stamina_players[user:get_player_name()].level
 	itemstack = stamina.eat(hp_change, replace_with_item, itemstack, user, pointed_thing)
 	local level = stamina_players[user:get_player_name()].level
@@ -326,8 +321,6 @@ end
 -- stamina is disabled if damage is disabled
 if minetest.setting_getbool("enable_damage") and minetest.is_yes(minetest.setting_get("enable_stamina") or "1") then
 	minetest.register_on_joinplayer(function(player)
-		local inv = player:get_inventory()
-		inv:set_size("stamina", 1)
 
 		local name = player:get_player_name()
 		stamina_players[name] = {}

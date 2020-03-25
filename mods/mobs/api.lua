@@ -32,7 +32,7 @@ local S, NS = dofile(
 mobs.intllib = S
 
 -- Invisibility mod
-local invisibility = invisibility or {}
+local invisibility = (rawget(_G, "invisibility") and invisibility) or {}
 
 -- Load settings
 local damage_enabled = minetest.setting_getbool("enable_damage")
@@ -2325,6 +2325,7 @@ minetest.register_entity(name, {
 	dogshoot_count = 0,
 	dogshoot_count_max = def.dogshoot_count_max or 5,
 	id = 0,
+	glow = def.glow or 0,
 	game_name = "mob",
 
 	on_blast = def.on_blast or do_tnt,

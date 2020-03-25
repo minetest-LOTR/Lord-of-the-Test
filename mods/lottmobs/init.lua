@@ -1445,6 +1445,7 @@ mobs:register_mob("lottmobs:dead_men", {
 	peaceful = true,
 	group_attack = true,
 	step = 1,
+	glow = 5,
 })
 mobs:register_spawn("lottmobs:dead_men", {"default:mossycobble"}, 2, -1, 6000, 10, -100)
 

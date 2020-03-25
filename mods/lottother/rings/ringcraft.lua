@@ -338,17 +338,31 @@ local function furnace_node_timer(pos, elapsed)
 			end
 			if src_time >= time then
 				take_items(inv)
-				if math.random(1,3) == 1 then
+				if math.random(1,3) ~= 1 then
 					local item = minetest.add_item({x=pos.x, y=pos.y+1, z=pos.z},
 						"lottother:" .. ring)
-					item:setvelocity({x=0, y=10, z=0})
+					item:setvelocity({x=0, y=15, z=0})
+					item:set_properties({automatic_rotate = 20})
+					minetest.add_particlespawner({
+						amount = 250,
+						time = 5,
+						minvel = {x=-3, y=3, z=-3},
+						maxvel = {x=3, y=7, z=3},
+						minacc = {x=-2, y=1, z=-2},
+						maxacc = {x=2, y=5, z=2},
+						minexptime = 1,
+						maxexptime = 4,
+						attached = item,
+						glow = 14,
+						texture = "fire_basic_flame.png",
+					})
 					local pn = meta:get_string("player_name")
 					if pn and pn ~= "" then
 						lottachievements.unlock(pn, "ring_smith")
 					end
-					default.explode(pos, 0, 14, 100)
+					default.explode(pos, 0, 10, 5)
 				else
-					default.explode(pos, 0, 5, 20)
+					default.explode(pos, 0, 5, 40)
 				end
 				src_time = 0
 			end

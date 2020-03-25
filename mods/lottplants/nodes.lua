@@ -236,7 +236,7 @@ minetest.register_node("lottplants:mallornleaf", {
 })
 
 minetest.register_node("lottplants:pineleaf", {
-	description = S("Pine Leaf"),
+	description = S("Pine Needles"),
 	drawtype = "allfaces_optional",
 	visual_scale = 1.3,
 	tiles = {"lottplants_pineleaf.png"},

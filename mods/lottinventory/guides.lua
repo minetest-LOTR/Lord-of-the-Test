@@ -15,7 +15,7 @@ local S, NS = dofile(
 
 local guides = {
 	craft = {
-		{},	{"cook_crafts", "armor_use", "armor_crafts", "forbidden"}, _, "cooking"
+		{},	{"cook_crafts", "armor_use", "armor_crafts", "forbidden"}, nil, "cooking"
 	},
 	cooking = {
 		{"cook_crafts"}, {"forbidden", "armor_use", "armor_crafts"}, "cooking"
@@ -27,7 +27,7 @@ local guides = {
 		{"forbidden"}, {}
 	},
 	master = {
-		{}, {}, _, _, true
+		{}, {}, nil, nil, true
 	},
 }
 

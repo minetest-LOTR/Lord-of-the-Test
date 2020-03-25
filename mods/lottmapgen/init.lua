@@ -53,7 +53,7 @@ local PLANT10 = 1000
 local PLANT11 = 2000
 local PLANT12 = 5000
 local PLANT13 = 10000
-local PLANT14 = 100000
+local PLANT14 = 35000
 local PLANT15 = 500000
 
 -- 2D noise for temperature
@@ -100,6 +100,18 @@ local dbuf
 local p2dbuf
 
 local water_level = minetest.get_mapgen_setting("water_level")
+
+local function rangelim(d, min, max)
+	if d < min then
+		return min
+	else
+		if d > max then
+			return max
+		else
+			return d
+		end
+	end
+end
 
 dofile(minetest.get_modpath("lottmapgen").."/nodes.lua")
 dofile(minetest.get_modpath("lottmapgen").."/functions.lua")
@@ -216,6 +228,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			for y = y1, y0, -1 do -- working down each column for each node do
 				if biome_blend == true then
 					local offsetpos = {x = (x-x0) + offset + math.random(-offset, offset) + 1, z = (z - z0) + offset + math.random(-offset, offset) + 1}
+					offsetpos.x = rangelim(offsetpos.x, 1, 80)
+					offsetpos.z = rangelim(offsetpos.z, 1, 80)
 					n_temp = nvals_temp[offsetpos.z][offsetpos.x] -- select biome
 					n_humid = nvals_humid[offsetpos.z][offsetpos.x]
 					n_ran = nvals_random[offsetpos.z][offsetpos.x]
@@ -359,7 +373,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										elseif math.random(PLANT6) == 2 then
 											data[vi] = c_seregon
 											p2data[vi] = 40
-										elseif math.random(PLANT13) == 13 then
+										elseif math.random(PLANT14) == 13 then
 											lottmapgen.enqueue_building("Angmar Fort", {x=x, y=y, z=z}) -- data[vi] = c_angfort
 										end
 									elseif biome == 2 then
@@ -405,7 +419,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										elseif math.random(PLANT6) == 2 then
 											data[vi] = c_mallos
 											p2data[vi] = 42
-										elseif math.random(PLANT13) == 13 then
+										elseif math.random(PLANT14) == 13 then
 											lottmapgen.enqueue_building("Gondor Fort", {x=x, y=y, z=z})
 										end
 									elseif biome == 6 then
@@ -439,7 +453,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 											lottmapgen_mallorntree(x, y, z, area, data)
 										elseif math.random(PLANT4) == 11 then
 											lottmapgen_lorienplants(data, vi, p2data)
-										elseif math.random(PLANT13) == 13 then
+										elseif math.random(PLANT14) == 13 then
 											if math.random(1, 2) == 1 then
 												lottmapgen.enqueue_building("Mallorn House", {x=x, y=y, z=z})
 											else
@@ -452,7 +466,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										elseif math.random(PLANT4) == 2 then
 											data[vi] = c_bomordor
 											p2data[vi] = 42
-										elseif math.random(PLANT13) == 13 then
+										elseif math.random(PLANT14) == 13 then
 											lottmapgen.enqueue_building("Orc Fort", {x=x, y=y, z=z})
 										end
 									elseif biome == 9 then
@@ -480,7 +494,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 											lottmapgen_mirktree(x, y, z, area, data)
 										elseif math.random(TREE2) == 3 then
 											lottmapgen_jungletree2(x, y, z, area, data)
-										elseif math.random(PLANT13) == 13 then
+										elseif math.random(PLANT14) == 13 then
 											data[vi] = lottmapgen.enqueue_building("Mirkwood House", {x=x, y=y, z=z})
 										end
 									elseif biome == 11 then
@@ -509,7 +523,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 										elseif math.random(PLANT6) == 2 then
 											data[vi] = c_pilinehtar
 											p2data[vi] = 2
-										elseif math.random(PLANT13) == 13 then
+										elseif math.random(PLANT14) == 13 then
 											lottmapgen.enqueue_building("Rohan Fort", {x=x, y=y, z=z})
 										end
 									elseif biome == 13 then
@@ -525,7 +539,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 											lottmapgen_farmingplants(data, vi, p2data)
 										elseif math.random(PLANT9) == 8 then
 											data[vi] = c_melon
-										elseif math.random(PLANT13) == 13 then
+										elseif math.random(PLANT14) == 13 then
 											lottmapgen.enqueue_building("Hobbit Hole", {x=x, y=y, z=z})
 										end
 									end
@@ -572,7 +586,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:set_lighting({day=0, night=0})
 	vm:calc_lighting()
 	vm:write_to_map(data)
-	local chugent = math.ceil((os.clock() - t1) * 1000)
+	--local chugent = math.ceil((os.clock() - t1) * 1000)
+	--print(chugent)
 end)
 
 dofile(minetest.get_modpath("lottmapgen").."/deco.lua")

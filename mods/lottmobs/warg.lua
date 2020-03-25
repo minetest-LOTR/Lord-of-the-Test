@@ -3,7 +3,7 @@ lottmobs:register_horse("lottmobs:warg_mount", {
 	inventory_image = "lottmobs_warg_inv.png",
 	}, {
 	physical = true,
-	collisionbox = {-0.5, -0.01, -0.5, 0.5, 2.5, 0.5},
+	collisionbox = {-1.2, -0.1, -1.2, 1.2, 1.5, 1.2},
 	visual = "mesh",
 	stepheight = 1.1,
 	attach_height = 20,
