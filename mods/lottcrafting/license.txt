@@ -1,0 +1,16 @@
+FIXME: What's the copyright of the chest textures?
+       They were taken from old LOTT, but I couldn't
+       find the license for them there.
+FIXME: License of gui_chestbg.png?
+
+License of media (textures and sounds)
+--------------------------------------
+Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
+http://creativecommons.org/licenses/by-sa/3.0/
+
+Authors of media files
+-----------------------
+Originating from G4JC's Almost MC Texture Pack:
+  default_wood.png
+Flipsels (CC BY-SA 3.0)
+  gui_*.png

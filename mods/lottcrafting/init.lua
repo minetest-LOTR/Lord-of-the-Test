@@ -159,13 +159,9 @@ local get_craft_result_namelist = function(craft_attr, namelist, craft_type)
 		def = get_craft_result_intern(craft_type, craft_attr, namelist)
 	else
 		if not lottcrafting.recipes["shaped"][craft_attr] and not
-			lottcrafting.recipes["shapeless"][craft_attr] and not
-			lottcrafting.recipes["shaped_num"][craft_attr] and not
-			lottcrafting.recipes["shapeless_num"][craft_attr] then return end
+			lottcrafting.recipes["shapeless"][craft_attr] then return end
 		def = get_craft_result_intern("shapeless", craft_attr, namelist)
 		if not def then def = get_craft_result_intern("shaped", craft_attr, namelist) end
-		if not def then def = get_craft_result_intern("shapeless_num", craft_attr, namelist) end
-		if not def then def = get_craft_result_intern("shaped_num", craft_attr, namelist) end
 	end
 	return def
 end
@@ -177,3 +173,5 @@ lottcrafting.get_craft_result = function(craft_attr, width, itemlist, craft_type
 	local namelist = get_namelist(itemlist, width)
 	return get_craft_result_namelist(craft_attr, namelist, craft_type)
 end
+
+dofile(minetest.get_modpath("lottcrafting") .. "/crafting_tables.lua")
