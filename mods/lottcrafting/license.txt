@@ -3,10 +3,17 @@ FIXME: What's the copyright of the chest textures?
        find the license for them there.
 FIXME: License of gui_chestbg.png?
 
+lottcrafting_forge_* modified from default_furnace_* by lumidify
+using tool textures from lottores in old LOTT.
+
 License of media (textures and sounds)
 --------------------------------------
 Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
 http://creativecommons.org/licenses/by-sa/3.0/
+
+According to default/license.txt in old LOTT, the
+unlisted textures are probably
+Copyright (C) 2010-2012 celeron55, Perttu Ahola <celeron55@gmail.com>
 
 Authors of media files
 -----------------------
@@ -14,3 +21,9 @@ Originating from G4JC's Almost MC Texture Pack:
   default_wood.png
 Flipsels (CC BY-SA 3.0)
   gui_*.png
+BlockMen (CC BY-SA 3.0):
+  gui_furnace_arrow_bg.png
+  gui_furnace_arrow_fg.png
+Kalabasa (CC BY-SA 3.0):
+  default_furnace_fire_bg.png
+  default_furnace_fire_fg.png

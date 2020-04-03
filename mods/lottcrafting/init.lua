@@ -174,4 +174,6 @@ lottcrafting.get_craft_result = function(craft_attr, width, itemlist, craft_type
 	return get_craft_result_namelist(craft_attr, namelist, craft_type)
 end
 
-dofile(minetest.get_modpath("lottcrafting") .. "/crafting_tables.lua")
+local modpath = minetest.get_modpath("lottcrafting")
+dofile(modpath.."/crafting_tables.lua")
+dofile(modpath.."/furnaces.lua")
