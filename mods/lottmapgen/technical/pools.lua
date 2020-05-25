@@ -73,9 +73,6 @@ function lottmapgen.generate_pools(x0, y0, z0, x1, y1, z1, vm, area, data)
 	local c_ignore = minetest.get_content_id("ignore")
 	local c_watsour = minetest.get_content_id("lottitems:water_source")
 	local c_grass = minetest.get_content_id("lottitems:wilderland_grass")
-	local c_tree = minetest.get_content_id("lottitems:oak_trunk")
-	local c_apple = minetest.get_content_id("lottitems:apple")
-	local c_leaves = minetest.get_content_id("lottitems:oak_leaves")
 	local c_dirt = minetest.get_content_id("lottitems:dirt")
 	local water_map = {}
 

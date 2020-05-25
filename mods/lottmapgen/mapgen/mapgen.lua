@@ -126,8 +126,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local c_stone_brick = minetest.get_content_id("lottitems:stone_brick")
 
 	local c_morstone = minetest.get_content_id("lottitems:mordor_stone")
-	local c_salt = minetest.get_content_id("lottores:mineral_salt")
-	local c_pearl = minetest.get_content_id("lottores:mineral_pearl")
+	--local c_salt = minetest.get_content_id("lottores:mineral_salt")
+	--local c_pearl = minetest.get_content_id("lottores:mineral_pearl")
 
 	local sidelen = x1 - x0 + 1
 	local chulens = {x=sidelen, y=sidelen, z=sidelen}
