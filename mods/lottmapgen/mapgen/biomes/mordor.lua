@@ -1,5 +1,5 @@
 local c_morstone = minetest.get_content_id("lottitems:mordor_stone")
-local c_morwat = minetest.get_content_id("lottmapgen:blacksource")
+local c_morwat = minetest.get_content_id("lottitems:mordor_water_source")
 local c_bomordor = minetest.get_content_id("lottplants:brambles_of_mordor")
 
 lottmapgen.register_biome(19, {

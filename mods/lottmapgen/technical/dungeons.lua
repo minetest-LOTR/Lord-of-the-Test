@@ -2,7 +2,7 @@ local bitty = dofile(minetest.get_modpath("lottmapgen") .. "/technical/bitwise.l
 
 local prand = PseudoRandom(os.time())
 local c_ignore = minetest.get_content_id("ignore")
-local n_stairs = minetest.get_content_id("lottplants:oak_tree")
+local n_stairs = minetest.get_content_id("lottplants:oak_trunk")
 local n_air = minetest.get_content_id("air")
 
 local function rand_ortho_dir(diagonal_dirs)
