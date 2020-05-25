@@ -64,7 +64,7 @@ local npc_guard_attack = function(self)
                         if dist < self.view_range then
 
                                 -- choose closest player to attack
-                                if line_of_sight_water(self, sp, p, 2) == true
+                                if self:line_of_sight_water(sp, p, 2) == true
                                 and dist < min_dist then
                                         if entity_type == "player"
                                         and player:get_player_name() ~= self.owner
@@ -97,7 +97,7 @@ local npc_guard_attack = function(self)
 
         -- attack player
         if min_player then
-                do_attack(self, min_player)
+               self:do_attack(min_player)
         end
 end
 
@@ -142,7 +142,7 @@ local npc_attack = function(self)
                         if dist < self.view_range then
 
                                 -- choose closest player to attack
-                                if line_of_sight_water(self, sp, p, 2) == true
+                                if self:line_of_sight_water(sp, p, 2) == true
                                 and dist < min_dist then
                                         if entity_type == "player" then
                                                 if not lottclasses.player_same_race_or_ally(player, self.race) then
@@ -163,7 +163,7 @@ local npc_attack = function(self)
                 end
         end
         if min_player then
-                do_attack(self, min_player)
+                self:do_attack(min_player)
         end
 end
 
@@ -264,8 +264,8 @@ lottmobs.do_custom_guard = function(self, dtime)
 	end
 
 	-- node replace check (cow eats grass etc.)
-        local pos = self.object:get_pos()
-	replace(self, pos)
+    local pos = self.object:get_pos()
+	self:replace(pos)
 
 	-- mob plays random sound at times
 	if self.sounds.random
@@ -285,7 +285,7 @@ lottmobs.do_custom_guard = function(self, dtime)
 
 		self.env_damage_timer = 0
 
-		do_env_damage(self)
+		self:do_env_damage()
 	end
 	if self.owner and self.owner ~= "" then
                 lottmobs.guard_eat_active(self)
@@ -294,8 +294,8 @@ lottmobs.do_custom_guard = function(self, dtime)
                 npc_attack(self)
 	end
 
-	mobs.follow_flop(self)
-	mobs.do_states(self, dtime)
+	self:follow_flop()
+	self:do_states(dtime)
         return false
 end
 
@@ -440,7 +440,7 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race, price)
 					self.object:remove()
 				elseif rand == 2 then
 					minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> Are you mocking me? I don't take kindly to mockers!")
-					do_attack(self, clicker)
+					self:do_attack(clicker)
 				elseif rand == 3 then
 					minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> You're joking, right? Oh, you're serious? Well, to let you know, I won't be working for you for that pitiful amount.")
 				else
@@ -500,7 +500,7 @@ lottmobs.register_guard_craftitem = function(name, description, inventory_image)
                                                                     local obj = minetest.add_entity(pos, name):get_luaentity()
                                                                     obj.game_name = game_name
                                                                     obj.nametag = game_name
-                                                                    update_tag(obj)
+                                                                    obj:update_tag()
                                                                     obj.tamed = true
                                                                     obj.owner = owner
                                                                     obj.order = "follow"

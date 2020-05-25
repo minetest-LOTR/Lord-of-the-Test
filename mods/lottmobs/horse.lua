@@ -135,7 +135,7 @@ function lottmobs:register_horse(name, craftitem, horse)
 			end
 		end
 
-		underattack = self.underattack or false
+		local underattack = self.underattack or false
 
 		if self.v == 0 then
 			if underattack ~= true then
