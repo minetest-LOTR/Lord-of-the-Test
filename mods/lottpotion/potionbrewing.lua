@@ -207,8 +207,6 @@ minetest.register_node("lottpotion:potion_brewer", {
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottpotion_potion_brewer.png"},
-	inventory_image = {"lottpotion_potion_brewer.png"},
-	wield_image = {"lottpotion_potion_brewer.png"},
 	paramtype = "light",
      sounds = default.node_sound_stone_defaults(),
 	selection_box = {
@@ -234,8 +232,6 @@ minetest.register_node("lottpotion:potion_brewer_active", {
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottpotion_potion_brewer_active.png"},
-     inventory_image = {"lottpotion_potion_brewer.png"},
-	wield_image = {"lottpotion_potion_brewer.png"},
 	paramtype = "light",
 	light_source = 8,
 	selection_box = {

@@ -14,8 +14,6 @@ minetest.register_node("lottores:ithildin_0", {
 minetest.register_node("lottores:ithildin_1", {
 	description = "Ithildin",
 	tiles = {"ithildin_1.png"},
-	inventory_image = {"ithildin_1.png"},
-	wield_image = {"ithildin_1.png"},
 	paramtype = "light",
 	drawtype = 'glasslike',
 	walkable = false,

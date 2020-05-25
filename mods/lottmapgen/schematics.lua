@@ -167,7 +167,7 @@ lottmapgen.fill_bellow = function(fill)
 	local replace_node = {}
 	replace_node[minetest.get_content_id("lottother:dirt")]=minetest.get_content_id("default:dirt")
 	replace_node[minetest.get_content_id("lottother:snow")]=minetest.get_content_id("default:snowblock")
-	replace_node[minetest.get_content_id("lottother:mordor_stone")]=minetest.get_content_id("default:mordor_stone")
+	replace_node[minetest.get_content_id("lottother:mordor_stone")]=minetest.get_content_id("lottmapgen:mordor_stone")
 
 	local c_air = 	minetest.get_content_id("air")
 	local c_ignore = minetest.get_content_id("ignore")

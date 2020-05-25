@@ -70,7 +70,7 @@ minetest.register_alias("mapgen_stair_sandstonebrick", "stairs:stair_cobble")
 -- Ore generation
 --
 
-local wl = minetest.get_mapgen_setting("water_level")
+local wl = tonumber(minetest.get_mapgen_setting("water_level")) or 1
 
 minetest.register_ore({
 	ore_type       = "scatter",
