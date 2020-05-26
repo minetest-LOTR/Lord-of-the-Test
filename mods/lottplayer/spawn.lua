@@ -7,6 +7,7 @@ minetest.register_node("lottplayer:pedestal", {
 		fixed = {-0.5, -0.5, -0.5, 0.5, 1, 0.5}
 	},
 	tiles = {"lottitems_stone_brick.png"},
+	groups = {pickaxe = 1},
 })
 
 for i = 1, 5 do
@@ -59,6 +60,7 @@ for i, v in pairs(lottplayer.races) do
 		tiles = {"blank.png", "blank.png", "blank.png", "lottplayer_" .. v[1] .. ".png", "blank.png", "blank.png", "blank.png"},
 		drawtype = "mesh",
 		paramtype = "light",
+		paramtype2 = "facedir",
 		collision_box = {
 			type = "fixed",
 			fixed = v[6],
@@ -78,7 +80,7 @@ for i, v in pairs(lottplayer.races) do
 				"lottplayer:race_info_" .. i, 
 				race_form(v))
 		end,
-		groups = {},
+		groups = {pickaxe = 1},
 	})
 end
 

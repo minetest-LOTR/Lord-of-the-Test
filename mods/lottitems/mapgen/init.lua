@@ -1,7 +1,6 @@
 local modpath = minetest.get_modpath("lottitems") .. "/mapgen"
 
 dofile(modpath .. "/grasses.lua")
-dofile(modpath .. "/ores.lua")
 
 -- Special node that will get converted into ignore by schems.
 minetest.register_node("lottitems:ignore", {

@@ -43,6 +43,13 @@ local function register_tree_nodes(tree_name, has_young_tree, axe_group, needles
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = {leaves = 1, plant = 1, hand = 3},
+			drop = {
+				max_items = 2,
+				items = {
+					{items = {"lottitems:stick"}, rarity = 16},
+					{items = {"lottplants:" .. tree_name .. "_needles"}}
+				}
+			},
 		})
 	else
 		minetest.register_node("lottplants:" .. tree_name .. "_leaves", {
@@ -52,6 +59,13 @@ local function register_tree_nodes(tree_name, has_young_tree, axe_group, needles
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = {leaves = 1, plant = 1, hand = 3},
+			drop = {
+				max_items = 2,
+				items = {
+					{items = {"lottitems:stick"}, rarity = 16},
+					{items = {"lottplants:" .. tree_name .. "_leaves"}}
+				}
+			},
 		})
 	end
 	if has_young_tree then
@@ -147,7 +161,7 @@ minetest.register_node("lottplants:rowan_berries", {
 	tiles = {"lottplants_rowan_leaves.png^lottplants_rowan_berries.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {leaves = 1, plant = 1, food = 1, red = 1},
+	groups = {leaves = 1, plant = 1, food = 1, red = 1, hand = 3},
 })
 
 -- White Tree

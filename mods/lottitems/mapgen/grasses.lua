@@ -34,7 +34,13 @@ for _, tab in pairs(grass_list) do
 		palette = "lottitems_palette_" .. tab[1] .. ".png",
 		groups = {[tab[1]] = 1, shovel = 1, grass = 2,
 			hand = 3, dirt_with_grass = 1, soil_quality = tab[3]},
-		drop = "lottitems:dirt",
+		drop = {
+			max_items = 2,
+			items = {
+				{items = {"lottitems:flint"}, rarity = 56},
+				{items = {"lottitems:dirt"}}
+			}
+		},
 		is_ground_content = true,
 	})
 end

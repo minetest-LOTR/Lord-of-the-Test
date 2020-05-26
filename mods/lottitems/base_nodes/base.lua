@@ -93,6 +93,13 @@ minetest.register_node("lottitems:sand", {
 	tiles = {"lottitems_sand.png"},
 	groups = {sand = 1, shovel = 1, falling_node = 1, hand = 3},
 	is_ground_content = true,
+	drop = {
+		max_items = 2,
+		items = {
+			{items = {"lottitems:flint"}, rarity = 116},
+			{items = {"lottitems:dirt"}}
+		}
+	},
 })
 
 minetest.register_node("lottitems:desert_sand", {
@@ -100,6 +107,13 @@ minetest.register_node("lottitems:desert_sand", {
 	tiles = {"lottitems_desert_sand.png"},
 	groups = {sand = 1, shovel = 1, falling_node = 1, hand = 3},
 	is_ground_content = true,
+	drop = {
+		max_items = 2,
+		items = {
+			{items = {"lottitems:flint"}, rarity = 116},
+			{items = {"lottitems:dirt"}}
+		}
+	},
 })
 
 minetest.register_node("lottitems:silver_sand", {
@@ -107,6 +121,13 @@ minetest.register_node("lottitems:silver_sand", {
 	tiles = {"lottitems_silver_sand.png"},
 	groups = {sand = 1, shovel = 1, falling_node = 1, hand = 3},
 	is_ground_content = true,
+	drop = {
+		max_items = 2,
+		items = {
+			{items = {"lottitems:flint"}, rarity = 116},
+			{items = {"lottitems:dirt"}}
+		}
+	},
 })
 
 -- Gravel
@@ -115,6 +136,13 @@ minetest.register_node("lottitems:gravel", {
 	tiles = {"lottitems_gravel.png"},
 	groups = {gravel = 1, shovel = 2, falling_node = 1, hand = 4},
 	is_ground_content = true,
+	drop = {
+		max_items = 2,
+		items = {
+			{items = {"lottitems:flint"}, rarity = 16},
+			{items = {"lottitems:dirt"}}
+		}
+	},
 })
 
 minetest.register_node("lottitems:dark_gravel", {
@@ -122,6 +150,13 @@ minetest.register_node("lottitems:dark_gravel", {
 	tiles = {"lottitems_dark_gravel.png"},
 	groups = {gravel = 1, shovel = 2, falling_node = 1, hand = 4},
 	is_ground_content = true,
+	drop = {
+		max_items = 2,
+		items = {
+			{items = {"lottitems:flint"}, rarity = 16},
+			{items = {"lottitems:dirt"}}
+		}
+	},
 })
 
 -- Dirt
@@ -130,6 +165,13 @@ minetest.register_node("lottitems:dirt", {
 	tiles = {"lottitems_dirt.png"},
 	groups = {dirt = 1, shovel = 1, hand = 3, soil_quality = 2},
 	is_ground_content = true,
+	drop = {
+		max_items = 2,
+		items = {
+			{items = {"lottitems:flint"}, rarity = 56},
+			{items = {"lottitems:dirt"}}
+		}
+	},
 })
 
 -- Permadirt - doesn't turn into grass, used for mapgen
@@ -139,6 +181,13 @@ minetest.register_node("lottitems:perma_dirt", {
 	groups = {dirt = 1, shovel = 1, hand = 3, soil_quality = 1},
 	drop = "lottitems:dirt",
 	is_ground_content = true,
+	drop = {
+		max_items = 2,
+		items = {
+			{items = {"lottitems:flint"}, rarity = 48},
+			{items = {"lottitems:dirt"}}
+		}
+	},
 })
 
 -- Clay

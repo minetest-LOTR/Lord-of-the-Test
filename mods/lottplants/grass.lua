@@ -8,12 +8,16 @@ local function register_grass(name, heights, def)
 		paramtype2 = "meshoptions",
 		buildable_to = true,
 		walkable = false,
+		floodable = true,
 		waving = 1,
 		selection_box = {
 			type = "fixed",
 			fixed = {-0.5, -0.5, -0.5, 0.5, -0.3125, 0.5},
 		},
-		groups = def.groups or {green = 1, grass = 1, hand = 2, plant = 1}
+		on_flood = function(pos)
+			minetest.remove_node(pos)
+		end,
+		groups = def.groups or {green = 1, grass = 1, hand = 2, plant = 1, attached_node = 1}
 	})
 
 	if def.groups then
@@ -29,13 +33,17 @@ local function register_grass(name, heights, def)
 			paramtype2 = "meshoptions",
 			buildable_to = true,
 			walkable = false,
+			floodable = true,
 			waving = 1,
 			drop = "lottplants:" .. name .. "_" .. heights,
 			selection_box = {
 				type = "fixed",
 				fixed = {-0.5, -0.5, -0.5, 0.5, -0.3125, 0.5},
 			},
-			groups = def.groups or {green = 1, grass = 1, plant = 1, hand = 2, not_in_creative_inventory = 1}
+			on_flood = function(pos)
+				minetest.remove_node(pos)
+			end,
+			groups = def.groups or {green = 1, grass = 1, plant = 1, hand = 2, attached_node = 1, not_in_creative_inventory = 1}
 		})
 	end
 end
@@ -67,12 +75,16 @@ minetest.register_node("lottplants:mountain_grass", {
 	paramtype2 = "meshoptions",
 	buildable_to = true,
 	walkable = false,
+	floodable = true,
 	waving = 1,
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, -0.3125, 0.5},
 	},
-	groups = {green = 1, grass = 1, hand = 2, plant = 1}
+	on_flood = function(pos)
+		minetest.remove_node(pos)
+	end,
+	groups = {green = 1, grass = 1, hand = 2, plant = 1, attached_node = 1}
 })
 
 -- Mountain Shrub
@@ -85,12 +97,16 @@ minetest.register_node("lottplants:mountain_shrub", {
 	paramtype2 = "meshoptions",
 	buildable_to = true,
 	walkable = false,
+	floodable = true,
 	waving = 1,
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, -0.3125, 0.5},
 	},
-	groups = {green = 1, grass = 1, plant = 1}
+	on_flood = function(pos)
+		minetest.remove_node(pos)
+	end,
+	groups = {green = 1, grass = 1, plant = 1, attached_node = 1}
 })
 
 -- Dry Shrub
@@ -103,12 +119,16 @@ minetest.register_node("lottplants:dry_shrub", {
 	paramtype2 = "meshoptions",
 	buildable_to = true,
 	walkable = false,
+	floodable = true,
 	waving = 1,
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, -0.3125, 0.5},
 	},
-	groups = {brown = 1, grass = 1, plant = 1, hand = 2}
+	on_flood = function(pos)
+		minetest.remove_node(pos)
+	end,
+	groups = {brown = 1, grass = 1, plant = 1, hand = 2, attached_node = 1}
 })
 
 -- Tall Grass
@@ -128,11 +148,15 @@ for _, name in pairs(tall_grasses) do
 		paramtype2 = "meshoptions",
 		buildable_to = true,
 		walkable = false,
-		groups = {green = 1, grass = 1, plant = 1, hand = 2},
+		floodable = true,
+		groups = {green = 1, grass = 1, plant = 1, hand = 2, attached_node = 1},
 		selection_box = {
 			type = "fixed",
 			fixed = {-0.5, -0.5, -0.5, 0.5, 0.7, 0.5},
 		},
+		on_flood = function(pos)
+			minetest.remove_node(pos)
+		end,
 		on_construct = function(pos)
 			local posa = {x = pos.x, y = pos.y + 1, z = pos.z}
 			minetest.set_node(posa, {name = "lottplants:tall_" .. name .. "_" .. math.random(1, 5)})
@@ -160,7 +184,7 @@ for _, name in pairs(tall_grasses) do
 			buildable_to = true,
 			walkable = false,
 			pointable = false,
-			groups = {green = 1, grass = 1, plant = 1},
+			groups = {green = 1, grass = 1, plant = 1, hidden = 1},
 			drop = "lottplants:tall_" .. name .. "_bottom",
 		})
 	end

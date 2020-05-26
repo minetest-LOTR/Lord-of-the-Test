@@ -1,3 +1,9 @@
 npx (CC BY-SA 3.0):
-  default_rainforest_litter.png
-  default_rainforest_litter_side.png
+	lottitems_leaf_litter.png
+	lottitems_leaf_litter_side.png
+
+Gambit (CC BY-SA 3.0):
+	lottitems_flint.png
+
+BlockMen (CC BY-SA 3.0):
+	lottitems_stick.png
