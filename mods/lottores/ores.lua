@@ -1,6 +1,6 @@
 minetest.register_node("lottores:coal_ore", {
 	description = "Coal Ore",
-	tiles = {"lottitems_stone.png^lottores_in_stone.png"},
+	tiles = {"lottitems_stone.png^lottores_coal_in_stone.png"},
 	groups = {stone = 1, ore = 1, coal = 1, pickaxe = 1},
 	is_ground_content = true,
 })

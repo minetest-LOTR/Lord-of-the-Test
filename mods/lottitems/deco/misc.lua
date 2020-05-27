@@ -1,7 +1,3 @@
-minetest.register_node("lottitems:torch", {
-	description = "Torch",
-})
-
 minetest.register_node("lottitems:brick", {
 	description = "Brick",
 	tiles = {"lottitems_brick.png"},
@@ -13,7 +9,7 @@ minetest.register_node("lottitems:glass", {
 	tiles = {"lottitems_glass.png", "lottitems_glass_detail.png"},
 	drawtype = "glasslike_framed_optional",
 	paramtype = "light",
-	sunlight_propagates = true,	
+	sunlight_propagates = true,
 	is_ground_content = false,
 	groups = {hand = 1, lottitems = 1},
 })
@@ -23,7 +19,7 @@ minetest.register_node("lottitems:obsidian_glass", {
 	tiles = {"lottitems_obsidian_glass.png", "blank.png"},
 	drawtype = "glasslike_framed_optional",
 	paramtype = "light",
-	sunlight_propagates = true,	
+	sunlight_propagates = true,
 	is_ground_content = false,
 	groups = {hand = 2, lottitems = 1},
 })
