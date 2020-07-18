@@ -30,7 +30,8 @@ minetest.register_on_joinplayer(function(player)
 		sneak={false}, 
 		aux1={false}, 
 		down={false}, 
-		up={false}
+		up={false},
+		zoom={false},
 	}
 end)
 
