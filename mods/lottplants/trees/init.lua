@@ -51,6 +51,8 @@ local function register_tree_nodes(tree_name, has_young_tree, axe_group, needles
 				}
 			},
 		})
+		-- alias for consistency
+		minetest.register_alias("lottplants:" .. tree_name .. "_leaves", "lottplants:" .. tree_name .. "_needles")
 	else
 		minetest.register_node("lottplants:" .. tree_name .. "_leaves", {
 			description = lott.str_to_desc(tree_name) .. " Leaves",
