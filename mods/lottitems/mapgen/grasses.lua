@@ -18,6 +18,7 @@ local grass_list = {
 	{"iron_hills", "#54b45d", 2},
 	{"rhun", "#7d8522", 3},
 	{"wilderland", "#427d47", 3},
+	{"misty_mountains", "#74ba41", 1},
 	{"blue_mountains", "#5ba490", 2},
 	{"white_mountains", "#84d970", 2},
 }

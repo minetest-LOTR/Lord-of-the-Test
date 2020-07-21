@@ -1,4 +1,4 @@
-local c_base_grass = minetest.get_content_id("lottitems:base_grass")
+local c_base_grass = minetest.get_content_id("lottitems:misty_mountains_grass")
 local c_gravel = minetest.get_content_id("lottitems:gravel")
 local c_darkgravel = minetest.get_content_id("lottitems:dark_gravel")
 local c_snow = minetest.get_content_id("lottitems:snow_layer")
