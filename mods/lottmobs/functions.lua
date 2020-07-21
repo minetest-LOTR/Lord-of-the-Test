@@ -33,9 +33,9 @@ local npc_guard_attack = function(self)
         end
         local player, entity_type, obj, min_player, npc_race = nil, nil, nil, nil, nil
         local min_dist = self.view_range + 1
-        if not self.object or type(self.object:get_pos()) ~= "table" then
+        if not (self.object and self.object:get_pos()) then
         	return
-    	end
+        end
         local objs = minetest.get_objects_inside_radius(self.object:get_pos(), self.view_range)
         for n = 1, #objs do
                 if invisibility[ objs[n]:get_player_name() ] then
@@ -113,6 +113,9 @@ local npc_attack = function(self)
 	end
         local player, entity_type, obj, min_player, npc_race = nil, nil, nil, nil, nil
         local min_dist = self.view_range + 1
+        if not (self.object and self.object:get_pos()) then
+        	return
+        end
         local objs = minetest.get_objects_inside_radius(self.object:get_pos(), self.view_range)
         for n = 1, #objs do
                 if invisibility[ objs[n]:get_player_name() ] then
@@ -132,7 +135,11 @@ local npc_attack = function(self)
 
                 if entity_type == "player" or entity_type == "npc" or entity_type == "monster" then
 
-                        local s = self.object:get_pos()
+
+						if not (self.object and self.object:get_pos()) then
+							return
+						end
+        				local s = self.object:get_pos()
                         local p = player:get_pos()
                         local sp = s
 
@@ -267,6 +274,9 @@ lottmobs.do_custom_guard = function(self, dtime)
 	end
 
 	-- node replace check (cow eats grass etc.)
+    if not (self.object and self.object:get_pos()) then
+    	return
+    end
     local pos = self.object:get_pos()
 	self:replace(pos)
 
