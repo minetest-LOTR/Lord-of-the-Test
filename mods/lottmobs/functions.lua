@@ -29,11 +29,14 @@ end
 
 local npc_guard_attack = function(self)
         if not damage_enabled or self.state == "attack" then
-                return
+			return
         end
         local player, entity_type, obj, min_player, npc_race = nil, nil, nil, nil, nil
         local min_dist = self.view_range + 1
-        local objs = minetest.get_objects_inside_radius(self.object:getpos(), self.view_range)
+        if not self.object or type(self.object:get_pos()) ~= "table" then
+        	return
+    	end
+        local objs = minetest.get_objects_inside_radius(self.object:get_pos(), self.view_range)
         for n = 1, #objs do
                 if invisibility[ objs[n]:get_player_name() ] then
                         entity_type = ""
