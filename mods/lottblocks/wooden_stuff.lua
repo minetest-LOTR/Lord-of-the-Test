@@ -195,7 +195,6 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 		on_rightclick = function(pos, node, player, itemstack, pointed_thing)
 			local v=player:get_player_velocity()
 			if v.x~=0 or v.y~=0 or v.z~=0 then return end
-			player:setpos({x=pos.x,y=pos.y,z=pos.z})
 			local name=player:get_player_name()
 			local nname=minetest.get_node(pos).name
 			if default.player_attached[name] then
@@ -204,9 +203,24 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 					player:set_eye_offset({x=0,y=0,z=0}, {x=0,y=0,z=0})
 					default.player_attached[name]=false
 					default.player_set_animation(player, "stand",30)
+					if minetest.get_node({x = pos.x, y = pos.y + 2, z = pos.z}).name ~= "air" then
+						local tab = minetest.find_nodes_in_area(
+							{x = pos.x - 1, y = pos.y, z = pos.z - 1},
+							{x = pos.x + 1, y = pos.y, z = pos.z + 1},
+							"air")
+						if tab then
+							for i, v in pairs(tab) do
+								if minetest.get_node({x = v.x, y = v.y + 1, z = v.z}).name == "air" then
+									player:set_pos(v)
+									break
+								end
+							end
+						end
+					end
 				end,player,name)
 			else
 				player:set_physics_override(0, 0, 0)
+				player:setpos({x=pos.x,y=pos.y,z=pos.z})
 				minetest.after(0.3, function(player,name)
 					player:set_eye_offset({x=0,y=-7,z=2}, {x=0,y=0,z=0})
 					default.player_attached[name]=true
