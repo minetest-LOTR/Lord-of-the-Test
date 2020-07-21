@@ -794,7 +794,7 @@ function lottmapgen_elf_workshop(x, y, z, area, data, p2data)
 	local c_stonebrick = minetest.get_content_id("default:stonebrick")
 	local c_cracked_stonebrick = minetest.get_content_id("default:cracked_stonebrick")
 	local c_marblebrick = minetest.get_content_id("lottblocks:marble_brick")
-	local c_elftorch = minetest.get_content_id("lottblocks:elf_torch")
+	local c_elftorchwall = minetest.get_content_id("lottblocks:elf_torch_wall")
 	local c_furnace = minetest.get_content_id("lottmapgen:furnace_spawner")
 	local c_dual_furnace = minetest.get_content_id("lottmapgen:dual_furnace_spawner")
 	local c_ringsilver_furnace = minetest.get_content_id("lottmapgen:ringsilver_furnace_spawner")
@@ -846,7 +846,7 @@ function lottmapgen_elf_workshop(x, y, z, area, data, p2data)
 				(i == 6 and j == 4 and k == 2) or
 				(i == 1 and j == 4 and k == 7) or
 				(i == 6 and j == 4 and k == 7) then
-					data[vi] = c_elftorch
+					data[vi] = c_elftorchwall
 					if i == 6 then
 						p2data[vi] = 2
 					else

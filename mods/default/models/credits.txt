@@ -1,0 +1,3 @@
+Amaz (CC BY-SA 3.0):
+	lottitems_torch_floor.obj
+	lottitems_torch_wall.obj
