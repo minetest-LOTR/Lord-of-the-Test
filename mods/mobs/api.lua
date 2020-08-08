@@ -1897,6 +1897,7 @@ function mob_class:general_attack()
 			or (not self.attack_animals and ent.type == "animal")
 			or (not self.attack_monsters and ent.type == "monster")
 			or (not self.attack_npcs and ent.type == "npc")
+			or lottclasses.lua_ent_same_race_or_ally(ent, self.race)
 			or not specific_attack(self.specific_attack, ent.name) then
 				objs[n] = nil
 --print("- mob", n, self.name, ent.name)
