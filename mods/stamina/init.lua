@@ -25,7 +25,7 @@ STAMINA_VISUAL_MAX = 20		-- hud bar extends only to 20
 
 SPRINT_SPEED = 0.8 		-- how much faster player can run if satiated
 SPRINT_JUMP = 0.1 		-- how much higher player can jump if satiated
-SPRINT_DRAIN = 0.35 		-- how fast to drain satation while sprinting (0-1)
+SPRINT_DRAIN = 0.15 		-- how fast to drain satation while sprinting (0-1)
 
 local function stamina_read(player)
 	local meta = player:get_meta()
@@ -117,29 +117,27 @@ local armor_mod = minetest.get_modpath("lottarmor")
 function set_sprinting(name, sprinting)
 	if stamina_players[name] then
 		local player = minetest.get_player_by_name(name)
+		local meta = player:get_meta()
 		local def = {}
 		if armor_mod and armor and armor.def then
 			def = armor.def[name] -- get player physics from armor
 		end
 
-		def.speed = def.speed or 1
-		def.jump = def.jump or 1
-		def.gravity = def.gravity or 1
 		local potion = lottpotion.players[name]
-		if potion.speed == 1 and potion.jump == 1 and
-		potion.gravity == 1 and potion.air == 1 then
-			if sprinting == true then
-				player:set_physics_override({
-					speed = def.speed + SPRINT_SPEED,
-					jump = def.jump + SPRINT_JUMP,
-					gravity = def.gravity
-				})
-			elseif sprinting == false then
-				player:set_physics_override({
-					speed = def.speed,
-					jump = def.jump,
-					gravity = def.gravity
-				})
+		def.speed = potion.speed or 1
+		def.jump = potion.jump or 1
+		def.gravity = potion.gravity or 1
+		if sprinting == true then
+			if meta:get_int("stamina:sprinting") == 0 then
+				meta:set_int("stamina:sprinting", 1)
+				lottpotion.addPrefs(name, 0.8, 0, 0)
+				lottpotion.refresh(name)
+			end
+		elseif sprinting == false then
+			if meta:get_int("stamina:sprinting") == 1 then
+				meta:set_int("stamina:sprinting", 0)
+				lottpotion.addPrefs(name, -0.8, 0, 0)
+				lottpotion.refresh(name)
 			end
 		end
 		return true
@@ -174,12 +172,14 @@ local function stamina_globaltimer(dtime)
 				-- check if player can sprint (stamina must be over 6 points)
 				if controls.aux1 and controls.up
 				and not minetest.check_player_privs(player, {fast = true})
-				and stamina_players[name].level > 6 then
-					set_sprinting(name, true)
+				and stamina_players[name].level > 8 then
+					local sprint = set_sprinting(name, true)
 
 					-- Lower the player's stamina when sprinting
 					local level = tonumber(stamina_players[name].level)
-					stamina_update(player, level - (SPRINT_DRAIN * STAMINA_MOVE_TICK))
+					if sprint == true then
+						stamina_update(player, level - (SPRINT_DRAIN * STAMINA_MOVE_TICK))
+					end
 				else
 					set_sprinting(name, false)
 				end

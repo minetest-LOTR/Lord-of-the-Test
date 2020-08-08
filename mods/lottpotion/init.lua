@@ -104,8 +104,23 @@ lottpotion = {
 	addPrefs = function(playername, speed, jump, gravity)
 		local prefs = lottpotion.players[playername]
 		prefs.speed = prefs.speed + speed
+		if prefs.speed > 5 then
+			prefs.speed = 5
+		elseif prefs.speed < 0 then
+			prefs.speed = 0
+		end
 		prefs.jump = prefs.jump + jump
+		if prefs.jump > 2.5 then
+			prefs.jump = 2.5
+		elseif prefs.jump < 0 then
+			prefs.jump = 0
+		end
 		prefs.gravity = prefs.gravity + gravity
+		if prefs.gravity > 4 then
+			prefs.gravity = 4
+		elseif prefs.gravity < 0 then
+			prefs.gravity = 0
+		end
 	end,
 	refresh = function(playername)
 		if minetest.get_player_by_name(playername)~=nil then
