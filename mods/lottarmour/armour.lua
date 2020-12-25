@@ -117,7 +117,12 @@ lottarmour.equip_armour = function(player)
 		end
 	end
 	
-	player:set_armor_groups({fleshy = armour.fleshy, pierce = armour.pierce, blunt = armour.blunt, stab = armour.stab})
+	local armor_groups = {fleshy = armour.fleshy, pierce = armour.pierce, blunt = armour.blunt, stab = armour.stab}
+	local immortal = player:get_armor_groups().immortal
+	if immortal and immortal ~= 0 then
+		armor_groups.immortal = 1
+	end
+	player:set_armor_groups(armor_groups)
 	
 	-- Apply physics
 	for k,v in ipairs(lottarmour_list.physics) do
@@ -308,7 +313,12 @@ minetest.register_on_joinplayer(function(player)
 	local player_inv = player:get_inventory()
 	
 	if player:get_armor_groups().blunt == nil then
-		player:set_armor_groups({fleshy = 100, pierce = 100, blunt = 100, stab = 100})
+		local armor_groups = {fleshy = 100, pierce = 100, blunt = 100, stab = 100}
+		local immortal = player:get_armor_groups().immortal
+		if immortal and immortal ~= 0 then
+			armor_groups.immortal = 1
+		end
+		player:set_armor_groups(armor_groups)
 	end
 	
 	if meta:get_string("lottarmour:fleshy") == "" then
