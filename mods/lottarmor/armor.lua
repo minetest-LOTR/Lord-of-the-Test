@@ -242,14 +242,18 @@ armor.set_player_armor = function(self, player)
 		armor_texture = table.concat(textures, "^")
 	end
 	local armor_groups = {fleshy=100}
+	local immortal = player:get_armor_groups().immortal
+	if immortal and immortal ~= 0 then
+		armor_groups.immortal = 1
+	end
 	if armor_level > 0 then
 		armor_groups.level = math.floor(armor_level / 20)
 		armor_groups.fleshy = 100 - armor_level
 	end
-	player:set_armor_groups(armor_groups)
-	if player:get_attribute("lott:immunity") ~= nil then
+	if player:get_attribute("lott:immunity") ~= nil and (not immortal or immortal == 0) then
 		player:set_armor_groups({fleshy = 1})
-	else player:set_armor_groups(armor_groups)
+	else
+		player:set_armor_groups(armor_groups)
 	end
 	player:set_physics_override(physics_o)
 	self.textures[name].armor = armor_texture
