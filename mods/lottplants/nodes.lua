@@ -3,7 +3,6 @@
 minetest.register_node("lottplants:alderleaf", {
 	description = "Alder Leaf",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
 	tiles = {"lottplants_alderleaf.png"},
 	paramtype = "light",
 	waving = 1,
@@ -26,7 +25,6 @@ minetest.register_node("lottplants:alderleaf", {
 minetest.register_node("lottplants:appleleaf", {
 	description = "Apple Leaf",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
 	tiles = {"lottplants_appleleaf.png"},
 	paramtype = "light",
 	waving = 1,
@@ -49,7 +47,6 @@ minetest.register_node("lottplants:appleleaf", {
 minetest.register_node("lottplants:birchleaf", {
 	description = "Birch Leaf",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
 	tiles = {"lottplants_birchleaf.png"},
 	paramtype = "light",
 	waving = 1,
@@ -72,7 +69,6 @@ minetest.register_node("lottplants:birchleaf", {
 minetest.register_node("lottplants:beechleaf", {
 	description = "Beech Leaf",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
 	tiles = {"lottplants_beechleaf.png"},
 	paramtype = "light",
 	waving = 1,
@@ -95,7 +91,6 @@ minetest.register_node("lottplants:beechleaf", {
 minetest.register_node("lottplants:culumaldaleaf", {
 	description = "Culumalda Leaf",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
 	tiles = {"lottplants_culumaldaleaf.png"},
 	paramtype = "light",
 	waving = 1,
@@ -118,7 +113,6 @@ minetest.register_node("lottplants:culumaldaleaf", {
 minetest.register_node("lottplants:yellowflowers", {
 	description = "Yellow Flowers on Culumalda Leaf",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
 	tiles = {"lottplants_yellowflowers.png"},
 	paramtype = "light",
 	waving = 1,
@@ -137,7 +131,6 @@ minetest.register_node("lottplants:yellowflowers", {
 minetest.register_node("lottplants:elmleaf", {
 	description = "Elm Leaf",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
 	tiles = {"lottplants_elmleaf.png"},
 	paramtype = "light",
 	waving = 1,
@@ -160,7 +153,6 @@ minetest.register_node("lottplants:elmleaf", {
 minetest.register_node("lottplants:firleaf", {
 	description = "Fir Leaf",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
 	tiles = {"lottplants_firleaf.png"},
 	paramtype = "light",
 	waving = 1,
@@ -183,7 +175,6 @@ minetest.register_node("lottplants:firleaf", {
 minetest.register_node("lottplants:lebethronleaf", {
 	description = "Lebethron Leaf",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
 	tiles = {"lottplants_lebethronleaf.png"},
 	paramtype = "light",
 	waving = 1,
@@ -206,7 +197,6 @@ minetest.register_node("lottplants:lebethronleaf", {
 minetest.register_node("lottplants:mallornleaf", {
 	description = "Mallorn Leaf",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
 	tiles = {"lottplants_mallornleaf.png"},
 	paramtype = "light",
 	waving = 1,
@@ -229,7 +219,6 @@ minetest.register_node("lottplants:mallornleaf", {
 minetest.register_node("lottplants:pineleaf", {
 	description = "Pine Needles",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
 	tiles = {"lottplants_pineleaf.png"},
 	paramtype = "light",
 	waving = 1,
@@ -252,7 +241,6 @@ minetest.register_node("lottplants:pineleaf", {
 minetest.register_node("lottplants:plumleaf", {
 	description = "Plum Leaf",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
 	tiles = {"lottplants_plumleaf.png"},
 	paramtype = "light",
 	waving = 1,
@@ -275,7 +263,6 @@ minetest.register_node("lottplants:plumleaf", {
 minetest.register_node("lottplants:rowanleaf", {
 	description = "Rowan Leaf",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
 	tiles = {"lottplants_rowanleaf.png"},
 	paramtype = "light",
 	waving = 1,
@@ -294,7 +281,6 @@ minetest.register_node("lottplants:rowanleaf", {
 minetest.register_node("lottplants:rowanberry", {
 	description = "Rowan Leaf with Berries",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
 	tiles = {"lottplants_rowanleaf.png^lottplants_rowanberry.png"},
 	paramtype = "light",
 	waving = 1,
@@ -312,7 +298,6 @@ minetest.register_node("lottplants:rowanberry", {
 minetest.register_node("lottplants:whiteleaf", {
 	description = "White Leaf",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
 	tiles = {"lottplants_whiteleaf.png"},
 	paramtype = "light",
 	waving = 1,
@@ -335,7 +320,6 @@ minetest.register_node("lottplants:whiteleaf", {
 minetest.register_node("lottplants:yavannamireleaf", {
 	description = "Yavannamire Leaf",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
 	tiles = {"lottplants_yavannamireleaf.png"},
 	paramtype = "light",
 	waving = 1,
@@ -359,7 +343,6 @@ minetest.register_alias("lottmapgen:mirkleaves", "lottplants:mirkleaf")
 minetest.register_node("lottplants:mirkleaf", {
 	description = "Mirkwood Leaves",
 	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
 	tiles = {"lottplants_mirkleaf.png"},
 	paramtype = "light",
 	sunlight_propagates = false,
