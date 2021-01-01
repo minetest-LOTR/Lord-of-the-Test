@@ -32,6 +32,8 @@ minetest.register_on_joinplayer(function(player)
 		down={false}, 
 		up={false},
 		zoom={false},
+		dig={false},
+		place={false},
 	}
 end)
 

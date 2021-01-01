@@ -34,8 +34,9 @@ local function race_form(tab)
 		"label[5.75,4;Stats:]" ..
 		"label[5.75,4.5;Max HP:    " .. tab[3] .. "]" ..
 		"label[5.75,5;Zoom:     " .. tostring(tab[5]) .. "]" ..
-		"button_exit[0.5,6;2,1;accept;Select Race]" ..
-		"button_exit[2.5,6;2,1;exit;Exit]"
+		"style[accept;bgcolor=green]" ..
+		"button_exit[0.25,6;2.5,1;accept;Select Race]" ..
+		"button_exit[2.75,6;2.5,1;exit;Back]"
 end
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)

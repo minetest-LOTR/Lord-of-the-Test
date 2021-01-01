@@ -45,9 +45,7 @@ minetest.register_node("lottitems:torch", {
 		local above = pointed_thing.above
 		local wdir = minetest.dir_to_wallmounted(vector.subtract(under, above))
 		local fakestack = itemstack
-		if wdir == 0 then
-			fakestack:set_name("lottitems:torch_ceiling")
-		elseif wdir == 1 then
+		if wdir == 0 or wdir == 1 then
 			fakestack:set_name("lottitems:torch")
 		else
 			fakestack:set_name("lottitems:torch_wall")
@@ -79,28 +77,6 @@ minetest.register_node("lottitems:torch_wall", {
 	selection_box = {
 		type = "wallmounted",
 		wall_side = {-1/2, -1/2, -1/8, -5/16, 1/8, 1/8},
-	},
-	floodable = true,
-	on_flood = on_flood,
-})
-
-minetest.register_node("lottitems:torch_ceiling", {
-	drawtype = "mesh",
-	mesh = "lottitems_torch_floor.obj",
-	tiles = {{
-		    name = "lottitems_torch_on_floor_animated.png",
-		    animation = {type = "vertical_frames", aspect_w = 16, aspect_h = 16, length = 3.3}
-	}},
-	paramtype = "light",
-	paramtype2 = "wallmounted",
-	sunlight_propagates = true,
-	walkable = false,
-	light_source = 12,
-	groups = {choppy=2, dig_immediate=3, flammable=1, not_in_creative_inventory=1, attached_node=1, torch=1},
-	drop = "lottitems:torch",
-	selection_box = {
-		type = "wallmounted",
-		wall_top = {-1/8, -3/16, -1/8, 1/8, 1/2, 1/8},
 	},
 	floodable = true,
 	on_flood = on_flood,

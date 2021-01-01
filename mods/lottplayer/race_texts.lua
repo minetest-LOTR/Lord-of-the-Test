@@ -79,7 +79,14 @@ lottplayer.race_texts = {
 	"the Rohirrim instead of them. Being wild and uncivilised, their arms " ..
 	"are weaker than those of other races, but what they lack in this area, " ..
 	"they more than make up for in their ferocity.",
-	man_gondor = "",
+	-- http://tolkiengateway.net/wiki/Gondorians
+	man_gondor = "After the Downfall of Númenor, the Exiles of Númenor, " ..
+	"led by Elendil, established the Realms in Exile. Arriving at the Mouths " ..
+	"of Anduin, Elendil's sons, Isildur and Anárion, ascended the great river " ..
+	"and founded the realm of Gondor. The colonists welcomed them and allied " ..
+	"themselves with the founders. The Men of Gondor were, from the beginnning " ..
+	"of their history, always more powerful and populous than their northern " ..
+	"counterparts, the Men of Arnor.",
 	-- http://tolkiengateway.net/wiki/Haradrim
 	man_harad = "The men of Harad have been hardened by constant exposure" ..
 	"to the heat and the sun, making them very hardy, and very skilled in " ..
@@ -95,8 +102,32 @@ lottplayer.race_texts = {
 	"warlike people, who seem to have a need of almost constantly waging  war " ..
 	"be it against the men of Harad, the men of Gondor, the dwarves of the " ..
 	"Iron Hills, or even among their own tribes.",
-	man_rohan = "",
-	orc_angmar = "",
-	orc_misty_mountains = "",
-	orc_mordor = "",
+	-- http://tolkiengateway.net/wiki/Rohirrim
+	man_rohan = "The Rohirrim, or the Horse-lords, are a horse people, " ..
+	"settling in the land of Rohan, named after them. The name Rohirrim " ..
+	"was mostly used by outsiders: the name they had for themselves was " ..
+	"Eorlingas, after their king Eorl the Young who had first brought them to Rohan. " ..
+	"They prize their horses more than anything, and their entire culture was based " ..
+	"around these. They had few cities, but lived in many villages on the plains of Rohan.",
+	-- http://tolkiengateway.net/wiki/Angmar
+	-- http://tolkiengateway.net/wiki/Orcs
+	orc_angmar = "Angmar was a region and kingdom in the far north of the Misty Mountains " ..
+	"by the evil Lord of the Ringwraiths, who became known as the \"Witch-king of Angmar\"." ..
+	"Orcs fought for the Witch-king in the Angmar War and they invaded Eriador under the " ..
+	"leadership of the Necromancer. Many of these orcs came from the tribes who served " ..
+	"Morgoth in the First Age.",
+	-- http://tolkiengateway.net/wiki/Orcs_of_the_Misty_Mountains
+	orc_misty_mountains = "The Orcs of the Misty Mountains are tribes of Orcs who settled " ..
+	"in the tunnels in or under the mountains. They served Sauron early on, guarding the " ..
+	"passes and troubling the folk of Eriador. These Orcs were also responsible for the " ..
+	"death of Isildur and the loss of the One Ring. Later on, far from Sauron's main " ..
+	"dominions in Dol Guldur and Mordor and without his will driving them, they seem " ..
+	"to have acted semi-independently, harassing the regions and peoples around them, " ..
+	"and eventually occupying Moria.",
+	-- http://tolkiengateway.net/wiki/Orcs_of_Mordor
+	orc_mordor = "The Orcs of Mordor or Mordor-orcs are the orc footsoldiers of Morgoth's " ..
+	"lieutenant Sauron. These black Orcs of tremendous strength and ferocity were first " ..
+	"seen out of Mordor towards the end of the Third Age, assaulting Ithilien. " ..
+	"Orcs make up the backbone of the Eastern hordes during the wars of Sauron, supplemented " ..
+	"by Easterlings, Haradrim, and other monstrous creatures of Sauron.",
 }
