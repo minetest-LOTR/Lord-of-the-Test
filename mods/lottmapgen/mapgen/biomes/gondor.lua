@@ -23,7 +23,7 @@ lottmapgen.register_biome(18, {
 						"lottplants:apple_trunk",
 						"lottplants:apple_leaves",
 						math.random(4, 6),
-						"lottplants:apple")
+						"lottitems:apple")
 				elseif math.random(TREE4) == 3 then
 					lottmapgen.alder_tree(x, y, z, area, data)
 				elseif math.random(TREE4) == 6 then

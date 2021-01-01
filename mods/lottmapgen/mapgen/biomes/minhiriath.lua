@@ -106,10 +106,10 @@ lottmapgen.register_biome(9, {
 					math.random(4, 6))
 			elseif math.random(TREE10) == 4 then
 				lottmapgen.generate_tree(x, y, z, area, data,
-					"lottplants:oak_trunk",
-					"lottplants:oak_leaves",
+					"lottplants:apple_trunk",
+					"lottplants:apple_leaves",
 					math.random(4, 6),
-					"lottplants:apple")
+					"lottitems:apple")
 			end
 		end
 	end,

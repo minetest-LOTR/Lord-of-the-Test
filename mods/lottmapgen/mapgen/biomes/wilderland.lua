@@ -75,7 +75,7 @@ lottmapgen.register_biome(25, {
 					"lottplants:apple_trunk",
 					"lottplants:apple_leaves",
 					math.random(4, 5),
-					"lottplants:apple")
+					"lottitems:apple")
 			elseif math.random(TREE7) == 6 then
 				--lottmapgen.culumalda_tree(x, y, z, area, data)
 			elseif math.random(TREE8) == 7 then

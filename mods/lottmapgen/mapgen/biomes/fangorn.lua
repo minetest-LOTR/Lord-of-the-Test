@@ -37,7 +37,7 @@ lottmapgen.register_biome(16, {
 			lottmapgen.generate_tree(x, y, z, area, data,
 				"lottplants:apple_trunk",
 				"lottplants:apple_leaves", 5,
-				"lottplants:apple")
+				"lottitems:apple")
 		elseif math.random(TREE4) == 10 then
 			lottmapgen.generate_tall_tree(x, y, z, area, data,
 				"lottplants:oak_trunk",

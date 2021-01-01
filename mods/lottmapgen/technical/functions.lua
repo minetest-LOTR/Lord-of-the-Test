@@ -449,7 +449,7 @@ end
 
 function lottmapgen.apple_tree2(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("lottplants:apple_trunk")
-	local c_apple = minetest.get_content_id("lottplants:apple")
+	local c_apple = minetest.get_content_id("lottitems:apple")
 	local c_leaves = minetest.get_content_id("lottplants:apple_leaves")
 	for j = -2, 4 do
 		if j >= 1 then
