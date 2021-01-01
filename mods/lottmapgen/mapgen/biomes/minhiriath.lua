@@ -88,7 +88,7 @@ lottmapgen.register_biome(9, {
 			if math.random(PLANT4) == 2 then
 				lottmapgen.grass(data, vi, p2data)
 			elseif math.random(PLANT7) == 3 then
-				lottmapgen.farming_plants(data, vi, p2data)
+				--lottmapgen.farming_plants(data, vi, p2data)
 			end
 		else
 			if math.random(PLANT4) == 2 then

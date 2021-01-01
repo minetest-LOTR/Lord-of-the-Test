@@ -27,6 +27,10 @@ lottmapgen.register_biome(23, {
 		elseif noise2 < -0.3 then
 			if math.random(PLANT7) == 3 then
 				data[vi] = c_dryshrub
+			elseif math.random(TREE10) == 2 then
+				lottmapgen.ruin(x, y, z, area, data, c_dessandstone, c_dessandstone_brick)
+			elseif math.random(PLANT13) == 2 then
+				lottmapgen.tower(x, y, z, area, data, c_dessandstone, c_dessandstone_brick)
 			end
 		elseif noise2 < 0.6 then
 			if math.random(PLANT6) == 2 then

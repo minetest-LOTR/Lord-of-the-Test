@@ -73,7 +73,7 @@ lottmapgen.register_biome(11, {
 				end
 			elseif noise < -0.7 then
 				if math.random(PLANT9) == 1 then
-					lottmapgen.farming_plants(data, vi, p2data)
+					--lottmapgen.farming_plants(data, vi, p2data)
 				elseif math.random(PLANT7) == 2 then
 					lottmapgen.tall_grass(x, y, z, area, data)
 				end

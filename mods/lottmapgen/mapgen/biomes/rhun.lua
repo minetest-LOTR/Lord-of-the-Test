@@ -3,6 +3,9 @@ local c_dirt = minetest.get_content_id("lottitems:dirt")
 local c_sand = minetest.get_content_id("lottitems:sand")
 local c_red_stone = minetest.get_content_id("lottitems:red_stone")
 local c_sunflower = minetest.get_content_id("lottplants:sunflower")
+local c_red_cobble = minetest.get_content_id("lottitems:red_cobble")
+local c_red_bricks = minetest.get_content_id("lottitems:red_stone_brick")
+local c_red_block = minetest.get_content_id("lottitems:red_stone_block")
 
 lottmapgen.register_biome(22, {
 	name = "Rhun",
@@ -86,6 +89,10 @@ lottmapgen.register_biome(22, {
 					lottmapgen.generate_tall_tree(x, y, z, area, data,
 						"lottplants:cedar_trunk",
 						"lottplants:cedar_leaves")
+				elseif math.random(TREE10) == 5 then
+					lottmapgen.ruin(x, y, z, area, data, c_red_cobble, c_red_bricks)
+				elseif math.random(PLANT13) == 6 then
+					lottmapgen.tower(x, y, z, area, data, c_red_bricks, c_red_block)
 				end
 			end
 		end

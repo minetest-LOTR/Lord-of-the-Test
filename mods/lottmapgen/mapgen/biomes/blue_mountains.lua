@@ -5,7 +5,10 @@ local c_darkgravel = minetest.get_content_id("lottitems:dark_gravel")
 local c_snow = minetest.get_content_id("lottitems:snow_layer")
 local c_snowblock = minetest.get_content_id("lottitems:snow")
 local c_ice = minetest.get_content_id("lottitems:ice")
+local c_mountain_grass = minetest.get_content_id("lottplants:mountain_grass")
 local c_mountainshrub = minetest.get_content_id("lottplants:mountain_shrub")
+local c_blue_brick = minetest.get_content_id("lottitems:blue_stone_brick")
+local c_blue_block = minetest.get_content_id("lottitems:blue_stone_block")
 
 lottmapgen.register_biome(26, {
 	name = "Blue Mountains",

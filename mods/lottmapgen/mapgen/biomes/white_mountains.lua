@@ -64,7 +64,7 @@ lottmapgen.register_biome(27, {
 				data[vi] = c_mallos
 				p2data[vi] = 42
 			elseif math.random(PLANT10) == 1 then
-				lottmapgen.farming_plants(data, vi, p2data)
+				--lottmapgen.farming_plants(data, vi, p2data)
 			elseif math.random(640000) == 39 then
 				lottmapgen.white_tree(x, y, z, area, data)
 			end

@@ -7,7 +7,7 @@ lottmapgen.register_biome(25, {
 	surface = function(data, vi)
 		data[vi] = c_wilderland_grass
 	end,
-	deco = function(data, p2data, vi, area, x, y, z, noise1, noise2)
+	deco = function(data, p2data, vi, area, x, y, z, noise1, noise2, schems)
 		if y < 3 then
 			local viu = area:index(x, y - 1, z)
 			data[viu] = c_sand
@@ -27,6 +27,11 @@ lottmapgen.register_biome(25, {
 				lottmapgen.grass(data, vi, p2data)
 			elseif math.random(PLANT5) == 3 then
 				lottmapgen.tall_grass(x, y, z, area, data)
+			elseif math.random(PLANT13) == 1 then
+				lottmapgen.tower(x, y, z, area, data)
+			elseif math.random(TREE10) == 2 then
+				lottmapgen.ruin(x, y, z, area, data)
+			elseif math.random(TREE10) then
 			elseif noise1 < 0.5 then
 				if math.random(PLANT9) == 5 then
 					lottmapgen.basic_flowers(data, vi, p2data)
@@ -108,6 +113,8 @@ lottmapgen.register_biome(25, {
 				lottmapgen.basic_flowers(data, vi, p2data)
 			elseif math.random(PLANT3) == 1 then
 				lottmapgen.grass(data, vi, p2data)
+			elseif math.random(PLANT13) == 1 then
+				lottmapgen.ruin(x, y, z, area, data)
 			end
 		end
 	end,

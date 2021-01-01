@@ -44,7 +44,16 @@ end
 local function remove_tree(c_tree, x, y, z, area, data)
 	-- Find leaves
 	local node = minetest.get_name_from_content_id(c_tree)
-	local c_leaves = minetest.get_content_id(node:sub(1, -6) .. "leaves")
+	local c_leaves
+	if node:find("pine") then
+		c_leaves = minetest.get_content_id(node:sub(1, -6) .. "needles")
+	elseif node:find("young_mallorn") then
+		c_leaves = minetest.get_content_id("lottplants:mallorn_leaves")
+	else
+		if minetest.registered_nodes[node:sub(1, -6) .. "leaves"] then
+			c_leaves = minetest.get_content_id(node:sub(1, -6) .. "leaves")
+		end
+	end
 	local c_rowan
 	if node:find("rowan") then
 		c_rowan = minetest.get_content_id("lottplants:rowan_berries")

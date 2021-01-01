@@ -9,7 +9,11 @@ lottmapgen.register_biome(4, {
 		data[vi] = c_arthedain_grass
 	end,
 	deco = function(data, p2data, vi, area, x, y, z, noise, noise2)
-		if noise2 > 0.35 then
+		if math.random(PLANT14) == 1 then
+			lottmapgen.ruin(x, y, z, area, data)
+		elseif math.random(PLANT15) == 2 then
+			lottmapgen.tower(x, y, z, area, data)
+		elseif noise2 > 0.35 then
 			if noise < -0.7 or noise > 0.7 then
 				if math.random(PLANT1) == 1 then
 					lottmapgen.grass(data, vi, p2data)

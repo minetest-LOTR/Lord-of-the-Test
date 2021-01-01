@@ -233,20 +233,6 @@ function lottmapgen.spawn_player(pos, player, rand)
 	player:set_pos({x = pos.x, y = y + 2, z = pos.z})
 end
 
-minetest.register_chatcommand("tpb", {
-	params = "<image coords>",
-	func = function(name, param)
-		local x, z = string.match(param, "([^ ]+) (.+)")
-		x = x - 200
-		x = x * 160
-		z = z * -1
-		z = z + 200
-		z = z * 160
-		lottmapgen.spawn_player({x = x, y = 30, z = z},
-			minetest.get_player_by_name(name), false)
-	end,
-})
-
 minetest.register_chatcommand("tp", {
 	params = "<biome>",
 	func = function(name, param)

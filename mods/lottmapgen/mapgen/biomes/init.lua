@@ -28,6 +28,12 @@ PLANT13 = 10000
 PLANT14 = 100000
 PLANT15 = 500000
 
+BUILDING1 = 50000
+BUILDING2 = 100000
+BUILDING3 = 250000
+BUILDING4 = 500000
+BUILDING5 = 1000000
+
 local modpath = minetest.get_modpath("lottmapgen") .. "/mapgen/biomes/"
 
 dofile(modpath .. "angmar.lua")

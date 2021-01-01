@@ -9,7 +9,7 @@ lottmapgen.register_biome(19, {
 	end,
 	deco = function(data, p2data, vi, area, x, y, z)
 		if math.random(TREE10) == 2 then
-			lottmapgen.burned_tree(x, y, z, area, data)
+			--lottmapgen.burned_tree(x, y, z, area, data)
 		elseif math.random(PLANT4) == 2 then
 			data[vi] = c_bomordor
 			p2data[vi] = 42
