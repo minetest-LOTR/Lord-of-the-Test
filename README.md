@@ -30,6 +30,6 @@ Textures: *CC BY-SA 3.0*
 
 -----------------------------------------------------------------------------------------------
 
-If you are interested in joining minetest-LOTR, send a PM on the [Minetest Forum](https://forum.minetest.net/index.php) to Amaz, email [amazlott [at] gmail [dot] com](mailto: amazlott@gmail.com) or join [#lordofthetest on freenode](http://webchat.freenode.net/?channels=#lordofthetest) or [discord](https://discordapp.com/invite/3qyymp2) and look for a minetest-LOTR member. Being a contributor to LOTT beforehand will help with this.
+If you are interested in joining minetest-LOTR, send a PM on the [Minetest Forum](https://forum.minetest.net/index.php) to Amaz, email [amazlott [at] gmail [dot] com](mailto: amazlott@gmail.com) or join [#lordofthetest on libera](https://web.libera.chat/?channels=#lordofthetest) or [discord](https://discordapp.com/invite/3qyymp2) and look for a minetest-LOTR member. Being a contributor to LOTT beforehand will help with this.
 
 -----------------------------------------------------------------------------------------------
