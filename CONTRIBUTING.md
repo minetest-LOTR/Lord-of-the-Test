@@ -6,7 +6,7 @@ See below for what you can help to contribute however.
 
 If you aren't sure, please contact a minetest-LOTR member before proceeding.
 
-You can find us at IRC [#lordofthetest @ freenode](https://webchat.freenode.net/#lordofthetest) or at [Discord](https://discord.gg/3qyymp2)
+You can find us at IRC [#lordofthetest @ libera](https://web.libera.chat/?channels=#lordofthetest) or at [Discord](https://discord.gg/3qyymp2)
 
 -----------------------------------------------------------------------------------------------
 #### Bugs & Maintenance
