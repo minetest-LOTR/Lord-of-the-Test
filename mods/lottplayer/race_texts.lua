@@ -22,7 +22,7 @@ lottplayer.race_texts = {
 	-- http://tolkiengateway.net/wiki/Moria
 	dwarf_misty_mountains = "The Dwarves of the Misty Mountains are the " ..
 	"remnant of all those who lived in the great mines of Moria, before " ..
-	"the awakening the Balrog, forcing them out. While Moria is deserted, " ..
+	"they awoke the Balrog, forcing them out. While Moria is deserted, " ..
 	"few dwarves still linger in the mountains, trying to find mithril, " ..
 	"despite the many dangers found there, not just from the cold and " ..
 	"weather, but also from the orcs and other creatures who inhabit the " ..
