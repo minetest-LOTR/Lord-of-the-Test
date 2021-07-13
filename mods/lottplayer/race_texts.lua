@@ -98,17 +98,17 @@ lottplayer.race_texts = {
 	-- http://tolkiengateway.net/wiki/Easterling
 	man_rhun = "The Men of Rhun have been unable to escape from the " ..
 	"influence of evil from their earliest days. First they were corrupted " ..
-	"by Morgoth, and then later, by Sauron. This led to them being very " ..
+	"by Morgoth, and then later, by Sauron. This led to them being a very " ..
 	"warlike people, who seem to have a need of almost constantly waging war, " ..
 	"be it against the men of Harad, the men of Gondor, the dwarves of the " ..
 	"Iron Hills, or even among their own tribes.",
 	-- http://tolkiengateway.net/wiki/Rohirrim
-	man_rohan = "The Rohirrim, or the Horse-lords, are horse people, " ..
-	"settling in the land of Rohan, named after them. The name Rohirrim " ..
-	"was mostly used by outsiders: the name they had for themselves was " ..
-	"Eorlingas, after their king Eorl the Young who had first brought them to Rohan. " ..
-	"They prize their horses more than anything, and their entire culture was based " ..
-	"around them. They had few cities, but lived in many villages on the plains of Rohan.",
+	man_rohan = "The Rohirrim, or the Horse-lords, are a horse people, " ..
+	"who settled in the land of Rohan. The name Rohirrim " ..
+	"is mostly used by outsiders: the name they give themselves is " ..
+	"Eorlingas, after their king Eorl the Young who first brought them to Rohan. " ..
+	"They prize their horses more than anything, and their entire culture is based " ..
+	"around them. They have few cities, but live in many villages on the plains of Rohan.",
 	-- http://tolkiengateway.net/wiki/Angmar
 	-- http://tolkiengateway.net/wiki/Orcs
 	orc_angmar = "Angmar was a region and kingdom in the far north of the Misty Mountains " ..
