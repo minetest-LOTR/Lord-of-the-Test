@@ -7,7 +7,7 @@ lottplayer.race_texts = {
 	-- http://tolkiengateway.net/wiki/Dwarves_of_the_Blue_Mountains
 	dwarf_blue_mountains = "The Dwarves of the Blue Mountains are the " ..
 	"poorest of the dwarves of Middle Earth, with a large part of them " ..
-	"being made of exiles from the various calamities which befall the " ..
+	"being made of exiles from the various calamities which befell the " ..
 	"dwarves over their history, such as the sinking of Beleiand and the " ..
 	"waking of the Balrog. While they are the poorest, they are not " ..
 	"poor, and still prosper in their own way, mining and creating " ..
@@ -16,14 +16,14 @@ lottplayer.race_texts = {
 	dwarf_iron_hills = "The Dwarves of the Iron Hills are one of the " ..
 	"strongest realms in the north of the world, being the only realm " ..
 	"standing between Sauron and his plans to destroy Rivendell and to " ..
-	"take back the lands of Angmar. The Dwarves are known for being " ..
-	"some of the most fierce of all Dwarf armies. In addition to their " ..
+	"take back the lands of Angmar. These Dwarves are known for being " ..
+	"one of the fiercest of all Dwarf armies. In addition to their " ..
 	"prowess in war, they also are very skilled craftsmen.",
 	-- http://tolkiengateway.net/wiki/Moria
 	dwarf_misty_mountains = "The Dwarves of the Misty Mountains are the " ..
 	"remnant of all those who lived in the great mines of Moria, before " ..
-	"the awoke the balrog, forcing them out. While Moria is deserted, " ..
-	"some dwarves still linger in the mountains, trying to find mithril, " ..
+	"they awoke the Balrog, forcing them out. While Moria is deserted, " ..
+	"few dwarves still linger in the mountains, trying to find mithril, " ..
 	"despite the many dangers found there, not just from the cold and " ..
 	"weather, but also from the orcs and other creatures who inhabit the " ..
 	"mountains.",
@@ -37,7 +37,7 @@ lottplayer.race_texts = {
 	elf_lorien = "The Elves of Lorien are well known for making Lembas, " ..
 	"Elven rope, Elven-cloaks and many other crafts. They live in " ..
 	"telain built in the great mallorn trees of Lothlorien, ruled by " ..
-	"their Lord and Lady. They act a strong bulwark, protecting the " ..
+	"their Lord and Lady. They act as a strong bulwark, protecting the " ..
 	"west of Middle Earth against the forces of Sauron.",
 	-- http://tolkiengateway.net/wiki/Elves_of_Mirkwood
 	elf_mirkwood = "The Elves of Mirkwood are the most numerous of the " ..
@@ -58,16 +58,16 @@ lottplayer.race_texts = {
 	"with men in their daily buisness.",
 	-- http://tolkiengateway.net/wiki/Hobbit
 	hobbit_shire = "The hobbits of the Shire are a secluded race, who " ..
-	"have very little to do with the outside world, keeping themselves " ..
-	"to themselves, and regarding all outsiders with suspiscion. Despite " ..
-	"their seclusion, when events force them, hobbits are supprisingly " ..
-	"resilient, showing their hidden potential. However, in normal times " ..
+	"have very little to do with the outside world, keeping to " ..
+	"themselves and regarding all outsiders with suspicion. Despite " ..
+	"their seclusion, hobbits are surprisingly resilient, showing their " ..
+	"hidden potential, when events force them. However, in normal times " ..
 	"they prefer to be overlooked, and allowed to get on with their lives " ..
 	"in peace.",
 	man_bree = "The men of Bree are a mix of those who are quite happy in " ..
 	"their own little world, wanting nothing to do with the affairs of the " ..
 	"world at large, and those who play a significant role in the world, be " ..
-	"it for good or for evil. Some who live their are associates of the " ..
+	"it for good or for evil. Some who live there are associates of the " ..
 	"rangers of the North, who protect the other, unsuspecting men who dwell " ..
 	"there from untold horrors. Others, however, work with the same people " ..
 	"who would see these horrors take over the world...",
@@ -98,17 +98,17 @@ lottplayer.race_texts = {
 	-- http://tolkiengateway.net/wiki/Easterling
 	man_rhun = "The Men of Rhun have been unable to escape from the " ..
 	"influence of evil from their earliest days. First they were corrupted " ..
-	"by Morgoth, and then later, by Sauron. This led to them being a very" ..
-	"warlike people, who seem to have a need of almost constantly waging  war " ..
+	"by Morgoth, and then later, by Sauron. This led to them being a very " ..
+	"warlike people, who seem to have a need of almost constantly waging war, " ..
 	"be it against the men of Harad, the men of Gondor, the dwarves of the " ..
 	"Iron Hills, or even among their own tribes.",
 	-- http://tolkiengateway.net/wiki/Rohirrim
 	man_rohan = "The Rohirrim, or the Horse-lords, are a horse people, " ..
-	"settling in the land of Rohan, named after them. The name Rohirrim " ..
-	"was mostly used by outsiders: the name they had for themselves was " ..
-	"Eorlingas, after their king Eorl the Young who had first brought them to Rohan. " ..
-	"They prize their horses more than anything, and their entire culture was based " ..
-	"around these. They had few cities, but lived in many villages on the plains of Rohan.",
+	"who settled in the land of Rohan. The name Rohirrim " ..
+	"is mostly used by outsiders: the name they give themselves is " ..
+	"Eorlingas, after their king Eorl the Young who first brought them to Rohan. " ..
+	"They prize their horses more than anything, and their entire culture is based " ..
+	"around them. They have few cities, but live in many villages on the plains of Rohan.",
 	-- http://tolkiengateway.net/wiki/Angmar
 	-- http://tolkiengateway.net/wiki/Orcs
 	orc_angmar = "Angmar was a region and kingdom in the far north of the Misty Mountains " ..
