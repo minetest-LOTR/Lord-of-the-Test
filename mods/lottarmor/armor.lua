@@ -250,7 +250,8 @@ armor.set_player_armor = function(self, player)
 		armor_groups.level = math.floor(armor_level / 20)
 		armor_groups.fleshy = 100 - armor_level
 	end
-	if player:get_attribute("lott:immunity") ~= nil and (not immortal or immortal == 0) then
+	local meta = player:get_meta()
+	if meta:get_string("lott:immunity") ~= nil and meta:get_string("lott:immunity") ~= "" and (not immortal or immortal == 0) then
 		player:set_armor_groups({fleshy = 1})
 	else
 		player:set_armor_groups(armor_groups)

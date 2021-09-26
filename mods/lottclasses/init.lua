@@ -128,6 +128,7 @@ local immune_amt = tonumber(minetest.settings:get("immune_spawn"))
 minetest.register_on_newplayer(function(player)
 	local name = player:get_player_name()
 	local privs = minetest.get_player_privs(name)
+	local meta = player:get_meta()
 	if minetest.get_player_privs(name).GAMEwizard then
 		give_stuff_wizard(player)
 	end
@@ -139,7 +140,7 @@ minetest.register_on_newplayer(function(player)
 	
 	if minetest.setting_getbool("enable_damage") then
 		
-		player:set_attribute("lott:immunity", immune_amt)
+		meta:set_string("lott:immunity", immune_amt)
 		armor:set_player_armor(player)
 		
 		minetest.after(5, function()
@@ -150,13 +151,13 @@ minetest.register_on_newplayer(function(player)
 		for i = 1, immune_amt do
 			minetest.after(i, function()
 				if player == nil then return end
-				if not player:get_attribute("lott:immunity") then return end
-				player:set_attribute("lott:immunity", tonumber(player:get_attribute("lott:immunity")) - 1)
+				if not meta:get_string("lott:immunity") then return end
+				meta:set_string("lott:immunity", tonumber(meta:get_string("lott:immunity")) - 1)
 			end)
 		end
 	
 		minetest.after(immune_amt+1, function()
-			player:set_attribute("lott:immunity", nil)
+			meta:set_string("lott:immunity", "")
 			minetest.chat_send_player(name, minetest.colorize("orange", "Your starter mob immunity has expired!"))
 			armor:set_player_armor(player)
 		end)
@@ -166,6 +167,7 @@ end)
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 	local privs = minetest.get_player_privs(name)
+	local meta = player:get_meta()
 	if minetest.get_player_privs(name).GAMEwizard then
 		multiskin[name].skin = "wizard_skin.png"
 	elseif minetest.get_player_privs(name).GAMEmale then
@@ -203,33 +205,33 @@ minetest.register_on_joinplayer(function(player)
 	end
 	
 	-- Resume starter mob immunity
-	if player:get_attribute("lott:immunity") ~= nil then
-		if not tonumber(player:get_attribute("lott:immunity")) then
-			player:set_attribute("lott:immunity", nil)
+	if meta:get_string("lott:immunity") ~= nil and meta:get_string("lott:immunity") ~= "" then
+		if not tonumber(meta:get_string("lott:immunity")) then
+			meta:set_string("lott:immunity", "")
 			return
 		end
-		if tonumber(player:get_attribute("lott:immunity")) >= immune_amt then
+		if tonumber(meta:get_string("lott:immunity")) >= immune_amt then
 			return
 		end
 	
 		minetest.chat_send_player(name, minetest.colorize("green", "Your starter mob immunity has resumed!"))
-		minetest.chat_send_player(name, minetest.colorize("green", "You still have "..tonumber(player:get_attribute("lott:immunity")) / 60 .." minutes left!"))
+		minetest.chat_send_player(name, minetest.colorize("green", "You still have "..tonumber(meta:get_string("lott:immunity")) / 60 .." minutes left!"))
 	
-		for i = 1, tonumber(player:get_attribute("lott:immunity")) do
-			if not tonumber(player:get_attribute("lott:immunity")) then
-				player:set_attribute("lott:immunity", nil)
+		for i = 1, tonumber(meta:get_string("lott:immunity")) do
+			if not tonumber(meta:get_string("lott:immunity")) then
+				meta:set_string("lott:immunity", "")
 				return
 			end
 			minetest.after(i, function()
 				if player == nil then return end
-				if not player:get_attribute("lott:immunity") then return end
-				player:set_attribute("lott:immunity", tonumber(player:get_attribute("lott:immunity")) - 1)
+				if not meta:get_string("lott:immunity") then return end
+				meta:set_string("lott:immunity", tonumber(meta:get_string("lott:immunity")) - 1)
 			end)
 		end
 		
-		minetest.after(player:get_attribute("lott:immunity")+1, function()
+		minetest.after(meta:get_string("lott:immunity")+1, function()
 			if player == nil then return end
-			player:set_attribute("lott:immunity", nil)
+			meta:set_string("lott:immunity", "")
 			armor:set_player_armor(player)
 		
 			minetest.chat_send_player(name, minetest.colorize("orange", "Your starter mob immunity has expired!"))
