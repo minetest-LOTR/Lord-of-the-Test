@@ -1,7 +1,7 @@
 lottmapgen = {}
 
 local areas_mod = minetest.get_modpath("areas")
-local protect_houses = minetest.setting_getbool("protect_structures") or false
+local protect_houses = minetest.settings:get_bool("protect_structures") or false
 
 -- max number of nodes to try to fill below building
 local fill_below_count = 16

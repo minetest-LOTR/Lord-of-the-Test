@@ -50,6 +50,7 @@ for _, row in ipairs(banners) do
 			"lottblocks_banner_"..name.."_side.png",
 			"lottblocks_banner_"..name..".png",
 		},
+		use_texture_alpha = "clip",
 		groups = {oddly_breakable_by_hand=3,flammable=3},
 		sounds = default.node_sound_defaults(),
 		paramtype = "light",

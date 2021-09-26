@@ -792,6 +792,7 @@ minetest.register_node("default:sign_wall", {
 	description = "Sign",
 	drawtype = "nodebox",
 	tiles = {"default_sign.png"},
+	use_texture_alpha = "clip",
 	inventory_image = "default_sign_wall.png",
 	wield_image = "default_sign_wall.png",
 	paramtype = "light",

@@ -105,7 +105,7 @@ armor = {
 	version = "0.4.4",
 }
 
-if minetest.setting_getbool("creative_mode") then
+if minetest.settings:get_bool("creative_mode") then
 	armor.formspec = armor.formspec .. "tabheader[-0.12,-0.12;creative_tabs;Main,Creative;1;true;false"
 end
 
@@ -386,7 +386,7 @@ armor.get_valid_player = function(self, player, msg)
 		minetest.log("error", "lottarmor: Player name is nil "..msg)
 		return
 	end
-	local pos = player:getpos()
+	local pos = player:get_pos()
 	local player_inv = player:get_inventory()
 	local armor_inv = minetest.get_inventory({type="detached", name=name.."_armor"})
 	if not pos then
@@ -544,7 +544,7 @@ minetest.register_on_joinplayer(function(player)
 	for i=1, ARMOR_INIT_TIMES do
 		minetest.after(ARMOR_INIT_DELAY * i, function(player)
 			armor:set_player_armor(player)
-			if not inv_mod and not minetest.setting_getbool("creative_mode") then
+			if not inv_mod and not minetest.settings:get_bool("creative_mode") then
 				armor:update_inventory(player)
 			end
 		end, player)
@@ -560,7 +560,7 @@ if ARMOR_DROP == true or ARMOR_DESTROY == true then
 	end
 	minetest.register_on_dieplayer(function(player)
 		local name, player_inv, armor_inv, pos = armor:get_valid_player(player, "[on_dieplayer]")
-		if not name or minetest.setting_getbool("creative_mode") == true then
+		if not name or minetest.settings:get_bool("creative_mode") == true then
 			return
 		end
 		local drop = {}

@@ -194,8 +194,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	nobj_random = nobj_random or minetest.get_perlin_map(np_random, chulens)
 
 	local nvals_temp = nobj_temp:get_2d_map_flat(minposxz, nbuf_temp)
-	local nvals_humid = nobj_humid:get2dMap_flat(minposxz, nbuf_humid)
-	local nvals_random = nobj_random:get2dMap_flat(minposxz, nbuf_random)
+	local nvals_humid = nobj_humid:get_2d_map_flat(minposxz, nbuf_humid)
+	local nvals_random = nobj_random:get_2d_map_flat(minposxz, nbuf_random)
 
 	local offset = math.random(5,20)
 	if biome_blend == true then

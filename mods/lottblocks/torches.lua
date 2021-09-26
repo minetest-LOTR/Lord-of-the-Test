@@ -14,6 +14,7 @@ minetest.register_node("lottblocks:elf_torch", {
 			name = "lottblocks_elf_torch_on_floor_animated.png",
 		    animation = {type = "vertical_frames", aspect_w = 16, aspect_h = 16, length = 3.3}
 	}},
+	use_texture_alpha = "clip",
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
@@ -63,6 +64,7 @@ minetest.register_node("lottblocks:elf_torch_wall", {
 		    name = "lottblocks_elf_torch_on_floor_animated.png",
 		    animation = {type = "vertical_frames", aspect_w = 16, aspect_h = 16, length = 3.3}
 	}},
+	use_texture_alpha = "clip",
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
@@ -116,6 +118,7 @@ minetest.register_node("lottblocks:orc_torch", {
 			name = "lottblocks_orc_torch_on_floor_animated.png",
 		    animation = {type = "vertical_frames", aspect_w = 16, aspect_h = 16, length = 3.3}
 	}},
+	use_texture_alpha = "clip",
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
@@ -165,6 +168,7 @@ minetest.register_node("lottblocks:orc_torch_wall", {
 		    name = "lottblocks_orc_torch_on_floor_animated.png",
 		    animation = {type = "vertical_frames", aspect_w = 16, aspect_h = 16, length = 3.3}
 	}},
+	use_texture_alpha = "clip",
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,

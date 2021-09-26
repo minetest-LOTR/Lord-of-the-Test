@@ -26,6 +26,7 @@ minetest.register_node("lottthrowing:bolt_fire_box", {
 		}
 	},
 	tiles = {"lottthrowing_bolt_fire.png", "lottthrowing_bolt_fire.png", "lottthrowing_bolt_fire_back.png", "lottthrowing_bolt_fire_front.png", "lottthrowing_bolt_fire_2.png", "lottthrowing_bolt_fire.png"},
+	use_texture_alpha = "clip",
 	groups = {not_in_creative_inventory=1},
 })
 

@@ -111,7 +111,7 @@ local function exhaust_player(player, v)
 end
 
 -- Sprint settings and function
-local enable_sprint = minetest.setting_getbool("sprint") ~= false
+local enable_sprint = minetest.settings:get_bool("sprint") ~= false
 local armor_mod = minetest.get_modpath("lottarmor")
 
 function set_sprinting(name, sprinting)
@@ -319,7 +319,7 @@ function stamina.eat(hp_change, replace_with_item, itemstack, user, pointed_thin
 end
 
 -- stamina is disabled if damage is disabled
-if minetest.setting_getbool("enable_damage") and minetest.is_yes(minetest.setting_get("enable_stamina") or "1") then
+if minetest.settings:get_bool("enable_damage")and minetest.is_yes(minetest.settings:get("enable_stamina") or "1") then
 	minetest.register_on_joinplayer(function(player)
 
 		local name = player:get_player_name()

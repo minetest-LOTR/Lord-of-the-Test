@@ -27,6 +27,7 @@ minetest.register_node("lottthrowing:arrow_fire_blue_box", {
 		}
 	},
 	tiles = {"lottthrowing_arrow_fire_blue.png", "lottthrowing_arrow_fire_blue.png", "lottthrowing_arrow_fire_blue_back.png", "lottthrowing_arrow_fire_blue_front.png", "lottthrowing_arrow_fire_blue_2.png", "lottthrowing_arrow_fire_blue.png"},
+	use_texture_alpha = "clip",
 	groups = {not_in_creative_inventory=1},
 })
 

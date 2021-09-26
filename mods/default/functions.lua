@@ -403,7 +403,7 @@ minetest.register_abm({
 
 --This allows trees act *almost* like falling nodes, useful for big trees!
 
-local falling_trees = minetest.setting_getbool("falling_trees")
+local falling_trees = minetest.settings:get_bool("falling_trees")
 
 if not falling_trees then
 	if minetest.is_singleplayer() then
