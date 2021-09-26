@@ -35,7 +35,7 @@ for i, v in pairs(lottmapgen_list) do
 	local file = io.open(minetest.get_modpath("lottmapgen").."/schems/"..v.build..".we")
 	local value = file:read("*a")
 	file:close()
-	local pos1, pos2 = worldedit.allocate({x=0, y=0, z=0}, value)
+	local pos1, pos2 = worldedit2.allocate({x=0, y=0, z=0}, value)
 	lottmapgen_list[i].bbox = {
 			xmin = pos1.x-v.center.x, ymin = pos1.y-v.center.y, zmin = pos1.z-v.center.z,
 			xmax = pos2.x-v.center.x, ymax = pos2.y-v.center.y, zmax = pos2.z-v.center.z}
@@ -118,7 +118,7 @@ function lottmapgen.place_building(building, pos)
 	local p = {x = pos.x-building.center.x, y = pos.y-building.center.y, z = pos.z-building.center.z}
 	local pos1 = {x = pos.x + building.bbox.xmin, y = pos.y + building.bbox.ymin, z = pos.z + building.bbox.zmin}
 	local pos2 = {x = pos.x + building.bbox.xmax, y = pos.y + building.bbox.ymax, z = pos.z + building.bbox.zmax}
-	local count = worldedit.deserialize(p, value)
+	local count = worldedit2.deserialize(p, value)
 	if areas_mod ~= nil and protect_houses == true then
                 areas:add(building.area_owner, building.area_name, pos1, pos2, nil)
                 areas:save()
@@ -243,7 +243,7 @@ for builddesc, v in ipairs(lottmapgen_list) do
 		p.x = p.x-v.center.x
 		p.y = p.y-v.center.y
 		p.z = p.z-v.center.z
-                local count = worldedit.deserialize(p, value)
+                local count = worldedit2.deserialize(p, value)
                 itemstack:take_item()
             end
             return itemstack

@@ -23,7 +23,7 @@ local HIRAN = 0.4
 local LORAN = -0.4
 local PAPCHA = 3 -- Papyrus
 local DUGCHA = 5 -- Dune grass
-local biome_blend = minetest.setting_getbool("biome_blend")
+local biome_blend = minetest.settings:get_bool("biome_blend")
 
 --Rarity for Trees
 
@@ -116,6 +116,7 @@ end
 dofile(minetest.get_modpath("lottmapgen").."/nodes.lua")
 dofile(minetest.get_modpath("lottmapgen").."/functions.lua")
 
+dofile(minetest.get_modpath("lottmapgen").."/worldedit.lua")
 dofile(minetest.get_modpath("lottmapgen").."/schematics.lua")
 
 -- On generated function
