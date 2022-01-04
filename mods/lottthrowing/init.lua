@@ -90,9 +90,9 @@ local lottthrowing_shoot_arrow = function(itemstack, player, pointed_thing, draw
 			local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, arrow[2])
 			obj:get_luaentity().player = player or nil
 			local dir = player:get_look_dir()
-			obj:setvelocity({x=dir.x*19, y=dir.y*19, z=dir.z*19})
-			obj:setacceleration({x=dir.x*-3, y=-10, z=dir.z*-3})
-			obj:setyaw(player:get_look_yaw()+math.pi)
+			obj:set_velocity({x=dir.x*19, y=dir.y*19, z=dir.z*19})
+			obj:set_acceleration({x=dir.x*-3, y=-10, z=dir.z*-3})
+			obj:set_yaw(player:get_look_horizontal()+math.pi)
 			minetest.sound_play("lottthrowing_sound", {pos=playerpos})
 			if obj:get_luaentity().player == "" then
 				obj:get_luaentity().player = player
@@ -136,9 +136,9 @@ local lottthrowing_shoot_bolt = function(itemstack, player, pointed_thing, draws
 			local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, arrow[2])
 			obj:get_luaentity().player = player or nil
 			local dir = player:get_look_dir()
-			obj:setvelocity({x=dir.x*25, y=dir.y*25, z=dir.z*25})
-			obj:setacceleration({x=dir.x*-1, y=-5, z=dir.z*-1})
-			obj:setyaw(player:get_look_yaw()+math.pi)
+			obj:set_velocity({x=dir.x*25, y=dir.y*25, z=dir.z*25})
+			obj:set_acceleration({x=dir.x*-1, y=-5, z=dir.z*-1})
+			obj:set_yaw(player:get_look_horizontal()+math.pi)
 			minetest.sound_play("lottthrowing_sound", {pos=playerpos})
 			if obj:get_luaentity().player == "" then
 				obj:get_luaentity().player = player

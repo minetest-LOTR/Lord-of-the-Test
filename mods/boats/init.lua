@@ -57,7 +57,7 @@ function row_boat.on_rightclick(self, clicker)
 		minetest.after(0.2, function()
 			default.player_set_animation(clicker, "sit" , 30)
 		end)
-		self.object:setyaw(clicker:get_look_yaw() - math.pi / 2)
+		self.object:set_yaw(clicker:get_look_horizontal() - math.pi / 2)
 	end
 end
 
@@ -91,10 +91,10 @@ function row_boat.on_punch(self, puncher, time_from_last_punch, tool_capabilitie
 end
 
 function row_boat.on_step(self, dtime)
-	self.v = get_v(self.object:getvelocity()) * get_sign(self.v)
+	self.v = get_v(self.object:get_velocity()) * get_sign(self.v)
 	if self.driver then
 		local ctrl = self.driver:get_player_control()
-		local yaw = self.object:getyaw()
+		local yaw = self.object:get_yaw()
 		if ctrl.up then
 			self.v = self.v + 0.1
 		end
@@ -103,27 +103,27 @@ function row_boat.on_step(self, dtime)
 		end
 		if ctrl.left then
 			if ctrl.down then
-				self.object:setyaw(yaw - (1 + dtime) * 0.03)
+				self.object:set_yaw(yaw - (1 + dtime) * 0.03)
 			else
-				self.object:setyaw(yaw + (1 + dtime) * 0.03)
+				self.object:set_yaw(yaw + (1 + dtime) * 0.03)
 			end
 		end
 		if ctrl.right then
 			if ctrl.down then
-				self.object:setyaw(yaw + (1 + dtime) * 0.03)
+				self.object:set_yaw(yaw + (1 + dtime) * 0.03)
 			else
-				self.object:setyaw(yaw - (1 + dtime) * 0.03)
+				self.object:set_yaw(yaw - (1 + dtime) * 0.03)
 			end
 		end
 	end
-	local velo = self.object:getvelocity()
+	local velo = self.object:get_velocity()
 	if self.v == 0 and velo.x == 0 and velo.y == 0 and velo.z == 0 then
 		return
 	end
 	local s = get_sign(self.v)
 	self.v = self.v - 0.02 * s
 	if s ~= get_sign(self.v) then
-		self.object:setvelocity({x = 0, y = 0, z = 0})
+		self.object:set_velocity({x = 0, y = 0, z = 0})
 		self.v = 0
 		return
 	end
@@ -143,33 +143,33 @@ function row_boat.on_step(self, dtime)
 		else
 			new_acce = {x = 0, y = -9.8, z = 0} -- freefall in air -9.81
 		end
-		new_velo = get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y)
+		new_velo = get_velocity(self.v, self.object:get_yaw(), self.object:get_velocity().y)
 	else
 		p.y = p.y + 1
 		if is_water(p) then
 			new_acce = {x = 0, y = 3, z = 0}
-			local y = self.object:getvelocity().y
+			local y = self.object:get_velocity().y
 			if y > 2 then
 				y = 2
 			end
 			if y < 0 then
-				self.object:setacceleration({x = 0, y = 10, z = 0})
+				self.object:set_acceleration({x = 0, y = 10, z = 0})
 			end
-			new_velo = get_velocity(self.v, self.object:getyaw(), y)
+			new_velo = get_velocity(self.v, self.object:get_yaw(), y)
 		else
 			new_acce = {x = 0, y = 0, z = 0}
-			if math.abs(self.object:getvelocity().y) <= 2 then
+			if math.abs(self.object:get_velocity().y) <= 2 then
 				local pos = self.object:get_pos()
 				pos.y = math.floor(pos.y) + 0.5
 				self.object:set_pos(pos)
-				new_velo = get_velocity(self.v, self.object:getyaw(), 0)
+				new_velo = get_velocity(self.v, self.object:get_yaw(), 0)
 			else
-				new_velo = get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y)
+				new_velo = get_velocity(self.v, self.object:get_yaw(), self.object:get_velocity().y)
 			end
 		end
 	end
-	self.object:setvelocity(new_velo)
-	self.object:setacceleration(new_acce)
+	self.object:set_velocity(new_velo)
+	self.object:set_acceleration(new_acce)
 end
 
 minetest.register_entity("boats:row_boat", row_boat)
@@ -238,7 +238,7 @@ function sail_boat.on_rightclick(self, clicker)
 		minetest.after(0.2, function()
 			default.player_set_animation(clicker, "sit" , 30)
 		end)
-		self.object:setyaw(clicker:get_look_yaw() - math.pi / 2)
+		self.object:set_yaw(clicker:get_look_horizontal() - math.pi / 2)
 	end
 end
 
@@ -272,10 +272,10 @@ function sail_boat.on_punch(self, puncher, time_from_last_punch, tool_capabiliti
 end
 
 function sail_boat.on_step(self, dtime)
-	self.v = get_v(self.object:getvelocity()) * get_sign(self.v)
+	self.v = get_v(self.object:get_velocity()) * get_sign(self.v)
 	if self.driver then
 		local ctrl = self.driver:get_player_control()
-		local yaw = self.object:getyaw()
+		local yaw = self.object:get_yaw()
 		if ctrl.up then
 			self.v = self.v + 0.1
 		end
@@ -284,27 +284,27 @@ function sail_boat.on_step(self, dtime)
 		end
 		if ctrl.left then
 			if ctrl.down then
-				self.object:setyaw(yaw - (1 + dtime) * 0.03)
+				self.object:set_yaw(yaw - (1 + dtime) * 0.03)
 			else
-				self.object:setyaw(yaw + (1 + dtime) * 0.03)
+				self.object:set_yaw(yaw + (1 + dtime) * 0.03)
 			end
 		end
 		if ctrl.right then
 			if ctrl.down then
-				self.object:setyaw(yaw + (1 + dtime) * 0.03)
+				self.object:set_yaw(yaw + (1 + dtime) * 0.03)
 			else
-				self.object:setyaw(yaw - (1 + dtime) * 0.03)
+				self.object:set_yaw(yaw - (1 + dtime) * 0.03)
 			end
 		end
 	end
-	local velo = self.object:getvelocity()
+	local velo = self.object:get_velocity()
 	if self.v == 0 and velo.x == 0 and velo.y == 0 and velo.z == 0 then
 		return
 	end
 	local s = get_sign(self.v)
 	self.v = self.v - 0.015 * s
 	if s ~= get_sign(self.v) then
-		self.object:setvelocity({x = 0, y = 0, z = 0})
+		self.object:set_velocity({x = 0, y = 0, z = 0})
 		self.v = 0
 		return
 	end
@@ -324,33 +324,33 @@ function sail_boat.on_step(self, dtime)
 		else
 			new_acce = {x = 0, y = -9.8, z = 0} -- freefall in air -9.81
 		end
-		new_velo = get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y)
+		new_velo = get_velocity(self.v, self.object:get_yaw(), self.object:get_velocity().y)
 	else
 		p.y = p.y + 1
 		if is_water(p) then
 			new_acce = {x = 0, y = 3, z = 0}
-			local y = self.object:getvelocity().y
+			local y = self.object:get_velocity().y
 			if y > 2 then
 				y = 2
 			end
 			if y < 0 then
-				self.object:setacceleration({x = 0, y = 10, z = 0})
+				self.object:set_acceleration({x = 0, y = 10, z = 0})
 			end
-			new_velo = get_velocity(self.v, self.object:getyaw(), y)
+			new_velo = get_velocity(self.v, self.object:get_yaw(), y)
 		else
 			new_acce = {x = 0, y = 0, z = 0}
-			if math.abs(self.object:getvelocity().y) <= 2 then
+			if math.abs(self.object:get_velocity().y) <= 2 then
 				local pos = self.object:get_pos()
 				pos.y = math.floor(pos.y) + 0.5
 				self.object:set_pos(pos)
-				new_velo = get_velocity(self.v, self.object:getyaw(), 0)
+				new_velo = get_velocity(self.v, self.object:get_yaw(), 0)
 			else
-				new_velo = get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y)
+				new_velo = get_velocity(self.v, self.object:get_yaw(), self.object:get_velocity().y)
 			end
 		end
 	end
-	self.object:setvelocity(new_velo)
-	self.object:setacceleration(new_acce)
+	self.object:set_velocity(new_velo)
+	self.object:set_acceleration(new_acce)
 end
 
 minetest.register_entity("boats:sail_boat", sail_boat)

@@ -145,7 +145,7 @@ function lottmobs.face_pos(self,pos)
 	if self.drawtype == "side" then
 		yaw = yaw+(math.pi/2)
 	end
-	self.object:setyaw(yaw)
+	self.object:set_yaw(yaw)
 	return yaw
 end
 ----

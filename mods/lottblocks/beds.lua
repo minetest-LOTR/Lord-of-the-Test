@@ -9,7 +9,7 @@ end
 local formspec = "size[8,15;true]" ..
 	"bgcolor[#080808BB; true]" ..
 	"button_exit[2,12;4,0.75;leave;Leave Bed]"
-local function get_look_yaw(pos)
+local function get_look_horizontal(pos)
 	local rotation = minetest.get_node(pos).param2
 	if rotation > 3 then
 		rotation = rotation % 4 -- Mask colorfacedir values
@@ -121,7 +121,7 @@ function lottblocks.lay_down(player, pos, bed_pos, state, skip)
 
 		-- physics, eye_offset, etc
 		player:set_eye_offset({x = 0, y = -13, z = 0}, {x = 0, y = 0, z = 0})
-		local yaw, param2 = get_look_yaw(bed_pos)
+		local yaw, param2 = get_look_horizontal(bed_pos)
 		player:set_look_horizontal(yaw)
 		local dir = minetest.facedir_to_dir(param2)
 		local p = {x = bed_pos.x + dir.x / 2, y = bed_pos.y, z = bed_pos.z + dir.z / 2}

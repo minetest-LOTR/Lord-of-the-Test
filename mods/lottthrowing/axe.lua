@@ -10,9 +10,9 @@ local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 		local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, axe_entity)
 		obj:get_luaentity().player = player or nil
 		local dir = player:get_look_dir()
-		obj:setvelocity({x=dir.x*27, y=dir.y*30, z=dir.z*27})
-		obj:setacceleration({x=dir.x*-1, y=-5, z=dir.z*-1})
-		obj:setyaw(player:get_look_yaw()+math.pi)
+		obj:set_velocity({x=dir.x*27, y=dir.y*30, z=dir.z*27})
+		obj:set_acceleration({x=dir.x*-1, y=-5, z=dir.z*-1})
+		obj:set_yaw(player:get_look_horizontal()+math.pi)
 		minetest.sound_play("lottthrowing_sound", {pos=playerpos})
 		if obj:get_luaentity().player == "" then
 			obj:get_luaentity().player = player

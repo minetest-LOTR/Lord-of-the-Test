@@ -103,16 +103,16 @@ function lottmobs:register_horse(name, craftitem, horse)
 
 			-- rotation (the faster we go, the less we rotate)
 			if ctrl.left then
-				self.object:setyaw(self.object:getyaw()+2*(1.5-math.abs(self.v/self.max_speed))*math.pi/90 +dtime*math.pi/90)
+				self.object:set_yaw(self.object:get_yaw()+2*(1.5-math.abs(self.v/self.max_speed))*math.pi/90 +dtime*math.pi/90)
 			end
 			if ctrl.right then
-				self.object:setyaw(self.object:getyaw()-2*(1.5-math.abs(self.v/self.max_speed))*math.pi/90 -dtime*math.pi/90)
+				self.object:set_yaw(self.object:get_yaw()-2*(1.5-math.abs(self.v/self.max_speed))*math.pi/90 -dtime*math.pi/90)
 			end
 			-- jumping (only if on ground)
 			if ctrl.jump and on_ground then
-				local v = self.object:getvelocity()
+				local v = self.object:get_velocity()
 				v.y = (self.jump_speed or 3)
-				self.object:setvelocity(v)
+				self.object:set_velocity(v)
 			end
 
 			-- forwards/backwards
@@ -139,7 +139,7 @@ function lottmobs:register_horse(name, craftitem, horse)
 
 		if self.v == 0 then
 			if underattack ~= true then
-				self.object:setvelocity({x=0,y=0,z=0})
+				self.object:set_velocity({x=0,y=0,z=0})
 				self:set_animation("stand")
 				return
 			else
@@ -160,38 +160,38 @@ function lottmobs:register_horse(name, craftitem, horse)
 			if minetest.registered_nodes[minetest.get_node(p).name].walkable then
 				self.v = 0
 			end
-			self.object:setacceleration({x=0, y=-10, z=0})
-			self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
+			self.object:set_acceleration({x=0, y=-10, z=0})
+			self.object:set_velocity(get_velocity(self.v, self.object:get_yaw(), self.object:get_velocity().y))
 		else
-			self.object:setacceleration({x=0, y=0, z=0})
+			self.object:set_acceleration({x=0, y=0, z=0})
 			-- falling
-			if math.abs(self.object:getvelocity().y) < 1 then
+			if math.abs(self.object:get_velocity().y) < 1 then
 				local pos = self.object:get_pos()
 				pos.y = math.floor(pos.y)+0.5
 				self.object:set_pos(pos)
-				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
+				self.object:set_velocity(get_velocity(self.v, self.object:get_yaw(), 0))
 			else
-				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
+				self.object:set_velocity(get_velocity(self.v, self.object:get_yaw(), self.object:get_velocity().y))
 			end
 		end
 
-		if self.object:getvelocity().y > 0.1 then
-			local yaw = self.object:getyaw()
+		if self.object:get_velocity().y > 0.1 then
+			local yaw = self.object:get_yaw()
 			if self.drawtype == "side" then
 				yaw = yaw+(math.pi/2)
 			end
 			local x = math.sin(yaw) * -2
 			local z = math.cos(yaw) * 2
 			if minetest.get_item_group(minetest.get_node(self.object:get_pos()).name, "water") ~= 0 then
-				self.object:setacceleration({x = x, y = 2, z = z})
+				self.object:set_acceleration({x = x, y = 2, z = z})
 			else
-				self.object:setacceleration({x = x, y = -5, z = z})
+				self.object:set_acceleration({x = x, y = -5, z = z})
 			end
 		else
 			if minetest.get_item_group(minetest.get_node(self.object:get_pos()).name, "water") ~= 0 then
-				self.object:setacceleration({x = 0, y = 2, z = 0})
+				self.object:set_acceleration({x = 0, y = 2, z = 0})
 			else
-				self.object:setacceleration({x = 0, y = -5, z = 0})
+				self.object:set_acceleration({x = 0, y = -5, z = 0})
 			end
 		end
 
@@ -210,11 +210,11 @@ function lottmobs:register_horse(name, craftitem, horse)
 			end
 		elseif not self.driver then
 			self.driver = clicker
-			attach_h = self.attach_h or 5
-			attach_r = self.attach_r or 90
+			local attach_h = self.attach_h or 5
+			local attach_r = self.attach_r or 90
 			clicker:set_attach(self.object, "", {x=0,y= attach_h ,z=0}, {x=0,y= attach_r ,z=0})
 			default.player_attached[clicker:get_player_name()] = true
-			self.object:setyaw(clicker:get_look_yaw())
+			self.object:set_yaw(clicker:get_look_horizontal())
 			self.ridername = clicker:get_player_name()
 			
 			if self.offset == true then
