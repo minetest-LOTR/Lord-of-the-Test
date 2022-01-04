@@ -134,11 +134,11 @@ minetest.register_on_newplayer(function(player)
 	end
 	
 	-- Starter mob immunity to counter unfavourable spawns
-	if minetest.setting_getbool("disable_immune_spawn") then
+	if minetest.settings:get_bool("disable_immune_spawn") then
 		return
 	end
 	
-	if minetest.setting_getbool("enable_damage") then
+	if minetest.settings:get_bool("enable_damage") then
 		
 		meta:set_string("lott:immunity", immune_amt)
 		armor:set_player_armor(player)

@@ -44,7 +44,7 @@ local THROWING_ARROW_ENTITY={
 
 THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 	self.timer=self.timer+dtime
-	local pos = self.object:getpos()
+	local pos = self.object:get_pos()
 	local node = minetest.get_node(pos)
 
 	if self.timer>0.2 then
@@ -53,14 +53,14 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 			if obj:get_luaentity() ~= nil then
 				if obj:get_luaentity().name ~= "lottthrowing:arrow_magical_entity" and obj:get_luaentity().name ~= "__builtin:item" then
 					if self.player ~= "" then
-						self.player:setpos(pos)
+						self.player:set_pos(pos)
 						self.player:get_inventory():add_item("main", ItemStack("lottthrowing:arrow_magical"))
 					end
 					self.object:remove()
 				end
 			else
 				if self.player ~= "" then
-					self.player:setpos(pos)
+					self.player:set_pos(pos)
 					self.player:get_inventory():add_item("main", ItemStack("lottthrowing:arrow_magical"))
 				end
 				self.object:remove()
@@ -71,7 +71,7 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 	if self.lastpos.x~=nil then
 		if node.name ~= "air" then
 			if self.player ~= "" then
-					self.player:setpos(self.lastpos)
+					self.player:set_pos(self.lastpos)
 					self.player:get_inventory():add_item("main", ItemStack("lottthrowing:arrow_magical"))
 				end
 			self.object:remove()

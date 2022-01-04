@@ -125,7 +125,7 @@ lottpotion = {
 	refresh = function(playername)
 		if minetest.get_player_by_name(playername)~=nil then
 			local prefs = lottpotion.players[playername]
-			minetest.get_player_by_name(playername):set_physics_override(prefs.speed, prefs.jump, prefs.gravity)
+			minetest.get_player_by_name(playername):set_physics_override({speed = prefs.speed, jump = prefs.jump, gravity = prefs.gravity})
 		end
 	end,
 	register_potion = function(sname, name, fname, time, def)

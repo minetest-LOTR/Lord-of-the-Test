@@ -43,7 +43,7 @@ minetest.register_tool("lottweapons:balrog_whip", {
 					minetest.set_node(new_pos, {name = "fire:basic_flame"})
 				end
 			end
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/49)
 				return itemstack
 			end
@@ -75,7 +75,7 @@ minetest.register_tool("lottweapons:balrog_whip", {
 					end
 				end)
 			end
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/499)
 				return itemstack
 			end
@@ -103,7 +103,7 @@ minetest.register_tool("lottweapons:balrog_whip", {
 			end
 			end
 			end
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/49)
 				return itemstack
 			end

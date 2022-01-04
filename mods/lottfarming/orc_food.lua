@@ -2,7 +2,7 @@ minetest.register_craftitem("lottfarming:orc_food", {
 	description = "Orc Food",
 	inventory_image = "lottfarming_orc_food.png",
 	on_use = function(itemstack, user, pointed_thing)
-		if minetest.setting_getbool("creative_mode") ~= true then
+		if minetest.settings:get_bool("creative_mode") ~= true then
 			itemstack:take_item()
 		end
 		stamina.change(user, 20)
@@ -45,7 +45,7 @@ minetest.register_craftitem("lottfarming:orc_medicine", {
 	description = "Orc medicine",
 	inventory_image = "lottfarming_orc_medicine.png",
 	on_use = function(itemstack, user, pointed_thing)
-		if minetest.setting_getbool("creative_mode") ~= true then
+		if minetest.settings:get_bool("creative_mode") ~= true then
 			itemstack:take_item()
 		end
 		user:set_hp(20)

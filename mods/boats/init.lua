@@ -85,7 +85,7 @@ function row_boat.on_punch(self, puncher, time_from_last_punch, tool_capabilitie
 	minetest.after(0.1, function()
 		self.object:remove()
 	end)
-	if not minetest.setting_getbool("creative_mode") then
+	if not minetest.settings:get_bool("creative_mode") then
 		puncher:get_inventory():add_item("main", "boats:row_boat")
 	end
 end
@@ -131,7 +131,7 @@ function row_boat.on_step(self, dtime)
 		self.v = 4.5 * get_sign(self.v)
 	end
 
-	local p = self.object:getpos()
+	local p = self.object:get_pos()
 	p.y = p.y - 0.5
 	local new_velo = {x = 0, y = 0, z = 0}
 	local new_acce = {x = 0, y = 0, z = 0}
@@ -159,9 +159,9 @@ function row_boat.on_step(self, dtime)
 		else
 			new_acce = {x = 0, y = 0, z = 0}
 			if math.abs(self.object:getvelocity().y) <= 2 then
-				local pos = self.object:getpos()
+				local pos = self.object:get_pos()
 				pos.y = math.floor(pos.y) + 0.5
-				self.object:setpos(pos)
+				self.object:set_pos(pos)
 				new_velo = get_velocity(self.v, self.object:getyaw(), 0)
 			else
 				new_velo = get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y)
@@ -191,7 +191,7 @@ minetest.register_craftitem("boats:row_boat", {
 		end
 		pointed_thing.under.y = pointed_thing.under.y + 0.5
 		minetest.add_entity(pointed_thing.under, "boats:row_boat")
-		if not minetest.setting_getbool("creative_mode") then
+		if not minetest.settings:get_bool("creative_mode") then
 			itemstack:take_item()
 		end
 		return itemstack
@@ -266,7 +266,7 @@ function sail_boat.on_punch(self, puncher, time_from_last_punch, tool_capabiliti
 	minetest.after(0.1, function()
 		self.object:remove()
 	end)
-	if not minetest.setting_getbool("creative_mode") then
+	if not minetest.settings:get_bool("creative_mode") then
 		puncher:get_inventory():add_item("main", "boats:sail_boat")
 	end
 end
@@ -312,7 +312,7 @@ function sail_boat.on_step(self, dtime)
 		self.v = 7.5 * get_sign(self.v)
 	end
 
-	local p = self.object:getpos()
+	local p = self.object:get_pos()
 	p.y = p.y - 0.5
 	local new_velo = {x = 0, y = 0, z = 0}
 	local new_acce = {x = 0, y = 0, z = 0}
@@ -340,9 +340,9 @@ function sail_boat.on_step(self, dtime)
 		else
 			new_acce = {x = 0, y = 0, z = 0}
 			if math.abs(self.object:getvelocity().y) <= 2 then
-				local pos = self.object:getpos()
+				local pos = self.object:get_pos()
 				pos.y = math.floor(pos.y) + 0.5
-				self.object:setpos(pos)
+				self.object:set_pos(pos)
 				new_velo = get_velocity(self.v, self.object:getyaw(), 0)
 			else
 				new_velo = get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y)
@@ -371,7 +371,7 @@ minetest.register_craftitem("boats:sail_boat", {
 		end
 		pointed_thing.under.y = pointed_thing.under.y+0.5
 		minetest.add_entity(pointed_thing.under, "boats:sail_boat")
-		if not minetest.setting_getbool("creative_mode") then
+		if not minetest.settings:get_bool("creative_mode") then
 			itemstack:take_item()
 		end
 		return itemstack

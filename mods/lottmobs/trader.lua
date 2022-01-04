@@ -139,7 +139,7 @@ function lottmobs.add_goods(entity, race)
 end
 
 function lottmobs.face_pos(self,pos)
-	local s = self.object:getpos()
+	local s = self.object:get_pos()
 	local vec = {x=pos.x-s.x, y=pos.y-s.y, z=pos.z-s.z}
 	local yaw = math.atan2(vec.z,vec.x)-math.pi/2
 	if self.drawtype == "side" then
@@ -151,7 +151,7 @@ end
 ----
 
 function lottmobs_trader(self, clicker, entity, race, image, priv)
-	lottmobs.face_pos(self, clicker:getpos())
+	lottmobs.face_pos(self, clicker:get_pos())
 	local player = clicker:get_player_name()
 	if self.id == 0 then
 		self.id = (math.random(1, 1000) * math.random(1, 10000)) .. self.name .. (math.random(1, 1000) ^ 2)

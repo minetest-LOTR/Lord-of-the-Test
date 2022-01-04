@@ -31,7 +31,7 @@ function stairs.register_stair(subname, recipeitem, groups, images, description,
 			local p1 = pointed_thing.above
 			local param2 = 0
 
-			local placer_pos = placer:getpos()
+			local placer_pos = placer:get_pos()
 			if placer_pos then
 				local dir = {
 					x = p1.x - placer_pos.x,

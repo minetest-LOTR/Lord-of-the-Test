@@ -953,7 +953,7 @@ minetest.register_node("lottplants:fireflies", {
 			},
 		},
 	},
-	alpha = 100,
+	use_texture_alpha = "clip",
 	paramtype = "light",
 	light_source = 8,
 	walkable = false,

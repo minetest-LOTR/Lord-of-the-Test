@@ -193,12 +193,12 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 		},
 		groups = node_groups,
 		on_rightclick = function(pos, node, player, itemstack, pointed_thing)
-			local v=player:get_player_velocity()
+			local v=player:get_velocity()
 			if v.x~=0 or v.y~=0 or v.z~=0 then return end
 			local name=player:get_player_name()
 			local nname=minetest.get_node(pos).name
 			if default.player_attached[name] then
-				player:set_physics_override(1, 1, 1)
+				player:set_physics_override({speed = 1, jump = 1, gravity = 1})
 				minetest.after(0.3, function(player,name)
 					player:set_eye_offset({x=0,y=0,z=0}, {x=0,y=0,z=0})
 					default.player_attached[name]=false
@@ -219,8 +219,8 @@ function lottblocks.register_wooden_stuff(name, description, texture, wood_name)
 					end
 				end,player,name)
 			else
-				player:set_physics_override(0, 0, 0)
-				player:setpos({x=pos.x,y=pos.y,z=pos.z})
+				player:set_physics_override({speed = 0, jump = 0, gravity = 0})
+				player:set_pos({x=pos.x,y=pos.y,z=pos.z})
 				minetest.after(0.3, function(player,name)
 					player:set_eye_offset({x=0,y=-7,z=2}, {x=0,y=0,z=0})
 					default.player_attached[name]=true

@@ -3,10 +3,10 @@ local creative = minetest.settings:get_bool("creative_mode")
 local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 	local axe_entity = "lottthrowing:" .. axe .. "_entity"
 	local lottthrowing_throw_axe = function(itemstack, player)
-		if not minetest.setting_getbool("creative_mode") then
+		if not minetest.settings:get_bool("creative_mode") then
 			player:get_inventory():remove_item("main", player:get_wield_index())
 		end
-		local playerpos = player:getpos()
+		local playerpos = player:get_pos()
 		local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, axe_entity)
 		obj:get_luaentity().player = player or nil
 		local dir = player:get_look_dir()
@@ -75,7 +75,7 @@ local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 
 	aep.on_step = function(self, dtime)
 		self.timer=self.timer+dtime
-		local pos = self.object:getpos()
+		local pos = self.object:get_pos()
 		local node = minetest.get_node(pos)
 
 		if self.timer>0.2 then

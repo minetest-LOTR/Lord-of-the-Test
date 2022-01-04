@@ -24,7 +24,7 @@ local function ring_drop(itemstack, dropper, pos)
 	local ent = lottother.item_drop(itemstack, dropper, pos)
 	minetest.after(5, function()
 		if ent ~= nil then
-			local pos = ent:getpos()
+			local pos = ent:get_pos()
 			if pos ~= nil then
 				local node = minetest.get_node(pos).name
 				if node == "default:lava_source" then

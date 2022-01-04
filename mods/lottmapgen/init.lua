@@ -228,12 +228,12 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local surfy = y1 + 80 -- y of last surface detected
 			for y = y1, y0, -1 do -- working down each column for each node do
 				if biome_blend == true then
-					local offsetpos = {x = (x-x0) + offset + math.random(-offset, offset) + 1, z = (z - z0) + offset + math.random(-offset, offset) + 1}
-					offsetpos.x = rangelim(offsetpos.x, 1, 80)
-					offsetpos.z = rangelim(offsetpos.z, 1, 80)
-					n_temp = nvals_temp[offsetpos.z][offsetpos.x] -- select biome
-					n_humid = nvals_humid[offsetpos.z][offsetpos.x]
-					n_ran = nvals_random[offsetpos.z][offsetpos.x]
+					local offset_pos = {x = (x-x0) + offset + math.random(-offset, offset) + 1, z = (z - z0) + offset + math.random(-offset, offset) + 1}
+					offset_pos.x = rangelim(offset_pos.x, 1, 80)
+					offset_pos.z = rangelim(offset_pos.z, 1, 80)
+					n_temp = nvals_temp[offset_pos.z][offset_pos.x] -- select biome
+					n_humid = nvals_humid[offset_pos.z][offset_pos.x]
+					n_ran = nvals_random[offset_pos.z][offset_pos.x]
 					biome = lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, HITET, HIHUT, HIRAN)
 				end
 				local fimadep = math.floor(6 - y / 512) + math.random(0, 1)

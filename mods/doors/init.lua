@@ -106,7 +106,7 @@ function doors:register_door(name, def)
                                 def.custom_on_place(itemstack, placer, pointed_thing, def)
                         end
 
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:take_item()
 			end
 			return itemstack

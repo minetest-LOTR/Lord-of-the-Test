@@ -54,8 +54,8 @@ local npc_guard_attack = function(self)
 
                 if entity_type == "player" or entity_type == "npc" or entity_type == "monster" then
 
-                        local s = self.object:getpos()
-                        local p = player:getpos()
+                        local s = self.object:get_pos()
+                        local p = player:get_pos()
                         local sp = s
 
                         -- aim higher to make looking up hills more realistic
@@ -423,12 +423,12 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race, price)
 		hp = hp + 4
 		if hp > self.hp_max then hp = self.hp_max end
 		self.object:set_hp(hp)
-		if not minetest.setting_getbool("creative_mode") then
+		if not minetest.settings:get_bool("creative_mode") then
 			item:take_item()
 			clicker:set_wielded_item(item)
 		end
 	elseif item:get_name() == payment and self.tamed == false and lottclasses.player_same_race_or_ally(clicker, self.race) then
-		lottmobs.face_pos(self, clicker:getpos())
+		lottmobs.face_pos(self, clicker:get_pos())
 		self.state = "stand"
                 if not price then price = 50 end
 		minetest.show_formspec(name, "mob_hiring", lottmobs.get_hiring_formspec(price))
@@ -436,8 +436,8 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race, price)
 			if math.random(1, (price/cost)) == 1 then
 				minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> Okay, I'll work for you.")
 				local count = item:get_count()
-				if count > cost or minetest.setting_getbool("creative_mode") then
-					if not minetest.setting_getbool("creative_mode") then
+				if count > cost or minetest.settings:get_bool("creative_mode") then
+					if not minetest.settings:get_bool("creative_mode") then
 						item:take_item(cost)
 						clicker:set_wielded_item(item)
 					end
@@ -507,7 +507,7 @@ lottmobs.register_guard_craftitem = function(name, description, inventory_image)
                                                             local add_guard = function(game_name)
                                                                     local pos = pointed_thing.above
                                                                     pos.y = pos.y + 1
-                                                                    if not minetest.setting_getbool("creative_mode") then
+                                                                    if not minetest.settings:get_bool("creative_mode") then
                                                                             itemstack:take_item()
                                                                     end
                                                                     local obj = minetest.add_entity(pos, name):get_luaentity()

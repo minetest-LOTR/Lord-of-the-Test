@@ -225,17 +225,17 @@ minetest.register_node("lottblocks:palantir", {
 			end
 			if can_tp == true then
 				if fields.teleports == "Teleport to..." then
-					sender:setpos({x = pos.x, y = pos.y + 1, z = pos.z})
+					sender:set_pos({x = pos.x, y = pos.y + 1, z = pos.z})
 					return
 				elseif fields.teleports == nil or
 				lottblocks.palantiri[meta:get_string("network")][fields.teleports] == nil then
 					return
 				end
 				local p = lottblocks.palantiri[meta:get_string("network")][fields.teleports]
-				sender:setpos({x = p.x, y = p.y + 1, z = p.z})
+				sender:set_pos({x = p.x, y = p.y + 1, z = p.z})
 			elseif can_tp == false then
 				if not fields.teleports == "Teleport to..." then
-					sender:setpos({
+					sender:set_pos({
 						x = pos.x + math.random(-50, 50),
 						y = pos.y + math.random(20, 50),
 						z = pos.z + math.random(-50, 50)

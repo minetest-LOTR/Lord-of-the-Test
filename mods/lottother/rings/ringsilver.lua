@@ -82,7 +82,7 @@ minetest.register_craftitem("lottother:hot_ringsilver", {
 		local ent = lottother.item_drop(itemstack, dropper, pos)
 		minetest.after(3, function()
 			if ent ~= nil and metadata ~= nil then
-				local pos = ent:getpos()
+				local pos = ent:get_pos()
 				if pos ~= nil then
 					local node = minetest.get_node(pos).name
 					ent:remove()

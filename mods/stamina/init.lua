@@ -308,7 +308,7 @@ function stamina.eat(hp_change, replace_with_item, itemstack, user, pointed_thin
 			if inv:room_for_item("main", {name=replace_with_item}) then
 				inv:add_item("main", replace_with_item)
 			else
-				local pos = user:getpos()
+				local pos = user:get_pos()
 				pos.y = math.floor(pos.y + 0.5)
 				core.add_item(pos, replace_with_item)
 			end

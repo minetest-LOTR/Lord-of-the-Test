@@ -32,7 +32,7 @@ function lottmobs:register_horse(name, craftitem, horse)
 			if pointed_thing.above then
 				minetest.add_entity(pointed_thing.above, name)
 				
-				if not minetest.setting_getbool("creative_mode") then
+				if not minetest.settings:get_bool("creative_mode") then
 					itemstack:take_item()
 				end
 			end
@@ -91,7 +91,7 @@ function lottmobs:register_horse(name, craftitem, horse)
 	end
 
 	function horse:on_step(dtime)
-		local p = self.object:getpos()
+		local p = self.object:get_pos()
 		p.y = p.y - 0.1
 		local on_ground = is_ground(p)
 
@@ -154,7 +154,7 @@ function lottmobs:register_horse(name, craftitem, horse)
 			self.v = self.max_speed*get_sign(self.v)
 		end
 
-		local p = self.object:getpos()
+		local p = self.object:get_pos()
 		p.y = p.y+1
 		if not is_ground(p) then
 			if minetest.registered_nodes[minetest.get_node(p).name].walkable then
@@ -166,9 +166,9 @@ function lottmobs:register_horse(name, craftitem, horse)
 			self.object:setacceleration({x=0, y=0, z=0})
 			-- falling
 			if math.abs(self.object:getvelocity().y) < 1 then
-				local pos = self.object:getpos()
+				local pos = self.object:get_pos()
 				pos.y = math.floor(pos.y)+0.5
-				self.object:setpos(pos)
+				self.object:set_pos(pos)
 				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
 			else
 				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
@@ -182,13 +182,13 @@ function lottmobs:register_horse(name, craftitem, horse)
 			end
 			local x = math.sin(yaw) * -2
 			local z = math.cos(yaw) * 2
-			if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+			if minetest.get_item_group(minetest.get_node(self.object:get_pos()).name, "water") ~= 0 then
 				self.object:setacceleration({x = x, y = 2, z = z})
 			else
 				self.object:setacceleration({x = x, y = -5, z = z})
 			end
 		else
-			if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+			if minetest.get_item_group(minetest.get_node(self.object:get_pos()).name, "water") ~= 0 then
 				self.object:setacceleration({x = 0, y = 2, z = 0})
 			else
 				self.object:setacceleration({x = 0, y = -5, z = 0})
@@ -256,7 +256,7 @@ function lottmobs:register_horse(name, craftitem, horse)
 					puncher:set_eye_offset({x=0,y=0,z=0},{x=0,y=0,z=0})
 				end
 			elseif self.aggressive == true then
-				local objs = minetest.get_objects_inside_radius(self.object:getpos(), 4)
+				local objs = minetest.get_objects_inside_radius(self.object:get_pos(), 4)
 				local _,obj
 				for _,obj in ipairs(objs) do
 					if obj:is_player() and puncher:get_player_name() == obj:get_player_name() then
@@ -274,7 +274,7 @@ function lottmobs:register_horse(name, craftitem, horse)
 			end
 		else
 			if puncher and self.aggressive == true then
-				local objs = minetest.get_objects_inside_radius(self.object:getpos(), 4)
+				local objs = minetest.get_objects_inside_radius(self.object:get_pos(), 4)
 				local _,obj
 				for _,obj in ipairs(objs) do
 					if puncher:get_luaentity() == obj:get_luaentity() then
@@ -470,8 +470,8 @@ mobs:register_mob("lottmobs:horse", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "farming:wheat" then
-        	minetest.add_entity(self.object:getpos(), "lottmobs:horseh1")
-        	if not minetest.setting_getbool("creative_mode") then
+        	minetest.add_entity(self.object:get_pos(), "lottmobs:horseh1")
+        	if not minetest.settings:get_bool("creative_mode") then
 				item:take_item()
         		clicker:set_wielded_item(item)
         	end
@@ -522,8 +522,8 @@ mobs:register_mob("lottmobs:horsepeg", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "farming:wheat" then
-        	minetest.add_entity(self.object:getpos(), "lottmobs:horsepegh1")
-        	if not minetest.setting_getbool("creative_mode") then
+        	minetest.add_entity(self.object:get_pos(), "lottmobs:horsepegh1")
+        	if not minetest.settings:get_bool("creative_mode") then
 				item:take_item()
         		clicker:set_wielded_item(item)
         	end
@@ -575,8 +575,8 @@ mobs:register_mob("lottmobs:horseara", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "farming:wheat" then
-    		minetest.add_entity(self.object:getpos(), "lottmobs:horsearah1")
-    		if not minetest.setting_getbool("creative_mode") then
+    		minetest.add_entity(self.object:get_pos(), "lottmobs:horsearah1")
+    		if not minetest.settings:get_bool("creative_mode") then
 				item:take_item()
     			clicker:set_wielded_item(item)
             end
@@ -628,8 +628,8 @@ mobs:register_mob("lottmobs:shirepony", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "farming:wheat" then
-        	minetest.add_entity(self.object:getpos(), "lottmobs:shireponyh1")
-			if not minetest.setting_getbool("creative_mode") then
+        	minetest.add_entity(self.object:get_pos(), "lottmobs:shireponyh1")
+			if not minetest.settings:get_bool("creative_mode") then
 			   	item:take_item()
             	clicker:set_wielded_item(item)
             end
@@ -681,8 +681,8 @@ mobs:register_mob("lottmobs:shireponyblack", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "farming:wheat" then
-    		minetest.add_entity(self.object:getpos(), "lottmobs:shireponyblackh1")
-        	if not minetest.setting_getbool("creative_mode") then
+    		minetest.add_entity(self.object:get_pos(), "lottmobs:shireponyblackh1")
+        	if not minetest.settings:get_bool("creative_mode") then
 				item:take_item()
                 clicker:set_wielded_item(item)
         	end

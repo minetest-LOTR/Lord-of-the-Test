@@ -95,7 +95,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			if inv:room_for_item("main", new_stack) then
 				inv:add_item("main", new_stack)
 			else
-				minetest.add_item(player:getpos(), new_stack)
+				minetest.add_item(player:get_pos(), new_stack)
 			end
 		else
 			stack:set_metadata(data_str)
