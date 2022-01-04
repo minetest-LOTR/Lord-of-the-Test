@@ -172,9 +172,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				end
 				if nvals_cave[nixyz] > cave_d then
 					data[vi] = c_tmp
-					if nvals_cave[nixyz] > 1.2 and y < -100 then
-						data[vi] = c_lava
-					end
 				elseif nvals_rav[nixyz] > 1.45 then
 					data[vi] = c_tmp
 				end
@@ -288,6 +285,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 	end
 	lottmapgen.generate_pools(x0, y0, z0, x1, y1, z1, vm, area, data)
+	lottmapgen.generate_lava_pools(x0, y0, z0, x1, y1, z1, vm, area, data)
 	--lottmapgen.generate_dungeon(vm, area, data, emin, dungeon_wall)
 	vm:set_data(data)
 	vm:set_param2_data(p2data)

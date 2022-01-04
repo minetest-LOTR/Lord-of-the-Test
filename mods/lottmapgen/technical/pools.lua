@@ -2,7 +2,7 @@
 -- https://forum.minetest.net/viewtopic.php?f=11&t=8400
 -- https://github.com/paramat/highlandpools
 
-local YMAX = 33000 -- Maximum altitude for pools
+local YMAX = 500 -- Maximum altitude for pools
 local FLOW = 256
 
 local function get_walkable(c_id)
@@ -45,6 +45,7 @@ local function remove_tree(c_tree, x, y, z, area, data)
 	-- Find leaves
 	local node = minetest.get_name_from_content_id(c_tree)
 	local c_leaves
+	local c_snow = minetest.get_content_id("lottitems:snow_layer")
 	if node:find("pine") then
 		c_leaves = minetest.get_content_id(node:sub(1, -6) .. "needles")
 	elseif node:find("young_mallorn") then
@@ -64,7 +65,7 @@ local function remove_tree(c_tree, x, y, z, area, data)
 	for i = -4, 4 do
 	for k = -4, 4 do
 		local vi = area:index(x + i, y + j, z + k)
-		if data[vi] == c_tree or data[vi] == c_leaves then
+		if data[vi] == c_tree or data[vi] == c_leaves or data[vi] == c_snow then
 			data[vi] = c_air
 		elseif c_rowan and data[vi] == c_rowan then
 			data[vi] = c_air
@@ -220,6 +221,135 @@ function lottmapgen.generate_pools(x0, y0, z0, x1, y1, z1, vm, area, data)
 								data[viu] = c_watsour
 							else
 								data[viu] = c_dirt
+								break
+							end
+						end
+					end
+				end
+				end
+			end
+		end
+	end
+	end
+end
+
+function lottmapgen.generate_lava_pools(x0, y0, z0, x1, y1, z1, vm, area, data)
+	if y0 > -120 then
+		return
+	end
+	local c_air = minetest.get_content_id("air")
+	local c_ignore = minetest.get_content_id("ignore")
+	local c_lava = minetest.get_content_id("lottitems:lava_source")
+	local c_grass = minetest.get_content_id("lottitems:stone")
+	local lava_map = {}
+
+	for xcen = x0 + 8, x1 - 7, 8 do
+	for zcen = z0 + 8, z1 - 7, 8 do
+		local yasurf = false -- y of above surface node
+		for y = y0, y1 do
+			local vi = area:index(xcen, y, zcen)
+			local c_node = data[vi]
+			if y == y0 and c_node == c_air then
+				break
+			elseif c_node == c_air then
+				yasurf = y + 1
+				break
+			end
+		end
+		if yasurf then
+			local abort = false
+			for ser = 1, 80 do
+				local vi = area:index(xcen + ser, yasurf, zcen)
+				local c_node = data[vi]
+				if xcen + ser == x1 then
+					abort = true
+				elseif c_node ~= c_air then
+					break
+				end
+			end
+			for ser = 1, 80 do
+				local vi = area:index(xcen - ser, yasurf, zcen)
+				local c_node = data[vi]
+				if xcen - ser == x0 then
+					abort = true
+				elseif c_node ~= c_air then
+					break
+				end
+			end
+			for ser = 1, 80 do
+				local vi = area:index(xcen, yasurf, zcen + ser)
+				local c_node = data[vi]
+				if zcen + ser == z1 then
+					abort = true
+				elseif c_node ~= c_air then
+					break
+				end
+			end
+			for ser = 1, 80 do
+				local vi = area:index(xcen, yasurf, zcen - ser)
+				local c_node = data[vi]
+				if zcen - ser == z0 then
+					abort = true
+				elseif c_node ~= c_air then
+					break
+				end
+			end
+			if abort then
+				break
+			end
+
+			local vi = area:index(xcen, yasurf, zcen)
+			lava_map[vi] = 1
+			local flab = false -- flow abort
+			for flow = 1, FLOW do
+				for z = z0, z1 do
+					for x = x0, x1 do
+						local vif = area:index(x, yasurf, z)
+						if lava_map[vif] == 1 then
+							if x == x0 or x == x1 or z == z0 or z == z1 then
+								flab = true -- if water at chunk edge abort flow
+								break
+							else -- flow water
+								local vie = area:index(x + 1, yasurf, z)
+								local viw = area:index(x - 1, yasurf, z)
+								local vin = area:index(x, yasurf, z + 1)
+								local vis = area:index(x, yasurf, z - 1)
+								if data[vie] == c_air then
+									lava_map[vie] = 1
+								end
+								if data[viw] == c_air then
+									lava_map[viw] = 1
+								end
+								if data[vin] == c_air then
+									lava_map[vin] = 1
+								end
+								if data[vis] == c_air then
+									lava_map[vis] = 1
+								end
+							end
+						end
+					end
+					if flab then
+						break
+					end
+				end
+				if flab then
+					break
+				end
+			end
+			if flab then -- erase water from this y level
+				lava_map = {}
+			else -- flow downwards add dirt
+				for z = z0, z1 do
+				for x = x0, x1 do
+					local vi = area:index(x, yasurf, z)
+					if lava_map[vi] == 1 then
+						data[vi] = c_lava
+						for y = yasurf - 1, y0, -1 do
+							local viu = area:index(x, y, z)
+							if data[viu] == c_air then
+								data[viu] = c_lava
+							else
 								break
 							end
 						end
