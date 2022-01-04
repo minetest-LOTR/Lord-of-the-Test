@@ -304,6 +304,19 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		minetest.set_player_privs(name, privs)
 		return
 	end
+	
+	if fields.quit then
+		if not minetest.get_player_privs(name).GAMEwizard and not minetest.get_player_privs(name).GAMEfemale and not minetest.get_player_privs(name).GAMEmale then
+			minetest.chat_send_player(name, minetest.colorize("red", "Please select a race!"))
+			minetest.after(0.1, function()
+				if minetest.is_singleplayer() then
+					minetest.show_formspec(name, "race_selector", race_chooser .. fly_stuff)
+				else
+					minetest.show_formspec(name, "race_selector", race_chooser)
+				end
+			end)
+		end
+	end
 end)
 
 minetest.register_chatcommand("race", {
