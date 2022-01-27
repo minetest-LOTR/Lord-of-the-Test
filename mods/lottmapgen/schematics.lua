@@ -223,7 +223,7 @@ lottmapgen.fill_bellow = function(fill)
 end
 
 -- folowing function let as a way to "hack" building placement, but shouldn't be needed
-for builddesc, v in ipairs(lottmapgen_list) do
+for builddesc, v in pairs(lottmapgen_list) do
     local build = v.build
     minetest.register_node("lottmapgen:"..build, {
         description = builddesc,

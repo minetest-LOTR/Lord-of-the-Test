@@ -135,58 +135,60 @@ minetest.register_globalstep(function(dtime)
 			end
 			
 			-- corruption effect
-			if wield == "lottother:nenya" or wield == "lottother:vilya" or wield == "lottother:narya" or wield == "lottother:dwarf_ring" then
-				lottother.corrupt[name] = lottother.corrupt[name] + 1
-				local corruption = tonumber(lottother.corrupt[name])
-				if corruption > 29 and minetest.get_player_privs(name).GAMEwizard == nil and minetest.get_player_privs(name).purity == nil then
-					if corruption == 30 then
-						lottother.corrupt[name.."_1"] = player:hud_add({
-							hud_elem_type = "image",
-							position = {x=0.5, y=0.5},
-							scale = {x=-100, y=-100},
-							text = "lottother_corruption.png",
-							offset = {x=0, y=0},
-						})
-					elseif corruption == 60 then
-						lottother.corrupt[name.."_2"] = player:hud_add({
-							hud_elem_type = "image",
-							position = {x=0.5, y=0.5},
-							scale = {x=-100, y=-100},
-							text = "lottother_corruption.png",
-							offset = {x=0, y=0},
-						})
-					elseif corruption == 90 then
-						lottother.corrupt[name.."_3"] = player:hud_add({
-							hud_elem_type = "image",
-							position = {x=0.5, y=0.5},
-							scale = {x=-100, y=-100},
-							text = "lottother_corruption.png",
-							offset = {x=0, y=0},
-						})
-					elseif corruption == 120 then
-						lottother.corrupt[name.."_4"] = player:hud_add({
-							hud_elem_type = "image",
-							position = {x=0.5, y=0.5},
-							scale = {x=-100, y=-100},
-							text = "lottother_corruption_eye.png",
-							offset = {x=0, y=0},
-						})
-					elseif corruption > 135 then
-						player:set_hp(player:get_hp()-0.5)
+			if minetest.get_player_privs(name).purity == nil then
+				if wield == "lottother:nenya" or wield == "lottother:vilya" or wield == "lottother:narya" or wield == "lottother:dwarf_ring" then
+					lottother.corrupt[name] = lottother.corrupt[name] + 1
+					local corruption = tonumber(lottother.corrupt[name])
+					if corruption > 29 and minetest.get_player_privs(name).GAMEwizard == nil then
+						if corruption == 30 then
+							lottother.corrupt[name.."_1"] = player:hud_add({
+								hud_elem_type = "image",
+								position = {x=0.5, y=0.5},
+								scale = {x=-100, y=-100},
+								text = "lottother_corruption.png",
+								offset = {x=0, y=0},
+							})
+						elseif corruption == 60 then
+							lottother.corrupt[name.."_2"] = player:hud_add({
+								hud_elem_type = "image",
+								position = {x=0.5, y=0.5},
+								scale = {x=-100, y=-100},
+								text = "lottother_corruption.png",
+								offset = {x=0, y=0},
+							})
+						elseif corruption == 90 then
+							lottother.corrupt[name.."_3"] = player:hud_add({
+								hud_elem_type = "image",
+								position = {x=0.5, y=0.5},
+								scale = {x=-100, y=-100},
+								text = "lottother_corruption.png",
+								offset = {x=0, y=0},
+							})
+						elseif corruption == 120 then
+							lottother.corrupt[name.."_4"] = player:hud_add({
+								hud_elem_type = "image",
+								position = {x=0.5, y=0.5},
+								scale = {x=-100, y=-100},
+								text = "lottother_corruption_eye.png",
+								offset = {x=0, y=0},
+							})
+						elseif corruption > 135 then
+							player:set_hp(player:get_hp()-0.5)
+						end
 					end
-				end
-			elseif tonumber(lottother.corrupt[name]) > 0 then
-				lottother.corrupt[name] = lottother.corrupt[name] - 1
-				local corruption = tonumber(lottother.corrupt[name])
-				
-				if corruption == 29 then
-					player:hud_remove(lottother.corrupt[name.."_1"])
-				elseif corruption == 59 then
-					player:hud_remove(lottother.corrupt[name.."_2"])
-				elseif corruption == 89 then
-					player:hud_remove(lottother.corrupt[name.."_3"])
-				elseif corruption == 119 then
-					player:hud_remove(lottother.corrupt[name.."_4"])
+				elseif tonumber(lottother.corrupt[name]) > 0 then
+					lottother.corrupt[name] = lottother.corrupt[name] - 1
+					local corruption = tonumber(lottother.corrupt[name])
+					
+					if corruption == 29 then
+						player:hud_remove(lottother.corrupt[name.."_1"])
+					elseif corruption == 59 then
+						player:hud_remove(lottother.corrupt[name.."_2"])
+					elseif corruption == 89 then
+						player:hud_remove(lottother.corrupt[name.."_3"])
+					elseif corruption == 119 then
+						player:hud_remove(lottother.corrupt[name.."_4"])
+					end
 				end
 			end
 			
