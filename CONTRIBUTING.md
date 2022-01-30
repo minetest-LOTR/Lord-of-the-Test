@@ -31,8 +31,8 @@ New guides should follow similar code and the code for them should be in the sam
 -----------------------------------------------------------------------------------------------
 #### Improvements
 
-Improvements mean code optimization. No new features.
+Improvements mean code optimization or fixing weird behaviour. No new major features.
 
-If the improvement is concerning improvement of an existing feature. Please contact a minetest-LOTR member about your plans before proceeding (see above for contact).
+If you are working on anything major, please contact a minetest-LOTR member about your plans before proceeding (see above for contact) to clarify and avoid wasted work.
 
 -----------------------------------------------------------------------------------------------
