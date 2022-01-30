@@ -39,7 +39,7 @@ return "return {[\"background\"] = \"gui_gondorbg.png\", [\"title\"] = \"Safe La
 	"\\\nYou will definitely spot the beautiful tall mallorn trees, with their golden leaves."..
 	"\\\nBright and stunning flowers decorate the region, some of which may even have magical properties."..
 	"\\\nBlessed by the Elves, you might also find magical materials in the region."..
-	"\\\nThere's rumours of old Elven forges, containing great treasures, buried deep down."..
+	"\\\nThere's rumours of old Elven forges, containing great treasures, buried below the surface, but not too deep (>-100)."..
 	"\\\nThe mallorn trees are sometimes fitted with grand Elven treehouses, a most magnificent sight."..
 	"\\\nProbably the most magical and beautiful place I have visited thus far, and definitely worth a visit!"..
 	"\\\n"..
