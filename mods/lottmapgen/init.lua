@@ -274,14 +274,14 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					end
 					if y > -100 and y < -5 then
 						if biome == 11 or biome == 1 then
-							if math.random(100000) == 1 then
+							if math.random(10000) == 1 then
 								lottmapgen_mithrilore(x, y, z, area, data)
 							end
 						end
 						if biome == 10 or biome == 7 then
-							if math.random(100000) == 1 then
+							if math.random(10000) == 1 then
 								lottmapgen_meseore(x, y, z, area, data)
-							elseif math.random(10000000) == 1 then
+							elseif math.random(50000) == 1 then
 								data[vi] = c_mese
 							end
 						end
