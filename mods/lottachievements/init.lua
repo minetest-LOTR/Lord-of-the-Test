@@ -57,7 +57,7 @@ lottachievements.register_achievement("smoke_rings", {
 
 lottachievements.register_achievement("a_long_path_to_mushrooms", {
 	title = "A Long Path to Mushrooms",
-	description = "Show a hobbitish love of mushrooms by eating 99!",
+	description = "Show a hobbitish love of mushrooms by eating 99 brown mushrooms!",
 	icon = "lottplants_mushroom_wild.png",
 	id = 2,
 	trigger = {
