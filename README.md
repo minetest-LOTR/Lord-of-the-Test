@@ -16,7 +16,7 @@ For more information, see the [README.md](https://github.com/minetest-LOTR/Lord-
 To install this game [download it](../../archive/v1.1.0.zip), and extract the zip to <your minetest folder>/games/Lord-of-the-Test.  
 On Linux, the folder which contains the games folder is .minetest in your home directory. (You may need to use ctrl+h to show hidden files.)  
 On Windows, the games folder will be located around the directory where minetest.exe is located, and can be accessed from the main directory where the minetest's data is located.  
-If you need more assistance with this, please refer to [these instructions](http://wiki.minetest.net/Subgame#Installing_subgames)
+If you need more assistance with this, please refer to [these instructions](https://wiki.minetest.net/Games#Installing_games)
 
 -----------------------------------------------------------------------------------------------
 
