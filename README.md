@@ -68,7 +68,7 @@ If you wish to contribute, please see [CONTRIBUTING.md](https://github.com/minet
 
 #### Installation:
 
-To install this game [download it](../../archive/v1.2.0.zip), and extract the zip to <your minetest folder>/games/Lord-of-the-Test.
+To install this game [download it](https://github.com/minetest-LOTR/Lord-of-the-Test/releases/latest), and extract the zip to <your minetest folder>/games/Lord-of-the-Test.
 
 On Linux, the folder which contains the games folder is .minetest in your home directory. (You may need to use ctrl+h to show hidden files.)
 
