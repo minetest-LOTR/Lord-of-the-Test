@@ -118,14 +118,14 @@ local function update_skin(player)
 		for races in pairs(lottclasses.race) do
 			if privs["GAME"..races] then
 				multiskin[name].skin = races.."_skin.png"
-				default.player_set_textures(player, {races.."_skin.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png"})
+				multiskin:update_player_visuals(player)
 			end
 		end
 	elseif privs.GAMEfemale then
 		for races in pairs(lottclasses.race) do
 			if privs["GAME"..races] then
 				multiskin[name].skin = races.."_skinf.png"
-				default.player_set_textures(player, {races.."_skinf.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png"})
+				multiskin:update_player_visuals(player)
 			end
 		end
 	end

@@ -10,28 +10,31 @@ minetest.register_on_newplayer(function(player)
 	if minetest.settings:get_bool("disable_immune_spawn") then
 		return
 	end
-	if minetest.settings:get_bool("enable_damage") then
-		meta:set_string("lott:immunity", immune_amt)
-		armor:set_player_armor(player)
-		
-		minetest.after(5, function()
-			if player == nil then return end
-			minetest.chat_send_player(name, minetest.colorize("green", "Starter mob immunity granted for "..immune_amt/ 60 .." minutes! Travel to a safe area!"))
-		end)
-		for i = 1, immune_amt do
-			minetest.after(i, function()
-				local immunity_c = meta:get_string("lott:immunity")
+	
+	minetest.after(0.3, function()
+		if minetest.settings:get_bool("enable_damage") then
+			meta:set_string("lott:immunity", immune_amt)
+			armor:set_player_armor(player)
+			
+			minetest.after(5, function()
 				if player == nil then return end
-				if not tonumber(immunity_c) then return end
-				meta:set_string("lott:immunity", tonumber(immunity_c) - 1)
+				minetest.chat_send_player(name, minetest.colorize("green", "Starter mob immunity granted for "..immune_amt/ 60 .." minutes! Travel to a safe area!"))
+			end)
+			for i = 1, immune_amt do
+				minetest.after(i, function()
+					local immunity_c = meta:get_string("lott:immunity")
+					if player == nil then return end
+					if not tonumber(immunity_c) then return end
+					meta:set_string("lott:immunity", tonumber(immunity_c) - 1)
+				end)
+			end
+			minetest.after(immune_amt+1, function()
+				meta:set_string("lott:immunity", "")
+				minetest.chat_send_player(name, minetest.colorize("orange", "Your starter mob immunity has expired!"))
+				armor:set_player_armor(player)
 			end)
 		end
-		minetest.after(immune_amt+1, function()
-			meta:set_string("lott:immunity", "")
-			minetest.chat_send_player(name, minetest.colorize("orange", "Your starter mob immunity has expired!"))
-			armor:set_player_armor(player)
-		end)
-	end
+	end)
 end)
 
 -- Resume starter mob immunity
