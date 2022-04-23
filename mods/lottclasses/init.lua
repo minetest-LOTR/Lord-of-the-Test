@@ -3,36 +3,43 @@ lottclasses = {}
 minetest.register_privilege("GAMEwizard", {
 	description = "A wizard player",
 	give_to_singleplayer = false,
-	give_to_admin = true,
+	give_to_admin = false,
 })
 
 minetest.register_privilege("GAMEmale", {
 	description = "A male player",
 	give_to_singleplayer = false,
+	give_to_admin = false,
 })
 minetest.register_privilege("GAMEfemale", {
 	description = "A female player",
 	give_to_singleplayer = false,
+	give_to_admin = false,
 })
 minetest.register_privilege("GAMEdwarf", {
 	description = "A dwarf player",
 	give_to_singleplayer = false,
+	give_to_admin = false,
 })
 minetest.register_privilege("GAMEelf", {
 	description = "An elf player",
 	give_to_singleplayer = false,
+	give_to_admin = false,
 })
 minetest.register_privilege("GAMEman", {
 	description = "A human player",
 	give_to_singleplayer = false,
+	give_to_admin = false,
 })
 minetest.register_privilege("GAMEorc", {
 	description = "An orc player",
 	give_to_singleplayer = false,
+	give_to_admin = false,
 })
 minetest.register_privilege("GAMEhobbit", {
 	description = "A hobbit player",
 	give_to_singleplayer = false,
+	give_to_admin = false,
 })
 
 dofile(minetest.get_modpath("lottclasses").."/change-privs.lua")
@@ -306,7 +313,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 	
 	if fields.quit then
-		if not minetest.get_player_privs(name).GAMEwizard and not minetest.get_player_privs(name).GAMEfemale and not minetest.get_player_privs(name).GAMEmale then
+		if not minetest.get_player_privs(name).GAMEfemale and not minetest.get_player_privs(name).GAMEmale then
 			minetest.chat_send_player(name, minetest.colorize("red", "Please select a race!"))
 			minetest.after(0.1, function()
 				if minetest.is_singleplayer() then
