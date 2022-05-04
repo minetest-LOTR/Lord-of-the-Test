@@ -949,15 +949,15 @@ function lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, H
 		end
 	elseif n_temp > HITET then
 		if n_humid < LOHUT then
-			return 7 -- (Lorien)
+			return 10 -- (Mirkwood)
 		elseif n_humid > HIHUT then
 			return 9 -- (Fangorn)
 		elseif n_ran < LORAN then
-			return 10 -- (Mirkwood)
+			return 7 -- (Lorien)
 		elseif n_ran > HIRAN then
 			return 11 -- (Iron Hills)
 		else
-			return 4 -- (Dunlands)
+			return 13 -- (Shire)
 		end
 	else
 		if n_humid < LOHUT then
@@ -965,7 +965,7 @@ function lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, H
 		elseif n_humid > HIHUT then
 			return 6 -- (Ithilien)
 		elseif n_ran < LORAN then
-			return 13 -- (Shire)
+			return 4 -- (Dunland)
 		elseif n_ran > HIRAN then
 			return 12 -- (Rohan)
 		else
