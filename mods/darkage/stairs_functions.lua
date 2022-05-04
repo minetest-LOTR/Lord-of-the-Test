@@ -10,16 +10,17 @@ if minetest.get_modpath("moreblocks") then
         stairsplus:register_all(mod, node, nodeName, ndef)
     end
 elseif minetest.get_modpath("stairs") then
-	function darkage.register_stairs(nodeName)
+	function darkage.register_stairs(nodeName, groups)
         local ndef = assert(minetest.registered_nodes[nodeName], "Error: "..nodeName.." is not registered")
 
         local node = nodeName:split(":")[2]
 
         -- The stairs api does not allow to use the darkage modname, so we have to call the nodes stairs:stair_darkage_
         -- and creating an alias
-        local subname = "darkage_".. node; 
+        local subname = "darkage_".. node;
+		local c_groups = groups or ndef.groups
         stairs.register_stair_and_slab(subname, nodeName,
-                                       ndef.groups, ndef.tiles, 
+                                       c_groups, ndef.tiles, 
                                        ndef.description.." Stair", ndef.description.." Slab",
                                        ndef.sounds)
 

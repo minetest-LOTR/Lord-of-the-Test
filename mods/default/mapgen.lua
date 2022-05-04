@@ -28,7 +28,7 @@ minetest.register_node("default:mapgen_stone", {
 	description = "Mapgen Stone",
 	tiles = {"default_stone.png"},
 	is_ground_content = true,
-	groups = {cracky=3, stone=1, not_in_creative_inventory=1},
+	groups = {cracky=3, not_in_creative_inventory=1},
 	drop = 'default:cobble',
 	legacy_mineral = true,
 	sounds = default.node_sound_stone_defaults(),
