@@ -5,9 +5,7 @@ minetest.register_craftitem("lottfarming:orc_food", {
 		if minetest.settings:get_bool("creative_mode") ~= true then
 			itemstack:take_item()
 		end
-		if minetest.settings:get_bool("enable_damage") then
-			stamina.change(user, 20)
-		end
+		stamina.change(user, 20)
 		if not minetest.get_player_privs(user:get_player_name()).GAMEorc then
 			local first_screen = user:hud_add({
 				hud_elem_type = "image",

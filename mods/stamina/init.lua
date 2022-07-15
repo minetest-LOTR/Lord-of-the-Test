@@ -70,6 +70,9 @@ stamina.change = function(player, change)
 	if not name or not change or change == 0 then
 		return false
 	end
+	if minetest.settings:get_bool("enable_damage") == false then
+		return false
+	end
 	local level = stamina_players[name].level + change
 	if level < 0 then level = 0 end
 	if level > STAMINA_VISUAL_MAX then level = STAMINA_VISUAL_MAX end
@@ -319,7 +322,7 @@ function stamina.eat(hp_change, replace_with_item, itemstack, user, pointed_thin
 end
 
 -- stamina is disabled if damage is disabled
-if minetest.settings:get_bool("enable_damage")and minetest.is_yes(minetest.settings:get("enable_stamina") or "1") then
+if minetest.settings:get_bool("enable_damage") and minetest.is_yes(minetest.settings:get("enable_stamina") or "1") then
 	minetest.register_on_joinplayer(function(player)
 
 		local name = player:get_player_name()
