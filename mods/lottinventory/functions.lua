@@ -57,9 +57,15 @@ function lottinventory.add_craft(input, output, needed_groups, forbidden_groups,
 			end
 		end
 	end
-	if not not_groups or not has_groups
-	or (not_type and not_type == input.type) then
+	if not not_groups or not has_groups then
 		return
+	end
+	if not_type then
+		for _, not_types in pairs(not_type) do
+			if not_types == input.type then
+				return
+			end
+		end
 	end
 	if not groups then groups = {} end
 	local c = {}

@@ -7,7 +7,7 @@
 local guides = {
 	craft = {
 		-- needed_groups, forbidden_groups, type, not_type, master
-		{},	{"cook_crafts", "armor_use", "armor_crafts", "forbidden"}, nil, "cooking"
+		{},	{"cook_crafts", "armor_use", "armor_crafts", "forbidden"}, nil, {"cooking", "dualfurn"}
 	},
 	cooking = {
 		{"cook_crafts"}, {"forbidden", "armor_use", "armor_crafts"}, {"cooking", "dualfurn"}
