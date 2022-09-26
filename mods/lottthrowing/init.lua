@@ -1,14 +1,14 @@
 arrows = {
 	{"lottthrowing:arrow", "lottthrowing:arrow_entity"},
-     {"lottthrowing:arrow_mithril", "lottthrowing:arrow_mithril_entity"},
+    {"lottthrowing:arrow_mithril", "lottthrowing:arrow_mithril_entity"},
 	{"lottthrowing:arrow_fire", "lottthrowing:arrow_fire_entity"},
-     {"lottthrowing:arrow_fire_blue", "lottthrowing:arrow_fire_blue_entity"},
-     {"lottthrowing:arrow_magical", "lottthrowing:arrow_magical_entity"},
+    {"lottthrowing:arrow_fire_blue", "lottthrowing:arrow_fire_blue_entity"},
+    {"lottthrowing:arrow_magical", "lottthrowing:arrow_magical_entity"},
 }
 
 bolts = {
 	{"lottthrowing:bolt", "lottthrowing:bolt_entity"},
-     {"lottthrowing:bolt_mithril", "lottthrowing:bolt_mithril_entity"},
+    {"lottthrowing:bolt_mithril", "lottthrowing:bolt_mithril_entity"},
 	{"lottthrowing:bolt_fire", "lottthrowing:bolt_fire_entity"},
 }
 
@@ -428,13 +428,4 @@ minetest.register_craft({
 })
 
 dofile(minetest.get_modpath("lottthrowing").."/arrow.lua")
-dofile(minetest.get_modpath("lottthrowing").."/mithril_arrow.lua")
-dofile(minetest.get_modpath("lottthrowing").."/fire_arrow.lua")
-dofile(minetest.get_modpath("lottthrowing").."/bluefire_arrow.lua")
-dofile(minetest.get_modpath("lottthrowing").."/magical_arrow.lua")
-
-dofile(minetest.get_modpath("lottthrowing").."/bolt.lua")
-dofile(minetest.get_modpath("lottthrowing").."/mithril_bolt.lua")
-dofile(minetest.get_modpath("lottthrowing").."/fire_bolt.lua")
-
 dofile(minetest.get_modpath("lottthrowing").."/axe.lua")

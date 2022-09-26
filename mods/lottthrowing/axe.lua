@@ -26,7 +26,7 @@ local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 	    on_use = function(itemstack, user, pointed_thing)
 	        lottthrowing_throw_axe(item, user, pointed_thing)
 	        if not creative then
-	    		itemstack:take_item()
+				itemstack:take_item()
 	        end
 	        return itemstack
 	    end,
