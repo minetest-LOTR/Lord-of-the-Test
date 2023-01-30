@@ -61,7 +61,7 @@ minetest.register_on_joinplayer(function(player)
 			minetest.after(i, function()
 				local immunity_c = meta:get_string("lott:immunity")
 				if player == nil then return end
-				if not tonumber(immunity) then return end
+				if not tonumber(immunity_c) then return end
 				meta:set_string("lott:immunity", tonumber(immunity_c) - 1)
 			end)
 		end
