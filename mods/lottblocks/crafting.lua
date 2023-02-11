@@ -281,7 +281,7 @@ lottblocks.crafting.add_craft("default:bronze_ingot", {
 	type = "dualfurn"
 })
 
-lottblocks.crafting.add_craft("default:steel_ingot", {
+lottblocks.crafting.add_craft("default:steel_ingot 2", {
 	recipe = {"lottores:orc_steel_ingot", "lottores:orc_steel_ingot"},
 	type = "dualfurn",
 	time = 5,
