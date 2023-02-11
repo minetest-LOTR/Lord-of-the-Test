@@ -158,7 +158,7 @@ function lottmapgen_appletree(x, y, z, area, data)
 			for i = -2, 2 do
 			for k = -2, 2 do
 				local vil = area:index(x + i, y + j + 1, z + k)
-				if math.random(48) == 2 then
+				if math.random(48) == 2 and i ~= 0 and k ~= 0 then
 					data[vil] = c_apple
 				elseif math.random(3) ~= 2 then
 					data[vil] = c_leaves
@@ -180,7 +180,7 @@ function lottmapgen_plumtree(x, y, z, area, data)
 			for i = -2, 2 do
 			for k = -2, 2 do
 				local vil = area:index(x + i, y + j + 1, z + k)
-				if math.random(48) == 2 then
+				if math.random(48) == 2 and i ~= 0 and k ~= 0 then
 					data[vil] = c_plum
 				elseif math.random(3) ~= 2 then
 					data[vil] = c_plumleaf
