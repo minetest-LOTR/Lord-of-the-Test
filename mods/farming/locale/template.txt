@@ -1,0 +1,25 @@
+### init.lua
+Soil =
+Wet Soil =
+Savanna Soil =
+Wet Savanna Soil =
+Desert Sand Soil =
+Wet Desert Sand Soil =
+Wet Soil =
+Wooden Hoe =
+Stone Hoe =
+Steel Hoe =
+Bronze Hoe =
+Wheat Seed =
+Wheat Seed =
+Wheat =
+Flour =
+Bread =
+Cotton Seed =
+String =
+Straw =
+Straw Stair =
+Straw Slab =
+Inner Straw Stair =
+Outer Straw Stair =
+Jungle Grass =
