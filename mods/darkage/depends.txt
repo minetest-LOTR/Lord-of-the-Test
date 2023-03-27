@@ -1,5 +1,0 @@
-default
-farming
-lottmapgen
-stairs
-moreblocks?

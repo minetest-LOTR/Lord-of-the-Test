@@ -15,10 +15,11 @@ local S, NS = dofile(
 
 local guides = {
 	craft = {
-		{},	{"cook_crafts", "armor_use", "armor_crafts", "forbidden"}, nil, "cooking"
+		-- needed_groups, forbidden_groups, type, not_type, master
+		{},	{"cook_crafts", "armor_use", "armor_crafts", "forbidden"}, nil, {"cooking", "dualfurn"}
 	},
 	cooking = {
-		{"cook_crafts"}, {"forbidden", "armor_use", "armor_crafts"}, "cooking"
+		{"cook_crafts"}, {"forbidden", "armor_use", "armor_crafts"}, {"cooking", "dualfurn"}
 	},
 	protection = {
 		{"armor_use", "armor_crafts"}, {"forbidden"}

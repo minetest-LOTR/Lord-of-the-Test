@@ -1,7 +1,7 @@
 lottmapgen = {}
 
 local areas_mod = minetest.get_modpath("areas")
-local protect_houses = minetest.setting_getbool("protect_structures") or false
+local protect_houses = minetest.settings:get_bool("protect_structures") or false
 
 -- max number of nodes to try to fill below building
 local fill_below_count = 16
@@ -35,7 +35,7 @@ for i, v in pairs(lottmapgen_list) do
 	local file = io.open(minetest.get_modpath("lottmapgen").."/schems/"..v.build..".we")
 	local value = file:read("*a")
 	file:close()
-	local pos1, pos2 = worldedit.allocate({x=0, y=0, z=0}, value)
+	local pos1, pos2 = worldedit2.allocate({x=0, y=0, z=0}, value)
 	lottmapgen_list[i].bbox = {
 			xmin = pos1.x-v.center.x, ymin = pos1.y-v.center.y, zmin = pos1.z-v.center.z,
 			xmax = pos2.x-v.center.x, ymax = pos2.y-v.center.y, zmax = pos2.z-v.center.z}
@@ -118,7 +118,7 @@ function lottmapgen.place_building(building, pos)
 	local p = {x = pos.x-building.center.x, y = pos.y-building.center.y, z = pos.z-building.center.z}
 	local pos1 = {x = pos.x + building.bbox.xmin, y = pos.y + building.bbox.ymin, z = pos.z + building.bbox.zmin}
 	local pos2 = {x = pos.x + building.bbox.xmax, y = pos.y + building.bbox.ymax, z = pos.z + building.bbox.zmax}
-	local count = worldedit.deserialize(p, value)
+	local count = worldedit2.deserialize(p, value)
 	if areas_mod ~= nil and protect_houses == true then
                 areas:add(building.area_owner, building.area_name, pos1, pos2, nil)
                 areas:save()
@@ -167,7 +167,7 @@ lottmapgen.fill_bellow = function(fill)
 	local replace_node = {}
 	replace_node[minetest.get_content_id("lottother:dirt")]=minetest.get_content_id("default:dirt")
 	replace_node[minetest.get_content_id("lottother:snow")]=minetest.get_content_id("default:snowblock")
-	replace_node[minetest.get_content_id("lottother:mordor_stone")]=minetest.get_content_id("default:mordor_stone")
+	replace_node[minetest.get_content_id("lottother:mordor_stone")]=minetest.get_content_id("lottmapgen:mordor_stone")
 
 	local c_air = 	minetest.get_content_id("air")
 	local c_ignore = minetest.get_content_id("ignore")
@@ -223,7 +223,7 @@ lottmapgen.fill_bellow = function(fill)
 end
 
 -- folowing function let as a way to "hack" building placement, but shouldn't be needed
-for builddesc, v in ipairs(lottmapgen_list) do
+for builddesc, v in pairs(lottmapgen_list) do
     local build = v.build
     minetest.register_node("lottmapgen:"..build, {
         description = builddesc,
@@ -243,7 +243,7 @@ for builddesc, v in ipairs(lottmapgen_list) do
 		p.x = p.x-v.center.x
 		p.y = p.y-v.center.y
 		p.z = p.z-v.center.z
-                local count = worldedit.deserialize(p, value)
+                local count = worldedit2.deserialize(p, value)
                 itemstack:take_item()
             end
             return itemstack

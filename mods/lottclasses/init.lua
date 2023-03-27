@@ -8,44 +8,38 @@ local S, NS = dofile(
 )
 
 lottclasses = {}
+lottclasses.race = {}
+lottclasses.race["wizard"] = {"GAMEwizard", "wizards", "Wizard"}
+lottclasses.race["dwarf"] = {"GAMEdwarf", "dwarves", "Dwarf"}
+lottclasses.race["elf"] = {"GAMEelf", "elves", "Elf"}
+lottclasses.race["man"] = {"GAMEman", "men", "Man"}
+lottclasses.race["hobbit"] = {"GAMEhobbit", "hobbits", "Hobbit"}
+lottclasses.race["orc"] = {"GAMEorc", "orcs", "Orc"}
 
-minetest.register_privilege("GAMEwizard", {
-	description = S("A wizard player"),
-	give_to_singleplayer = false,
-	give_to_admin = true,
-})
+-- create race privileges
+for races, rdata in pairs(lottclasses.race) do
+	minetest.register_privilege(rdata[1], {
+		description = S("@1-race player", S(races), S(rdata[2])),
+		give_to_singleplayer = false,
+		give_to_admin = false,
+	})
+end
 
+-- gender privileges
 minetest.register_privilege("GAMEmale", {
 	description = S("A male player"),
 	give_to_singleplayer = false,
+	give_to_admin = false,
 })
 minetest.register_privilege("GAMEfemale", {
 	description = S("A female player"),
 	give_to_singleplayer = false,
-})
-minetest.register_privilege("GAMEdwarf", {
-	description = S("A dwarf player"),
-	give_to_singleplayer = false,
-})
-minetest.register_privilege("GAMEelf", {
-	description = S("An elf player"),
-	give_to_singleplayer = false,
-})
-minetest.register_privilege("GAMEman", {
-	description = S("A human player"),
-	give_to_singleplayer = false,
-})
-minetest.register_privilege("GAMEorc", {
-	description = S("An orc player"),
-	give_to_singleplayer = false,
-})
-minetest.register_privilege("GAMEhobbit", {
-	description = S("A hobbit player"),
-	give_to_singleplayer = false,
+	give_to_admin = false,
 })
 
 dofile(minetest.get_modpath("lottclasses").."/change-privs.lua")
 dofile(minetest.get_modpath("lottclasses").."/allies.lua")
+dofile(minetest.get_modpath("lottclasses").."/immunity.lua")
 
 local race_chooser = "size[8,6]"..
 	"background[8,6;1,1;gui_formbg.png;true]"..
@@ -61,146 +55,96 @@ local race_chooser = "size[8,6]"..
 	"image[0.25,3.4;0.75,0.75;hobbit.png]"..
 	"button_exit[1,3.5;2,0.5;hobbit;" .. S("Hobbit") .. "]"..
 	"dropdown[5.5,3.4;2;gender;" .. S("Male") .. "," .. S("Female") .. ";1]"
-
+	
 local fly_stuff = "button[1,4.75;2,0.5;fast;" .. S("Fast") .. "]" ..
 	"button[3,4.75;2,0.5;fly;" .. S("Fly") .. "]" ..
-	"button[5,4.75;2,0.5;noclip;Noclip]" ..
+	"button[5,4.75;2,0.5;noclip;" .. S("Noclip") .. "]" ..
 	"button[2.5,5.5;3,0.5;fast_fly_noclip;" .. S("Fast") .. ", " .. S("Fly") .. " & Noclip]"
 
-local function give_stuff_dwarf(player)
+local function add_item(player, item)
 	local inv = player:get_inventory()
-	inv:add_item('main', 'default:pick_steel')
-	inv:add_item('main', 'lottweapons:steel_warhammer')
-	inv:add_item('main', 'farming:bread 5')
-	inv:add_item('main', 'default:torch 8')
-	inv:add_item('main', 'lottinventory:crafts_book')
-	inv:add_item('main', 'lottachievements:achievement_book')
+	inv:add_item("main", item)
 end
 
-local function give_stuff_elf(player)
+local function give_initial_stuff(player, race)
 	local inv = player:get_inventory()
-	inv:add_item('main', 'default:pick_steel')
-	inv:add_item('main', 'lottthrowing:bow_wood')
-	inv:add_item('main', 'lottthrowing:arrow 25')
-	inv:add_item('main', 'farming:bread 5')
-	inv:add_item('main', 'lottblocks:elf_torch 8')
-	inv:add_item('main', 'lottinventory:crafts_book')
-	inv:add_item('main', 'lottachievements:achievement_book')
-end
-
-local function give_stuff_man(player)
-	local inv = player:get_inventory()
-	inv:add_item('main', 'default:pick_bronze')
-	inv:add_item('main', 'default:sword_bronze')
-	inv:add_item('main', 'farming:bread 5')
-	inv:add_item('main', 'default:torch 8')
-	inv:add_item('main', 'lottinventory:crafts_book')
-	inv:add_item('main', 'lottachievements:achievement_book')
-end
-
-local function give_stuff_orc(player)
-	local inv = player:get_inventory()
-	inv:add_item('main', 'lottweapons:orc_sword')
-	inv:add_item('main', 'default:pick_steel')
-	inv:add_item('main', 'lottfarming:orc_food 5')
-	inv:add_item('main', 'lottblocks:orc_torch 8')
-	inv:add_item('main', 'lottinventory:crafts_book')
-	inv:add_item('main', 'lottachievements:achievement_book')
-end
-
-local function give_stuff_hobbit(player)
-	local inv = player:get_inventory()
-	inv:add_item('main', 'default:pick_stone')
-	inv:add_item('main', 'farming:hoe_steel')
-	inv:add_item('main', 'lottfarming:tomatoes_seed 2')
-	inv:add_item('main', 'lottfarming:potato_seed 3')
-	inv:add_item('main', 'lottfarming:pipe')
-	inv:add_item('main', 'lottfarming:pipeweed_cooked 8')
-	inv:add_item('main', 'lottinventory:crafts_book')
-	inv:add_item('main', 'lottachievements:achievement_book')
-end
-
-local function give_stuff_wizard(player)
-	local inv = player:get_inventory()
-	inv:add_item('main', 'default:pick_steel')
-	inv:add_item('main', 'default:axe_steel')
-	inv:add_item('main', 'default:shovel_steel')
-	inv:add_item('main', 'default:sword_steel')
-	inv:add_item('main', 'lottinventory:master_book')
-	inv:add_item('main', 'lottachievements:achievement_book')
-end
-
-local immune_spawn_amt = tonumber(minetest.settings:get("immune_spawn")) or 300
-minetest.settings:set("immune_spawn", immune_spawn_amt)
-local immune_amt = tonumber(minetest.settings:get("immune_spawn"))
-
-minetest.register_on_newplayer(function(player)
-	local name = player:get_player_name()
-	local privs = minetest.get_player_privs(name)
-	if minetest.get_player_privs(name).GAMEwizard then
-		give_stuff_wizard(player)
+	if race == "dwarf" then
+		add_item(player, 'default:pick_steel')
+		add_item(player, 'lottweapons:steel_warhammer')
+		add_item(player, 'farming:bread 5')
+		add_item(player, 'default:torch 8')
+		add_item(player, 'lottinventory:crafts_book')
+		add_item(player, 'lottachievements:achievement_book')
+	elseif race == "elf" then
+		add_item(player, 'default:pick_steel')
+		add_item(player, 'lottthrowing:bow_wood')
+		add_item(player, 'lottthrowing:arrow 25')
+		add_item(player, 'farming:bread 5')
+		add_item(player, 'lottblocks:elf_torch 8')
+		add_item(player, 'lottinventory:crafts_book')
+		add_item(player, 'lottachievements:achievement_book')
+	elseif race == "man" then
+		add_item(player, 'default:pick_bronze')
+		add_item(player, 'default:sword_bronze')
+		add_item(player, 'farming:bread 5')
+		add_item(player, 'default:torch 8')
+		add_item(player, 'lottinventory:crafts_book')
+		add_item(player, 'lottachievements:achievement_book')
+	elseif race == "orc" then
+		add_item(player, 'lottweapons:orc_sword')
+		add_item(player, 'default:pick_steel')
+		add_item(player, 'lottfarming:orc_food 5')
+		add_item(player, 'lottblocks:orc_torch 8')
+		add_item(player, 'lottinventory:crafts_book')
+		add_item(player, 'lottachievements:achievement_book')
+	elseif race == "hobbit" then
+		add_item(player, 'default:pick_stone')
+		add_item(player, 'farming:hoe_steel')
+		add_item(player, 'lottfarming:tomatoes_seed 2')
+		add_item(player, 'lottfarming:potato_seed 3')
+		add_item(player, 'lottfarming:pipe')
+		add_item(player, 'lottfarming:pipeweed_cooked 8')
+		add_item(player, 'lottinventory:crafts_book')
+		add_item(player, 'lottachievements:achievement_book')
+	elseif race == "wizard" then
+		add_item(player, 'default:pick_steel')
+		add_item(player, 'default:axe_steel')
+		add_item(player, 'default:shovel_steel')
+		add_item(player, 'default:sword_steel')
+		add_item(player, 'lottinventory:master_book')
+		add_item(player, 'lottachievements:achievement_book')
 	end
-	
-	-- Starter mob immunity to counter unfavourable spawns
-	if minetest.setting_getbool("disable_immune_spawn") then
+end
+
+local function update_skin(player)
+	if not player then
 		return
 	end
-	
-	if minetest.setting_getbool("enable_damage") then
-		
-		player:set_attribute("lott:immunity", immune_amt)
-		armor:set_player_armor(player)
-		
-		minetest.after(5, function()
-			if player == nil then return end
-			minetest.chat_send_player(name, minetest.colorize("green", string.format(S("Starter mob immunity granted for %s minutes!"), (immune_amt/60)) .. " " .. S("Travel to a safe area!")))
-		end)
-		
-		for i = 1, immune_amt do
-			minetest.after(i, function()
-				if player == nil then return end
-				if not player:get_attribute("lott:immunity") then return end
-				player:set_attribute("lott:immunity", tonumber(player:get_attribute("lott:immunity")) - 1)
-			end)
+	local name = player:get_player_name()
+	local privs = minetest.get_player_privs(name)
+	local meta = player:get_meta()
+	if privs.GAMEmale then
+		for races in pairs(lottclasses.race) do
+			if privs["GAME"..races] then
+				multiskin[name].skin = races.."_skin.png"
+				multiskin:update_player_visuals(player)
+			end
 		end
-	
-		minetest.after(immune_amt+1, function()
-			player:set_attribute("lott:immunity", nil)
-			minetest.chat_send_player(name, minetest.colorize("orange", S("Your starter mob immunity has expired!")))
-			armor:set_player_armor(player)
-		end)
+	elseif privs.GAMEfemale then
+		for races in pairs(lottclasses.race) do
+			if privs["GAME"..races] then
+				multiskin[name].skin = races.."_skinf.png"
+				multiskin:update_player_visuals(player)
+			end
+		end
 	end
-end)
+end
 
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 	local privs = minetest.get_player_privs(name)
-	if minetest.get_player_privs(name).GAMEwizard then
-		multiskin[name].skin = "wizard_skin.png"
-	elseif minetest.get_player_privs(name).GAMEmale then
-		if minetest.get_player_privs(name).GAMEdwarf then
-			multiskin[name].skin = "dwarf_skin.png"
-		elseif minetest.get_player_privs(name).GAMEelf then
-			multiskin[name].skin = "elf_skin.png"
-		elseif minetest.get_player_privs(name).GAMEman then
-			multiskin[name].skin = "man_skin.png"
-		elseif minetest.get_player_privs(name).GAMEorc then
-			multiskin[name].skin = "orc_skin.png"
-		elseif minetest.get_player_privs(name).GAMEhobbit then
-			multiskin[name].skin = "hobbit_skin.png"
-		end
-	elseif minetest.get_player_privs(name).GAMEfemale then
-		if minetest.get_player_privs(name).GAMEdwarf then
-			multiskin[name].skin = "dwarf_skinf.png"
-		elseif minetest.get_player_privs(name).GAMEelf then
-			multiskin[name].skin = "elf_skinf.png"
-		elseif minetest.get_player_privs(name).GAMEman then
-			multiskin[name].skin = "man_skinf.png"
-		elseif minetest.get_player_privs(name).GAMEorc then
-			multiskin[name].skin = "orc_skin.png"
-		elseif minetest.get_player_privs(name).GAMEhobbit then
-			multiskin[name].skin = "hobbit_skinf.png"
-		end
+	if privs.GAMEmale or privs.GAMEfemale then
+		update_skin(player)
 	else
 		minetest.after(1, function()
 			if minetest.is_singleplayer() then
@@ -210,58 +154,21 @@ minetest.register_on_joinplayer(function(player)
 			end
 		end)
 	end
-	
-	-- Resume starter mob immunity
-	if player:get_attribute("lott:immunity") ~= nil then
-		if not tonumber(player:get_attribute("lott:immunity")) then
-			player:set_attribute("lott:immunity", nil)
-			return
-		end
-		if tonumber(player:get_attribute("lott:immunity")) >= immune_amt then
-			return
-		end
-	
-		minetest.chat_send_player(name, minetest.colorize("green", S("Your starter mob immunity has resumed!")))
-		minetest.chat_send_player(name, minetest.colorize("green", string.format(S("You still have %s minutes left!"), (tonumber(player:get_attribute("lott:immunity")) / 60))))
-	
-		for i = 1, tonumber(player:get_attribute("lott:immunity")) do
-			if not tonumber(player:get_attribute("lott:immunity")) then
-				player:set_attribute("lott:immunity", nil)
-				return
-			end
-			minetest.after(i, function()
-				if player == nil then return end
-				if not player:get_attribute("lott:immunity") then return end
-				player:set_attribute("lott:immunity", tonumber(player:get_attribute("lott:immunity")) - 1)
-			end)
-		end
-		
-		minetest.after(player:get_attribute("lott:immunity")+1, function()
-			if player == nil then return end
-			player:set_attribute("lott:immunity", nil)
-			armor:set_player_armor(player)
-		
-			minetest.chat_send_player(name, minetest.colorize("orange", S("Your starter mob immunity has expired!")))
-		end)
-	end
 end)
 
-local function player_race_stuff(race, text, mf, func, name, privs, player)
-	minetest.chat_send_player(name, string.format(S("You are now a member of the race of %s, go forth into the world."), text))
-	privs["GAME" .. race] = true
-	privs["GAME" .. mf] = true
+local function set_gender(player, gender)
+	local name = player:get_player_name()
+	local privs = minetest.get_player_privs(name)
+	privs["GAME"..gender] = true
 	minetest.set_player_privs(name, privs)
-	if minetest.settings:get_bool("lott_give_initial_stuff", true) == true then
-		func(player)
-	end
-	if mf == "male" or race == "orc" or race == "wizard" then
-		default.player_set_textures(player, {race .. "_skin.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png"})
-		multiskin[name].skin = race .. "_skin.png"
-	elseif mf == "female" then
-		default.player_set_textures(player, {race .. "_skinf.png", "lottarmor_trans.png", "lottarmor_trans.png", "lottarmor_trans.png"})
-		multiskin[name].skin = race .. "_skinf.png"
-	end
-	minetest.log("action", name.. " chose to be a " .. race)
+	update_skin(player)
+end
+
+local function set_race(name, race)
+	local privs = minetest.get_player_privs(name)
+	privs["GAME"..race] = true
+	minetest.set_player_privs(name, privs)
+	minetest.chat_send_player(name, string.format(S("You are now a member of the race of %s, go forth into the world."), S(lottclasses.race[race][2])))
 end
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
@@ -269,29 +176,26 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	local name = player:get_player_name()
 	local privs = minetest.get_player_privs(name)
 	if fields.gender == S("Male") then
-		if fields.dwarf then
-			player_race_stuff("dwarf", S("dwarves"), "male", give_stuff_dwarf, name, privs, player)
-			
-		elseif fields.elf then
-			player_race_stuff("elf", S("elves"), "male", give_stuff_elf, name, privs, player)
-		elseif fields.man then
-			player_race_stuff("man", S("men"), "male", give_stuff_man, name, privs, player)
-		elseif fields.orc then
-			player_race_stuff("orc", S("orcs"), "male", give_stuff_orc, name, privs, player)
-		elseif fields.hobbit then
-			player_race_stuff("hobbit", S("hobbits"), "male", give_stuff_hobbit, name, privs, player)
+		for races in pairs(lottclasses.race) do
+			if fields[races] then
+				set_gender(player, "male")
+				set_race(name, races)
+				update_skin(player)
+				give_initial_stuff(player, races)
+				minetest.log("action", name.." chose to be a male "..races)
+				return
+			end
 		end
 	elseif fields.gender == S("Female") then
-		if fields.dwarf then
-			player_race_stuff("dwarf", S("dwarves"), "female", give_stuff_dwarf, name, privs, player)
-		elseif fields.elf then
-			player_race_stuff("elf", S("elves"), "female", give_stuff_elf, name, privs, player)
-		elseif fields.man then
-			player_race_stuff("man", S("men"), "female", give_stuff_man, name, privs, player)
-		elseif fields.orc then
-			player_race_stuff("orc", S("orcs"), "female", give_stuff_orc, name, privs, player)
-		elseif fields.hobbit then
-			player_race_stuff("hobbit", S("hobbits"), "female", give_stuff_hobbit, name, privs, player)
+		for races in pairs(lottclasses.race) do
+			if fields[races] then
+				set_gender(player, "female")
+				set_race(name, races)
+				update_skin(player)
+				give_initial_stuff(player, races)
+				minetest.log("action", name.. " chose to be a female " .. races)
+				return
+			end
 		end
 	end
 	if fields.fast then
@@ -311,37 +215,75 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		minetest.set_player_privs(name, privs)
 		return
 	end
+	if fields.quit then
+		if not privs.GAMEfemale and not privs.GAMEmale then
+			minetest.chat_send_player(name, minetest.colorize("red", S("Please select a race!")))
+			minetest.after(0.1, function()
+				if minetest.is_singleplayer() then
+					minetest.show_formspec(name, "race_selector", race_chooser .. fly_stuff)
+				else
+					minetest.show_formspec(name, "race_selector", race_chooser)
+				end
+			end)
+		end
+	end
 end)
 
 minetest.register_chatcommand("race", {
-	params = "<name>",
-	description = S("print out the race of a player"),
+	params = "<name> <race>",
+	description = S("Find/change a player's race"),
 	func = function(name, param)
-		param = (param ~= "" and param or name)
-		if minetest.check_player_privs(param, {GAMEwizard = true}) then
-			return true, string.format(S("Race of %s"), param) .. ": " .. S("Wizard")
-		elseif minetest.check_player_privs(param, {GAMEdwarf = true}) then
-			return true, string.format(S("Race of %s"), param) .. ": " .. S("Dwarf")
-		elseif minetest.check_player_privs(param, {GAMEelf = true}) then
-			return true, string.format(S("Race of %s"), param) .. ": " .. S("Elf")
-		elseif minetest.check_player_privs(param, {GAMEman = true}) then
-			return true, string.format(S("Race of %s"), param) .. ": " .. S("Man")
-		elseif minetest.check_player_privs(param, {GAMEorc = true}) then
-			return true, string.format(S("Race of %s"), param) .. ": " .. S("Orc")
-		elseif minetest.check_player_privs(param, {GAMEhobbit = true}) then
-			return true, string.format(S("Race of %s"), param) .. ": " .. S("Hobbit")
-		elseif minetest.check_player_privs(param, {shout = true}) ~= nil then
-			if param == name then
+		local playername, changerace = string.match(param, "([^ ]+) (.+)")
+		if not playername then
+			if not param or param == "" then
+				playername = name
+			else
+				playername = param
+			end
+		end
+		local privs = minetest.get_player_privs(playername)
+		
+		if minetest.player_exists(playername) == false then
+			return true, string.format(S("%s does not exist!"), playername)
+		end
+		
+		if not changerace then
+			for races, rdata in pairs(lottclasses.race) do
+				if privs[rdata[1]] then
+					return true, string.format(S("Race of %s"), playername) .. ": " .. S(rdata[3])
+				end
+			end
+			if name == playername then
 				if minetest.is_singleplayer() then
 					minetest.show_formspec(name, "race_selector", race_chooser .. fly_stuff)
 				else
 					minetest.show_formspec(name, "race_selector", race_chooser)
 				end
 			else
-				return true, string.format(S("%s has not chosen a race!"), param)
+				return true, string.format(S("%s has not chosen a race!"), player)
 			end
-		else
-			return true, string.format(S("%s does not exist!"), param)
+		elseif changerace then
+			if not minetest.get_player_privs(name).privs then
+				return true, S("You have insufficient privilege to change player races!")
+			end
+		
+			if lottclasses.race[changerace] then
+				if privs.GAMEfemale or privs.GAMEmale then
+					local player = minetest.get_player_by_name(playername)
+					for races, rdata in pairs(lottclasses.race) do
+						privs[rdata[1]] = nil
+						minetest.set_player_privs(playername, privs)
+					end
+					set_race(playername, changerace)
+					update_skin(player)
+					minetest.log("action", name.." changed "..playername.."'s race to "..changerace)
+					return true, S("Race of @1 has been changed to @2", playername, S(changerace))
+				else
+					return true, S("@1 has not chosen a race!", playername)
+				end
+			else
+				return true, S("@1 is not valid race. Select between: wizard dwarf elf man orc hobbit", changerace)
+			end
 		end
-	end,
+	end
 })

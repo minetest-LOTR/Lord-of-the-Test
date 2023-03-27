@@ -59,13 +59,17 @@ lottclasses.player_same_race_or_ally = function(player, race)
         local player_privs = minetest.get_player_privs(player:get_player_name())
         local player_race = nil
         for i, v in pairs(lottclasses.races) do
-                player_race = nil
-                if player_privs[v] then
-                        player_race = v
-                end
-                if player_race == race or lottclasses.allies[race][player_race] then
-                        return true
-                end
+			player_race = nil
+			if player_privs.GAMEwizard then
+				return true
+			end
+			
+			if player_privs[v] then
+				player_race = v
+			end
+			if player_race == race or lottclasses.allies[race][player_race] then
+				return true
+			end
         end
         return false
 end

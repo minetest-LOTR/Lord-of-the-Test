@@ -1,5 +1,5 @@
 local invisibility = (rawget(_G, "invisibility") and invisibility) or {}
-local damage_enabled = minetest.setting_getbool("enable_damage")
+local damage_enabled = minetest.settings:get_bool("enable_damage")
 
 local get_distance = function(a, b)
 
@@ -29,11 +29,14 @@ end
 
 local npc_guard_attack = function(self)
         if not damage_enabled or self.state == "attack" then
-                return
+			return
         end
         local player, entity_type, obj, min_player, npc_race = nil, nil, nil, nil, nil
         local min_dist = self.view_range + 1
-        local objs = minetest.get_objects_inside_radius(self.object:getpos(), self.view_range)
+        if not (self.object and self.object:get_pos()) then
+        	return
+        end
+        local objs = minetest.get_objects_inside_radius(self.object:get_pos(), self.view_range)
         for n = 1, #objs do
                 if invisibility[ objs[n]:get_player_name() ] then
                         entity_type = ""
@@ -51,8 +54,8 @@ local npc_guard_attack = function(self)
 
                 if entity_type == "player" or entity_type == "npc" or entity_type == "monster" then
 
-                        local s = self.object:getpos()
-                        local p = player:getpos()
+                        local s = self.object:get_pos()
+                        local p = player:get_pos()
                         local sp = s
 
                         -- aim higher to make looking up hills more realistic
@@ -64,7 +67,7 @@ local npc_guard_attack = function(self)
                         if dist < self.view_range then
 
                                 -- choose closest player to attack
-                                if line_of_sight_water(self, sp, p, 2) == true
+                                if self:line_of_sight_water(sp, p, 2) == true
                                 and dist < min_dist then
                                         if entity_type == "player"
                                         and player:get_player_name() ~= self.owner
@@ -97,7 +100,7 @@ local npc_guard_attack = function(self)
 
         -- attack player
         if min_player then
-                do_attack(self, min_player)
+               self:do_attack(min_player)
         end
 end
 
@@ -110,6 +113,9 @@ local npc_attack = function(self)
 	end
         local player, entity_type, obj, min_player, npc_race = nil, nil, nil, nil, nil
         local min_dist = self.view_range + 1
+        if not (self.object and self.object:get_pos()) then
+        	return
+        end
         local objs = minetest.get_objects_inside_radius(self.object:get_pos(), self.view_range)
         for n = 1, #objs do
                 if invisibility[ objs[n]:get_player_name() ] then
@@ -129,7 +135,11 @@ local npc_attack = function(self)
 
                 if entity_type == "player" or entity_type == "npc" or entity_type == "monster" then
 
-                        local s = self.object:get_pos()
+
+						if not (self.object and self.object:get_pos()) then
+							return
+						end
+        				local s = self.object:get_pos()
                         local p = player:get_pos()
                         local sp = s
 
@@ -142,7 +152,7 @@ local npc_attack = function(self)
                         if dist < self.view_range then
 
                                 -- choose closest player to attack
-                                if line_of_sight_water(self, sp, p, 2) == true
+                                if self:line_of_sight_water(sp, p, 2) == true
                                 and dist < min_dist then
                                         if entity_type == "player" then
                                                 if not lottclasses.player_same_race_or_ally(player, self.race) then
@@ -163,7 +173,7 @@ local npc_attack = function(self)
                 end
         end
         if min_player then
-                do_attack(self, min_player)
+                self:do_attack(min_player)
         end
 end
 
@@ -264,8 +274,11 @@ lottmobs.do_custom_guard = function(self, dtime)
 	end
 
 	-- node replace check (cow eats grass etc.)
-        local pos = self.object:get_pos()
-	replace(self, pos)
+    if not (self.object and self.object:get_pos()) then
+    	return
+    end
+    local pos = self.object:get_pos()
+	self:replace(pos)
 
 	-- mob plays random sound at times
 	if self.sounds.random
@@ -285,7 +298,7 @@ lottmobs.do_custom_guard = function(self, dtime)
 
 		self.env_damage_timer = 0
 
-		do_env_damage(self)
+		self:do_env_damage()
 	end
 	if self.owner and self.owner ~= "" then
                 lottmobs.guard_eat_active(self)
@@ -294,8 +307,8 @@ lottmobs.do_custom_guard = function(self, dtime)
                 npc_attack(self)
 	end
 
-	mobs.follow_flop(self)
-	mobs.do_states(self, dtime)
+	self:follow_flop()
+	self:do_states(dtime)
         return false
 end
 
@@ -410,12 +423,12 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race, price)
 		hp = hp + 4
 		if hp > self.hp_max then hp = self.hp_max end
 		self.object:set_hp(hp)
-		if not minetest.setting_getbool("creative_mode") then
+		if not minetest.settings:get_bool("creative_mode") then
 			item:take_item()
 			clicker:set_wielded_item(item)
 		end
 	elseif item:get_name() == payment and self.tamed == false and lottclasses.player_same_race_or_ally(clicker, self.race) then
-		lottmobs.face_pos(self, clicker:getpos())
+		lottmobs.face_pos(self, clicker:get_pos())
 		self.state = "stand"
                 if not price then price = 50 end
 		minetest.show_formspec(name, "mob_hiring", lottmobs.get_hiring_formspec(price))
@@ -423,8 +436,8 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race, price)
 			if math.random(1, (price/cost)) == 1 then
 				minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> Okay, I'll work for you.")
 				local count = item:get_count()
-				if count > cost or minetest.setting_getbool("creative_mode") then
-					if not minetest.setting_getbool("creative_mode") then
+				if count > cost or minetest.settings:get_bool("creative_mode") then
+					if not minetest.settings:get_bool("creative_mode") then
 						item:take_item(cost)
 						clicker:set_wielded_item(item)
 					end
@@ -440,7 +453,7 @@ lottmobs.guard = function(self, clicker, payment, mob_name, race, price)
 					self.object:remove()
 				elseif rand == 2 then
 					minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> Are you mocking me? I don't take kindly to mockers!")
-					do_attack(self, clicker)
+					self:do_attack(clicker)
 				elseif rand == 3 then
 					minetest.chat_send_player(name, "[NPC] <" .. mob_name .. "> You're joking, right? Oh, you're serious? Well, to let you know, I won't be working for you for that pitiful amount.")
 				else
@@ -494,13 +507,13 @@ lottmobs.register_guard_craftitem = function(name, description, inventory_image)
                                                             local add_guard = function(game_name)
                                                                     local pos = pointed_thing.above
                                                                     pos.y = pos.y + 1
-                                                                    if not minetest.setting_getbool("creative_mode") then
+                                                                    if not minetest.settings:get_bool("creative_mode") then
                                                                             itemstack:take_item()
                                                                     end
                                                                     local obj = minetest.add_entity(pos, name):get_luaentity()
                                                                     obj.game_name = game_name
                                                                     obj.nametag = game_name
-                                                                    update_tag(obj)
+                                                                    obj:update_tag()
                                                                     obj.tamed = true
                                                                     obj.owner = owner
                                                                     obj.order = "follow"

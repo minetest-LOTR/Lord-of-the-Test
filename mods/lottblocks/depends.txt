@@ -1,7 +1,0 @@
-stairs
-doors
-lottplants
-default
-dye
-lottachievements
-intllib?

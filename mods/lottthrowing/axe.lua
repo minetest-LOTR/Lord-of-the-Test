@@ -1,18 +1,18 @@
-local creative = minetest.setting_getbool("creative_mode")
+local creative = minetest.settings:get_bool("creative_mode")
 
 local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 	local axe_entity = "lottthrowing:" .. axe .. "_entity"
 	local lottthrowing_throw_axe = function(itemstack, player)
-		if not minetest.setting_getbool("creative_mode") then
+		if not minetest.settings:get_bool("creative_mode") then
 			player:get_inventory():remove_item("main", player:get_wield_index())
 		end
-		local playerpos = player:getpos()
+		local playerpos = player:get_pos()
 		local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, axe_entity)
 		obj:get_luaentity().player = player or nil
 		local dir = player:get_look_dir()
-		obj:setvelocity({x=dir.x*27, y=dir.y*30, z=dir.z*27})
-		obj:setacceleration({x=dir.x*-1, y=-5, z=dir.z*-1})
-		obj:setyaw(player:get_look_yaw()+math.pi)
+		obj:set_velocity({x=dir.x*27, y=dir.y*30, z=dir.z*27})
+		obj:set_acceleration({x=dir.x*-1, y=-5, z=dir.z*-1})
+		obj:set_yaw(player:get_look_horizontal()+math.pi)
 		minetest.sound_play("lottthrowing_sound", {pos=playerpos})
 		if obj:get_luaentity().player == "" then
 			obj:get_luaentity().player = player
@@ -26,7 +26,7 @@ local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 	    on_use = function(itemstack, user, pointed_thing)
 	        lottthrowing_throw_axe(item, user, pointed_thing)
 	        if not creative then
-	    		itemstack:take_item()
+				itemstack:take_item()
 	        end
 	        return itemstack
 	    end,
@@ -56,6 +56,7 @@ local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 			"lottthrowing_axe_" .. axe .. ".png",
 			"lottthrowing_axe_" .. axe .. "2.png"
 		},
+		use_texture_alpha = "clip",
 		groups = {not_in_creative_inventory=1},
 	})
 
@@ -74,7 +75,7 @@ local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 
 	aep.on_step = function(self, dtime)
 		self.timer=self.timer+dtime
-		local pos = self.object:getpos()
+		local pos = self.object:get_pos()
 		local node = minetest.get_node(pos)
 
 		if self.timer>0.2 then

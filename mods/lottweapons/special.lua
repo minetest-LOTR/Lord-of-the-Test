@@ -38,6 +38,7 @@ minetest.register_tool("lottweapons:balrog_whip", {
 		minetest.get_background_escape_sequence("darkred"),
 	inventory_image = "lottweapons_balrog_whip.png^[transform3",
 	on_use = function(itemstack, user, pointed_thing)
+		local name = user:get_player_name()
 		if pointed_thing.type == "nothing" then
 			local dir = user:get_look_dir()
 			local pos = user:get_pos()
@@ -48,11 +49,11 @@ minetest.register_tool("lottweapons:balrog_whip", {
 					z = pos.z + (dir.z * i),
 				}
 				if minetest.get_node(new_pos).name == "air"	and
-				not minetest.is_protected(new_pos, user:get_player_name()) then
+				not minetest.is_protected(new_pos, name) then
 					minetest.set_node(new_pos, {name = "fire:basic_flame"})
 				end
 			end
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/49)
 				return itemstack
 			end
@@ -84,7 +85,7 @@ minetest.register_tool("lottweapons:balrog_whip", {
 					end
 				end)
 			end
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/499)
 				return itemstack
 			end
@@ -112,7 +113,7 @@ minetest.register_tool("lottweapons:balrog_whip", {
 			end
 			end
 			end
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/49)
 				return itemstack
 			end

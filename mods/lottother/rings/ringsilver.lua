@@ -60,7 +60,7 @@ function lottother.item_drop(itemstack, dropper, pos)
 			v.x = v.x*2
 			v.y = v.y*2 + 2
 			v.z = v.z*2
-			obj:setvelocity(v)
+			obj:set_velocity(v)
 			obj:get_luaentity().dropped_by = dropper:get_player_name()
 			inv:set_stack("main", ind, "")
 			return obj
@@ -82,7 +82,7 @@ minetest.register_craftitem("lottother:hot_ringsilver", {
 		local ent = lottother.item_drop(itemstack, dropper, pos)
 		minetest.after(3, function()
 			if ent ~= nil and metadata ~= nil then
-				local pos = ent:getpos()
+				local pos = ent:get_pos()
 				if pos ~= nil then
 					local node = minetest.get_node(pos).name
 					ent:remove()
@@ -184,7 +184,7 @@ local function furnace_node_timer(pos, elapsed)
 				local x = tostring(os.time())
 				local item = minetest.add_item({x=pos.x, y=pos.y+1, z=pos.z},
 					{name = "lottother:hot_ringsilver", metadata = x})
-				item:setvelocity({x=0, y=10, z=0})
+				item:set_velocity({x=0, y=10, z=0})
 				minetest.add_particlespawner({
 					amount = 30,
 					time = 1,

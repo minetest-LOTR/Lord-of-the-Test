@@ -26,7 +26,7 @@ function place_seed(itemstack, placer, pointed_thing, plantname, param2)
 		return
 	end
 	minetest.add_node(pt.above, {name=plantname, param2=param2})
-	if not minetest.setting_getbool("creative_mode") then
+	if not minetest.settings:get_bool("creative_mode") then
 		itemstack:take_item()
 	end
 	return itemstack
@@ -58,7 +58,7 @@ function place_spore(itemstack, placer, pointed_thing, plantname, p2)
 		return
 	end
 	minetest.add_node(pt.above, {name=plantname, param2 = p2})
-	if not minetest.setting_getbool("creative_mode") then
+	if not minetest.settings:get_bool("creative_mode") then
 		itemstack:take_item()
 	end
 	return itemstack

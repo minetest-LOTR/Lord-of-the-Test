@@ -31,8 +31,16 @@ function lottinventory.add_craft(input, output, needed_groups, forbidden_groups,
 		has_groups = false
 		for _, group in pairs(needed_groups) do
 			if type then
-				if minetest.get_item_group(output, group) > 0 or type == input.type then
-					has_groups = true
+				if #type > 1 then
+					for _, types in pairs(type) do
+						if minetest.get_item_group(output, group) > 0 or types == input.type then
+							has_groups = true
+						end
+					end
+				else
+					if minetest.get_item_group(output, group) > 0 or type == input.type then
+						has_groups = true
+					end
 				end
 			else
 				if minetest.get_item_group(output, group) > 0 then
@@ -49,9 +57,15 @@ function lottinventory.add_craft(input, output, needed_groups, forbidden_groups,
 			end
 		end
 	end
-	if not not_groups or not has_groups
-	or (not_type and not_type == input.type) then
+	if not not_groups or not has_groups then
 		return
+	end
+	if not_type then
+		for _, not_types in pairs(not_type) do
+			if not_types == input.type then
+				return
+			end
+		end
 	end
 	if not groups then groups = {} end
 	local c = {}
@@ -89,6 +103,7 @@ end
 function lottinventory.load_crafts(name, ctable, needed_groups,
 	forbidden_groups, type, not_type)
 	ctable.crafts[name] = {}
+	-- default recipes
 	local _recipes = minetest.get_all_craft_recipes(name)
 	if _recipes then
 		for i, recipe in ipairs(_recipes) do
@@ -98,6 +113,23 @@ function lottinventory.load_crafts(name, ctable, needed_groups,
 			end
 		end
 	end
+	-- dual furnace recipes
+	if lottblocks.crafts then
+		for output, rdata in pairs(lottblocks.crafts) do
+			local output_name = output:gsub("_", ":", 1)
+			if output_name == name then 
+				local c_recipe = {
+					width = #rdata.recipe,
+					type = rdata.type,
+					items = rdata.recipe,
+					output = output_name,
+				}
+				lottinventory.add_craft(c_recipe, name, needed_groups, forbidden_groups, ctable, type, not_type)
+			end
+		end
+	end
+	
+	
 	if ctable.crafts[name] == nil or #ctable.crafts[name] == 0 then
 		ctable.crafts[name] = nil
 	else
@@ -156,7 +188,7 @@ function lottinventory.formspec(pn, ctable, fname, master)
 						"," .. (math.floor((i - 1) / c.width + y)) ..
 						";1,1;" .. item .. ";craftguide:" .. item .. ";]"
 				end
-				if c.type == "normal" or c.type == "cooking" then
+				if c.type == "normal" or c.type == "cooking" or c.type == "dualfurn" then
 					formspec = formspec .. "image[6,2;1,1;zcg_method_"..c.type..".png]"
 				else -- we don't have an image for other types of crafting
 					formspec = formspec .. "label[0,2;Method: "..c.type.."]"

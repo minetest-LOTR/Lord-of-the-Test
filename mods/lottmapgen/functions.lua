@@ -158,7 +158,7 @@ function lottmapgen_appletree(x, y, z, area, data)
 			for i = -2, 2 do
 			for k = -2, 2 do
 				local vil = area:index(x + i, y + j + 1, z + k)
-				if math.random(48) == 2 then
+				if math.random(48) == 2 and i ~= 0 and k ~= 0 then
 					data[vil] = c_apple
 				elseif math.random(3) ~= 2 then
 					data[vil] = c_leaves
@@ -180,7 +180,7 @@ function lottmapgen_plumtree(x, y, z, area, data)
 			for i = -2, 2 do
 			for k = -2, 2 do
 				local vil = area:index(x + i, y + j + 1, z + k)
-				if math.random(48) == 2 then
+				if math.random(48) == 2 and i ~= 0 and k ~= 0 then
 					data[vil] = c_plum
 				elseif math.random(3) ~= 2 then
 					data[vil] = c_plumleaf
@@ -703,6 +703,7 @@ function lottmapgen_beechtree(x, y, z, area, data)
 	for k = -2, 2 do
 		local absi = math.abs(i)
 		local absk = math.abs(k)
+		local j
 		if absi >= absk then
 			j = t - absi
 		else
@@ -794,7 +795,7 @@ function lottmapgen_elf_workshop(x, y, z, area, data, p2data)
 	local c_stonebrick = minetest.get_content_id("default:stonebrick")
 	local c_cracked_stonebrick = minetest.get_content_id("default:cracked_stonebrick")
 	local c_marblebrick = minetest.get_content_id("lottblocks:marble_brick")
-	local c_elftorch = minetest.get_content_id("lottblocks:elf_torch")
+	local c_elftorchwall = minetest.get_content_id("lottblocks:elf_torch_wall")
 	local c_furnace = minetest.get_content_id("lottmapgen:furnace_spawner")
 	local c_dual_furnace = minetest.get_content_id("lottmapgen:dual_furnace_spawner")
 	local c_ringsilver_furnace = minetest.get_content_id("lottmapgen:ringsilver_furnace_spawner")
@@ -846,7 +847,7 @@ function lottmapgen_elf_workshop(x, y, z, area, data, p2data)
 				(i == 6 and j == 4 and k == 2) or
 				(i == 1 and j == 4 and k == 7) or
 				(i == 6 and j == 4 and k == 7) then
-					data[vi] = c_elftorch
+					data[vi] = c_elftorchwall
 					if i == 6 then
 						p2data[vi] = 2
 					else
@@ -948,15 +949,15 @@ function lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, H
 		end
 	elseif n_temp > HITET then
 		if n_humid < LOHUT then
-			return 7 -- (Lorien)
+			return 10 -- (Mirkwood)
 		elseif n_humid > HIHUT then
 			return 9 -- (Fangorn)
 		elseif n_ran < LORAN then
-			return 10 -- (Mirkwood)
+			return 7 -- (Lorien)
 		elseif n_ran > HIRAN then
 			return 11 -- (Iron Hills)
 		else
-			return 4 -- (Dunlands)
+			return 13 -- (Shire)
 		end
 	else
 		if n_humid < LOHUT then
@@ -964,7 +965,7 @@ function lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, H
 		elseif n_humid > HIHUT then
 			return 6 -- (Ithilien)
 		elseif n_ran < LORAN then
-			return 13 -- (Shire)
+			return 4 -- (Dunland)
 		elseif n_ran > HIRAN then
 			return 12 -- (Rohan)
 		else

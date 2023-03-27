@@ -23,7 +23,7 @@ local HIRAN = 0.4
 local LORAN = -0.4
 local PAPCHA = 3 -- Papyrus
 local DUGCHA = 5 -- Dune grass
-local biome_blend = minetest.setting_getbool("biome_blend")
+local biome_blend = minetest.settings:get_bool("biome_blend")
 
 --Rarity for Trees
 
@@ -116,6 +116,7 @@ end
 dofile(minetest.get_modpath("lottmapgen").."/nodes.lua")
 dofile(minetest.get_modpath("lottmapgen").."/functions.lua")
 
+dofile(minetest.get_modpath("lottmapgen").."/worldedit.lua")
 dofile(minetest.get_modpath("lottmapgen").."/schematics.lua")
 
 -- On generated function
@@ -194,8 +195,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	nobj_random = nobj_random or minetest.get_perlin_map(np_random, chulens)
 
 	local nvals_temp = nobj_temp:get_2d_map_flat(minposxz, nbuf_temp)
-	local nvals_humid = nobj_humid:get2dMap_flat(minposxz, nbuf_humid)
-	local nvals_random = nobj_random:get2dMap_flat(minposxz, nbuf_random)
+	local nvals_humid = nobj_humid:get_2d_map_flat(minposxz, nbuf_humid)
+	local nvals_random = nobj_random:get_2d_map_flat(minposxz, nbuf_random)
 
 	local offset = math.random(5,20)
 	if biome_blend == true then
@@ -227,12 +228,12 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local surfy = y1 + 80 -- y of last surface detected
 			for y = y1, y0, -1 do -- working down each column for each node do
 				if biome_blend == true then
-					local offsetpos = {x = (x-x0) + offset + math.random(-offset, offset) + 1, z = (z - z0) + offset + math.random(-offset, offset) + 1}
-					offsetpos.x = rangelim(offsetpos.x, 1, 80)
-					offsetpos.z = rangelim(offsetpos.z, 1, 80)
-					n_temp = nvals_temp[offsetpos.z][offsetpos.x] -- select biome
-					n_humid = nvals_humid[offsetpos.z][offsetpos.x]
-					n_ran = nvals_random[offsetpos.z][offsetpos.x]
+					local offset_pos = {x = (x-x0) + offset + math.random(-offset, offset) + 1, z = (z - z0) + offset + math.random(-offset, offset) + 1}
+					offset_pos.x = rangelim(offset_pos.x, 1, 80)
+					offset_pos.z = rangelim(offset_pos.z, 1, 80)
+					n_temp = nvals_temp[offset_pos.z][offset_pos.x] -- select biome
+					n_humid = nvals_humid[offset_pos.z][offset_pos.x]
+					n_ran = nvals_random[offset_pos.z][offset_pos.x]
 					biome = lottmapgen_biomes(biome, n_temp, n_humid, n_ran, LOTET, LOHUT, LORAN, HITET, HIHUT, HIRAN)
 				end
 				local fimadep = math.floor(6 - y / 512) + math.random(0, 1)
@@ -273,14 +274,14 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					end
 					if y > -100 and y < -5 then
 						if biome == 11 or biome == 1 then
-							if math.random(100000) == 1 then
+							if math.random(10000) == 1 then
 								lottmapgen_mithrilore(x, y, z, area, data)
 							end
 						end
 						if biome == 10 or biome == 7 then
-							if math.random(100000) == 1 then
+							if math.random(10000) == 1 then
 								lottmapgen_meseore(x, y, z, area, data)
-							elseif math.random(10000000) == 1 then
+							elseif math.random(50000) == 1 then
 								data[vi] = c_mese
 							end
 						end

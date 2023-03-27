@@ -78,8 +78,8 @@ mobs:register_mob("lottmobs:warg", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "bones:skeleton_body" then
-        	minetest.add_entity(self.object:getpos(), "lottmobs:warg_mount")
-        	if not minetest.setting_getbool("creative_mode") then
+        	minetest.add_entity(self.object:get_pos(), "lottmobs:warg_mount")
+        	if not minetest.settings:get_bool("creative_mode") then
 				item:take_item()
         		clicker:set_wielded_item(item)
         	end

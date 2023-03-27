@@ -1,10 +1,11 @@
 -- mods/default/mapgen.lua
 
 local mapgen_name = minetest.get_mapgen_setting("mg_name")
-local lott_v6 = minetest.setting_getbool("lott_v6") or false
 
-if mapgen_name == "singlenode" or (mapgen_name == "v6" and lott_v6 ~= true) then
+if mapgen_name == "singlenode" then
 	minetest.set_mapgen_setting("mg_name", "v7", true)
+elseif mapgen_name == "v6" then
+	minetest.log("warning", "[LOTT] v6 mapgen is not fully tested, use at own risk or use other mapgens!")
 end
 
 local flags = minetest.get_mapgen_setting("mgv7_spflags")
@@ -27,7 +28,7 @@ minetest.register_node("default:mapgen_stone", {
 	description = "Mapgen Stone",
 	tiles = {"default_stone.png"},
 	is_ground_content = true,
-	groups = {cracky=3, stone=1, not_in_creative_inventory=1},
+	groups = {cracky=3, not_in_creative_inventory=1},
 	drop = 'default:cobble',
 	legacy_mineral = true,
 	sounds = default.node_sound_stone_defaults(),
@@ -70,7 +71,7 @@ minetest.register_alias("mapgen_stair_sandstonebrick", "stairs:stair_cobble")
 -- Ore generation
 --
 
-local wl = minetest.get_mapgen_setting("water_level")
+local wl = tonumber(minetest.get_mapgen_setting("water_level")) or 1
 
 minetest.register_ore({
 	ore_type       = "scatter",

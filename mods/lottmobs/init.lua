@@ -1557,14 +1557,14 @@ mobs:register_arrow("lottmobs:darkball", {
 	textures = {"lottmobs_darkball.png"},
 	velocity = 5,
 	hit_player = function(self, player)
-		local s = self.object:getpos()
-		local p = player:getpos()
+		local s = self.object:get_pos()
+		local p = player:get_pos()
 		local vec = {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z}
 		player:punch(self.object, 1.0,  {
 			full_punch_interval=1.0,
 			damage_groups = {fleshy=4},
 		}, vec)
-		local pos = self.object:getpos()
+		local pos = self.object:get_pos()
                 local node1def = minetest.get_node(pos)
                 local n = node1def.name
 		for dx=-1,1 do

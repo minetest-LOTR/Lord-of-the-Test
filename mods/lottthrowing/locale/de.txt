@@ -14,4 +14,9 @@ Wooden Crossbow = hölzerne Armbrust
 
 ### arrow.lua
 Arrow = Pfeil
-
+Mithril Arrow = Mithrilpfeil
+Magical Arrow = Magischer Pfeil
+Fire Arrow = Feuerpfeil
+Bolt = Bolzen
+Mithril Bolt = Mitrilbolzen
+Fire Bolt = Feuerbolzen

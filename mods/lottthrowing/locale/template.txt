@@ -14,4 +14,9 @@ Wooden Crossbow =
 
 ### arrow.lua
 Arrow =
-
+Mithril Arrow =
+Magical Arrow =
+Fire Arrow =
+Bolt =
+Mithril Bolt =
+Fire Bolt =

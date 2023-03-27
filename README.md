@@ -48,7 +48,7 @@ Simply put, expect LTTA to be vastly different from LOTT!
 All of these things are just what we've got planned for the beginning, later on, there'll be an even greater variety of content, including a whole new quests system, a dialogue system, a complete array of mobs, and so much more!
 But all of this will take time. We remain busy, and are likely to be so for the foreseeable future. So, if you want to help in shaping Middle Earth in Minetest, get in touch!
 
-You can find us at IRC [#lordofthetest in freenode](https://webchat.freenode.net/?channels=#lordofthetest) and at discord  [here](https://discord.gg/3qyymp2)
+You can find us at IRC [#lordofthetest on libera](https://web.libera.chat/?channels=#lordofthetest) and at discord  [here](https://discord.gg/3qyymp2)
 
 Thank you all for your support and help along the journey - we wouldn't have been able to this far without your help! While this part of the road is over, there is an even bigger one ahead of us!  The journey is exciting, and who knows where it will lead? Stay tuned for more information, and if you want, keep an eye out for a possible new development blog [here](https://minetest-lotr.github.io/)!
 
@@ -68,7 +68,7 @@ If you wish to contribute, please see [CONTRIBUTING.md](https://github.com/minet
 
 #### Installation:
 
-To install this game [download it](../../archive/v1.2.0.zip), and extract the zip to <your minetest folder>/games/Lord-of-the-Test.
+To install this game [download it](https://github.com/minetest-LOTR/Lord-of-the-Test/releases/latest), and extract the zip to <your minetest folder>/games/Lord-of-the-Test.
 
 On Linux, the folder which contains the games folder is .minetest in your home directory. (You may need to use ctrl+h to show hidden files.)
 

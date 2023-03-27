@@ -9,15 +9,15 @@ local S, NS = dofile(
 
 arrows = {
 	{"lottthrowing:arrow", "lottthrowing:arrow_entity"},
-     {"lottthrowing:arrow_mithril", "lottthrowing:arrow_mithril_entity"},
+    {"lottthrowing:arrow_mithril", "lottthrowing:arrow_mithril_entity"},
 	{"lottthrowing:arrow_fire", "lottthrowing:arrow_fire_entity"},
-     {"lottthrowing:arrow_fire_blue", "lottthrowing:arrow_fire_blue_entity"},
-     {"lottthrowing:arrow_magical", "lottthrowing:arrow_magical_entity"},
+    {"lottthrowing:arrow_fire_blue", "lottthrowing:arrow_fire_blue_entity"},
+    {"lottthrowing:arrow_magical", "lottthrowing:arrow_magical_entity"},
 }
 
 bolts = {
 	{"lottthrowing:bolt", "lottthrowing:bolt_entity"},
-     {"lottthrowing:bolt_mithril", "lottthrowing:bolt_mithril_entity"},
+    {"lottthrowing:bolt_mithril", "lottthrowing:bolt_mithril_entity"},
 	{"lottthrowing:bolt_fire", "lottthrowing:bolt_fire_entity"},
 }
 
@@ -75,10 +75,10 @@ local lottthrowing_shoot_arrow = function(itemstack, player, pointed_thing, draw
 	for _,arrow in ipairs(arrows) do
 		if player:get_inventory():get_stack("main", player:get_wield_index()+1):get_name() == arrow[1]
 		and time_bow[name] == 0 then
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				player:get_inventory():remove_item("main", arrow[1])
 			end
-			local playerpos = player:getpos()
+			local playerpos = player:get_pos()
 			time_bow[name] = drawspeed
 			ids[name .. " img"] = player:hud_add({
 				hud_elem_type = "image",
@@ -99,9 +99,9 @@ local lottthrowing_shoot_arrow = function(itemstack, player, pointed_thing, draw
 			local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, arrow[2])
 			obj:get_luaentity().player = player or nil
 			local dir = player:get_look_dir()
-			obj:setvelocity({x=dir.x*19, y=dir.y*19, z=dir.z*19})
-			obj:setacceleration({x=dir.x*-3, y=-10, z=dir.z*-3})
-			obj:setyaw(player:get_look_yaw()+math.pi)
+			obj:set_velocity({x=dir.x*19, y=dir.y*19, z=dir.z*19})
+			obj:set_acceleration({x=dir.x*-3, y=-10, z=dir.z*-3})
+			obj:set_yaw(player:get_look_horizontal()+math.pi)
 			minetest.sound_play("lottthrowing_sound", {pos=playerpos})
 			if obj:get_luaentity().player == "" then
 				obj:get_luaentity().player = player
@@ -121,10 +121,10 @@ local lottthrowing_shoot_bolt = function(itemstack, player, pointed_thing, draws
 	for _,arrow in ipairs(bolts) do
 		if player:get_inventory():get_stack("main", player:get_wield_index()+1):get_name() == arrow[1]
 		and time_crossbow[name] == 0 then
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				player:get_inventory():remove_item("main", arrow[1])
 			end
-			local playerpos = player:getpos()
+			local playerpos = player:get_pos()
 			time_crossbow[name] = drawspeed
 			ids[name .. " cimg"] = player:hud_add({
 				hud_elem_type = "image",
@@ -145,9 +145,9 @@ local lottthrowing_shoot_bolt = function(itemstack, player, pointed_thing, draws
 			local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, arrow[2])
 			obj:get_luaentity().player = player or nil
 			local dir = player:get_look_dir()
-			obj:setvelocity({x=dir.x*25, y=dir.y*25, z=dir.z*25})
-			obj:setacceleration({x=dir.x*-1, y=-5, z=dir.z*-1})
-			obj:setyaw(player:get_look_yaw()+math.pi)
+			obj:set_velocity({x=dir.x*25, y=dir.y*25, z=dir.z*25})
+			obj:set_acceleration({x=dir.x*-1, y=-5, z=dir.z*-1})
+			obj:set_yaw(player:get_look_horizontal()+math.pi)
 			minetest.sound_play("lottthrowing_sound", {pos=playerpos})
 			if obj:get_luaentity().player == "" then
 				obj:get_luaentity().player = player
@@ -165,7 +165,7 @@ minetest.register_tool("lottthrowing:bow_wood", {
     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_arrow(itemstack, user, pointed_thing, 5) then
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/50)
 			end
 		end
@@ -179,7 +179,7 @@ minetest.register_tool("lottthrowing:bow_wood_alder", {
     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_arrow(item, user, pointed_thing, 4) then
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/70)
 			end
 		end
@@ -193,7 +193,7 @@ minetest.register_tool("lottthrowing:bow_wood_birch", {
     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_arrow(item, user, pointed_thing, 3) then
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/100)
 			end
 		end
@@ -207,7 +207,7 @@ minetest.register_tool("lottthrowing:bow_wood_lebethron", {
     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_arrow(item, user, pointed_thing, 2) then
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/150)
 			end
 		end
@@ -221,7 +221,7 @@ minetest.register_tool("lottthrowing:bow_wood_mallorn", {
     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_arrow(item, user, pointed_thing, 1) then
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/300)
 			end
 		end
@@ -280,7 +280,7 @@ minetest.register_tool("lottthrowing:crossbow_wood", {
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_bolt(itemstack, user, pointed_thing, 10) then
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/50)
 			end
 		end
@@ -294,7 +294,7 @@ minetest.register_tool("lottthrowing:crossbow_steel", {
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_bolt(item, user, pointed_thing, 9) then
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/70)
 			end
 		end
@@ -308,7 +308,7 @@ minetest.register_tool("lottthrowing:crossbow_tin", {
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_bolt(item, user, pointed_thing, 8) then
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/100)
 			end
 		end
@@ -322,7 +322,7 @@ minetest.register_tool("lottthrowing:crossbow_silver", {
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_bolt(item, user, pointed_thing, 7) then
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/150)
 			end
 		end
@@ -336,7 +336,7 @@ minetest.register_tool("lottthrowing:crossbow_gold", {
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_bolt(item, user, pointed_thing, 6) then
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/200)
 			end
 		end
@@ -351,7 +351,7 @@ minetest.register_tool("lottthrowing:crossbow_galvorn", {
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_bolt(item, user, pointed_thing, 5) then
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/300)
 			end
 		end
@@ -365,7 +365,7 @@ minetest.register_tool("lottthrowing:crossbow_mithril", {
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		if lottthrowing_shoot_bolt(item, user, pointed_thing, 4) then
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:add_wear(65535/500)
 			end
 		end
@@ -437,13 +437,4 @@ minetest.register_craft({
 })
 
 dofile(minetest.get_modpath("lottthrowing").."/arrow.lua")
-dofile(minetest.get_modpath("lottthrowing").."/mithril_arrow.lua")
-dofile(minetest.get_modpath("lottthrowing").."/fire_arrow.lua")
-dofile(minetest.get_modpath("lottthrowing").."/bluefire_arrow.lua")
-dofile(minetest.get_modpath("lottthrowing").."/magical_arrow.lua")
-
-dofile(minetest.get_modpath("lottthrowing").."/bolt.lua")
-dofile(minetest.get_modpath("lottthrowing").."/mithril_bolt.lua")
-dofile(minetest.get_modpath("lottthrowing").."/fire_bolt.lua")
-
 dofile(minetest.get_modpath("lottthrowing").."/axe.lua")

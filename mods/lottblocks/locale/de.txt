@@ -32,7 +32,8 @@ White Dwarf Stone = Weißer Zwergenstein
 White Mallorn = Weißes Mallorn
 
 ### lamps.lua
-Elf Torch = Elfenfackel
 Mithril Stonelamp = Mithrilsteinlampe
-Orc Torch = Orkfackel
 
+### torches.lua
+Elf Torch = Elfenfackel
+Orc Torch = Orkfackel

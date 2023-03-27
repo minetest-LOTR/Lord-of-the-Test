@@ -50,6 +50,7 @@ for _, row in ipairs(banners) do
 			"lottblocks_banner_"..name.."_side.png",
 			"lottblocks_banner_"..name..".png",
 		},
+		use_texture_alpha = "clip",
 		groups = {oddly_breakable_by_hand=3,flammable=3},
 		sounds = default.node_sound_defaults(),
 		paramtype = "light",
@@ -79,7 +80,7 @@ for _, row in ipairs(banners) do
 				return itemstack
 			end
 			local fdir = 0
-			local placer_pos = placer:getpos()
+			local placer_pos = placer:get_pos()
 			if placer_pos then
 				dir = {
 					x = above.x - placer_pos.x,
@@ -90,7 +91,7 @@ for _, row in ipairs(banners) do
 			end
 			minetest.add_node(above, {name = "lottblocks:banner_"..name, param2 = fdir})
 			minetest.add_node({x = above.x, y = above.y + 1, z = above.z}, {name = "lottblocks:banner_top_"..name,param2 = fdir})
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:take_item()
 			end
 			return itemstack

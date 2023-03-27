@@ -1,4 +1,0 @@
-default
-lottores
-lottinventory
-intllib?

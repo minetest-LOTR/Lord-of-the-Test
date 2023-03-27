@@ -40,7 +40,7 @@ function lottplants_appletree(pos)
 				if math.random() > (absi + absk) / 24 then
 					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:appleleaf"})
 				end
-				if math.random() > (absi + absk) / 12 then
+				if math.random() > (absi + absk) / 12  and i ~= 0 and k ~= 0 then
 					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="default:apple"})
 				end
 			end
@@ -405,7 +405,7 @@ function lottplants_plumtree(pos)
 				if math.random() > (absi + absk) / 24 then
 					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:plumleaf"})
 				end
-				if math.random() > (absi + absk) / 2 then
+				if math.random() > (absi + absk) / 3 and i ~= 0 and k ~= 0 then
 					check_add_node({x=pos.x+i,y=pos.y+j+math.random(0, 1),z=pos.z+k},{name="lottplants:plum"})
 				end
 			end

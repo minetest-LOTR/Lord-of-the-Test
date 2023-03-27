@@ -32,7 +32,8 @@ White Dwarf Stone =
 White Mallorn =
 
 ### lamps.lua
-Elf Torch =
 Mithril Stonelamp =
-Orc Torch =
 
+### torches.lua
+Elf Torch =
+Orc Torch =

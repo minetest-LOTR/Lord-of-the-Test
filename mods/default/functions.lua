@@ -403,7 +403,7 @@ minetest.register_abm({
 
 --This allows trees act *almost* like falling nodes, useful for big trees!
 
-local falling_trees = minetest.setting_getbool("falling_trees")
+local falling_trees = minetest.settings:get_bool("falling_trees")
 
 if not falling_trees then
 	if minetest.is_singleplayer() then
@@ -472,7 +472,7 @@ function default.explode(pos, time, radius, damage, node)
 		local objects = minetest.get_objects_inside_radius(pos, radius * 2)
 		for _,obj in ipairs(objects) do
 			if obj:is_player() or (obj:get_luaentity() and obj:get_luaentity().name ~= "__builtin:item") then
-				local obj_p = obj:getpos()
+				local obj_p = obj:get_pos()
 				local vec = {x=obj_p.x-pos.x, y=obj_p.y-pos.y, z=obj_p.z-pos.z}
 				local dist = (vec.x^2+vec.y^2+vec.z^2)^0.5
 				local damage = damage or (80*0.5^dist)*2

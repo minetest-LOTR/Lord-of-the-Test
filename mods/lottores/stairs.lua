@@ -6,7 +6,7 @@ stairs.register_stair_and_slab("tilkal", "lottores:tilkal",
 		default.node_sound_stone_defaults())
 
 stairs.register_stair_and_slab("limestone", "lottores:limestone",
-        {cracky=3, stone=2},
+        {cracky=3},
 		{"lottores_limestone.png"},
 		"Limestone Stair",
 		"Limestone Slab",

@@ -116,11 +116,11 @@ mobs:register_mob("lottmobs:sheep", {
 			end
 			self.gotten = true -- shaved
 			local obj = minetest.add_item(
-				self.object:getpos(),
+				self.object:get_pos(),
 				ItemStack( "wool:" .. col[1] .. " " .. math.random(1, 3) )
 			)
 			if obj then
-				obj:setvelocity({
+				obj:set_velocity({
 					x = math.random(-1, 1),
 					y = 5,
 					z = math.random(-1, 1)

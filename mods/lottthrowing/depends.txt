@@ -1,6 +1,0 @@
-default
-fire
-farming
-lottores
-lottother
-intllib?

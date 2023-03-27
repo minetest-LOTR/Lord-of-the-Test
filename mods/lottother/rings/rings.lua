@@ -24,7 +24,7 @@ local function ring_drop(itemstack, dropper, pos)
 	local ent = lottother.item_drop(itemstack, dropper, pos)
 	minetest.after(5, function()
 		if ent ~= nil then
-			local pos = ent:getpos()
+			local pos = ent:get_pos()
 			if pos ~= nil then
 				local node = minetest.get_node(pos).name
 				if node == "default:lava_source" then
@@ -125,6 +125,7 @@ minetest.register_globalstep(function(dtime)
 		for _, player in ipairs(minetest.get_connected_players()) do
 			local name = player:get_player_name()
 			local wield = player:get_inventory():get_stack("main", player:get_wield_index()):get_name()
+			local meta = player:get_meta()
 			
 			if lottother.corrupt == nil then
 				lottother.corrupt = {}
@@ -134,72 +135,74 @@ minetest.register_globalstep(function(dtime)
 			end
 			
 			-- corruption effect
-			if wield == "lottother:nenya" or wield == "lottother:vilya" or wield == "lottother:narya" or wield == "lottother:dwarf_ring" then
-				lottother.corrupt[name] = lottother.corrupt[name] + 1
-				local corruption = tonumber(lottother.corrupt[name])
-				if corruption > 29 and minetest.get_player_privs(name).GAMEwizard == nil and minetest.get_player_privs(name).purity == nil then
-					if corruption == 30 then
-						lottother.corrupt[name.."_1"] = player:hud_add({
-							hud_elem_type = "image",
-							position = {x=0.5, y=0.5},
-							scale = {x=-100, y=-100},
-							text = "lottother_corruption.png",
-							offset = {x=0, y=0},
-						})
-					elseif corruption == 60 then
-						lottother.corrupt[name.."_2"] = player:hud_add({
-							hud_elem_type = "image",
-							position = {x=0.5, y=0.5},
-							scale = {x=-100, y=-100},
-							text = "lottother_corruption.png",
-							offset = {x=0, y=0},
-						})
-					elseif corruption == 90 then
-						lottother.corrupt[name.."_3"] = player:hud_add({
-							hud_elem_type = "image",
-							position = {x=0.5, y=0.5},
-							scale = {x=-100, y=-100},
-							text = "lottother_corruption.png",
-							offset = {x=0, y=0},
-						})
-					elseif corruption == 120 then
-						lottother.corrupt[name.."_4"] = player:hud_add({
-							hud_elem_type = "image",
-							position = {x=0.5, y=0.5},
-							scale = {x=-100, y=-100},
-							text = "lottother_corruption_eye.png",
-							offset = {x=0, y=0},
-						})
-					elseif corruption > 135 then
-						player:set_hp(player:get_hp()-0.5)
+			if minetest.get_player_privs(name).purity == nil then
+				if wield == "lottother:nenya" or wield == "lottother:vilya" or wield == "lottother:narya" or wield == "lottother:dwarf_ring" then
+					lottother.corrupt[name] = lottother.corrupt[name] + 1
+					local corruption = tonumber(lottother.corrupt[name])
+					if corruption > 29 and minetest.get_player_privs(name).GAMEwizard == nil then
+						if corruption == 30 then
+							lottother.corrupt[name.."_1"] = player:hud_add({
+								hud_elem_type = "image",
+								position = {x=0.5, y=0.5},
+								scale = {x=-100, y=-100},
+								text = "lottother_corruption.png",
+								offset = {x=0, y=0},
+							})
+						elseif corruption == 60 then
+							lottother.corrupt[name.."_2"] = player:hud_add({
+								hud_elem_type = "image",
+								position = {x=0.5, y=0.5},
+								scale = {x=-100, y=-100},
+								text = "lottother_corruption.png",
+								offset = {x=0, y=0},
+							})
+						elseif corruption == 90 then
+							lottother.corrupt[name.."_3"] = player:hud_add({
+								hud_elem_type = "image",
+								position = {x=0.5, y=0.5},
+								scale = {x=-100, y=-100},
+								text = "lottother_corruption.png",
+								offset = {x=0, y=0},
+							})
+						elseif corruption == 120 then
+							lottother.corrupt[name.."_4"] = player:hud_add({
+								hud_elem_type = "image",
+								position = {x=0.5, y=0.5},
+								scale = {x=-100, y=-100},
+								text = "lottother_corruption_eye.png",
+								offset = {x=0, y=0},
+							})
+						elseif corruption > 135 then
+							player:set_hp(player:get_hp()-0.5)
+						end
 					end
-				end
-			elseif tonumber(lottother.corrupt[name]) > 0 then
-				lottother.corrupt[name] = lottother.corrupt[name] - 1
-				local corruption = tonumber(lottother.corrupt[name])
-				
-				if corruption < 30 then
-					player:hud_remove(lottother.corrupt[name.."_1"])
-				elseif corruption < 60 then
-					player:hud_remove(lottother.corrupt[name.."_2"])
-				elseif corruption < 90 then
-					player:hud_remove(lottother.corrupt[name.."_3"])
-				elseif corruption < 120 then
-					player:hud_remove(lottother.corrupt[name.."_4"])
+				elseif tonumber(lottother.corrupt[name]) > 0 then
+					lottother.corrupt[name] = lottother.corrupt[name] - 1
+					local corruption = tonumber(lottother.corrupt[name])
+					
+					if corruption == 29 then
+						player:hud_remove(lottother.corrupt[name.."_1"])
+					elseif corruption == 59 then
+						player:hud_remove(lottother.corrupt[name.."_2"])
+					elseif corruption == 89 then
+						player:hud_remove(lottother.corrupt[name.."_3"])
+					elseif corruption == 119 then
+						player:hud_remove(lottother.corrupt[name.."_4"])
+					end
 				end
 			end
 			
 			-- nenya ring
 			if wield == "lottother:nenya" then
-				if player:get_attribute("lott:immunity") == nil then
-					player:set_attribute("lott:immunity", "ring")
+				if meta:get_string("lott:immunity") == "" then
+					meta:set_string("lott:immunity", "ring")
 					armor:set_player_armor(player)
 				end
 			end
 			
-			if player:get_attribute("lott:immunity") == "ring" then
+			if meta:get_string("lott:immunity") == "ring" then
 				if wield ~= "lottother:nenya" then
-					player:set_attribute("lott:immunity", nil)
+					meta:set_string("lott:immunity", "")
 					armor:set_player_armor(player)
 				end
 			end
@@ -219,36 +222,36 @@ minetest.register_globalstep(function(dtime)
 					player:set_breath(10)
 				end
 				-- handle flight
-				if player:get_attribute("lott:vilya") == nil and minetest.get_player_privs(name).fly == nil then
+				if meta:get_string("lott:vilya") == "" and minetest.get_player_privs(name).fly == nil then
 					local privs = minetest.get_player_privs(name)
 					privs.fly = true
 					minetest.set_player_privs(name, privs)
-					player:set_attribute("lott:vilya", "ring")
+					meta:set_string("lott:vilya", "ring")
 				end
 			end
 			
 			-- remove flight
-			if player:get_attribute("lott:vilya") == "ring" then
+			if meta:get_string("lott:vilya") == "ring" then
 				if wield ~= "lottother:vilya" then
 					local privs = minetest.get_player_privs(name)
 					privs.fly = nil
 					minetest.set_player_privs(name, privs)
-					player:set_attribute("lott:vilya", nil)
+					meta:set_string("lott:vilya", "")
 				end
 			end
 			
 			-- narya ring
-			if player:get_attribute("lott:narya") == nil and wield == "lottother:narya" then
+			if meta:get_string("lott:narya") == "" and wield == "lottother:narya" then
 				player:set_properties({visual_size = {x = 0, y = 0}})
 				player:set_nametag_attributes({color = {a = 0, r = 255, g = 255, b = 255}})
-				player:set_attribute("lott:narya", "ring")
+				meta:set_string("lott:narya", "ring")
 			end
 			
-			if player:get_attribute("lott:narya") == "ring" then
+			if meta:get_string("lott:narya") == "ring" then
 				if wield ~= "lottother:narya" then
 					player:set_properties({visual_size = {x = 1, y = 1}})
 					player:set_nametag_attributes({color = {a = 255, r = 255, g = 255, b = 255}})
-					player:set_attribute("lott:narya", nil)
+					meta:set_string("lott:narya", "")
 				end
 			end
 		end
@@ -258,12 +261,18 @@ end)
 -- remove ring corruption upon death
 minetest.register_on_dieplayer(function(player)
 	local name = player:get_player_name()
-	if tonumber(lottother.corrupt[name]) then
+	local corruption = tonumber(lottother.corrupt[name])
+	if corruption then
 		lottother.corrupt[name] = nil
-		player:hud_remove(lottother.corrupt[name.."_1"])
-		player:hud_remove(lottother.corrupt[name.."_2"])
-		player:hud_remove(lottother.corrupt[name.."_3"])
-		player:hud_remove(lottother.corrupt[name.."_4"])
+		if corruption > 30 then
+			player:hud_remove(lottother.corrupt[name.."_1"])
+		elseif corruption > 60 then
+			player:hud_remove(lottother.corrupt[name.."_2"])
+		elseif corruption > 90 then
+			player:hud_remove(lottother.corrupt[name.."_3"])
+		elseif corruption > 120 then
+			player:hud_remove(lottother.corrupt[name.."_4"])
+		end
 	end
 end)
 
@@ -275,7 +284,7 @@ minetest.register_globalstep(function(dtime)
 		time2 = 0
 		for _, player in ipairs(minetest.get_connected_players()) do
 			local name = player:get_player_name()
-			local pos = player:getpos()		
+			local pos = player:get_pos()		
 			-- nenya ring particles
 			if player:get_inventory():get_stack("main", player:get_wield_index()):get_name() == "lottother:nenya" then
 				minetest.add_particlespawner({

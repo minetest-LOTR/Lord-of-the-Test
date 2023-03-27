@@ -106,7 +106,7 @@ function doors:register_door(name, def)
                                 def.custom_on_place(itemstack, placer, pointed_thing, def)
                         end
 
-			if not minetest.setting_getbool("creative_mode") then
+			if not minetest.settings:get_bool("creative_mode") then
 				itemstack:take_item()
 			end
 			return itemstack
@@ -173,6 +173,7 @@ function doors:register_door(name, def)
         end
 	minetest.register_node(name.."_b_1", {
 		tiles = tb_final_1,
+		use_texture_alpha = "clip",
 		paramtype = "light",
 		paramtype2 = "facedir",
 		drop = name,
@@ -208,6 +209,7 @@ function doors:register_door(name, def)
         end
 	minetest.register_node(name.."_t_1", {
 		tiles = tt_final_1,
+		use_texture_alpha = "clip",
 		paramtype = "light",
 		paramtype2 = "facedir",
 		drop = name,
@@ -243,6 +245,7 @@ function doors:register_door(name, def)
         end
 	minetest.register_node(name.."_b_2", {
 		tiles = tb_final_2,
+		use_texture_alpha = "clip",
 		paramtype = "light",
 		paramtype2 = "facedir",
 		drop = name,
@@ -278,6 +281,7 @@ function doors:register_door(name, def)
         end
 	minetest.register_node(name.."_t_2", {
 		tiles = tt_final_2,
+		use_texture_alpha = "clip",
 		paramtype = "light",
 		paramtype2 = "facedir",
 		drop = name,

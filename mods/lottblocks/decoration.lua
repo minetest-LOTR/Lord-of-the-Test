@@ -360,7 +360,7 @@ minetest.register_node("lottblocks:dwarf_tomb_top", {
 		minetest.set_node(pos, {name = "lottblocks:dwarf_tomb_top", param2 = dir})
 		minetest.set_node(botpos, {name = "lottblocks:dwarf_tomb_bottom", param2 = dir})
 
-		if not minetest.setting_getbool("creative_mode") then
+		if not minetest.settings:get_bool("creative_mode") then
 			itemstack:take_item()
 		end
 		return itemstack

@@ -105,7 +105,7 @@ armor = {
 	version = "0.4.4",
 }
 
-if minetest.setting_getbool("creative_mode") then
+if minetest.settings:get_bool("creative_mode") then
 	armor.formspec = armor.formspec .. "tabheader[-0.12,-0.12;creative_tabs;Main,Creative;1;true;false"
 end
 
@@ -242,14 +242,19 @@ armor.set_player_armor = function(self, player)
 		armor_texture = table.concat(textures, "^")
 	end
 	local armor_groups = {fleshy=100}
+	local immortal = player:get_armor_groups().immortal
+	if immortal and immortal ~= 0 then
+		armor_groups.immortal = 1
+	end
 	if armor_level > 0 then
 		armor_groups.level = math.floor(armor_level / 20)
 		armor_groups.fleshy = 100 - armor_level
 	end
-	player:set_armor_groups(armor_groups)
-	if player:get_attribute("lott:immunity") ~= nil then
+	local meta = player:get_meta()
+	if meta:get_string("lott:immunity") ~= nil and meta:get_string("lott:immunity") ~= "" and (not immortal or immortal == 0) then
 		player:set_armor_groups({fleshy = 1})
-	else player:set_armor_groups(armor_groups)
+	else
+		player:set_armor_groups(armor_groups)
 	end
 	player:set_physics_override(physics_o)
 	self.textures[name].armor = armor_texture
@@ -382,7 +387,7 @@ armor.get_valid_player = function(self, player, msg)
 		minetest.log("error", "lottarmor: Player name is nil "..msg)
 		return
 	end
-	local pos = player:getpos()
+	local pos = player:get_pos()
 	local player_inv = player:get_inventory()
 	local armor_inv = minetest.get_inventory({type="detached", name=name.."_armor"})
 	if not pos then
@@ -540,7 +545,7 @@ minetest.register_on_joinplayer(function(player)
 	for i=1, ARMOR_INIT_TIMES do
 		minetest.after(ARMOR_INIT_DELAY * i, function(player)
 			armor:set_player_armor(player)
-			if not inv_mod and not minetest.setting_getbool("creative_mode") then
+			if not inv_mod and not minetest.settings:get_bool("creative_mode") then
 				armor:update_inventory(player)
 			end
 		end, player)
@@ -551,12 +556,12 @@ if ARMOR_DROP == true or ARMOR_DESTROY == true then
 	armor.drop_armor = function(pos, stack)
 		local obj = minetest.add_item(pos, stack)
 		if obj then
-			obj:setvelocity({x=math.random(-1, 1), y=5, z=math.random(-1, 1)})
+			obj:set_velocity({x=math.random(-1, 1), y=5, z=math.random(-1, 1)})
 		end
 	end
 	minetest.register_on_dieplayer(function(player)
 		local name, player_inv, armor_inv, pos = armor:get_valid_player(player, "[on_dieplayer]")
-		if not name or minetest.setting_getbool("creative_mode") == true then
+		if not name or minetest.settings:get_bool("creative_mode") == true then
 			return
 		end
 		local drop = {}

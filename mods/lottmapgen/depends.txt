@@ -1,9 +1,0 @@
-default
-lottplants
-lottfarming
-lottores
-worldedit
-lottother
-bucket
-areas?
-intllib?

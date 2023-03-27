@@ -204,7 +204,7 @@ minetest.register_node("lottother:mordor_stone", {
 	tiles = {"lottmapgen_mordor_stone.png"},
 	is_ground_content = true,
      drop = 'lottmapgen:mordor_stone',
-	groups = {cracky=3, stone=1, not_in_creative_inventory=1},
+	groups = {cracky=3, not_in_creative_inventory=1},
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -213,7 +213,7 @@ minetest.register_node("lottother:stone", {
 	tiles = {"default_stone.png"},
 	is_ground_content = true,
 	drop = 'default:cobble',
-	groups = {cracky=3, stone=1, not_in_creative_inventory=1},
+	groups = {cracky=3, not_in_creative_inventory=1},
 	sounds = default.node_sound_stone_defaults(),
 	on_construct = function(pos)
 		local found_air = 0

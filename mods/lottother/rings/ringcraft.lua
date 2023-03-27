@@ -341,7 +341,7 @@ local function furnace_node_timer(pos, elapsed)
 				if math.random(1,3) ~= 1 then
 					local item = minetest.add_item({x=pos.x, y=pos.y+1, z=pos.z},
 						"lottother:" .. ring)
-					item:setvelocity({x=0, y=15, z=0})
+					item:set_velocity({x=0, y=15, z=0})
 					item:set_properties({automatic_rotate = 20})
 					minetest.add_particlespawner({
 						amount = 250,

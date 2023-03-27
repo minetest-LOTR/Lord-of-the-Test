@@ -87,7 +87,7 @@ for _, row in ipairs(whistle) do
 		inventory_image = "lottblocks_" .. wood .. "_whistle.png",
 		on_use = function(itemstack, user)
 			minetest.sound_play(note, {
-				pos = user:getpos(),
+				pos = user:get_pos(),
 				max_hear_distance = 7,
 				gain = 1,
 			})
