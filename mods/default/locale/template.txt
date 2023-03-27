@@ -1,0 +1,17 @@
+### init.lua
+Wooden Pickaxe =
+Stone Pickaxe =
+Steel Pickaxe =
+Bronze Pickaxe =
+Wooden Shovel =
+Stone Shovel =
+Steel Shovel =
+Bronze Shovel =
+Wooden Axe =
+Stone Axe =
+Steel Axe =
+Bronze Axe =
+Wooden Sword =
+Stone Sword =
+Steel Sword =
+Bronze Sword =
