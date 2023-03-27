@@ -1,3 +1,12 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 -- Elf torch
 local function on_flood_elf(pos, oldnode, newnode)
 	minetest.add_item(pos, ItemStack("lottblocks:elf_torch 1"))
