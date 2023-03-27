@@ -118,3 +118,13 @@ Die 10 times! =
 Die 20 times, then 5 more. =
 Die a grand total of 100 times! =
 1000 deaths. Yes, 1000. =
+
+### triggers.lua
+@1/@2 dug =
+@1/@2 placed =
+@1/@2 eaten =
+@1/@2 deaths =
+@1/@2 chat messages =
+@1/@2 game joins =
+@1/@2 crafted =
+@1/@2 killed =
