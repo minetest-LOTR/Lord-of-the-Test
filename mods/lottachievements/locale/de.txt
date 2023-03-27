@@ -118,3 +118,13 @@ Die 10 times! = Stirb 10 Mal!
 Die 20 times, then 5 more. = Stirb 20 Mal, dann 5 weitere male.
 Die a grand total of 100 times! = Stirb insgesamt 100 Mal!
 1000 deaths. Yes, 1000. = 1000 Tode. Ja, 1000.
+
+### triggers.lua
+@1/@2 dug = @1/@2 abgebaut
+@1/@2 placed = @1/@2 platziert
+@1/@2 eaten = @1/@2 gegessen
+@1/@2 deaths = @1/@2 Tode
+@1/@2 chat messages = @1/@2 Chatnachrichten
+@1/@2 game joins = @1/@2 Spielbeitritte
+@1/@2 crafted = @1/@2 gefertigt
+@1/@2 killed = @1/@2 getötet
