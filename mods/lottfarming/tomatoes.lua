@@ -1,5 +1,14 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 minetest.register_craftitem("lottfarming:tomatoes_seed", {
-	description = "Tomato Seeds",
+	description = S("Tomato Seeds"),
 	inventory_image = "lottfarming_tomatoes_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
 		return place_seed(itemstack, placer, pointed_thing, "lottfarming:tomatoes_1", 10)
@@ -83,7 +92,7 @@ minetest.register_node("lottfarming:tomatoes_4", {
 })
 
 minetest.register_craftitem("lottfarming:tomatoes", {
-	description = "Tomato",
+	description = S("Tomato"),
 	inventory_image = "lottfarming_tomatoes.png",
 	on_use = minetest.item_eat(2),
 	groups = {salad=1},
@@ -99,13 +108,13 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("lottfarming:tomatoes_cooked", {
-	description = "Cooked Tomato",
+	description = S("Cooked Tomato"),
 	inventory_image = "lottfarming_tomatoes_cooked.png",
 	on_use = minetest.item_eat(2),
 })
 
 minetest.register_craftitem("lottfarming:tomato_soup", {
-	description = "Tomato Soup",
+	description = S("Tomato Soup"),
 	inventory_image = "lottfarming_tomato_soup.png",
 	on_use = minetest.item_eat(10),
 })

@@ -1,0 +1,45 @@
+### init.lua
+Bronze Battleaxe =
+Bronze Dagger =
+Bronze Spear =
+Bronze Warhammer =
+Copper Battleaxe =
+Copper Dagger =
+Copper Spear =
+Copper Warhammer =
+Galvorn Battleaxe =
+Galvorn Dagger =
+Galvorn Spear =
+Galvorn Warhammer =
+Gold Battleaxe =
+Gold Dagger =
+Gold Spear =
+Gold Warhammer =
+Mithril Battleaxe =
+Mithril Dagger =
+Mithril Spear =
+Mithril Warhammer =
+Silver Battleaxe =
+Silver Dagger =
+Silver Spear =
+Silver Warhammer =
+Steel Battleaxe =
+Steel Dagger =
+Steel Spear =
+Steel Warhammer =
+Stone Battleaxe =
+Stone Dagger =
+Stone Spear =
+Stone Warhammer =
+Tin Battleaxe =
+Tin Dagger =
+Tin Spear =
+Tin Warhammer =
+Training Battleaxe =
+Training Dagger =
+Training Spear =
+Training Warhammer =
+
+### special.lua
+Elven Sword =
+Orcish Sword =

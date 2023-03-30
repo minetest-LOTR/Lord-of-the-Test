@@ -1,5 +1,14 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 minetest.register_tool("lottweapons:elven_sword", {
-	description = "Elven Sword",
+	description = S("Elven Sword"),
 	inventory_image = "lottweapons_elven_sword.png",
 	tool_capabilities = {
 		full_punch_interval = 0.25,
@@ -12,7 +21,7 @@ minetest.register_tool("lottweapons:elven_sword", {
 })
 
 minetest.register_tool("lottweapons:orc_sword", {
-	description = "Orcish Sword",
+	description = S("Orcish Sword"),
 	inventory_image = "lottweapons_orc_sword.png",
 	tool_capabilities = {
 		full_punch_interval = 0.75,

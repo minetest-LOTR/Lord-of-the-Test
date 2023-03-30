@@ -1,3 +1,12 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 lottclasses = {}
 lottclasses.race = {}
 lottclasses.race["wizard"] = {"GAMEwizard", "wizards", "Wizard"}
@@ -10,7 +19,7 @@ lottclasses.race["orc"] = {"GAMEorc", "orcs", "Orc"}
 -- create race privileges
 for races, rdata in pairs(lottclasses.race) do
 	minetest.register_privilege(rdata[1], {
-		description = races.."-race player",
+		description = S("@1-race player", S(races), S(rdata[2])),
 		give_to_singleplayer = false,
 		give_to_admin = false,
 	})
@@ -18,12 +27,12 @@ end
 
 -- gender privileges
 minetest.register_privilege("GAMEmale", {
-	description = "A male player",
+	description = S("A male player"),
 	give_to_singleplayer = false,
 	give_to_admin = false,
 })
 minetest.register_privilege("GAMEfemale", {
-	description = "A female player",
+	description = S("A female player"),
 	give_to_singleplayer = false,
 	give_to_admin = false,
 })
@@ -34,23 +43,23 @@ dofile(minetest.get_modpath("lottclasses").."/immunity.lua")
 
 local race_chooser = "size[8,6]"..
 	"background[8,6;1,1;gui_formbg.png;true]"..
-	"label[0,0;" .. minetest.colorize("#A52A2A", "Please select the race you wish to be") .. "]"..
+	"label[0,0;" .. minetest.colorize("#A52A2A", S("Please select the race you wish to be")) .. "]"..
 	"image[0.25,1.4;0.75,0.75;dwarf.png]"..
-	"button_exit[1,1.5;2,0.5;dwarf;Dwarf]"..
+	"button_exit[1,1.5;2,0.5;dwarf;" .. S("Dwarf") .. "]"..
 	"image[4.75,1.4;0.75,0.75;elf.png]"..
-	"button_exit[5.5,1.5;2,0.5;elf;Elf]"..
+	"button_exit[5.5,1.5;2,0.5;elf;" .. S("Elf") .. "]"..
 	"image[0.25,2.4;0.75,0.75;man.png]"..
-	"button_exit[1,2.5;2,0.5;man;Man]"..
+	"button_exit[1,2.5;2,0.5;man;" .. S("Man") .. "]"..
 	"image[4.75,2.4;0.75,0.75;orc.png]"..
-	"button_exit[5.5,2.5;2,0.5;orc;Orc]"..
+	"button_exit[5.5,2.5;2,0.5;orc;" .. S("Orc") .. "]"..
 	"image[0.25,3.4;0.75,0.75;hobbit.png]"..
-	"button_exit[1,3.5;2,0.5;hobbit;Hobbit]"..
-	"dropdown[5.5,3.4;2;gender;Male,Female;1]"
+	"button_exit[1,3.5;2,0.5;hobbit;" .. S("Hobbit") .. "]"..
+	"dropdown[5.5,3.4;2;gender;" .. S("Male") .. "," .. S("Female") .. ";1]"
 	
-local fly_stuff = "button[1,4.75;2,0.5;fast;Fast]" ..
-	"button[3,4.75;2,0.5;fly;Fly]" ..
-	"button[5,4.75;2,0.5;noclip;Noclip]" ..
-	"button[2.5,5.5;3,0.5;fast_fly_noclip;Fast, Fly & Noclip]"
+local fly_stuff = "button[1,4.75;2,0.5;fast;" .. S("Fast") .. "]" ..
+	"button[3,4.75;2,0.5;fly;" .. S("Fly") .. "]" ..
+	"button[5,4.75;2,0.5;noclip;" .. S("Noclip") .. "]" ..
+	"button[2.5,5.5;3,0.5;fast_fly_noclip;" .. S("Fast") .. ", " .. S("Fly") .. " & Noclip]"
 
 local function add_item(player, item)
 	local inv = player:get_inventory()
@@ -159,14 +168,14 @@ local function set_race(name, race)
 	local privs = minetest.get_player_privs(name)
 	privs["GAME"..race] = true
 	minetest.set_player_privs(name, privs)
-	minetest.chat_send_player(name, "You are now a member of the race of "..lottclasses.race[race][2]..", go forth into the world.")
+	minetest.chat_send_player(name, string.format(S("You are now a member of the race of %s, go forth into the world."), S(lottclasses.race[race][2])))
 end
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname ~= "race_selector" then return end
 	local name = player:get_player_name()
 	local privs = minetest.get_player_privs(name)
-	if fields.gender == "Male" then
+	if fields.gender == S("Male") then
 		for races in pairs(lottclasses.race) do
 			if fields[races] then
 				set_gender(player, "male")
@@ -177,7 +186,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 				return
 			end
 		end
-	elseif fields.gender == "Female" then
+	elseif fields.gender == S("Female") then
 		for races in pairs(lottclasses.race) do
 			if fields[races] then
 				set_gender(player, "female")
@@ -208,7 +217,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 	if fields.quit then
 		if not privs.GAMEfemale and not privs.GAMEmale then
-			minetest.chat_send_player(name, minetest.colorize("red", "Please select a race!"))
+			minetest.chat_send_player(name, minetest.colorize("red", S("Please select a race!")))
 			minetest.after(0.1, function()
 				if minetest.is_singleplayer() then
 					minetest.show_formspec(name, "race_selector", race_chooser .. fly_stuff)
@@ -222,7 +231,7 @@ end)
 
 minetest.register_chatcommand("race", {
 	params = "<name> <race>",
-	description = "Find/change a player's race",
+	description = S("Find/change a player's race"),
 	func = function(name, param)
 		local playername, changerace = string.match(param, "([^ ]+) (.+)")
 		if not playername then
@@ -235,13 +244,13 @@ minetest.register_chatcommand("race", {
 		local privs = minetest.get_player_privs(playername)
 		
 		if minetest.player_exists(playername) == false then
-			return true, playername.." does not exists!"
+			return true, string.format(S("%s does not exist!"), playername)
 		end
 		
 		if not changerace then
 			for races, rdata in pairs(lottclasses.race) do
 				if privs[rdata[1]] then
-					return true, "Race of "..playername..": "..rdata[3]
+					return true, string.format(S("Race of %s"), playername) .. ": " .. S(rdata[3])
 				end
 			end
 			if name == playername then
@@ -251,11 +260,11 @@ minetest.register_chatcommand("race", {
 					minetest.show_formspec(name, "race_selector", race_chooser)
 				end
 			else
-				return true, playername.." has not chosen a race!"
+				return true, string.format(S("%s has not chosen a race!"), player)
 			end
 		elseif changerace then
 			if not minetest.get_player_privs(name).privs then
-				return true, "You have insufficient privilege to change player races!"
+				return true, S("You have insufficient privilege to change player races!")
 			end
 		
 			if lottclasses.race[changerace] then
@@ -268,12 +277,12 @@ minetest.register_chatcommand("race", {
 					set_race(playername, changerace)
 					update_skin(player)
 					minetest.log("action", name.." changed "..playername.."'s race to "..changerace)
-					return true, "Race of "..playername.." has been changed to "..changerace
+					return true, S("Race of @1 has been changed to @2", playername, S(changerace))
 				else
-					return true, playername.." has not chosen a race!"
+					return true, S("@1 has not chosen a race!", playername)
 				end
 			else
-				return true, changerace.." is not valid race. Select between: wizard dwarf elf man orc hobbit"
+				return true, S("@1 is not valid race. Select between: wizard dwarf elf man orc hobbit", changerace)
 			end
 		end
 	end

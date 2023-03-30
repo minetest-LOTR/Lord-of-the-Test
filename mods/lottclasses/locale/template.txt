@@ -1,0 +1,42 @@
+### init.lua
+@1-race player =
+A male player =
+A female player =
+Please select the race you wish to be =
+Dwarf =
+Elf =
+Man =
+Orc =
+Hobbit =
+dwarf =
+elf =
+man =
+orc =
+hobbit =
+Male =
+Female =
+Fast =
+Fly =
+Noclip =
+You are now a member of the race of %s, go forth into the world. =
+Race of %s =
+Wizard =
+%s has not chosen a race! =
+%s does not exist! =
+Find/change a player's race =
+You have insufficient privilege to change player races! =
+orcs =
+dwarves =
+elves =
+men =
+hobbits =
+Please select a race! =
+Race of @1 has been changed to @2 =
+@1 is not valid race. Select between: wizard dwarf elf man orc hobbit =
+
+### immunity.lua
+Starter mob immunity granted for %s minutes! =
+Travel to a safe area! =
+Your starter mob immunity has expired! =
+Your starter mob immunity has resumed! =
+You still have %s minutes left! =

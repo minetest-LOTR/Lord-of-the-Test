@@ -1,13 +1,22 @@
 -- Minetest 0.4 mod: farming
 -- See README.txt for licensing and other information.
 
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 farming = {}
 
 --
 -- Soil
 --
 minetest.register_node("farming:soil", {
-	description = "Soil",
+	description = S("Soil"),
 	tiles = {"farming_soil.png", "default_dirt.png"},
 	drop = "default:dirt",
 	is_ground_content = true,
@@ -16,7 +25,7 @@ minetest.register_node("farming:soil", {
 })
 
 minetest.register_node("farming:soil_wet", {
-	description = "Wet Soil",
+	description = S("Wet Soil"),
 	tiles = {"farming_soil_wet.png", "farming_soil_wet_side.png"},
 	drop = "default:dirt",
 	is_ground_content = true,
@@ -107,7 +116,7 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 end
 
 minetest.register_tool("farming:hoe_wood", {
-	description = "Wooden Hoe",
+	description = S("Wooden Hoe"),
 	inventory_image = "farming_tool_woodhoe.png",
 
 	on_use = function(itemstack, user, pointed_thing)
@@ -116,7 +125,7 @@ minetest.register_tool("farming:hoe_wood", {
 })
 
 minetest.register_tool("farming:hoe_stone", {
-	description = "Stone Hoe",
+	description = S("Stone Hoe"),
 	inventory_image = "farming_tool_stonehoe.png",
 
 	on_use = function(itemstack, user, pointed_thing)
@@ -125,7 +134,7 @@ minetest.register_tool("farming:hoe_stone", {
 })
 
 minetest.register_tool("farming:hoe_steel", {
-	description = "Steel Hoe",
+	description = S("Steel Hoe"),
 	inventory_image = "farming_tool_steelhoe.png",
 
 	on_use = function(itemstack, user, pointed_thing)
@@ -134,7 +143,7 @@ minetest.register_tool("farming:hoe_steel", {
 })
 
 minetest.register_tool("farming:hoe_bronze", {
-	description = "Bronze Hoe",
+	description = S("Bronze Hoe"),
 	inventory_image = "farming_tool_bronzehoe.png",
 
 	on_use = function(itemstack, user, pointed_thing)
@@ -206,7 +215,7 @@ for i=2,5 do
 end
 
 minetest.register_node(":default:junglegrass", {
-	description = "Jungle Grass",
+	description = S("Jungle Grass"),
 	drawtype = "plantlike",
 	visual_scale = 1.3,
 	tiles = {"default_junglegrass.png"},
@@ -283,7 +292,7 @@ end
 -- Wheat
 --
 minetest.register_craftitem("farming:seed_wheat", {
-	description = "Wheat Seed",
+	description = S("Wheat Seed"),
 	inventory_image = "farming_wheat_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
 		return place_seed(itemstack, placer, pointed_thing, "farming:wheat_1")
@@ -291,17 +300,17 @@ minetest.register_craftitem("farming:seed_wheat", {
 })
 
 minetest.register_craftitem("farming:wheat", {
-	description = "Wheat",
+	description = S("Wheat"),
 	inventory_image = "farming_wheat.png",
 })
 
 minetest.register_craftitem("farming:flour", {
-	description = "Flour",
+	description = S("Flour"),
 	inventory_image = "farming_flour.png",
 })
 
 minetest.register_craftitem("farming:bread", {
-	description = "Bread",
+	description = S("Bread"),
 	inventory_image = "farming_bread.png",
 	on_use = minetest.item_eat(4),
 })
@@ -383,7 +392,7 @@ minetest.register_abm({
 -- Cotton
 --
 minetest.register_craftitem("farming:seed_cotton", {
-	description = "Cotton Seed",
+	description = S("Cotton Seed"),
 	inventory_image = "farming_cotton_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
 		return place_seed(itemstack, placer, pointed_thing, "farming:cotton_1")
@@ -391,7 +400,7 @@ minetest.register_craftitem("farming:seed_cotton", {
 })
 
 minetest.register_craftitem("farming:string", {
-	description = "String",
+	description = S("String"),
 	inventory_image = "farming_string.png",
 })
 
@@ -466,7 +475,7 @@ minetest.register_abm({
 })
 
 minetest.register_node("farming:straw", {
-	description = "Straw",
+	description = S("Straw"),
 	tiles = {"farming_straw.png"},
 	is_ground_content = false,
 	groups = {snappy=3, flammable=4, fall_damage_add_percent=-30},

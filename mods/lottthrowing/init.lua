@@ -1,3 +1,12 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 arrows = {
 	{"lottthrowing:arrow", "lottthrowing:arrow_entity"},
     {"lottthrowing:arrow_mithril", "lottthrowing:arrow_mithril_entity"},
@@ -151,7 +160,7 @@ local lottthrowing_shoot_bolt = function(itemstack, player, pointed_thing, draws
 end
 
 minetest.register_tool("lottthrowing:bow_wood", {
-	description = "Normal Wood Bow",
+	description = S("Normal Wood Bow"),
 	inventory_image = "lottthrowing_bow_wood.png",
     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -165,7 +174,7 @@ minetest.register_tool("lottthrowing:bow_wood", {
 })
 
 minetest.register_tool("lottthrowing:bow_wood_alder", {
-	description = "Alder Wood Bow",
+	description = S("Alder Wood Bow"),
 	inventory_image = "lottthrowing_bow_wood_alder.png",
     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -179,7 +188,7 @@ minetest.register_tool("lottthrowing:bow_wood_alder", {
 })
 
 minetest.register_tool("lottthrowing:bow_wood_birch", {
-	description = "Birch Wood Bow",
+	description = S("Birch Wood Bow"),
 	inventory_image = "lottthrowing_bow_wood_birch.png",
     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -193,7 +202,7 @@ minetest.register_tool("lottthrowing:bow_wood_birch", {
 })
 
 minetest.register_tool("lottthrowing:bow_wood_lebethron", {
-	description = "Lebethron Wood Bow",
+	description = S("Lebethron Wood Bow"),
 	inventory_image = "lottthrowing_bow_wood_lebethron.png",
     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -207,7 +216,7 @@ minetest.register_tool("lottthrowing:bow_wood_lebethron", {
 })
 
 minetest.register_tool("lottthrowing:bow_wood_mallorn", {
-	description = "Mallorn Bow",
+	description = S("Mallorn Bow"),
 	inventory_image = "lottthrowing_bow_wood_mallorn.png",
     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -266,7 +275,7 @@ minetest.register_craft({
 })
 
 minetest.register_tool("lottthrowing:crossbow_wood", {
-	description = "Wooden Crossbow",
+	description = S("Wooden Crossbow"),
 	inventory_image = "lottthrowing_crossbow_wood.png",
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -280,7 +289,7 @@ minetest.register_tool("lottthrowing:crossbow_wood", {
 })
 
 minetest.register_tool("lottthrowing:crossbow_steel", {
-	description = "Steel Crossbow",
+	description = S("Steel Crossbow"),
 	inventory_image = "lottthrowing_crossbow_steel.png",
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -294,7 +303,7 @@ minetest.register_tool("lottthrowing:crossbow_steel", {
 })
 
 minetest.register_tool("lottthrowing:crossbow_tin", {
-	description = "Tin Crossbow",
+	description = S("Tin Crossbow"),
 	inventory_image = "lottthrowing_crossbow_tin.png",
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -308,7 +317,7 @@ minetest.register_tool("lottthrowing:crossbow_tin", {
 })
 
 minetest.register_tool("lottthrowing:crossbow_silver", {
-	description = "Silver Crossbow",
+	description = S("Silver Crossbow"),
 	inventory_image = "lottthrowing_crossbow_silver.png",
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -322,7 +331,7 @@ minetest.register_tool("lottthrowing:crossbow_silver", {
 })
 
 minetest.register_tool("lottthrowing:crossbow_gold", {
-	description = "Gold Crossbow",
+	description = S("Gold Crossbow"),
 	inventory_image = "lottthrowing_crossbow_gold.png",
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -336,7 +345,7 @@ minetest.register_tool("lottthrowing:crossbow_gold", {
 })
 
 minetest.register_tool("lottthrowing:crossbow_galvorn", {
-	description = "Galvorn Crossbow",
+	description = S("Galvorn Crossbow"),
 	inventory_image = "lottthrowing_crossbow_galvorn.png",
      groups = {forbidden=1},
      stack_max = 1,
@@ -351,7 +360,7 @@ minetest.register_tool("lottthrowing:crossbow_galvorn", {
 })
 
 minetest.register_tool("lottthrowing:crossbow_mithril", {
-	description = "Mithril Crossbow",
+	description = S("Mithril Crossbow"),
 	inventory_image = "lottthrowing_crossbow_mithril.png",
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)

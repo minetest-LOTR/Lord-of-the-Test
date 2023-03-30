@@ -1,0 +1,42 @@
+### init.lua
+@1-race player = Spieler aus der Welt der @2
+A male player = Ein männlicher Spieler
+A female player = Eine weibliche Spielerin
+Please select the race you wish to be = Bitte wähle die Rasse, die Du sein möchtest
+Dwarf = Zwerg
+Elf = Elf
+Man = Mensch
+Orc = Ork
+Hobbit = Halbling
+dwarf = Zwerg
+elf = Elf
+man = Mensch
+orc = Ork
+hobbit = Halbling
+Male = Männlich
+Female = Weiblich
+Fast = Schnell
+Fly = Flug
+Noclip = Geistmodus
+You are now a member of the race of %s, go forth into the world. = Du gehörst nun zur Rasse der %s, geh voran in der Welt.
+Race of %s = Rasse von %s
+Wizard = Magier
+%s has not chosen a race! = %s hat keine Rasse gewählt!
+%s does not exist! = %s existiert nicht!
+Find/change a player's race = Rasse eines Spielers anzeigen/ändern
+You have insufficient privilege to change player races! = Unzureichende Berechtigungen, um Spieler-Rassen zu ändern!
+orcs = Orks
+dwarves = Zwerge
+elves = Elfen
+men = Menschen
+hobbits = Halblinge
+Please select a race! = Bitte wähle eine Rasse!
+Race of @1 has been changed to @2 = Rasse von @1 wurde zu @2 geändert
+@1 is not valid race. Select between: wizard dwarf elf man orc hobbit = @1 ist keine zulässige Rasse. Wähle zwischen: wizard dwarf elf man orc hobbit
+
+### immunity.lua
+Starter mob immunity granted for %s minutes! = Anfänger-Mob-Immunität für %s Minuten gewährt!
+Travel to a safe area! = Reise in ein sicheres Gebiet!
+Your starter mob immunity has expired! = Deine Anfänger-Mob-Immunität ist abgelaufen!
+Your starter mob immunity has resumed! = Deine Anfänger-Mob-Immunität wird fortgesetzt!
+You still have %s minutes left! = Dir bleiben immer noch %s Minuten!

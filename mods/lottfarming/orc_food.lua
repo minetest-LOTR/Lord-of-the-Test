@@ -1,5 +1,14 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 minetest.register_craftitem("lottfarming:orc_food", {
-	description = "Orc Food",
+	description = S("Orc Food"),
 	inventory_image = "lottfarming_orc_food.png",
 	on_use = function(itemstack, user, pointed_thing)
 		if minetest.settings:get_bool("creative_mode") ~= true then
@@ -42,7 +51,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("lottfarming:orc_medicine", {
-	description = "Orc medicine",
+	description = S("Orc medicine"),
 	inventory_image = "lottfarming_orc_medicine.png",
 	on_use = function(itemstack, user, pointed_thing)
 		if minetest.settings:get_bool("creative_mode") ~= true then

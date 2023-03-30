@@ -1,3 +1,12 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 -- Elf torch
 local function on_flood_elf(pos, oldnode, newnode)
 	minetest.add_item(pos, ItemStack("lottblocks:elf_torch 1"))
@@ -5,7 +14,7 @@ local function on_flood_elf(pos, oldnode, newnode)
 end
 
 minetest.register_node("lottblocks:elf_torch", {
-	description = "Elf Torch",
+	description = S("Elf Torch"),
 	drawtype = "mesh",
 	mesh = "default_torch_floor.obj",
 	inventory_image = "lottblocks_elf_torch_on_floor.png",
@@ -109,7 +118,7 @@ local function on_flood_orc(pos, oldnode, newnode)
 end
 
 minetest.register_node("lottblocks:orc_torch", {
-	description = "Orc Torch",
+	description = S("Orc Torch"),
 	drawtype = "mesh",
 	mesh = "default_torch_floor.obj",
 	inventory_image = "lottblocks_orc_torch_on_floor.png",

@@ -1,3 +1,12 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 minetest.register_node("lottthrowing:light", {
 	drawtype = "airlike",
 	paramtype = "light",
@@ -23,15 +32,15 @@ minetest.register_abm({
 })
 
 local arrow_types = {
-	{"arrow", "Arrow", 3},
-	{"arrow_mithril", "Mithril Arrow", 10},
-	{"arrow_fire", "Fire Arrow", 5, "fire:basic_flame"},
-	{"arrow_fire_blue", "Fire Arrow", 20, "lottother:blue_flame"},
-	{"arrow_magical", "Magical Arrow", 0, nil, true},
+	{"arrow", S("Arrow"), 3},
+	{"arrow_mithril", S("Mithril Arrow"), 10},
+	{"arrow_fire", S("Fire Arrow"), 5, "fire:basic_flame"},
+	{"arrow_fire_blue", S("Fire Arrow"), 20, "lottother:blue_flame"},
+	{"arrow_magical", S("Magical Arrow"), 0, nil, true},
 
-	{"bolt", "Bolt", 5},
-	{"bolt_mithril", "Mithril Bolt", 20},
-	{"bolt_fire", "Fire Bolt", 8, "fire:basic_flame"},
+	{"bolt", S("Bolt"), 5},
+	{"bolt_mithril", S("Mithril Bolt"), 20},
+	{"bolt_fire", S("Fire Bolt"), 8, "fire:basic_flame"},
 }
 
 for i in pairs(arrow_types) do

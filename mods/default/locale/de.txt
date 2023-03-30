@@ -1,0 +1,17 @@
+### init.lua
+Wooden Pickaxe = Holzspitzhacke
+Stone Pickaxe = Steinspitzhacke
+Steel Pickaxe = Stahlspitzhacke
+Bronze Pickaxe = Bronzespitzhacke
+Wooden Shovel = Holzschaufel
+Stone Shovel = Steinschaufel
+Steel Shovel = Stahlschaufel
+Bronze Shovel = Bronzeschaufel
+Wooden Axe = Holzaxt
+Stone Axe = Steinaxt
+Steel Axe = Stahlaxt
+Bronze Axe = Bronzeaxt
+Wooden Sword = Holzschwert
+Stone Sword = Steinschwert
+Steel Sword = Stahlschwert
+Bronze Sword = Bronzeschwert

@@ -1,0 +1,21 @@
+### orc_food.lua
+Orc Food =
+Orc medicine =
+
+### pipeweed.lua
+Cooked Pipeweed =
+Pipe =
+Pipeweed =
+Pipeweed Seeds =
+
+### tomatoes.lua
+Cooked Tomato =
+Tomato =
+Tomato Seeds =
+Tomato Soup =
+
+### potato.lua
+Cooked Potato =
+Potato =
+Potato Seeds =
+

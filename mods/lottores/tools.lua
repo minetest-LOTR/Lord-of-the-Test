@@ -1,7 +1,16 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 -- Pickaxe
 
 minetest.register_tool("lottores:copperpick", {
-	description = "Copper Pickaxe",
+	description = S("Copper Pickaxe"),
 	inventory_image = "lottores_copperpick.png",
 	tool_capabilities = {
 		full_punch_interval = 1.0,
@@ -14,7 +23,7 @@ minetest.register_tool("lottores:copperpick", {
 })
 
 minetest.register_tool("lottores:tinpick", {
-	description = "Tin Pickaxe",
+	description = S("Tin Pickaxe"),
 	inventory_image = "lottores_tinpick.png",
 	tool_capabilities = {
 		full_punch_interval = 1.0,
@@ -27,7 +36,7 @@ minetest.register_tool("lottores:tinpick", {
 })
 
 minetest.register_tool("lottores:silverpick", {
-	description = "Silver Pickaxe",
+	description = S("Silver Pickaxe"),
 	inventory_image = "lottores_silverpick.png",
 	tool_capabilities = {
 		full_punch_interval = 1.0,
@@ -40,7 +49,7 @@ minetest.register_tool("lottores:silverpick", {
 })
 
 minetest.register_tool("lottores:goldpick", {
-	description = "Gold Pickaxe",
+	description = S("Gold Pickaxe"),
 	inventory_image = "lottores_goldpick.png",
 	tool_capabilities = {
 		full_punch_interval = 1.0,
@@ -53,7 +62,7 @@ minetest.register_tool("lottores:goldpick", {
 })
 
 minetest.register_tool("lottores:galvornpick", {
-	description = "Galvorn Pickaxe",
+	description = S("Galvorn Pickaxe"),
 	inventory_image = "lottores_galvornpick.png",
      groups = {forbidden=1},
 	tool_capabilities = {
@@ -67,7 +76,7 @@ minetest.register_tool("lottores:galvornpick", {
 })
 
 minetest.register_tool("lottores:mithrilpick", {
-	description = "Mithril Pickaxe",
+	description = S("Mithril Pickaxe"),
 	inventory_image = "lottores_mithrilpick.png",
 	tool_capabilities = {
 		full_punch_interval = 0.8,
@@ -83,7 +92,7 @@ minetest.register_tool("lottores:mithrilpick", {
 -- Axe
 
 minetest.register_tool("lottores:copperaxe", {
-	description = "Copper Axe",
+	description = S("Copper Axe"),
 	inventory_image = "lottores_copperaxe.png",
 	tool_capabilities = {
 		full_punch_interval = 1.0,
@@ -96,7 +105,7 @@ minetest.register_tool("lottores:copperaxe", {
 })
 
 minetest.register_tool("lottores:tinaxe", {
-	description = "Tin Axe",
+	description = S("Tin Axe"),
 	inventory_image = "lottores_tinaxe.png",
 	tool_capabilities = {
 		full_punch_interval = 1.0,
@@ -109,7 +118,7 @@ minetest.register_tool("lottores:tinaxe", {
 })
 
 minetest.register_tool("lottores:silveraxe", {
-	description = "Silver Axe",
+	description = S("Silver Axe"),
 	inventory_image = "lottores_silveraxe.png",
 	tool_capabilities = {
 		full_punch_interval = 1.0,
@@ -122,7 +131,7 @@ minetest.register_tool("lottores:silveraxe", {
 })
 
 minetest.register_tool("lottores:goldaxe", {
-	description = "Gold Axe",
+	description = S("Gold Axe"),
 	inventory_image = "lottores_goldaxe.png",
 	tool_capabilities = {
 		full_punch_interval = 1.0,
@@ -135,7 +144,7 @@ minetest.register_tool("lottores:goldaxe", {
 })
 
 minetest.register_tool("lottores:galvornaxe", {
-	description = "Galvorn Axe",
+	description = S("Galvorn Axe"),
 	inventory_image = "lottores_galvornaxe.png",
      groups = {forbidden=1},
 	tool_capabilities = {
@@ -149,7 +158,7 @@ minetest.register_tool("lottores:galvornaxe", {
 })
 
 minetest.register_tool("lottores:mithrilaxe", {
-	description = "Mithril Axe",
+	description = S("Mithril Axe"),
 	inventory_image = "lottores_mithrilaxe.png",
 	tool_capabilities = {
 		full_punch_interval = 0.8,
@@ -164,7 +173,7 @@ minetest.register_tool("lottores:mithrilaxe", {
 -- Sword
 
 minetest.register_tool("lottores:coppersword", {
-	description = "Copper Sword",
+	description = S("Copper Sword"),
 	inventory_image = "lottores_coppersword.png",
 	tool_capabilities = {
 		full_punch_interval = 1.25,
@@ -177,7 +186,7 @@ minetest.register_tool("lottores:coppersword", {
 })
 
 minetest.register_tool("lottores:tinsword", {
-	description = "Tin Sword",
+	description = S("Tin Sword"),
 	inventory_image = "lottores_tinsword.png",
 	tool_capabilities = {
 		full_punch_interval = 1.25,
@@ -190,7 +199,7 @@ minetest.register_tool("lottores:tinsword", {
 })
 
 minetest.register_tool("lottores:silversword", {
-	description = "Silver Sword",
+	description = S("Silver Sword"),
 	inventory_image = "lottores_silversword.png",
 	tool_capabilities = {
 		full_punch_interval = 1,
@@ -203,7 +212,7 @@ minetest.register_tool("lottores:silversword", {
 })
 
 minetest.register_tool("lottores:goldsword", {
-	description = "Gold Sword",
+	description = S("Gold Sword"),
 	inventory_image = "lottores_goldsword.png",
 	tool_capabilities = {
 		full_punch_interval = 0.75,
@@ -216,7 +225,7 @@ minetest.register_tool("lottores:goldsword", {
 })
 
 minetest.register_tool("lottores:galvornsword", {
-	description = "Galvorn Sword",
+	description = S("Galvorn Sword"),
 	inventory_image = "lottores_galvornsword.png",
      groups = {forbidden=1},
 	tool_capabilities = {
@@ -230,7 +239,7 @@ minetest.register_tool("lottores:galvornsword", {
 })
 
 minetest.register_tool("lottores:mithrilsword", {
-	description = "Mithril Sword",
+	description = S("Mithril Sword"),
 	inventory_image = "lottores_mithrilsword.png",
 	tool_capabilities = {
 		full_punch_interval = 0.25,
@@ -245,7 +254,7 @@ minetest.register_tool("lottores:mithrilsword", {
 -- Shovel
 
 minetest.register_tool("lottores:coppershovel", {
-	description = "Copper Shovel",
+	description = S("Copper Shovel"),
 	inventory_image = "lottores_coppershovel.png",
 	wield_image = "lottores_coppershovel.png^[transformR90",
 	tool_capabilities = {
@@ -259,7 +268,7 @@ minetest.register_tool("lottores:coppershovel", {
 })
 
 minetest.register_tool("lottores:tinshovel", {
-	description = "Tin Shovel",
+	description = S("Tin Shovel"),
 	inventory_image = "lottores_tinshovel.png",
 	wield_image = "lottores_tinshovel.png^[transformR90",
 	tool_capabilities = {
@@ -273,7 +282,7 @@ minetest.register_tool("lottores:tinshovel", {
 })
 
 minetest.register_tool("lottores:silvershovel", {
-	description = "Silver Shovel",
+	description = S("Silver Shovel"),
 	inventory_image = "lottores_silvershovel.png",
 	wield_image = "lottores_silvershovel.png^[transformR90",
 	tool_capabilities = {
@@ -287,7 +296,7 @@ minetest.register_tool("lottores:silvershovel", {
 })
 
 minetest.register_tool("lottores:goldshovel", {
-	description = "Gold Shovel",
+	description = S("Gold Shovel"),
 	inventory_image = "lottores_goldshovel.png",
 	wield_image = "lottores_goldshovel.png^[transformR90",
 	tool_capabilities = {
@@ -301,7 +310,7 @@ minetest.register_tool("lottores:goldshovel", {
 })
 
 minetest.register_tool("lottores:galvornshovel", {
-	description = "Galvorn Shovel",
+	description = S("Galvorn Shovel"),
 	inventory_image = "lottores_galvornshovel.png",
 	wield_image = "lottores_galvornshovel.png^[transformR90",
      groups = {forbidden=1},
@@ -316,7 +325,7 @@ minetest.register_tool("lottores:galvornshovel", {
 })
 
 minetest.register_tool("lottores:mithrilshovel", {
-	description = "Mithril Shovel",
+	description = S("Mithril Shovel"),
 	inventory_image = "lottores_mithrilshovel.png",
 	wield_image = "lottores_mithrilshovel.png^[transformR90",
 	tool_capabilities = {

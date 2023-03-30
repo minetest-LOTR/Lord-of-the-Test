@@ -1,0 +1,21 @@
+### guides.lua
+Craft Book =
+Cooking Book =
+Protection Book =
+Forbidden Book =
+Master Book =
+
+### brewing.lua
+Ale =
+Beer =
+Book of Brewing =
+Cider =
+Exit =
+Mead =
+Wine =
+
+### init.lua
+Large Bag =
+Medium Bag =
+Small Bag =
+

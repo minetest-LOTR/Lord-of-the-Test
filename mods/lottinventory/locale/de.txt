@@ -1,0 +1,21 @@
+### guides.lua
+Craft Book = Handwerksbuch
+Cooking Book = Kochbuch
+Protection Book = Rüstungsbuch
+Forbidden Book = verbotenes Buch
+Master Book = Meisterbuch
+
+### brewing.lua
+Ale = Ale
+Beer = Bier
+Book of Brewing = Buch des Brauens
+Cider = Apfelwein
+Exit = Verlassen
+Mead = Met
+Wine = Wein
+
+### init.lua
+Large Bag = große Tasche
+Medium Bag = mittlere Tasche
+Small Bag = kleine Tasche
+

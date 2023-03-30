@@ -1,3 +1,12 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 minetest.register_alias("lottother:blue_torch", "lottblocks:elf_torch")
 minetest.register_alias("lottother:orc_torch", "lottblocks:orc_torch")
 minetest.register_alias("lottother:lamp_wood", "lottblocks:lamp_wood")
@@ -197,7 +206,7 @@ lottblocks.register_lamp("lebethron_orc", "Mordor Lebethron", "lottblocks_orc_la
 -- Made by lumidify - lottblocks_mithril_stonelamp.png
 -- created by modifying darkage_lamp.png
 minetest.register_node("lottblocks:mithril_stonelamp", {
-	description = "Mithril Stonelamp",
+	description = S("Mithril Stonelamp"),
 	tiles = { "lottblocks_mithril_stonelamp.png" },
 	paramtype = "light",
 	sunlight_propagates = true,

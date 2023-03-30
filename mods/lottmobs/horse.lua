@@ -1,3 +1,11 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
 
 local function is_ground(pos)
 	local nn = minetest.get_node(pos).name
@@ -308,7 +316,7 @@ end
 ---------------------
 
 lottmobs:register_horse("lottmobs:horseh1", {
-	description = "Brown Horse",
+	description = S("Brown Horse"),
 	inventory_image = "lottmobs_horse_inventory.png",
 	}, {
 	physical = true,
@@ -334,7 +342,7 @@ lottmobs:register_horse("lottmobs:horseh1", {
 --horse white
 
 lottmobs:register_horse("lottmobs:horsepegh1", {
-	description = "White Horse",
+	description = S("White Horse"),
 	inventory_image = "lottmobs_horsepeg_inventory.png",
 	}, {
 	physical = true,
@@ -359,7 +367,7 @@ lottmobs:register_horse("lottmobs:horsepegh1", {
 --horse arabik
 
 lottmobs:register_horse("lottmobs:horsearah1", {
-	description = "Black Horse",
+	description = S("Black Horse"),
 	inventory_image = "lottmobs_horseara_inventory.png",
 	}, {
 	physical = true,
@@ -383,7 +391,7 @@ lottmobs:register_horse("lottmobs:horsearah1", {
 
 
 lottmobs:register_horse("lottmobs:shireponyblackh1", {
-	description = "Shire Pony",
+	description = S("Shire Pony"),
 	inventory_image = "lottmobs_shireponyblack_inventory.png",
 	}, {
 	physical = true,
@@ -407,7 +415,7 @@ lottmobs:register_horse("lottmobs:shireponyblackh1", {
 
 
 lottmobs:register_horse("lottmobs:shireponyh1", {
-	description = "Shire Pony",
+	description = S("Shire Pony"),
 	inventory_image = "lottmobs_shirepony_inventory.png",
 	}, {
 	physical = true,

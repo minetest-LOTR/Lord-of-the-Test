@@ -1,0 +1,16 @@
+### nodes.lua
+Fog = Nebel
+Snow Block = Schneeblock
+Frozen Stone = gefrorener Stein
+Mordor Stone = Mordorstein
+Ice = Eis
+Black Water Source = Schwarzwasserquelle
+Black River Source = Schwarzflussquelle
+Dunland Grass = Dunlandgras
+Iron Hills Grass = Eisenhügelgras
+Gondor Grass = Gondorgras
+Lorien Grass = Loriengras
+? Grass = ?-Gras
+Mirkwood Grass = Düsterwaldgras
+Shire Grass = Auenlandgras
+Ithilien Grass = Ithiliengras

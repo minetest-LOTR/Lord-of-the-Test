@@ -1,7 +1,16 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 -- LEAVES
 
 minetest.register_node("lottplants:alderleaf", {
-	description = "Alder Leaf",
+	description = S("Alder Leaf"),
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_alderleaf.png"},
 	paramtype = "light",
@@ -23,7 +32,7 @@ minetest.register_node("lottplants:alderleaf", {
 })
 
 minetest.register_node("lottplants:appleleaf", {
-	description = "Apple Leaf",
+	description = S("Apple Leaf"),
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_appleleaf.png"},
 	paramtype = "light",
@@ -45,7 +54,7 @@ minetest.register_node("lottplants:appleleaf", {
 })
 
 minetest.register_node("lottplants:birchleaf", {
-	description = "Birch Leaf",
+	description = S("Birch Leaf"),
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_birchleaf.png"},
 	paramtype = "light",
@@ -67,7 +76,7 @@ minetest.register_node("lottplants:birchleaf", {
 })
 
 minetest.register_node("lottplants:beechleaf", {
-	description = "Beech Leaf",
+	description = S("Beech Leaf"),
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_beechleaf.png"},
 	paramtype = "light",
@@ -89,7 +98,7 @@ minetest.register_node("lottplants:beechleaf", {
 })
 
 minetest.register_node("lottplants:culumaldaleaf", {
-	description = "Culumalda Leaf",
+	description = S("Culumalda Leaf"),
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_culumaldaleaf.png"},
 	paramtype = "light",
@@ -111,7 +120,7 @@ minetest.register_node("lottplants:culumaldaleaf", {
 })
 
 minetest.register_node("lottplants:yellowflowers", {
-	description = "Yellow Flowers on Culumalda Leaf",
+	description = S("Yellow Flowers on Culumalda Leaf"),
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_yellowflowers.png"},
 	paramtype = "light",
@@ -129,7 +138,7 @@ minetest.register_node("lottplants:yellowflowers", {
 })
 
 minetest.register_node("lottplants:elmleaf", {
-	description = "Elm Leaf",
+	description = S("Elm Leaf"),
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_elmleaf.png"},
 	paramtype = "light",
@@ -151,7 +160,7 @@ minetest.register_node("lottplants:elmleaf", {
 })
 
 minetest.register_node("lottplants:firleaf", {
-	description = "Fir Leaf",
+	description = S("Fir Leaf"),
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_firleaf.png"},
 	paramtype = "light",
@@ -173,7 +182,7 @@ minetest.register_node("lottplants:firleaf", {
 })
 
 minetest.register_node("lottplants:lebethronleaf", {
-	description = "Lebethron Leaf",
+	description = S("Lebethron Leaf"),
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_lebethronleaf.png"},
 	paramtype = "light",
@@ -195,7 +204,7 @@ minetest.register_node("lottplants:lebethronleaf", {
 })
 
 minetest.register_node("lottplants:mallornleaf", {
-	description = "Mallorn Leaf",
+	description = S("Mallorn Leaf"),
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_mallornleaf.png"},
 	paramtype = "light",
@@ -217,7 +226,7 @@ minetest.register_node("lottplants:mallornleaf", {
 })
 
 minetest.register_node("lottplants:pineleaf", {
-	description = "Pine Needles",
+	description = S("Pine Needles"),
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_pineleaf.png"},
 	paramtype = "light",
@@ -239,7 +248,7 @@ minetest.register_node("lottplants:pineleaf", {
 })
 
 minetest.register_node("lottplants:plumleaf", {
-	description = "Plum Leaf",
+	description = S("Plum Leaf"),
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_plumleaf.png"},
 	paramtype = "light",
@@ -261,7 +270,7 @@ minetest.register_node("lottplants:plumleaf", {
 })
 
 minetest.register_node("lottplants:rowanleaf", {
-	description = "Rowan Leaf",
+	description = S("Rowan Leaf"),
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_rowanleaf.png"},
 	paramtype = "light",
@@ -279,7 +288,7 @@ minetest.register_node("lottplants:rowanleaf", {
 })
 
 minetest.register_node("lottplants:rowanberry", {
-	description = "Rowan Leaf with Berries",
+	description = S("Rowan Leaf with Berries"),
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_rowanleaf.png^lottplants_rowanberry.png"},
 	paramtype = "light",
@@ -296,7 +305,7 @@ minetest.register_node("lottplants:rowanberry", {
 })
 
 minetest.register_node("lottplants:whiteleaf", {
-	description = "White Leaf",
+	description = S("White Leaf"),
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_whiteleaf.png"},
 	paramtype = "light",
@@ -318,7 +327,7 @@ minetest.register_node("lottplants:whiteleaf", {
 })
 
 minetest.register_node("lottplants:yavannamireleaf", {
-	description = "Yavannamire Leaf",
+	description = S("Yavannamire Leaf"),
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_yavannamireleaf.png"},
 	paramtype = "light",
@@ -341,7 +350,7 @@ minetest.register_node("lottplants:yavannamireleaf", {
 
 minetest.register_alias("lottmapgen:mirkleaves", "lottplants:mirkleaf")
 minetest.register_node("lottplants:mirkleaf", {
-	description = "Mirkwood Leaves",
+	description = S("Mirkwood Leaves"),
 	drawtype = "allfaces_optional",
 	tiles = {"lottplants_mirkleaf.png"},
 	paramtype = "light",
@@ -367,7 +376,7 @@ minetest.register_node("lottplants:mirkleaf", {
 -- TREE
 
 minetest.register_node("lottplants:pinetree", {
-	description = "Pine Tree",
+	description = S("Pine Tree"),
 	tiles = {"lottplants_pinetree_top.png", "lottplants_pinetree_top.png", "lottplants_pinetree.png"},
 	paramtype2 = "facedir",
 	groups = {tree=1,choppy=3,flammable=2},
@@ -379,7 +388,7 @@ minetest.register_node("lottplants:pinetree", {
 })
 
 minetest.register_node("lottplants:birchtree", {
-	description = "Birch Tree",
+	description = S("Birch Tree"),
 	tiles = {"lottplants_birchtree_top.png", "lottplants_birchtree_top.png", "lottplants_birchtree.png"},
 	paramtype2 = "facedir",
 	groups = {tree=1,choppy=3,flammable=2},
@@ -391,7 +400,7 @@ minetest.register_node("lottplants:birchtree", {
 })
 
 minetest.register_node("lottplants:aldertree", {
-	description = "Alder Tree",
+	description = S("Alder Tree"),
 	tiles = {"lottplants_aldertree_top.png", "lottplants_aldertree_top.png", "lottplants_aldertree.png"},
 	paramtype2 = "facedir",
 	groups = {tree=1,choppy=2,flammable=2},
@@ -403,7 +412,7 @@ minetest.register_node("lottplants:aldertree", {
 })
 
 minetest.register_node("lottplants:lebethrontree", {
-	description = "Lebethron Tree",
+	description = S("Lebethron Tree"),
 	tiles = {"lottplants_lebethrontree_top.png", "lottplants_lebethrontree_top.png", "default_tree.png"},
 	paramtype2 = "facedir",
 	groups = {tree=1,choppy=1,flammable=2},
@@ -415,7 +424,7 @@ minetest.register_node("lottplants:lebethrontree", {
 })
 
 minetest.register_node("lottplants:mallorntree", {
-	description = "Mallorn Tree",
+	description = S("Mallorn Tree"),
 	tiles = {"lottplants_mallorntree_top.png", "lottplants_mallorntree_top.png", "lottplants_mallorntree.png"},
 	paramtype2 = "facedir",
 	groups = {tree=1,choppy=1,flammable=2},
@@ -427,7 +436,7 @@ minetest.register_node("lottplants:mallorntree", {
 })
 
 minetest.register_node("lottplants:mallorntree_young", {
-	description = "Young Mallorn Trunk",
+	description = S("Young Mallorn Trunk"),
 	tiles = {"lottplants_mallorntree_top.png", "lottplants_mallorntree_top.png", "lottplants_mallorntree.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -450,7 +459,7 @@ minetest.register_node("lottplants:mallorntree_young", {
 -- SAPLINGS
 
 minetest.register_node("lottplants:aldersapling", {
-	description = "Alder Sapling",
+	description = S("Alder Sapling"),
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottplants_aldersapling.png"},
@@ -463,7 +472,7 @@ minetest.register_node("lottplants:aldersapling", {
 })
 
 minetest.register_node("lottplants:applesapling", {
-	description = "Apple Tree Sapling",
+	description = S("Apple Tree Sapling"),
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottplants_applesapling.png"},
@@ -476,7 +485,7 @@ minetest.register_node("lottplants:applesapling", {
 })
 
 minetest.register_node("lottplants:birchsapling", {
-	description = "Birch Sapling",
+	description = S("Birch Sapling"),
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottplants_birchsapling.png"},
@@ -489,7 +498,7 @@ minetest.register_node("lottplants:birchsapling", {
 })
 
 minetest.register_node("lottplants:beechsapling", {
-	description = "Beech Sapling",
+	description = S("Beech Sapling"),
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottplants_beechsapling.png"},
@@ -502,7 +511,7 @@ minetest.register_node("lottplants:beechsapling", {
 })
 
 minetest.register_node("lottplants:culumaldasapling", {
-	description = "Culumalda Sapling",
+	description = S("Culumalda Sapling"),
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottplants_culumaldasapling.png"},
@@ -515,7 +524,7 @@ minetest.register_node("lottplants:culumaldasapling", {
 })
 
 minetest.register_node("lottplants:elmsapling", {
-	description = "Elm Sapling",
+	description = S("Elm Sapling"),
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottplants_elmsapling.png"},
@@ -528,7 +537,7 @@ minetest.register_node("lottplants:elmsapling", {
 })
 
 minetest.register_node("lottplants:firsapling", {
-	description = "Fir Sapling",
+	description = S("Fir Sapling"),
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottplants_firsapling.png"},
@@ -541,7 +550,7 @@ minetest.register_node("lottplants:firsapling", {
 })
 
 minetest.register_node("lottplants:lebethronsapling", {
-	description = "Lebethron Sapling",
+	description = S("Lebethron Sapling"),
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottplants_lebethronsapling.png"},
@@ -554,7 +563,7 @@ minetest.register_node("lottplants:lebethronsapling", {
 })
 
 minetest.register_node("lottplants:mallornsapling", {
-	description = "Mallorn Sapling",
+	description = S("Mallorn Sapling"),
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottplants_mallornsapling.png"},
@@ -567,7 +576,7 @@ minetest.register_node("lottplants:mallornsapling", {
 })
 
 minetest.register_node("lottplants:mallorntree_young_grower", {
-	description = "Young Mallorn Trunk",
+	description = S("Young Mallorn Trunk"),
 	tiles = {"lottplants_mallorntree_top.png", "lottplants_mallorntree_top.png", "lottplants_mallorntree.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -589,7 +598,7 @@ minetest.register_node("lottplants:mallorntree_young_grower", {
 })
 
 minetest.register_node("lottplants:mallorntree_grower", {
-	description = "Mallorn Tree",
+	description = S("Mallorn Tree"),
 	tiles = {"lottplants_mallorntree_top.png", "lottplants_mallorntree_top.png", "lottplants_mallorntree.png"},
 	paramtype2 = "facedir",
 	groups = {tree=1,choppy=1,flammable=2, not_in_creative_inventory=1,sapling=1},
@@ -602,7 +611,7 @@ minetest.register_node("lottplants:mallorntree_grower", {
 })
 
 minetest.register_node("lottplants:pinesapling", {
-	description = "Pine Sapling",
+	description = S("Pine Sapling"),
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottplants_pinesapling.png"},
@@ -615,7 +624,7 @@ minetest.register_node("lottplants:pinesapling", {
 })
 
 minetest.register_node("lottplants:plumsapling", {
-	description = "Plum Tree Sapling",
+	description = S("Plum Tree Sapling"),
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottplants_plumsapling.png"},
@@ -628,7 +637,7 @@ minetest.register_node("lottplants:plumsapling", {
 })
 
 minetest.register_node("lottplants:rowansapling", {
-	description = "Rowan Sapling",
+	description = S("Rowan Sapling"),
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottplants_rowansapling.png"},
@@ -641,7 +650,7 @@ minetest.register_node("lottplants:rowansapling", {
 })
 
 minetest.register_node("lottplants:whitesapling", {
-	description = "White Tree Sapling",
+	description = S("White Tree Sapling"),
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottplants_whitesapling.png"},
@@ -654,7 +663,7 @@ minetest.register_node("lottplants:whitesapling", {
 })
 
 minetest.register_node("lottplants:yavannamiresapling", {
-	description = "Yavannamire Sapling",
+	description = S("Yavannamire Sapling"),
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottplants_yavannamiresapling.png"},
@@ -667,7 +676,7 @@ minetest.register_node("lottplants:yavannamiresapling", {
 })
 
 minetest.register_node("lottplants:mirksapling", {
-	description = "Mirkwood Sapling",
+	description = S("Mirkwood Sapling"),
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottplants_mirksapling.png"},
@@ -682,7 +691,7 @@ minetest.register_node("lottplants:mirksapling", {
 -- FRUITS
 
 minetest.register_node("lottplants:plum", {
-	description = "Plum",
+	description = S("Plum"),
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottplants_plum.png"},
@@ -705,7 +714,7 @@ minetest.register_node("lottplants:plum", {
 })
 
 minetest.register_node("lottplants:yavannamirefruit", {
-	description = "Yavannamire Fruit",
+	description = S("Yavannamire Fruit"),
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"lottplants_yavannamirefruit.png"},
@@ -730,35 +739,35 @@ minetest.register_node("lottplants:yavannamirefruit", {
 --Wood
 
 minetest.register_node("lottplants:pinewood", {
-	description = "Pine Planks",
+	description = S("Pine Planks"),
 	tiles = {"lottplants_pinewood.png"},
 	groups = {choppy=3,flammable=3,wood=1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
 minetest.register_node("lottplants:birchwood", {
-	description = "Birch Planks",
+	description = S("Birch Planks"),
 	tiles = {"lottplants_birchwood.png"},
 	groups = {choppy=3,flammable=3,wood=1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
 minetest.register_node("lottplants:alderwood", {
-	description = "Alder Planks",
+	description = S("Alder Planks"),
 	tiles = {"lottplants_alderwood.png"},
 	groups = {choppy=2,flammable=3,wood=1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
 minetest.register_node("lottplants:lebethronwood", {
-	description = "Lebethron Planks",
+	description = S("Lebethron Planks"),
 	tiles = {"lottplants_lebethronwood.png"},
 	groups = {choppy=1,flammable=3,wood=1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
 minetest.register_node("lottplants:mallornwood", {
-	description = "Mallorn Planks",
+	description = S("Mallorn Planks"),
 	tiles = {"lottplants_mallornwood.png"},
 	groups = {choppy=1,flammable=3,wood=1},
 	sounds = default.node_sound_wood_defaults(),
@@ -767,7 +776,7 @@ minetest.register_node("lottplants:mallornwood", {
 --Lorien grass
 
 minetest.register_node("lottplants:lorien_grass_1", {
-	description = "Lorien Grass",
+	description = S("Lorien Grass"),
 	drawtype = "plantlike",
 	tiles = {"lottplants_lorien_grass_1.png"},
 	-- use a bigger inventory image
@@ -795,7 +804,7 @@ minetest.register_node("lottplants:lorien_grass_1", {
 
 for i = 2, 4 do
 	minetest.register_node("lottplants:lorien_grass_" .. i, {
-		description = "Lorien Grass",
+		description = S("Lorien Grass"),
 		drawtype = "plantlike",
 		tiles = {"lottplants_lorien_grass_" .. i .. ".png"},
 		inventory_image = "lottplants_lorien_grass_" .. i .. ".png",
@@ -940,7 +949,7 @@ minetest.register_craft({
 --Fireflies
 
 minetest.register_node("lottplants:fireflies", {
-	description = "Fireflies",
+	description = S("Fireflies"),
 	drawtype = "glasslike",
 	tiles = {
 		{

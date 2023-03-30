@@ -1,6 +1,15 @@
 -- Minetest 0.4 mod: bones
 -- See README.txt for licensing and other information.
 
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 bones_formspec =
 	"size[8,9]"..
 	"list[current_name;main;0,0;8,4;]"..
@@ -18,7 +27,7 @@ local function is_owner(pos, name)
 end
 
 minetest.register_node("bones:bones", {
-	description = "Gravestone",
+	description = S("Gravestone"),
 	tiles = {"default_stone.png", "default_stone.png",
 		"default_stone.png", "default_stone.png",
 		"default_stone.png", "default_stone.png^bones_writing.png",
@@ -288,7 +297,7 @@ local function growgen(pointed_thing)
 end
 
 minetest.register_craftitem("bones:bonedust", {
-	description = "Bone Dust",
+	description = S("Bone Dust"),
 	inventory_image = "bones_bonedust.png",
 	liquids_pointable = false,
 	stack_max = 99,
@@ -302,7 +311,7 @@ minetest.register_craftitem("bones:bonedust", {
 })
 
 minetest.register_craftitem("bones:bone", {
-	description = "Bone",
+	description = S("Bone"),
 	inventory_image = "bones_bone.png",
 })
 
@@ -325,7 +334,7 @@ minetest.register_craft({
 })
 
 minetest.register_tool("bones:bone_scythe", {
-	description = "Bone Scythe",
+	description = S("Bone Scythe"),
 	inventory_image = "bones_scythe.png",
 	tool_capabilities = {
 		full_punch_interval = 0.7,
@@ -356,7 +365,7 @@ minetest.register_craft({
 })
 
 minetest.register_node("bones:skeleton", {
-	description = "Skeleton Head",
+	description = S("Skeleton Head"),
 	drawtype = "nodebox",
 	tiles = {
 		"bones_skeleton_top.png",
@@ -386,7 +395,7 @@ minetest.register_node("bones:skeleton", {
 })
 
 minetest.register_node("bones:skeleton_body", {
-	description = "Skeleton",
+	description = S("Skeleton"),
 	drawtype = "nodebox",
 	tiles = {"bones_skeleton_top.png"},
 	inventory_image = "bones_skeleton.png",

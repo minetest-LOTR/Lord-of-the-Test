@@ -1,3 +1,12 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 dofile(minetest.get_modpath("lottinventory") .. "/functions.lua")
 dofile(minetest.get_modpath("lottinventory") .. "/potions.lua")
 dofile(minetest.get_modpath("lottinventory") .. "/brewing.lua")
@@ -22,17 +31,17 @@ end)
 
 --Bags
 minetest.register_tool("lottinventory:small", {
-	description = "Small Bag",
+	description = S("Small Bag"),
 	inventory_image = "bags_small.png",
 	groups = {bagslots=8},
 })
 minetest.register_tool("lottinventory:medium", {
-	description = "Medium Bag",
+	description = S("Medium Bag"),
 	inventory_image = "bags_medium.png",
 	groups = {bagslots=16},
 })
 minetest.register_tool("lottinventory:large", {
-	description = "Large Bag",
+	description = S("Large Bag"),
 	inventory_image = "bags_large.png",
 	groups = {bagslots=24, forbidden=1},
 })

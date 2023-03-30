@@ -1,10 +1,19 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 dofile(minetest.get_modpath("lottplants").."/nodes.lua")
 dofile(minetest.get_modpath("lottplants").."/wild_food.lua")
 dofile(minetest.get_modpath("lottplants").."/flowers.lua")
 dofile(minetest.get_modpath("lottplants").."/functions.lua")
 
 minetest.register_node("lottplants:brambles_of_mordor", {
-	description = "Brambles Of Mordor",
+	description = S("Brambles Of Mordor"),
 	drawtype = "plantlike",
 	tiles = { "lottplants_brambles_of_mordor.png" },
 	inventory_image = "lottplants_brambles_of_mordor.png",
@@ -25,7 +34,7 @@ minetest.register_node("lottplants:brambles_of_mordor", {
 })
 
 minetest.register_node("lottplants:pilinehtar", {
-	description = "Pilinehtar",
+	description = S("Pilinehtar"),
 	drawtype = "plantlike",
 	tiles = { "lottplants_pilinehtar.png" },
 	inventory_image = "lottplants_pilinehtar.png",
@@ -95,7 +104,7 @@ minetest.register_abm({
 })
 
 minetest.register_craftitem("lottplants:honey", {
-	description = "Honey",
+	description = S("Honey"),
 	inventory_image = "lottplants_honey.png",
 	on_use = minetest.item_eat(1),
 })

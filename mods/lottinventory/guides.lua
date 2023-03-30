@@ -1,3 +1,12 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 -- This file contains the more basic guides, the normal craft guide, the cooking
 -- guide, the armor/protection guide, the forbidden item guide and the master guide.
 -- These all use the same system, as outlined in functions.lua. The brewing and
@@ -34,7 +43,7 @@ for name, table in pairs(guides) do
 	end
 
 	minetest.register_tool("lottinventory:" .. name .. "_book",{
-	    description = name:gsub("^%l", string.upper) .. " Book",
+	    description = S(name:gsub("^%l", string.upper) .. " Book"),
 	    groups = groups,
 	    inventory_image = "lottinventory_" .. name .. "_book.png",
 	    wield_image = "",

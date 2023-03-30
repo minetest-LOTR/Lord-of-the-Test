@@ -33,7 +33,7 @@ dofile(minetest.get_modpath("lottachievements").."/triggers.lua")
 
 
 minetest.register_craftitem("lottachievements:achievement_book", {
-	description = "Achievement Book",
+	description = S("Achievement Book"),
 	inventory_image = "lottachievements_achievement_book.png",
 	groups = {book=1},
 	on_place = function(_, player)
@@ -49,15 +49,15 @@ minetest.register_craftitem("lottachievements:achievement_book", {
 -- Random Achievements!
 
 lottachievements.register_achievement("smoke_rings", {
-	title = "Smoke Rings",
-	description = "Blow a smoke ring with a pipe",
+	title = S("Smoke Rings"),
+	description = S("Blow a smoke ring with a pipe"),
 	icon = "lottfarming_smoke_ring.png",
 	id = 1,
 })
 
 lottachievements.register_achievement("a_long_path_to_mushrooms", {
-	title = "A Long Path to Mushrooms",
-	description = "Show a hobbitish love of mushrooms by eating 99 brown mushrooms!",
+	title = S("A Long Path to Mushrooms"),
+	description = S("Show a hobbitish love of mushrooms by eating 99 brown mushrooms!"),
 	icon = "lottplants_mushroom_wild.png",
 	id = 2,
 	trigger = {
@@ -68,8 +68,8 @@ lottachievements.register_achievement("a_long_path_to_mushrooms", {
 })
 
 lottachievements.register_achievement("tasty_taters", {
-	title = "Tasty Taters",
-	description = "Fill your belly with the good ballast of 9 potatoes",
+	title = S("Tasty Taters"),
+	description = S("Fill your belly with the good ballast of 9 potatoes"),
 	icon = "lottfarming_potato_cooked.png",
 	id = 3,
 	trigger = {
@@ -80,15 +80,15 @@ lottachievements.register_achievement("tasty_taters", {
 })
 
 lottachievements.register_achievement("thief", {
-	title = "Thief!",
-	description = "Use a lockpick to break into a chest of a different race",
+	title = S("Thief!"),
+	description = S("Use a lockpick to break into a chest of a different race"),
 	icon = "lottblocks_steel_lockpick.png",
 	id = 4,
 })
 
 lottachievements.register_achievement("rope_is_useful", {
-	title = "Rope is useful!",
-	description = "Craft 100 meters of elven rope",
+	title = S("Rope is useful!"),
+	description = S("Craft 100 meters of elven rope"),
 	icon = "lottblocks_elven_rope.png",
 	id = 5,
 	trigger = {
@@ -99,8 +99,8 @@ lottachievements.register_achievement("rope_is_useful", {
 })
 
 lottachievements.register_achievement("silver_stringed_music", {
-	title = "Silver Stringed Music",
-	description = "Craft a dwarvern harp",
+	title = S("Silver Stringed Music"),
+	description = S("Craft a dwarvern harp"),
 	icon = "lottblocks_harp_strings.png",
 	id = 6,
 	trigger = {
@@ -111,8 +111,8 @@ lottachievements.register_achievement("silver_stringed_music", {
 })
 
 lottachievements.register_achievement("dungeons_deep_and_caverns_old", {
-	title = "Dungeons Deep and Caverns Old",
-	description = "Find an underground dungeon",
+	title = S("Dungeons Deep and Caverns Old"),
+	description = S("Find an underground dungeon"),
 	icon = "default_mossycobble.png",
 	id = 7,
 	trigger = {
@@ -123,8 +123,8 @@ lottachievements.register_achievement("dungeons_deep_and_caverns_old", {
 })
 
 lottachievements.register_achievement("dwarvern_tomb", {
-	title = "Dwarvern Tomb",
-	description = "Find (and loot!) a dwarvern tomb, deep underground...",
+	title = S("Dwarvern Tomb"),
+	description = S("Find (and loot!) a dwarvern tomb, deep underground..."),
 	icon = "lottblocks_dh_top.png",
 	id = 8,
 	trigger = {
@@ -135,8 +135,8 @@ lottachievements.register_achievement("dwarvern_tomb", {
 })
 
 lottachievements.register_achievement("express_miner", {
-	title = "Express Miner",
-	description = "Craft a mithril pickaxe",
+	title = S("Express Miner"),
+	description = S("Craft a mithril pickaxe"),
 	icon = "lottores_mithrilpick.png",
 	id = 9,
 	trigger = {
@@ -147,8 +147,8 @@ lottachievements.register_achievement("express_miner", {
 })
 
 lottachievements.register_achievement("elf_and_dwarf_cooperation", {
-	title = "Elf and Dwarf Cooperation",
-	description = "Place at least 6 ithildin stone",
+	title = S("Elf and Dwarf Cooperation"),
+	description = S("Place at least 6 ithildin stone"),
 	icon = "default_stone.png^ithildin_1.png",
 	id = 10,
 	trigger = {
@@ -159,8 +159,8 @@ lottachievements.register_achievement("elf_and_dwarf_cooperation", {
 })
 
 lottachievements.register_achievement("chains_of_melkor", {
-	title = "Chains of Melkor",
-	description = "Craft a tilkal ingot",
+	title = S("Chains of Melkor"),
+	description = S("Craft a tilkal ingot"),
 	icon = "lottores_tilkal_ingot.png",
 	id = 11,
 	trigger = {
@@ -171,8 +171,8 @@ lottachievements.register_achievement("chains_of_melkor", {
 })
 
 lottachievements.register_achievement("master_craftsman", {
-	title = "Master Craftsman",
-	description = "Craft a Master Book of Crafts",
+	title = S("Master Craftsman"),
+	description = S("Craft a Master Book of Crafts"),
 	icon = "lottinventory_master_book.png",
 	id = 12,
 	trigger = {
@@ -185,8 +185,8 @@ lottachievements.register_achievement("master_craftsman", {
 -- Mithril Achievements
 
 lottachievements.register_achievement("first_truesilver", {
-	title = "First Truesilver",
-	description = "Mine 1 mithril ore",
+	title = S("First Truesilver"),
+	description = S("Mine 1 mithril ore"),
 	icon = "default_stone.png^lottores_mithril_ore.png^lottachievements_level1.png",
 	id = 32,
 	trigger = {
@@ -197,8 +197,8 @@ lottachievements.register_achievement("first_truesilver", {
 })
 
 lottachievements.register_achievement("dwarvern_miner", {
-	title = "Dwarven Miner",
-	description = "Mine 99 mithril ore",
+	title = S("Dwarven Miner"),
+	description = S("Mine 99 mithril ore"),
 	icon = "default_stone.png^lottores_mithril_ore.png^lottachievements_level2.png",
 	requires = "first_truesilver",
 	id = 33,
@@ -210,8 +210,8 @@ lottachievements.register_achievement("dwarvern_miner", {
 })
 
 lottachievements.register_achievement("ammassing_fortune", {
-	title = "Amassing Fortune",
-	description = "Mine 500 mithril ore",
+	title = S("Amassing Fortune"),
+	description = S("Mine 500 mithril ore"),
 	icon = "default_stone.png^lottores_mithril_ore.png^lottachievements_level3.png",
 	requires = "dwarvern_miner",
 	id = 34,
@@ -223,8 +223,8 @@ lottachievements.register_achievement("ammassing_fortune", {
 })
 
 lottachievements.register_achievement("truly_rich", {
-	title = "Truly Rich",
-	description = "Mine 1000 mithril ore",
+	title = S("Truly Rich"),
+	description = S("Mine 1000 mithril ore"),
 	icon = "default_stone.png^lottores_mithril_ore.png^lottachievements_level4.png",
 	requires = "ammassing_fortune",
 	id = 35,
@@ -236,8 +236,8 @@ lottachievements.register_achievement("truly_rich", {
 })
 
 lottachievements.register_achievement("lord_of_moria", {
-	title = "Lord of Moria",
-	description = "Mine 5000 mithril ore",
+	title = S("Lord of Moria"),
+	description = S("Mine 5000 mithril ore"),
 	icon = "default_stone.png^lottores_mithril_ore.png^lottachievements_level5.png",
 	requires = "truly_rich",
 	id = 36,
@@ -251,8 +251,8 @@ lottachievements.register_achievement("lord_of_moria", {
 -- Armour Achievements
 
 lottachievements.register_achievement("foot_soldier", {
-	title = "Foot Soldier",
-	description = "Equip a full set of steel armor",
+	title = S("Foot Soldier"),
+	description = S("Equip a full set of steel armor"),
 	icon = "lottarmor_inv_chestplate_steel.png",
 	id = 30,
 	trigger = {
@@ -262,8 +262,8 @@ lottachievements.register_achievement("foot_soldier", {
 })
 
 lottachievements.register_achievement("dwarvern_lord", {
-	title = "Dwarven Lord",
-	description = "Equip a full set of mithril armor",
+	title = S("Dwarven Lord"),
+	description = S("Equip a full set of mithril armor"),
 	icon = "lottarmor_inv_chestplate_mithril.png",
 	id = 31,
 	trigger = {
@@ -273,8 +273,8 @@ lottachievements.register_achievement("dwarvern_lord", {
 })
 
 lottachievements.register_achievement("elven_lord", {
-	title = "Elven Lord",
-	description = "Equip a full set of galvorn armor",
+	title = S("Elven Lord"),
+	description = S("Equip a full set of galvorn armor"),
 	icon = "lottarmor_inv_chestplate_galvorn.png",
 	id = 29,
 	trigger = {
@@ -284,8 +284,8 @@ lottachievements.register_achievement("elven_lord", {
 })
 
 lottachievements.register_achievement("rohirric_king", {
-	title = "Rohirric King",
-	description = "Equip a full set of gold armor",
+	title = S("Rohirric King"),
+	description = S("Equip a full set of gold armor"),
 	icon = "lottarmor_inv_chestplate_gold.png",
 	id = 28,
 	trigger = {
@@ -297,8 +297,8 @@ lottachievements.register_achievement("rohirric_king", {
 -- Various biome awards
 
 lottachievements.register_achievement("in_the_land_of_mordor", {
-	title = "In the Land of Mordor...",
-	description = "Visit Mordor and mine some Mordor Stone as proof",
+	title = S("In the Land of Mordor..."),
+	description = S("Visit Mordor and mine some Mordor Stone as proof"),
 	icon = "lottmapgen_mordor_stone.png",
 	id = 13,
 	trigger = {
@@ -309,8 +309,8 @@ lottachievements.register_achievement("in_the_land_of_mordor", {
 })
 
 lottachievements.register_achievement("the_frozen_wastes", {
-	title = "The Frozen Wastes",
-	description = "Visit a frozen biome, and collect some snow",
+	title = S("The Frozen Wastes"),
+	description = S("Visit a frozen biome, and collect some snow"),
 	icon = "default_snow.png",
 	id = 14,
 	trigger = {
@@ -321,8 +321,8 @@ lottachievements.register_achievement("the_frozen_wastes", {
 })
 
 lottachievements.register_achievement("iron_galore", {
-	title = "Iron Galore",
-	description = "Visit the Iron Hills and start a mine there",
+	title = S("Iron Galore"),
+	description = S("Visit the Iron Hills and start a mine there"),
 	icon = "default_stone.png^default_mineral_iron.png",
 	id = 15,
 	trigger = {
@@ -333,8 +333,8 @@ lottachievements.register_achievement("iron_galore", {
 })
 
 lottachievements.register_achievement("the_merry_shire", {
-	title = "The Merry Shire",
-	description = "Visit the Shire, and examine its soil",
+	title = S("The Merry Shire"),
+	description = S("Visit the Shire, and examine its soil"),
 	icon = "lottplants_plum.png",
 	id = 16,
 	trigger = {
@@ -345,8 +345,8 @@ lottachievements.register_achievement("the_merry_shire", {
 })
 
 lottachievements.register_achievement("lorien_the_golden", {
-	title = "Lorien the Golden",
-	description = "Visit the golden forest of Lorien",
+	title = S("Lorien the Golden"),
+	description = S("Visit the golden forest of Lorien"),
 	icon = "lottplants_mallornleaf.png",
 	id = 17,
 	trigger = {
@@ -357,8 +357,8 @@ lottachievements.register_achievement("lorien_the_golden", {
 })
 
 lottachievements.register_achievement("a_small_patch_of_lorien", {
-	title = "A Small Patch of Lorien",
-	description = "Place 7 Mallorn Saplings",
+	title = S("A Small Patch of Lorien"),
+	description = S("Place 7 Mallorn Saplings"),
 	icon = "lottplants_mallornsapling.png",
 	id = 19,
 	trigger = {
@@ -369,8 +369,8 @@ lottachievements.register_achievement("a_small_patch_of_lorien", {
 })
 
 lottachievements.register_achievement("the_corrupted_greenwood", {
-	title = "The Corrupted Greenwood",
-	description = "Chop down a tree in Mirkwood",
+	title = S("The Corrupted Greenwood"),
+	description = S("Chop down a tree in Mirkwood"),
 	icon = "lottplants_mirkleaf.png",
 	id = 18,
 	trigger = {
@@ -383,8 +383,8 @@ lottachievements.register_achievement("the_corrupted_greenwood", {
 -- Mob Killings!
 
 lottachievements.register_achievement("his_arm_has_grown_long", {
-	title = "His arm has grown long indeed",
-	description = "Craft a mithril spear",
+	title = S("His arm has grown long indeed"),
+	description = S("Craft a mithril spear"),
 	icon = "lottweapons_mithril_spear.png",
 	id = 20,
 	trigger = {
@@ -395,8 +395,8 @@ lottachievements.register_achievement("his_arm_has_grown_long", {
 })
 
 lottachievements.register_achievement("marksman_of_lorien", {
-	title = "Marksman of Lorien",
-	description = "Craft a mallorn bow",
+	title = S("Marksman of Lorien"),
+	description = S("Craft a mallorn bow"),
 	icon = "lottthrowing_bow_wood_mallorn.png",
 	id = 21,
 	trigger = {
@@ -407,8 +407,8 @@ lottachievements.register_achievement("marksman_of_lorien", {
 })
 
 lottachievements.register_achievement("durins_bane", {
-	title = "Durin's Bane",
-	description = "Kill a Balrog",
+	title = S("Durin's Bane"),
+	description = S("Kill a Balrog"),
 	icon = "fire_basic_flame.png",
 	id = 27,
 	trigger = {
@@ -419,8 +419,8 @@ lottachievements.register_achievement("durins_bane", {
 })
 
 lottachievements.register_achievement("begone_foul_dwimmerlaik", {
-	title = "Begone, foul dwimmerlaik",
-	description = "Kill the king of the Nazgul",
+	title = S("Begone, foul dwimmerlaik"),
+	description = S("Kill the king of the Nazgul"),
 	icon = "lottachievements_witch_king.png",
 	id = 26,
 	trigger = {
@@ -431,8 +431,8 @@ lottachievements.register_achievement("begone_foul_dwimmerlaik", {
 })
 
 lottachievements.register_achievement("living_wood", {
-	title = "Living Wood",
-	description = "Kill an ent",
+	title = S("Living Wood"),
+	description = S("Kill an ent"),
 	icon = "default_jungletree.png",
 	id = 25,
 	trigger = {
@@ -443,8 +443,8 @@ lottachievements.register_achievement("living_wood", {
 })
 
 lottachievements.register_achievement("elven_champion", {
-	title = "Elven Champion",
-	description = "Kill 25 Mordor orcs",
+	title = S("Elven Champion"),
+	description = S("Kill 25 Mordor orcs"),
 	icon = "lottweapons_elven_sword.png",
 	id = 22,
 	trigger = {
@@ -455,8 +455,8 @@ lottachievements.register_achievement("elven_champion", {
 })
 
 lottachievements.register_achievement("orcish_warlord", {
-	title = "Orcish Warlord",
-	description = "Kill 25 elves",
+	title = S("Orcish Warlord"),
+	description = S("Kill 25 elves"),
 	icon = "lottweapons_orc_sword.png",
 	id = 23,
 	trigger = {
@@ -467,8 +467,8 @@ lottachievements.register_achievement("orcish_warlord", {
 })
 
 lottachievements.register_achievement("spider_hunter", {
-	title = "Spider Hunter",
-	description = "Kill 25 spiders",
+	title = S("Spider Hunter"),
+	description = S("Kill 25 spiders"),
 	icon = "lottplants_mirkleaf.png",
 	id = 24,
 	trigger = {
@@ -481,8 +481,8 @@ lottachievements.register_achievement("spider_hunter", {
 -- Advanced Achievements
 
 lottachievements.register_achievement("abandoned_workshop", {
-	title = "Abandoned Workshop",
-	description = "Discover a secret Elven Workshop underground",
+	title = S("Abandoned Workshop"),
+	description = S("Discover a secret Elven Workshop underground"),
 	icon = "default_cracked_stone_brick.png",
 	id = 37,
 	trigger = {
@@ -493,16 +493,16 @@ lottachievements.register_achievement("abandoned_workshop", {
 })
 
 lottachievements.register_achievement("ringsilver_crafter", {
-	title = "Ringsilver crafter",
-	description = "Form your first ingot of ringsilver!",
+	title = S("Ringsilver crafter"),
+	description = S("Form your first ingot of ringsilver!"),
 	icon = "lottother_ringsilver_ingot.png",
 	requires = "abandoned_workshop",
 	id = 38,
 })
 
 lottachievements.register_achievement("the_ring_is_prepared", {
-	title = "The Ring is Prepared...",
-	description = "Make a ring ready to have a gem fitted to it",
+	title = S("The Ring is Prepared..."),
+	description = S("Make a ring ready to have a gem fitted to it"),
 	icon = "lottother_prepared_ring.png",
 	requires = "ringsilver_crafter",
 	id = 39,
@@ -514,8 +514,8 @@ lottachievements.register_achievement("the_ring_is_prepared", {
 })
 
 lottachievements.register_achievement("a_pickaxe_fit_for_a_king", {
-	title = "A pickaxe fit for a king",
-	description = "Craft a gem pickaxe",
+	title = S("A pickaxe fit for a king"),
+	description = S("Craft a gem pickaxe"),
 	icon = "lottother_gempick.png",
 	requires = "abandoned_workshop",
 	id = 40,
@@ -527,24 +527,24 @@ lottachievements.register_achievement("a_pickaxe_fit_for_a_king", {
 })
 
 lottachievements.register_achievement("polisher", {
-	title = "Polisher",
-	description = "Polish a gem",
+	title = S("Polisher"),
+	description = S("Polish a gem"),
 	icon = "lottother_redgem.png",
 	requires = "a_pickaxe_fit_for_a_king",
 	id = 41,
 })
 
 lottachievements.register_achievement("ring_smith", {
-	title = "Ring Smith",
-	description = "Forge a ring of power",
+	title = S("Ring Smith"),
+	description = S("Forge a ring of power"),
 	requires = "polisher",
 	icon = "lottother_narya.png",
 	id = 42,
 })
 
 lottachievements.register_achievement("supersonic_speed", {
-	title = "Supersonic Speed",
-	description = "Craft a palantir",
+	title = S("Supersonic Speed"),
+	description = S("Craft a palantir"),
 	icon = "default_obsidian.png",
 	secret = true,
 	id = 43,
@@ -558,8 +558,8 @@ lottachievements.register_achievement("supersonic_speed", {
 --Death awards :P
 
 lottachievements.register_achievement("first_time_for_everything", {
-	title = "First Time for Everything",
-	description = "Die once!",
+	title = S("First Time for Everything"),
+	description = S("Die once!"),
 	id = 44,
 	icon = "lottachievements_skull.png^lottachievements_level1.png",
 	trigger = {
@@ -569,8 +569,8 @@ lottachievements.register_achievement("first_time_for_everything", {
 })
 
 lottachievements.register_achievement("not_again", {
-	title = "Not Again!",
-	description = "Die a second time",
+	title = S("Not Again!"),
+	description = S("Die a second time"),
 	icon = "lottachievements_skull.png^lottachievements_level2.png",
 	requires = "first_time_for_everything",
 	id = 45,
@@ -581,8 +581,8 @@ lottachievements.register_achievement("not_again", {
 })
 
 lottachievements.register_achievement("this_is_becoming_a_habit", {
-	title = "This is becoming a habit...",
-	description = "Die 10 times!",
+	title = S("This is becoming a habit..."),
+	description = S("Die 10 times!"),
 	icon = "lottachievements_skull.png^lottachievements_level3.png",
 	requires = "not_again",
 	id = 46,
@@ -593,8 +593,8 @@ lottachievements.register_achievement("this_is_becoming_a_habit", {
 })
 
 lottachievements.register_achievement("im_getting_good_at_this", {
-	title = "I'm getting good at this!",
-	description = "Die 20 times, then 5 more.",
+	title = S("I'm getting good at this!"),
+	description = S("Die 20 times, then 5 more."),
 	icon = "lottachievements_skull.png^lottachievements_level4.png",
 	requires = "this_is_becoming_a_habit",
 	id = 47,
@@ -605,8 +605,8 @@ lottachievements.register_achievement("im_getting_good_at_this", {
 })
 
 lottachievements.register_achievement("this_is_really_too_much", {
-	title = "This is really too much...",
-	description = "Die a grand total of 100 times!",
+	title = S("This is really too much..."),
+	description = S("Die a grand total of 100 times!"),
 	icon = "lottachievements_skull.png^lottachievements_level5.png",
 	requires = "im_getting_good_at_this",
 	id = 48,
@@ -617,7 +617,7 @@ lottachievements.register_achievement("this_is_really_too_much", {
 })
 
 lottachievements.register_achievement("king_of_dying", {
-	title = "King of Dying",
+	title = S("King of Dying"),
 	description = "Have 500 deaths to your name!",
 	icon = "lottachievements_crowned_skull.png^lottachievements_level6.png",
 	requires = "this_is_really_too_much",
@@ -629,8 +629,8 @@ lottachievements.register_achievement("king_of_dying", {
 })
 
 lottachievements.register_achievement("so_dead_im_immortal", {
-	title = "So dead, I'm immortal!",
-	description = "1000 deaths. Yes, 1000.",
+	title = S("So dead, I'm immortal!"),
+	description = S("1000 deaths. Yes, 1000."),
 	icon = "lottachievements_skull.png^lottachievements_level7.png",
 	requires = "king_of_dying",
 	id = 50,

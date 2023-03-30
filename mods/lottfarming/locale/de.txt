@@ -1,0 +1,21 @@
+### orc_food.lua
+Orc Food = Orkmahlzeit
+Orc medicine = Orkarznei
+
+### pipeweed.lua
+Cooked Pipeweed = gekochtes Pfeifenkraut
+Pipe = Pfeife
+Pipeweed = Pfeifenkraut
+Pipeweed Seeds = Pfeifenkrautsamen
+
+### tomatoes.lua
+Cooked Tomato = gekochte Tomate
+Tomato = Tomate
+Tomato Seeds = Tomatensamen
+Tomato Soup = Tomatensuppe
+
+### potato.lua
+Cooked Potato = gekochte Kartoffel
+Potato = Kartoffel
+Potato Seeds = Kartoffelsamen
+

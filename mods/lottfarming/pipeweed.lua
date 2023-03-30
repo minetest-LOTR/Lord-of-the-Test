@@ -1,5 +1,14 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 minetest.register_craftitem("lottfarming:pipeweed_seed", {
-	description = "Pipeweed Seeds",
+	description = S("Pipeweed Seeds"),
 	inventory_image = "lottfarming_pipeweed_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
 		return place_seed(itemstack, placer, pointed_thing, "lottfarming:pipeweed_1", 34)
@@ -83,7 +92,7 @@ minetest.register_node("lottfarming:pipeweed_4", {
 })
 
 minetest.register_craftitem("lottfarming:pipeweed", {
-	description = "Pipeweed",
+	description = S("Pipeweed"),
 	inventory_image = "lottfarming_pipeweed.png",
 })
 
@@ -97,7 +106,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("lottfarming:pipeweed_cooked", {
-	description = "Cooked Pipeweed",
+	description = S("Cooked Pipeweed"),
 	inventory_image = "lottfarming_pipeweed_cooked.png",
 })
 
@@ -115,7 +124,7 @@ pipeweed = {
 }
 
 minetest.register_tool("lottfarming:pipe", {
-	description = "Pipe",
+	description = S("Pipe"),
 	inventory_image = "lottfarming_pipe.png",
      on_use = function(itemstack, player)
      for _,arrow in ipairs(pipeweed) do

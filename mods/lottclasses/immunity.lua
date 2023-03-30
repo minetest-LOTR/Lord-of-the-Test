@@ -18,7 +18,7 @@ minetest.register_on_newplayer(function(player)
 			
 			minetest.after(5, function()
 				if player == nil then return end
-				minetest.chat_send_player(name, minetest.colorize("green", "Starter mob immunity granted for "..immune_amt/ 60 .." minutes! Travel to a safe area!"))
+				minetest.chat_send_player(name, minetest.colorize("green", string.format(S("Starter mob immunity granted for %s minutes!"), (immune_amt/60)) .. " " .. S("Travel to a safe area!")))
 			end)
 			for i = 1, immune_amt do
 				minetest.after(i, function()
@@ -30,7 +30,7 @@ minetest.register_on_newplayer(function(player)
 			end
 			minetest.after(immune_amt+1, function()
 				meta:set_string("lott:immunity", "")
-				minetest.chat_send_player(name, minetest.colorize("orange", "Your starter mob immunity has expired!"))
+				minetest.chat_send_player(name, minetest.colorize("orange", S("Your starter mob immunity has expired!")))
 				armor:set_player_armor(player)
 			end)
 		end
@@ -50,8 +50,8 @@ minetest.register_on_joinplayer(function(player)
 		if tonumber(immunity) >= immune_amt then
 			return
 		end
-		minetest.chat_send_player(name, minetest.colorize("green", "Your starter mob immunity has resumed!"))
-		minetest.chat_send_player(name, minetest.colorize("green", "You still have "..tonumber(immunity) / 60 .." minutes left!"))
+		minetest.chat_send_player(name, minetest.colorize("green", S("Your starter mob immunity has resumed!")))
+		minetest.chat_send_player(name, minetest.colorize("green", string.format(S("You still have %s minutes left!"), (tonumber(immunity) / 60))))
 	
 		for i = 1, tonumber(immunity) do
 			if not tonumber(immunity) then
@@ -70,7 +70,7 @@ minetest.register_on_joinplayer(function(player)
 			meta:set_string("lott:immunity", "")
 			armor:set_player_armor(player)
 		
-			minetest.chat_send_player(name, minetest.colorize("orange", "Your starter mob immunity has expired!"))
+			minetest.chat_send_player(name, minetest.colorize("orange", S("Your starter mob immunity has expired!")))
 		end)
 	end
 end)

@@ -1,5 +1,14 @@
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
+
 minetest.register_craftitem("lottfarming:potato_seed", {
-	description = "Potato Seeds",
+	description = S("Potato Seeds"),
 	inventory_image = "lottfarming_potato_seed.png",
 	on_place = function(itemstack, placer, pointed_thing)
 		return place_seed(itemstack, placer, pointed_thing, "lottfarming:potato_1", 40)
@@ -65,7 +74,7 @@ minetest.register_node("lottfarming:potato_3", {
 })
 
 minetest.register_craftitem("lottfarming:potato", {
-	description = "Potato",
+	description = S("Potato"),
 	inventory_image = "lottfarming_potato.png",
 	on_use = minetest.item_eat(1),
 })
@@ -80,7 +89,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("lottfarming:potato_cooked", {
-	description = "Cooked Potato",
+	description = S("Cooked Potato"),
 	inventory_image = "lottfarming_potato_cooked.png",
 	on_use = minetest.item_eat(5),
 })

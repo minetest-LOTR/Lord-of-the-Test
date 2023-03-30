@@ -1,0 +1,22 @@
+### init.lua
+Alder Wood Bow =
+Birch Wood Bow =
+Galvorn Crossbow =
+Gold Crossbow =
+Lebethron Wood Bow =
+Mallorn Bow =
+Mithril Crossbow =
+Normal Wood Bow =
+Silver Crossbow =
+Steel Crossbow =
+Tin Crossbow =
+Wooden Crossbow =
+
+### arrow.lua
+Arrow =
+Mithril Arrow =
+Magical Arrow =
+Fire Arrow =
+Bolt =
+Mithril Bolt =
+Fire Bolt =
