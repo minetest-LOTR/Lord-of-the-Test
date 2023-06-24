@@ -9,7 +9,7 @@ lottpotion = {
 		phys_override = function(sname, name, fname, time, sdata, flags)
 			local def = {
 				on_use = function(itemstack, user, pointed_thing)
-					if user:get_player_name() == "" then
+					if not user or user:get_player_name() == "" then
 						return
 					end
 					lottpotion.grant(time, user:get_player_name(), fname.."_"..flags.type..sdata.type, name, flags)
@@ -30,7 +30,7 @@ lottpotion = {
 		fixhp = function(sname, name, fname, time, sdata, flags)
 			local def = {
 				on_use = function(itemstack, user, pointed_thing)
-					if user:get_player_name() == "" then
+					if not user or user:get_player_name() == "" then
 						return
 					end
 					local hp_change = sdata.hp or 3
@@ -57,7 +57,7 @@ lottpotion = {
 		air = function(sname, name, fname, time, sdata, flags)
 			local def = {
 				on_use = function(itemstack, user, pointed_thing)
-					if user:get_player_name() == "" then
+					if not user or user:get_player_name() == "" then
 						return
 					end
 					local br_change = sdata.br or 3
@@ -168,14 +168,14 @@ lottpotion = {
 				if t == 2 then
 					flags.inv = true
 				end
-				for name, val in pairs(lottpotion.effects[def.effect](sname, name, fname, time, sdata, flags)) do
-					item_def[name] = val
+				for name_1, val in pairs(lottpotion.effects[def.effect](sname, name, fname, time, sdata, flags)) do
+					item_def[name_1] = val
 				end
-				for name, val in pairs(sdata.set) do
-					item_def[name] = val
+				for name_2, val in pairs(sdata.set) do
+					item_def[name_2] = val
 				end
-				for name, val in pairs(sdata.effects) do
-					item_def.lottpotion[name] = val
+				for name_3, val in pairs(sdata.effects) do
+					item_def.lottpotion[name_3] = val
 				end
                     minetest.register_node(fname.."_"..tps[t]..sdata.type, item_def)
 				--potions.register_liquid(i..tps[t]..sname, name.." ("..tps[t].." "..i..")", item_def.on_use)
