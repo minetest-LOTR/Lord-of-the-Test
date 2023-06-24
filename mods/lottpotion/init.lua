@@ -9,6 +9,9 @@ lottpotion = {
 		phys_override = function(sname, name, fname, time, sdata, flags)
 			local def = {
 				on_use = function(itemstack, user, pointed_thing)
+					if user:get_player_name() == "" then
+						return
+					end
 					lottpotion.grant(time, user:get_player_name(), fname.."_"..flags.type..sdata.type, name, flags)
 					itemstack:take_item()
 					return itemstack
@@ -27,6 +30,9 @@ lottpotion = {
 		fixhp = function(sname, name, fname, time, sdata, flags)
 			local def = {
 				on_use = function(itemstack, user, pointed_thing)
+					if user:get_player_name() == "" then
+						return
+					end
 					local hp_change = sdata.hp or 3
 					if flags.inv == true then
 						hp_change = -hp_change
@@ -51,6 +57,9 @@ lottpotion = {
 		air = function(sname, name, fname, time, sdata, flags)
 			local def = {
 				on_use = function(itemstack, user, pointed_thing)
+					if user:get_player_name() == "" then
+						return
+					end
 					local br_change = sdata.br or 3
 					if flags.inv == true then
 						br_change = -br_change
@@ -72,6 +81,9 @@ lottpotion = {
 		end,
 	},
 	grant = function(time, playername, potion_name, type, flags)
+		if playername == "" or not lottpotion.players[playername] then
+			return
+		end
 		local rootdef = minetest.registered_items[potion_name]
 		if rootdef == nil then
 			return
@@ -103,6 +115,9 @@ lottpotion = {
 	end,
 	addPrefs = function(playername, speed, jump, gravity)
 		local prefs = lottpotion.players[playername]
+		if playername == "" or not prefs then
+			return
+		end
 		prefs.speed = prefs.speed + speed
 		if prefs.speed > 5 then
 			prefs.speed = 5
@@ -123,8 +138,8 @@ lottpotion = {
 		end
 	end,
 	refresh = function(playername)
-		if minetest.get_player_by_name(playername)~=nil then
-			local prefs = lottpotion.players[playername]
+		local prefs = lottpotion.players[playername]
+		if minetest.get_player_by_name(playername) ~= nil and playername ~= "" and prefs then
 			minetest.get_player_by_name(playername):set_physics_override({speed = prefs.speed, jump = prefs.jump, gravity = prefs.gravity})
 		end
 	end,
