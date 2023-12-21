@@ -147,7 +147,7 @@ local lottthrowing_shoot_bolt = function(itemstack, player, pointed_thing, draws
 	return false
 end
 
--- -- -- -- -- items and crafts -- -- -- -- -- 
+-- -- -- -- -- items and crafts -- -- -- -- --
 minetest.register_tool("lottthrowing:bow_wood", {
 	description = "Normal Wood Bow",
 	inventory_image = "lottthrowing_bow_wood.png",

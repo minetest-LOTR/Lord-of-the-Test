@@ -46,6 +46,15 @@ minetest.register_craftitem("lottachievements:achievement_book", {
 	end,
 })
 
+minetest.register_craft({
+	output = "lottachievements:achievement_book",
+	recipe = {
+		{"", "dye:red", ""},
+		{"dye:red", "default:book", "dye:red"},
+		{"", "dye:red", ""},
+	}
+})
+
 -- Random Achievements!
 
 lottachievements.register_achievement("smoke_rings", {

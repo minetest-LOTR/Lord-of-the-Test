@@ -93,7 +93,6 @@ for i in pairs(arrow_types) do
                     local lua_obj_inside = obj:get_luaentity()
 					if lua_obj_inside or obj:is_player() then
 						if (lua_obj_inside and lua_obj_inside.name ~= "lottthrowing:"..name.."_entity" and lua_obj_inside.name ~= "__builtin:item") or obj:is_player() then
-
                                 if dama > 0 then
                                 if self.playername
                                     and self.playername ~= ""
