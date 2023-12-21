@@ -1,3 +1,5 @@
+dofile(minetest.get_modpath("lottthrowing").."/arrow.lua")
+
 arrows = {
 	{"lottthrowing:arrow", "lottthrowing:arrow_entity"},
     {"lottthrowing:arrow_mithril", "lottthrowing:arrow_mithril_entity"},
@@ -88,16 +90,12 @@ local lottthrowing_shoot_arrow = function(itemstack, player, pointed_thing, draw
 				--offset = { x = -186, y = pos*20 },
 			})
 			local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, arrow[2])
-			obj:get_luaentity().player = player or nil
+			obj:get_luaentity().playername = player:get_player_name();
 			local dir = player:get_look_dir()
 			obj:set_velocity({x=dir.x*19, y=dir.y*19, z=dir.z*19})
 			obj:set_acceleration({x=dir.x*-3, y=-10, z=dir.z*-3})
 			obj:set_yaw(player:get_look_horizontal()+math.pi)
 			minetest.sound_play("lottthrowing_sound", {pos=playerpos})
-			if obj:get_luaentity().player == "" then
-				obj:get_luaentity().player = player
-			end
-			obj:get_luaentity().node = player:get_inventory():get_stack("main", 1):get_name()
 			return true
 		end
 	end
@@ -140,16 +138,16 @@ local lottthrowing_shoot_bolt = function(itemstack, player, pointed_thing, draws
 			obj:set_acceleration({x=dir.x*-1, y=-5, z=dir.z*-1})
 			obj:set_yaw(player:get_look_horizontal()+math.pi)
 			minetest.sound_play("lottthrowing_sound", {pos=playerpos})
-			if obj:get_luaentity().player == "" then
-				obj:get_luaentity().player = player
+			if obj:get_luaentity().playername == "" then
+				obj:get_luaentity().playername = player:get_player_name();
 			end
-			obj:get_luaentity().node = player:get_inventory():get_stack("main", 1):get_name()
 			return true
 		end
 	end
 	return false
 end
 
+-- -- -- -- -- items and crafts -- -- -- -- -- 
 minetest.register_tool("lottthrowing:bow_wood", {
 	description = "Normal Wood Bow",
 	inventory_image = "lottthrowing_bow_wood.png",
@@ -427,5 +425,4 @@ minetest.register_craft({
 	}
 })
 
-dofile(minetest.get_modpath("lottthrowing").."/arrow.lua")
 dofile(minetest.get_modpath("lottthrowing").."/axe.lua")

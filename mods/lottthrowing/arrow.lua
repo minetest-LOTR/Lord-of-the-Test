@@ -10,7 +10,7 @@ minetest.register_node("lottthrowing:light", {
 			{0,0,0,0,0,0}
 		}
 	},
-	groups = {not_in_creative_inventory=1}
+	groups = { not_in_creative_inventory = 1 }
 })
 
 minetest.register_abm({
@@ -23,6 +23,7 @@ minetest.register_abm({
 })
 
 local arrow_types = {
+    -- name, description, damage, fire node (optional), teleport boolean (optional)
 	{"arrow", "Arrow", 3},
 	{"arrow_mithril", "Mithril Arrow", 10},
 	{"arrow_fire", "Fire Arrow", 5, "fire:basic_flame"},
@@ -80,7 +81,7 @@ for i in pairs(arrow_types) do
 		textures = {"lottthrowing:"..name.."_box"},
 		lastpos = {},
 		collisionbox = {0,0,0,0,0,0},
-		player = nil,
+		playername = "",
 		on_step = function(self, dtime)
 			self.timer = self.timer + dtime
 			local pos = self.object:get_pos()
@@ -88,37 +89,56 @@ for i in pairs(arrow_types) do
 
 			if self.timer > 0.2 then
 				local objs = minetest.get_objects_inside_radius({x = pos.x, y = pos.y, z = pos.z}, 2)
-				for k, obj in pairs(objs) do
-					if obj:get_luaentity() ~= nil then
-						if obj:get_luaentity().name ~= "lottthrowing:"..name.."_entity" and obj:get_luaentity().name ~= "__builtin:item" then
-							if dama > 0 then
-								obj:punch(self.player, 1.0, {
-									full_punch_interval = 1.0,
-									damage_groups = {fleshy= dama},
-								}, nil)
+				for _, obj in pairs(objs) do
+                    local lua_obj_inside = obj:get_luaentity()
+					if lua_obj_inside or obj:is_player() then
+						if (lua_obj_inside and lua_obj_inside.name ~= "lottthrowing:"..name.."_entity" and lua_obj_inside.name ~= "__builtin:item") or obj:is_player() then
+
+                                if dama > 0 then
+                                if self.playername
+                                    and self.playername ~= ""
+                                    and minetest.get_player_by_name(self.playername) then
+
+                                    local player = minetest.get_player_by_name(self.playername)
+                                    obj:punch(player, 1.0, {
+                                        full_punch_interval = 1.0,
+                                        damage_groups = {fleshy= dama},
+                                    }, nil)
+                                else
+                                    obj:punch(self.object, 1.0, {
+                                        full_punch_interval = 1.0,
+                                        damage_groups = {fleshy= dama},
+                                    }, nil)
+                                end
 							end
-							self.object:remove()
+
+                            if fire then
+                                local last_node = minetest.get_node(self.lastpos)
+                                if last_node.name == "air" or last_node.name == "lottthrowing:light" or minetest.get_item_group(last_node.name, "flammable") > 0 then
+                                    minetest.set_node(self.lastpos, {name= fire})
+                                end
+                            end
+                            self.object:remove()
 						end
-					else
-						if dama > 0 then
-							obj:punch(self.player, 1.0, {
-								full_punch_interval = 1.0,
-								damage_groups = {fleshy = dama},
-							}, nil)
-						end
-						self.object:remove()
-					end
+                    end
 				end
 			end
 
 			if self.lastpos.x ~= nil then
-				if node.name ~= "air" and node.name ~= "lottthrowing:light" then
+				if node.name ~= "air" and node.name ~= "lottthrowing:light" and minetest.registered_nodes[node.name].walkable then
 					if fire then
-						minetest.set_node(self.lastpos, {name= fire})
+                        local last_node = minetest.get_node(self.lastpos)
+                        if last_node.name == "air" or last_node.name == "lottthrowing:light" or minetest.get_item_group(last_node.name, "flammable") > 0 then
+						    minetest.set_node(self.lastpos, {name= fire})
+                        end
 					elseif tele then
-						if self.player ~= "" then
-							self.player:set_pos(self.lastpos)
-							self.player:get_inventory():add_item("main", ItemStack("lottthrowing:arrow_magical"))
+						if self.playername
+                            and self.playername ~= ""
+                            and minetest.get_player_by_name(self.playername) then
+
+                            local player = minetest.get_player_by_name(self.playername)
+                            player:set_pos(self.lastpos)
+							player:get_inventory():add_item("main", ItemStack("lottthrowing:arrow_magical"))
 						end
 					else
 						minetest.add_item(self.lastpos, "lottthrowing:"..name)
@@ -130,7 +150,7 @@ for i in pairs(arrow_types) do
 						if minetest.get_node(self.lastpos).name == "lottthrowing:light" then
 							minetest.remove_node(self.lastpos)
 						end
-						if minetest.get_node(pos).name == "air" then
+						if node.name == "air" then
 							minetest.set_node(pos, {name="lottthrowing:light"})
 						end
 					end

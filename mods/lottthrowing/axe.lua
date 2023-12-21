@@ -8,23 +8,19 @@ local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 		end
 		local playerpos = player:get_pos()
 		local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, axe_entity)
-		obj:get_luaentity().player = player or nil
+		obj:get_luaentity().playername = player:get_player_name();
 		local dir = player:get_look_dir()
 		obj:set_velocity({x=dir.x*27, y=dir.y*30, z=dir.z*27})
 		obj:set_acceleration({x=dir.x*-1, y=-5, z=dir.z*-1})
 		obj:set_yaw(player:get_look_horizontal()+math.pi)
 		minetest.sound_play("lottthrowing_sound", {pos=playerpos})
-		if obj:get_luaentity().player == "" then
-			obj:get_luaentity().player = player
-		end
-		obj:get_luaentity().node = player:get_inventory():get_stack("main", 1):get_name()
 		return true
 	end
 
 	minetest.register_craftitem("lottthrowing:axe_" .. axe, {
 		description = desc .. " Throwing Axe",
 	    on_use = function(itemstack, user, pointed_thing)
-	        lottthrowing_throw_axe(item, user, pointed_thing)
+	        lottthrowing_throw_axe(itemstack, user)
 	        if not creative then
 				itemstack:take_item()
 	        end
@@ -60,8 +56,6 @@ local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 		groups = {not_in_creative_inventory=1},
 	})
 
-	local aep = axe_entity .. "_placeholder"
-
 	local aep = {
 		physical = false,
 		timer = 0,
@@ -70,7 +64,7 @@ local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 		textures = {"lottthrowing:" .. axe .. "_axe_box"},
 		lastpos = {},
 		collisionbox = {0,0,0,0,0,0},
-		player = nil,
+		playername = "",
 	}
 
 	aep.on_step = function(self, dtime)
@@ -78,39 +72,43 @@ local lottthrowing_register_axe = function(axe, desc, damage, craft1, craft2)
 		local pos = self.object:get_pos()
 		local node = minetest.get_node(pos)
 
-		if self.timer>0.2 then
+		if self.timer > 0.2 then
 			local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
-			for k, obj in pairs(objs) do
-				if obj:get_luaentity() ~= nil then
-					if obj:get_luaentity().name ~= axe_entity and obj:get_luaentity().name ~= "__builtin:item" then
-						obj:punch(self.player, 1.0, {
-							full_punch_interval=1.0,
-							damage_groups={fleshy=damage},
-						}, nil)
-						self.object:remove()
-	                    if math.random(1, 4) ~= 3 and not creative then
-	                        minetest.add_item(self.lastpos, 'lottthrowing:axe_' .. axe)
-	                    end
-					end
-				else
-					obj:punch(self.player, 1.0, {
-						full_punch_interval=1.0,
-						damage_groups={fleshy=damage},
-					}, nil)
-					self.object:remove()
-	                if math.random(1, 4) ~= 3 and not creative then
-	                    minetest.add_item(self.lastpos, 'lottthrowing:axe_' .. axe)
-	                end
-				end
+			for _, obj in pairs(objs) do
+                local lua_obj_inside = obj:get_luaentity()
+				if lua_obj_inside or obj:is_player() then
+					if (lua_obj_inside and lua_obj_inside.name ~= axe_entity and lua_obj_inside.name ~= "__builtin:item") or obj:is_player() then
+						if damage > 0 then
+                            if self.playername
+                                and self.playername ~= ""
+                                and minetest.get_player_by_name(self.playername) then
+
+                                local player = minetest.get_player_by_name(self.playername)
+                                obj:punch(player, 1.0, {
+                                    full_punch_interval=1.0,
+                                    damage_groups={fleshy=damage},
+                                }, nil)
+                                self.object:remove()
+                            else
+                                obj:punch(self.object, 1.0, {
+                                    full_punch_interval = 1.0,
+                                    damage_groups = {fleshy= dama},
+                                }, nil)
+                            end
+                        end
+                        self.object:remove()
+                        if math.random(1, 4) ~= 3 then
+                            minetest.add_item(self.lastpos, 'lottthrowing:axe_' .. axe)
+                        end
+                    end
+                end
 			end
 		end
 
 		if self.lastpos.x~=nil then
-			if node.name ~= "air" then
+			if node.name ~= "air" and minetest.registered_nodes[node.name].walkable then
 				self.object:remove()
-				if not creative then
-					minetest.add_item(self.lastpos, 'lottthrowing:axe_' .. axe)
-				end
+				minetest.add_item(self.lastpos, 'lottthrowing:axe_' .. axe)
 			end
 		end
 		self.lastpos={x=pos.x, y=pos.y, z=pos.z}
