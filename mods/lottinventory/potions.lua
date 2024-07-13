@@ -167,7 +167,7 @@ function lottinventory.get_potion_formspec(player, page)
                .."button_exit[6,0;2,0.5;quit;Exit]"
                .."image[7,1;1,1;zcg_next_inactive.png]"
                .."image_button[6,1;1,1;zcg_previous.png;potions6;;false;false;zcg_previous_press.png]"
-               .."label[0,0.5;Ent Draught (Healing & Jump Weakening Potion)]"
+               .."label[0,0.5;Ent Draught (Speed & Jump Weakening Potion)]"
                --First potion
                .."label[1,2.2; Power Level: 1]"
                .."item_image_button[4,2;1,1;lottpotion:glass_bottle_geodes;zcg:glass_bottle_geodes;]"
