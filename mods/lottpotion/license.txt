@@ -9,5 +9,11 @@ Authors of media files
 Flipsels (CC BY-SA 3.0)
 	gui_brewerbg.png
 
+From Pixel Perfection v1.11 (CC BY-SA 4.0)
+https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11
+https://www.curseforge.com/minecraft/texture-packs/pixel-perfection-legacy/files/5946162
+    lottpotion_potion_brewer.png
+    lottpotion_potion_brewer_active.png
+
 fishyWET (CC BY-SA 3.0)
 	Everything else

@@ -14,5 +14,11 @@ Amaz (CC BY-SA 3.0)
 lumidify (CC BY-SA 3.0)
 	lottfarming_white*.png
 
+From Pixel Perfection v1.11 (CC BY-SA 4.0)
+https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11
+https://www.curseforge.com/minecraft/texture-packs/pixel-perfection-legacy/files/5946162
+    lottfarming_melon_side.png
+    lottfarming_melon_top.png
+
 fishyWET (CC BY-SA 3.0)
 	Everything else.
