@@ -147,9 +147,13 @@ local lottthrowing_shoot_bolt = function(itemstack, player, pointed_thing, draws
 	return false
 end
 
+
+
 -- -- -- -- -- items and crafts -- -- -- -- --
+local bow_info_text = " \n"..minetest.colorize("grey", "Place arrows in the inventory slot to the right of the bow to use it")
+
 minetest.register_tool("lottthrowing:bow_wood", {
-	description = "Normal Wood Bow",
+	description = "Normal Wood Bow"..bow_info_text,
 	inventory_image = "lottthrowing_bow_wood.png",
     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -163,7 +167,7 @@ minetest.register_tool("lottthrowing:bow_wood", {
 })
 
 minetest.register_tool("lottthrowing:bow_wood_alder", {
-	description = "Alder Wood Bow",
+	description = "Alder Wood Bow"..bow_info_text,
 	inventory_image = "lottthrowing_bow_wood_alder.png",
     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -177,7 +181,7 @@ minetest.register_tool("lottthrowing:bow_wood_alder", {
 })
 
 minetest.register_tool("lottthrowing:bow_wood_birch", {
-	description = "Birch Wood Bow",
+	description = "Birch Wood Bow"..bow_info_text,
 	inventory_image = "lottthrowing_bow_wood_birch.png",
     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -191,7 +195,7 @@ minetest.register_tool("lottthrowing:bow_wood_birch", {
 })
 
 minetest.register_tool("lottthrowing:bow_wood_lebethron", {
-	description = "Lebethron Wood Bow",
+	description = "Lebethron Wood Bow"..bow_info_text,
 	inventory_image = "lottthrowing_bow_wood_lebethron.png",
     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -205,7 +209,7 @@ minetest.register_tool("lottthrowing:bow_wood_lebethron", {
 })
 
 minetest.register_tool("lottthrowing:bow_wood_mallorn", {
-	description = "Mallorn Bow",
+	description = "Mallorn Bow"..bow_info_text,
 	inventory_image = "lottthrowing_bow_wood_mallorn.png",
     stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -263,8 +267,10 @@ minetest.register_craft({
 	}
 })
 
+local crossbow_info_text = " \n"..minetest.colorize("grey", "Place bolts in the inventory slot to the right of the crossbow to use it.")
+
 minetest.register_tool("lottthrowing:crossbow_wood", {
-	description = "Wooden Crossbow",
+	description = "Wooden Crossbow"..crossbow_info_text,
 	inventory_image = "lottthrowing_crossbow_wood.png",
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -278,7 +284,7 @@ minetest.register_tool("lottthrowing:crossbow_wood", {
 })
 
 minetest.register_tool("lottthrowing:crossbow_steel", {
-	description = "Steel Crossbow",
+	description = "Steel Crossbow"..crossbow_info_text,
 	inventory_image = "lottthrowing_crossbow_steel.png",
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -292,7 +298,7 @@ minetest.register_tool("lottthrowing:crossbow_steel", {
 })
 
 minetest.register_tool("lottthrowing:crossbow_tin", {
-	description = "Tin Crossbow",
+	description = "Tin Crossbow"..crossbow_info_text,
 	inventory_image = "lottthrowing_crossbow_tin.png",
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -306,7 +312,7 @@ minetest.register_tool("lottthrowing:crossbow_tin", {
 })
 
 minetest.register_tool("lottthrowing:crossbow_silver", {
-	description = "Silver Crossbow",
+	description = "Silver Crossbow"..crossbow_info_text,
 	inventory_image = "lottthrowing_crossbow_silver.png",
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -320,7 +326,7 @@ minetest.register_tool("lottthrowing:crossbow_silver", {
 })
 
 minetest.register_tool("lottthrowing:crossbow_gold", {
-	description = "Gold Crossbow",
+	description = "Gold Crossbow"..crossbow_info_text,
 	inventory_image = "lottthrowing_crossbow_gold.png",
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
@@ -334,7 +340,7 @@ minetest.register_tool("lottthrowing:crossbow_gold", {
 })
 
 minetest.register_tool("lottthrowing:crossbow_galvorn", {
-	description = "Galvorn Crossbow",
+	description = "Galvorn Crossbow"..crossbow_info_text,
 	inventory_image = "lottthrowing_crossbow_galvorn.png",
      groups = {forbidden=1},
      stack_max = 1,
@@ -349,7 +355,7 @@ minetest.register_tool("lottthrowing:crossbow_galvorn", {
 })
 
 minetest.register_tool("lottthrowing:crossbow_mithril", {
-	description = "Mithril Crossbow",
+	description = "Mithril Crossbow"..crossbow_info_text,
 	inventory_image = "lottthrowing_crossbow_mithril.png",
      stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
